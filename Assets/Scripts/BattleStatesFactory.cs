@@ -9,6 +9,12 @@ public class BattleStatesFactory : MonoBehaviour
     private BattleStatesFactory otherBattleStatesFactory = null;
 
     [SerializeField]
+    private bool isThePlayersFactory = false;
+
+    [SerializeField]
+    private EnemyAI enemyAI = null;
+
+    [SerializeField]
     private Deck deck = null;
 
     [SerializeField]
@@ -20,9 +26,22 @@ public class BattleStatesFactory : MonoBehaviour
     [SerializeField]
     private Button endRepositioningBtn = null;
 
+    public Battlefield GetBattlefield()
+    {
+        return battlefield;
+    }
+
     public BattleState CreateGameStartState()
     {
-        return new GameStart(this, otherBattleStatesFactory);
+        if (isThePlayersFactory)
+        {
+            return new GameStart(firstToPlayStatesFactory: this, playerStatesFactory: this, enemyStatesFactory: otherBattleStatesFactory, enemyAI);
+        }
+        else
+        {
+            return new GameStart(firstToPlayStatesFactory: this, playerStatesFactory: otherBattleStatesFactory, enemyStatesFactory: this, enemyAI);
+        }
+        
     }
 
     public BattleState CreateDrawCardState()
@@ -42,6 +61,21 @@ public class BattleStatesFactory : MonoBehaviour
 
     public BattleState CreateAttackState()
     {
-        return new Attack();
+        return new Attack(battlefield, otherBattleStatesFactory.GetBattlefield());
+    }
+
+    public BattleState CreateEndTurnState()
+    {
+        return new EndTurn(battlefield, deck);
+    }
+
+    public BattleState CreateBeginTurnState()
+    {
+        return new BeginTurn(battlefield, deck);
+    }
+
+    public BattleState CreateEndGameState(BattleStatesFactory winnerFactory)
+    {
+        return new EndGame(winnerFactory);
     }
 }

@@ -34,6 +34,20 @@ public class CardsHolder : IndexHolder
         return full;
     }
 
+    public bool IsEmpty()
+    {
+        bool empty = true;
+        for (int i = 0; i < cards.Length; i++)
+        {
+            if (cards[i] != null)
+            {
+                empty = false;
+                break;
+            }
+        }
+        return empty;
+    }
+
     public bool ContainsCardInIndex(int index)
     {
         return cards[index] != null;

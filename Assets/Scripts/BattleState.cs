@@ -12,20 +12,23 @@ public abstract class BattleState
 
     protected static BattleStatesFactory playerBattleStatesFactory;
     protected static BattleStatesFactory enemyBattleStatesFactory;
+
+    protected static EnemyAI enemyAI;
 }
 
 public class GameStart : BattleState
 {
 
-    public GameStart(BattleStatesFactory playerStatesFactory, BattleStatesFactory enemyStatesFactory)
+    public GameStart(BattleStatesFactory firstToPlayStatesFactory, BattleStatesFactory playerStatesFactory, BattleStatesFactory enemyStatesFactory, EnemyAI AI)
     {
+        currentBattleStatesFactory = firstToPlayStatesFactory;
         playerBattleStatesFactory = playerStatesFactory;
         enemyBattleStatesFactory = enemyStatesFactory;
+        enemyAI = AI;
     }
 
     public override void ExecuteAction()
     {
-        currentBattleStatesFactory = playerBattleStatesFactory;
     }
 
     public override BattleState GetNextState()
@@ -49,7 +52,7 @@ public class DrawCard : BattleState
 
     public override void ExecuteAction()
     {
-        if (deck.ContainCards())
+        if (deck.ContainCards() && ! hand.IsFull())
         {
             Card firstOfDeck = deck.DrawCard();
             hand.AddCard(firstOfDeck);
@@ -58,7 +61,7 @@ public class DrawCard : BattleState
 
     public override BattleState GetNextState()
     {
-        BattleState nextState = this;
+        BattleState nextState;
 
         if (hand.IsFull())
         {
@@ -69,6 +72,10 @@ public class DrawCard : BattleState
             {
                 nextState = currentBattleStatesFactory.CreatePlaceCardState();
             }
+        }
+        else
+        {
+            nextState = this;
         }
 
         return nextState;
@@ -91,6 +98,11 @@ public class PlaceCard : BattleState
 
         playerHand.ClearSelection();
         battlefield.ClearSelection();
+
+        if (currentBattleStatesFactory == enemyBattleStatesFactory)
+        {
+            enemyAI.PlaceCard(hand, battlefield);
+        }
     }
 
     public override void ExecuteAction()
@@ -135,6 +147,12 @@ public class PlaceCard : BattleState
             }
         }
 
+        if (hand.IsEmpty())
+        {
+            nextState = currentBattleStatesFactory.CreateAttackState();
+        }
+
+        Debug.Log("[" + GetType().Name + "] nextState = " + nextState.GetType().Name);
         return nextState;
     }
 }
@@ -157,7 +175,15 @@ public class Reposition : BattleState
         oldIndex = battlefield.GetSelectedIndex();
 
         endRepositioningBtn.onClick.AddListener(OnEndRepositioning);
-        endRepositioningBtn.gameObject.SetActive(true);
+
+        if (currentBattleStatesFactory == enemyBattleStatesFactory)
+        {
+            enemyAI.Reposition(battlefield, endRepositioningBtn);
+        }
+        else
+        {
+            endRepositioningBtn.gameObject.SetActive(true);
+        }
     }
 
     private void OnEndRepositioning()
@@ -219,17 +245,149 @@ public class Reposition : BattleState
         BattleState nextState = this;
         if (repositioningEnded)
         {
-            return currentBattleStatesFactory.CreateAttackState();
+            endRepositioningBtn.onClick.RemoveListener(OnEndRepositioning);
+            nextState = currentBattleStatesFactory.CreateAttackState();
         }
+        Debug.Log("[" + GetType().Name + "] nextState = " + nextState.GetType().Name);
         return nextState;
     }
 }
 
 public class Attack : BattleState
 {
+    private Battlefield myBattlefield;
+    private Battlefield opponentBattleField;
+
+    public Attack(Battlefield myBattlefield, Battlefield opponentBattleField)
+    {
+        this.myBattlefield = myBattlefield;
+        this.opponentBattleField = opponentBattleField;
+    }
+
     public override void ExecuteAction()
     {
         
+    }
+
+    public override BattleState GetNextState()
+    {
+        BattleState nextState = this;
+
+        Debug.Log("[Attack] myBattlefield.IsEmpty(): " + myBattlefield.IsEmpty()+ "; opponentBattleField.IsEmpty(): "+ opponentBattleField.IsEmpty());
+
+        if (myBattlefield.IsEmpty() || opponentBattleField.IsEmpty())
+        {
+            nextState = currentBattleStatesFactory.CreateEndTurnState();
+        }
+
+        return nextState;
+    }
+}
+
+public abstract class TurnBattleState : BattleState
+{
+    protected Battlefield battlefield;
+    protected Deck deck;
+
+    protected BattleStatesFactory GetTheOtherFactory()
+    {
+        BattleStatesFactory otherFactory;
+        if (currentBattleStatesFactory == playerBattleStatesFactory)
+        {
+            otherFactory = enemyBattleStatesFactory;
+        }
+        else
+        {
+            otherFactory = playerBattleStatesFactory;
+        }
+        return otherFactory;
+    }
+
+    protected bool IveLost()
+    {
+        return deck.IsEmpty() && battlefield.IsEmpty();
+    }
+}
+
+public class EndTurn : TurnBattleState
+{
+    public EndTurn(Battlefield battlefield, Deck deck)
+    {
+        this.battlefield = battlefield;
+        this.deck = deck;
+    }
+
+    public override void ExecuteAction()
+    {
+        currentBattleStatesFactory = GetTheOtherFactory();
+    }
+
+    public override BattleState GetNextState()
+    {
+        BattleState nextState;
+
+        if(IveLost())
+        {
+            nextState = currentBattleStatesFactory.CreateEndGameState(winnerFactory: currentBattleStatesFactory);
+        } else
+        {
+            nextState = currentBattleStatesFactory.CreateBeginTurnState();
+        }
+        Debug.Log("[" + GetType().Name + "] nextState = " + nextState.GetType().Name);
+        return nextState;
+    }
+}
+
+public class BeginTurn : TurnBattleState
+{
+    public BeginTurn(Battlefield battlefield, Deck deck)
+    {
+        this.battlefield = battlefield;
+        this.deck = deck;
+    }
+
+    public override void ExecuteAction()
+    {
+        
+    }
+
+    public override BattleState GetNextState()
+    {
+        BattleState nextState;
+
+        if (IveLost())
+        {
+            nextState = currentBattleStatesFactory.CreateEndGameState(winnerFactory: GetTheOtherFactory());
+        }
+        else
+        {
+            nextState = currentBattleStatesFactory.CreateDrawCardState();
+        }
+
+        Debug.Log("["+GetType().Name+"] nextState = " + nextState.GetType().Name);
+        return nextState;
+    }
+}
+
+public class EndGame : BattleState
+{
+    private BattleStatesFactory looserFactory;
+
+    public EndGame(BattleStatesFactory looserFactory)
+    {
+        this.looserFactory = looserFactory;
+    }
+
+    public override void ExecuteAction()
+    {
+        if (looserFactory == playerBattleStatesFactory)
+        {
+            Debug.LogWarning("You lose!");
+        }
+        else
+        {
+            Debug.LogWarning("You win!");
+        }
     }
 
     public override BattleState GetNextState()
