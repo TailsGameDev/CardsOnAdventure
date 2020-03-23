@@ -12,9 +12,6 @@ public class BattleStatesFactory : MonoBehaviour
     private bool isThePlayersFactory = false;
 
     [SerializeField]
-    private EnemyAI enemyAI = null;
-
-    [SerializeField]
     private Deck deck = null;
 
     [SerializeField]
@@ -26,22 +23,16 @@ public class BattleStatesFactory : MonoBehaviour
     [SerializeField]
     private Button endRepositioningBtn = null;
 
-    public Battlefield GetBattlefield()
-    {
-        return battlefield;
-    }
-
     public BattleState CreateGameStartState()
     {
         if (isThePlayersFactory)
         {
-            return new GameStart(firstToPlayStatesFactory: this, playerStatesFactory: this, enemyStatesFactory: otherBattleStatesFactory, enemyAI);
+            return new GameStart(firstToPlayStatesFactory: this, playerStatesFactory: this, enemyStatesFactory: otherBattleStatesFactory);
         }
         else
         {
-            return new GameStart(firstToPlayStatesFactory: this, playerStatesFactory: otherBattleStatesFactory, enemyStatesFactory: this, enemyAI);
+            return new GameStart(firstToPlayStatesFactory: this, playerStatesFactory: otherBattleStatesFactory, enemyStatesFactory: this);
         }
-        
     }
 
     public BattleState CreateDrawCardState()
@@ -61,17 +52,17 @@ public class BattleStatesFactory : MonoBehaviour
 
     public BattleState CreateAttackState()
     {
-        return new Attack(battlefield, otherBattleStatesFactory.GetBattlefield());
+        return new Attack(battlefield, otherBattleStatesFactory.battlefield);
     }
 
     public BattleState CreateEndTurnState()
     {
-        return new EndTurn(battlefield, deck);
+        return new EndTurn(battlefield, deck, hand);
     }
 
     public BattleState CreateBeginTurnState()
     {
-        return new BeginTurn(battlefield, deck);
+        return new BeginTurn(otherBattleStatesFactory.battlefield, deck, hand);
     }
 
     public BattleState CreateEndGameState(BattleStatesFactory winnerFactory)

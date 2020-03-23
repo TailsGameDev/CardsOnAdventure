@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleFSM : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class BattleFSM : MonoBehaviour
 
     [SerializeField]
     private string currentStateName;
+
+    [SerializeField]
+    private Text feedbackText = null;
 
     void Awake()
     {
@@ -23,5 +27,15 @@ public class BattleFSM : MonoBehaviour
         currentState = currentState.GetNextState();
 
         currentStateName = currentState.GetType().Name;
+        //Debug.Log(currentStateName);
+
+        string somebodiesTurn = "Enemy's Turn";
+
+        if (currentState.IsPlayerTurn())
+        {
+            somebodiesTurn = "Your Turn";
+        }
+
+        feedbackText.text = currentStateName + ". It's " +somebodiesTurn;
     }
 }

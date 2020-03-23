@@ -16,15 +16,8 @@ public class Hand : CardsHolder
         }
     }
 
-    public void SelectFirstOccupiedIndex()
+    public bool HasCards()
     {
-        for (int i = 0; i < cards.Length; i++)
-        {
-            if (cards[i] != null)
-            {
-                SetSelectedIndex(i);
-                break;
-            }
-        }
+        return !IsEmpty();
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class BattleState
+public abstract class BattleState : BattleInfo
 {
     public abstract void ExecuteAction();
     public abstract BattleState GetNextState();
@@ -13,18 +13,20 @@ public abstract class BattleState
     protected static BattleStatesFactory playerBattleStatesFactory;
     protected static BattleStatesFactory enemyBattleStatesFactory;
 
-    protected static EnemyAI enemyAI;
+    public bool IsPlayerTurn()
+    {
+        return currentBattleStatesFactory == playerBattleStatesFactory;
+    }
 }
 
 public class GameStart : BattleState
 {
 
-    public GameStart(BattleStatesFactory firstToPlayStatesFactory, BattleStatesFactory playerStatesFactory, BattleStatesFactory enemyStatesFactory, EnemyAI AI)
+    public GameStart(BattleStatesFactory firstToPlayStatesFactory, BattleStatesFactory playerStatesFactory, BattleStatesFactory enemyStatesFactory)
     {
         currentBattleStatesFactory = firstToPlayStatesFactory;
         playerBattleStatesFactory = playerStatesFactory;
         enemyBattleStatesFactory = enemyStatesFactory;
-        enemyAI = AI;
     }
 
     public override void ExecuteAction()
@@ -75,7 +77,14 @@ public class DrawCard : BattleState
         }
         else
         {
-            nextState = this;
+            if (deck.IsEmpty())
+            {
+                nextState = currentBattleStatesFactory.CreatePlaceCardState();
+            } else
+            {
+                // Draw more cards!
+                nextState = this;
+            }
         }
 
         return nextState;
@@ -101,13 +110,13 @@ public class PlaceCard : BattleState
 
         if (currentBattleStatesFactory == enemyBattleStatesFactory)
         {
-            enemyAI.PlaceCard(hand, battlefield);
+            new EnemyAI().PlaceCard(hand, battlefield);
         }
     }
 
     public override void ExecuteAction()
     {
-        if ( CanPlaceCards() )
+        if ( ReceivedValidInput() )
         {
             Card card = hand.RemoveCardFromSelectedIndex();
             battlefield.PlaceCardInSelectedIndex(card);
@@ -115,20 +124,20 @@ public class PlaceCard : BattleState
         }
     }
 
-    public bool CanPlaceCards()
+    public bool ReceivedValidInput()
     {
         bool receivedInput = hand.SomeIndexWasSelectedSinceLastClear() && battlefield.SomeIndexWasSelectedSinceLastClear();
         int handIndex = hand.GetSelectedIndex();
         int battlefieldIndex = battlefield.GetSelectedIndex();
 
-        bool inputReceivedIsValid = false;
+        bool receivedInputIsValid = false;
 
         if (receivedInput)
         {
-            inputReceivedIsValid = hand.ContainsCardInIndex(handIndex) && battlefield.IsSlotIndexFree(battlefieldIndex);
+            receivedInputIsValid = hand.ContainsCardInIndex(handIndex) && battlefield.IsSlotIndexFree(battlefieldIndex);
         }
 
-        return receivedInput && inputReceivedIsValid;
+        return receivedInput && receivedInputIsValid;
     }
 
     public override BattleState GetNextState()
@@ -143,16 +152,26 @@ public class PlaceCard : BattleState
             }
             else
             {
-                nextState = currentBattleStatesFactory.CreateRepositionState();
+                if ( hand.HasCards() && battlefield.HasEmptySlot())
+                {
+                    if (currentBattleStatesFactory == enemyBattleStatesFactory)
+                    {
+                        // Create the state again triggers EnemyAI
+                        nextState = currentBattleStatesFactory.CreatePlaceCardState();
+                    }
+                }
+                else
+                {
+                    nextState = currentBattleStatesFactory.CreateRepositionState();
+                }
             }
         }
 
-        if (hand.IsEmpty())
+        if (hand.IsEmpty() || battlefield.IsFull())
         {
-            nextState = currentBattleStatesFactory.CreateAttackState();
+            nextState = currentBattleStatesFactory.CreateRepositionState();
         }
 
-        Debug.Log("[" + GetType().Name + "] nextState = " + nextState.GetType().Name);
         return nextState;
     }
 }
@@ -172,13 +191,13 @@ public class Reposition : BattleState
         this.battlefield = battlefield;
         this.endRepositioningBtn = endRepositioningBtn;
 
-        oldIndex = battlefield.GetSelectedIndex();
+        ClearSelection();
 
         endRepositioningBtn.onClick.AddListener(OnEndRepositioning);
 
         if (currentBattleStatesFactory == enemyBattleStatesFactory)
         {
-            enemyAI.Reposition(battlefield, endRepositioningBtn);
+            new EnemyAI().Reposition(battlefield, endRepositioningBtn);
         }
         else
         {
@@ -214,7 +233,12 @@ public class Reposition : BattleState
 
         if ( oldIndex != currentIndex )
         {
-            SwapCards();
+            Card oldSelectedCard = battlefield.GetReferenceToCardAt(oldIndex);
+            Card currentSelectedCard = battlefield.GetReferenceToCardAt(currentIndex);
+            if ( ! oldSelectedCard.Freezing && ! currentSelectedCard.Freezing )
+            {
+                SwapCards();
+            }
             ClearSelection();
         }
     }
@@ -248,34 +272,119 @@ public class Reposition : BattleState
             endRepositioningBtn.onClick.RemoveListener(OnEndRepositioning);
             nextState = currentBattleStatesFactory.CreateAttackState();
         }
-        Debug.Log("[" + GetType().Name + "] nextState = " + nextState.GetType().Name);
         return nextState;
     }
 }
 
 public class Attack : BattleState
 {
-    private Battlefield myBattlefield;
+    private Battlefield attackerBattlefield;
     private Battlefield opponentBattleField;
+
+    private List<int> attackTokens = new List<int>();
 
     public Attack(Battlefield myBattlefield, Battlefield opponentBattleField)
     {
-        this.myBattlefield = myBattlefield;
+        this.attackerBattlefield = myBattlefield;
         this.opponentBattleField = opponentBattleField;
+
+        ClearSelections();
+
+        if (currentBattleStatesFactory == enemyBattleStatesFactory)
+        {
+            new EnemyAI().Attack(enemyBattlefield: myBattlefield, playerBattlefield: opponentBattleField);
+        }
+
+        attackTokens = ListCardsThatShouldAttackDuringThisState();
+    }
+
+    private void ClearSelections()
+    {
+        attackerBattlefield.ClearSelection();
+        opponentBattleField.ClearSelection();
+    }
+
+    private List<int> ListCardsThatShouldAttackDuringThisState()
+    {
+        List<int> cards = new List<int>();
+        for (int i = 0; i < attackerBattlefield.GetSize(); i++)
+        {
+            if (attackerBattlefield.ContainsCardInIndex(i))
+            {
+                Card possibleAttacker = attackerBattlefield.GetReferenceToCardAt(i);
+                if ( ! possibleAttacker.Freezing )
+                {
+                    cards.Add(i);
+                }
+            }
+        }
+        return cards;
     }
 
     public override void ExecuteAction()
     {
-        
+        if (ReceivedValidInput())
+        {
+            Card myCard = attackerBattlefield.GetReferenceToSelectedCard();
+            myCard.AttackSelectedCard(opponentBattleField, attackerBattlefield);
+
+            attackTokens.Remove(attackerBattlefield.GetSelectedIndex());
+
+            ClearSelections();
+        }
+
+        if (ClickedInvalidCard())
+        {
+            ClearSelections();
+            Debug.Log("Clicked invalid card");
+        }
+    }
+
+    private bool ClickedInvalidCard()
+    {
+        int myIndex = attackerBattlefield.GetSelectedIndex();
+        bool invalidClickInMyBattlefield = (myIndex != -1) && (!attackTokens.Contains(myIndex));
+
+        int opponentIndex = opponentBattleField.GetSelectedIndex();
+        bool invalidClickInOpponentsBattlefield = (opponentIndex != -1) && opponentBattleField.IsSlotIndexFree(opponentIndex);
+
+        return invalidClickInMyBattlefield || invalidClickInOpponentsBattlefield;
+    }
+
+    private bool ReceivedValidInput()
+    {
+        bool receivedInput = ReceivedInputInBothBattlefields();
+
+        bool receivedInputIsValid = false;
+
+        if (receivedInput)
+        {
+            receivedInputIsValid = ReceivedInputIsValid();
+        }
+
+        bool cardHasAnAttackToken = attackTokens.Contains(attackerBattlefield.GetSelectedIndex());
+
+        return receivedInput && receivedInputIsValid && cardHasAnAttackToken;
+    }
+
+    private bool ReceivedInputInBothBattlefields()
+    {
+        return attackerBattlefield.SomeIndexWasSelectedSinceLastClear() && opponentBattleField.SomeIndexWasSelectedSinceLastClear(); ;
+    }
+
+    private bool ReceivedInputIsValid()
+    {
+        int myIndex = attackerBattlefield.GetSelectedIndex();
+        int opponentIndex = opponentBattleField.GetSelectedIndex();
+
+        return attackerBattlefield.ContainsCardInIndex(myIndex) && opponentBattleField.ContainsCardInIndex(opponentIndex); ;
     }
 
     public override BattleState GetNextState()
     {
         BattleState nextState = this;
 
-        Debug.Log("[Attack] myBattlefield.IsEmpty(): " + myBattlefield.IsEmpty()+ "; opponentBattleField.IsEmpty(): "+ opponentBattleField.IsEmpty());
-
-        if (myBattlefield.IsEmpty() || opponentBattleField.IsEmpty())
+        if (attackerBattlefield.IsEmpty() || opponentBattleField.IsEmpty() || attackTokens.Count == 0)
         {
             nextState = currentBattleStatesFactory.CreateEndTurnState();
         }
@@ -286,8 +395,9 @@ public class Attack : BattleState
 
 public abstract class TurnBattleState : BattleState
 {
-    protected Battlefield battlefield;
+    protected Battlefield opponentBattlefield;
     protected Deck deck;
+    protected Hand hand;
 
     protected BattleStatesFactory GetTheOtherFactory()
     {
@@ -305,16 +415,17 @@ public abstract class TurnBattleState : BattleState
 
     protected bool IveLost()
     {
-        return deck.IsEmpty() && battlefield.IsEmpty();
+        return deck.IsEmpty() && opponentBattlefield.IsEmpty() && hand.IsEmpty();
     }
 }
 
 public class EndTurn : TurnBattleState
 {
-    public EndTurn(Battlefield battlefield, Deck deck)
+    public EndTurn(Battlefield battlefield, Deck deck, Hand hand)
     {
-        this.battlefield = battlefield;
+        this.opponentBattlefield = battlefield;
         this.deck = deck;
+        this.hand = hand;
     }
 
     public override void ExecuteAction()
@@ -333,22 +444,22 @@ public class EndTurn : TurnBattleState
         {
             nextState = currentBattleStatesFactory.CreateBeginTurnState();
         }
-        Debug.Log("[" + GetType().Name + "] nextState = " + nextState.GetType().Name);
         return nextState;
     }
 }
 
 public class BeginTurn : TurnBattleState
 {
-    public BeginTurn(Battlefield battlefield, Deck deck)
+    public BeginTurn(Battlefield opponentBattlefield, Deck deck, Hand hand)
     {
-        this.battlefield = battlefield;
+        this.opponentBattlefield = opponentBattlefield;
         this.deck = deck;
+        this.hand = hand;
     }
 
     public override void ExecuteAction()
     {
-        
+        opponentBattlefield.RemoveFreezingStateFromAllCards();
     }
 
     public override BattleState GetNextState()
@@ -364,29 +475,28 @@ public class BeginTurn : TurnBattleState
             nextState = currentBattleStatesFactory.CreateDrawCardState();
         }
 
-        Debug.Log("["+GetType().Name+"] nextState = " + nextState.GetType().Name);
         return nextState;
     }
 }
 
 public class EndGame : BattleState
 {
-    private BattleStatesFactory looserFactory;
+    private BattleStatesFactory winnerFactory;
 
-    public EndGame(BattleStatesFactory looserFactory)
+    public EndGame(BattleStatesFactory winnerFactory)
     {
-        this.looserFactory = looserFactory;
+        this.winnerFactory = winnerFactory;
     }
 
     public override void ExecuteAction()
     {
-        if (looserFactory == playerBattleStatesFactory)
+        if (winnerFactory == playerBattleStatesFactory)
         {
-            Debug.LogWarning("You lose!");
+            Debug.LogWarning("You win!");
         }
         else
         {
-            Debug.LogWarning("You win!");
+            Debug.LogWarning("You loose!");
         }
     }
 

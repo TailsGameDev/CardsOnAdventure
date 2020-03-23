@@ -57,6 +57,19 @@ public class CardsHolder : IndexHolder
     {
         cards[index] = card;
         card.transform.position = cardPositions[index].position;
+        card.transform.rotation = transform.rotation;
         card.GetComponent<RectTransform>().SetParent(cardPositions[index], true);
+    }
+
+    public void SelectFirstOccupiedIndex()
+    {
+        for (int i = 0; i < cards.Length; i++)
+        {
+            if (cards[i] != null)
+            {
+                SetSelectedIndex(i);
+                break;
+            }
+        }
     }
 }
