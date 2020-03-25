@@ -79,4 +79,41 @@ public class CardsHolder : IndexHolder
             }
         }
     }
+
+    #region Make card bigger or smaller
+    public void MakeOnlySelectedCardBigger()
+    {
+        for (int i = 0; i < cards.Length; i++)
+        {
+            MakeCardAtIndexNormalSize(i);
+        }
+        MakeSelectedCardBigger();
+    }
+
+    public void MakeSelectedCardBigger()
+    {
+        MakeCardAtIndexBigger(GetSelectedIndex());
+    }
+
+    public void MakeCardAtIndexBigger(int index)
+    {
+        if (index != -1 && cards[index] != null)
+        {
+            cards[index].transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+        }
+    }
+
+    internal void MakeSelectedCardNormalSize()
+    {
+        MakeCardAtIndexNormalSize(GetSelectedIndex());
+    }
+
+    internal void MakeCardAtIndexNormalSize(int index)
+    {
+        if (index != -1 && cards[index] != null)
+        {
+            cards[index].transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        }
+    }
+    #endregion
 }

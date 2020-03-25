@@ -117,8 +117,11 @@ public class PlaceCard : BattleState
 
     public override void ExecuteAction()
     {
+        hand.MakeOnlySelectedCardBigger();
+
         if ( ReceivedValidInput() )
         {
+            hand.MakeSelectedCardNormalSize();
             Card card = hand.RemoveCardFromSelectedIndex();
             battlefield.PlaceCardInSelectedIndex(card);
             cardWasSuccessfullyPlaced = true;
@@ -226,7 +229,7 @@ public class Reposition : BattleState
             return;
         }
 
-        //battlefield.MakeCardAtIndexBigger(currentIndex);
+        battlefield.MakeCardAtIndexBigger(currentIndex);
 
         if (oldIndex == -1)
         {
@@ -234,7 +237,7 @@ public class Reposition : BattleState
             return;
         }
 
-        //battlefield.MakeCardAtIndexBigger(oldIndex);
+        battlefield.MakeCardAtIndexBigger(oldIndex);
 
         if ( oldIndex != currentIndex )
         {
@@ -242,6 +245,8 @@ public class Reposition : BattleState
             Card currentSelectedCard = battlefield.GetReferenceToCardAt(currentIndex);
             if ( ! oldSelectedCard.Freezing && ! currentSelectedCard.Freezing )
             {
+                battlefield.MakeCardAtIndexNormalSize(currentIndex);
+                battlefield.MakeCardAtIndexNormalSize(oldIndex);
                 SwapCards();
             }
             ClearSelection();
@@ -328,12 +333,16 @@ public class Attack : BattleState
 
     public override void ExecuteAction()
     {
+        attackerBattlefield.MakeOnlySelectedCardBigger();
+
         if (ReceivedValidInput())
         {
             Card myCard = attackerBattlefield.GetReferenceToSelectedCard();
             myCard.AttackSelectedCard(opponentBattleField, attackerBattlefield);
 
             attackTokens.Remove(attackerBattlefield.GetSelectedIndex());
+
+            attackerBattlefield.MakeSelectedCardNormalSize();
 
             ClearSelections();
 

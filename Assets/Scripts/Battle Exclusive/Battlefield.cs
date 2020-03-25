@@ -233,9 +233,4 @@ public class Battlefield : CardsHolder
             }
         }
     }
-
-    public void MakeCardAtIndexBigger(int index)
-    {
-        cards[index].transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
-    }
 }
