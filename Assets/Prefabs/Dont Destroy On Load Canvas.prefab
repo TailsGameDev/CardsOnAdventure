@@ -3984,6 +3984,7 @@ MonoBehaviour:
   finalSpot: {fileID: 3439301757843367535}
   sceneOpener: {fileID: 3488200542917729745}
   mapPopUp: {fileID: 5023528332362274989}
+  winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
 --- !u!1 &5095320016352462456
 GameObject:
   m_ObjectHideFlags: 0

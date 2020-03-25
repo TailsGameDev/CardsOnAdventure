@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIMap : PopUpOpener
 {
@@ -12,6 +13,9 @@ public class UIMap : PopUpOpener
 
     [SerializeField]
     private GameObject mapPopUp = null;
+
+    [SerializeField]
+    private AudioClip winSound = null;
 
     public void ResetMap()
     {
@@ -38,8 +42,15 @@ public class UIMap : PopUpOpener
 
     public void OnBossBattleClicked(Transform btnTransform)
     {
-        ClearSpot(btnTransform);
-        BattleDefaultBehaviour();
+        SoundManager.Instance.PlayBGM(winSound);
+        popUpOpener.OpenCustomPopUp("You Beat the game!!!", "You are Awesome!","Go to Menu","Look the Map", GoToMenu);
+        //ClearSpot(btnTransform);
+        //BattleDefaultBehaviour();
+    }
+
+    void GoToMenu()
+    {
+        SceneManager.LoadSceneAsync("Main Menu");
     }
 
     public void OnMageMasterClicked(Transform btnTransform)
