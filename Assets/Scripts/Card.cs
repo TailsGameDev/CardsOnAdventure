@@ -22,6 +22,9 @@ public class Card : MonoBehaviour
     [SerializeField]
     private Text skillText = null;
 
+    [SerializeField]
+    private Image obfuscator = null;
+
     private bool freezing = false;
 
     public Skill Skills {
@@ -56,6 +59,7 @@ public class Card : MonoBehaviour
         Skills.ApplyEffectsConsideringSelectedTarget(opponentBattlefield, attackerBattlefield);
     }
 
+    #region damage
     public void TakeDamage(int damage)
     {
         SetVitality(Vitality - damage);
@@ -67,12 +71,7 @@ public class Card : MonoBehaviour
     }
 
     private void SetVitality(int value)
-    {
-        if (Vitality != value)
-        {
-            Debug.Log(gameObject.name + " set vitality to: " + value, this);
-        }
-        
+    {   
         vitality = value;
         vitalityText.text = value.ToString();
         if (Vitality <= 0)
@@ -80,7 +79,9 @@ public class Card : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    #endregion
 
+    #region Has XXX Skill
     public bool HasBlockSkill()
     {
         return Skills.HasBlockEffect();
@@ -94,5 +95,16 @@ public class Card : MonoBehaviour
     public bool HasReflectSkill()
     {
         return Skills.HasReflectEffect();
+    }
+    #endregion
+
+    public string GetSkillFullName()
+    {
+        return skills.FullName;
+    }
+
+    public void SetObfuscate(bool obfuscate)
+    {
+        obfuscator.gameObject.SetActive(obfuscate);
     }
 }

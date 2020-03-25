@@ -5,7 +5,12 @@ using UnityEngine.UI;
 
 public class Spot : MonoBehaviour
 {
+    public bool logIterations;
+
     private static Spot lastChoosedSpot;
+
+    [SerializeField]
+    protected Button playLvlBtn;
 
     [SerializeField]
     protected Button[] possiblePlayLvlBtns;
@@ -13,34 +18,66 @@ public class Spot : MonoBehaviour
     [SerializeField]
     private Spot[] antecessorSpots = null;
 
-    protected Button playLvlBtn;
+    [SerializeField]
+    private bool cleared = false;
 
-    private bool cleared;
+    public bool Cleared { get => cleared; set => cleared = value; }
 
-    protected bool Cleared { get => cleared; set => cleared = value; }
-
-    public void MakeAndLockIfNeededDownTheTree()
+    public void ResetMap()
     {
-        Make();
+        DemolishDownTheTree();
+        BuildMapDownTheTree();
+        LockIfNeededDownTheTree();
+    }
 
-        if (PathToThisSpotIsBlocked())
-        {
-            LockSpot();
-        }
+    public void UpdateMap()
+    {
+        LockIfNeededDownTheTree();
+    }
+
+    public void BuildMapDownTheTree()
+    {
+        Build();
 
         foreach (Spot antecessor in antecessorSpots)
         {
-            antecessor.MakeAndLockIfNeededDownTheTree();
+            antecessor.BuildMapDownTheTree();
         }
     }
 
-    private void Make()
+    private void Build()
     {
         if (playLvlBtn == null)
         {
             int randomIndex = Random.Range(0, possiblePlayLvlBtns.Length);
             playLvlBtn = Instantiate(possiblePlayLvlBtns[randomIndex]);
-            ChildMaker.AdoptAndTeleport(transform, playLvlBtn.GetComponent<RectTransform>());
+            ChildMaker.AdoptTeleportAndScale(transform, playLvlBtn.GetComponent<RectTransform>());
+        }
+    }
+
+    private void DemolishDownTheTree()
+    {
+        if (playLvlBtn != null)
+        {
+            Destroy(playLvlBtn.gameObject);
+            playLvlBtn = null;
+        }
+
+        cleared = false;
+
+        foreach (Spot antecessor in antecessorSpots)
+        {
+            antecessor.DemolishDownTheTree();
+        }
+    }
+
+    public void LockIfNeededDownTheTree()
+    {
+        playLvlBtn.enabled = IsThereAClearedPathToThisSpot() && !cleared;
+
+        foreach (Spot antecessor in antecessorSpots)
+        {
+            antecessor.LockIfNeededDownTheTree();
         }
     }
 
@@ -56,24 +93,29 @@ public class Spot : MonoBehaviour
         if (antecessorSpots == null || antecessorSpots.Length == 0)
         {
             thereIsAClearedPathToThisSpot = true;
+            if (logIterations)
+            {
+                Debug.LogError("antecessorSpots == null", this);
+            }
         }
         else
         {
             thereIsAClearedPathToThisSpot = false;
-            for (int i = 0; i < antecessorSpots.Length; i++)
+            foreach (Spot antecessor in antecessorSpots)
             {
-                if (antecessorSpots[i].Cleared)
+                if (antecessor.Cleared)
                 {
                     thereIsAClearedPathToThisSpot = true;
+                    break;
                 }
             }
         }
 
-        return thereIsAClearedPathToThisSpot;
-    }
+        if (logIterations)
+        {
+            Debug.LogError("[Spot]There is a cleared path to this spot: "+thereIsAClearedPathToThisSpot, this);
+        }
 
-    private void LockSpot()
-    {
-        playLvlBtn.enabled = false;
+        return thereIsAClearedPathToThisSpot;
     }
 }

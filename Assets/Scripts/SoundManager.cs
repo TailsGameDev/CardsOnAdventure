@@ -1,11 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SoundManager : MonoBehaviour
 {
-    public AudioSource EffectsSource;
-    public AudioSource MusicSource;
+    public AudioSource BGMSource;
+    public AudioSource SFXSource;
+
+    public Slider MusicSlider;
+    public Slider SFXSlider;
 
     public float LowPitchRange = .95f;
     public float HighPitchRange = 1.05f;
@@ -22,16 +26,19 @@ public class SoundManager : MonoBehaviour
         // Destroy handled by DontDestroyOnLoadCanvas.cs
     }
 
-    public void Play(AudioClip clip)
+    public void PlayBGM(AudioClip clip)
     {
-        EffectsSource.clip = clip;
-        EffectsSource.Play();
+        if (clip != BGMSource.clip)
+        {
+            BGMSource.clip = clip;
+            BGMSource.Play();
+        }
     }
 
-    public void PlayMusic(AudioClip clip)
+    public void PlaySFX(AudioClip clip)
     {
-        MusicSource.clip = clip;
-        MusicSource.Play();
+        SFXSource.clip = clip;
+        SFXSource.Play();
     }
 
     public void PlayOneOfClipsWithRandomizedPitch(params AudioClip[] clips)
@@ -39,9 +46,18 @@ public class SoundManager : MonoBehaviour
         int randomIndex = Random.Range(0, clips.Length);
         float randomPitch = Random.Range(LowPitchRange, HighPitchRange);
 
-        EffectsSource.pitch = randomPitch;
-        EffectsSource.clip = clips[randomIndex];
-        EffectsSource.Play();
+        SFXSource.pitch = randomPitch;
+        SFXSource.clip = clips[randomIndex];
+        SFXSource.Play();
     }
 
+    public void OnBGMSliderValueChanged()
+    {
+        BGMSource.volume = MusicSlider.value;
+    }
+
+    public void OnSFXSliderValueChanged()
+    {
+        SFXSource.volume = SFXSlider.value;
+    }
 }

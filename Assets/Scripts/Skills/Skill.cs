@@ -7,6 +7,9 @@ public class Skill : MonoBehaviour
     [SerializeField]
     private string acronym = "";
 
+    [SerializeField]
+    private string fullName = "";
+
     // Warrior
     [SerializeField]
     private bool pierce = false;
@@ -47,6 +50,7 @@ public class Skill : MonoBehaviour
     private Card attacker;
 
     public string Acronym { get => acronym; }
+    public string FullName { get => fullName; }
 
     private bool canMakeDoubleAttack = false;
 
