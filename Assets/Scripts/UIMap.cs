@@ -50,7 +50,8 @@ public class UIMap : PopUpOpener
 
     void GoToMenu()
     {
-        SceneManager.LoadSceneAsync("Main Menu");
+        sceneOpener.OpenScene("Main Menu");
+        popUpOpener.CloseMapPopUp();
     }
 
     public void OnMageMasterClicked(Transform btnTransform)
