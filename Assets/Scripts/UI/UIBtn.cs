@@ -6,24 +6,46 @@ using UnityEngine.UI;
 public class UIBtn : MonoBehaviour
 {
     [SerializeField]
+    private SoundRequisitor soundRequisitor = null;
+
+    [SerializeField]
+    private AudioClip btnClickSound = null;
+
+    [SerializeField]
     private Image imageComponent = null;
 
     private RectTransform rectTransform = null;
 
     [SerializeField]
-    private Sprite clickedSprite = null;
+    private Sprite normalSprite = null;
 
     [SerializeField]
-    private Sprite normalSprite = null;
+    private Sprite clickedSprite = null;
+
+    private Vector3 normalSize = new Vector3(1.0f, 1.0f, 1.0f);
 
     [SerializeField]
     private Vector3 bigSize;
 
-    private Vector3 normalSize = new Vector3(1.0f, 1.0f, 1.0f);
+    [SerializeField]
+    private Text textComponent = null;
 
-    private void Awake()
+    [SerializeField]
+    private float textVerticalDesloc;
+
+    private float originalRectTransfmOffsetMaxDotY;
+
+    [SerializeField]
+    private Color BtnDownTextColor;
+
+    private Color BtnUpTextColor;
+
+    protected void Awake()
     {
         rectTransform = imageComponent.GetComponent<RectTransform>();
+        // TODO: 'rectTransform.offsetMax.y;' or somehing should be better but didn't work at the first attempt
+        originalRectTransfmOffsetMaxDotY = 0;
+        BtnUpTextColor = textComponent.color;
     }
 
     public void OnPointerEntered()
@@ -36,8 +58,27 @@ public class UIBtn : MonoBehaviour
         rectTransform.localScale = normalSize;
     }
 
-    public void OnPointerClicked()
+    public void UpToDownBtnVisualAndSoundEffects()
     {
+        ConfigureBtnLooks(clickedSprite, textVerticalDesloc, BtnDownTextColor);
+        soundRequisitor.MakeSFXRequest(btnClickSound);
+    }
 
+    public void DownToUpBtnVisualAndSoundEffects()
+    {
+        ConfigureBtnLooks(normalSprite, originalRectTransfmOffsetMaxDotY, BtnUpTextColor);
+    }
+
+    private void ConfigureBtnLooks(Sprite sprite, float top, Color color)
+    {
+        imageComponent.sprite = sprite;
+        SetTop(top);
+        textComponent.color = color;
+    }
+
+    public void SetTop(float top)
+    {
+        RectTransform rt = textComponent.GetComponent<RectTransform>(); 
+        rt.offsetMax = new Vector2(rt.offsetMax.x, -top);
     }
 }

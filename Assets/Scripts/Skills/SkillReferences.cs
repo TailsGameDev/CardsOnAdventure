@@ -7,7 +7,7 @@ public class SkillReferences : MonoBehaviour
     private static SkillReferences instance;
 
     [SerializeField]
-    private Skill basicAttack = null;
+    private OldSkill basicAttack = null;
 
     private void Awake()
     {
@@ -21,7 +21,7 @@ public class SkillReferences : MonoBehaviour
         }
     }
 
-    public static Skill GetBasicAttackSkill()
+    public static OldSkill GetBasicAttackSkill()
     {
         return instance.basicAttack;
     }

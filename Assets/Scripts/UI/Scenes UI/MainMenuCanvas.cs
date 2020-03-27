@@ -15,7 +15,6 @@ public class MainMenuCanvas : PauseMenu
 
     public void OnCreditsBtnClicked()
     {
-        popUpOpener.PlayBtnSound();
         OpenScene("Credits");
     }
 

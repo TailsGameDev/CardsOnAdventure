@@ -37,14 +37,14 @@ public class ThePopUpOpenerInstance : PopUpOpener
     private Text customCancelText = null;
 
     [SerializeField]
-    private Button confirmBtn = null;
+    private UICustomBtn confirmBtn = null;
 
     #region Sound
     [SerializeField]
-    private AudioClip mapBGM = null;
+    private SoundRequisitor soundRequisitor = null;
 
     [SerializeField]
-    private AudioClip clickBtnSFX = null;
+    private AudioClip mapBGM = null;
     #endregion
 
     public delegate void OnConfirmBtnClicked();
@@ -60,19 +60,19 @@ public class ThePopUpOpenerInstance : PopUpOpener
         {
             Destroy(gameObject);
         }
+
+        confirmBtn.onClicked += CloseCustomPopUp;
     }
 
     #region Open XXX PopUp
 
     public void OpenPausePopUp()
     {
-        SoundManager.Instance.PlaySFX(clickBtnSFX);
         pausePopUp.SetActive(true);
     }
 
     public void OpenRulesPopUp()
     {
-        SoundManager.Instance.PlaySFX(clickBtnSFX);
         rulesPopUp.SetActive(true);
     }
 
@@ -83,13 +83,12 @@ public class ThePopUpOpenerInstance : PopUpOpener
 
     public void OpenSettingsPopUp()
     {
-        SoundManager.Instance.PlaySFX(clickBtnSFX);
         settingsPopUp.SetActive(true);
     }
 
     public void OpenMapPopUp()
     {
-        SoundManager.Instance.PlaySFX(clickBtnSFX);
+        soundRequisitor.MakeBGMRequest(mapBGM);
         mapPopUp.SetActive(true);
     }
 
@@ -97,13 +96,7 @@ public class ThePopUpOpenerInstance : PopUpOpener
 
     public void CloseMapPopUp()
     {
-        SoundManager.Instance.PlaySFX(clickBtnSFX);
         mapPopUp.SetActive(false);
-    }
-
-    public void PlayBtnSound()
-    {
-        SoundManager.Instance.PlaySFX(clickBtnSFX);
     }
 
     public void OpenConfirmationRequestPopUp(string warningMessage, OnConfirmBtnClicked onConfirm)
@@ -113,7 +106,7 @@ public class ThePopUpOpenerInstance : PopUpOpener
 
     public void OpenCustomPopUp(string title, string warningMessage, string confirmBtnMessage, string cancelBtnMessage, OnConfirmBtnClicked onConfirm, AudioClip bgm)
     {
-        SoundManager.Instance.PlayBGM(bgm);
+        soundRequisitor.MakeBGMRequest(bgm);
         OpenCustomPopUp(title, warningMessage, confirmBtnMessage, cancelBtnMessage, onConfirm);
     }
 
@@ -127,13 +120,14 @@ public class ThePopUpOpenerInstance : PopUpOpener
 
         customCancelText.text = cancelBtnMessage;
 
-        confirmBtn.onClick.AddListener(delegate {
-            customPopUp.SetActive(false);
-            SoundManager.Instance.PlaySFX(clickBtnSFX);
-            onConfirm();
-        });
+        confirmBtn.onClicked += onConfirm;
 
         customPopUp.SetActive(true);
+    }
+
+    private void CloseCustomPopUp()
+    {
+        customPopUp.SetActive(false);
     }
 
     public void UpdateMap()

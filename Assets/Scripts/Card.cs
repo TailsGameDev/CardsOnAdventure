@@ -56,6 +56,7 @@ public class Card : MonoBehaviour
 
     public void AttackSelectedCard(Battlefield opponentBattlefield, Battlefield attackerBattlefield)
     {
+        Skills.CanMakeDoubleAttack = true;
         Skills.ApplyEffectsConsideringSelectedTarget(opponentBattlefield, attackerBattlefield);
     }
 
@@ -81,7 +82,7 @@ public class Card : MonoBehaviour
     }
     #endregion
 
-    #region Has XXX Skill
+    #region Has XXX Effect
     public bool HasBlockSkill()
     {
         return Skills.HasBlockEffect();
@@ -106,5 +107,26 @@ public class Card : MonoBehaviour
     public void SetObfuscate(bool obfuscate)
     {
         obfuscator.gameObject.SetActive(obfuscate);
+    }
+
+    public void ShowDefenseVFX(float attackerYPosition)
+    {
+        Vector3 forwards = new Vector3(0, 0, -transform.position.y);
+        Vector3 upwards = new Vector3(0, 0, -1);
+        Quaternion lookRotation = Quaternion.LookRotation(forwards, upwards);
+        GameObject vfx = Instantiate(skills.DefenseVFX, transform.position, Quaternion.identity);
+        vfx.GetComponent<RectTransform>().SetParent(transform, false);
+        vfx.GetComponent<RectTransform>().localPosition = Vector3.zero;
+
+        float y = attackerYPosition - transform.position.y;
+
+        if (y > 0)
+        {
+            vfx.transform.eulerAngles = new Vector3(0,0, 0);
+        }
+        else
+        {
+            vfx.transform.eulerAngles = new Vector3(0, 0,180);
+        }
     }
 }

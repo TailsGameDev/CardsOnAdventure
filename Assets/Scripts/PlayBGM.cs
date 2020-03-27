@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayBGM : MonoBehaviour
+public class PlayBGM : SoundManager
 {
-
     [SerializeField]
     private AudioClip clip = null;
 
     private void Start()
     {
-        SoundManager.Instance.PlayBGM(clip);
+        soundManager.PlayBGM(clip);
     }
 }
