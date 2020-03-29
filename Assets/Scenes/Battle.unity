@@ -373,21 +373,19 @@ MonoBehaviour:
   skillsMediator: {fileID: 450917248}
   attackVFX: {fileID: 4034280589589381900, guid: 3d6df27cc8cc1054f8bec7f3c4da598f,
     type: 3}
-  buffVFX: {fileID: 0}
   defenseVFX: {fileID: 0}
-  freezingVFX: {fileID: 0}
+  specialVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: dc70fad93171c9f42ac0e0cb27c5251a, type: 3}
   defenseSFX: {fileID: 0}
-  pierce: 0
   doubleAttack: 0
-  area: 1
-  freezing: 0
-  hook: 0
-  steal: 0
   block: 0
-  heavyArmor: 0
-  reflect: 0
-  sanctuary: 0
+  specialEffect: {fileID: 0}
+  frontlineTargetDamageMultiplier: 0.5
+  backlineTargetDamageMultiplier: 0.5
+  horizontalSpreadDamageMultiplier: 0.5
+  verticalSpreadDamageMultiplier: 0.5
+  damageReductionPercentage: 0
+  damageReflectionPercentage: 0
 --- !u!1 &65439641
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +693,49 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1 &137091121
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 137091122}
+  - component: {fileID: 137091123}
+  m_Layer: 0
+  m_Name: Sanctuary Effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &137091122
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137091121}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1912568048}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &137091123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137091121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2739acd1280511f4db8e6fc3b681f25e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &146238316
 GameObject:
   m_ObjectHideFlags: 0
@@ -2000,21 +2041,19 @@ MonoBehaviour:
   skillsMediator: {fileID: 450917248}
   attackVFX: {fileID: 3264905262389925203, guid: 1523e8736678d8e43a480879f188f3e8,
     type: 3}
-  buffVFX: {fileID: 0}
   defenseVFX: {fileID: 0}
-  freezingVFX: {fileID: 0}
+  specialVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: 9a80adc1abe209f4ca99b34f4bcb2afa, type: 3}
   defenseSFX: {fileID: 0}
-  pierce: 0
   doubleAttack: 0
-  area: 0
-  freezing: 0
-  hook: 1
-  steal: 0
   block: 0
-  heavyArmor: 0
-  reflect: 0
-  sanctuary: 0
+  specialEffect: {fileID: 1287020618}
+  frontlineTargetDamageMultiplier: 1
+  backlineTargetDamageMultiplier: 0.5
+  horizontalSpreadDamageMultiplier: 0
+  verticalSpreadDamageMultiplier: 0
+  damageReductionPercentage: 0
+  damageReflectionPercentage: 0
 --- !u!1 &440423081
 GameObject:
   m_ObjectHideFlags: 0
@@ -2261,6 +2300,7 @@ Transform:
   - {fileID: 836191839}
   - {fileID: 608944043}
   - {fileID: 1376934776}
+  - {fileID: 1912568048}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2586,22 +2626,64 @@ MonoBehaviour:
   fullName: Reflect
   skillsMediator: {fileID: 450917248}
   attackVFX: {fileID: 0}
-  buffVFX: {fileID: 0}
   defenseVFX: {fileID: 6651142999770121848, guid: 145f8de0966e0f548af858369197657a,
     type: 3}
-  freezingVFX: {fileID: 0}
+  specialVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: 10e908c21da8a614b8ac143dda9e027c, type: 3}
   defenseSFX: {fileID: 8300000, guid: d40c9ef9810c5024bb66b2bfd35b0527, type: 3}
-  pierce: 0
   doubleAttack: 0
-  area: 0
-  freezing: 0
-  hook: 0
-  steal: 0
   block: 0
-  heavyArmor: 0
-  reflect: 1
-  sanctuary: 0
+  specialEffect: {fileID: 0}
+  frontlineTargetDamageMultiplier: 1
+  backlineTargetDamageMultiplier: 0.5
+  horizontalSpreadDamageMultiplier: 0
+  verticalSpreadDamageMultiplier: 0
+  damageReductionPercentage: 0
+  damageReflectionPercentage: 0.5
+--- !u!1 &662514692
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 662514693}
+  - component: {fileID: 662514694}
+  m_Layer: 0
+  m_Name: Steal Effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &662514693
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662514692}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1912568048}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &662514694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662514692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2719f21e6908a66449584bcf64221aae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillsMediator: {fileID: 450917248}
 --- !u!1 &666642569
 GameObject:
   m_ObjectHideFlags: 0
@@ -2720,6 +2802,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666642569}
   m_CullTransparentMesh: 0
+--- !u!1 &670045474
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 670045475}
+  - component: {fileID: 670045476}
+  m_Layer: 0
+  m_Name: Freezing Effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &670045475
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670045474}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1912568048}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &670045476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 670045474}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9f8390bf7d298a4ab3addb6463390ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &683434968
 GameObject:
   m_ObjectHideFlags: 0
@@ -3153,22 +3278,20 @@ MonoBehaviour:
   fullName: Block
   skillsMediator: {fileID: 450917248}
   attackVFX: {fileID: 0}
-  buffVFX: {fileID: 0}
   defenseVFX: {fileID: 5082940041776008656, guid: 9fc973df5add9384180fdfb3967b22b1,
     type: 3}
-  freezingVFX: {fileID: 0}
+  specialVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: 10e908c21da8a614b8ac143dda9e027c, type: 3}
   defenseSFX: {fileID: 8300000, guid: ad1fa6c79b6b73a4c8515237ba876589, type: 3}
-  pierce: 0
   doubleAttack: 0
-  area: 0
-  freezing: 0
-  hook: 0
-  steal: 0
   block: 1
-  heavyArmor: 0
-  reflect: 0
-  sanctuary: 0
+  specialEffect: {fileID: 0}
+  frontlineTargetDamageMultiplier: 1
+  backlineTargetDamageMultiplier: 0.5
+  horizontalSpreadDamageMultiplier: 0
+  verticalSpreadDamageMultiplier: 0
+  damageReductionPercentage: 0
+  damageReflectionPercentage: 0
 --- !u!1 &719284031
 GameObject:
   m_ObjectHideFlags: 0
@@ -3217,21 +3340,19 @@ MonoBehaviour:
   skillsMediator: {fileID: 450917248}
   attackVFX: {fileID: 5748607524574563189, guid: e04241a417a08784aa21e2a0515d265f,
     type: 3}
-  buffVFX: {fileID: 0}
   defenseVFX: {fileID: 0}
-  freezingVFX: {fileID: 0}
+  specialVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: 6f4e0e57b18fe7f4488ebcdbae831a26, type: 3}
   defenseSFX: {fileID: 0}
-  pierce: 1
   doubleAttack: 0
-  area: 0
-  freezing: 0
-  hook: 0
-  steal: 0
   block: 0
-  heavyArmor: 0
-  reflect: 0
-  sanctuary: 0
+  specialEffect: {fileID: 0}
+  frontlineTargetDamageMultiplier: 1
+  backlineTargetDamageMultiplier: 1
+  horizontalSpreadDamageMultiplier: 0
+  verticalSpreadDamageMultiplier: 0.5
+  damageReductionPercentage: 0
+  damageReflectionPercentage: 0
 --- !u!1 &742014620
 GameObject:
   m_ObjectHideFlags: 0
@@ -3647,22 +3768,20 @@ MonoBehaviour:
   fullName: Heavy Armor
   skillsMediator: {fileID: 450917248}
   attackVFX: {fileID: 0}
-  buffVFX: {fileID: 0}
   defenseVFX: {fileID: 5289526594200615245, guid: 6b3cfbc3488009e40bf93abfdeab6afc,
     type: 3}
-  freezingVFX: {fileID: 0}
+  specialVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: 10e908c21da8a614b8ac143dda9e027c, type: 3}
   defenseSFX: {fileID: 8300000, guid: 30caf0816c99f2d4190d10726dcc7a19, type: 3}
-  pierce: 0
   doubleAttack: 0
-  area: 0
-  freezing: 0
-  hook: 0
-  steal: 0
   block: 0
-  heavyArmor: 1
-  reflect: 0
-  sanctuary: 0
+  specialEffect: {fileID: 0}
+  frontlineTargetDamageMultiplier: 1
+  backlineTargetDamageMultiplier: 0.5
+  horizontalSpreadDamageMultiplier: 0
+  verticalSpreadDamageMultiplier: 0
+  damageReductionPercentage: 0.5
+  damageReflectionPercentage: 0
 --- !u!1 &875097742
 GameObject:
   m_ObjectHideFlags: 0
@@ -5509,22 +5628,20 @@ MonoBehaviour:
   fullName: Freezing
   skillsMediator: {fileID: 450917248}
   attackVFX: {fileID: 0}
-  buffVFX: {fileID: 0}
   defenseVFX: {fileID: 0}
-  freezingVFX: {fileID: 3681617339535430214, guid: 30a5c609a76f88c47b46a51912cff810,
+  specialVFX: {fileID: 3681617339535430214, guid: 30a5c609a76f88c47b46a51912cff810,
     type: 3}
   attackSFX: {fileID: 8300000, guid: 55c5b852ca5a4794b88ae7f90165b176, type: 3}
   defenseSFX: {fileID: 0}
-  pierce: 0
   doubleAttack: 0
-  area: 0
-  freezing: 1
-  hook: 0
-  steal: 0
   block: 0
-  heavyArmor: 0
-  reflect: 0
-  sanctuary: 0
+  specialEffect: {fileID: 670045476}
+  frontlineTargetDamageMultiplier: 1
+  backlineTargetDamageMultiplier: 0.5
+  horizontalSpreadDamageMultiplier: 0
+  verticalSpreadDamageMultiplier: 0
+  damageReductionPercentage: 0
+  damageReflectionPercentage: 0
 --- !u!1 &1148688454
 GameObject:
   m_ObjectHideFlags: 0
@@ -6342,21 +6459,19 @@ MonoBehaviour:
   skillsMediator: {fileID: 450917248}
   attackVFX: {fileID: 5748607524574563189, guid: 98279da2f24c5c14788a1493f4b2b327,
     type: 3}
-  buffVFX: {fileID: 0}
   defenseVFX: {fileID: 0}
-  freezingVFX: {fileID: 0}
+  specialVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: ed51b883ed3f5f44ebe3f4d1d88f3256, type: 3}
   defenseSFX: {fileID: 0}
-  pierce: 0
   doubleAttack: 1
-  area: 0
-  freezing: 0
-  hook: 0
-  steal: 0
   block: 0
-  heavyArmor: 0
-  reflect: 0
-  sanctuary: 0
+  specialEffect: {fileID: 0}
+  frontlineTargetDamageMultiplier: 2
+  backlineTargetDamageMultiplier: 1
+  horizontalSpreadDamageMultiplier: 0
+  verticalSpreadDamageMultiplier: 0
+  damageReductionPercentage: 0
+  damageReflectionPercentage: 0
 --- !u!4 &1232672661
 Transform:
   m_ObjectHideFlags: 0
@@ -6418,21 +6533,19 @@ MonoBehaviour:
   fullName: Basic Attack
   skillsMediator: {fileID: 450917248}
   attackVFX: {fileID: 0}
-  buffVFX: {fileID: 0}
   defenseVFX: {fileID: 0}
-  freezingVFX: {fileID: 0}
+  specialVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: 10e908c21da8a614b8ac143dda9e027c, type: 3}
   defenseSFX: {fileID: 0}
-  pierce: 0
   doubleAttack: 0
-  area: 0
-  freezing: 0
-  hook: 0
-  steal: 0
   block: 0
-  heavyArmor: 0
-  reflect: 0
-  sanctuary: 0
+  specialEffect: {fileID: 0}
+  frontlineTargetDamageMultiplier: 1
+  backlineTargetDamageMultiplier: 0.5
+  horizontalSpreadDamageMultiplier: 0
+  verticalSpreadDamageMultiplier: 0
+  damageReductionPercentage: 0
+  damageReflectionPercentage: 0
 --- !u!1001 &1282357324
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6616,6 +6729,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28fa55ecfdb1ec438283222b4d04f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1287020616
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1287020617}
+  - component: {fileID: 1287020618}
+  m_Layer: 0
+  m_Name: Hook Effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1287020617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287020616}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1912568048}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1287020618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287020616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b1a32b04193c254a996b39b2b62060b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1332929768
 GameObject:
   m_ObjectHideFlags: 0
@@ -6787,21 +6943,20 @@ MonoBehaviour:
   fullName: Sanctuary
   skillsMediator: {fileID: 450917248}
   attackVFX: {fileID: 0}
-  buffVFX: {fileID: 6385494673838626053, guid: 5db526337e4125d48bb2143b574c134f, type: 3}
   defenseVFX: {fileID: 0}
-  freezingVFX: {fileID: 0}
+  specialVFX: {fileID: 6385494673838626053, guid: 5db526337e4125d48bb2143b574c134f,
+    type: 3}
   attackSFX: {fileID: 8300000, guid: 57859224887ccfd4999d175913a7ca62, type: 3}
   defenseSFX: {fileID: 0}
-  pierce: 0
   doubleAttack: 0
-  area: 0
-  freezing: 0
-  hook: 0
-  steal: 0
   block: 0
-  heavyArmor: 0
-  reflect: 0
-  sanctuary: 1
+  specialEffect: {fileID: 137091123}
+  frontlineTargetDamageMultiplier: 1
+  backlineTargetDamageMultiplier: 0.5
+  horizontalSpreadDamageMultiplier: 0
+  verticalSpreadDamageMultiplier: 0
+  damageReductionPercentage: 0
+  damageReflectionPercentage: 0
 --- !u!1 &1378405285
 GameObject:
   m_ObjectHideFlags: 0
@@ -7820,21 +7975,19 @@ MonoBehaviour:
   skillsMediator: {fileID: 450917248}
   attackVFX: {fileID: 3578503582660777522, guid: ddc77b688d2313d48b58d44cb8b5c65b,
     type: 3}
-  buffVFX: {fileID: 0}
   defenseVFX: {fileID: 0}
-  freezingVFX: {fileID: 0}
+  specialVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: 1f5d5e087a4141346a2f61647ac57c33, type: 3}
   defenseSFX: {fileID: 0}
-  pierce: 0
   doubleAttack: 0
-  area: 0
-  freezing: 0
-  hook: 0
-  steal: 1
   block: 0
-  heavyArmor: 0
-  reflect: 0
-  sanctuary: 0
+  specialEffect: {fileID: 662514694}
+  frontlineTargetDamageMultiplier: 1
+  backlineTargetDamageMultiplier: 0.5
+  horizontalSpreadDamageMultiplier: 0
+  verticalSpreadDamageMultiplier: 0
+  damageReductionPercentage: 0
+  damageReflectionPercentage: 0
 --- !u!1 &1605220053
 GameObject:
   m_ObjectHideFlags: 0
@@ -9367,6 +9520,40 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1 &1912568047
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1912568048}
+  m_Layer: 0
+  m_Name: Special Effects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1912568048
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912568047}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -165.5232, y: 478.13092, z: -407}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 670045475}
+  - {fileID: 1287020617}
+  - {fileID: 662514693}
+  - {fileID: 137091122}
+  m_Father: {fileID: 450917247}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1913391077
 GameObject:
   m_ObjectHideFlags: 0

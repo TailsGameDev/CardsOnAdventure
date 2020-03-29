@@ -18,13 +18,10 @@ public abstract class Skill : MonoBehaviour
     protected GameObject attackVFX = null;
 
     [SerializeField]
-    protected GameObject buffVFX = null;
-
-    [SerializeField]
     private GameObject defenseVFX = null;
 
     [SerializeField]
-    protected GameObject freezingVFX = null;
+    protected GameObject specialVFX = null;
 
     [SerializeField]
     protected AudioClip attackSFX = null;
@@ -33,11 +30,6 @@ public abstract class Skill : MonoBehaviour
     protected AudioClip defenseSFX = null;
 
     public string Acronym { get => acronym; }
-
-    protected bool canMakeDoubleAttack = false;
-
-    public bool CanMakeDoubleAttack { set => canMakeDoubleAttack = value; }
-
     public string FullName { get => fullName; }
     public GameObject DefenseVFX { get => defenseVFX; }
 

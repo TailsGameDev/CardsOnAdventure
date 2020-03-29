@@ -18,7 +18,7 @@ public class Card : MonoBehaviour
     private Text attackPowerText = null;
 
     [SerializeField]
-    private Skill skills = null;
+    private OldSkill skills = null;
 
     [SerializeField]
     private Text skillText = null;
@@ -30,7 +30,7 @@ public class Card : MonoBehaviour
 
     private GameObject freezingEffect = null;
 
-    public Skill Skills {
+    public OldSkill Skills {
         get => skills;
         set {
             skills = value;
@@ -39,17 +39,13 @@ public class Card : MonoBehaviour
     }
     public bool Freezing { get => freezing; }
     public int Vitality { get => vitality; }
+    public int AttackPower { get => attackPower; set => attackPower = value; }
 
     private void Awake()
     {
-        attackPowerText.text = attackPower.ToString();
+        attackPowerText.text = AttackPower.ToString();
         skillText.text = skills.Acronym;
         SetVitality(Vitality);
-    }
-
-    public int GetAttackPower()
-    {
-        return attackPower;
     }
 
     public int GetVitality()
@@ -59,7 +55,6 @@ public class Card : MonoBehaviour
 
     public void AttackSelectedCard(Battlefield opponentBattlefield, Battlefield attackerBattlefield)
     {
-        Skills.CanMakeDoubleAttack = true;
         Skills.ApplyEffectsConsideringSelectedTarget(opponentBattlefield, attackerBattlefield);
     }
 
@@ -113,6 +108,20 @@ public class Card : MonoBehaviour
         obfuscator.gameObject.SetActive(obfuscate);
     }
 
+    public void ShowDefenseVFXandSFXIfHasBlockOrReflect(float attackerYPosition)
+    {
+        if(skills.HasReflectEffect() || skills.HasHeavyArmorEffect())
+        {
+            ShowDefenseVFXandSFX( attackerYPosition );
+        }
+    }
+
+    public void ShowDefenseVFXandSFX(float attackerYPosition)
+    {
+        ShowDefenseVFX(attackerYPosition);
+        ShowDefenseSFX();
+    }
+
     public void ShowDefenseVFX(float attackerYPosition)
     {
         Vector3 forwards = new Vector3(0, 0, -transform.position.y);
@@ -126,12 +135,17 @@ public class Card : MonoBehaviour
 
         if (y > 0)
         {
-            vfx.transform.eulerAngles = new Vector3(0,0, 0);
+            vfx.transform.eulerAngles = new Vector3(0, 0, 0);
         }
         else
         {
-            vfx.transform.eulerAngles = new Vector3(0, 0,180);
+            vfx.transform.eulerAngles = new Vector3(0, 0, 180);
         }
+    }
+
+    private void ShowDefenseSFX()
+    {
+        skills.PlayDefenseSFX();
     }
 
     public void ApplyFreezing(GameObject freezingEffect)
@@ -152,8 +166,12 @@ public class Card : MonoBehaviour
         freezingEffect = null;
     }
 
-    internal void ShowDefenseSFX()
+    public float GetDamageReductionPercentage()
     {
-        skills.PlayDefenseSFX();
+        return skills.DamageReductionPercentage;
+    }
+    public float GetDamageReflectionPercentage()
+    {
+        return skills.DamageReflectionPercentage;
     }
 }

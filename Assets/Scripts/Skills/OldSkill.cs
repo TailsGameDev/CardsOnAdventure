@@ -6,192 +6,87 @@ public class OldSkill : Skill
 {
     //inherits xxxxVFX
 
-    // Warrior
-    [SerializeField]
-    private bool pierce = false;
-
-    [SerializeField]
-    private bool doubleAttack = false;
-
-    // Mage
-    [SerializeField]
-    private bool area = false;
-
-    [SerializeField]
-    private bool freezing = false;
-
-    // Rougue
-    [SerializeField]
-    private bool hook = false;
-
-    [SerializeField]
-    private bool steal = false;
-
     // Tank
     [SerializeField]
     private bool block = false;
 
     [SerializeField]
-    private bool heavyArmor = false;
+    private SpecialEffect specialEffect = null;
 
     [SerializeField]
-    private bool reflect = false;
+    private float frontlineTargetDamageMultiplier = 1.0f;
+    [SerializeField]
+    private float backlineTargetDamageMultiplier = 0.5f;
+    [SerializeField]
+    private float horizontalSpreadDamageMultiplier = 0.0f;
+    [SerializeField]
+    private float verticalSpreadDamageMultiplier = 0.0f;
 
     [SerializeField]
-    private bool sanctuary = false;
+    private float damageReductionPercentage = 0.0f;
+    [SerializeField]
+    private float damageReflectionPercentage = 0.0f;
 
     private Battlefield obf;
     private Battlefield attackerBattleField;
 
     private Card attacker;
+    private int targetIndex;
+
+    public float DamageReductionPercentage { get => damageReductionPercentage; }
+    public float DamageReflectionPercentage { get => damageReflectionPercentage; }
 
     public override void ApplyEffectsConsideringSelectedTarget(
                                                                 Battlefield opponentBattlefield,
-                                                                Battlefield attackerBattlefield )
+                                                                Battlefield attackerBattlefield)
     {
         this.attacker = attackerBattlefield.GetSelectedCard();
         this.obf = opponentBattlefield;
         this.attackerBattleField = attackerBattlefield;
 
-        int baseAttackPower = attacker.GetAttackPower();
+        targetIndex = obf.GetSelectedIndex();
 
-        int damageToTarget = baseAttackPower;
-        int damageToBeside = 0;
-        int damageToVerticalNeighbor = 0;
+        int baseAttack = attacker.AttackPower;
 
-        int targetIndex = obf.GetSelectedIndex();
-
-        Card target = obf.GetReferenceToCardAt(targetIndex);
-
-        // Normal Attack
-        if (IsAttackingBackline())
+        // Normal
+        int damageToTarget;
+        if (IsAttackingBackline(targetIndex) && obf.IsThereACardInFrontOf(targetIndex))
         {
-            if (obf.IsThereACardInFrontOf(targetIndex))
-            {
-                damageToTarget = baseAttackPower / 2;
-                damageToVerticalNeighbor = 0;
-                damageToBeside = 0;
+            damageToTarget = (int)(baseAttack * backlineTargetDamageMultiplier);
 
-                if (obf.GetCardInFrontOf(targetIndex).HasBlockSkill())
-                {
-                    damageToTarget = 0;
-                    damageToVerticalNeighbor = baseAttackPower;
-                    damageToBeside = 0;
-                    obf.GetReferenceToCardAt(obf.GetVerticalNeighborIndex(targetIndex)).ShowDefenseVFX(attackerBattleField.transform.position.y);
-                }
-            }
-            else
+            // Guardian [Block]
+            if (obf.GetCardInFrontOf(targetIndex).HasBlockSkill())
             {
-                // No card in front of target
-                damageToTarget = baseAttackPower;
-                damageToVerticalNeighbor = 0;
-                damageToBeside = 0;
+                targetIndex = obf.GetIndexInFrontOf(targetIndex);
+                obf.GetReferenceToCardAt(targetIndex).ShowDefenseVFXandSFX(attackerBattleField.transform.position.y);
             }
         }
-
-
-        // Warrior
-        if (pierce)
+        else
         {
-            if (IsAttackingFrontline())
-            {
-                damageToTarget = baseAttackPower;
-                damageToVerticalNeighbor = baseAttackPower / 2;
-                damageToBeside = 0;
-            }
-            else
-            {
-                damageToTarget = baseAttackPower / 2;
-                damageToVerticalNeighbor = baseAttackPower;
-                damageToBeside = 0;
-            }
+            damageToTarget = (int)(baseAttack * frontlineTargetDamageMultiplier);
         }
 
-        // Mage
-        if (area)
+        int horizontalSpreadDamage = (int)(baseAttack * horizontalSpreadDamageMultiplier);
+        int verticalSpreadDamage = (int)(baseAttack * verticalSpreadDamageMultiplier);
+
+        if (specialEffect != null)
         {
-            damageToTarget = baseAttackPower / 2;
-            damageToVerticalNeighbor = baseAttackPower / 2;
-            damageToBeside = baseAttackPower / 2;
+            specialEffect.ExecuteEffect(obf, attackerBattleField, ref targetIndex, specialVFX);
         }
 
-        if (freezing)
-        {
-            target.ApplyFreezing(Instantiate(freezingVFX));
-        }
-
-        // Rougue
-        if (hook)
-        {
-            if (IsAttackingBackline())
-            {
-                int frontlineCardIndex = obf.GetIndexInFrontOf(targetIndex);
-
-                if (obf.ContainsCardInIndex(frontlineCardIndex))
-                {
-                    obf.SwapCards(targetIndex, obf.GetVerticalNeighborIndex(targetIndex));
-
-                    damageToTarget = 0;
-                    damageToVerticalNeighbor = baseAttackPower / 2;
-                    damageToBeside = 0;
-                }
-            }
-        }
-
-        if (steal)
-        {
-            attacker.Skills = target.Skills;
-            target.Skills = skillsMediator.GetBasicAttackSkill();
-        }
-
-        // Healer
-        if (sanctuary)
-        {
-            Battlefield abf = attackerBattlefield;
-            int healer = abf.GetSelectedIndex();
-            HealCard(healer, 2);
-            HealCard(abf.GetCardIndexBeside(healer),2);
-            HealCard(abf.GetVerticalNeighborIndex(healer),2);
-        }
-
-        if (attackSFX != null)
-        {
-            skillsMediator.PlaySFX(attackSFX);
-        }
+        skillsMediator.PlaySFX(attackSFX);
 
         // Damage
         DamageCard(targetIndex, damageToTarget);
 
-        DamageCard(obf.GetCardIndexBeside(targetIndex), damageToBeside);
+        DamageCard(obf.GetCardIndexBeside(targetIndex), horizontalSpreadDamage);
 
-        DamageCard(obf.GetVerticalNeighborIndex(targetIndex), damageToVerticalNeighbor);
-
-        // Warrior again
-        if (doubleAttack)
-        {
-            if (canMakeDoubleAttack)
-            {
-                canMakeDoubleAttack = false;
-                ApplyEffectsConsideringSelectedTarget(obf, attackerBattleField);
-            }
-            else
-            {
-                canMakeDoubleAttack = true;
-            }
-            
-        } 
+        DamageCard(obf.GetVerticalNeighborIndex(targetIndex), verticalSpreadDamage);
     }
 
-    private bool IsAttackingFrontline()
+    private bool IsAttackingBackline(int targetIndex)
     {
-        int target = obf.GetSelectedIndex();
-        return target == obf.GetIndexInFrontOf(target);
-    }
-
-    private bool IsAttackingBackline()
-    {
-        int target = obf.GetSelectedIndex();
-        return target != obf.GetIndexInFrontOf(target);
+        return targetIndex != obf.GetIndexInFrontOf(targetIndex);
     }
 
     private void DamageCard(int index, int damage)
@@ -200,49 +95,29 @@ public class OldSkill : Skill
         {
             Card target = obf.GetReferenceToCardAt(index);
 
-            if (attackVFX != null)
-            {
-                GameObject vfx = Instantiate(attackVFX);
-                vfx.transform.position = target.transform.position;
-                //card parent should be the slot witch is persistent and at the same position
-                ChildMaker.AdoptAndTeleport(target.transform.parent, vfx.GetComponent<RectTransform>());
-            }
+            ShowAttackVFXInFrontOf(target.transform);
 
-            if (target.HasHeavyArmorSkill())
-            {
-                target.ShowDefenseVFX(attackerBattleField.transform.position.y);
-                target.ShowDefenseSFX();
-                target.TakeDamage( damage / 2 );
-            }
-            else
-            {
-                target.TakeDamage(damage);
-            }
+            target.ShowDefenseVFXandSFXIfHasBlockOrReflect(attackerBattleField.transform.position.y);
 
-            if (target.HasReflectSkill())
-            {
-                target.ShowDefenseVFX(attackerBattleField.transform.position.y);
-                target.ShowDefenseSFX();
-                attacker.TakeDamage( damage / 2 );
-            }
+            target.TakeDamage((int)(damage * ( 1.0f - target.GetDamageReductionPercentage() ) ));
+
+            attacker.TakeDamage((int)(damage * target.GetDamageReflectionPercentage()));
         }
     }
 
-    private void HealCard(int index, int healAmount)
+    private void ShowAttackVFXInFrontOf(Transform target)
     {
-        if (attackerBattleField.IsSlotIndexOccupied(index))
+        if (attackVFX != null)
         {
-            Card toBeHealed = attackerBattleField.GetReferenceToCardAt(index);
-            toBeHealed.Heal(healAmount);
-
-
-            if (buffVFX != null)
-            {
-                GameObject vfx = Instantiate(buffVFX, toBeHealed.transform.position, Quaternion.identity);
-                vfx.GetComponent<RectTransform>().SetParent(toBeHealed.transform, false);
-                vfx.GetComponent<RectTransform>().localPosition = Vector3.zero;
-            }
+            InstantiateObjAsSonOf(attackVFX, target.transform.parent);
         }
+    }
+
+    // The parent of the VFX must be the slot that holds the car, because the car can be destroyed on attack.
+    void InstantiateObjAsSonOf(GameObject toInstantiate, Transform parent)
+    {
+        RectTransform instantiated = Instantiate(toInstantiate).GetComponent<RectTransform>();
+        ChildMaker.AdoptAndTeleport(parent, instantiated);
     }
 
     public override bool HasBlockEffect()
@@ -252,11 +127,11 @@ public class OldSkill : Skill
 
     public override bool HasHeavyArmorEffect()
     {
-        return heavyArmor;
+        return DamageReductionPercentage > 0.1f;
     }
 
     public override bool HasReflectEffect()
     {
-        return reflect;
+        return DamageReflectionPercentage > 0.1f;
     }
 }

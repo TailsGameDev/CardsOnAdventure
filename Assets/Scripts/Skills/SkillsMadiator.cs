@@ -6,12 +6,12 @@ public class SkillsMadiator : MonoBehaviour
 {
 
     [SerializeField]
-    private Skill basicAttack = null;
+    private OldSkill basicAttack = null;
 
     [SerializeField]
     protected AudioRequisitor audioRequisitor = null;
 
-    public Skill GetBasicAttackSkill()
+    public OldSkill GetBasicAttackSkill()
     {
         return basicAttack;
     }
