@@ -41,7 +41,7 @@ public class ThePopUpOpenerInstance : PopUpOpener
 
     #region Sound
     [SerializeField]
-    private SoundRequisitor soundRequisitor = null;
+    private AudioRequisitor audioRequisitor = null;
 
     [SerializeField]
     private AudioClip mapBGM = null;
@@ -56,6 +56,7 @@ public class ThePopUpOpenerInstance : PopUpOpener
             popUpOpener = this;
             transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
+            Screen.fullScreen = true;
         } else
         {
             Destroy(gameObject);
@@ -88,7 +89,7 @@ public class ThePopUpOpenerInstance : PopUpOpener
 
     public void OpenMapPopUp()
     {
-        soundRequisitor.MakeBGMRequest(mapBGM);
+        audioRequisitor.RequestBGM(mapBGM);
         mapPopUp.SetActive(true);
     }
 
@@ -104,13 +105,28 @@ public class ThePopUpOpenerInstance : PopUpOpener
         OpenCustomPopUp(title: "Are You sure?",warningMessage,"I'm Sure", "Cancel", onConfirm);
     }
 
-    public void OpenCustomPopUp(string title, string warningMessage, string confirmBtnMessage, string cancelBtnMessage, OnConfirmBtnClicked onConfirm, AudioClip bgm)
+    public void OpenCustomPopUp
+        (
+            string title, 
+            string warningMessage, 
+            string confirmBtnMessage, 
+            string cancelBtnMessage, 
+            OnConfirmBtnClicked onConfirm, 
+            PreMadeSoundRequest openingBGM
+        )
     {
-        soundRequisitor.MakeBGMRequest(bgm);
+        openingBGM.RequestPlaying();
         OpenCustomPopUp(title, warningMessage, confirmBtnMessage, cancelBtnMessage, onConfirm);
     }
 
-    public void OpenCustomPopUp(string title, string warningMessage, string confirmBtnMessage, string cancelBtnMessage, OnConfirmBtnClicked onConfirm)
+    public void OpenCustomPopUp
+        (
+            string title,
+            string warningMessage,
+            string confirmBtnMessage,
+            string cancelBtnMessage,
+            OnConfirmBtnClicked onConfirm
+        )
     {
         customPopUpTitle.text = title;
 

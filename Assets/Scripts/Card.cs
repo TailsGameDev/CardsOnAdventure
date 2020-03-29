@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,6 +28,8 @@ public class Card : MonoBehaviour
 
     private bool freezing = false;
 
+    private GameObject freezingEffect = null;
+
     public Skill Skills {
         get => skills;
         set {
@@ -34,7 +37,7 @@ public class Card : MonoBehaviour
             skillText.text = skills.Acronym;
         }
     }
-    public bool Freezing { get => freezing; set => freezing = value; }
+    public bool Freezing { get => freezing; }
     public int Vitality { get => vitality; }
 
     private void Awake()
@@ -77,6 +80,7 @@ public class Card : MonoBehaviour
         vitalityText.text = value.ToString();
         if (Vitality <= 0)
         {
+            RemoveFreezing();
             Destroy(gameObject);
         }
     }
@@ -128,5 +132,28 @@ public class Card : MonoBehaviour
         {
             vfx.transform.eulerAngles = new Vector3(0, 0,180);
         }
+    }
+
+    public void ApplyFreezing(GameObject freezingEffect)
+    {
+        RemoveFreezing();
+        freezing = true;
+        this.freezingEffect = freezingEffect;
+        ChildMaker.AdoptAndTeleport(transform, freezingEffect.GetComponent<RectTransform>());
+    }
+
+    public void RemoveFreezing()
+    {
+        freezing = false;
+        if (freezingEffect != null)
+        {
+            Destroy(freezingEffect);
+        }
+        freezingEffect = null;
+    }
+
+    internal void ShowDefenseSFX()
+    {
+        skills.PlayDefenseSFX();
     }
 }

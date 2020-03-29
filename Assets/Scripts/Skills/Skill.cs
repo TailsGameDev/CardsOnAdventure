@@ -12,6 +12,9 @@ public abstract class Skill : MonoBehaviour
     private string fullName = "";
 
     [SerializeField]
+    protected SkillsMadiator skillsMediator = null;
+
+    [SerializeField]
     protected GameObject attackVFX = null;
 
     [SerializeField]
@@ -19,6 +22,15 @@ public abstract class Skill : MonoBehaviour
 
     [SerializeField]
     private GameObject defenseVFX = null;
+
+    [SerializeField]
+    protected GameObject freezingVFX = null;
+
+    [SerializeField]
+    protected AudioClip attackSFX = null;
+
+    [SerializeField]
+    protected AudioClip defenseSFX = null;
 
     public string Acronym { get => acronym; }
 
@@ -40,4 +52,9 @@ public abstract class Skill : MonoBehaviour
     public abstract bool HasHeavyArmorEffect();
 
     public abstract bool HasReflectEffect();
+
+    public void PlayDefenseSFX()
+    {
+        skillsMediator.PlaySFX(defenseSFX);
+    }
 }

@@ -97,14 +97,16 @@ public class PlaceCard : BattleState
     private Hand hand;
     private Battlefield battlefield;
     private Deck deck;
+    private PreMadeSoundRequest placeCardSFXRequest;
 
     bool cardWasSuccessfullyPlaced = false;
 
-    public PlaceCard(Hand playerHand, Battlefield battlefield, Deck deck)
+    public PlaceCard(Hand playerHand, Battlefield battlefield, Deck deck, PreMadeSoundRequest placeCardSFX)
     {
         this.hand = playerHand;
         this.battlefield = battlefield;
         this.deck = deck;
+        this.placeCardSFXRequest = placeCardSFX;
 
         playerHand.ClearSelection();
         battlefield.ClearSelection();
@@ -125,6 +127,7 @@ public class PlaceCard : BattleState
             Card card = hand.RemoveCardFromSelectedIndex();
             battlefield.PlaceCardInSelectedIndex(card);
             cardWasSuccessfullyPlaced = true;
+            placeCardSFXRequest.RequestPlaying();
         }
     }
 
@@ -500,8 +503,8 @@ public class EndGame : BattleState
 {
     private BattleStatesFactory winnerFactory;
     private ThePopUpOpenerInstance popUpOpener;
-    private AudioClip victoryBGM;
-    private AudioClip defeatBGM;
+    private PreMadeSoundRequest victoryBGMRequest;
+    private PreMadeSoundRequest defeatBGMRequest;
 
     private bool alreadyOpenedEndGamePopUp = false;
 
@@ -509,12 +512,12 @@ public class EndGame : BattleState
 
     private bool quit = false;
 
-    public EndGame(BattleStatesFactory winnerFactory, ThePopUpOpenerInstance popUpOpener, AudioClip victoryBGM, AudioClip defeatBGM)
+    public EndGame(BattleStatesFactory winnerFactory, ThePopUpOpenerInstance popUpOpener, PreMadeSoundRequest victoryBGMRequest, PreMadeSoundRequest defeatBGMRequest)
     {
         this.winnerFactory = winnerFactory;
         this.popUpOpener = popUpOpener;
-        this.victoryBGM = victoryBGM;
-        this.defeatBGM = defeatBGM;
+        this.victoryBGMRequest = victoryBGMRequest;
+        this.defeatBGMRequest = defeatBGMRequest;
     }
 
     public override void ExecuteAction()
@@ -535,7 +538,7 @@ public class EndGame : BattleState
                     confirmBtnMessage: "Look the map!",
                     cancelBtnMessage: "Nothing",
                     QuitBattleAndGoToMap,
-                    victoryBGM
+                    victoryBGMRequest
                 );
             }
             else
@@ -546,7 +549,7 @@ public class EndGame : BattleState
                     confirmBtnMessage: "Go to main menu",
                     cancelBtnMessage: "Sit and cry",
                     QuitBattleResetMapLoadMainMenu,
-                    defeatBGM
+                    defeatBGMRequest
                 );
             }
         }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class UIBtn : MonoBehaviour
 {
     [SerializeField]
-    private SoundRequisitor soundRequisitor = null;
+    private AudioRequisitor soundRequisitor = null;
 
     [SerializeField]
     private AudioClip btnClickSound = null;
@@ -25,20 +25,20 @@ public class UIBtn : MonoBehaviour
     private Vector3 normalSize = new Vector3(1.0f, 1.0f, 1.0f);
 
     [SerializeField]
-    private Vector3 bigSize;
+    private Vector3 bigSize = Vector3.zero;
 
     [SerializeField]
     private Text textComponent = null;
 
     [SerializeField]
-    private float textVerticalDesloc;
+    private float textVerticalDesloc = 0.0f;
 
     private float originalRectTransfmOffsetMaxDotY;
 
     [SerializeField]
-    private Color BtnDownTextColor;
+    private Color BtnDownTextColor = Color.white;
 
-    private Color BtnUpTextColor;
+    private Color BtnUpTextColor = Color.white;
 
     protected void Awake()
     {
@@ -61,7 +61,7 @@ public class UIBtn : MonoBehaviour
     public void UpToDownBtnVisualAndSoundEffects()
     {
         ConfigureBtnLooks(clickedSprite, textVerticalDesloc, BtnDownTextColor);
-        soundRequisitor.MakeSFXRequest(btnClickSound);
+        soundRequisitor.RequestSFX(btnClickSound);
     }
 
     public void DownToUpBtnVisualAndSoundEffects()

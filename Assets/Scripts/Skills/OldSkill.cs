@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class OldSkill : Skill
 {
+    //inherits xxxxVFX
+
     // Warrior
     [SerializeField]
     private bool pierce = false;
@@ -115,7 +117,7 @@ public class OldSkill : Skill
 
         if (freezing)
         {
-            target.Freezing = true;
+            target.ApplyFreezing(Instantiate(freezingVFX));
         }
 
         // Rougue
@@ -139,7 +141,7 @@ public class OldSkill : Skill
         if (steal)
         {
             attacker.Skills = target.Skills;
-            target.Skills = SkillReferences.GetBasicAttackSkill();
+            target.Skills = skillsMediator.GetBasicAttackSkill();
         }
 
         // Healer
@@ -152,13 +154,17 @@ public class OldSkill : Skill
             HealCard(abf.GetVerticalNeighborIndex(healer),2);
         }
 
+        if (attackSFX != null)
+        {
+            skillsMediator.PlaySFX(attackSFX);
+        }
+
         // Damage
         DamageCard(targetIndex, damageToTarget);
 
         DamageCard(obf.GetCardIndexBeside(targetIndex), damageToBeside);
 
         DamageCard(obf.GetVerticalNeighborIndex(targetIndex), damageToVerticalNeighbor);
-
 
         // Warrior again
         if (doubleAttack)
@@ -194,9 +200,18 @@ public class OldSkill : Skill
         {
             Card target = obf.GetReferenceToCardAt(index);
 
+            if (attackVFX != null)
+            {
+                GameObject vfx = Instantiate(attackVFX);
+                vfx.transform.position = target.transform.position;
+                //card parent should be the slot witch is persistent and at the same position
+                ChildMaker.AdoptAndTeleport(target.transform.parent, vfx.GetComponent<RectTransform>());
+            }
+
             if (target.HasHeavyArmorSkill())
             {
                 target.ShowDefenseVFX(attackerBattleField.transform.position.y);
+                target.ShowDefenseSFX();
                 target.TakeDamage( damage / 2 );
             }
             else
@@ -207,6 +222,7 @@ public class OldSkill : Skill
             if (target.HasReflectSkill())
             {
                 target.ShowDefenseVFX(attackerBattleField.transform.position.y);
+                target.ShowDefenseSFX();
                 attacker.TakeDamage( damage / 2 );
             }
         }

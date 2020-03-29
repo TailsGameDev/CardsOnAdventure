@@ -199,7 +199,7 @@ public class Battlefield : CardsHolder
         {
             if (ContainsCardInIndex(i))
             {
-                cards[i].Freezing = false;
+                cards[i].RemoveFreezing();
             }
         }
     }

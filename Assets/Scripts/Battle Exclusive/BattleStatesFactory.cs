@@ -24,10 +24,10 @@ public class BattleStatesFactory : PopUpOpener
     private Button endRepositioningBtn = null;
 
     [SerializeField]
-    private AudioClip victoryBGM = null;
+    private AudioHolder audioHolder = null;
 
     [SerializeField]
-    private AudioClip defeatBGM = null;
+    private AudioRequisitor audioRequisitor = null;
 
     public BattleState CreateGameStartState()
     {
@@ -48,7 +48,14 @@ public class BattleStatesFactory : PopUpOpener
 
     public BattleState CreatePlaceCardState()
     {
-        return new PlaceCard(hand, battlefield, deck);
+        string[] AUDIO_NAMES = { "0 Place Card SFX", "1 Place Card SFX", 
+            "2 Place Card SFX", "3 Place Card SFX", "4 Place Card SFX" };
+        AudioClip placeCardSFX = audioHolder.GetAleatoryClipAmong(AUDIO_NAMES);
+
+        PreMadeSoundRequest placeCardSoundRequest = 
+            PreMadeSoundRequest.CreateSFXSoundRequest(placeCardSFX, audioRequisitor, assignor: gameObject);
+
+        return new PlaceCard(hand, battlefield, deck, placeCardSoundRequest);
     }
 
     public BattleState CreateRepositionState()
@@ -73,6 +80,16 @@ public class BattleStatesFactory : PopUpOpener
 
     public BattleState CreateEndGameState(BattleStatesFactory winnerFactory)
     {
-        return new EndGame(winnerFactory, popUpOpener, victoryBGM, defeatBGM);
+        
+        AudioClip victoryBGM = audioHolder.GetAudioByName("Victory");
+        AudioClip defeatBGM = audioHolder.GetAudioByName("Defeat");
+
+        PreMadeSoundRequest victorySoundRequest = 
+            PreMadeSoundRequest.CreateBGMSoundRequest(victoryBGM, audioRequisitor, assignor: gameObject);
+
+        PreMadeSoundRequest defeatSoundRequest =
+            PreMadeSoundRequest.CreateBGMSoundRequest(defeatBGM, audioRequisitor, assignor: gameObject);
+
+        return new EndGame(winnerFactory, popUpOpener, victorySoundRequest, defeatSoundRequest);
     }
 }

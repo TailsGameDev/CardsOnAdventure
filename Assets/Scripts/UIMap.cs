@@ -15,6 +15,9 @@ public class UIMap : PopUpOpener
     private GameObject mapPopUp = null;
 
     [SerializeField]
+    private AudioRequisitor audioRequisitor = null;
+
+    [SerializeField]
     private AudioClip winSound = null;
 
     private bool initialized = false;
@@ -59,8 +62,7 @@ public class UIMap : PopUpOpener
 
     public void OnBossBattleClicked(Transform btnTransform)
     {
-        // TODO: view if the soud should be playerd here and how
-        // TheOnlySoundManagerInstance.soundManager.PlayBGM(winSound);
+        audioRequisitor.RequestBGM(winSound);
         popUpOpener.OpenCustomPopUp("You Beat the game!!!", "You are Awesome!","Go to Menu","Look the Map", GoToMenu);
         //ClearSpot(btnTransform);
         //BattleDefaultBehaviour();

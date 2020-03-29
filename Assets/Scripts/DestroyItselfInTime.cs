@@ -7,11 +7,6 @@ public class DestroyItselfInTime : MonoBehaviour
     [SerializeField]
     private float timeToDestruction = 2.0f;
 
-    private void Start()
-    {
-        Debug.LogWarning("I was intantiated!!");
-    }
-
     void Update()
     {
         if (timeToDestruction > 0)
