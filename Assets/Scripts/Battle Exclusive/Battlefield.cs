@@ -23,6 +23,7 @@ public class Battlefield : CardsHolder
 
     public void PlaceCardInSelectedIndex(Card card)
     {
+        card.Battlefield = this;
         PutCardInIndex(card, GetSelectedIndex());
     }
 
@@ -109,6 +110,19 @@ public class Battlefield : CardsHolder
         }
 
         return cardIndex;
+    }
+
+    internal void Remove(object card)
+    {
+        for (int i = 0; i < cards.Length; i++)
+        {
+            #pragma warning disable CS0253 // Possível comparação de referência inesperada; o lado direito precisa de conversão
+            if (cards[i] == card)
+            #pragma warning restore CS0253 // Possível comparação de referência inesperada; o lado direito precisa de conversão
+            {
+                cards[i] = null;
+            }
+        }
     }
 
     public Card GetCardBeside(int index)

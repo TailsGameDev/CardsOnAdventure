@@ -3,16 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Skill : MonoBehaviour
+public abstract class Skill : SkillsMediatorUser
 {
     [SerializeField]
     private string acronym = "";
 
     [SerializeField]
     private string fullName = "";
-
-    [SerializeField]
-    protected SkillsMadiator skillsMediator = null;
 
     [SerializeField]
     protected GameObject attackVFX = null;

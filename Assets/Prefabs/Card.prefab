@@ -34,7 +34,6 @@ RectTransform:
   - {fileID: 2687402944343980074}
   - {fileID: 9202887503157503946}
   - {fileID: 6038564836445054030}
-  - {fileID: 8832429930124399607}
   - {fileID: 6185775040767475470}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -96,7 +95,7 @@ MonoBehaviour:
   vitality: 2
   vitalityText: {fileID: 5814885173313731886}
   attackPowerText: {fileID: 1430746642622593300}
-  skills: {fileID: 4603173916725816562}
+  skills: {fileID: 0}
   skillText: {fileID: 8988087068539831836}
   obfuscator: {fileID: 6754206906903102355}
 --- !u!1 &520007368528055077
@@ -129,7 +128,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 439867028889674653}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -396,61 +395,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &4426523501958173242
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8832429930124399607}
-  - component: {fileID: 4603173916725816562}
-  m_Layer: 0
-  m_Name: Basic Simple Attack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8832429930124399607
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4426523501958173242}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 67.60156, y: -40.586243, z: -47.7125}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 439867028889674653}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4603173916725816562
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4426523501958173242}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acronym: 
-  fullName: 
-  pierce: 0
-  doubleAttack: 0
-  area: 0
-  freezing: 0
-  hook: 0
-  steal: 0
-  block: 0
-  heavyArmor: 0
-  reflect: 0
-  sanctuary: 0
 --- !u!1 &7662639685326254956
 GameObject:
   m_ObjectHideFlags: 0

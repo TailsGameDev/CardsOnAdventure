@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Card : MonoBehaviour
+public class Card : SkillsMediatorUser
 {
     [SerializeField]
     private int attackPower = 0;
@@ -30,6 +31,21 @@ public class Card : MonoBehaviour
 
     private GameObject freezingEffect = null;
 
+    private Battlefield battlefield;
+
+    public bool Freezing { get => freezing; }
+    public int Vitality { get => vitality; }
+    public int AttackPower { get => attackPower; set => attackPower = value; }
+    public Battlefield Battlefield { get => battlefield; set => battlefield = value; }
+    
+    private void Start()
+    {
+        if (skills == null)
+        {
+            skills = skillsMediator.GetBasicAttackSkill();
+        }
+    }
+
     public OldSkill Skills {
         get => skills;
         set {
@@ -37,9 +53,6 @@ public class Card : MonoBehaviour
             skillText.text = skills.Acronym;
         }
     }
-    public bool Freezing { get => freezing; }
-    public int Vitality { get => vitality; }
-    public int AttackPower { get => attackPower; set => attackPower = value; }
 
     private void Awake()
     {
@@ -76,6 +89,7 @@ public class Card : MonoBehaviour
         if (Vitality <= 0)
         {
             RemoveFreezing();
+            battlefield.Remove(this);
             Destroy(gameObject);
         }
     }

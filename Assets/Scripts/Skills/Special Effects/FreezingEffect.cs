@@ -6,6 +6,17 @@ public class FreezingEffect : SpecialEffect
 {
     public override void ExecuteEffect(Battlefield obf, Battlefield abf, ref int targetIndex, GameObject specialVFX)
     {
-        obf.GetReferenceToCardAt(targetIndex).ApplyFreezing(Instantiate(specialVFX));
+        int toBeFreezedIndex;
+
+        if ( BlockEffect.IsThereABlockerInTheFrontOfTarget(obf, targetIndex) )
+        {
+            toBeFreezedIndex = obf.GetIndexInFrontOf(targetIndex);
+        }
+        else
+        {
+            toBeFreezedIndex = targetIndex;
+        }
+
+        obf.GetReferenceToCardAt(toBeFreezedIndex).ApplyFreezing(Instantiate(specialVFX));
     }
 }
