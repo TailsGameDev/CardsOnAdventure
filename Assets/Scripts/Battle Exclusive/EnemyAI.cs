@@ -164,21 +164,18 @@ public class RepositionAction : CustomUpdate
         switch (frameCounter)
         {
             case 1:
-                Debug.Log("Repositioning1");
                 if (change0With2)
                 {
                     enemyBattlefield.SetSelectedIndex(0);
                 }
                 break;
             case 2:
-                Debug.Log("Repositioning2");
                 if (change0With2)
                 {
                     enemyBattlefield.SetSelectedIndex(2);
                 }
                 break;
             case 3:
-                Debug.Log("Repositioning4");
                 if (change1With3)
                 {
                     enemyBattlefield.SetSelectedIndex(1);

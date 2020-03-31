@@ -27,7 +27,6 @@ public class BattleFSM : MonoBehaviour
         currentState = currentState.GetNextState();
 
         currentStateName = currentState.GetType().Name;
-        //Debug.Log(currentStateName);
 
         string somebodiesTurn = "Enemy's Turn";
 

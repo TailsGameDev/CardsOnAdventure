@@ -355,7 +355,6 @@ public class Attack : BattleState
         if (ClickedInvalidCard())
         {
             ClearSelections();
-            Debug.Log("Clicked invalid card");
         }
     }
 
@@ -506,9 +505,7 @@ public class EndGame : BattleState
     private PreMadeSoundRequest victoryBGMRequest;
     private PreMadeSoundRequest defeatBGMRequest;
 
-    private bool alreadyOpenedEndGamePopUp = false;
-
-    private int counter = 60;
+    private float timer = 0;
 
     private bool quit = false;
 
@@ -522,60 +519,66 @@ public class EndGame : BattleState
 
     public override void ExecuteAction()
     {
-        counter++;
-
-        if (counter < 240) return;
-
-        counter = 0;
-
-        if ( ! alreadyOpenedEndGamePopUp )
+        if ( ! quit )
         {
-            if (winnerFactory == playerBattleStatesFactory)
+            if (timer < 1.5f)
             {
-                popUpOpener.OpenCustomPopUp(
-                    title : "Congratulations!",
-                    warningMessage: "You beat those guys. What are you going to do now?",
-                    confirmBtnMessage: "Look the map!",
-                    cancelBtnMessage: "Nothing",
-                    QuitBattleAndGoToMap,
-                    victoryBGMRequest
-                );
-            }
+                timer += Time.deltaTime;
+            } 
             else
             {
-                popUpOpener.OpenCustomPopUp(
-                    title: "You've lost the battle",
-                    warningMessage: "The enemy start to search you fallen card's pockets",
-                    confirmBtnMessage: "Go to main menu",
-                    cancelBtnMessage: "Sit and cry",
-                    QuitBattleResetMapLoadMainMenu,
-                    defeatBGMRequest
-                );
+                if ( popUpOpener.AllPopUpsAreClosed() )
+                {
+                    timer = 0;
+
+                    if (winnerFactory == playerBattleStatesFactory)
+                    {
+                        popUpOpener.OpenCustomPopUp(
+                            title : "Congratulations!",
+                            warningMessage: "You beat those guys. What are you going to do now?",
+                            confirmBtnMessage: "Look the map!",
+                            cancelBtnMessage: "Nothing",
+                            QuitBattleAndGoToMap,
+                            victoryBGMRequest
+                        );
+                    }
+                    else
+                    {
+                        popUpOpener.OpenCustomPopUp(
+                            title: "You've lost the battle",
+                            warningMessage: "The enemy start to search you fallen card's pockets",
+                            confirmBtnMessage: "Go to main menu",
+                            cancelBtnMessage: "Sit and cry",
+                            QuitBattleResetMapLoadMainMenu,
+                            defeatBGMRequest
+                        );
+                    }
+                } 
+                else
+                // Some pop up is oppened
+                { 
+                    timer = 0.0f;
+                }
             }
         }
+
     }
 
     void QuitBattleAndGoToMap()
     {
         quit = true;
         popUpOpener.UpdateMap();
+        popUpOpener.CloseAllPopUpsExceptLoading();
         popUpOpener.OpenMapPopUp();
     }
 
     private void QuitBattleResetMapLoadMainMenu()
     {
         quit = true;
-        popUpOpener.CloseMapPopUp();
-        popUpOpener.OpenLoadingPopUp();
+        popUpOpener.CloseAllPopUpsExceptLoading();
+        popUpOpener.SetLoadingPopUpActiveToTrue();
         // popUpOpener.ResetMap(); Map is being reset by the OnPlayBtnClicked method at the main menu, in MainMenuCanvas.cs
-        popUpOpener.UpdateMap();
         SceneManager.LoadScene("Main Menu");
-    }
-
-    private void InformClosedPopUp()
-    {
-        counter = 0;
-        alreadyOpenedEndGamePopUp = false;
     }
 
     public override BattleState GetNextState()

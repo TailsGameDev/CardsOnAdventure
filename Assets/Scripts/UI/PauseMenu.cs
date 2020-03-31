@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : PopUpOpener
 {
     [SerializeField]
-    private GameObject pauseMenuGameObject = null;
+    protected SceneOpener sceneOpener = null;
 
     public void OnRulesBtnClicked()
     {
@@ -21,27 +21,13 @@ public class PauseMenu : PopUpOpener
     public void OnGoToMainMenuBtnClicked()
     {
         string warningMessage = "All progress will be lost.";
-        popUpOpener.OpenConfirmationRequestPopUp(warningMessage, OpenMainMenuScene);
+        popUpOpener.OpenConfirmationRequestPopUp(warningMessage, sceneOpener.OpenMainMenuScene);
     }
 
     public void OnGoImmediateToMainMenuBtnClicked()
     {
-        OpenMainMenuScene();
+        sceneOpener.OpenMainMenuScene();
     }
 
-    private void OpenMainMenuScene()
-    {
-        OpenScene("Main Menu");
-        if (pauseMenuGameObject != null)
-        {
-            pauseMenuGameObject.SetActive(false);
-        }
-        popUpOpener.CloseMapPopUp();
-    }
 
-    public void OpenScene(string name)
-    {
-        popUpOpener.OpenLoadingPopUp();
-        SceneManager.LoadSceneAsync(name);
-    }
 }

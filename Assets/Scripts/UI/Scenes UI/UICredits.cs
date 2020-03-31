@@ -5,7 +5,7 @@ using UnityEngine;
 public class UICredits : MonoBehaviour
 {
     [SerializeField]
-    private PauseMenu sceneOpener = null;
+    private SceneOpener sceneOpener = null;
 
     public void OnCloseBtnClicked()
     {

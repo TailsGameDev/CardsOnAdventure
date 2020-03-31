@@ -15,7 +15,7 @@ public class MainMenuCanvas : PauseMenu
 
     public void OnCreditsBtnClicked()
     {
-        OpenScene("Credits");
+        sceneOpener.OpenScene("Credits");
     }
 
     public void OnQuitGameBtnClicked()

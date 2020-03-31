@@ -9,10 +9,7 @@ public class UIMap : PopUpOpener
     private Spot finalSpot = null;
 
     [SerializeField]
-    private PauseMenu sceneOpener = null;
-
-    [SerializeField]
-    private GameObject mapPopUp = null;
+    private SceneOpener sceneOpener = null;
 
     [SerializeField]
     private AudioRequisitor audioRequisitor = null;
@@ -71,7 +68,7 @@ public class UIMap : PopUpOpener
     void GoToMenu()
     {
         sceneOpener.OpenScene("Main Menu");
-        popUpOpener.CloseMapPopUp();
+        popUpOpener.CloseAllPopUpsExceptLoading();
     }
 
     public void OnMageMasterClicked(Transform btnTransform)
@@ -102,8 +99,9 @@ public class UIMap : PopUpOpener
 
     private void BattleDefaultBehaviour()
     {
+        popUpOpener.SetLoadingPopUpActiveToTrue();
+        popUpOpener.CloseAllPopUpsExceptLoading();
         sceneOpener.OpenScene("Battle");
-        mapPopUp.SetActive(false);
     }
 
     void ClearSpot(Transform btnTransform)

@@ -6095,13 +6095,6 @@ MonoBehaviour:
   makeRandomDeckInStart: 1
   cards:
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!114 &1214190164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7001,13 +6994,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   makeRandomDeckInStart: 1
   cards:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   - {fileID: 0}
 --- !u!114 &1378405289
 MonoBehaviour:

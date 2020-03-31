@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,7 +38,9 @@ public class ThePopUpOpenerInstance : PopUpOpener
     private Text customCancelText = null;
 
     [SerializeField]
-    private UICustomBtn confirmBtn = null;
+    private UICustomBtn customConfirmBtn = null;
+
+    private Stack<GameObject> popUpsStack = new Stack<GameObject>();
 
     #region Sound
     [SerializeField]
@@ -62,43 +65,91 @@ public class ThePopUpOpenerInstance : PopUpOpener
             Destroy(gameObject);
         }
 
-        confirmBtn.onClicked += CloseCustomPopUp;
+        customConfirmBtn.onClicked += CloseCustomPopUp;
+    }
+
+    /*
+    void LogStack()
+    {
+        string names = "";
+        foreach (GameObject p in popUpsStack)
+        {
+            names += " " + p.name;
+        }
+        Debug.Log("[ThePopUpOpenerInstance] "+names, this);
+    }
+    */
+
+    private void OpenPopUp(GameObject popUp)
+    {
+        popUp.SetActive(true);
+        foreach (GameObject p in popUpsStack)
+        {
+            p.SetActive(false);
+        }
+        popUpsStack.Push(popUp);
+        // LogStack();
+    }
+
+    // Called by editor
+    public void IfThereIsAPopUpOnTopThenCloseIt()
+    {
+        if (popUpsStack.Count > 0)
+        {
+            GameObject popUpOnTop = popUpsStack.Pop();
+            if (popUpsStack.Count > 0)
+            {
+                GameObject secondOnTop = popUpsStack.Peek();
+                secondOnTop.SetActive(true);
+            }
+            popUpOnTop.SetActive(false);
+        }
+        // LogStack();
+    }
+
+    public void CloseAllPopUpsExceptLoading()
+    {
+        while (popUpsStack.Count > 0)
+        {
+            popUpsStack.Pop().SetActive(false);
+        }
+        // LogStack();
+    }
+
+    public bool AllPopUpsAreClosed()
+    {
+        return popUpsStack.Count == 0;
     }
 
     #region Open XXX PopUp
 
     public void OpenPausePopUp()
     {
-        pausePopUp.SetActive(true);
+        OpenPopUp(pausePopUp);
     }
 
     public void OpenRulesPopUp()
     {
-        rulesPopUp.SetActive(true);
+        OpenPopUp(rulesPopUp);
     }
 
-    public void OpenLoadingPopUp()
+    public void SetLoadingPopUpActiveToTrue()
     {
         loadingPopUp.SetActive(true);
     }
 
     public void OpenSettingsPopUp()
     {
-        settingsPopUp.SetActive(true);
+        OpenPopUp(settingsPopUp);
     }
 
     public void OpenMapPopUp()
     {
         audioRequisitor.RequestBGM(mapBGM);
-        mapPopUp.SetActive(true);
+        OpenPopUp(mapPopUp);
     }
 
     #endregion
-
-    public void CloseMapPopUp()
-    {
-        mapPopUp.SetActive(false);
-    }
 
     public void OpenConfirmationRequestPopUp(string warningMessage, OnConfirmBtnClicked onConfirm)
     {
@@ -136,14 +187,15 @@ public class ThePopUpOpenerInstance : PopUpOpener
 
         customCancelText.text = cancelBtnMessage;
 
-        confirmBtn.onClicked += onConfirm;
+        customConfirmBtn.onClicked = null;
+        customConfirmBtn.onClicked += onConfirm;
 
-        customPopUp.SetActive(true);
+        OpenPopUp(customPopUp);
     }
 
     private void CloseCustomPopUp()
     {
-        customPopUp.SetActive(false);
+        IfThereIsAPopUpOnTopThenCloseIt();
     }
 
     public void UpdateMap()
