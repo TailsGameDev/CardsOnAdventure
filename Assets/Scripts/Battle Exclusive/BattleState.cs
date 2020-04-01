@@ -186,21 +186,21 @@ public class PlaceCard : BattleState
 public class Reposition : BattleState
 {
     private Battlefield battlefield;
-    private UnityEngine.UI.Button endRepositioningBtn;
+    private UIBtn endRepositioningBtn;
 
     private int oldIndex;
     private int currentIndex;
 
     private bool repositioningEnded = false;
 
-    public Reposition(Battlefield battlefield, Button endRepositioningBtn)
+    public Reposition(Battlefield battlefield, UIBtn endRepositioningBtn)
     {
         this.battlefield = battlefield;
         this.endRepositioningBtn = endRepositioningBtn;
 
         ClearSelection();
 
-        endRepositioningBtn.onClick.AddListener(OnEndRepositioning);
+        endRepositioningBtn.onUIBtnClicked += OnEndRepositioning;
 
         if (currentBattleStatesFactory == enemyBattleStatesFactory)
         {
@@ -282,7 +282,7 @@ public class Reposition : BattleState
         BattleState nextState = this;
         if (repositioningEnded)
         {
-            endRepositioningBtn.onClick.RemoveListener(OnEndRepositioning);
+            endRepositioningBtn.onUIBtnClicked = null;
             nextState = currentBattleStatesFactory.CreateAttackState();
         }
         return nextState;
@@ -448,8 +448,10 @@ public class EndTurn : TurnBattleState
 
     public override void ExecuteAction()
     {
-        currentBattleStatesFactory = GetTheOtherFactory();
+        battlefield.RemoveFreezingStateFromAllCards();
         battlefield.RemoveObfuscateFromAllCards();
+
+        currentBattleStatesFactory = GetTheOtherFactory();
     }
 
     public override BattleState GetNextState()
@@ -478,7 +480,7 @@ public class BeginTurn : TurnBattleState
 
     public override void ExecuteAction()
     {
-        battlefield.RemoveFreezingStateFromAllCards();
+        
     }
 
     public override BattleState GetNextState()

@@ -11,7 +11,7 @@ public class EnemyAI
 
     private Battlefield playerBattlefield = null;
 
-    private UnityEngine.UI.Button endRepositionBtn;
+    private UIBtn endRepositionBtn;
 
     CoroutineExecutorPrototype coroutineExecutor;
 
@@ -33,7 +33,7 @@ public class EnemyAI
 
     #region Reposition
 
-    public void Reposition(Battlefield enemyBattlefield, UnityEngine.UI.Button endRepositionBtn)
+    public void Reposition(Battlefield enemyBattlefield, UIBtn endRepositionBtn)
     {
         this.enemyBattlefield = enemyBattlefield;
         this.endRepositionBtn = endRepositionBtn;
@@ -73,7 +73,7 @@ public class EnemyAI
         }
         yield return null;
 
-        endRepositionBtn.onClick.Invoke();
+        endRepositionBtn.onUIBtnClicked();
 
         coroutineExecutor.SelfDestroy();
     }
@@ -146,9 +146,9 @@ public class RepositionAction : CustomUpdate
 {
     private int frameCounter = 0;
     private Battlefield enemyBattlefield;
-    private UnityEngine.UI.Button endRepositionBtn;
+    private UIBtn endRepositionBtn;
 
-    public RepositionAction(Battlefield enemyBattlefield, Button endRepositionBtn)
+    public RepositionAction(Battlefield enemyBattlefield, UIBtn endRepositionBtn)
     {
         this.enemyBattlefield = enemyBattlefield;
         this.endRepositionBtn = endRepositionBtn;
@@ -188,7 +188,7 @@ public class RepositionAction : CustomUpdate
                 }
                 break;
             case 5:
-                endRepositionBtn.onClick.Invoke();
+                endRepositionBtn.onUIBtnClicked();
                 break;
         }
     }

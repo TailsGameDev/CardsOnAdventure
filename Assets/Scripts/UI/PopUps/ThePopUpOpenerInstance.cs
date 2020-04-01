@@ -20,6 +20,12 @@ public class ThePopUpOpenerInstance : PopUpOpener
     private GameObject settingsPopUp = null;
 
     [SerializeField]
+    private GameObject tipsPopUp = null;
+
+    [SerializeField]
+    private Text tooltipPopUpTitle = null;
+
+    [SerializeField]
     private GameObject mapPopUp = null;
 
     [SerializeField]
@@ -68,7 +74,7 @@ public class ThePopUpOpenerInstance : PopUpOpener
         customConfirmBtn.onClicked += CloseCustomPopUp;
     }
 
-    /*
+    
     void LogStack()
     {
         string names = "";
@@ -78,8 +84,8 @@ public class ThePopUpOpenerInstance : PopUpOpener
         }
         Debug.Log("[ThePopUpOpenerInstance] "+names, this);
     }
-    */
 
+    #region Operations involving the stack
     private void OpenPopUp(GameObject popUp)
     {
         popUp.SetActive(true);
@@ -88,7 +94,7 @@ public class ThePopUpOpenerInstance : PopUpOpener
             p.SetActive(false);
         }
         popUpsStack.Push(popUp);
-        // LogStack();
+         LogStack();
     }
 
     // Called by editor
@@ -104,7 +110,7 @@ public class ThePopUpOpenerInstance : PopUpOpener
             }
             popUpOnTop.SetActive(false);
         }
-        // LogStack();
+         LogStack();
     }
 
     public void CloseAllPopUpsExceptLoading()
@@ -113,13 +119,15 @@ public class ThePopUpOpenerInstance : PopUpOpener
         {
             popUpsStack.Pop().SetActive(false);
         }
-        // LogStack();
+         LogStack();
     }
 
     public bool AllPopUpsAreClosed()
     {
         return popUpsStack.Count == 0;
     }
+
+    #endregion
 
     #region Open XXX PopUp
 
@@ -151,6 +159,7 @@ public class ThePopUpOpenerInstance : PopUpOpener
 
     #endregion
 
+    #region Custom pop-up
     public void OpenConfirmationRequestPopUp(string warningMessage, OnConfirmBtnClicked onConfirm)
     {
         OpenCustomPopUp(title: "Are You sure?",warningMessage,"I'm Sure", "Cancel", onConfirm);
@@ -196,6 +205,14 @@ public class ThePopUpOpenerInstance : PopUpOpener
     private void CloseCustomPopUp()
     {
         IfThereIsAPopUpOnTopThenCloseIt();
+    }
+    #endregion
+
+    public void OpenTooltipPopUp(TooltipSectionData[] tooltipSectionsData, string title)
+    {
+        tooltipPopUpTitle.text = title;
+        tipsPopUp.GetComponent<TipsPopUp>().Populate(tooltipSectionsData);
+        OpenPopUp(tipsPopUp);
     }
 
     public void UpdateMap()

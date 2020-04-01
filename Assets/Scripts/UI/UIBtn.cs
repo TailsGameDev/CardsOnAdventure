@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIBtn : MonoBehaviour
@@ -40,12 +41,18 @@ public class UIBtn : MonoBehaviour
 
     private Color BtnUpTextColor = Color.white;
 
+    public delegate void OnUIBtnClicked();
+    public OnUIBtnClicked onUIBtnClicked;
+
+    public EventTrigger eventTrigger;
+
     protected void Awake()
     {
         rectTransform = imageComponent.GetComponent<RectTransform>();
         // TODO: 'rectTransform.offsetMax.y;' or somehing should be better but didn't work at the first attempt
         originalRectTransfmOffsetMaxDotY = 0;
         BtnUpTextColor = textComponent.color;
+        eventTrigger = GetComponent<EventTrigger>();
     }
 
     public void OnPointerEntered()
@@ -67,6 +74,7 @@ public class UIBtn : MonoBehaviour
     public void DownToUpBtnVisualAndSoundEffects()
     {
         ConfigureBtnLooks(normalSprite, originalRectTransfmOffsetMaxDotY, BtnUpTextColor);
+        onUIBtnClicked?.Invoke();
     }
 
     private void ConfigureBtnLooks(Sprite sprite, float top, Color color)

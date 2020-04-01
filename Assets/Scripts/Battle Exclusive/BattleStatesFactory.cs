@@ -21,7 +21,7 @@ public class BattleStatesFactory : PopUpOpener
     private Battlefield battlefield = null;
 
     [SerializeField]
-    private Button endRepositioningBtn = null;
+    private UIBtn endRepositioningBtn = null;
 
     [SerializeField]
     private AudioHolder audioHolder = null;
@@ -75,7 +75,7 @@ public class BattleStatesFactory : PopUpOpener
 
     public BattleState CreateBeginTurnState()
     {
-        return new BeginTurn(otherBattleStatesFactory.battlefield, deck, hand);
+        return new BeginTurn(battlefield, deck, hand);
     }
 
     public BattleState CreateEndGameState(BattleStatesFactory winnerFactory)
