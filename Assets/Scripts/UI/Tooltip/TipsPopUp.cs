@@ -8,42 +8,93 @@ public class TipsPopUp : MonoBehaviour
     [SerializeField]
     GameObject tooltipSectionModel = null;
 
-    GameObject[] tooltipSections = null;
+    TipsPopUpSection[] storedSections = null;
 
     [SerializeField]
-    Transform verticalLayoutGroup = null;
+    RectTransform verticalLayoutGroup = null;
 
-    public void Populate( TooltipSectionData[] sections )
+    private TipSectionData[] tipsData;
+
+    public void PopulateAllSections( TipSectionData[] tipsData )
     {
-        if (this.tooltipSections != null)
-        {
-            foreach (GameObject section in this.tooltipSections)
-            {
-                Destroy(section);
-            }
-        }
+        this.tipsData = tipsData;
 
-        this.tooltipSections = new GameObject[sections.Length];
+        ClearDataStructures();
+
+        ApplyDefaultHeightIfNeeded();
+
+        for (int i = 0; i < tipsData.Length; i++)
+        {
+            MakeAndStoreSection(i);
+        }
 
         float totalHeight = 0;
-
-        for (int i = 0; i < sections.Length; i++)
+        for (int i = 0; i < tipsData.Length; i++)
         {
-            GameObject newSection = Instantiate(tooltipSectionModel);
-            newSection.GetComponent<TooltipSection>().PopulateSection(sections[i]);
-            newSection.transform.SetParent(verticalLayoutGroup, false);
-            tooltipSections[i] = newSection;
-            newSection.SetActive(true);
-            RectTransform sectionRectTransform = newSection.GetComponent<RectTransform>();
-            Vector2 sizeDelta = sectionRectTransform.sizeDelta;
-            sizeDelta.y = sections[i].height;
-            sectionRectTransform.sizeDelta = sizeDelta;
-            totalHeight += sizeDelta.y;
+            totalHeight += tipsData[i].height;
         }
 
-        RectTransform layoutRectTransform = verticalLayoutGroup.GetComponent<RectTransform>();
-        Vector2 layoutSizeDelta = layoutRectTransform.sizeDelta;
-        layoutSizeDelta.y = totalHeight;
-        layoutRectTransform.sizeDelta = layoutSizeDelta;
+        SetRectTransformHeight(verticalLayoutGroup, totalHeight);
+    }
+
+    private void ApplyDefaultHeightIfNeeded()
+    {
+        float defaultHeight = tooltipSectionModel.GetComponent<RectTransform>().sizeDelta.y;
+
+        for (int i = 0; i < tipsData.Length; i++)
+        {
+            if (tipsData[i].height == 0)
+            {
+                tipsData[i].height = defaultHeight;
+            }
+        }
+    }
+    private void ClearDataStructures()
+    {
+        DestroySectionsFromLastCallIfThereAreAny();
+
+        this.storedSections = new TipsPopUpSection[tipsData.Length];
+    }
+
+    private void DestroySectionsFromLastCallIfThereAreAny()
+    {
+        if (this.storedSections != null)
+        {
+            foreach (TipsPopUpSection section in this.storedSections)
+            {
+                Destroy(section.gameObject);
+            }
+        }
+    }
+
+    private void MakeAndStoreSection(int i) 
+    {
+        TipsPopUpSection newSection = CloneDefaultSection();
+
+        ConfigureSection(newSection, tipsData[i]);
+
+        storedSections[i] = newSection;
+    }
+
+    private TipsPopUpSection CloneDefaultSection()
+    {
+        return Instantiate(tooltipSectionModel).GetComponent<TipsPopUpSection>();
+    }
+
+    private void ConfigureSection(TipsPopUpSection newSection, TipSectionData sectionData)
+    {
+        newSection.PopulateSection(sectionData);
+        newSection.transform.SetParent(verticalLayoutGroup, false);
+
+        SetRectTransformHeight(newSection.GetComponent<RectTransform>(), sectionData.height);
+        
+        newSection.gameObject.SetActive(true);
+    }
+
+    private void SetRectTransformHeight(RectTransform rt, float height)
+    {
+        Vector2 sizeDelta = rt.sizeDelta;
+        sizeDelta.y = height;
+        rt.sizeDelta = sizeDelta;
     }
 }

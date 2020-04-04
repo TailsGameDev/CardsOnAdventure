@@ -5,13 +5,13 @@ using UnityEngine;
 public class TipHolder : PopUpOpener
 {
     [SerializeField]
-    private string title = null;
+    protected string title = null;
 
     [SerializeField]
-    private TooltipSectionData[] sectionsData = null;
+    protected TipSectionData[] tipData = null;
 
     public void OpenTipPopUp()
     {
-        popUpOpener.OpenTooltipPopUp(sectionsData, title);
+        popUpOpener.OpenTooltipPopUp(tipData, title);
     }
 }

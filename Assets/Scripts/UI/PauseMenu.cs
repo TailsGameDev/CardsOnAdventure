@@ -21,7 +21,7 @@ public class PauseMenu : PopUpOpener
     public void OnGoToMainMenuBtnClicked()
     {
         string warningMessage = "All progress will be lost.";
-        popUpOpener.OpenConfirmationRequestPopUp(warningMessage, sceneOpener.OpenMainMenuScene);
+        customPopUpOpener.OpenConfirmationRequestPopUp(warningMessage, sceneOpener.OpenMainMenuScene);
     }
 
     public void OnGoImmediateToMainMenuBtnClicked()

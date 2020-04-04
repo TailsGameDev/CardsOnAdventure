@@ -90,6 +90,6 @@ public class BattleStatesFactory : PopUpOpener
         PreMadeSoundRequest defeatSoundRequest =
             PreMadeSoundRequest.CreateBGMSoundRequest(defeatBGM, audioRequisitor, assignor: gameObject);
 
-        return new EndGame(winnerFactory, popUpOpener, victorySoundRequest, defeatSoundRequest);
+        return new EndGame(winnerFactory, popUpOpener, customPopUpOpener, victorySoundRequest, defeatSoundRequest);
     }
 }

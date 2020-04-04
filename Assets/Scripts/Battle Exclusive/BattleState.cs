@@ -124,10 +124,15 @@ public class PlaceCard : BattleState
         if ( ReceivedValidInput() )
         {
             hand.MakeSelectedCardNormalSize();
+
             Card card = hand.RemoveCardFromSelectedIndex();
+
             battlefield.PlaceCardInSelectedIndex(card);
             cardWasSuccessfullyPlaced = true;
+
             placeCardSFXRequest.RequestPlaying();
+
+            card.ChangeToHorizontalVersion();
         }
     }
 
@@ -504,6 +509,7 @@ public class EndGame : BattleState
 {
     private BattleStatesFactory winnerFactory;
     private ThePopUpOpenerInstance popUpOpener;
+    private CustomPopUp customPopUpOpener;
     private PreMadeSoundRequest victoryBGMRequest;
     private PreMadeSoundRequest defeatBGMRequest;
 
@@ -511,10 +517,11 @@ public class EndGame : BattleState
 
     private bool quit = false;
 
-    public EndGame(BattleStatesFactory winnerFactory, ThePopUpOpenerInstance popUpOpener, PreMadeSoundRequest victoryBGMRequest, PreMadeSoundRequest defeatBGMRequest)
+    public EndGame(BattleStatesFactory winnerFactory, ThePopUpOpenerInstance popUpOpener, CustomPopUp customPopUpOpener, PreMadeSoundRequest victoryBGMRequest, PreMadeSoundRequest defeatBGMRequest)
     {
         this.winnerFactory = winnerFactory;
         this.popUpOpener = popUpOpener;
+        this.customPopUpOpener = customPopUpOpener;
         this.victoryBGMRequest = victoryBGMRequest;
         this.defeatBGMRequest = defeatBGMRequest;
     }
@@ -535,7 +542,7 @@ public class EndGame : BattleState
 
                     if (winnerFactory == playerBattleStatesFactory)
                     {
-                        popUpOpener.OpenCustomPopUp(
+                        customPopUpOpener.Open(
                             title : "Congratulations!",
                             warningMessage: "You beat those guys. What are you going to do now?",
                             confirmBtnMessage: "Look the map!",
@@ -546,7 +553,7 @@ public class EndGame : BattleState
                     }
                     else
                     {
-                        popUpOpener.OpenCustomPopUp(
+                        customPopUpOpener.Open(
                             title: "You've lost the battle",
                             warningMessage: "The enemy start to search you fallen card's pockets",
                             confirmBtnMessage: "Go to main menu",

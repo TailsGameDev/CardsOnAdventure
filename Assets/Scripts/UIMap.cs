@@ -44,62 +44,80 @@ public class UIMap : PopUpOpener
         finalSpot.UpdateMap();
     }
 
-    #region On Button Clicks
-    public void OnSimpleBattleClicked(Transform btnTransform)
-    {
-        ClearSpot(btnTransform);
-        BattleDefaultBehaviour();
-    }
-
-    public void OnDifficultBattleClicked(Transform btnTransform)
-    {
-        ClearSpot(btnTransform);
-        BattleDefaultBehaviour();
-    }
-
-    public void OnBossBattleClicked(Transform btnTransform)
-    {
-        audioRequisitor.RequestBGM(winSound);
-        popUpOpener.OpenCustomPopUp("You Beat the game!!!", "You are Awesome!","Go to Menu","Look the Map", GoToMenu);
-        //ClearSpot(btnTransform);
-        //BattleDefaultBehaviour();
-    }
-
     void GoToMenu()
     {
         sceneOpener.OpenScene("Main Menu");
         popUpOpener.CloseAllPopUpsExceptLoading();
     }
 
-    public void OnMageMasterClicked(Transform btnTransform)
-    {
-        ClearSpot(btnTransform);
-        BattleDefaultBehaviour();
-    }
+    #region On Battle Spot Buttons Clicked
 
-    public void OnWarriorMasterClicked(Transform btnTransform)
-    {
-        ClearSpot(btnTransform);
-        BattleDefaultBehaviour();
-    }
+        public void OnSimpleBattleClicked(Transform btnTransform)
+        {
+            popUpOpener.SetLoadingPopUpActiveToTrue();
+            ClearSpot(btnTransform);
+            DeckPrototypeFactory.PrepareRandomDeckForTheEnemy();
+            SetUpBattleAndOpenIt();
+        }
 
-    public void OnRougueMasterClicked(Transform btnTransform)
-    {
-        ClearSpot(btnTransform);
-        BattleDefaultBehaviour();
-    }
+        public void OnToughBattleClicked(Transform btnTransform)
+        {
+            popUpOpener.SetLoadingPopUpActiveToTrue();
+            ClearSpot(btnTransform);
+            DeckPrototypeFactory.PrepareToughRandomDeckForTheEnemy();
+            SetUpBattleAndOpenIt();
+        }
 
-    public void OnGuardianMasterClicked(Transform btnTransform)
-    {
-        ClearSpot(btnTransform);
-        BattleDefaultBehaviour();
-    }
+        // the btnTransform parameter might be used if we substitute the final spot for some battle
+        public void OnBossBattleClicked(Transform btnTransform)
+        {
+            audioRequisitor.RequestBGM(winSound);
+            customPopUpOpener.Open("You Beat the game!!!", "You are Awesome!","Go to Menu","Look the Map", GoToMenu);
+            //ClearSpot(btnTransform);
+            //BattleDefaultBehaviour();
+        }
 
     #endregion
 
-    private void BattleDefaultBehaviour()
+    #region On Master Buttons Clicked
+
+        public void OnMageMasterClicked(Transform btnTransform)
+        {
+            popUpOpener.SetLoadingPopUpActiveToTrue();
+            DeckPrototypeFactory.PrepareMageDeckForTheEnemy();
+            ClearSpot(btnTransform);
+            SetUpBattleAndOpenIt();
+        }
+
+        public void OnWarriorMasterClicked(Transform btnTransform)
+        {
+            popUpOpener.SetLoadingPopUpActiveToTrue();
+            DeckPrototypeFactory.PrepareWarriorDeckForTheEnemy();
+            ClearSpot(btnTransform);
+            SetUpBattleAndOpenIt();
+        }
+
+        public void OnRougueMasterClicked(Transform btnTransform)
+        {
+            popUpOpener.SetLoadingPopUpActiveToTrue();
+            DeckPrototypeFactory.PrepareRogueDeckForTheEnemy();
+            ClearSpot(btnTransform);
+            SetUpBattleAndOpenIt();
+        }
+
+        public void OnGuardianMasterClicked(Transform btnTransform)
+        {
+            popUpOpener.SetLoadingPopUpActiveToTrue();
+            DeckPrototypeFactory.PrepareGuardianDeckForTheEnemy();
+            ClearSpot(btnTransform);
+            SetUpBattleAndOpenIt();
+        }
+
+    #endregion
+
+    private void SetUpBattleAndOpenIt()
     {
-        popUpOpener.SetLoadingPopUpActiveToTrue();
+        DeckPrototypeFactory.PrepareRandomDeckForThePlayer();
         popUpOpener.CloseAllPopUpsExceptLoading();
         sceneOpener.OpenScene("Battle");
     }

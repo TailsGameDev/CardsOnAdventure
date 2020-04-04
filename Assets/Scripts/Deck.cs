@@ -5,23 +5,28 @@ using UnityEngine;
 public class Deck : MonoBehaviour
 {
     [SerializeField]
-    private bool makeRandomDeckInStart = false;
+    List<Card> cards = null;
 
     [SerializeField]
-    List<Card> cards = null;
+    private bool enemysDeck;
 
     private void Start()
     {
-        if (makeRandomDeckInStart)
+        cards = new List<Card>();
+
+        if (enemysDeck)
         {
-            int size = cards.Count;
-            cards = new List<Card>();
-            cards.AddRange(DeckPrototypeFactory.GetRandomCards(size));
-            for (int i= 0; i < cards.Count; i++)
-            {
-                cards[i].transform.position = transform.position;
-                cards[i].GetComponent<RectTransform>().SetParent(transform, true);
-            }
+            cards.AddRange(DeckPrototypeFactory.GetPreparedCardsForTheEnemy());
+        }
+        else
+        {
+            cards.AddRange(DeckPrototypeFactory.GetPreparedCardsForThePlayer());
+        }
+
+        for (int i = 0; i < cards.Count; i++)
+        {
+            cards[i].transform.position = transform.position;
+            cards[i].GetComponent<RectTransform>().SetParent(transform, true);
         }
     }
 

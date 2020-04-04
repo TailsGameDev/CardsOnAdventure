@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class UICustomBtn : UIBtn
 {
-    public ThePopUpOpenerInstance.OnConfirmBtnClicked onClicked;
+    public CustomPopUp.OnBtnClicked onClicked;
 
     [SerializeField]
     private PopUpOpener popUpOpener;
 
-    public void CallOnConfirmBtnClickedDelegate()
+    public void CallOnBtnClickedDelegate()
     {
         onClicked();
     }

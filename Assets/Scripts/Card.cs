@@ -8,9 +8,12 @@ using UnityEngine.UI;
 public class Card : SkillsMediatorUser
 {
     [SerializeField]
-    private int attackPower = 0;
+    private ClassInfo classe;
+
     [SerializeField]
-    private int vitality = 999;
+    private int attackPower = 99;
+    [SerializeField]
+    private int vitality = 99;
 
     [SerializeField]
     private Text vitalityText = null;
@@ -27,11 +30,17 @@ public class Card : SkillsMediatorUser
     [SerializeField]
     private Image obfuscator = null;
 
+    [SerializeField]
+    private Image cardImage = null;
+
     private bool freezing = false;
 
     private GameObject freezingEffect = null;
 
     private Battlefield battlefield;
+
+    [SerializeField]
+    private Sprite horizontalSprite = null;
 
     public bool Freezing { get => freezing; }
     public int Vitality { get => vitality; }
@@ -54,6 +63,7 @@ public class Card : SkillsMediatorUser
         }
     }
 
+
     private void Awake()
     {
         attackPowerText.text = AttackPower.ToString();
@@ -75,6 +85,11 @@ public class Card : SkillsMediatorUser
     public void TakeDamage(int damage)
     {
         SetVitality(Vitality - damage);
+    }
+
+    public void AjustCardToDifficult(int difficultyLevel)
+    {
+        attackPower = attackPower * difficultyLevel;
     }
 
     public void Heal(int healAmount)
@@ -157,6 +172,18 @@ public class Card : SkillsMediatorUser
         }
     }
 
+    public void ChangeToHorizontalVersion()
+    {
+        cardImage.sprite = horizontalSprite;
+        attackPowerText.transform.Rotate(new Vector3(0,0,-90));
+        vitalityText.transform.Rotate(new Vector3(0, 0, -90));
+        skillText.transform.parent.Rotate(new Vector3(0, 0, -90));
+
+        vitalityText.transform.parent.position = attackPowerText.transform.position;
+        attackPowerText.transform.parent.position = skillText.transform.position + (new Vector3(100, 0 , 0)/2);
+        skillText.transform.parent.position = skillText.transform.position + new Vector3(0,cardImage.GetComponent<RectTransform>().sizeDelta.x,0);
+    }
+
     private void ShowDefenseSFX()
     {
         skills.PlayDefenseSFX();
@@ -187,5 +214,23 @@ public class Card : SkillsMediatorUser
     public float GetDamageReflectionPercentage()
     {
         return skills.DamageReflectionPercentage;
+    }
+
+    public string GetColoredTitleForTooltip()
+    {
+         return "<color=#"+classe.ColorHexCode+">"+classe.name+"</color>";
+    }
+
+    public Sprite GetCardSprite()
+    {
+        return cardImage.sprite;
+    }
+
+    public string GetExplanatoryText()
+    {
+        return skills.GetExplanatoryText() + "\n" +
+               "<color=#FD7878>Attack Power: " + attackPower + "</color>\n" +
+               "<color=#9EFA9D>Vitality: " + vitality + "</color>\n";
+               
     }
 }

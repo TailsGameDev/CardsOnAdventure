@@ -27,24 +27,9 @@ public class ThePopUpOpenerInstance : PopUpOpener
 
     [SerializeField]
     private GameObject mapPopUp = null;
-
+    
     [SerializeField]
     private GameObject customPopUp = null;
-
-    [SerializeField]
-    private Text customPopUpTitle = null;
-
-    [SerializeField]
-    private Text warningText = null;
-
-    [SerializeField]
-    private Text customConfirmText = null;
-
-    [SerializeField]
-    private Text customCancelText = null;
-
-    [SerializeField]
-    private UICustomBtn customConfirmBtn = null;
 
     private Stack<GameObject> popUpsStack = new Stack<GameObject>();
 
@@ -56,7 +41,7 @@ public class ThePopUpOpenerInstance : PopUpOpener
     private AudioClip mapBGM = null;
     #endregion
 
-    public delegate void OnConfirmBtnClicked();
+    public delegate void OnBtnClicked();
 
     private void Awake()
     {
@@ -70,11 +55,9 @@ public class ThePopUpOpenerInstance : PopUpOpener
         {
             Destroy(gameObject);
         }
-
-        customConfirmBtn.onClicked += CloseCustomPopUp;
     }
 
-    
+    #region Operations involving the stack
     void LogStack()
     {
         string names = "";
@@ -82,10 +65,9 @@ public class ThePopUpOpenerInstance : PopUpOpener
         {
             names += " " + p.name;
         }
-        Debug.Log("[ThePopUpOpenerInstance] "+names, this);
+        Debug.Log("[ThePopUpOpenerInstance] " + names, this);
     }
 
-    #region Operations involving the stack
     private void OpenPopUp(GameObject popUp)
     {
         popUp.SetActive(true);
@@ -100,6 +82,8 @@ public class ThePopUpOpenerInstance : PopUpOpener
     // Called by editor
     public void IfThereIsAPopUpOnTopThenCloseIt()
     {
+        Debug.Log("IfThereIsAPopUpOnTopThenCloseIt Called");
+
         if (popUpsStack.Count > 0)
         {
             GameObject popUpOnTop = popUpsStack.Pop();
@@ -157,63 +141,18 @@ public class ThePopUpOpenerInstance : PopUpOpener
         OpenPopUp(mapPopUp);
     }
 
-    #endregion
-
-    #region Custom pop-up
-    public void OpenConfirmationRequestPopUp(string warningMessage, OnConfirmBtnClicked onConfirm)
+    public void OpenCustomPopUp()
     {
-        OpenCustomPopUp(title: "Are You sure?",warningMessage,"I'm Sure", "Cancel", onConfirm);
-    }
-
-    public void OpenCustomPopUp
-        (
-            string title, 
-            string warningMessage, 
-            string confirmBtnMessage, 
-            string cancelBtnMessage, 
-            OnConfirmBtnClicked onConfirm, 
-            PreMadeSoundRequest openingBGM
-        )
-    {
-        openingBGM.RequestPlaying();
-        OpenCustomPopUp(title, warningMessage, confirmBtnMessage, cancelBtnMessage, onConfirm);
-    }
-
-    public void OpenCustomPopUp
-        (
-            string title,
-            string warningMessage,
-            string confirmBtnMessage,
-            string cancelBtnMessage,
-            OnConfirmBtnClicked onConfirm
-        )
-    {
-        customPopUpTitle.text = title;
-
-        warningText.text = warningMessage;
-
-        customConfirmText.text = confirmBtnMessage;
-
-        customCancelText.text = cancelBtnMessage;
-
-        customConfirmBtn.onClicked = null;
-        customConfirmBtn.onClicked += onConfirm;
-
         OpenPopUp(customPopUp);
     }
-
-    private void CloseCustomPopUp()
-    {
-        IfThereIsAPopUpOnTopThenCloseIt();
-    }
-    #endregion
-
-    public void OpenTooltipPopUp(TooltipSectionData[] tooltipSectionsData, string title)
+    
+    public void OpenTooltipPopUp(TipSectionData[] tipsData, string title)
     {
         tooltipPopUpTitle.text = title;
-        tipsPopUp.GetComponent<TipsPopUp>().Populate(tooltipSectionsData);
+        tipsPopUp.GetComponent<TipsPopUp>().PopulateAllSections(tipsData);
         OpenPopUp(tipsPopUp);
     }
+    #endregion
 
     public void UpdateMap()
     {

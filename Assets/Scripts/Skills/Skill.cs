@@ -12,6 +12,9 @@ public abstract class Skill : SkillsMediatorUser
     private string fullName = "";
 
     [SerializeField]
+    private string description = "";
+
+    [SerializeField]
     protected GameObject attackVFX = null;
 
     [SerializeField]
@@ -29,6 +32,7 @@ public abstract class Skill : SkillsMediatorUser
     public string Acronym { get => acronym; }
     public string FullName { get => fullName; }
     public GameObject DefenseVFX { get => defenseVFX; }
+    public string Description { get => description; }
 
     public abstract void ApplyEffectsConsideringSelectedTarget
     (
@@ -45,5 +49,9 @@ public abstract class Skill : SkillsMediatorUser
     public void PlayDefenseSFX()
     {
         skillsMediator.PlaySFX(defenseSFX);
+    }
+    public string GetExplanatoryText()
+    {
+        return "-[" + Acronym + "] " + FullName + ": " + Description;
     }
 }

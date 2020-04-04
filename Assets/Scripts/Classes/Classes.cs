@@ -6,6 +6,7 @@ public enum Classes
 {
     Mage,
     Warrior,
-    Rougue,
-    Tank
+    Rogue,
+    Guardian,
+    Cleric,
 }

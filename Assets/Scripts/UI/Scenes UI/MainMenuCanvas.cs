@@ -21,6 +21,6 @@ public class MainMenuCanvas : PauseMenu
     public void OnQuitGameBtnClicked()
     {
         string warningMessage = " We dedicated so mutch to build this game! ";
-        popUpOpener.OpenConfirmationRequestPopUp(warningMessage, Application.Quit);
+        customPopUpOpener.OpenConfirmationRequestPopUp(warningMessage, Application.Quit);
     }
 }
