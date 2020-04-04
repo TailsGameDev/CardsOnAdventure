@@ -20,6 +20,16 @@ public abstract class BattleState : BattleInfo
     }
 }
 
+public class BattlePropertiesFactory
+{
+    
+}
+
+public class BattleProperties
+{
+    public Color backgroundColor;
+}
+
 public class GameStart : BattleState
 {
 

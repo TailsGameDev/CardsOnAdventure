@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
@@ -15,16 +16,15 @@ public class DeckPrototypeFactory : MonoBehaviour
 
     private int difficultyLevel = 1;
 
+    [Serializable]
+    struct CardOfClass
+    {
+        public Classes classe;
+        public Card[] cards;
+    }
+
     [SerializeField]
-    protected Card[] mages = null;
-    [SerializeField]
-    protected Card[] warriors = null;
-    [SerializeField]
-    protected Card[] rogues = null;
-    [SerializeField]
-    protected Card[] guardians = null;
-    [SerializeField]
-    protected Card[] clerics = null;
+    CardOfClass[] cardsOfClass;
 
     protected Card[] allCardPrototypes;
 
@@ -69,11 +69,10 @@ public class DeckPrototypeFactory : MonoBehaviour
     {
         List<Card> allCardPrototypesList = new List<Card>();
 
-        allCardPrototypesList.AddRange(mages);
-        allCardPrototypesList.AddRange(warriors);
-        allCardPrototypesList.AddRange(rogues);
-        allCardPrototypesList.AddRange(guardians);
-        allCardPrototypesList.AddRange(clerics);
+        for (int i = 0; i < cardsOfClass.Length; i++)
+        {
+            allCardPrototypesList.AddRange(cardsOfClass[i].cards);
+        }
 
         this.allCardPrototypes = allCardPrototypesList.ToArray();
     }
@@ -213,7 +212,7 @@ public class DeckPrototypeFactory : MonoBehaviour
         {
             for (int i = beginningIndex; i < limitIndex; i++)
             {
-                int random = Random.Range(0, prototypes.Length);
+                int random = UnityEngine.Random.Range(0, prototypes.Length);
                 deck[i] = Instantiate(prototypes[random]);
             }
 
@@ -267,34 +266,23 @@ public class DeckPrototypeFactory : MonoBehaviour
         {
             InitializeDeck();
 
-            Card[] notRandomPartPrototypes;
+            Card[] notRandomPartPrototypes = new Card[0];
 
-            /*
-             It would be cool to receive the notRandomPartPrototypes as an argument in the constructor, but
-             the cards does not exist in other scenes, just in the battle... and currently you don't need
-             to be in the battle scene to look to the map.
-             */
+            CardOfClass[] cardsOfClass = battleSceneDeckFactory.cardsOfClass;
 
-            switch (classe)
+            for (int i = 0; i < cardsOfClass.Length; i++)
             {
-                case Classes.Mage:
-                    notRandomPartPrototypes = battleSceneDeckFactory.mages;
+                if (cardsOfClass[i].classe == classe)
+                {
+                    notRandomPartPrototypes = cardsOfClass[i].cards;
                     break;
-                case Classes.Warrior:
-                    notRandomPartPrototypes = battleSceneDeckFactory.warriors;
-                    break;
-                case Classes.Rogue:
-                    notRandomPartPrototypes = battleSceneDeckFactory.rogues;
-                    break;
-                case Classes.Guardian:
-                    notRandomPartPrototypes = battleSceneDeckFactory.guardians;
-                    break;
-                case Classes.Cleric:
-                    notRandomPartPrototypes = battleSceneDeckFactory.clerics;
-                    break;
-                default:
-                    notRandomPartPrototypes = battleSceneDeckFactory.allCardPrototypes;
-                    break;
+                }
+            }
+
+            if (notRandomPartPrototypes.Length == 0)
+            {
+                Debug.LogError("[DeckPrototypeFactory] notRandomPartPrototypes.Length == 0. "+
+                                "It should be the size of the available cards of a class.");
             }
 
             return BuildHalfRandomDeck(notRandomPartPrototypes);
