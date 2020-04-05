@@ -5,13 +5,22 @@ using UnityEngine;
 public class UIBattle : PopUpOpener
 {
     [SerializeField]
-    Battlefield enemyBattlefield = null;
+    private RectTransform UIDamageTextParent = null;
+    public static RectTransform uiDamageTextParent;
 
     [SerializeField]
-    Battlefield playerBattlefield = null;
+    private Battlefield enemyBattlefield = null;
 
     [SerializeField]
-    Hand playerHand = null;
+    private Battlefield playerBattlefield = null;
+
+    [SerializeField]
+    private Hand playerHand = null;
+
+    private void Awake()
+    {
+        uiDamageTextParent = UIDamageTextParent;
+    }
 
     public void OnEnemyBattleFieldSlotClicked(int index)
     {

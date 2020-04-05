@@ -35,8 +35,6 @@ public class BattleFSM : MonoBehaviour
     {
         if (safeToUpdate)
         {
-            Debug.Log("[BFSM] deathCounter == "+Card.GetDeathCount());
-
             currentState.ExecuteAction();
             currentState = currentState.GetNextState();
 

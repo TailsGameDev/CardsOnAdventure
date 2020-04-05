@@ -52,7 +52,6 @@ public class OldSkill : Skill
 
         int baseAttack = attacker.AttackPower;
 
-        // Normal
         int damageToTarget;
         if (IsAttackingBackline(targetIndex) && obf.IsThereACardInFrontOf(targetIndex))
         {
@@ -101,7 +100,20 @@ public class OldSkill : Skill
                 defenseEffectToExecute = skillsMediator.RegularDefenseEffect;
             }
 
-            defenseEffectToExecute.ExecuteEffect(damage, obf, attackerBattleField, toBeDamagedIndex, attackVFX);
+            bool isDoubleAttack = frontlineTargetDamageMultiplier > 1.9f;
+            
+            if (isDoubleAttack)
+            {
+                defenseEffectToExecute.ExecuteEffect(damage/2, obf, attackerBattleField, toBeDamagedIndex, attackVFX);
+                if (obf.IsSlotIndexOccupied(toBeDamagedIndex))
+                {
+                    defenseEffectToExecute.ExecuteEffect(damage/2, obf, attackerBattleField, toBeDamagedIndex, attackVFX);
+                }
+            } 
+            else
+            {
+                defenseEffectToExecute.ExecuteEffect(damage, obf, attackerBattleField, toBeDamagedIndex, attackVFX);
+            }
         }
     }
 

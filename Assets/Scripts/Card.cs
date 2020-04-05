@@ -37,6 +37,9 @@ public class Card : SkillsMediatorUser
     [SerializeField]
     private Image cardImage = null;
 
+    [SerializeField]
+    private Text DamageTextPrototype = null;
+
     private bool freezing = false;
 
     private GameObject freezingEffect = null;
@@ -46,23 +49,12 @@ public class Card : SkillsMediatorUser
     [SerializeField]
     private Sprite horizontalSprite = null;
 
-    private static int[] DeathCount { get { LogDeathCount("get: "); return deathCount; } set { LogDeathCount("set: "); deathCount = value; } }
+    private static int[] DeathCount { get => deathCount;  set => deathCount = value;  }
     public bool Freezing { get => freezing; }
     public int Vitality { get => vitality; }
     public int AttackPower { get => attackPower; set => attackPower = value; }
     public Battlefield Battlefield { get => battlefield; set => battlefield = value; }
     public Classes Classe { get => classe; }
-
-    public static void LogDeathCount(string t)
-    {
-    /*
-        for (int i = 0; i < deathCount.Length; i++)
-        {
-            t += " " + deathCount[i];
-        }
-        Debug.LogWarning(t);
-    */
-    }
 
     private void Start()
     {
@@ -103,6 +95,9 @@ public class Card : SkillsMediatorUser
         if (damage > 0)
         {
             SetVitalityUpdateText(Vitality - damage);
+
+            CreateDamageAnimatedText(damage);
+
             if (Vitality <= 0)
             {
                 RegisterDeath();
@@ -119,6 +114,19 @@ public class Card : SkillsMediatorUser
         {
             Debug.LogError("[Card] tryed to apply negative damage. That's wrong! Use Heal method");
         }
+    }
+
+    private void CreateDamageAnimatedText(int damage)
+    {
+        RectTransform damageTextTransform = Instantiate(DamageTextPrototype).GetComponent<RectTransform>();
+
+        damageTextTransform.SetParent(UIBattle.uiDamageTextParent, false);
+        damageTextTransform.position = DamageTextPrototype.transform.position;
+        damageTextTransform.Rotate(new Vector3(0,0,90));
+
+        damageTextTransform.GetComponent<Text>().text = damage.ToString();
+
+        damageTextTransform.gameObject.SetActive(true);
     }
 
     public void AjustCardToDifficult(int difficultyLevel)
