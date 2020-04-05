@@ -65,6 +65,20 @@ public class OldSkill : Skill
         int horizontalSpreadDamage = (int)(baseAttack * horizontalSpreadDamageMultiplier);
         int verticalSpreadDamage = (int)(baseAttack * verticalSpreadDamageMultiplier);
 
+        /*
+        if (specialEffect != null)
+        {
+            if (ShouldDoBlock(targetIndex))
+            {
+                specialEffect.ExecuteEffect(obf, attackerBattleField, ref targetIndex, specialVFX);
+            }
+            else
+            {
+                specialEffect.ExecuteEffect(obf, attackerBattleField, ref targetIndex, specialVFX);
+            }
+        }
+        */
+
         if (specialEffect != null)
         {
             specialEffect.ExecuteEffect(obf, attackerBattleField, ref targetIndex, specialVFX);

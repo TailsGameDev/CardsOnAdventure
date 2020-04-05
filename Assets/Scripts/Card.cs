@@ -49,6 +49,13 @@ public class Card : SkillsMediatorUser
     [SerializeField]
     private Sprite horizontalSprite = null;
 
+    [SerializeField]
+    private RectTransform skillsHorizontalSpot = null;
+    [SerializeField]
+    private RectTransform attackPowerHorizontalSpot = null;
+    [SerializeField]
+    private RectTransform vitalityHorizontalSpot = null;
+
     private static int[] DeathCount { get => deathCount;  set => deathCount = value;  }
     public bool Freezing { get => freezing; }
     public int Vitality { get => vitality; }
@@ -223,13 +230,14 @@ public class Card : SkillsMediatorUser
     public void ChangeToHorizontalVersion()
     {
         cardImage.sprite = horizontalSprite;
+
         attackPowerText.transform.Rotate(new Vector3(0,0,-90));
         vitalityText.transform.Rotate(new Vector3(0, 0, -90));
         skillText.transform.parent.Rotate(new Vector3(0, 0, -90));
 
-        vitalityText.transform.parent.position = attackPowerText.transform.position;
-        attackPowerText.transform.parent.position = skillText.transform.position + (new Vector3(100, 0 , 0)/2);
-        skillText.transform.parent.position = skillText.transform.position + new Vector3(0,cardImage.GetComponent<RectTransform>().sizeDelta.x,0);
+        vitalityText.transform.parent.position = vitalityHorizontalSpot.position;
+        attackPowerText.transform.parent.position = attackPowerHorizontalSpot.position;
+        skillText.transform.parent.position = skillsHorizontalSpot.position;
     }
 
     private void ShowDefenseSFX()

@@ -53,9 +53,9 @@ public class ChildMaker : MonoBehaviour
             yield return null;
         }
 
-        child.GetComponent<RectTransform>().SetParent(parent, true);
-
         child.transform.position = parent.transform.position;
+        
+        child.GetComponent<RectTransform>().SetParent(parent, true);
 
         Destroy(gameObject);
     }

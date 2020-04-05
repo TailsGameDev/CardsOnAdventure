@@ -398,6 +398,8 @@ public class Attack : BattleState
         {
             attackerBattlefield.MakeOnlySelectedCardBigger();
 
+            MakeSureAttackerCardIsClickedFirst();
+
             if (ReceivedValidInput())
             {
                 Card myCard = attackerBattlefield.GetReferenceToSelectedCard();
@@ -416,6 +418,14 @@ public class Attack : BattleState
             {
                 ClearSelections();
             }
+        }
+    }
+
+    private void MakeSureAttackerCardIsClickedFirst()
+    {
+        if (opponentBattleField.GetSelectedIndex() != -1 && attackerBattlefield.GetSelectedIndex() == -1)
+        {
+            ClearSelections();
         }
     }
 
@@ -663,7 +673,7 @@ public class EndGame : BattleState
                         if ( IsMasterBattle() )
                         {
                             customPopUpOpener.Open(
-                                title: "You've beaten a Class Master!",
+                                title: "You've beaten a Master!",
                                 warningMessage: "All your cards of class "+masterClass+" level up!\nPlease, choose what to improve on them!",
                                 confirmBtnMessage: "+1 Vitality",
                                 cancelBtnMessage: "+1 Attack Power",
