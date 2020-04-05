@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class Card : SkillsMediatorUser
 {
+    /// explaining deathCount
+    /// the size is the number of attacks to consider in counting: Ex: let's consider how many died in the last '10' attacks
+    /// in this case 10 would be the size of the deathCount array.
+    /// it starts as 1,1,1... because it will be used to see if the game tied. They will consider the game tied if in the
+    /// last 10 attacks, any card have died. 1,1,1... suggests 10 cards have died in the last 10 attacks
+    private static int[] deathCount = new int[] { 1, 1, 1, 1, 1, 1, 1, 1};//{1,1,1,1,1,1,1,1,1,1};
+    private static int deathCountIndex = 0;
+
     [SerializeField]
     private Classes classe = Classes.NOT_A_CLASS;
 
@@ -42,11 +46,23 @@ public class Card : SkillsMediatorUser
     [SerializeField]
     private Sprite horizontalSprite = null;
 
+    private static int[] DeathCount { get { LogDeathCount("get: "); return deathCount; } set { LogDeathCount("set: "); deathCount = value; } }
     public bool Freezing { get => freezing; }
     public int Vitality { get => vitality; }
     public int AttackPower { get => attackPower; set => attackPower = value; }
     public Battlefield Battlefield { get => battlefield; set => battlefield = value; }
     public Classes Classe { get => classe; }
+
+    public static void LogDeathCount(string t)
+    {
+    /*
+        for (int i = 0; i < deathCount.Length; i++)
+        {
+            t += " " + deathCount[i];
+        }
+        Debug.LogWarning(t);
+    */
+    }
 
     private void Start()
     {
@@ -68,7 +84,7 @@ public class Card : SkillsMediatorUser
     {
         attackPowerText.text = AttackPower.ToString();
         skillText.text = skills.Acronym;
-        SetVitality(Vitality);
+        SetVitalityUpdateText(Vitality);
     }
 
     public int GetVitality()
@@ -82,9 +98,27 @@ public class Card : SkillsMediatorUser
     }
 
     #region damage
-    public void TakeDamage(int damage)
+    public void TakeDamageAndManageCardState(int damage)
     {
-        SetVitality(Vitality - damage);
+        if (damage > 0)
+        {
+            SetVitalityUpdateText(Vitality - damage);
+            if (Vitality <= 0)
+            {
+                RegisterDeath();
+                RemoveFreezing();
+                battlefield.Remove(this);
+                Destroy(gameObject);
+            }
+            else
+            {
+                RegisterSurvived();
+            }
+        }
+        else if (damage < 0)
+        {
+            Debug.LogError("[Card] tryed to apply negative damage. That's wrong! Use Heal method");
+        }
     }
 
     public void AjustCardToDifficult(int difficultyLevel)
@@ -94,21 +128,27 @@ public class Card : SkillsMediatorUser
 
     public void Heal(int healAmount)
     {
-        SetVitality(Vitality + healAmount);
+        SetVitalityUpdateText(Vitality + healAmount);
     }
 
-    private void SetVitality(int value)
+    private void SetVitalityUpdateText(int value)
     {   
         vitality = value;
         vitalityText.text = value.ToString();
-        if (Vitality <= 0)
-        {
-            RemoveFreezing();
-            battlefield.Remove(this);
-            Destroy(gameObject);
-        }
     }
     #endregion
+
+    private void RegisterDeath()
+    {
+        deathCountIndex = (deathCountIndex + 1) % DeathCount.Length;
+        DeathCount[deathCountIndex] = 1;
+    }
+
+    private void RegisterSurvived()
+    {
+        deathCountIndex = (deathCountIndex + 1) % DeathCount.Length;
+        DeathCount[deathCountIndex] = 0;
+    }
 
     #region Has XXX Effect
     public bool HasBlockSkill()
@@ -242,5 +282,29 @@ public class Card : SkillsMediatorUser
 
         vitality += ClassInfo.GetVitalityBonusOfClass(classe);
         vitalityText.text = vitality.ToString();
+    }
+
+    public static int GetDeathCount()
+    {
+        int counter = 0;
+        for (int i = 0; i < DeathCount.Length; i++)
+        {
+            counter += DeathCount[i];
+        }
+        return counter;
+    }
+
+    public static void ResetDeathCount()
+    {
+        for (int i = 0; i < DeathCount.Length; i++)
+        {
+            DeathCount[i] = 1;
+        }
+    }
+
+    public void BuffAttackPowerForThisMatch()
+    {
+        attackPower++;
+        attackPowerText.text = attackPower.ToString();
     }
 }

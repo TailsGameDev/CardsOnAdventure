@@ -22,6 +22,9 @@ public class CustomPopUp : PopUpOpener
     [SerializeField]
     private UICustomBtn customCancelBtn = null;
 
+    [SerializeField]
+    private UIBtn closeBtn = null;
+
     public delegate void OnBtnClicked();
 
     private void Awake()
@@ -78,6 +81,27 @@ public class CustomPopUp : PopUpOpener
         Open( title, warningMessage, confirmBtnMessage, cancelBtnMessage, onConfirm, onCancel );
     }
 
+    public void OpenAndMakeUncloseable
+        (
+            string title,
+            string warningMessage,
+            string confirmBtnMessage,
+            string cancelBtnMessage,
+            OnBtnClicked onConfirm,
+            OnBtnClicked onCancel
+        )
+    {
+        Open(
+                title,
+                warningMessage,
+                confirmBtnMessage,
+                cancelBtnMessage, 
+                onConfirm: ()=> { closeBtn.gameObject.SetActive(true); onConfirm(); },
+                onCancel: ()=> { closeBtn.gameObject.SetActive(true); onCancel(); }
+            );
+        closeBtn.gameObject.SetActive(false);
+    }
+
     public void Open // With Custom Cancel / Without BGM
         (
             string title,
@@ -106,6 +130,11 @@ public class CustomPopUp : PopUpOpener
     }
 
     private void DefaultCancelBehaviour()
+    {
+        popUpOpener.IfThereIsAPopUpOnTopThenCloseIt();
+    }
+
+    public void ClosePopUpOnTop()
     {
         popUpOpener.IfThereIsAPopUpOnTopThenCloseIt();
     }

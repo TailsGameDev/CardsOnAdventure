@@ -949,7 +949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c999ae9d5e93a44ca8173020dcfa3e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultDeckSize: 2
+  defaultDeckSize: 8
 --- !u!1 &4687705843416389279
 GameObject:
   m_ObjectHideFlags: 0

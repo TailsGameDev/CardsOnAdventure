@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Xml.Serialization;
 
 public abstract class BattleState : BattleInfo
 {
@@ -33,6 +34,7 @@ public class GameStart : BattleState
     public override void ExecuteAction()
     {
         Camera.main.backgroundColor = backgroundColor;
+        Card.ResetDeathCount();
     }
 
     public override BattleState GetNextState()
@@ -320,10 +322,10 @@ public class Attack : BattleState
 
         attackTokens = ListCardsThatShouldAttackDuringThisState();
 
+        this.endTurnBtn = endTurnBtn;
+
         if (currentBattleStatesFactory == playerBattleStatesFactory)
         {
-            this.endTurnBtn = endTurnBtn;
-
             endTurnBtn.onClicked = null;
             endTurnBtn.onClicked += OnClickedEndTurnBtn;
             endTurnBtn.gameObject.SetActive(true);
@@ -339,7 +341,6 @@ public class Attack : BattleState
     private void OnClickedEndTurnBtn()
     {
         clickedEndTurnBtn = true;
-        endTurnBtn.gameObject.SetActive(false);
     }
 
     private List<int> ListCardsThatShouldAttackDuringThisState()
@@ -432,6 +433,9 @@ public class Attack : BattleState
 
         if (attackerBattlefield.IsEmpty() || opponentBattleField.IsEmpty() || attackTokens.Count == 0 || clickedEndTurnBtn)
         {
+            // ATTENTION: ACTION HERE!! TODO: PUT THIS OUTSIDE THE NEXT STATE LOGIC
+            endTurnBtn.gameObject.SetActive(false);
+
             nextState = currentBattleStatesFactory.CreateEndTurnState();
         }
 
@@ -489,10 +493,69 @@ public class EndTurn : TurnBattleState
         if(IveLost())
         {
             nextState = currentBattleStatesFactory.CreateEndGameState(winnerFactory: currentBattleStatesFactory);
-        } else
+        } 
+        else if (Card.GetDeathCount() <= 0)
+        {
+            nextState = currentBattleStatesFactory.CreateIsGameTiedState();
+        }
+        else
         {
             nextState = currentBattleStatesFactory.CreateBeginTurnState();
         }
+        return nextState;
+    }
+}
+
+public class IsGameTied : BattleState
+{
+    private CustomPopUp customPopUp;
+    private Battlefield whateverBF;
+    private Battlefield theOtherBF;
+
+    private bool answeredThePopUp;
+
+    public IsGameTied(CustomPopUp customPopUp, Battlefield whateverBF, Battlefield theOtherBF)
+    {
+        this.customPopUp = customPopUp;
+        this.whateverBF = whateverBF;
+        this.theOtherBF = theOtherBF;
+
+        customPopUp.OpenAndMakeUncloseable(
+                            title: "Is the game tied?",
+                            warningMessage: "If you wish, get a +1 Attack Power buff to all cards (your enemy's ones included)",
+                            confirmBtnMessage: "Buff all Attacks!",
+                            cancelBtnMessage: "I don't need buffs.",
+                            onConfirm: () => { BuffCards(); Proceed(); },
+                            onCancel: Proceed
+                        );
+    }
+
+    private void BuffCards()
+    {
+        whateverBF.BuffAllCardsAttackPowerForThisMatch();
+        theOtherBF.BuffAllCardsAttackPowerForThisMatch();
+    }
+
+    void Proceed()
+    {
+        answeredThePopUp = true;
+        Card.ResetDeathCount();
+        customPopUp.ClosePopUpOnTop();
+    }
+
+    public override void ExecuteAction()
+    {
+    }
+
+    public override BattleState GetNextState()
+    {
+        BattleState nextState = this;
+
+        if (answeredThePopUp)
+        {
+            nextState = currentBattleStatesFactory.CreateBeginTurnState();
+        }
+
         return nextState;
     }
 }

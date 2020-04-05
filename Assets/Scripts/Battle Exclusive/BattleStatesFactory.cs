@@ -76,6 +76,11 @@ public class BattleStatesFactory : PopUpOpener
         return new EndTurn(battlefield, deck, hand);
     }
 
+    public BattleState CreateIsGameTiedState()
+    {
+        return new IsGameTied(customPopUpOpener, whateverBF: battlefield, theOtherBF: otherBattleStatesFactory.battlefield);
+    }
+
     public BattleState CreateBeginTurnState()
     {
         return new BeginTurn(battlefield, deck, hand);

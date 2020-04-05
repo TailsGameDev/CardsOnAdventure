@@ -18,11 +18,11 @@ public class DefenseEffect : MonoBehaviour
         toBeDamaged.ShowDefenseVFXandSFXIfHasBlockOrReflect(abf.transform.position.y);
 
         // Damage
-        toBeDamaged.TakeDamage(CalculateDamageWithReductionPercentage());
+        toBeDamaged.TakeDamageAndManageCardState(CalculateDamageWithReductionPercentage());
 
         // Damage reflection
         Card attacker = abf.GetSelectedCard();
-        attacker.TakeDamage(CalculateReflectedDamage());
+        attacker.TakeDamageAndManageCardState(CalculateReflectedDamage());
     }
 
     public static bool IsSuccessfulAttack(int damage, Battlefield obf, Battlefield abf, int toBeDamagedIndex)

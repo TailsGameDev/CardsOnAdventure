@@ -247,4 +247,15 @@ public class Battlefield : CardsHolder
             }
         }
     }
+
+    public void BuffAllCardsAttackPowerForThisMatch()
+    {
+        for (int i = 0; i < cards.Length; i++)
+        {
+            if (cards[i] != null)
+            {
+                cards[i].BuffAttackPowerForThisMatch();
+            }
+        }
+    }
 }
