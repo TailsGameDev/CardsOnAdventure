@@ -4,9 +4,10 @@ using UnityEngine;
 
 public enum Classes
 {
-    Mage,
-    Warrior,
-    Rogue,
-    Guardian,
-    Cleric,
+    NOT_A_CLASS,
+    MAGE,
+    WARRIOR,
+    ROGUE,
+    GUARDIAN,
+    CLERIC,
 }

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Card : SkillsMediatorUser
 {
     [SerializeField]
-    private ClassInfo classe;
+    private Classes classe;
 
     [SerializeField]
     private int attackPower = 99;
@@ -218,7 +218,8 @@ public class Card : SkillsMediatorUser
 
     public string GetColoredTitleForTooltip()
     {
-         return "<color=#"+classe.ColorHexCode+">"+classe.name+"</color>";
+        ClassInfo classInfo = ClassInfo.GetInfoOfClass(classe);
+        return "<color=#"+classInfo.ColorHexCode+">"+ classe+"</color>";
     }
 
     public Sprite GetCardSprite()

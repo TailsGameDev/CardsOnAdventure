@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class BattleInfo
 {
-    public enum BattleType
+    public Color backgroundColor;
+    public Classes classToReward;
+    public int attackPowerBonus;
+    public int vitalityBonus;
+
+    public void PrepareMageMasterBattle()
     {
-        simple,
-        difficult,
-        master,
-        boss
+        // backgroundColor = ClassInfo.
     }
-
-    protected static BattleType typeOfBattle;
-
-    public static BattleType TypeOfBattle { set => typeOfBattle = value; }
 }

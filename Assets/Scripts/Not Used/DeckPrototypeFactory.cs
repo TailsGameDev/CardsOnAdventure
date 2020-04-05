@@ -16,16 +16,6 @@ public class DeckPrototypeFactory : MonoBehaviour
 
     private int difficultyLevel = 1;
 
-    [Serializable]
-    struct CardOfClass
-    {
-        public Classes classe;
-        public Card[] cards;
-    }
-
-    [SerializeField]
-    CardOfClass[] cardsOfClass;
-
     protected Card[] allCardPrototypes;
 
     protected const int NOT_A_SIZE = -1;
@@ -67,14 +57,17 @@ public class DeckPrototypeFactory : MonoBehaviour
 
     private void PopulateArrayOfAllCardPrototypes()
     {
+        Classes[] classes = (Classes[]) System.Enum.GetValues(typeof(Classes));
+
         List<Card> allCardPrototypesList = new List<Card>();
 
-        for (int i = 0; i < cardsOfClass.Length; i++)
+        for (int i = 0; i < classes.Length; i++)
         {
-            allCardPrototypesList.AddRange(cardsOfClass[i].cards);
+            ClassInfo classInfo = ClassInfo.GetInfoOfClass(classes[i]);
+            allCardPrototypesList.AddRange(classInfo.Cards);
         }
 
-        this.allCardPrototypes = allCardPrototypesList.ToArray();
+        allCardPrototypes = allCardPrototypesList.ToArray();
     }
 
     private void OnDestroy()
@@ -125,23 +118,23 @@ public class DeckPrototypeFactory : MonoBehaviour
 
     public static void PrepareMageDeckForTheEnemy(int size = NOT_A_SIZE)
     {
-        enemyDeckMounter = new HalfRandomDeckMounter(size, Classes.Mage);
+        enemyDeckMounter = new HalfRandomDeckMounter(size, Classes.MAGE);
     }
     public static void PrepareWarriorDeckForTheEnemy(int size = NOT_A_SIZE)
     {
-        enemyDeckMounter = new HalfRandomDeckMounter(size, Classes.Warrior);
+        enemyDeckMounter = new HalfRandomDeckMounter(size, Classes.WARRIOR);
     }
     public static void PrepareRogueDeckForTheEnemy(int size = NOT_A_SIZE)
     {
-        enemyDeckMounter = new HalfRandomDeckMounter(size, Classes.Rogue);
+        enemyDeckMounter = new HalfRandomDeckMounter(size, Classes.ROGUE);
     }
     public static void PrepareGuardianDeckForTheEnemy(int size = NOT_A_SIZE)
     {
-        enemyDeckMounter = new HalfRandomDeckMounter(size, Classes.Guardian);
+        enemyDeckMounter = new HalfRandomDeckMounter(size, Classes.GUARDIAN);
     }
     public static void PrepareClericDeckForTheEnemy(int size = NOT_A_SIZE)
     {
-        enemyDeckMounter = new HalfRandomDeckMounter(size, Classes.Cleric);
+        enemyDeckMounter = new HalfRandomDeckMounter(size, Classes.CLERIC);
     }
 
     #endregion
@@ -266,20 +259,9 @@ public class DeckPrototypeFactory : MonoBehaviour
         {
             InitializeDeck();
 
-            Card[] notRandomPartPrototypes = new Card[0];
+            Card[] notRandomPartPrototypes = ClassInfo.GetInfoOfClass(classe).Cards;
 
-            CardOfClass[] cardsOfClass = battleSceneDeckFactory.cardsOfClass;
-
-            for (int i = 0; i < cardsOfClass.Length; i++)
-            {
-                if (cardsOfClass[i].classe == classe)
-                {
-                    notRandomPartPrototypes = cardsOfClass[i].cards;
-                    break;
-                }
-            }
-
-            if (notRandomPartPrototypes.Length == 0)
+            if (notRandomPartPrototypes == null || notRandomPartPrototypes.Length == 0)
             {
                 Debug.LogError("[DeckPrototypeFactory] notRandomPartPrototypes.Length == 0. "+
                                 "It should be the size of the available cards of a class.");
