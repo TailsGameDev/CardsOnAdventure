@@ -120,7 +120,7 @@ public class Card : SkillsMediatorUser
     {
         RectTransform damageTextTransform = Instantiate(DamageTextPrototype).GetComponent<RectTransform>();
 
-        damageTextTransform.SetParent(UIBattle.uiDamageTextParent, false);
+        damageTextTransform.SetParent(UIBattle.parentOfDynamicUIThatMustAppear, false);
         damageTextTransform.position = DamageTextPrototype.transform.position;
         damageTextTransform.Rotate(new Vector3(0,0,90));
 

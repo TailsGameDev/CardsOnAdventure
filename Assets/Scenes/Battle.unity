@@ -746,7 +746,7 @@ GameObject:
   - component: {fileID: 151458629}
   - component: {fileID: 151458628}
   m_Layer: 5
-  m_Name: UI Damage Text Parent
+  m_Name: Parent Dynamic UI That Must Appear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -942,6 +942,7 @@ MonoBehaviour:
   - {fileID: 448766931}
   - {fileID: 683434969}
   - {fileID: 245434491}
+  repositionAnimationDurationInSeconds: 0.5
 --- !u!114 &227648555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1752,6 +1753,7 @@ MonoBehaviour:
   - {fileID: 2070784434}
   - {fileID: 440423082}
   - {fileID: 16707690}
+  repositionAnimationDurationInSeconds: 0.15
 --- !u!114 &416688465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6361,6 +6363,7 @@ MonoBehaviour:
   - {fileID: 1913391078}
   - {fileID: 1456297024}
   - {fileID: 249394380}
+  repositionAnimationDurationInSeconds: 0.15
 --- !u!114 &1718507083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6905,6 +6908,7 @@ MonoBehaviour:
   - {fileID: 1893848974}
   - {fileID: 1446386758}
   - {fileID: 1906517696}
+  repositionAnimationDurationInSeconds: 0.5
 --- !u!114 &1898511387
 MonoBehaviour:
   m_ObjectHideFlags: 0

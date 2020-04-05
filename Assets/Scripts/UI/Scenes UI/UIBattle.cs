@@ -6,7 +6,7 @@ public class UIBattle : PopUpOpener
 {
     [SerializeField]
     private RectTransform UIDamageTextParent = null;
-    public static RectTransform uiDamageTextParent;
+    public static RectTransform parentOfDynamicUIThatMustAppear;
 
     [SerializeField]
     private Battlefield enemyBattlefield = null;
@@ -19,7 +19,7 @@ public class UIBattle : PopUpOpener
 
     private void Awake()
     {
-        uiDamageTextParent = UIDamageTextParent;
+        parentOfDynamicUIThatMustAppear = UIDamageTextParent;
     }
 
     public void OnEnemyBattleFieldSlotClicked(int index)

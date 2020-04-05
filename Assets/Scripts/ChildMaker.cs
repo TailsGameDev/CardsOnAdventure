@@ -24,8 +24,6 @@ public class ChildMaker : MonoBehaviour
         childMaker.AddComponent(typeof(ChildMaker));
         ChildMaker maker = childMaker.GetComponent<ChildMaker>();
 
-        child.GetComponent<RectTransform>().SetParent(parent, true);
-
         maker.SmoothlyMoveChildToParentPosition(parent, child, totalTime);
     }
 
@@ -36,6 +34,8 @@ public class ChildMaker : MonoBehaviour
 
     IEnumerator SmothlyMoveToPos(Transform parent, RectTransform child, float totalTime)
     {
+        child.GetComponent<RectTransform>().SetParent(UIBattle.parentOfDynamicUIThatMustAppear, true);
+
         Vector3 initialPosition = child.transform.position;
 
         Vector3 direction = parent.transform.position - child.transform.position;
@@ -52,6 +52,8 @@ public class ChildMaker : MonoBehaviour
 
             yield return null;
         }
+
+        child.GetComponent<RectTransform>().SetParent(parent, true);
 
         child.transform.position = parent.transform.position;
 

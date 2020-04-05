@@ -9,6 +9,9 @@ public class CardsHolder : IndexHolder
 
     protected Card[] cards = new Card[4];
 
+    [SerializeField]
+    private float repositionAnimationDurationInSeconds = 0.5f;
+
     public Card RemoveCardFromSelectedIndex()
     {
         return RemoveCardOrGetNull(GetSelectedIndex());
@@ -58,9 +61,10 @@ public class CardsHolder : IndexHolder
         RectTransform cardRect = card.GetComponent<RectTransform>();
 
         cards[index] = card;
-        cardRect.position = cardPositions[index].position;
         cardRect.rotation = transform.rotation;
-        card.GetComponent<RectTransform>().SetParent(cardPositions[index], true);
+
+        ChildMaker.AdoptAndSmoothlyMoveToParent(cardPositions[index].transform, card.GetComponent<RectTransform>(), repositionAnimationDurationInSeconds);
+        
         cardRect.localScale = new Vector3(1,1,1);
 
         Rect slotRect = cardPositions[index].GetComponent<RectTransform>().rect;
