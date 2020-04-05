@@ -16,25 +16,38 @@ public class BattleFSM : MonoBehaviour
     [SerializeField]
     private Text feedbackText = null;
 
-    void Awake()
+    private bool safeToUpdate = false;
+
+    void Start()
     {
         currentState = firstOneToPlayStatesFactory.CreateGameStartState();
+        StartCoroutine(DelayedStart());
+    }
+
+    IEnumerator DelayedStart()
+    {
+        yield return null;
+        yield return null;
+        safeToUpdate = true;
     }
 
     void Update()
     {
-        currentState.ExecuteAction();
-        currentState = currentState.GetNextState();
-
-        currentStateName = currentState.GetType().Name;
-
-        string somebodiesTurn = "Enemy's Turn";
-
-        if (currentState.IsPlayerTurn())
+        if (safeToUpdate)
         {
-            somebodiesTurn = "Your Turn";
-        }
+            currentState.ExecuteAction();
+            currentState = currentState.GetNextState();
+
+            currentStateName = currentState.GetType().Name;
+
+            string somebodiesTurn = "Enemy's Turn";
+
+            if (currentState.IsPlayerTurn())
+            {
+                somebodiesTurn = "Your Turn";
+            }
         
-        feedbackText.text = currentStateName + ". It's " +somebodiesTurn;
+            feedbackText.text = currentStateName + ". It's " +somebodiesTurn;
+        }
     }
 }

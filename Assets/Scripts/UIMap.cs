@@ -55,6 +55,7 @@ public class UIMap : PopUpOpener
         public void OnSimpleBattleClicked(Transform btnTransform)
         {
             popUpOpener.SetLoadingPopUpActiveToTrue();
+            BattleInfo.PrepareSimpleBattle();
             ClearSpot(btnTransform);
             DeckPrototypeFactory.PrepareRandomDeckForTheEnemy();
             SetUpBattleAndOpenIt();
@@ -63,6 +64,7 @@ public class UIMap : PopUpOpener
         public void OnToughBattleClicked(Transform btnTransform)
         {
             popUpOpener.SetLoadingPopUpActiveToTrue();
+            BattleInfo.PrepareToughBattle();
             ClearSpot(btnTransform);
             DeckPrototypeFactory.PrepareToughRandomDeckForTheEnemy();
             SetUpBattleAndOpenIt();
@@ -84,6 +86,7 @@ public class UIMap : PopUpOpener
         public void OnMageMasterClicked(Transform btnTransform)
         {
             popUpOpener.SetLoadingPopUpActiveToTrue();
+            BattleInfo.PrepareMasterBattle(Classes.MAGE);
             DeckPrototypeFactory.PrepareMageDeckForTheEnemy();
             ClearSpot(btnTransform);
             SetUpBattleAndOpenIt();
@@ -92,6 +95,7 @@ public class UIMap : PopUpOpener
         public void OnWarriorMasterClicked(Transform btnTransform)
         {
             popUpOpener.SetLoadingPopUpActiveToTrue();
+            BattleInfo.PrepareMasterBattle(Classes.WARRIOR);
             DeckPrototypeFactory.PrepareWarriorDeckForTheEnemy();
             ClearSpot(btnTransform);
             SetUpBattleAndOpenIt();
@@ -100,6 +104,7 @@ public class UIMap : PopUpOpener
         public void OnRougueMasterClicked(Transform btnTransform)
         {
             popUpOpener.SetLoadingPopUpActiveToTrue();
+            BattleInfo.PrepareMasterBattle(Classes.ROGUE);
             DeckPrototypeFactory.PrepareRogueDeckForTheEnemy();
             ClearSpot(btnTransform);
             SetUpBattleAndOpenIt();
@@ -108,6 +113,7 @@ public class UIMap : PopUpOpener
         public void OnGuardianMasterClicked(Transform btnTransform)
         {
             popUpOpener.SetLoadingPopUpActiveToTrue();
+            BattleInfo.PrepareMasterBattle(Classes.GUARDIAN);
             DeckPrototypeFactory.PrepareGuardianDeckForTheEnemy();
             ClearSpot(btnTransform);
             SetUpBattleAndOpenIt();

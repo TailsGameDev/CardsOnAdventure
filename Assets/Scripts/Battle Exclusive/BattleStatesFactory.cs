@@ -21,7 +21,7 @@ public class BattleStatesFactory : PopUpOpener
     private Battlefield battlefield = null;
 
     [SerializeField]
-    private UIBtn endRepositioningBtn = null;
+    private UICustomBtn endRepositioningBtn = null;
 
     [SerializeField]
     private AudioHolder audioHolder = null;

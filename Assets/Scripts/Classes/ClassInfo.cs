@@ -4,50 +4,68 @@ using UnityEngine;
 
 public class ClassInfo : MonoBehaviour
 {
-    public static List<ClassInfo> classesInfo = new List<ClassInfo>();
+    private static Dictionary<Classes, ClassInfo> classesInfo = new Dictionary<Classes, ClassInfo>();
 
     [SerializeField]
-    Classes classe = Classes.NOT_A_CLASS;
+    private Classes classe = Classes.NOT_A_CLASS;
 
     [SerializeField]
-    protected string colorHexCode;
+    private string colorHexCode = "code";
+
+    [SerializeField]
+    private Color color = Color.white;
 
     [SerializeField]
     private Card[] cards = null;
 
+    private int vitalityBonus = 0;
+    private int attackPowerBonus = 0;
+
     public string ColorHexCode { get => colorHexCode; }
     public Card[] Cards { get => cards; }
+    public int VitalityBonus { get => vitalityBonus; }
+    public int AttackPowerBonus { get => attackPowerBonus; }
 
     private void Awake()
     {
-        bool myCloneIsAlreadyInTheList = false;
-        for (int i = 0; i < classesInfo.Count; i++)
+        if (!classesInfo.ContainsKey(classe))
         {
-            if (classesInfo[i].classe == classe)
-            {
-                myCloneIsAlreadyInTheList = true;
-                break;
-            }
-        }
-
-        if (!myCloneIsAlreadyInTheList)
-        {
-            classesInfo.Add(this);
+            classesInfo.Add(classe, this);
         }
     }
 
-    public static ClassInfo GetInfoOfClass(Classes classe)
+    public static Color GetColorOfClass(Classes classe)
     {
-        ClassInfo info = classesInfo[0];
+        return classesInfo[classe].color;
+    }
 
-        for (int i = 1; i < classesInfo.Count; i++)
-        {
-            if (classesInfo[i].classe == classe)
-            {
-                info = classesInfo[i];
-            }
-        }
+    public static string GetColorHexCodeOfClass(Classes classe)
+    {
+        return classesInfo[classe].colorHexCode;
+    }
 
-        return info;
+    public static Card[] GetCardsOfClass(Classes classe)
+    {
+        return classesInfo[classe].cards;
+    }
+
+    public static void GiveVitalityBonusToClass(Classes classe)
+    {
+        classesInfo[classe].vitalityBonus++;
+    }
+
+    public static void GiveAttackPowerBonusToClass(Classes classe)
+    {
+        classesInfo[classe].attackPowerBonus++;
+    }
+
+    public static int GetVitalityBonusOfClass(Classes classe)
+    {
+        return classesInfo[classe].vitalityBonus;
+    }
+
+    public static int GetAttackPowerBonusOfClass(Classes classe)
+    {
+        return classesInfo[classe].attackPowerBonus;
     }
 }

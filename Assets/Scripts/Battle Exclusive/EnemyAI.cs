@@ -11,7 +11,7 @@ public class EnemyAI
 
     private Battlefield playerBattlefield = null;
 
-    private UIBtn endRepositionBtn;
+    private UICustomBtn endRepositionBtn;
 
     CoroutineExecutorPrototype coroutineExecutor;
 
@@ -33,7 +33,7 @@ public class EnemyAI
 
     #region Reposition
 
-    public void Reposition(Battlefield enemyBattlefield, UIBtn endRepositionBtn)
+    public void Reposition(Battlefield enemyBattlefield, UICustomBtn endRepositionBtn)
     {
         this.enemyBattlefield = enemyBattlefield;
         this.endRepositionBtn = endRepositionBtn;
@@ -73,7 +73,7 @@ public class EnemyAI
         }
         yield return null;
 
-        endRepositionBtn.onUIBtnClicked();
+        endRepositionBtn.onClicked();
 
         coroutineExecutor.SelfDestroy();
     }
@@ -97,6 +97,7 @@ public class EnemyAI
         return change;
     }
 
+    /*
     private void ExecuteRepositionWithCustomUpdate()
     {
         if (coroutineExecutor == null)
@@ -106,6 +107,7 @@ public class EnemyAI
         RepositionAction RepositionAction = new RepositionAction(enemyBattlefield, endRepositionBtn);
         coroutineExecutor.ExecuteCustomUpdateUntillCountLimit(RepositionAction, 6);
     }
+    */
     #endregion
 
     public void Attack(Battlefield enemyBattlefield, Battlefield playerBattlefield)
@@ -136,7 +138,7 @@ public class EnemyAI
 }
 
 // Not being used, but CustomUpdate is an alternative to coroutine usage
-
+/*
 public abstract class CustomUpdate
 {
     public abstract void Execute();
@@ -146,9 +148,9 @@ public class RepositionAction : CustomUpdate
 {
     private int frameCounter = 0;
     private Battlefield enemyBattlefield;
-    private UIBtn endRepositionBtn;
+    private UICustomBtn endRepositionBtn;
 
-    public RepositionAction(Battlefield enemyBattlefield, UIBtn endRepositionBtn)
+    public RepositionAction(Battlefield enemyBattlefield, UICustomBtn endRepositionBtn)
     {
         this.enemyBattlefield = enemyBattlefield;
         this.endRepositionBtn = endRepositionBtn;
@@ -188,7 +190,7 @@ public class RepositionAction : CustomUpdate
                 }
                 break;
             case 5:
-                endRepositionBtn.onUIBtnClicked();
+                endRepositionBtn.onClicked();
                 break;
         }
     }
@@ -211,3 +213,4 @@ public class RepositionAction : CustomUpdate
         return change;
     }
 }
+*/

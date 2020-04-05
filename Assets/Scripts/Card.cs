@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class Card : SkillsMediatorUser
 {
     [SerializeField]
-    private Classes classe;
+    private Classes classe = Classes.NOT_A_CLASS;
 
     [SerializeField]
     private int attackPower = 99;
@@ -46,7 +46,8 @@ public class Card : SkillsMediatorUser
     public int Vitality { get => vitality; }
     public int AttackPower { get => attackPower; set => attackPower = value; }
     public Battlefield Battlefield { get => battlefield; set => battlefield = value; }
-    
+    public Classes Classe { get => classe; }
+
     private void Start()
     {
         if (skills == null)
@@ -62,7 +63,6 @@ public class Card : SkillsMediatorUser
             skillText.text = skills.Acronym;
         }
     }
-
 
     private void Awake()
     {
@@ -218,8 +218,8 @@ public class Card : SkillsMediatorUser
 
     public string GetColoredTitleForTooltip()
     {
-        ClassInfo classInfo = ClassInfo.GetInfoOfClass(classe);
-        return "<color=#"+classInfo.ColorHexCode+">"+ classe+"</color>";
+        string colorHexCode = ClassInfo.GetColorHexCodeOfClass(classe);
+        return "<color=#"+ colorHexCode + ">"+ classe+"</color>";
     }
 
     public Sprite GetCardSprite()
@@ -233,5 +233,14 @@ public class Card : SkillsMediatorUser
                "<color=#FD7878>Attack Power: " + attackPower + "</color>\n" +
                "<color=#9EFA9D>Vitality: " + vitality + "</color>\n";
                
+    }
+
+    public void SumPlayerBonuses()
+    {
+        attackPower += ClassInfo.GetAttackPowerBonusOfClass(classe);
+        attackPowerText.text = attackPower.ToString();
+
+        vitality += ClassInfo.GetVitalityBonusOfClass(classe);
+        vitalityText.text = vitality.ToString();
     }
 }

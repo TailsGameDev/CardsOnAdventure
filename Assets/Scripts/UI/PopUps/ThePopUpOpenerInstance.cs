@@ -60,12 +60,14 @@ public class ThePopUpOpenerInstance : PopUpOpener
     #region Operations involving the stack
     void LogStack()
     {
+        /*
         string names = "";
         foreach (GameObject p in popUpsStack)
         {
             names += " " + p.name;
         }
         Debug.Log("[ThePopUpOpenerInstance] " + names, this);
+        */
     }
 
     private void OpenPopUp(GameObject popUp)
@@ -82,8 +84,6 @@ public class ThePopUpOpenerInstance : PopUpOpener
     // Called by editor
     public void IfThereIsAPopUpOnTopThenCloseIt()
     {
-        Debug.Log("IfThereIsAPopUpOnTopThenCloseIt Called");
-
         if (popUpsStack.Count > 0)
         {
             GameObject popUpOnTop = popUpsStack.Pop();

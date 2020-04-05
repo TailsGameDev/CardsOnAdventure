@@ -26,7 +26,10 @@ public class DeckPrototypeFactory : MonoBehaviour
         BecomeSingleton();
 
         MakeDecksRandomIfTheyAreNull();
+    }
 
+    private void Start()
+    {
         PopulateArrayOfAllCardPrototypes();
     }
 
@@ -61,18 +64,14 @@ public class DeckPrototypeFactory : MonoBehaviour
 
         List<Card> allCardPrototypesList = new List<Card>();
 
-        for (int i = 0; i < classes.Length; i++)
+        // Starts at 1 so it won't take the Classes.NOT_A_CLASS key
+        for (int i = 1; i < classes.Length; i++)
         {
-            ClassInfo classInfo = ClassInfo.GetInfoOfClass(classes[i]);
-            allCardPrototypesList.AddRange(classInfo.Cards);
+            Card[] cardsOfClass = ClassInfo.GetCardsOfClass(classes[i]);
+            allCardPrototypesList.AddRange(cardsOfClass);
         }
 
         allCardPrototypes = allCardPrototypesList.ToArray();
-    }
-
-    private void OnDestroy()
-    {
-        battleSceneDeckFactory = null;
     }
 
     public static Card[] GetPreparedCardsForTheEnemy()
@@ -89,7 +88,14 @@ public class DeckPrototypeFactory : MonoBehaviour
 
     public static Card[] GetPreparedCardsForThePlayer()
     {
-        return playerDeckMounter.GetDeck();   
+        Card[] playerDeck = playerDeckMounter.GetDeck();
+
+        for (int i = 0; i < playerDeck.Length; i++)
+        {
+            playerDeck[i].SumPlayerBonuses();
+        }
+
+        return playerDeck;
     }
 
     public static void SetDifficultyLevelForEnemyDeck(int difficultyLevel)
@@ -259,7 +265,7 @@ public class DeckPrototypeFactory : MonoBehaviour
         {
             InitializeDeck();
 
-            Card[] notRandomPartPrototypes = ClassInfo.GetInfoOfClass(classe).Cards;
+            Card[] notRandomPartPrototypes = ClassInfo.GetCardsOfClass(classe);
 
             if (notRandomPartPrototypes == null || notRandomPartPrototypes.Length == 0)
             {

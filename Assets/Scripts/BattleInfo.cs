@@ -4,13 +4,29 @@ using UnityEngine;
 
 public class BattleInfo
 {
-    public Color backgroundColor;
-    public Classes classToReward;
-    public int attackPowerBonus;
-    public int vitalityBonus;
+    protected static Classes masterClass;
+    protected static Color backgroundColor;
 
-    public void PrepareMageMasterBattle()
+    public static void PrepareSimpleBattle()
     {
-        // backgroundColor = ClassInfo.
+        masterClass = Classes.NOT_A_CLASS;
+        backgroundColor = Color.white;
+    }
+
+    public static void PrepareToughBattle()
+    {
+        masterClass = Classes.NOT_A_CLASS;
+        backgroundColor = new Color(0xEE, 0x91, 0x91);
+    }
+
+    public static void PrepareMasterBattle(Classes vmasterClass)
+    {
+        masterClass = vmasterClass;
+        backgroundColor = ClassInfo.GetColorOfClass(vmasterClass);
+    }
+
+    public static bool IsMasterBattle()
+    {
+        return masterClass != Classes.NOT_A_CLASS;
     }
 }

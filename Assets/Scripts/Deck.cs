@@ -8,10 +8,17 @@ public class Deck : MonoBehaviour
     List<Card> cards = null;
 
     [SerializeField]
-    private bool enemysDeck;
+    private bool enemysDeck = false;
 
     private void Start()
     {
+        StartCoroutine(DelayedStart());
+    }
+
+    private IEnumerator DelayedStart()
+    {
+        yield return null;
+
         cards = new List<Card>();
 
         if (enemysDeck)
@@ -28,6 +35,7 @@ public class Deck : MonoBehaviour
             cards[i].transform.position = transform.position;
             cards[i].GetComponent<RectTransform>().SetParent(transform, true);
         }
+
     }
 
     public bool IsEmpty()

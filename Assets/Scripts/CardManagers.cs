@@ -12,7 +12,7 @@ public class CardManagers : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            transform.parent = null;
+            GetComponent<RectTransform>().SetParent(null, false);
             DontDestroyOnLoad(gameObject);
         }
         else

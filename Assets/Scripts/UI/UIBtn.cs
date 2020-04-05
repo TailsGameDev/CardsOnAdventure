@@ -18,7 +18,7 @@ public class UIBtn : MonoBehaviour
     private RectTransform rectTransform = null;
 
     [SerializeField]
-    private Sprite normalSprite = null;
+    protected Sprite normalSprite = null;
 
     [SerializeField]
     private Sprite clickedSprite = null;
@@ -34,16 +34,16 @@ public class UIBtn : MonoBehaviour
     [SerializeField]
     private float textVerticalDesloc = 0.0f;
 
-    private float originalRectTransfmOffsetMaxDotY;
+    protected float originalRectTransfmOffsetMaxDotY;
 
     [SerializeField]
     private Color BtnDownTextColor = Color.white;
 
-    private Color BtnUpTextColor = Color.white;
-
+    protected Color BtnUpTextColor = Color.white;
+    /*
     public delegate void OnUIBtnClicked();
     public OnUIBtnClicked onUIBtnClicked;
-
+    */
     public EventTrigger eventTrigger;
 
     protected void Awake()
@@ -71,13 +71,13 @@ public class UIBtn : MonoBehaviour
         soundRequisitor.RequestSFX(btnClickSound);
     }
 
-    public void DownToUpBtnVisualAndSoundEffects()
+    public virtual void OnPointerUp()
     {
         ConfigureBtnLooks(normalSprite, originalRectTransfmOffsetMaxDotY, BtnUpTextColor);
-        onUIBtnClicked?.Invoke();
+        //onUIBtnClicked?.Invoke();
     }
 
-    private void ConfigureBtnLooks(Sprite sprite, float top, Color color)
+    protected void ConfigureBtnLooks(Sprite sprite, float top, Color color)
     {
         imageComponent.sprite = sprite;
         SetTop(top);

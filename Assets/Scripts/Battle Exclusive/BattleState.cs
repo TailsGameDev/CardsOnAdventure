@@ -32,6 +32,7 @@ public class GameStart : BattleState
 
     public override void ExecuteAction()
     {
+        Camera.main.backgroundColor = backgroundColor;
     }
 
     public override BattleState GetNextState()
@@ -191,21 +192,21 @@ public class PlaceCard : BattleState
 public class Reposition : BattleState
 {
     private Battlefield battlefield;
-    private UIBtn endRepositioningBtn;
+    private UICustomBtn endRepositioningBtn;
 
     private int oldIndex;
     private int currentIndex;
 
     private bool repositioningEnded = false;
 
-    public Reposition(Battlefield battlefield, UIBtn endRepositioningBtn)
+    public Reposition(Battlefield battlefield, UICustomBtn endRepositioningBtn)
     {
         this.battlefield = battlefield;
         this.endRepositioningBtn = endRepositioningBtn;
 
         ClearSelection();
 
-        endRepositioningBtn.onUIBtnClicked += OnEndRepositioning;
+        endRepositioningBtn.onClicked += OnEndRepositioning;
 
         if (currentBattleStatesFactory == enemyBattleStatesFactory)
         {
@@ -287,7 +288,7 @@ public class Reposition : BattleState
         BattleState nextState = this;
         if (repositioningEnded)
         {
-            endRepositioningBtn.onUIBtnClicked = null;
+            endRepositioningBtn.onClicked = null;
             nextState = currentBattleStatesFactory.CreateAttackState();
         }
         return nextState;
@@ -542,14 +543,29 @@ public class EndGame : BattleState
 
                     if (winnerFactory == playerBattleStatesFactory)
                     {
-                        customPopUpOpener.Open(
-                            title : "Congratulations!",
-                            warningMessage: "You beat those guys. What are you going to do now?",
-                            confirmBtnMessage: "Look the map!",
-                            cancelBtnMessage: "Nothing",
-                            QuitBattleAndGoToMap,
-                            victoryBGMRequest
-                        );
+                        if ( IsMasterBattle() )
+                        {
+                            customPopUpOpener.Open(
+                                title: "You've beaten a Class Master!",
+                                warningMessage: "All your cards of class "+masterClass+" level up!\nPlease, choose what to improve on them!",
+                                confirmBtnMessage: "+1 Vitality",
+                                cancelBtnMessage: "+1 Attack Power",
+                                onConfirm: ImproveVitalityThenSeeMap,
+                                onCancel: ImproveAttackPowerThenSeeMap,
+                                victoryBGMRequest
+                            );
+                        }
+                        else
+                        {
+                            customPopUpOpener.Open(
+                                title : "Congratulations!",
+                                warningMessage: "You beat those guys. What are you going to do now?",
+                                confirmBtnMessage: "Look the map!",
+                                cancelBtnMessage: "Nothing",
+                                QuitBattleAndGoToMap,
+                                victoryBGMRequest
+                            );
+                        }
                     }
                     else
                     {
@@ -573,12 +589,24 @@ public class EndGame : BattleState
 
     }
 
-    void QuitBattleAndGoToMap()
+    private void QuitBattleAndGoToMap()
     {
         quit = true;
         popUpOpener.UpdateMap();
         popUpOpener.CloseAllPopUpsExceptLoading();
         popUpOpener.OpenMapPopUp();
+    }
+
+    private void ImproveAttackPowerThenSeeMap()
+    {
+        ClassInfo.GiveAttackPowerBonusToClass(masterClass);
+        QuitBattleAndGoToMap();
+    }
+
+    private void ImproveVitalityThenSeeMap()
+    {
+        ClassInfo.GiveVitalityBonusToClass(masterClass);
+        QuitBattleAndGoToMap();
     }
 
     private void QuitBattleResetMapLoadMainMenu()

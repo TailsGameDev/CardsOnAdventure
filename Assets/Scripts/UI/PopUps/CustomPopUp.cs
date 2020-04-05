@@ -63,6 +63,21 @@ public class CustomPopUp : PopUpOpener
         Open(title, warningMessage, confirmBtnMessage, cancelBtnMessage, onConfirm, () => { });
     }
 
+    public void Open // With Custom Cancel / With BGM
+        (
+            string title,
+            string warningMessage,
+            string confirmBtnMessage,
+            string cancelBtnMessage,
+            OnBtnClicked onConfirm,
+            OnBtnClicked onCancel,
+            PreMadeSoundRequest openingBGM
+        )
+    {
+        openingBGM.RequestPlaying();
+        Open( title, warningMessage, confirmBtnMessage, cancelBtnMessage, onConfirm, onCancel );
+    }
+
     public void Open // With Custom Cancel / Without BGM
         (
             string title,
