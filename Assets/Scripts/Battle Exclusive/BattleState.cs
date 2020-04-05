@@ -302,7 +302,11 @@ public class Attack : BattleState
 
     private List<int> attackTokens = new List<int>();
 
-    public Attack(Battlefield myBattlefield, Battlefield opponentBattleField)
+    private bool clickedEndTurnBtn = false;
+
+    private UICustomBtn endTurnBtn;
+
+    public Attack(Battlefield myBattlefield, Battlefield opponentBattleField, UICustomBtn endTurnBtn)
     {
         this.attackerBattlefield = myBattlefield;
         this.opponentBattleField = opponentBattleField;
@@ -315,12 +319,27 @@ public class Attack : BattleState
         }
 
         attackTokens = ListCardsThatShouldAttackDuringThisState();
+
+        if (currentBattleStatesFactory == playerBattleStatesFactory)
+        {
+            this.endTurnBtn = endTurnBtn;
+
+            endTurnBtn.onClicked = null;
+            endTurnBtn.onClicked += OnClickedEndTurnBtn;
+            endTurnBtn.gameObject.SetActive(true);
+        }
     }
 
     private void ClearSelections()
     {
         attackerBattlefield.ClearSelection();
         opponentBattleField.ClearSelection();
+    }
+
+    private void OnClickedEndTurnBtn()
+    {
+        clickedEndTurnBtn = true;
+        endTurnBtn.gameObject.SetActive(false);
     }
 
     private List<int> ListCardsThatShouldAttackDuringThisState()
@@ -342,25 +361,28 @@ public class Attack : BattleState
 
     public override void ExecuteAction()
     {
-        attackerBattlefield.MakeOnlySelectedCardBigger();
-
-        if (ReceivedValidInput())
+        if ( ! clickedEndTurnBtn )
         {
-            Card myCard = attackerBattlefield.GetReferenceToSelectedCard();
-            myCard.AttackSelectedCard(opponentBattleField, attackerBattlefield);
+            attackerBattlefield.MakeOnlySelectedCardBigger();
 
-            attackTokens.Remove(attackerBattlefield.GetSelectedIndex());
+            if (ReceivedValidInput())
+            {
+                Card myCard = attackerBattlefield.GetReferenceToSelectedCard();
+                myCard.AttackSelectedCard(opponentBattleField, attackerBattlefield);
 
-            attackerBattlefield.MakeSelectedCardNormalSize();
+                attackTokens.Remove(attackerBattlefield.GetSelectedIndex());
 
-            ClearSelections();
+                attackerBattlefield.MakeSelectedCardNormalSize();
 
-            myCard.SetObfuscate(true);
-        }
+                ClearSelections();
 
-        if (ClickedInvalidCard())
-        {
-            ClearSelections();
+                myCard.SetObfuscate(true);
+            }
+
+            if (ClickedInvalidCard())
+            {
+                ClearSelections();
+            }
         }
     }
 
@@ -408,7 +430,7 @@ public class Attack : BattleState
     {
         BattleState nextState = this;
 
-        if (attackerBattlefield.IsEmpty() || opponentBattleField.IsEmpty() || attackTokens.Count == 0)
+        if (attackerBattlefield.IsEmpty() || opponentBattleField.IsEmpty() || attackTokens.Count == 0 || clickedEndTurnBtn)
         {
             nextState = currentBattleStatesFactory.CreateEndTurnState();
         }
@@ -574,7 +596,7 @@ public class EndGame : BattleState
                             warningMessage: "The enemy start to search you fallen card's pockets",
                             confirmBtnMessage: "Go to main menu",
                             cancelBtnMessage: "Sit and cry",
-                            QuitBattleResetMapLoadMainMenu,
+                            QuitBattleLoadMainMenu,
                             defeatBGMRequest
                         );
                     }
@@ -609,12 +631,13 @@ public class EndGame : BattleState
         QuitBattleAndGoToMap();
     }
 
-    private void QuitBattleResetMapLoadMainMenu()
+    private void QuitBattleLoadMainMenu()
     {
-        quit = true;
-        popUpOpener.CloseAllPopUpsExceptLoading();
         popUpOpener.SetLoadingPopUpActiveToTrue();
+        popUpOpener.CloseAllPopUpsExceptLoading();
+        quit = true;
         // popUpOpener.ResetMap(); Map is being reset by the OnPlayBtnClicked method at the main menu, in MainMenuCanvas.cs
+        // Cards buffs being reset at play btn on main menu
         SceneManager.LoadScene("Main Menu");
     }
 

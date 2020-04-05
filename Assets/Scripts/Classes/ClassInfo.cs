@@ -68,4 +68,13 @@ public class ClassInfo : MonoBehaviour
     {
         return classesInfo[classe].attackPowerBonus;
     }
+
+    public static void ResetBonusesToAllClasses()
+    {
+        foreach (Classes key in classesInfo.Keys)
+        {
+            classesInfo[key].attackPowerBonus = 0;
+            classesInfo[key].vitalityBonus = 0;
+        }
+    }
 }

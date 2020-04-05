@@ -9,6 +9,7 @@ public class MainMenuCanvas : PauseMenu
 
     public void OnPlayBtnClicked()
     {
+        ClassInfo.ResetBonusesToAllClasses();
         popUpOpener.ResetMap();
         popUpOpener.OpenMapPopUp();
     }

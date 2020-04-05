@@ -24,6 +24,9 @@ public class BattleStatesFactory : PopUpOpener
     private UICustomBtn endRepositioningBtn = null;
 
     [SerializeField]
+    private UICustomBtn endTurnBtn = null;
+
+    [SerializeField]
     private AudioHolder audioHolder = null;
 
     [SerializeField]
@@ -65,7 +68,7 @@ public class BattleStatesFactory : PopUpOpener
 
     public BattleState CreateAttackState()
     {
-        return new Attack(battlefield, otherBattleStatesFactory.battlefield);
+        return new Attack(battlefield, otherBattleStatesFactory.battlefield, endTurnBtn);
     }
 
     public BattleState CreateEndTurnState()

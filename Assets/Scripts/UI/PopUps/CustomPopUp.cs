@@ -34,7 +34,7 @@ public class CustomPopUp : PopUpOpener
 
     public void OpenConfirmationRequestPopUp(string warningMessage, OnBtnClicked onConfirm)
     {
-        Open(title: "Are You sure?", warningMessage, "I'm Sure", "Cancel", onConfirm, () => { });
+        Open(title: "Are You sure?", warningMessage, "I'm Sure", "Cancel", onConfirm, DefaultCancelBehaviour);
     }
 
     public void Open // with BGM
@@ -48,7 +48,7 @@ public class CustomPopUp : PopUpOpener
         )
     {
         openingBGM.RequestPlaying();
-        Open(title, warningMessage, confirmBtnMessage, cancelBtnMessage, onConfirm, () => { });
+        Open(title, warningMessage, confirmBtnMessage, cancelBtnMessage, onConfirm, DefaultCancelBehaviour);
     }
 
     public void Open // With Default Cancel
@@ -60,7 +60,7 @@ public class CustomPopUp : PopUpOpener
         OnBtnClicked onConfirm
     )
     {
-        Open(title, warningMessage, confirmBtnMessage, cancelBtnMessage, onConfirm, () => { });
+        Open(title, warningMessage, confirmBtnMessage, cancelBtnMessage, onConfirm, DefaultCancelBehaviour);
     }
 
     public void Open // With Custom Cancel / With BGM
@@ -103,5 +103,10 @@ public class CustomPopUp : PopUpOpener
         customCancelBtn.onClicked += onCancel;
 
         popUpOpener.OpenCustomPopUp();
+    }
+
+    private void DefaultCancelBehaviour()
+    {
+        popUpOpener.IfThereIsAPopUpOnTopThenCloseIt();
     }
 }

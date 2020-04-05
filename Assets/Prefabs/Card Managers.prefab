@@ -289,6 +289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classe: 3
   colorHexCode: 8DD330
+  color: {r: 0.5529412, g: 0.827451, b: 0.1882353, a: 1}
   cards:
   - {fileID: 5121906811438567540}
   - {fileID: 5121906812685789640}
@@ -670,6 +671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classe: 5
   colorHexCode: FEFE00
+  color: {r: 0.99607843, g: 0.99607843, b: 0, a: 1}
   cards:
   - {fileID: 5121906811175544358}
 --- !u!1 &4687705843091380673
@@ -771,6 +773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classe: 2
   colorHexCode: F24725
+  color: {r: 0.9490196, g: 0.2784314, b: 0.14509805, a: 1}
   cards:
   - {fileID: 5121906812659129634}
   - {fileID: 5121906811762264397}
@@ -997,6 +1000,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classe: 4
   colorHexCode: C2C2C2
+  color: {r: 0.7607843, g: 0.7607843, b: 0.7607843, a: 1}
   cards:
   - {fileID: 5121906812622532251}
   - {fileID: 5121906811948855674}
@@ -1448,6 +1452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   classe: 1
   colorHexCode: 4BCAE7
+  color: {r: 0.29411766, g: 0.7921569, b: 0.90588236, a: 1}
   cards:
   - {fileID: 5121906812695138476}
   - {fileID: 5121906811303076461}

@@ -14,13 +14,32 @@ public class TheOnlyAudioManagerInstance : AudioManager
     public float LowPitchRange = .95f;
     public float HighPitchRange = 1.05f;
 
+    private const string BGM_VOLUME_KEY = "BGM_VOLUME";
+    private const string SFX_VOLUME_KEY = "SFX_VOLUME";
+
     private void Awake()
     {
         if (audioManager == null)
         {
             audioManager = this;
         }
+
         // Destroy handled by DontDestroyOnLoadCanvas.cs
+
+        if (PlayerPrefs.HasKey(BGM_VOLUME_KEY))
+        {
+            BGMSource.volume = PlayerPrefs.GetFloat(BGM_VOLUME_KEY);
+            MusicSlider.value = BGMSource.volume * 4;
+        }
+
+        if (PlayerPrefs.HasKey(SFX_VOLUME_KEY))
+        {
+            foreach (AudioSource source in SFXSources)
+            {
+                source.volume = PlayerPrefs.GetFloat(SFX_VOLUME_KEY);
+            }
+            SFXSlider.value = SFXSources[0].volume * 4;
+        }
     }
 
     public void PlayBGM(AudioClip clip)
@@ -69,6 +88,7 @@ public class TheOnlyAudioManagerInstance : AudioManager
     public void OnBGMSliderValueChanged()
     {
         BGMSource.volume = MusicSlider.value/4;
+        PlayerPrefs.SetFloat(BGM_VOLUME_KEY, BGMSource.volume);
     }
 
     public void OnSFXSliderValueChanged()
@@ -77,5 +97,6 @@ public class TheOnlyAudioManagerInstance : AudioManager
         {
             source.volume = SFXSlider.value/4;
         }
+        PlayerPrefs.SetFloat(SFX_VOLUME_KEY, SFXSources[0].volume);
     }
 }

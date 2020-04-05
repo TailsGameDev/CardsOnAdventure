@@ -5,7 +5,7 @@ using UnityEngine;
 // Its just for not destroying it's children, ant not permit duplicates of them
 public class CardManagers : MonoBehaviour
 {
-    private CardManagers instance;
+    private static CardManagers instance;
 
     private void Awake()
     {
