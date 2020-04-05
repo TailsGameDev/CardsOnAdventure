@@ -11,10 +11,10 @@ public class CardsHolder : IndexHolder
 
     public Card RemoveCardFromSelectedIndex()
     {
-        return RemoveCard(GetSelectedIndex());
+        return RemoveCardOrGetNull(GetSelectedIndex());
     }
 
-    public Card RemoveCard(int index)
+    public Card RemoveCardOrGetNull(int index)
     {
         Card card = cards[index];
         cards[index] = null;

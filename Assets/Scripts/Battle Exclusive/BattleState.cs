@@ -252,14 +252,40 @@ public class Reposition : BattleState
 
         if ( oldIndex != currentIndex )
         {
-            Card oldSelectedCard = battlefield.GetReferenceToCardAt(oldIndex);
-            Card currentSelectedCard = battlefield.GetReferenceToCardAt(currentIndex);
-            if ( ! oldSelectedCard.Freezing && ! currentSelectedCard.Freezing )
+            Card oldSelectedCard = battlefield.GetReferenceToCardAtOrGetNull(oldIndex);
+            Card currentSelectedCard = battlefield.GetReferenceToCardAtOrGetNull(currentIndex);
+
+            if (oldSelectedCard == null && currentSelectedCard != null)
             {
-                battlefield.MakeCardAtIndexNormalSize(currentIndex);
-                battlefield.MakeCardAtIndexNormalSize(oldIndex);
-                SwapCards();
+                if ( ! currentSelectedCard.Freezing )
+                {
+                    battlefield.MakeCardAtIndexNormalSize(oldIndex);
+                }
+            } 
+            else if (oldSelectedCard != null && currentSelectedCard == null)
+            {
+                if (!oldSelectedCard.Freezing)
+                {
+                    battlefield.MakeCardAtIndexNormalSize(currentIndex);
+                }
             }
+            else
+            {
+                if (!oldSelectedCard.Freezing && !currentSelectedCard.Freezing)
+                {
+                    if (battlefield.IsSlotIndexOccupied(currentIndex))
+                    {
+                        battlefield.MakeCardAtIndexNormalSize(currentIndex);
+                    }
+
+                    if (battlefield.IsSlotIndexOccupied(oldIndex))
+                    {
+                        battlefield.MakeCardAtIndexNormalSize(oldIndex);
+                    }
+                }
+            }
+
+            SwapCards();
             ClearSelection();
         }
     }
@@ -271,11 +297,17 @@ public class Reposition : BattleState
 
     private void SwapCards()
     {
-        Card firsCard = battlefield.RemoveCard(oldIndex);
-        Card secondCard = battlefield.RemoveCard(currentIndex);
-
-        battlefield.PutCardInIndex(firsCard, currentIndex);
-        battlefield.PutCardInIndex(secondCard, oldIndex);
+        Card firstCard = battlefield.RemoveCardOrGetNull(oldIndex);
+        Card secondCard = battlefield.RemoveCardOrGetNull(currentIndex);
+        
+        if (firstCard != null)
+        {
+            battlefield.PutCardInIndex(firstCard, currentIndex);
+        }
+        if (secondCard != null)
+        {
+            battlefield.PutCardInIndex(secondCard, oldIndex);
+        }
     }
 
     private void ClearSelection()

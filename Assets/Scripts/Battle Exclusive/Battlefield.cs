@@ -68,6 +68,11 @@ public class Battlefield : CardsHolder
         return cards[index];
     }
 
+    public Card GetReferenceToCardAtOrGetNull(int index)
+    {
+        return cards[index];
+    }
+
     public Card GetCardInFrontOf(int index)
     {
         return cards[GetIndexInFrontOf(index)];
