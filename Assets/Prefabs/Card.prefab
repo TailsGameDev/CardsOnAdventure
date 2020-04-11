@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 439867028889674654}
   - component: {fileID: 9204129527013661130}
   - component: {fileID: 1808189365913690268}
+  - component: {fileID: 5535211136222558472}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -111,6 +112,8 @@ MonoBehaviour:
   skillsHorizontalSpot: {fileID: 1074124071157784450}
   attackPowerHorizontalSpot: {fileID: 4167761853560257268}
   vitalityHorizontalSpot: {fileID: 8684597863279426375}
+  shakeable: {fileID: 5535211136222558472}
+  fadingDurationOnDeath: 1
 --- !u!61 &9204129527013661130
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -152,6 +155,21 @@ MonoBehaviour:
   title: 
   tipData: []
   cardToPullData: {fileID: 439867028889674654}
+--- !u!114 &5535211136222558472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439867028889674652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489ff0cdc516681408f8eb3cbed232b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointsQty: 5
+  range: 20
+  durationForEachPoint: 0.02
 --- !u!1 &520007368528055077
 GameObject:
   m_ObjectHideFlags: 0

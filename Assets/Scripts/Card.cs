@@ -1,14 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Card : SkillsMediatorUser
 {
+    #region Attributes
+
     /// explaining deathCount
     /// the size is the number of attacks to consider in counting: Ex: let's consider how many died in the last '10' attacks
     /// in this case 10 would be the size of the deathCount array.
     /// it starts as 1,1,1... because it will be used to see if the game tied. They will consider the game tied if in the
     /// last 10 attacks, any card have died. 1,1,1... suggests 10 cards have died in the last 10 attacks
-    private static int[] deathCount = new int[] { 1, 1, 1, 1, 1, 1, 1, 1};//{1,1,1,1,1,1,1,1,1,1};
+    private static int[] deathCount = new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};//{1,1,1,1,1,1,1,1,1,1};
     private static int deathCountIndex = 0;
 
     [SerializeField]
@@ -18,6 +21,7 @@ public class Card : SkillsMediatorUser
     private int attackPower = 99;
     [SerializeField]
     private int vitality = 99;
+    private int vitalityLimit;
 
     [SerializeField]
     private Text vitalityText = null;
@@ -56,20 +60,22 @@ public class Card : SkillsMediatorUser
     [SerializeField]
     private RectTransform vitalityHorizontalSpot = null;
 
+    [SerializeField]
+    private Shakeable shakeable = null;
+
+    [SerializeField]
+    private float fadingDurationOnDeath;
+
+    #endregion
+
+    #region Properties
+
     private static int[] DeathCount { get => deathCount;  set => deathCount = value;  }
     public bool Freezing { get => freezing; }
     public int Vitality { get => vitality; }
     public int AttackPower { get => attackPower; set => attackPower = value; }
     public Battlefield Battlefield { get => battlefield; set => battlefield = value; }
     public Classes Classe { get => classe; }
-
-    private void Start()
-    {
-        if (skills == null)
-        {
-            skills = skillsMediator.GetBasicAttackSkill();
-        }
-    }
 
     public OldSkill Skills {
         get => skills;
@@ -79,16 +85,22 @@ public class Card : SkillsMediatorUser
         }
     }
 
+    #endregion
+
     private void Awake()
     {
         attackPowerText.text = AttackPower.ToString();
         skillText.text = skills.Acronym;
         SetVitalityUpdateText(Vitality);
+        vitalityLimit = vitality + vitality;
     }
 
-    public int GetVitality()
+    private void Start()
     {
-        return Vitality;
+        if (skills == null)
+        {
+            skills = skillsMediator.GetBasicAttackSkill();
+        }
     }
 
     public void AttackSelectedCard(Battlefield opponentBattlefield, Battlefield attackerBattlefield)
@@ -105,12 +117,14 @@ public class Card : SkillsMediatorUser
 
             CreateDamageAnimatedText(damage);
 
+            shakeable.Shake();
+
             if (Vitality <= 0)
             {
                 RegisterDeath();
                 RemoveFreezing();
                 battlefield.Remove(this);
-                Destroy(gameObject);
+                StartCoroutine(DieWithAnimation());
             }
             else
             {
@@ -119,7 +133,7 @@ public class Card : SkillsMediatorUser
         }
         else if (damage < 0)
         {
-            Debug.LogError("[Card] tryed to apply negative damage. That's wrong! Use Heal method");
+            Debug.LogError("[Card] tryed to apply negative damage. That's wrong! Use Heal method instead");
         }
     }
 
@@ -129,11 +143,82 @@ public class Card : SkillsMediatorUser
 
         damageTextTransform.SetParent(UIBattle.parentOfDynamicUIThatMustAppear, false);
         damageTextTransform.position = DamageTextPrototype.transform.position;
-        damageTextTransform.Rotate(new Vector3(0,0,90));
+        damageTextTransform.Rotate(new Vector3(0, 0, 90));
 
         damageTextTransform.GetComponent<Text>().text = damage.ToString();
 
         damageTextTransform.gameObject.SetActive(true);
+    }
+
+    private void RegisterDeath()
+    {
+        deathCountIndex = (deathCountIndex + 1) % DeathCount.Length;
+        DeathCount[deathCountIndex] = 1;
+    }
+
+    private void RegisterSurvived()
+    {
+        deathCountIndex = (deathCountIndex + 1) % DeathCount.Length;
+        DeathCount[deathCountIndex] = 0;
+    }
+
+
+    // TODO: create script to put in each object that will fade
+    private IEnumerator DieWithAnimation()
+    {
+        float fadePercentage = 1.0f;
+        float countDownFadeTimer = fadingDurationOnDeath;
+
+        Image[] images = GetComponentsInChildren<Image>();
+
+        Text[] texts = GetComponentsInChildren<Text>();
+
+        Color[] originalColors = new Color[images.Length];
+
+        float[] r = new float[originalColors.Length]; float[] g = new float[originalColors.Length];
+        float[] b = new float[originalColors.Length];
+
+        for (int i = 0; i < images.Length; i++)
+        {
+            originalColors[i] = images[i].color;
+            Color color = originalColors[i];
+            r[i] = color.r; g[i] = color.g; b[i] = color.b;
+        }
+
+        float[] tr = new float[originalColors.Length]; float[] tg = new float[originalColors.Length];
+        float[] tb = new float[originalColors.Length];
+        for (int i = 0; i < texts.Length; i++)
+        {
+            tr[i] = texts[i].color.r;
+            tg[i] = texts[i].color.g;
+            tb[i] = texts[i].color.b;
+        }
+
+        while (countDownFadeTimer > 0.0f)
+        {
+            fadePercentage = countDownFadeTimer / fadingDurationOnDeath;
+
+            for (int i = 0; i < images.Length; i++)
+            {
+                if (images[i] != null)
+                {
+                    images[i].color = new Color(r[i], g[i], b[i], fadePercentage); ;
+                }
+            }
+
+            for (int i = 0; i < texts.Length; i++)
+            {
+                if (texts[i] != null)
+                {
+                    texts[i].color = new Color(tr[i], tg[i], tb[i], fadePercentage);
+                }
+            }
+
+            countDownFadeTimer -= Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(gameObject);
     }
 
     public void AjustCardToDifficult(int difficultyLevel)
@@ -153,17 +238,7 @@ public class Card : SkillsMediatorUser
     }
     #endregion
 
-    private void RegisterDeath()
-    {
-        deathCountIndex = (deathCountIndex + 1) % DeathCount.Length;
-        DeathCount[deathCountIndex] = 1;
-    }
 
-    private void RegisterSurvived()
-    {
-        deathCountIndex = (deathCountIndex + 1) % DeathCount.Length;
-        DeathCount[deathCountIndex] = 0;
-    }
 
     #region Has XXX Effect
     public bool HasBlockSkill()

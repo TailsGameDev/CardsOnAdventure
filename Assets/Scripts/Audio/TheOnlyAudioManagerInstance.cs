@@ -51,6 +51,11 @@ public class TheOnlyAudioManagerInstance : AudioManager
         }
     }
 
+    public void StopBGM()
+    {
+        BGMSource.Stop();
+    }
+
     public void PlaySFX(AudioClip clip)
     {
         AudioSource SFXSource = GetFreeSFXAudioSource();

@@ -42,7 +42,7 @@ public class ChildMaker : MonoBehaviour
 
         float time = 0.0f;
 
-        while (time < totalTime)
+        while (time < totalTime && child != null)
         {
             time += Time.deltaTime;
 

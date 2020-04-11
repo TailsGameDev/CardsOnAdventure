@@ -223,6 +223,34 @@ public class Battlefield : CardsHolder
         }
     }
 
+    public void LoopThrougEnemyesAndSelectBestTarget(EnemyAI.CurrentTargetIsBetterThanTheOneBefore isCurrentTargetBetter, int attackPower)
+    {
+        int selected = 0;
+
+        while (!ContainsCardInIndex(selected))
+        {
+            selected++;
+            if (selected == cards.Length)
+            {
+                break;
+            }
+        }
+
+        for (int indexBefore = 0; indexBefore < cards.Length-1; indexBefore++)
+        {
+            int currentIndex = indexBefore + 1;
+            if (ContainsCardInIndex(indexBefore) && ContainsCardInIndex(currentIndex))
+            {
+                if (isCurrentTargetBetter(indexBefore, currentIndex, attackPower, this))
+                {
+                    selected = currentIndex;
+                }
+            }
+        }
+
+        SetSelectedIndex(selected);
+    }
+
     public void SelectCardIndexWithLowestVitality()
     {
         int lowest = 999999;

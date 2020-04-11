@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class EnemyAI
 {
+    private static float aiDelay;
+
     private Hand enemyHand = null;
 
     private Battlefield enemyBattlefield = null;
@@ -13,7 +15,11 @@ public class EnemyAI
 
     private UICustomBtn endRepositionBtn;
 
-    CoroutineExecutorPrototype coroutineExecutor;
+    private CoroutineExecutorPrototype coroutineExecutor;
+
+    public delegate bool CurrentTargetIsBetterThanTheOneBefore(int indexBefore, int currentIndex, int attackPower, Battlefield obf);
+
+    public static float AIDelay { set => aiDelay = value; }
 
     public void PlaceCard(Hand enemyHand, Battlefield enemyBattlefield)
     {
@@ -91,7 +97,7 @@ public class EnemyAI
         {
             Card cardInFront = enemyBattlefield.GetReferenceToCardAt(inFrontIndex);
             Card cardBehind = enemyBattlefield.GetReferenceToCardAt(behindIndex);
-            change = cardInFront.GetVitality() < cardBehind.GetVitality();
+            change = cardInFront.Vitality < cardBehind.Vitality;
         }
 
         return change;
@@ -112,6 +118,12 @@ public class EnemyAI
 
     public void Attack(Battlefield enemyBattlefield, Battlefield playerBattlefield)
     {
+        // TODO: remove this once aiDelay is set on settings (or don't, and remove the comment)
+        if (aiDelay < 0.01f)
+        {
+            aiDelay = 0.5f;
+        }
+
         this.enemyBattlefield = enemyBattlefield;
         this.playerBattlefield = playerBattlefield;
 
@@ -130,10 +142,23 @@ public class EnemyAI
             if (enemyBattlefield.ContainsCardInIndex(i))
             {
                 enemyBattlefield.SetSelectedIndex(i);
-                playerBattlefield.SelectCardIndexWithLowestVitality();
+                int attackPower = enemyBattlefield.GetSelectedCard().AttackPower;
+                playerBattlefield.LoopThrougEnemyesAndSelectBestTarget(currentTargetIsBetterThanTheOneBefore, attackPower);
+
+                yield return new WaitForSeconds(aiDelay);
             }
-            yield return new WaitForSeconds(0.5f);
         }
+    }
+
+    private bool currentTargetIsBetterThanTheOneBefore(int indexBefore, int currentIndex, int attackPower, Battlefield obf)
+    {
+        Card cardBefore = obf.GetReferenceToCardAt(indexBefore);
+        Card currentCard = obf.GetReferenceToCardAt(currentIndex);
+
+        bool dealsDamage = obf.IsThereACardInFrontOf(currentIndex) && attackPower <= 1;
+        bool vitalityIsSmaller = currentCard.Vitality < cardBefore.Vitality;
+
+        return dealsDamage && vitalityIsSmaller;
     }
 }
 
