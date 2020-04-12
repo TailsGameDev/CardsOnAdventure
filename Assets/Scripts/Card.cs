@@ -15,7 +15,7 @@ public class Card : SkillsMediatorUser
     private static int deathCountIndex = 0;
 
     [SerializeField]
-    private Classes classe = Classes.NOT_A_CLASS;
+    private ClassInfo classInfo = null;
 
     [SerializeField]
     private int attackPower = 99;
@@ -80,7 +80,7 @@ public class Card : SkillsMediatorUser
     public int Vitality { get => vitality; }
     public int AttackPower { get => attackPower; set => attackPower = value; }
     public Battlefield Battlefield { get => battlefield; set => battlefield = value; }
-    public Classes Classe { get => classe; }
+    public Classes Classe { get => classInfo.Classe; }
 
     public OldSkill Skills {
         get => skills;
@@ -94,6 +94,8 @@ public class Card : SkillsMediatorUser
 
     private void Awake()
     {
+        classInfo.registerCardInClass(this);
+
         attackPowerText.text = AttackPower.ToString();
         
         skillText.text = skills.Acronym;
@@ -107,7 +109,7 @@ public class Card : SkillsMediatorUser
         {
             skills = skillsMediator.GetBasicAttackSkill();
         }
-        
+
         overhealedColor = ClassInfo.GetColorOfClass(Classes.CLERIC);
         SetVitalityAndUpdateTextLooks(Vitality);
     }
@@ -382,8 +384,7 @@ public class Card : SkillsMediatorUser
 
     public string GetColoredTitleForTooltip()
     {
-        string colorHexCode = ClassInfo.GetColorHexCodeOfClass(classe);
-        return "<color=#"+ colorHexCode + ">"+ classe+"</color>";
+        return "<color=#"+ classInfo.ColorHexCode + ">"+ Classe+"</color>";
     }
 
     public Sprite GetCardSprite()
@@ -401,10 +402,10 @@ public class Card : SkillsMediatorUser
 
     public void SumPlayerBonuses()
     {
-        attackPower += ClassInfo.GetAttackPowerBonusOfClass(classe);
+        attackPower += classInfo.AttackPowerBonus;
         attackPowerText.text = attackPower.ToString();
 
-        vitality += ClassInfo.GetVitalityBonusOfClass(classe);
+        vitality += classInfo.VitalityBonus;
         AjustInitialAndLimitVitality();
         UpdateVitalityTextAndItsColor();
     }

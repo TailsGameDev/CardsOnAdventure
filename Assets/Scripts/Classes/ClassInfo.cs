@@ -16,15 +16,16 @@ public class ClassInfo : MonoBehaviour
     private Color color = Color.white;
 
     [SerializeField]
-    private Card[] cards = null;
+    private List<Card> cards = new List<Card>();
 
     private int vitalityBonus = 0;
     private int attackPowerBonus = 0;
 
+    public Classes Classe { get => classe; }
     public string ColorHexCode { get => colorHexCode; }
-    public Card[] Cards { get => cards; }
-    public int VitalityBonus { get => vitalityBonus; }
-    public int AttackPowerBonus { get => attackPowerBonus; }
+    public Color Color { get => color; }
+    public int AttackPowerBonus { get => attackPowerBonus; set => attackPowerBonus = value; }
+    public int VitalityBonus { get => vitalityBonus; set => vitalityBonus = value; }
 
     private void Awake()
     {
@@ -34,19 +35,23 @@ public class ClassInfo : MonoBehaviour
         }
     }
 
+    // That must be called by cards during Awake
+    public void registerCardInClass(Card card)
+    {
+        if ( ! cards.Contains(card) )
+        {
+            cards.Add(card);
+        }
+    }
+
     public static Color GetColorOfClass(Classes classe)
     {
         return classesInfo[classe].color;
     }
 
-    public static string GetColorHexCodeOfClass(Classes classe)
-    {
-        return classesInfo[classe].colorHexCode;
-    }
-
     public static Card[] GetCardsOfClass(Classes classe)
     {
-        return classesInfo[classe].cards;
+        return classesInfo[classe].cards.ToArray();
     }
 
     public static void GiveVitalityBonusToClass(Classes classe)
@@ -57,16 +62,6 @@ public class ClassInfo : MonoBehaviour
     public static void GiveAttackPowerBonusToClass(Classes classe)
     {
         classesInfo[classe].attackPowerBonus++;
-    }
-
-    public static int GetVitalityBonusOfClass(Classes classe)
-    {
-        return classesInfo[classe].vitalityBonus;
-    }
-
-    public static int GetAttackPowerBonusOfClass(Classes classe)
-    {
-        return classesInfo[classe].attackPowerBonus;
     }
 
     public static void ResetBonusesToAllClasses()
