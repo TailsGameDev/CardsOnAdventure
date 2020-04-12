@@ -8,7 +8,8 @@ public class PreMadeSoundRequest
     {
         BGM,
         SFX,
-        SFX_AND_STOP_BGM
+        SFX_AND_STOP_BGM,
+        STOP_SFX,
     }
 
     private AudioClip audioClip;
@@ -39,6 +40,11 @@ public class PreMadeSoundRequest
         return new PreMadeSoundRequest(audioClip, requisitor, assignor, SoundType.SFX_AND_STOP_BGM);
     }
 
+    public static PreMadeSoundRequest CreateSTOP_SFXSoundRequest(AudioRequisitor requisitor, GameObject assignor)
+    {
+        return new PreMadeSoundRequest(null, requisitor, assignor, SoundType.STOP_SFX);
+    }
+
     public void RequestPlaying()
     {
         switch (soundType)
@@ -52,6 +58,9 @@ public class PreMadeSoundRequest
             case SoundType.SFX_AND_STOP_BGM:
                 requisitor.RequestSFX(audioClip);
                 requisitor.RequestStopBGM();
+                break;
+            case SoundType.STOP_SFX:
+                requisitor.RequestStopSFX();
                 break;
         }
     }

@@ -19,6 +19,12 @@ public class BattleInfo
         backgroundColor = Color.red;// new Color(0xEE, 0x91, 0x91);
     }
 
+    public static void PrepareBossBattle()
+    {
+        masterClass = Classes.NOT_A_CLASS;
+        backgroundColor = Color.black;
+    }
+
     public static void PrepareMasterBattle(Classes vmasterClass)
     {
         masterClass = vmasterClass;

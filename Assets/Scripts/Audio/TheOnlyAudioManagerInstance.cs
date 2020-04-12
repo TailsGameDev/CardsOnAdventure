@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -58,16 +59,23 @@ public class TheOnlyAudioManagerInstance : AudioManager
 
     public void PlaySFX(AudioClip clip)
     {
-        AudioSource SFXSource = GetFreeSFXAudioSource();
+        AudioSource sfxSource = GetFreeSFXAudioSource();
+        sfxSource.clip = clip;
+        sfxSource.Play();
+    }
 
-        SFXSource.clip = clip;
-        SFXSource.Play();
+    public void StopAllSFX()
+    {
+        foreach(AudioSource source in SFXSources)
+        {
+            source.Stop();
+        }
     }
 
     public void PlayOneOfClipsWithRandomizedPitch(params AudioClip[] clips)
     {
-        int randomIndex = Random.Range(0, clips.Length);
-        float randomPitch = Random.Range(LowPitchRange, HighPitchRange);
+        int randomIndex = UnityEngine.Random.Range(0, clips.Length);
+        float randomPitch = UnityEngine.Random.Range(LowPitchRange, HighPitchRange);
 
         AudioSource SFXSource = GetFreeSFXAudioSource();
 

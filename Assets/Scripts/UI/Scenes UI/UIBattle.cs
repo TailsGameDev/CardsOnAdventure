@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class UIBattle : PopUpOpener
 {
+    public static bool clicksEnabled = true;
+
     [SerializeField]
     private RectTransform UIDamageTextParent = null;
     public static RectTransform parentOfDynamicUIThatMustAppear;
@@ -34,7 +36,10 @@ public class UIBattle : PopUpOpener
 
     void WhenAnyBattleFieldIsClicked(Battlefield battlefield, int index)
     {
-        battlefield.SetSelectedIndex(index);
+        if (clicksEnabled)
+        {
+            battlefield.SetSelectedIndex(index);
+        }
     }
 
     public void OnPlayerHandSlotClicked(int index)

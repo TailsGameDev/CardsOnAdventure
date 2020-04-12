@@ -17,12 +17,16 @@ public class EnemyAI
 
     private CoroutineExecutorPrototype coroutineExecutor;
 
+    private const float MIN_AI_DELAY = 0.5f;
+
     public delegate bool CurrentTargetIsBetterThanTheOneBefore(int indexBefore, int currentIndex, int attackPower, Battlefield obf);
 
     public static float AIDelay { set => aiDelay = value; }
 
     public void PlaceCard(Hand enemyHand, Battlefield enemyBattlefield)
     {
+        UIBattle.clicksEnabled = false;
+
         this.enemyHand = enemyHand;
         this.enemyBattlefield = enemyBattlefield;
 
@@ -118,10 +122,9 @@ public class EnemyAI
 
     public void Attack(Battlefield enemyBattlefield, Battlefield playerBattlefield)
     {
-        // TODO: remove this once aiDelay is set on settings (or don't, and remove the comment)
-        if (aiDelay < 0.01f)
+        if (aiDelay < MIN_AI_DELAY)
         {
-            aiDelay = 0.5f;
+            aiDelay = MIN_AI_DELAY;
         }
 
         this.enemyBattlefield = enemyBattlefield;
@@ -132,6 +135,10 @@ public class EnemyAI
             coroutineExecutor = CoroutineExecutorPrototype.GetCopy();
 
             coroutineExecutor.ExecuteCoroutine(AttackCoroutine());
+        } 
+        else
+        {
+            UIBattle.clicksEnabled = true;
         }
     }
 
@@ -148,6 +155,8 @@ public class EnemyAI
                 yield return new WaitForSeconds(aiDelay);
             }
         }
+
+        UIBattle.clicksEnabled = true;
     }
 
     private bool currentTargetIsBetterThanTheOneBefore(int indexBefore, int currentIndex, int attackPower, Battlefield obf)

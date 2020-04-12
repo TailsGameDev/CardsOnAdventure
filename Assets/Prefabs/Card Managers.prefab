@@ -881,6 +881,7 @@ Transform:
   - {fileID: 4687705842546900960}
   - {fileID: 4687705842220992020}
   - {fileID: 4687705844203315911}
+  - {fileID: 1599061754263724893}
   - {fileID: 4687705843623248207}
   m_Father: {fileID: 9101949744829781060}
   m_RootOrder: 3
@@ -1071,10 +1072,11 @@ Transform:
   - {fileID: 4687705843979180534}
   - {fileID: 4687705842238985658}
   - {fileID: 4687705842965504397}
+  - {fileID: 4503385128891681199}
   - {fileID: 4687705844250874796}
   - {fileID: 4687705844120585684}
   m_Father: {fileID: 4687705843270994624}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4687705843931158339
 GameObject:
@@ -1331,7 +1333,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4687705843623248207}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4687705844120585685
 MonoBehaviour:
@@ -1485,7 +1487,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4687705843623248207}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4687705844250874795
 MonoBehaviour:
@@ -1555,6 +1557,114 @@ MonoBehaviour:
   block: 0
   ignoreOpponentBlock: 0
   specialEffect: {fileID: 4687705842238985657}
+  frontlineTargetDamageMultiplier: 1
+  backlineTargetDamageMultiplier: 0.5
+  horizontalSpreadDamageMultiplier: 0
+  verticalSpreadDamageMultiplier: 0
+  damageReductionPercentage: 0
+  damageReflectionPercentage: 0
+--- !u!1 &6985664993239048026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4503385128891681199}
+  - component: {fileID: 1870612914432025796}
+  m_Layer: 0
+  m_Name: Sanctuary Target 2 Not Exceed Limit Effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4503385128891681199
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6985664993239048026}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4687705843623248207}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1870612914432025796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6985664993239048026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47e33bcf62429ae4aaae2f813f7434ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &7537787316620267333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1599061754263724893}
+  - component: {fileID: 5201556404538638106}
+  m_Layer: 0
+  m_Name: Sanctuary Target 2 Not Exceed Limit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1599061754263724893
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7537787316620267333}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -52}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4687705843270994624}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5201556404538638106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7537787316620267333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acronym: SA
+  fullName: Sanctuary
+  description: Deals half of the damage. Heals the cleric and its allies with half
+    of the Attack Power. Cards can be overhealed until the double of the initial
+    vitality. The cleric is powerful enough just to heal 2 cards. He will try to
+    heal himself, then the card in his side, then the vertical adjacent one, and
+    finally the card in the opposite corner.
+  attackVFX: {fileID: 0}
+  defenseVFX: {fileID: 0}
+  specialVFX: {fileID: 6385494673838626053, guid: 5db526337e4125d48bb2143b574c134f,
+    type: 3}
+  attackSFX: {fileID: 8300000, guid: 57859224887ccfd4999d175913a7ca62, type: 3}
+  defenseSFX: {fileID: 0}
+  block: 0
+  ignoreOpponentBlock: 0
+  specialEffect: {fileID: 1870612914432025796}
   frontlineTargetDamageMultiplier: 1
   backlineTargetDamageMultiplier: 0.5
   horizontalSpreadDamageMultiplier: 0
@@ -2125,12 +2235,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
---- !u!224 &5121906812685789643 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
-    type: 3}
-  m_PrefabInstance: {fileID: 4687705842666572374}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5121906812685789640 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
@@ -2143,6 +2247,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28fa55ecfdb1ec438283222b4d04f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &5121906812685789643 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4687705842666572374}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4687705842712366341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2901,12 +3011,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
---- !u!224 &5121906811438567543 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
-    type: 3}
-  m_PrefabInstance: {fileID: 4687705843562656746}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5121906811438567540 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
@@ -2919,6 +3023,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28fa55ecfdb1ec438283222b4d04f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &5121906811438567543 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4687705843562656746}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4687705843785632138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3095,12 +3205,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
---- !u!224 &5121906811552508439 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
-    type: 3}
-  m_PrefabInstance: {fileID: 4687705843785632138}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5121906811552508436 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
@@ -3113,6 +3217,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28fa55ecfdb1ec438283222b4d04f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &5121906811552508439 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4687705843785632138}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4687705843840681400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3249,7 +3359,7 @@ PrefabInstance:
         type: 3}
       propertyPath: skills
       value: 
-      objectReference: {fileID: 4687705844203315910}
+      objectReference: {fileID: 5201556404538638106}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: classe
@@ -3483,6 +3593,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
+--- !u!224 &5121906811303076462 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4687705843968213491}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5121906811303076461 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
@@ -3495,9 +3611,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28fa55ecfdb1ec438283222b4d04f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &5121906811303076462 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
-    type: 3}
-  m_PrefabInstance: {fileID: 4687705843968213491}
-  m_PrefabAsset: {fileID: 0}

@@ -260,6 +260,7 @@ public class Reposition : BattleState
                 if ( ! currentSelectedCard.Freezing )
                 {
                     battlefield.MakeCardAtIndexNormalSize(oldIndex);
+                    SwapCards();
                 }
             } 
             else if (oldSelectedCard != null && currentSelectedCard == null)
@@ -267,6 +268,7 @@ public class Reposition : BattleState
                 if (!oldSelectedCard.Freezing)
                 {
                     battlefield.MakeCardAtIndexNormalSize(currentIndex);
+                    SwapCards();
                 }
             }
             else
@@ -282,10 +284,11 @@ public class Reposition : BattleState
                     {
                         battlefield.MakeCardAtIndexNormalSize(oldIndex);
                     }
+
+                    SwapCards();
                 }
             }
 
-            SwapCards();
             ClearSelection();
         }
     }
@@ -640,18 +643,20 @@ public class EndGame : BattleState
     private CustomPopUp customPopUpOpener;
     private PreMadeSoundRequest victoryBGMRequest;
     private PreMadeSoundRequest defeatBGMRequest;
+    private PreMadeSoundRequest stopAllSFXRequest;
 
     private float timer = 0;
 
     private bool quit = false;
 
-    public EndGame(BattleStatesFactory winnerFactory, ThePopUpOpenerInstance popUpOpener, CustomPopUp customPopUpOpener, PreMadeSoundRequest victoryBGMRequest, PreMadeSoundRequest defeatBGMRequest)
+    public EndGame(BattleStatesFactory winnerFactory, ThePopUpOpenerInstance popUpOpener, CustomPopUp customPopUpOpener, PreMadeSoundRequest victoryBGMRequest, PreMadeSoundRequest defeatBGMRequest, PreMadeSoundRequest stopAllSFXRequest)
     {
         this.winnerFactory = winnerFactory;
         this.popUpOpener = popUpOpener;
         this.customPopUpOpener = customPopUpOpener;
         this.victoryBGMRequest = victoryBGMRequest;
         this.defeatBGMRequest = defeatBGMRequest;
+        this.stopAllSFXRequest = stopAllSFXRequest;
     }
 
     public override void ExecuteAction()
@@ -719,6 +724,7 @@ public class EndGame : BattleState
     private void QuitBattleAndGoToMap()
     {
         quit = true;
+        stopAllSFXRequest.RequestPlaying();
         popUpOpener.UpdateMap();
         popUpOpener.CloseAllPopUpsExceptLoading();
         popUpOpener.OpenMapPopUp();
@@ -740,6 +746,7 @@ public class EndGame : BattleState
     {
         popUpOpener.SetLoadingPopUpActiveToTrue();
         popUpOpener.CloseAllPopUpsExceptLoading();
+        stopAllSFXRequest.RequestPlaying();
         quit = true;
         // popUpOpener.ResetMap(); Map is being reset by the OnPlayBtnClicked method at the main menu, in MainMenuCanvas.cs
         // Cards buffs being reset at play btn on main menu

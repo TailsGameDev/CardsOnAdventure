@@ -92,12 +92,15 @@ public class BattleStatesFactory : PopUpOpener
         AudioClip victoryBGM = audioHolder.GetAudioByName("Victory");
         AudioClip defeatBGM = audioHolder.GetAudioByName("Defeat");
 
-        PreMadeSoundRequest victorySoundRequest =
+        PreMadeSoundRequest victoryAudioRequest =
             PreMadeSoundRequest.CreateSFX_AND_STOP_BGMSoundRequest(victoryBGM, audioRequisitor, assignor: gameObject);
 
-        PreMadeSoundRequest defeatSoundRequest =
+        PreMadeSoundRequest defeatAudioRequest =
             PreMadeSoundRequest.CreateSFX_AND_STOP_BGMSoundRequest(defeatBGM, audioRequisitor, assignor: gameObject);
 
-        return new EndGame(winnerFactory, popUpOpener, customPopUpOpener, victorySoundRequest, defeatSoundRequest);
+        PreMadeSoundRequest stopAllSFXRequest =
+            PreMadeSoundRequest.CreateSTOP_SFXSoundRequest(audioRequisitor, assignor: gameObject);
+
+        return new EndGame(winnerFactory, popUpOpener, customPopUpOpener, victoryAudioRequest, defeatAudioRequest, stopAllSFXRequest);
     }
 }

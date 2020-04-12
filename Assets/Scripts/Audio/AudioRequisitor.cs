@@ -18,4 +18,9 @@ public class AudioRequisitor : AudioManager
     {
         audioManager.StopBGM();
     }
+
+    public void RequestStopSFX()
+    {
+        audioManager.StopAllSFX();
+    }
 }

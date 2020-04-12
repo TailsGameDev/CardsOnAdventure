@@ -32,7 +32,7 @@ public class OldSkill : Skill
     private float damageReflectionPercentage = 0.0f;
 
     private Battlefield obf;
-    private Battlefield attackerBattleField;
+    private Battlefield abf;
 
     private Card attacker;
     private int targetIndex;
@@ -46,7 +46,7 @@ public class OldSkill : Skill
     {
         this.attacker = attackerBattlefield.GetSelectedCard();
         this.obf = opponentBattlefield;
-        this.attackerBattleField = attackerBattlefield;
+        this.abf = attackerBattlefield;
 
         targetIndex = obf.GetSelectedIndex();
 
@@ -67,7 +67,7 @@ public class OldSkill : Skill
 
         if (specialEffect != null)
         {
-            specialEffect.ExecuteEffect(obf, attackerBattleField, ref targetIndex, specialVFX);
+            specialEffect.ExecuteEffect(obf, abf, ref targetIndex, specialVFX);
         }
 
         skillsMediator.PlaySFX(attackSFX);
@@ -87,7 +87,7 @@ public class OldSkill : Skill
 
     private void DamageCard(int toBeDamagedIndex, int damage)
     {
-        if (DefenseEffect.IsSuccessfulAttack(damage, obf, attackerBattleField, toBeDamagedIndex))
+        if (DefenseEffect.IsSuccessfulAttack(damage, obf, abf, toBeDamagedIndex))
         {
             DefenseEffect defenseEffectToExecute;
 
@@ -104,15 +104,15 @@ public class OldSkill : Skill
             
             if (isDoubleAttack)
             {
-                defenseEffectToExecute.ExecuteEffect(damage/2, obf, attackerBattleField, toBeDamagedIndex, attackVFX);
-                if (obf.IsSlotIndexOccupied(toBeDamagedIndex))
+                defenseEffectToExecute.ExecuteEffect(damage/2, obf, abf, toBeDamagedIndex, attackVFX);
+                if (obf.IsSlotIndexOccupied(toBeDamagedIndex) && abf.IsSlotIndexOccupied(abf.GetSelectedIndex()))
                 {
-                    defenseEffectToExecute.ExecuteEffect(damage/2, obf, attackerBattleField, toBeDamagedIndex, attackVFX);
+                    defenseEffectToExecute.ExecuteEffect(damage/2, obf, abf, toBeDamagedIndex, attackVFX);
                 }
             } 
             else
             {
-                defenseEffectToExecute.ExecuteEffect(damage, obf, attackerBattleField, toBeDamagedIndex, attackVFX);
+                defenseEffectToExecute.ExecuteEffect(damage, obf, abf, toBeDamagedIndex, attackVFX);
             }
         }
     }

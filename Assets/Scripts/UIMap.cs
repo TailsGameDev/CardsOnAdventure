@@ -50,9 +50,17 @@ public class UIMap : PopUpOpener
         popUpOpener.CloseAllPopUpsExceptLoading();
     }
 
+    public void OnEndOfGameClicked(Transform btnTransform)
+    {
+        audioRequisitor.RequestBGM(winSound);
+        customPopUpOpener.Open("You Beat the game!!!", "You are Awesome!", "Go to Menu", "Look the Map", GoToMenu);
+        //ClearSpot(btnTransform);
+        //BattleDefaultBehaviour();
+    }
+
     #region On Battle Spot Buttons Clicked
 
-        public void OnSimpleBattleClicked(Transform btnTransform)
+    public void OnSimpleBattleClicked(Transform btnTransform)
         {
             popUpOpener.SetLoadingPopUpActiveToTrue();
             BattleInfo.PrepareSimpleBattle();
@@ -73,10 +81,11 @@ public class UIMap : PopUpOpener
         // the btnTransform parameter might be used if we substitute the final spot for some battle
         public void OnBossBattleClicked(Transform btnTransform)
         {
-            audioRequisitor.RequestBGM(winSound);
-            customPopUpOpener.Open("You Beat the game!!!", "You are Awesome!","Go to Menu","Look the Map", GoToMenu);
-            //ClearSpot(btnTransform);
-            //BattleDefaultBehaviour();
+            popUpOpener.SetLoadingPopUpActiveToTrue();
+            BattleInfo.PrepareBossBattle();
+            ClearSpot(btnTransform);
+            DeckPrototypeFactory.PrepareBossRandomDeckForTheEnemy();
+            SetUpBattleAndOpenIt();
         }
 
     #endregion

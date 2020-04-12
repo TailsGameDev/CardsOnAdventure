@@ -114,6 +114,7 @@ MonoBehaviour:
   vitalityHorizontalSpot: {fileID: 8684597863279426375}
   shakeable: {fileID: 5535211136222558472}
   fadingDurationOnDeath: 1
+  normalVitalityColor: {r: 0.61960787, g: 0.9803922, b: 0.6156863, a: 1}
 --- !u!61 &9204129527013661130
 BoxCollider2D:
   m_ObjectHideFlags: 0

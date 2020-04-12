@@ -22,6 +22,7 @@ public class Card : SkillsMediatorUser
     [SerializeField]
     private int vitality = 99;
     private int vitalityLimit;
+    private int initialVitality;
 
     [SerializeField]
     private Text vitalityText = null;
@@ -66,6 +67,10 @@ public class Card : SkillsMediatorUser
     [SerializeField]
     private float fadingDurationOnDeath;
 
+    [SerializeField]
+    private Color normalVitalityColor;
+    private Color overhealedColor = Color.yellow;
+
     #endregion
 
     #region Properties
@@ -90,9 +95,10 @@ public class Card : SkillsMediatorUser
     private void Awake()
     {
         attackPowerText.text = AttackPower.ToString();
+        
         skillText.text = skills.Acronym;
-        SetVitalityUpdateText(Vitality);
-        vitalityLimit = vitality + vitality;
+
+        AjustInitialAndLimitVitality();
     }
 
     private void Start()
@@ -101,6 +107,15 @@ public class Card : SkillsMediatorUser
         {
             skills = skillsMediator.GetBasicAttackSkill();
         }
+        
+        overhealedColor = ClassInfo.GetColorOfClass(Classes.CLERIC);
+        SetVitalityAndUpdateTextLooks(Vitality);
+    }
+
+    private void AjustInitialAndLimitVitality()
+    {
+        initialVitality = vitality;
+        vitalityLimit = vitality + vitality;
     }
 
     public void AttackSelectedCard(Battlefield opponentBattlefield, Battlefield attackerBattlefield)
@@ -113,7 +128,7 @@ public class Card : SkillsMediatorUser
     {
         if (damage > 0)
         {
-            SetVitalityUpdateText(Vitality - damage);
+            SetVitalityAndUpdateTextLooks(Vitality - damage);
 
             CreateDamageAnimatedText(damage);
 
@@ -161,7 +176,6 @@ public class Card : SkillsMediatorUser
         deathCountIndex = (deathCountIndex + 1) % DeathCount.Length;
         DeathCount[deathCountIndex] = 0;
     }
-
 
     // TODO: create script to put in each object that will fade
     private IEnumerator DieWithAnimation()
@@ -226,19 +240,38 @@ public class Card : SkillsMediatorUser
         attackPower = attackPower * difficultyLevel;
     }
 
-    public void Heal(int healAmount)
+    public void InconditionalHealing(int healAmount)
     {
-        SetVitalityUpdateText(Vitality + healAmount);
+        SetVitalityAndUpdateTextLooks(Vitality + healAmount);
     }
 
-    private void SetVitalityUpdateText(int value)
+    public void HealNotExceedingVitalityLimit(int healAmount)
+    {
+        int vit = Mathf.Min(vitalityLimit, vitality + healAmount);
+
+        SetVitalityAndUpdateTextLooks(vit);
+    }
+
+    private void SetVitalityAndUpdateTextLooks(int value)
     {   
         vitality = value;
-        vitalityText.text = value.ToString();
+        UpdateVitalityTextAndItsColor();
+    }
+
+    private void UpdateVitalityTextAndItsColor()
+    {
+        vitalityText.text = vitality.ToString();
+
+        if (vitality <= initialVitality)
+        {
+            vitalityText.color = normalVitalityColor;
+        }
+        else
+        {
+            vitalityText.color = overhealedColor;
+        }
     }
     #endregion
-
-
 
     #region Has XXX Effect
     public bool HasBlockSkill()
@@ -372,7 +405,8 @@ public class Card : SkillsMediatorUser
         attackPowerText.text = attackPower.ToString();
 
         vitality += ClassInfo.GetVitalityBonusOfClass(classe);
-        vitalityText.text = vitality.ToString();
+        AjustInitialAndLimitVitality();
+        UpdateVitalityTextAndItsColor();
     }
 
     public static int GetDeathCount()

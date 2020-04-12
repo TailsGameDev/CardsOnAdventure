@@ -22,7 +22,7 @@ public class SanctuaryEffect : SpecialEffect
         if (abf.IsSlotIndexOccupied(index))
         {
             Card toBeHealed = abf.GetReferenceToCardAt(index);
-            toBeHealed.Heal(healAmount);
+            toBeHealed.InconditionalHealing(healAmount);
 
             InstantiateObjAsSonOf(specialVFX, toBeHealed.transform.parent);
         }

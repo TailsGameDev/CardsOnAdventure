@@ -20,6 +20,7 @@ public class DeckPrototypeFactory : MonoBehaviour
 
     protected const int NOT_A_SIZE = -1;
     protected const int TOUGH_SIZE = -2;
+    protected const int BOSS_SIZE = -3;
 
     private void Awake()
     {
@@ -122,6 +123,11 @@ public class DeckPrototypeFactory : MonoBehaviour
         enemyDeckMounter = new RandomDeckMounter(size);
     }
 
+    public static void PrepareBossRandomDeckForTheEnemy(int size = BOSS_SIZE)
+    {
+        enemyDeckMounter = new RandomDeckMounter(size);
+    }
+
     public static void PrepareMageDeckForTheEnemy(int size = NOT_A_SIZE)
     {
         enemyDeckMounter = new HalfRandomDeckMounter(size, Classes.MAGE);
@@ -173,6 +179,10 @@ public class DeckPrototypeFactory : MonoBehaviour
             else if ( size == TOUGH_SIZE)
             {
                 size = battleSceneDeckFactory.defaultDeckSize + 1;
+            }
+            else if (size == BOSS_SIZE)
+            {
+                size = battleSceneDeckFactory.defaultDeckSize + 3;
             }
 
             deck = new Card[size];
