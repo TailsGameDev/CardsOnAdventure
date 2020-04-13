@@ -18,10 +18,6 @@ public abstract class DragAndDrop : MonoBehaviour
     // Offset for the image to not teleport to the mouse on click
     private Vector3 offset;
     #endregion
-    protected virtual void Awake()
-    {
-        originalPosition = rectTransform.position;
-    }
 
     protected virtual void Update()
     {
@@ -33,6 +29,12 @@ public abstract class DragAndDrop : MonoBehaviour
 
     public void OnPointerDown()
     {
+        StartDragging();
+    }
+
+    public void StartDragging()
+    {
+        originalPosition = rectTransform.position;
         snap = true;
         offset = originalPosition - Input.mousePosition;
         OnStartDragging();
@@ -42,17 +44,24 @@ public abstract class DragAndDrop : MonoBehaviour
 
     public void OnPointerUp()
     {
-        snap = false;
-
-        rectTransform.position = originalPosition;
-
-        if (receptor != null)
+        if (snap)
         {
-            receptor.OnDroppedInReceptor();
-        }
+            BeforeDrop();
 
-        OnDroppedSpecificBehaviour();
+            snap = false;
+
+            rectTransform.position = originalPosition;
+
+            if (receptor != null)
+            {
+                receptor.OnDroppedInReceptor();
+            }
+
+            OnDroppedSpecificBehaviour();
+        }
     }
+
+    protected abstract void BeforeDrop();
 
     protected abstract void OnDroppedSpecificBehaviour();
 

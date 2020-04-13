@@ -12,9 +12,8 @@ public class TipsDragAndDrop : DragAndDrop
     [SerializeField]
     private Text text = null;
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
         StartCoroutine(MakeFontNormalInsistently());
     }
 
@@ -44,6 +43,10 @@ public class TipsDragAndDrop : DragAndDrop
     protected override void OnExitedAllReceptors()
     {
         text.fontStyle = FontStyle.Italic;
+    }
+
+    protected override void BeforeDrop()
+    {
     }
 
     protected override void OnDroppedSpecificBehaviour()

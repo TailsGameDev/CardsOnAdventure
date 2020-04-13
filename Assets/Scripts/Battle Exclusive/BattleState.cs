@@ -271,7 +271,7 @@ public class Reposition : BattleState
                     SwapCards();
                 }
             }
-            else
+            else if (oldSelectedCard != null && currentSelectedCard != null)
             {
                 if (!oldSelectedCard.Freezing && !currentSelectedCard.Freezing)
                 {

@@ -196,8 +196,9 @@ GameObject:
   - component: {fileID: 7363440258385738769}
   - component: {fileID: 6857300990166284083}
   - component: {fileID: 6184337125843854899}
-  - component: {fileID: 8084669244331487166}
+  - component: {fileID: 7827566746762681424}
   - component: {fileID: 4989253379113774597}
+  - component: {fileID: 8084669244331487166}
   m_Layer: 5
   m_Name: Tooltip Of How to Use This System
   m_TagString: Untagged
@@ -241,41 +242,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 4172432685806495869}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3bde4759ccbefc643be4af79aad78741, type: 3}
+  m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   title: '?'
   tipData:
-  - message: Drag and Drop The Question Mark (?) to any card and you will see the
-      art, the status and it's skill description.
+  - message: Drag and Drop the '?' to cards and you will see their beaultiful art,
+      and read the skill text.
     background: {fileID: 0}
     height: 0
---- !u!61 &8084669244331487166
-BoxCollider2D:
+  popUpOpener: {fileID: 7827566746762681424}
+--- !u!114 &7827566746762681424
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4172432685806495869}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 61, y: 100}
-  m_EdgeRadius: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6d4383a485a1c4fb534e6cca6f14d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4989253379113774597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,6 +296,32 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: '?'
+--- !u!61 &8084669244331487166
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4172432685806495869}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 61, y: 100}
+  m_EdgeRadius: 0
 --- !u!1 &5081174183955199628
 GameObject:
   m_ObjectHideFlags: 0
