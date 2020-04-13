@@ -63,8 +63,9 @@ public class CardsHolder : IndexHolder
         cards[index] = card;
         cardRect.rotation = transform.rotation;
 
-        ChildMaker.AdoptAndSmoothlyMoveToParent(cardPositions[index].transform, card.GetComponent<RectTransform>(), repositionAnimationDurationInSeconds);
-        
+        // ChildMaker.AdoptAndSmoothlyMoveToParent(cardPositions[index].transform, card.GetComponent<RectTransform>(), repositionAnimationDurationInSeconds);
+        ChildMaker.AdoptAndTeleport(cardPositions[index].transform, card.GetComponent<RectTransform>());
+
         cardRect.localScale = new Vector3(1,1,1);
         Rect slotRect = cardPositions[index].GetComponent<RectTransform>().rect;
         cardRect.sizeDelta = new Vector2(slotRect.width, slotRect.height);

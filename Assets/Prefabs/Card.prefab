@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28fa55ecfdb1ec438283222b4d04f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  classe: 0
+  classInfo: {fileID: 0}
   attackPower: 3
   vitality: 2
   vitalityText: {fileID: 5814885173313731886}
@@ -155,6 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: 
   tipData: []
+  popUpOpener: {fileID: 0}
   cardToPullData: {fileID: 439867028889674654}
 --- !u!114 &5535211136222558472
 MonoBehaviour:
