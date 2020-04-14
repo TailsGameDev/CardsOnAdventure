@@ -170,7 +170,7 @@ public class DeckPrototypeFactory : MonoBehaviour
 
         public abstract Card[] GetDeck();
 
-        protected void InitializeDeck()
+        protected void CreateEmptyDeckWithProperSize()
         {
             if (size == NOT_A_SIZE)
             {
@@ -252,7 +252,7 @@ public class DeckPrototypeFactory : MonoBehaviour
 
         public override Card[] GetDeck()
         {
-            InitializeDeck();
+            CreateEmptyDeckWithProperSize();
 
             Card[] prototypes = battleSceneDeckFactory.allCardPrototypes;
 
@@ -273,7 +273,7 @@ public class DeckPrototypeFactory : MonoBehaviour
 
         public override Card[] GetDeck()
         {
-            InitializeDeck();
+            CreateEmptyDeckWithProperSize();
 
             Card[] notRandomPartPrototypes = ClassInfo.GetCardsOfClass(classe);
 

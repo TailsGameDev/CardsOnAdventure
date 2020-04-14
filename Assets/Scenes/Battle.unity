@@ -342,6 +342,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnPlayerHandSlotClicked
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 3
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &16707694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -707,6 +722,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnEnemyBattlefieldSlotClicked
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!61 &90110535
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1058,7 +1088,6 @@ MonoBehaviour:
   - {fileID: 448766931}
   - {fileID: 683434969}
   - {fileID: 245434491}
-  repositionAnimationDurationInSeconds: 0.5
 --- !u!114 &227648555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1267,6 +1296,21 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1612099943}
           m_MethodName: OnPlayerBattlefieldSlotEndDrag
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 3
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnPlayerBattlefieldSlotClicked
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1927,7 +1971,6 @@ MonoBehaviour:
   - {fileID: 2070784434}
   - {fileID: 440423082}
   - {fileID: 16707690}
-  repositionAnimationDurationInSeconds: 0.15
 --- !u!114 &416688465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2062,6 +2105,21 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1612099943}
           m_MethodName: OnPlayerHandSlotEndDrag
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnPlayerHandSlotClicked
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2223,6 +2281,21 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1612099943}
           m_MethodName: OnPlayerBattlefieldSlotEndDrag
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnPlayerBattlefieldSlotClicked
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2634,7 +2707,7 @@ PrefabInstance:
     - target: {fileID: 4687705843386997442, guid: 17369afb06db80246b6cadc7bf09618e,
         type: 3}
       propertyPath: defaultDeckSize
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 9101949744829781060, guid: 17369afb06db80246b6cadc7bf09618e,
         type: 3}
@@ -2854,6 +2927,21 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1612099943}
           m_MethodName: OnPlayerBattlefieldSlotEndDrag
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnPlayerBattlefieldSlotClicked
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4183,6 +4271,21 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1612099943}
           m_MethodName: OnPlayerHandSlotEndDrag
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnPlayerHandSlotClicked
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -5832,6 +5935,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnEnemyBattlefieldSlotClicked
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!61 &1446386762
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6902,7 +7020,6 @@ MonoBehaviour:
   - {fileID: 1913391078}
   - {fileID: 1456297024}
   - {fileID: 249394380}
-  repositionAnimationDurationInSeconds: 0.15
 --- !u!114 &1718507083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7368,6 +7485,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnEnemyBattlefieldSlotClicked
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!61 &1893848978
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7505,7 +7637,6 @@ MonoBehaviour:
   - {fileID: 1893848974}
   - {fileID: 1446386758}
   - {fileID: 1906517696}
-  repositionAnimationDurationInSeconds: 0.5
 --- !u!114 &1898511387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7641,6 +7772,21 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1612099943}
           m_MethodName: OnPlayerBattlefieldSlotEndDrag
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnPlayerBattlefieldSlotClicked
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -7875,6 +8021,21 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1612099943}
           m_MethodName: OnEnemyBattlefieldSlotEndDrag
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 3
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnEnemyBattlefieldSlotClicked
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -8255,6 +8416,21 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: 1612099943}
           m_MethodName: OnPlayerHandSlotEndDrag
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnPlayerHandSlotClicked
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

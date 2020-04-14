@@ -15,11 +15,12 @@ public class ClassInfo : MonoBehaviour
     [SerializeField]
     private Color color = Color.white;
 
-    [SerializeField]
     private List<Card> cards = new List<Card>();
 
     private int vitalityBonus = 0;
     private int attackPowerBonus = 0;
+
+    private bool registersEnabled = true;
 
     public Classes Classe { get => classe; }
     public string ColorHexCode { get => colorHexCode; }
@@ -35,10 +36,15 @@ public class ClassInfo : MonoBehaviour
         }
     }
 
-    // That must be called by cards during Awake
-    public void registerCardInClass(Card card)
+    private void Start()
     {
-        if ( ! cards.Contains(card) )
+        registersEnabled = false;
+    }
+
+    // That must be called by cards during Awake
+    public void TryToRegisterCardInClass(Card card)
+    {
+        if ( registersEnabled && ! cards.Contains(card) )
         {
             cards.Add(card);
         }
@@ -51,6 +57,14 @@ public class ClassInfo : MonoBehaviour
 
     public static Card[] GetCardsOfClass(Classes classe)
     {
+        if (classesInfo[classe].cards == null)
+        {
+            Debug.LogError("cards of class is null");
+        }
+        else if (classesInfo[classe].cards.Count == 0)
+        {
+            Debug.LogError("cards count of class is zero");
+        }
         return classesInfo[classe].cards.ToArray();
     }
 

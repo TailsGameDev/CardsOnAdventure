@@ -49,5 +49,8 @@ public class Shakeable : MonoBehaviour
             }
             yield return null;
         }
+        // Quick solving bug of cards staying in the wrong place
+        yield return null;
+        transform.position = points[0];
     }
 }

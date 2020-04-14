@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Numerics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -96,7 +97,7 @@ public class Card : SkillsMediatorUser
 
     private void Awake()
     {
-        classInfo.registerCardInClass(this);
+        classInfo.TryToRegisterCardInClass(this);
 
         attackPowerText.text = AttackPower.ToString();
         
@@ -162,7 +163,7 @@ public class Card : SkillsMediatorUser
 
         damageTextTransform.SetParent(UIBattle.parentOfDynamicUIThatMustAppear, false);
         damageTextTransform.position = DamageTextPrototype.transform.position;
-        damageTextTransform.Rotate(new Vector3(0, 0, 90));
+        damageTextTransform.Rotate(new UnityEngine.Vector3(0, 0, 90));
 
         damageTextTransform.GetComponent<Text>().text = damage.ToString();
 
@@ -320,22 +321,22 @@ public class Card : SkillsMediatorUser
 
     public void ShowDefenseVFX(float attackerYPosition)
     {
-        Vector3 forwards = new Vector3(0, 0, -transform.position.y);
-        Vector3 upwards = new Vector3(0, 0, -1);
-        Quaternion lookRotation = Quaternion.LookRotation(forwards, upwards);
-        GameObject vfx = Instantiate(skills.DefenseVFX, transform.position, Quaternion.identity);
+        UnityEngine.Vector3 forwards = new UnityEngine.Vector3(0, 0, -transform.position.y);
+        UnityEngine.Vector3 upwards = new UnityEngine.Vector3(0, 0, -1);
+        UnityEngine.Quaternion lookRotation = UnityEngine.Quaternion.LookRotation(forwards, upwards);
+        GameObject vfx = Instantiate(skills.DefenseVFX, transform.position, UnityEngine.Quaternion.identity);
         vfx.GetComponent<RectTransform>().SetParent(transform, false);
-        vfx.GetComponent<RectTransform>().localPosition = Vector3.zero;
+        vfx.GetComponent<RectTransform>().localPosition = UnityEngine.Vector3.zero;
 
         float y = attackerYPosition - transform.position.y;
 
         if (y > 0)
         {
-            vfx.transform.eulerAngles = new Vector3(0, 0, 0);
+            vfx.transform.eulerAngles = new UnityEngine.Vector3(0, 0, 0);
         }
         else
         {
-            vfx.transform.eulerAngles = new Vector3(0, 0, 180);
+            vfx.transform.eulerAngles = new UnityEngine.Vector3(0, 0, 180);
         }
     }
 
@@ -343,9 +344,9 @@ public class Card : SkillsMediatorUser
     {
         cardImage.sprite = horizontalSprite;
 
-        attackPowerText.transform.Rotate(new Vector3(0,0,-90));
-        vitalityText.transform.Rotate(new Vector3(0, 0, -90));
-        skillText.transform.parent.Rotate(new Vector3(0, 0, -90));
+        attackPowerText.transform.Rotate(new UnityEngine.Vector3(0,0,-90));
+        vitalityText.transform.Rotate(new UnityEngine.Vector3(0, 0, -90));
+        skillText.transform.parent.Rotate(new UnityEngine.Vector3(0, 0, -90));
 
         vitalityText.transform.parent.position = vitalityHorizontalSpot.position;
         attackPowerText.transform.parent.position = attackPowerHorizontalSpot.position;
@@ -363,6 +364,7 @@ public class Card : SkillsMediatorUser
         freezing = true;
         this.freezingEffect = freezingEffect;
         ChildMaker.AdoptAndTeleport(transform, freezingEffect.GetComponent<RectTransform>());
+        freezingEffect.transform.localScale = UnityEngine.Vector3.one;
     }
 
     public void RemoveFreezing()

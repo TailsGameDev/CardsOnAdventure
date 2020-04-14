@@ -32,7 +32,8 @@ public class UIBattle : PopUpOpener
     // Enemy Battlefield
     public void OnEnemyBattlefieldSlotBeginDrag(int index)
     {
-        OnAnyCardsHolderBeginDrag(enemyBattlefield, index);
+        // Currently there is nothing to done by dragging the enemy cards
+        // OnAnyCardsHolderBeginDrag(enemyBattlefield, index);
     }
 
     public void OnEnemyBattlefieldSlotEndDrag(int index)
@@ -74,6 +75,7 @@ public class UIBattle : PopUpOpener
     {
         if (cardsHolder.ContainsCardInIndex(index))
         {
+            ClearSelections();
             cardsHolder.SetSelectedIndex(index);
             cardBeingDragged = cardsHolder.GetReferenceToCardAt(index);
             cardBeingDragged.cardDragAndDrop.StartDragging();
@@ -102,8 +104,13 @@ public class UIBattle : PopUpOpener
         // Also, DelayedDrop should be doing  ChildMaker.AdoptAndSmoothlyMoveToParent().
         yield return null;
 
+        ClearSelections();
+    }
+
+    private void ClearSelections()
+    {
         cardBeingDragged = null;
-        
+
         playerHand.ClearSelection();
         playerBattlefield.ClearSelection();
         enemyBattlefield.ClearSelection();
