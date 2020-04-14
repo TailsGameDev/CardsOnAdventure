@@ -9,8 +9,9 @@ public class CardsHolder : IndexHolder
 
     protected Card[] cards = new Card[4];
 
-    [SerializeField]
-    private float repositionAnimationDurationInSeconds = 0.5f;
+    // to activate animation, uncomment this field and toggle the ChildMaker algorythm inside 'PutCardInIndex' method
+    // [SerializeField]
+    // private float repositionAnimationDurationInSeconds = 0.5f;
 
     #region Collection Default Opperations
     public void PutCardInIndex(Card card, int index)

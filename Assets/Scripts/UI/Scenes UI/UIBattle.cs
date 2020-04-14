@@ -20,16 +20,14 @@ public class UIBattle : PopUpOpener
     private Hand playerHand = null;
 
     private Card cardBeingDragged;
-    private bool isDragging;
 
     [SerializeField]
-    private float delayToComeBackFromEnemyBattlefield;
+    private float delayToComeBackFromEnemyBattlefield = 0.5f;
 
     private void Awake()
     {
         parentOfDynamicUIThatMustAppear = UIDamageTextParent;
     }
-
 
     // Enemy Battlefield
     public void OnEnemyBattlefieldSlotBeginDrag(int index)
@@ -86,11 +84,11 @@ public class UIBattle : PopUpOpener
     {
         if (inputEnabled)
         {
-            StartCoroutine(EndDrag());
+            StartCoroutine(EndDrag(cardsHolder, index));
         }
     }
 
-    IEnumerator EndDrag()
+    IEnumerator EndDrag(CardsHolder cardsHolder, int index)
     {
         if (cardBeingDragged != null)
         {
@@ -105,6 +103,7 @@ public class UIBattle : PopUpOpener
         yield return null;
 
         cardBeingDragged = null;
+        
         playerHand.ClearSelection();
         playerBattlefield.ClearSelection();
         enemyBattlefield.ClearSelection();
@@ -120,23 +119,41 @@ public class UIBattle : PopUpOpener
 
     IEnumerator DelayedDrop(CardsHolder cardsHolder, int index)
     {
+        // In this frame, card is being dropped by the EndDrag coroutine.
         yield return null;
+        
         cardsHolder.SetSelectedIndex(index);
-        if (cardsHolder == enemyBattlefield)
-        {
-            yield return null;
-            ChildMaker.AdoptAndSmoothlyMoveToParent
-                (
-                    cardBeingDragged.transform.parent,
-                    cardBeingDragged.GetComponent<RectTransform>(),
-                    delayToComeBackFromEnemyBattlefield
-                );
-        }
+
+        // Wait for battleFSM to od it's job.
+
+        yield return null;
+
+        ChildMaker.AdoptAndSmoothlyMoveToParent
+            (
+                cardBeingDragged.transform.parent,
+                cardBeingDragged.GetComponent<RectTransform>(),
+                delayToComeBackFromEnemyBattlefield
+            );
+    }
+    
+    public void OnPlayerHandSlotClicked(int index)
+    {
+        OnSlotClicked(playerHand, index);
     }
 
-    public void OnEndDrag()
+    public void OnEnemyBattlefieldSlotClicked(int index)
     {
-        
+        OnSlotClicked(enemyBattlefield, index);
+    }
+
+    public void OnPlayerBattlefieldSlotClicked(int index)
+    {
+        OnSlotClicked(playerBattlefield, index);
+    }
+
+    public void OnSlotClicked(CardsHolder cardsHolder, int index)
+    {
+        cardsHolder.SetSelectedIndex(index);
     }
 
     public void OnPauseBtnClicked()

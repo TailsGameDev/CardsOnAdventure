@@ -67,10 +67,10 @@ public class Card : SkillsMediatorUser
     private Shakeable shakeable = null;
 
     [SerializeField]
-    private float fadingDurationOnDeath;
+    private float fadingDurationOnDeath = 0.5f;
 
     [SerializeField]
-    private Color normalVitalityColor;
+    private Color normalVitalityColor = Color.green;
     private Color overhealedColor = Color.yellow;
 
     #endregion

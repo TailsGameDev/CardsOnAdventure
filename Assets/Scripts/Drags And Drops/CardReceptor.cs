@@ -6,7 +6,7 @@ using UnityEngine;
 public class CardReceptor : DragAndDropReceptor
 {
     [SerializeField]
-    private int index;
+    private int index = -1;
 
     [SerializeField]
     private CardsHolder cardsHolder = null;
