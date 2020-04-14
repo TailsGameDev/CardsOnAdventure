@@ -51,6 +51,7 @@ public class TipsDragAndDrop : DragAndDrop
 
     protected override void OnDroppedSpecificBehaviour()
     {
+        base.ReturnToOriginalPosition();
         StartCoroutine(MakeFontNormalInsistently());
     }
 }

@@ -58,16 +58,6 @@ public class Battlefield : CardsHolder
         return GetReferenceToCardAt(GetSelectedIndex());
     }
 
-    public Card GetReferenceToCardAt(int index)
-    {
-        if (cards[index] == null)
-        {
-            Debug.LogError("[Battlefield] trying to get reference to a null card.", this);
-        }
-
-        return cards[index];
-    }
-
     public Card GetReferenceToCardAtOrGetNull(int index)
     {
         return cards[index];

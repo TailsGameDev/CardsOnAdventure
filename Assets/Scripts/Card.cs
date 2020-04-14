@@ -15,7 +15,9 @@ public class Card : SkillsMediatorUser
     private static int deathCountIndex = 0;
 
     [SerializeField]
-    private ClassInfo classInfo = null;
+    public ClassInfo classInfo = null;
+
+    public CardDragAndDrop cardDragAndDrop = null;
 
     [SerializeField]
     private int attackPower = 99;

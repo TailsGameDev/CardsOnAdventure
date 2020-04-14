@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UIBattle : PopUpOpener
 {
-    public static bool clicksEnabled = true;
+    public static bool inputEnabled = true;
 
     [SerializeField]
     private RectTransform UIDamageTextParent = null;
@@ -19,32 +19,124 @@ public class UIBattle : PopUpOpener
     [SerializeField]
     private Hand playerHand = null;
 
+    private Card cardBeingDragged;
+    private bool isDragging;
+
+    [SerializeField]
+    private float delayToComeBackFromEnemyBattlefield;
+
     private void Awake()
     {
         parentOfDynamicUIThatMustAppear = UIDamageTextParent;
     }
 
-    public void OnEnemyBattleFieldSlotClicked(int index)
+
+    // Enemy Battlefield
+    public void OnEnemyBattlefieldSlotBeginDrag(int index)
     {
-        WhenAnyBattleFieldIsClicked(enemyBattlefield, index);
+        OnAnyCardsHolderBeginDrag(enemyBattlefield, index);
     }
 
-    public void OnPlayerBattleFieldSlotClicked(int index)
+    public void OnEnemyBattlefieldSlotEndDrag(int index)
     {
-        WhenAnyBattleFieldIsClicked(playerBattlefield, index);
+        OnAnyCardsHolderEndDrag(enemyBattlefield, index);
     }
 
-    void WhenAnyBattleFieldIsClicked(Battlefield battlefield, int index)
+    // Player Battlefield
+    public void OnPlayerBattlefieldSlotBeginDrag(int index)
     {
-        if (clicksEnabled)
+        OnAnyCardsHolderBeginDrag(playerBattlefield, index);
+    }
+
+    public void OnPlayerBattlefieldSlotEndDrag(int index)
+    {
+        OnAnyCardsHolderEndDrag(playerBattlefield, index);
+    }
+
+    // Player Hand
+    public void OnPlayerHandSlotBeginDrag(int index)
+    {
+        OnAnyCardsHolderBeginDrag(playerHand, index);
+    }
+
+    public void OnPlayerHandSlotEndDrag(int index)
+    {
+        OnAnyCardsHolderEndDrag(playerHand, index);
+    }
+
+    private void OnAnyCardsHolderBeginDrag(CardsHolder cardsHolder, int index)
+    {
+        if (inputEnabled)
         {
-            battlefield.SetSelectedIndex(index);
+            Drag(cardsHolder, index);
         }
     }
 
-    public void OnPlayerHandSlotClicked(int index)
+    private void Drag(CardsHolder cardsHolder, int index)
     {
-        playerHand.SetSelectedIndex(index);
+        if (cardsHolder.ContainsCardInIndex(index))
+        {
+            cardsHolder.SetSelectedIndex(index);
+            cardBeingDragged = cardsHolder.GetReferenceToCardAt(index);
+            cardBeingDragged.cardDragAndDrop.StartDragging();
+        }
+    }
+
+    private void OnAnyCardsHolderEndDrag(CardsHolder cardsHolder, int index)
+    {
+        if (inputEnabled)
+        {
+            StartCoroutine(EndDrag());
+        }
+    }
+
+    IEnumerator EndDrag()
+    {
+        if (cardBeingDragged != null)
+        {
+            cardBeingDragged.cardDragAndDrop.Drop();
+        }
+
+        yield return null;
+        // in this frame, delayed drop should be seting selectedIndex of cardsHolder
+        yield return null;
+        // here, the battleFSM should be doing it's stuff with the selectedIndex.
+        // Also, DelayedDrop should be doing  ChildMaker.AdoptAndSmoothlyMoveToParent().
+        yield return null;
+
+        cardBeingDragged = null;
+        playerHand.ClearSelection();
+        playerBattlefield.ClearSelection();
+        enemyBattlefield.ClearSelection();
+    }
+
+    public void OnAnyCardsHolderDrop(CardsHolder cardsHolder, int index)
+    {
+        if (inputEnabled)
+        {
+            StartCoroutine(DelayedDrop(cardsHolder, index));
+        }
+    }
+
+    IEnumerator DelayedDrop(CardsHolder cardsHolder, int index)
+    {
+        yield return null;
+        cardsHolder.SetSelectedIndex(index);
+        if (cardsHolder == enemyBattlefield)
+        {
+            yield return null;
+            ChildMaker.AdoptAndSmoothlyMoveToParent
+                (
+                    cardBeingDragged.transform.parent,
+                    cardBeingDragged.GetComponent<RectTransform>(),
+                    delayToComeBackFromEnemyBattlefield
+                );
+        }
+    }
+
+    public void OnEndDrag()
+    {
+        
     }
 
     public void OnPauseBtnClicked()

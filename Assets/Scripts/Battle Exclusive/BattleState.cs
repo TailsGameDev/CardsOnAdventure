@@ -237,6 +237,7 @@ public class Reposition : BattleState
 
         if (currentIndex == -1)
         {
+            ClearSelection();
             return;
         }
 

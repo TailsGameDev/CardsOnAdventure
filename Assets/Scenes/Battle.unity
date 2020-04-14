@@ -235,6 +235,8 @@ GameObject:
   - component: {fileID: 16707692}
   - component: {fileID: 16707691}
   - component: {fileID: 16707693}
+  - component: {fileID: 16707694}
+  - component: {fileID: 16707695}
   m_Layer: 5
   m_Name: Card Slot (3)
   m_TagString: Untagged
@@ -310,12 +312,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 2
+  - eventID: 13
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1612099943}
-          m_MethodName: OnPlayerHandSlotClicked
+          m_MethodName: OnPlayerHandSlotBeginDrag
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -325,6 +327,62 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnPlayerHandSlotEndDrag
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 3
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &16707694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16707689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05b7c4ef32996c4382b07a055d1e420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 3
+  cardsHolder: {fileID: 416688464}
+  uiBattle: {fileID: 1612099943}
+--- !u!61 &16707695
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 16707689}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 140, y: 210}
+  m_EdgeRadius: 0
 --- !u!1 &65439641
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,6 +599,8 @@ GameObject:
   - component: {fileID: 90110533}
   - component: {fileID: 90110532}
   - component: {fileID: 90110534}
+  - component: {fileID: 90110536}
+  - component: {fileID: 90110535}
   m_Layer: 5
   m_Name: Card Slot
   m_TagString: Untagged
@@ -617,12 +677,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 2
+  - eventID: 13
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1612099943}
-          m_MethodName: OnEnemyBattleFieldSlotClicked
+          m_MethodName: OnEnemyBattlefieldSlotBeginDrag
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -632,6 +692,62 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnEnemyBattlefieldSlotEndDrag
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!61 &90110535
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90110530}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 161, y: 241.5}
+  m_EdgeRadius: 0
+--- !u!114 &90110536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 90110530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05b7c4ef32996c4382b07a055d1e420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  cardsHolder: {fileID: 1898511386}
+  uiBattle: {fileID: 1612099943}
 --- !u!1 &146238316
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,6 +1168,8 @@ GameObject:
   - component: {fileID: 245434493}
   - component: {fileID: 245434492}
   - component: {fileID: 245434494}
+  - component: {fileID: 245434495}
+  - component: {fileID: 245434496}
   m_Layer: 5
   m_Name: Card Slot 3
   m_TagString: Untagged
@@ -1128,12 +1246,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 2
+  - eventID: 13
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1612099943}
-          m_MethodName: OnPlayerBattleFieldSlotClicked
+          m_MethodName: OnPlayerBattlefieldSlotBeginDrag
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1143,6 +1261,62 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnPlayerBattlefieldSlotEndDrag
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 3
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &245434495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245434490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05b7c4ef32996c4382b07a055d1e420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 3
+  cardsHolder: {fileID: 227648554}
+  uiBattle: {fileID: 1612099943}
+--- !u!61 &245434496
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245434490}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 161, y: 241.5}
+  m_EdgeRadius: 0
 --- !u!1 &249394379
 GameObject:
   m_ObjectHideFlags: 0
@@ -1790,6 +1964,8 @@ GameObject:
   - component: {fileID: 440423084}
   - component: {fileID: 440423083}
   - component: {fileID: 440423085}
+  - component: {fileID: 440423086}
+  - component: {fileID: 440423087}
   m_Layer: 5
   m_Name: Card Slot (2)
   m_TagString: Untagged
@@ -1865,12 +2041,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 2
+  - eventID: 13
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1612099943}
-          m_MethodName: OnPlayerHandSlotClicked
+          m_MethodName: OnPlayerHandSlotBeginDrag
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1880,6 +2056,62 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnPlayerHandSlotEndDrag
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &440423086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440423081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05b7c4ef32996c4382b07a055d1e420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 2
+  cardsHolder: {fileID: 416688464}
+  uiBattle: {fileID: 1612099943}
+--- !u!61 &440423087
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440423081}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 140, y: 210}
+  m_EdgeRadius: 0
 --- !u!1 &448766930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1892,6 +2124,8 @@ GameObject:
   - component: {fileID: 448766933}
   - component: {fileID: 448766932}
   - component: {fileID: 448766934}
+  - component: {fileID: 448766935}
+  - component: {fileID: 448766936}
   m_Layer: 5
   m_Name: Card Slot 1
   m_TagString: Untagged
@@ -1968,12 +2202,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 2
+  - eventID: 13
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1612099943}
-          m_MethodName: OnPlayerBattleFieldSlotClicked
+          m_MethodName: OnPlayerBattlefieldSlotBeginDrag
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1983,6 +2217,62 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnPlayerBattlefieldSlotEndDrag
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &448766935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448766930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05b7c4ef32996c4382b07a055d1e420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 1
+  cardsHolder: {fileID: 227648554}
+  uiBattle: {fileID: 1612099943}
+--- !u!61 &448766936
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 448766930}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 161, y: 241.5}
+  m_EdgeRadius: 0
 --- !u!114 &506357318 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
@@ -2465,6 +2755,8 @@ GameObject:
   - component: {fileID: 683434971}
   - component: {fileID: 683434970}
   - component: {fileID: 683434972}
+  - component: {fileID: 683434973}
+  - component: {fileID: 683434974}
   m_Layer: 5
   m_Name: Card Slot 2
   m_TagString: Untagged
@@ -2541,12 +2833,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 2
+  - eventID: 13
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1612099943}
-          m_MethodName: OnPlayerBattleFieldSlotClicked
+          m_MethodName: OnPlayerBattlefieldSlotBeginDrag
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2556,6 +2848,62 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnPlayerBattlefieldSlotEndDrag
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &683434973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683434968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05b7c4ef32996c4382b07a055d1e420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 2
+  cardsHolder: {fileID: 227648554}
+  uiBattle: {fileID: 1612099943}
+--- !u!61 &683434974
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683434968}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 161, y: 241.5}
+  m_EdgeRadius: 0
 --- !u!1 &688233716
 GameObject:
   m_ObjectHideFlags: 0
@@ -3737,6 +4085,8 @@ GameObject:
   - component: {fileID: 970927069}
   - component: {fileID: 970927068}
   - component: {fileID: 970927070}
+  - component: {fileID: 970927071}
+  - component: {fileID: 970927072}
   m_Layer: 5
   m_Name: Card Slot
   m_TagString: Untagged
@@ -3812,12 +4162,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 2
+  - eventID: 13
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1612099943}
-          m_MethodName: OnPlayerHandSlotClicked
+          m_MethodName: OnPlayerHandSlotBeginDrag
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3827,6 +4177,62 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnPlayerHandSlotEndDrag
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &970927071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970927066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05b7c4ef32996c4382b07a055d1e420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  cardsHolder: {fileID: 416688464}
+  uiBattle: {fileID: 1612099943}
+--- !u!61 &970927072
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970927066}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 140, y: 210}
+  m_EdgeRadius: 0
 --- !u!1 &981094751
 GameObject:
   m_ObjectHideFlags: 0
@@ -5318,6 +5724,8 @@ GameObject:
   - component: {fileID: 1446386760}
   - component: {fileID: 1446386759}
   - component: {fileID: 1446386761}
+  - component: {fileID: 1446386763}
+  - component: {fileID: 1446386762}
   m_Layer: 5
   m_Name: Card Slot (2)
   m_TagString: Untagged
@@ -5394,12 +5802,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 2
+  - eventID: 13
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1612099943}
-          m_MethodName: OnEnemyBattleFieldSlotClicked
+          m_MethodName: OnEnemyBattlefieldSlotBeginDrag
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -5409,6 +5817,62 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnEnemyBattlefieldSlotEndDrag
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!61 &1446386762
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446386757}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 161, y: 241.5}
+  m_EdgeRadius: 0
+--- !u!114 &1446386763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446386757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05b7c4ef32996c4382b07a055d1e420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 2
+  cardsHolder: {fileID: 1898511386}
+  uiBattle: {fileID: 1612099943}
 --- !u!1 &1456297023
 GameObject:
   m_ObjectHideFlags: 0
@@ -6199,6 +6663,7 @@ MonoBehaviour:
   enemyBattlefield: {fileID: 1898511386}
   playerBattlefield: {fileID: 227648554}
   playerHand: {fileID: 416688464}
+  delayToComeBackFromEnemyBattlefield: 0.5
 --- !u!1 &1652252607
 GameObject:
   m_ObjectHideFlags: 0
@@ -6795,6 +7260,8 @@ GameObject:
   - component: {fileID: 1893848976}
   - component: {fileID: 1893848975}
   - component: {fileID: 1893848977}
+  - component: {fileID: 1893848979}
+  - component: {fileID: 1893848978}
   m_Layer: 5
   m_Name: Card Slot (1)
   m_TagString: Untagged
@@ -6871,12 +7338,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 2
+  - eventID: 13
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1612099943}
-          m_MethodName: OnEnemyBattleFieldSlotClicked
+          m_MethodName: OnEnemyBattlefieldSlotBeginDrag
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -6886,6 +7353,62 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnEnemyBattlefieldSlotEndDrag
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!61 &1893848978
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893848973}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 161, y: 241.5}
+  m_EdgeRadius: 0
+--- !u!114 &1893848979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893848973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05b7c4ef32996c4382b07a055d1e420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 1
+  cardsHolder: {fileID: 1898511386}
+  uiBattle: {fileID: 1612099943}
 --- !u!1 &1898511382
 GameObject:
   m_ObjectHideFlags: 0
@@ -7019,6 +7542,8 @@ GameObject:
   - component: {fileID: 1900901058}
   - component: {fileID: 1900901057}
   - component: {fileID: 1900901059}
+  - component: {fileID: 1900901060}
+  - component: {fileID: 1900901061}
   m_Layer: 5
   m_Name: Card Slot
   m_TagString: Untagged
@@ -7095,12 +7620,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 2
+  - eventID: 13
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1612099943}
-          m_MethodName: OnPlayerBattleFieldSlotClicked
+          m_MethodName: OnPlayerBattlefieldSlotBeginDrag
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -7110,6 +7635,62 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnPlayerBattlefieldSlotEndDrag
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1900901060
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900901055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05b7c4ef32996c4382b07a055d1e420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 0
+  cardsHolder: {fileID: 227648554}
+  uiBattle: {fileID: 1612099943}
+--- !u!61 &1900901061
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900901055}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 161, y: 241.5}
+  m_EdgeRadius: 0
 --- !u!1 &1901038864
 GameObject:
   m_ObjectHideFlags: 0
@@ -7195,6 +7776,8 @@ GameObject:
   - component: {fileID: 1906517698}
   - component: {fileID: 1906517697}
   - component: {fileID: 1906517699}
+  - component: {fileID: 1906517701}
+  - component: {fileID: 1906517700}
   m_Layer: 5
   m_Name: Card Slot (3)
   m_TagString: Untagged
@@ -7271,12 +7854,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 2
+  - eventID: 13
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1612099943}
-          m_MethodName: OnEnemyBattleFieldSlotClicked
+          m_MethodName: OnEnemyBattlefieldSlotBeginDrag
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -7286,6 +7869,62 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnEnemyBattlefieldSlotEndDrag
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 3
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!61 &1906517700
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906517695}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 161, y: 241.5}
+  m_EdgeRadius: 0
+--- !u!114 &1906517701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906517695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05b7c4ef32996c4382b07a055d1e420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 3
+  cardsHolder: {fileID: 1898511386}
+  uiBattle: {fileID: 1612099943}
 --- !u!1 &1913391077
 GameObject:
   m_ObjectHideFlags: 0
@@ -7518,6 +8157,8 @@ GameObject:
   - component: {fileID: 2070784436}
   - component: {fileID: 2070784435}
   - component: {fileID: 2070784437}
+  - component: {fileID: 2070784438}
+  - component: {fileID: 2070784439}
   m_Layer: 5
   m_Name: Card Slot (1)
   m_TagString: Untagged
@@ -7593,12 +8234,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Delegates:
-  - eventID: 2
+  - eventID: 13
     callback:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1612099943}
-          m_MethodName: OnPlayerHandSlotClicked
+          m_MethodName: OnPlayerHandSlotBeginDrag
           m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -7608,6 +8249,62 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 14
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1612099943}
+          m_MethodName: OnPlayerHandSlotEndDrag
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &2070784438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070784433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f05b7c4ef32996c4382b07a055d1e420, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  index: 1
+  cardsHolder: {fileID: 416688464}
+  uiBattle: {fileID: 1612099943}
+--- !u!61 &2070784439
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070784433}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 140, y: 210}
+  m_EdgeRadius: 0
 --- !u!1 &2095424631
 GameObject:
   m_ObjectHideFlags: 0

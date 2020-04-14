@@ -17,6 +17,10 @@ public abstract class DragAndDrop : MonoBehaviour
 
     // Offset for the image to not teleport to the mouse on click
     private Vector3 offset;
+
+    private delegate void DoForEachValidOverlappingReceptor();
+
+    private DragAndDropReceptor maybeAReceptor;
     #endregion
 
     protected virtual void Update()
@@ -44,24 +48,37 @@ public abstract class DragAndDrop : MonoBehaviour
 
     public void OnPointerUp()
     {
+        Drop();
+    }
+
+    public void Drop()
+    {
         if (snap)
         {
             BeforeDrop();
 
             snap = false;
 
-            rectTransform.position = originalPosition;
-
-            if (receptor != null)
+            if (this.receptor != null)
             {
-                receptor.OnDroppedInReceptor();
+                this.receptor.OnDroppedInReceptor();
+            } else
+            {
+                ReturnToOriginalPosition();
             }
 
             OnDroppedSpecificBehaviour();
+
+            this.receptor = null;
         }
     }
 
     protected abstract void BeforeDrop();
+
+    public void ReturnToOriginalPosition()
+    {
+        rectTransform.position = originalPosition;
+    }
 
     protected abstract void OnDroppedSpecificBehaviour();
 
@@ -82,38 +99,84 @@ public abstract class DragAndDrop : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        // You can exit a tooltipHolder and is still above another. Therefore, this check is made.
-        if (ExitedAllRespectiveReceptors())
+        if ( ExitedAllValidReceptors() )
         {
             receptor = null;
             OnExitedAllReceptors();
+        } 
+        else
+        {
+            receptor = GetValidOverlappingReceptor();
         }
     }
 
-    private bool ExitedAllRespectiveReceptors()
+    private bool ExitedAllValidReceptors()
+    {
+        return new ExitedAllValidReceptorsVerifier(this).Verify();
+    }
+
+    protected abstract void OnExitedAllReceptors();
+
+    private DragAndDropReceptor GetValidOverlappingReceptor()
+    {
+        return new ValidOverlappingReceptorGetter(this).Get();
+    }
+
+    private class ExitedAllValidReceptorsVerifier
+    {
+        private DragAndDrop dragAndDrop;
+
+        private bool exitedAllRespectiveReceptors;
+
+        public ExitedAllValidReceptorsVerifier(DragAndDrop dragAndDrop)
+        {
+            this.dragAndDrop = dragAndDrop;
+        }
+
+        public bool Verify()
+        {
+            exitedAllRespectiveReceptors = true;
+
+            dragAndDrop.ForEachOverlappingValidReceptorDo(() => { exitedAllRespectiveReceptors = false; });
+
+            return exitedAllRespectiveReceptors;
+        }
+    }
+
+    private class ValidOverlappingReceptorGetter
+    {
+        private DragAndDrop dragAndDrop;
+
+        private DragAndDropReceptor validOverlappingReceptor;
+
+        public ValidOverlappingReceptorGetter(DragAndDrop dragAndDrop)
+        {
+            this.dragAndDrop = dragAndDrop;
+        }
+
+        public DragAndDropReceptor Get()
+        {
+            dragAndDrop.ForEachOverlappingValidReceptorDo( () => { validOverlappingReceptor = dragAndDrop.maybeAReceptor; } );
+
+            return validOverlappingReceptor;
+        }
+    }
+
+    private void ForEachOverlappingValidReceptorDo(DoForEachValidOverlappingReceptor doForEachValidReceptor)
     {
         // Get all colliders that overlap this object's collider.
         Collider2D[] colliders = new Collider2D[10];
         ContactFilter2D contactFilter = new ContactFilter2D();
         int colliderCount = GetComponent<Collider2D>().OverlapCollider(contactFilter.NoFilter(), colliders);
 
-        // Verify if one of them has a receptor component to this drag and drop
-        bool exitedAllRespectiveReceptors = true;
-
         for (int i = 0; i < colliderCount; i++)
         {
-            DragAndDropReceptor maybeAReceptor = colliders[i].GetComponent<DragAndDropReceptor>();
+            maybeAReceptor = colliders[i].GetComponent<DragAndDropReceptor>();
 
             if (maybeAReceptor != null && maybeAReceptor.GetDragAndDropReceptorType() == GetDragAndDropType())
             {
-                // It is a receptor for this 'DragAndDrop'
-                exitedAllRespectiveReceptors = false;
-                break;
+                doForEachValidReceptor();
             }
         }
-
-        return exitedAllRespectiveReceptors;
     }
-
-    protected abstract void OnExitedAllReceptors();
 }

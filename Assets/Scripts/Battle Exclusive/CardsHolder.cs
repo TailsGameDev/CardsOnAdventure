@@ -12,6 +12,32 @@ public class CardsHolder : IndexHolder
     [SerializeField]
     private float repositionAnimationDurationInSeconds = 0.5f;
 
+    #region Collection Default Opperations
+    public void PutCardInIndex(Card card, int index)
+    {
+        RectTransform cardRect = card.GetComponent<RectTransform>();
+
+        cards[index] = card;
+        cardRect.rotation = transform.rotation;
+
+        // ChildMaker.AdoptAndSmoothlyMoveToParent(cardPositions[index].transform, card.GetComponent<RectTransform>(), repositionAnimationDurationInSeconds);
+        ChildMaker.AdoptAndTeleport(cardPositions[index].transform, card.GetComponent<RectTransform>());
+
+        cardRect.localScale = new Vector3(1, 1, 1);
+        Rect slotRect = cardPositions[index].GetComponent<RectTransform>().rect;
+        cardRect.sizeDelta = new Vector2(slotRect.width, slotRect.height);
+    }
+
+    public Card GetReferenceToCardAt(int index)
+    {
+        if (cards[index] == null)
+        {
+            Debug.LogError("[Battlefield] trying to get reference to a null card.", this);
+        }
+
+        return cards[index];
+    }
+
     public Card RemoveCardFromSelectedIndex()
     {
         return RemoveCardOrGetNull(GetSelectedIndex());
@@ -22,6 +48,11 @@ public class CardsHolder : IndexHolder
         Card card = cards[index];
         cards[index] = null;
         return card;
+    }
+
+    public bool ContainsCardInIndex(int index)
+    {
+        return cards[index] != null;
     }
 
     public bool IsFull()
@@ -50,26 +81,7 @@ public class CardsHolder : IndexHolder
         }
         return empty;
     }
-
-    public bool ContainsCardInIndex(int index)
-    {
-        return cards[index] != null;
-    }
-
-    public void PutCardInIndex(Card card, int index)
-    {
-        RectTransform cardRect = card.GetComponent<RectTransform>();
-
-        cards[index] = card;
-        cardRect.rotation = transform.rotation;
-
-        // ChildMaker.AdoptAndSmoothlyMoveToParent(cardPositions[index].transform, card.GetComponent<RectTransform>(), repositionAnimationDurationInSeconds);
-        ChildMaker.AdoptAndTeleport(cardPositions[index].transform, card.GetComponent<RectTransform>());
-
-        cardRect.localScale = new Vector3(1,1,1);
-        Rect slotRect = cardPositions[index].GetComponent<RectTransform>().rect;
-        cardRect.sizeDelta = new Vector2(slotRect.width, slotRect.height);
-    }
+    #endregion
 
     public void SelectFirstOccupiedIndex()
     {

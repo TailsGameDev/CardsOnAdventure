@@ -11,9 +11,10 @@ public class CardReceptor : DragAndDropReceptor
     [SerializeField]
     private CardsHolder cardsHolder = null;
 
-    private Card cardAboveReceptor;
+    [SerializeField]
+    private UIBattle uiBattle = null;
 
-    public Card CardAboveReceptor { set => cardAboveReceptor = value; }
+    public int Index { get => index; }
 
     public override Type GetDragAndDropReceptorType()
     {
@@ -22,14 +23,6 @@ public class CardReceptor : DragAndDropReceptor
 
     public override void OnDroppedInReceptor()
     {
-        if (cardAboveReceptor != null)
-        {
-            // cardsHolder.PutCardInIndex(cardAboveReceptor, index);
-            cardsHolder.SetSelectedIndex(index);
-        }
-        else
-        {
-            Debug.LogError("[CardReceptor] cardAboveReceptor shouldn't be null!!", this);
-        }
+        uiBattle.OnAnyCardsHolderDrop(cardsHolder, index);
     }
 }

@@ -11,11 +11,13 @@ public class CardDragAndDrop : DragAndDrop
 
     private Transform originalParent;
 
+    private bool isDragging;
+
     protected override void Update()
     {
         base.Update();
         
-        if (snap)
+        if (isDragging)
         {
             transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         }
@@ -29,24 +31,26 @@ public class CardDragAndDrop : DragAndDrop
 
     protected override void OnStartDragging()
     {
+        isDragging = true;
+      
         originalParent = transform.parent;
 
-        transform.parent = UIBattle.parentOfDynamicUIThatMustAppear;
+        transform.SetParent(UIBattle.parentOfDynamicUIThatMustAppear);
     }
 
     protected override void BeforeDrop()
     {
-        transform.parent = originalParent;
+        transform.SetParent(originalParent);
         transform.localScale = Vector3.one;
     }
 
     protected override void OnDroppedSpecificBehaviour()
     {
+        isDragging = false;
     }
 
     protected override void OnEnteredAReceptor(DragAndDropReceptor receptor)
     {
-        ((CardReceptor)receptor).CardAboveReceptor = card;
     }
 
     protected override void OnExitedAllReceptors()

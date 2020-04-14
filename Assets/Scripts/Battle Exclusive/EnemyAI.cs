@@ -25,7 +25,7 @@ public class EnemyAI
 
     public void PlaceCard(Hand enemyHand, Battlefield enemyBattlefield)
     {
-        UIBattle.clicksEnabled = false;
+        UIBattle.inputEnabled = false;
 
         this.enemyHand = enemyHand;
         this.enemyBattlefield = enemyBattlefield;
@@ -138,7 +138,7 @@ public class EnemyAI
         } 
         else
         {
-            UIBattle.clicksEnabled = true;
+            UIBattle.inputEnabled = true;
         }
     }
 
@@ -156,7 +156,7 @@ public class EnemyAI
             }
         }
 
-        UIBattle.clicksEnabled = true;
+        UIBattle.inputEnabled = true;
     }
 
     private bool currentTargetIsBetterThanTheOneBefore(int indexBefore, int currentIndex, int attackPower, Battlefield obf)
