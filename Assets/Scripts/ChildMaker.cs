@@ -20,11 +20,14 @@ public class ChildMaker : MonoBehaviour
 
     public static void AdoptAndSmoothlyMoveToParent(Transform parent, RectTransform child, float totalTime)
     {
-        GameObject childMaker = new GameObject();
-        childMaker.AddComponent(typeof(ChildMaker));
-        ChildMaker maker = childMaker.GetComponent<ChildMaker>();
+        if (parent != null && child != null)
+        {
+            GameObject childMaker = new GameObject();
+            childMaker.AddComponent(typeof(ChildMaker));
+            ChildMaker maker = childMaker.GetComponent<ChildMaker>();
 
-        maker.SmoothlyMoveChildToParentPosition(parent, child, totalTime);
+            maker.SmoothlyMoveChildToParentPosition(parent, child, totalTime);
+        }
     }
 
     private void SmoothlyMoveChildToParentPosition(Transform parent, RectTransform child, float totalTime)

@@ -7,7 +7,7 @@ public class UIBattle : PopUpOpener
     public static bool inputEnabled = true;
 
     [SerializeField]
-    private RectTransform UIDamageTextParent = null;
+    private RectTransform parentForDynamicUIThatMustAppear = null;
     public static RectTransform parentOfDynamicUIThatMustAppear;
 
     [SerializeField]
@@ -24,27 +24,105 @@ public class UIBattle : PopUpOpener
     [SerializeField]
     private float delayToComeBackFromEnemyBattlefield = 0.5f;
 
+    private bool isDragging = false;
+
+    private CardsHolder cardsHolderBelowMouseOnDrop;
+    private int indexOfSlotBelowMouseOnDrop;
+    private bool wasDroppedInValidSpot = false;
+
     private void Awake()
     {
-        parentOfDynamicUIThatMustAppear = UIDamageTextParent;
+        parentOfDynamicUIThatMustAppear = parentForDynamicUIThatMustAppear;
     }
 
-    // Enemy Battlefield
+    #region On CardHolder Begin Drag
     public void OnEnemyBattlefieldSlotBeginDrag(int index)
     {
         // Currently there is nothing to done by dragging the enemy cards
-        // OnAnyCardsHolderBeginDrag(enemyBattlefield, index);
     }
 
-    public void OnEnemyBattlefieldSlotEndDrag(int index)
-    {
-        OnAnyCardsHolderEndDrag(enemyBattlefield, index);
-    }
-
-    // Player Battlefield
     public void OnPlayerBattlefieldSlotBeginDrag(int index)
     {
         OnAnyCardsHolderBeginDrag(playerBattlefield, index);
+    }
+
+    public void OnPlayerHandSlotBeginDrag(int index)
+    {
+        OnAnyCardsHolderBeginDrag(playerHand, index);
+    }
+
+    private void OnAnyCardsHolderBeginDrag(CardsHolder cardsHolder, int index)
+    {
+        if (inputEnabled && cardsHolder.ContainsCardInIndex(index))
+        {
+            StartCoroutine(DragHistory(cardsHolder, index));
+        }
+    }
+    #endregion
+
+    IEnumerator DragHistory(CardsHolder cardsHolder, int index)
+    {
+        isDragging = true;
+        wasDroppedInValidSpot = false;
+
+        ClearWholeDragAndDropSystem();
+
+        // Wait for the BattleFSM to recognize that the variables ware cleared
+        yield return null;
+
+        cardsHolder.SetSelectedIndex(index);
+        cardBeingDragged = cardsHolder.GetReferenceToCardAt(index);
+        cardBeingDragged.cardDragAndDrop.StartDragging();
+
+        while (isDragging)
+        {
+            Debug.Log("is dragging");
+            yield return null;
+        }
+
+        cardBeingDragged.cardDragAndDrop.Drop();
+
+        if (!wasDroppedInValidSpot)
+        {
+            // Wait one more frame for the drop event to be called.
+            yield return null;
+        }
+
+        if (wasDroppedInValidSpot)
+        {
+            cardsHolderBelowMouseOnDrop.SetSelectedIndex(indexOfSlotBelowMouseOnDrop);
+
+            // Wait for battleFSM to do it's job.
+            yield return null;
+            yield return null;
+
+            ChildMaker.AdoptAndSmoothlyMoveToParent
+                (
+                    cardBeingDragged.transform.parent,
+                    cardBeingDragged.GetComponent<RectTransform>(),
+                    delayToComeBackFromEnemyBattlefield
+                );
+        }
+
+        ClearWholeDragAndDropSystem();
+    }
+
+    private void ClearWholeDragAndDropSystem()
+    {
+        playerHand.ClearSelection();
+        playerBattlefield.ClearSelection();
+        enemyBattlefield.ClearSelection();
+
+        cardBeingDragged = null;
+
+        cardsHolderBelowMouseOnDrop = null;
+        indexOfSlotBelowMouseOnDrop = -1;
+    }
+
+    #region On CardHolder End Drag
+    public void OnEnemyBattlefieldSlotEndDrag(int index)
+    {
+        OnAnyCardsHolderEndDrag(enemyBattlefield, index);
     }
 
     public void OnPlayerBattlefieldSlotEndDrag(int index)
@@ -52,97 +130,27 @@ public class UIBattle : PopUpOpener
         OnAnyCardsHolderEndDrag(playerBattlefield, index);
     }
 
-    // Player Hand
-    public void OnPlayerHandSlotBeginDrag(int index)
-    {
-        OnAnyCardsHolderBeginDrag(playerHand, index);
-    }
-
     public void OnPlayerHandSlotEndDrag(int index)
     {
         OnAnyCardsHolderEndDrag(playerHand, index);
     }
 
-    private void OnAnyCardsHolderBeginDrag(CardsHolder cardsHolder, int index)
-    {
-        if (inputEnabled)
-        {
-            Drag(cardsHolder, index);
-        }
-    }
-
-    private void Drag(CardsHolder cardsHolder, int index)
-    {
-        if (cardsHolder.ContainsCardInIndex(index))
-        {
-            ClearSelections();
-            cardsHolder.SetSelectedIndex(index);
-            cardBeingDragged = cardsHolder.GetReferenceToCardAt(index);
-            cardBeingDragged.cardDragAndDrop.StartDragging();
-        }
-    }
-
     private void OnAnyCardsHolderEndDrag(CardsHolder cardsHolder, int index)
     {
-        if (inputEnabled)
-        {
-            StartCoroutine(EndDrag(cardsHolder, index));
-        }
+        isDragging = false;
     }
+    #endregion
 
-    IEnumerator EndDrag(CardsHolder cardsHolder, int index)
-    {
-        if (cardBeingDragged != null)
-        {
-            cardBeingDragged.cardDragAndDrop.Drop();
-        }
-
-        yield return null;
-        // in this frame, delayed drop should be seting selectedIndex of cardsHolder
-        yield return null;
-        // here, the battleFSM should be doing it's stuff with the selectedIndex.
-        // Also, DelayedDrop should be doing  ChildMaker.AdoptAndSmoothlyMoveToParent().
-        yield return null;
-
-        ClearSelections();
-    }
-
-    private void ClearSelections()
-    {
-        cardBeingDragged = null;
-
-        playerHand.ClearSelection();
-        playerBattlefield.ClearSelection();
-        enemyBattlefield.ClearSelection();
-    }
-
+    // Drop Event is called by other scripts
     public void OnAnyCardsHolderDrop(CardsHolder cardsHolder, int index)
     {
-        if (inputEnabled)
-        {
-            StartCoroutine(DelayedDrop(cardsHolder, index));
-        }
+        cardsHolderBelowMouseOnDrop = cardsHolder;
+        indexOfSlotBelowMouseOnDrop = index;
+
+        wasDroppedInValidSpot = true;
     }
 
-    IEnumerator DelayedDrop(CardsHolder cardsHolder, int index)
-    {
-        // In this frame, card is being dropped by the EndDrag coroutine.
-        yield return null;
-        
-        cardsHolder.SetSelectedIndex(index);
-
-        // Wait for battleFSM to od it's job.
-
-        yield return null;
-
-        ChildMaker.AdoptAndSmoothlyMoveToParent
-            (
-                cardBeingDragged.transform.parent,
-                cardBeingDragged.GetComponent<RectTransform>(),
-                delayToComeBackFromEnemyBattlefield
-            );
-    }
-    
+    #region On CardHolder Click
     public void OnPlayerHandSlotClicked(int index)
     {
         OnSlotClicked(playerHand, index);
@@ -160,8 +168,12 @@ public class UIBattle : PopUpOpener
 
     public void OnSlotClicked(CardsHolder cardsHolder, int index)
     {
-        cardsHolder.SetSelectedIndex(index);
+        if (inputEnabled)
+        {
+            cardsHolder.SetSelectedIndex(index);
+        }
     }
+    #endregion
 
     public void OnPauseBtnClicked()
     {

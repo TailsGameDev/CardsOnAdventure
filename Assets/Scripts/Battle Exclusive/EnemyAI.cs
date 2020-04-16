@@ -50,6 +50,8 @@ public class EnemyAI
 
         coroutineExecutor = CoroutineExecutorPrototype.GetCopy();
 
+        coroutineExecutor.gameObject.AddComponent(typeof(DestroyItselfInTime));
+
         coroutineExecutor.ExecuteCoroutine(RepositionCoroutine());
     }
 
@@ -57,30 +59,36 @@ public class EnemyAI
     {
         bool change0With2 = ChangeCardInFrontWithCardBehind(0, 2);
         bool change1With3 = ChangeCardInFrontWithCardBehind(1, 3);
+        
+        yield return null;
+        yield return null;
+        yield return null;
         yield return null;
 
         if (change0With2)
         {
             enemyBattlefield.SetSelectedIndex(0);
-        }
-        yield return null;
-
-        if (change0With2)
-        {
+            yield return null;
+            yield return null;
             enemyBattlefield.SetSelectedIndex(2);
+            yield return null;
+            yield return null;
         }
-        yield return null;
+
 
         if (change1With3)
         {
             enemyBattlefield.SetSelectedIndex(1);
-        }
-        yield return null;
-
-        if (change1With3)
-        {
+            yield return null;
+            yield return null;
             enemyBattlefield.SetSelectedIndex(3);
+            yield return null;
+            yield return null;
         }
+
+        yield return null;
+        yield return null;
+        yield return null;
         yield return null;
 
         endRepositionBtn.onClicked();

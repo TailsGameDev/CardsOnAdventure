@@ -892,7 +892,7 @@ GameObject:
   - component: {fileID: 151458629}
   - component: {fileID: 151458628}
   m_Layer: 5
-  m_Name: Parent Dynamic UI That Must Appear
+  m_Name: Parent Of Dynamic UI That Must Appear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6777,7 +6777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 653cd4fd665d27549a88190ca72a9645, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIDamageTextParent: {fileID: 151458627}
+  parentForDynamicUIThatMustAppear: {fileID: 151458627}
   enemyBattlefield: {fileID: 1898511386}
   playerBattlefield: {fileID: 227648554}
   playerHand: {fileID: 416688464}
