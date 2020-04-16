@@ -9,6 +9,9 @@ public class CardsHolder : IndexHolder
 
     protected Card[] cards = new Card[4];
 
+    [SerializeField]
+    protected UIBattle uiBattle = null;
+
     // to activate animation, uncomment this field and toggle the ChildMaker algorythm inside 'PutCardInIndex' method
     // [SerializeField]
     // private float repositionAnimationDurationInSeconds = 0.5f;
@@ -96,7 +99,27 @@ public class CardsHolder : IndexHolder
         }
     }
 
-    #region Make card bigger or smaller
+    public void OnSlotBeginDrag(int index)
+    {
+        uiBattle.OnCardsHolderBeginDrag(this, index);
+    }
+
+    public void OnSlotEndDrag()
+    {
+        uiBattle.OnCardsHolderEndDrag();
+    }
+
+    public void OnDroppedInSlot(int index)
+    {
+        uiBattle.OnCardsHolderDrop(this, index);
+    }
+
+    public void OnSlotClicked(int index)
+    {
+        uiBattle.OnSlotClicked(this, index);
+    }
+
+    #region Make card bigger or normal size
     public void MakeOnlySelectedCardBigger()
     {
         for (int i = 0; i < cards.Length; i++)

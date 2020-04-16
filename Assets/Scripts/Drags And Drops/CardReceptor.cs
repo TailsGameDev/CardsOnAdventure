@@ -11,11 +11,9 @@ public class CardReceptor : DragAndDropReceptor
     [SerializeField]
     private CardsHolder cardsHolder = null;
 
-    [SerializeField]
-    private UIBattle uiBattle = null;
-
     public int Index { get => index; }
 
+    #region Overrides
     public override Type GetDragAndDropReceptorType()
     {
         return typeof(CardDragAndDrop);
@@ -23,6 +21,24 @@ public class CardReceptor : DragAndDropReceptor
 
     public override void OnDroppedInReceptor()
     {
-        uiBattle.OnAnyCardsHolderDrop(cardsHolder, index);
+        cardsHolder.OnDroppedInSlot(index);
     }
+    #endregion
+
+    #region Events
+    public void OnSlotBeginDrag()
+    {
+        cardsHolder.OnSlotBeginDrag(index);
+    }
+
+    public void OnSlotEndDrag()
+    {
+        cardsHolder.OnSlotEndDrag();
+    }
+
+    public void OnSlotClicked()
+    {
+        cardsHolder.OnSlotClicked(index);
+    }
+    #endregion
 }
