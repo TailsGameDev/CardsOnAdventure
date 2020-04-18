@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UIMap : PopUpOpener
 {
     [SerializeField]
-    private Spot finalSpot = null;
+    private Spot[] finalSpotForEachMap = null;
 
     [SerializeField]
     private SceneOpener sceneOpener = null;
@@ -17,31 +18,69 @@ public class UIMap : PopUpOpener
     [SerializeField]
     private AudioClip winSound = null;
 
-    private bool initialized = false;
+    private static bool startOfMatch = true;
+
+    public static bool StartOfMatch { set => startOfMatch = value; }
+
+    Dictionary<string, Spot.SpotInfo> maps;
 
     private void Awake()
     {
-        InitializeIfNeeded();
+        maps = GetMapsFromCacheOrGetNull();
+
+        if (maps == null || startOfMatch)
+        {
+            BuildAllMaps();
+        }
+        else
+        {
+            RecoverSavedMaps();
+        }
+
+        MapsRuntimeCache.Instance.CacheMaps(maps);
     }
 
-    private void InitializeIfNeeded()
+    private Dictionary<string, Spot.SpotInfo> GetMapsFromCacheOrGetNull()
     {
-        if (!initialized)
+        MapsCache cache = MapsRuntimeCache.Instance;
+
+        if (cache == null)
         {
-            ResetMap();
-            initialized = true;
+            return null;
+        }
+        else
+        {
+            return cache.RetrieveMapsOrGetNull();
         }
     }
 
-    public void ResetMap()
+    private void BuildAllMaps()
     {
-        finalSpot.ResetMap();
+        startOfMatch = false;
+        maps = new Dictionary<string, Spot.SpotInfo>();
+
+        foreach (Spot mapFinalSpot in finalSpotForEachMap)
+        {
+            BuildMapAndSaveInCollection(mapFinalSpot, maps);
+        }
     }
 
-    public void UpdateMap()
+    private void BuildMapAndSaveInCollection(Spot mapFinalSpot, Dictionary<string, Spot.SpotInfo> maps)
     {
-        InitializeIfNeeded();
-        finalSpot.UpdateMap();
+        string mapName = mapFinalSpot.MapName;
+        if (!maps.ContainsKey(mapName))
+        {
+            mapFinalSpot.BuildFromZero();
+            maps[mapName] = mapFinalSpot.GetInfo();
+        }
+    }
+
+    public void RecoverSavedMaps()
+    {
+        foreach (Spot spot in finalSpotForEachMap)
+        {
+            spot.BuildFromInfo(maps[spot.MapName]);
+        }
     }
 
     void GoToMenu()
@@ -64,69 +103,69 @@ public class UIMap : PopUpOpener
         {
             popUpOpener.SetLoadingPopUpActiveToTrue();
             BattleInfo.PrepareSimpleBattle();
-            ClearSpot(btnTransform);
+            ClearSpotAndSaveInfo(btnTransform);
             DeckPrototypeFactory.PrepareRandomDeckForTheEnemy();
             SetUpBattleAndOpenIt();
         }
 
-        public void OnToughBattleClicked(Transform btnTransform)
-        {
-            popUpOpener.SetLoadingPopUpActiveToTrue();
-            BattleInfo.PrepareToughBattle();
-            ClearSpot(btnTransform);
-            DeckPrototypeFactory.PrepareToughRandomDeckForTheEnemy();
-            SetUpBattleAndOpenIt();
-        }
+    public void OnToughBattleClicked(Transform btnTransform)
+    {
+        popUpOpener.SetLoadingPopUpActiveToTrue();
+        BattleInfo.PrepareToughBattle();
+        ClearSpotAndSaveInfo(btnTransform);
+        DeckPrototypeFactory.PrepareToughRandomDeckForTheEnemy();
+        SetUpBattleAndOpenIt();
+    }
 
-        // the btnTransform parameter might be used if we substitute the final spot for some battle
-        public void OnBossBattleClicked(Transform btnTransform)
-        {
-            popUpOpener.SetLoadingPopUpActiveToTrue();
-            BattleInfo.PrepareBossBattle();
-            ClearSpot(btnTransform);
-            DeckPrototypeFactory.PrepareBossRandomDeckForTheEnemy();
-            SetUpBattleAndOpenIt();
-        }
+    // the btnTransform parameter might be used if we substitute the final spot for some battle
+    public void OnBossBattleClicked(Transform btnTransform)
+    {
+        popUpOpener.SetLoadingPopUpActiveToTrue();
+        BattleInfo.PrepareBossBattle();
+        ClearSpotAndSaveInfo(btnTransform);
+        DeckPrototypeFactory.PrepareBossRandomDeckForTheEnemy();
+        SetUpBattleAndOpenIt();
+    }
 
     #endregion
 
     #region On Master Buttons Clicked
 
-        public void OnMageMasterClicked(Transform btnTransform)
-        {
-            popUpOpener.SetLoadingPopUpActiveToTrue();
-            BattleInfo.PrepareMasterBattle(Classes.MAGE);
-            DeckPrototypeFactory.PrepareMageDeckForTheEnemy();
-            ClearSpot(btnTransform);
-            SetUpBattleAndOpenIt();
-        }
+    public void OnMageMasterClicked(Transform btnTransform)
+    {
+        popUpOpener.SetLoadingPopUpActiveToTrue();
+        BattleInfo.PrepareMasterBattle(Classes.MAGE);
+        DeckPrototypeFactory.PrepareMageDeckForTheEnemy();
+        ClearSpotAndSaveInfo(btnTransform);
+        SetUpBattleAndOpenIt();
+    }
 
-        public void OnWarriorMasterClicked(Transform btnTransform)
-        {
-            popUpOpener.SetLoadingPopUpActiveToTrue();
-            BattleInfo.PrepareMasterBattle(Classes.WARRIOR);
-            DeckPrototypeFactory.PrepareWarriorDeckForTheEnemy();
-            ClearSpot(btnTransform);
-            SetUpBattleAndOpenIt();
-        }
+    public void OnWarriorMasterClicked(Transform btnTransform)
+    {
+        popUpOpener.SetLoadingPopUpActiveToTrue();
+        BattleInfo.PrepareMasterBattle(Classes.WARRIOR);
+        DeckPrototypeFactory.PrepareWarriorDeckForTheEnemy();
+        ClearSpotAndSaveInfo(btnTransform);
+        SetUpBattleAndOpenIt();
+    }
 
-        public void OnRougueMasterClicked(Transform btnTransform)
-        {
-            popUpOpener.SetLoadingPopUpActiveToTrue();
-            BattleInfo.PrepareMasterBattle(Classes.ROGUE);
-            DeckPrototypeFactory.PrepareRogueDeckForTheEnemy();
-            ClearSpot(btnTransform);
-            SetUpBattleAndOpenIt();
-        }
+    public void OnRougueMasterClicked(Transform btnTransform)
+    {
+        popUpOpener.SetLoadingPopUpActiveToTrue();
+        BattleInfo.PrepareMasterBattle(Classes.ROGUE);
+        DeckPrototypeFactory.PrepareRogueDeckForTheEnemy();
+        ClearSpotAndSaveInfo(btnTransform);
+        SetUpBattleAndOpenIt();
+    }
 
-        public void OnGuardianMasterClicked(Transform btnTransform)
-        {
-            popUpOpener.SetLoadingPopUpActiveToTrue();
-            BattleInfo.PrepareMasterBattle(Classes.GUARDIAN);
-            DeckPrototypeFactory.PrepareGuardianDeckForTheEnemy();
-            ClearSpot(btnTransform);
-            SetUpBattleAndOpenIt();
-        }
+    public void OnGuardianMasterClicked(Transform btnTransform)
+    {
+        popUpOpener.SetLoadingPopUpActiveToTrue();
+        BattleInfo.PrepareMasterBattle(Classes.GUARDIAN);
+        DeckPrototypeFactory.PrepareGuardianDeckForTheEnemy();
+        ClearSpotAndSaveInfo(btnTransform);
+        SetUpBattleAndOpenIt();
+    }
 
     #endregion
 
@@ -137,14 +176,34 @@ public class UIMap : PopUpOpener
         sceneOpener.OpenScene("Battle");
     }
 
-    void ClearSpot(Transform btnTransform)
+    private void ClearSpotAndSaveInfo(Transform spotBtnTransform)
+    {
+        Spot spot = FindAndClearSpotInItsGameObject(spotBtnTransform);
+
+        SetClearedInPersistenceDataStructure(spot);
+    }
+
+    private Spot FindAndClearSpotInItsGameObject(Transform btnTransform)
     {
         Spot spot = btnTransform.parent.GetComponent<Spot>();
+
         if (spot == null)
         {
             Debug.LogError("[UIMap] spot is null.", this);
         }
+
         spot.Cleared = true;
+
+        return spot;
+    }
+
+    private void SetClearedInPersistenceDataStructure(Spot spot)
+    {
+        Spot.SpotInfo rootInfo = maps[spot.MapName];
+
+        Spot.SpotInfo desiredInfo = rootInfo.GetInfoFromTreeOrGetNull(spot.gameObject.name);
+
+        desiredInfo.Cleared = true;
     }
 
     public void OnPauseMenuOppenerBtnClick()

@@ -1,35 +1,87 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class Spot : MonoBehaviour
 {
-    public bool logIterations;
-
-    private static Spot lastChoosedSpot;
+    [SerializeField]
+    private string mapName = "";
 
     [SerializeField]
     protected Button playLvlBtn;
 
     [SerializeField]
     protected Button[] possiblePlayLvlBtns;
+    protected int playLvlBtnIndex;
 
     [SerializeField]
-    private Spot[] antecessorSpots = null;
+    private Spot[] antecessors = new Spot[0];
 
     private static float disabledColorAlpha = 0.5f;
 
-    private bool isExpanding = false;
+    private bool shouldBeExpanding = false;
 
     private Vector3 originalScale;
 
-    [SerializeField]
     private bool cleared = false;
+    private bool visited = false;
 
-    public bool Cleared { get => cleared; set => cleared = value; }
+    float t = 1;
+    bool isGrowing = true;
+
+    public bool Cleared { set => cleared = value; }
+    public string MapName { get => mapName; }
+
+    public class SpotInfo
+    {
+        public string GOName;
+        public bool Cleared;
+        public int PlayLvlBtnIndex;
+        public SpotInfo[] antecessors;
+
+        public SpotInfo(string goName, bool cleared, int playLvlBtn, SpotInfo[] antecessors)
+        {
+            GOName = goName;
+            Cleared = cleared;
+            PlayLvlBtnIndex = playLvlBtn;
+            this.antecessors = antecessors;
+        }
+
+        public SpotInfo GetInfoFromTreeOrGetNull(string desiredName)
+        {
+            L.ogWarning("GetInfoFromTreeOrGetNull: this.GOName: "+GOName+". desiredName: "+desiredName, this);
+            if ( GOName.Equals(desiredName) )
+            {
+                return this;
+            }
+            else
+            {
+                foreach (SpotInfo antecessor in antecessors)
+                {
+                    if (antecessor == null)
+                    {
+                        if (GOName != "Simple Initial (1)")
+                        {
+                            L.ogError(GOName+" antecessor is null in GetInfoFromTreeOrGetNull", this);
+                        }
+                    }
+                    else
+                    {
+                        SpotInfo desired = antecessor.GetInfoFromTreeOrGetNull(desiredName);
+                        if (desired != null)
+                        {
+                            return desired;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+    }
 
     private void Awake()
     {
@@ -37,11 +89,10 @@ public class Spot : MonoBehaviour
         originalScale = transform.localScale;
     }
 
-    float t = 1;
-    bool isGrowing = true;
+
     private void Update()
     {
-        if (isExpanding)
+        if (shouldBeExpanding)
         {
             if (isGrowing)
             {
@@ -66,25 +117,48 @@ public class Spot : MonoBehaviour
 
     }
 
-    public void ResetMap()
+    public void BuildFromZero()
     {
-        DemolishDownTheTree();
         BuildMapDownTheTree();
+
         LockIfNeededDownTheTree();
         HighlightOrObfuscateDownTheTree();
     }
 
-    public void UpdateMap()
+    public void BuildFromInfo(SpotInfo spotInfo)
     {
+        BuildFromInfoDownTheTree(spotInfo);
+
         LockIfNeededDownTheTree();
         HighlightOrObfuscateDownTheTree();
+    }
+
+    private void BuildFromInfoDownTheTree(SpotInfo spotInfo)
+    {
+        visited = true;
+
+        // L.ogWarning(spotInfo.GOName + " <- GOName // myName -> " + gameObject.name, this);
+
+        if (spotInfo != null)
+        {
+            cleared = spotInfo.Cleared;
+            MakePlayLvlBtnFrom(possiblePlayLvlBtns[spotInfo.PlayLvlBtnIndex]);
+
+            for (int a = 0; a < antecessors.Length; a++)
+            {
+                if ( ! antecessors[a].visited )
+                {
+                    antecessors[a].BuildFromInfoDownTheTree(spotInfo.antecessors[a]);
+                }
+            }
+        }
     }
 
     public void BuildMapDownTheTree()
     {
         Build();
 
-        foreach (Spot antecessor in antecessorSpots)
+        foreach (Spot antecessor in antecessors)
         {
             antecessor.BuildMapDownTheTree();
         }
@@ -94,36 +168,49 @@ public class Spot : MonoBehaviour
     {
         if (playLvlBtn == null)
         {
-            int randomIndex = UnityEngine.Random.Range(0, possiblePlayLvlBtns.Length);
-            playLvlBtn = Instantiate(possiblePlayLvlBtns[randomIndex]);
-            ChildMaker.AdoptTeleportAndScale(transform, playLvlBtn.GetComponent<RectTransform>());
+            playLvlBtnIndex = UnityEngine.Random.Range(0, possiblePlayLvlBtns.Length);
+            MakePlayLvlBtnFrom(possiblePlayLvlBtns[playLvlBtnIndex]);
         }
     }
 
-    private void DemolishDownTheTree()
+    private void MakePlayLvlBtnFrom(Button btn)
     {
-        if (playLvlBtn != null)
-        {
-            Destroy(playLvlBtn.gameObject);
-            playLvlBtn = null;
-        }
-
-        cleared = false;
-
-        foreach (Spot antecessor in antecessorSpots)
-        {
-            antecessor.DemolishDownTheTree();
-        }
+        playLvlBtn = Instantiate(btn);
+        ChildMaker.AdoptTeleportAndScale(transform, playLvlBtn.GetComponent<RectTransform>());
     }
 
     public void LockIfNeededDownTheTree()
     {
         playLvlBtn.enabled = IsThereAClearedPathToThisSpot() && !cleared;
 
-        foreach (Spot antecessor in antecessorSpots)
+        foreach (Spot antecessor in antecessors)
         {
             antecessor.LockIfNeededDownTheTree();
         }
+    }
+
+    private bool IsThereAClearedPathToThisSpot()
+    {
+        bool thereIsAClearedPathToThisSpot;
+
+        if (antecessors.Length == 0)
+        {
+            thereIsAClearedPathToThisSpot = true;
+        }
+        else
+        {
+            thereIsAClearedPathToThisSpot = false;
+            foreach (Spot antecessor in antecessors)
+            {
+                if (antecessor.cleared)
+                {
+                    thereIsAClearedPathToThisSpot = true;
+                    break;
+                }
+            }
+        }
+
+        return thereIsAClearedPathToThisSpot;
     }
 
     private void HighlightOrObfuscateDownTheTree()
@@ -142,40 +229,81 @@ public class Spot : MonoBehaviour
             transform.localScale = Vector3.one;
         }
 
-        isExpanding = playLvlBtn.enabled;
+        shouldBeExpanding = playLvlBtn.enabled;
 
-        foreach (Spot antecessor in antecessorSpots)
+        foreach (Spot antecessor in antecessors)
         {
             antecessor.HighlightOrObfuscateDownTheTree();
         }
     }
 
-    private bool PathToThisSpotIsBlocked()
+    // private static List<SpotInfo> treeNodes;
+
+    public SpotInfo GetInfo()
     {
-        return ! IsThereAClearedPathToThisSpot();
+        // treeNodes = new List<SpotInfo>();
+        SpotInfo treeInfo = GetInfoDownTheTree();
+        return treeInfo;
     }
 
-    private bool IsThereAClearedPathToThisSpot()
+    private SpotInfo GetInfoDownTheTree()
     {
-        bool thereIsAClearedPathToThisSpot;
+        visited = true;
 
-        if (antecessorSpots == null || antecessorSpots.Length == 0)
+        SpotInfo[] antecessorsInfo = new SpotInfo[antecessors.Length];
+
+        for (int a = 0; a < antecessors.Length; a++)
         {
-            thereIsAClearedPathToThisSpot = true;
-        }
-        else
-        {
-            thereIsAClearedPathToThisSpot = false;
-            foreach (Spot antecessor in antecessorSpots)
+            if ( !antecessors[a].visited )
             {
-                if (antecessor.Cleared)
-                {
-                    thereIsAClearedPathToThisSpot = true;
-                    break;
-                }
+                antecessorsInfo[a] = antecessors[a].GetInfoDownTheTree();
             }
         }
 
-        return thereIsAClearedPathToThisSpot;
+        SpotInfo thisSpotInfo = new SpotInfo(gameObject.name, cleared, playLvlBtnIndex, antecessorsInfo);
+
+        // L.ogError(gameObject.name, this);
+        // treeNodes.Add(thisSpotInfo);
+
+        return thisSpotInfo;
+    }
+
+    private void ClearVisitedDownTheTree()
+    {
+        visited = false;
+        foreach (Spot antecessor in antecessors)
+        {
+            ClearVisitedDownTheTree();
+        }
+    }
+
+    public static void LogInfo(SpotInfo spt)
+    {
+        if ( spt != null)
+        {
+            Debug.Log("[Spot] "+spt.GOName+"; btnIndex: "+spt.PlayLvlBtnIndex+"; cleared: "+spt.Cleared+"; antecessors.Length: "+spt.antecessors.Length);
+            if (spt.antecessors != null)
+            {
+                foreach (SpotInfo antess in spt.antecessors)
+                {
+                    LogInfo(antess);
+                }
+            }
+        }
+    }
+
+    public static void LogInfoWarning(SpotInfo spt)
+    {
+        if (spt != null)
+        {
+            string antecessors = spt.antecessors == null ? "null" : "length: " + spt.antecessors.Length;
+            Debug.LogWarning("[Spot] "+spt.GOName + "; btnIndex: " + spt.PlayLvlBtnIndex + "; cleared: " + spt.Cleared + "; antecessors.Length: " + spt.antecessors.Length);
+            {
+                foreach (SpotInfo antess in spt.antecessors)
+                {
+                    LogInfoWarning(antess);
+                }
+            }
+        }
     }
 }

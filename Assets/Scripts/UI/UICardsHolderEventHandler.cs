@@ -106,7 +106,15 @@ public class UICardsHolderEventHandler : MonoBehaviour
     {
         foreach (CardsHolder cardsHolder in cardsHoldersToClear)
         {
-            cardsHolder.ClearSelection();
+            // TODO: understand reason of null pointer exception and avoid this possibility if possible
+            if (cardsHolder != null)
+            {
+                cardsHolder.ClearSelection();
+            }
+            else
+            {
+                L.ogError("cardsHolder is null!!", this);
+            }
         }
 
         cardBeingDragged = null;

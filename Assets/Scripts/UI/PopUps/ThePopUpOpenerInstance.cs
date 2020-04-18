@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ThePopUpOpenerInstance : PopUpOpener
@@ -24,9 +25,6 @@ public class ThePopUpOpenerInstance : PopUpOpener
 
     [SerializeField]
     private Text tooltipPopUpTitle = null;
-
-    [SerializeField]
-    private GameObject mapPopUp = null;
     
     [SerializeField]
     private GameObject customPopUp = null;
@@ -138,7 +136,11 @@ public class ThePopUpOpenerInstance : PopUpOpener
     public void OpenMapPopUp()
     {
         audioRequisitor.RequestBGM(mapBGM);
+        SetLoadingPopUpActiveToTrue();
+        SceneManager.LoadScene("Map");
+        /*
         OpenPopUp(mapPopUp);
+        */
     }
 
     public void OpenCustomPopUp()
@@ -153,14 +155,4 @@ public class ThePopUpOpenerInstance : PopUpOpener
         OpenPopUp(tipsPopUp);
     }
     #endregion
-
-    public void UpdateMap()
-    {
-        mapPopUp.GetComponent<UIMap>().UpdateMap();
-    }
-
-    public void ResetMap()
-    {
-        mapPopUp.GetComponent<UIMap>().ResetMap();
-    }
 }

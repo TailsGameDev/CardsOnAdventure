@@ -726,7 +726,6 @@ public class EndGame : BattleState
     {
         quit = true;
         stopAllSFXRequest.RequestPlaying();
-        popUpOpener.UpdateMap();
         popUpOpener.CloseAllPopUpsExceptLoading();
         popUpOpener.OpenMapPopUp();
     }
