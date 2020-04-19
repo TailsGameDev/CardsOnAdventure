@@ -18,7 +18,7 @@ public class MapsRuntimeCache : MonoBehaviour
 
     private void Update()
     {
-        Dictionary<string, Spot.SpotInfo> maps = instance.RetrieveMapsOrGetNull();
+        Dictionary<string, Spot.SpotInfo> maps = Instance.RetrieveMapsOrGetNull();
         if (maps != null)
         {
             Spot.LogInfo(maps["First"]);

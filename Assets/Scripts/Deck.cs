@@ -48,6 +48,11 @@ public class Deck : MonoBehaviour
         return cards.Count > 0;
     }
 
+    public int GetSize()
+    {
+        return cards.Count;
+    }
+
     public Card DrawCard()
     {
         Card card = cards[0];

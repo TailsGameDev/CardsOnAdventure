@@ -59,6 +59,19 @@ public class CardsHolder : IndexHolder
         return cards[index] != null;
     }
 
+    public int GetStandingAmount()
+    {
+        int standing = 0;
+        for (int i = 0; i < cards.Length; i++)
+        {
+            if (cards[i] != null)
+            {
+                standing++;
+            }
+        }
+        return standing;
+    }
+
     public bool IsFull()
     {
         bool full = true;
