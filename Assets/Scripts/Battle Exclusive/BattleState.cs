@@ -690,6 +690,7 @@ public class EndGame : BattleState
                         }
                         else
                         {
+                            UIMap.spotToClearIfPlayerWins = null;
                             customPopUpOpener.Open(
                                 title : "Congratulations!",
                                 warningMessage: "You beat those guys. What are you going to do now?",

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditorInternal;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class Spot : MonoBehaviour
@@ -36,53 +32,6 @@ public class Spot : MonoBehaviour
     public bool Cleared { set => cleared = value; }
     public string MapName { get => mapName; }
 
-    public class SpotInfo
-    {
-        public string GOName;
-        public bool Cleared;
-        public int PlayLvlBtnIndex;
-        public SpotInfo[] antecessors;
-
-        public SpotInfo(string goName, bool cleared, int playLvlBtn, SpotInfo[] antecessors)
-        {
-            GOName = goName;
-            Cleared = cleared;
-            PlayLvlBtnIndex = playLvlBtn;
-            this.antecessors = antecessors;
-        }
-
-        public SpotInfo GetInfoFromTreeOrGetNull(string desiredName)
-        {
-            L.ogWarning("GetInfoFromTreeOrGetNull: this.GOName: "+GOName+". desiredName: "+desiredName, this);
-            if ( GOName.Equals(desiredName) )
-            {
-                return this;
-            }
-            else
-            {
-                foreach (SpotInfo antecessor in antecessors)
-                {
-                    if (antecessor == null)
-                    {
-                        if (GOName != "Simple Initial (1)")
-                        {
-                            L.ogError(GOName+" antecessor is null in GetInfoFromTreeOrGetNull", this);
-                        }
-                    }
-                    else
-                    {
-                        SpotInfo desired = antecessor.GetInfoFromTreeOrGetNull(desiredName);
-                        if (desired != null)
-                        {
-                            return desired;
-                        }
-                    }
-                }
-            }
-            return null;
-        }
-    }
-
     private void Awake()
     {
         GetComponent<Image>().enabled = false;
@@ -114,53 +63,49 @@ public class Spot : MonoBehaviour
             }
             transform.localScale = originalScale * t;
         }
-
     }
 
-    public void BuildFromZero()
+    public void BuildFromInfo(SpotInfo spotInfo, List<SpotInfo> allSpotsInfo)
     {
-        BuildMapDownTheTree();
+        BuildFromInfoDownTheGraph(spotInfo, allSpotsInfo);
 
-        LockIfNeededDownTheTree();
-        HighlightOrObfuscateDownTheTree();
+        LockIfNeededDownTheGraph();
+        HighlightOrObfuscateDownTheGraph();
     }
 
-    public void BuildFromInfo(SpotInfo spotInfo)
-    {
-        BuildFromInfoDownTheTree(spotInfo);
-
-        LockIfNeededDownTheTree();
-        HighlightOrObfuscateDownTheTree();
-    }
-
-    private void BuildFromInfoDownTheTree(SpotInfo spotInfo)
+    private void BuildFromInfoDownTheGraph(SpotInfo spotInfo, List<SpotInfo> rootAllSpotsInfo)
     {
         visited = true;
 
-        // L.ogWarning(spotInfo.GOName + " <- GOName // myName -> " + gameObject.name, this);
+        cleared = spotInfo.Cleared;
+        MakePlayLvlBtnFrom(possiblePlayLvlBtns[spotInfo.PlayLvlBtnIndex]);
 
-        if (spotInfo != null)
+        for (int a = 0; a < antecessors.Length; a++)
         {
-            cleared = spotInfo.Cleared;
-            MakePlayLvlBtnFrom(possiblePlayLvlBtns[spotInfo.PlayLvlBtnIndex]);
-
-            for (int a = 0; a < antecessors.Length; a++)
+            if ( ! antecessors[a].visited )
             {
-                if ( ! antecessors[a].visited )
-                {
-                    antecessors[a].BuildFromInfoDownTheTree(spotInfo.antecessors[a]);
-                }
+                int antecessorIndex = spotInfo.AntecessorsIndexes[a];
+                SpotInfo antecessorSpotInfo = rootAllSpotsInfo[antecessorIndex];
+                antecessors[a].BuildFromInfoDownTheGraph(antecessorSpotInfo, rootAllSpotsInfo);
             }
         }
     }
 
-    public void BuildMapDownTheTree()
+    public void BuildFromZero()
+    {
+        BuildMapDownTheGraph();
+
+        LockIfNeededDownTheGraph();
+        HighlightOrObfuscateDownTheGraph();
+    }
+
+    public void BuildMapDownTheGraph()
     {
         Build();
 
         foreach (Spot antecessor in antecessors)
         {
-            antecessor.BuildMapDownTheTree();
+            antecessor.BuildMapDownTheGraph();
         }
     }
 
@@ -168,7 +113,7 @@ public class Spot : MonoBehaviour
     {
         if (playLvlBtn == null)
         {
-            playLvlBtnIndex = UnityEngine.Random.Range(0, possiblePlayLvlBtns.Length);
+            playLvlBtnIndex = Random.Range(0, possiblePlayLvlBtns.Length);
             MakePlayLvlBtnFrom(possiblePlayLvlBtns[playLvlBtnIndex]);
         }
     }
@@ -179,13 +124,13 @@ public class Spot : MonoBehaviour
         ChildMaker.AdoptTeleportAndScale(transform, playLvlBtn.GetComponent<RectTransform>());
     }
 
-    public void LockIfNeededDownTheTree()
+    public void LockIfNeededDownTheGraph()
     {
         playLvlBtn.enabled = IsThereAClearedPathToThisSpot() && !cleared;
 
         foreach (Spot antecessor in antecessors)
         {
-            antecessor.LockIfNeededDownTheTree();
+            antecessor.LockIfNeededDownTheGraph();
         }
     }
 
@@ -213,7 +158,7 @@ public class Spot : MonoBehaviour
         return thereIsAClearedPathToThisSpot;
     }
 
-    private void HighlightOrObfuscateDownTheTree()
+    private void HighlightOrObfuscateDownTheGraph()
     {
         Image btnImg = playLvlBtn.GetComponent<Image>();
         Color btnColor = btnImg.color;
@@ -233,77 +178,56 @@ public class Spot : MonoBehaviour
 
         foreach (Spot antecessor in antecessors)
         {
-            antecessor.HighlightOrObfuscateDownTheTree();
+            antecessor.HighlightOrObfuscateDownTheGraph();
         }
     }
 
-    // private static List<SpotInfo> treeNodes;
-
-    public SpotInfo GetInfo()
+    public List<SpotInfo> GetInfo()
     {
-        // treeNodes = new List<SpotInfo>();
-        SpotInfo treeInfo = GetInfoDownTheTree();
-        return treeInfo;
+        return GetInfo(out int rootIndex);
     }
 
-    private SpotInfo GetInfoDownTheTree()
+    public List<SpotInfo> GetInfo(out int rootIndex)
+    {
+        // Make allSpotsInfo
+        List<SpotInfo> allSpotsInfo = new List<SpotInfo>();
+        SpotInfo rootInfo = GetInfoDownTheGraph(allSpotsInfo);
+        allSpotsInfo.Add(rootInfo);
+
+        rootIndex = allSpotsInfo.Count-1;
+
+        ClearVisitedDownTheGraph();
+
+        return allSpotsInfo;
+    }
+
+    private SpotInfo GetInfoDownTheGraph(List<SpotInfo> rootAllSpotsColection)
     {
         visited = true;
 
-        SpotInfo[] antecessorsInfo = new SpotInfo[antecessors.Length];
+        List<int> myAntecessorsIndexes = new List<int>();
 
         for (int a = 0; a < antecessors.Length; a++)
         {
-            if ( !antecessors[a].visited )
+            if (!antecessors[a].visited)
             {
-                antecessorsInfo[a] = antecessors[a].GetInfoDownTheTree();
+                SpotInfo spotInfo = antecessors[a].GetInfoDownTheGraph(rootAllSpotsColection);
+                myAntecessorsIndexes.Add(rootAllSpotsColection.Count);
+                rootAllSpotsColection.Add(spotInfo);
             }
         }
 
-        SpotInfo thisSpotInfo = new SpotInfo(gameObject.name, cleared, playLvlBtnIndex, antecessorsInfo);
-
-        // L.ogError(gameObject.name, this);
-        // treeNodes.Add(thisSpotInfo);
+        SpotInfo thisSpotInfo = new SpotInfo(gameObject.name, cleared, playLvlBtnIndex, myAntecessorsIndexes);
 
         return thisSpotInfo;
     }
 
-    private void ClearVisitedDownTheTree()
+    private void ClearVisitedDownTheGraph()
     {
         visited = false;
         foreach (Spot antecessor in antecessors)
         {
-            ClearVisitedDownTheTree();
-        }
-    }
-
-    public static void LogInfo(SpotInfo spt)
-    {
-        if ( spt != null)
-        {
-            Debug.Log("[Spot] "+spt.GOName+"; btnIndex: "+spt.PlayLvlBtnIndex+"; cleared: "+spt.Cleared+"; antecessors.Length: "+spt.antecessors.Length);
-            if (spt.antecessors != null)
-            {
-                foreach (SpotInfo antess in spt.antecessors)
-                {
-                    LogInfo(antess);
-                }
-            }
-        }
-    }
-
-    public static void LogInfoWarning(SpotInfo spt)
-    {
-        if (spt != null)
-        {
-            string antecessors = spt.antecessors == null ? "null" : "length: " + spt.antecessors.Length;
-            Debug.LogWarning("[Spot] "+spt.GOName + "; btnIndex: " + spt.PlayLvlBtnIndex + "; cleared: " + spt.Cleared + "; antecessors.Length: " + spt.antecessors.Length);
-            {
-                foreach (SpotInfo antess in spt.antecessors)
-                {
-                    LogInfoWarning(antess);
-                }
-            }
+            antecessor.ClearVisitedDownTheGraph();
         }
     }
 }

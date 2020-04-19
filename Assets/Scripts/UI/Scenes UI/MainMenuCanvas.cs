@@ -9,6 +9,25 @@ public class MainMenuCanvas : PauseMenu
 
     public void OnPlayBtnClicked()
     {
+        customPopUpOpener.Open(
+            title: "Play!",
+            warningMessage: "Are you going to continue your previous adventure (if any), or start a new game?",
+            confirmBtnMessage: "Continue",
+            cancelBtnMessage: "New Game",
+            onConfirm: Continue,
+            onCancel: NewGame
+        );
+    }
+
+    private void Continue()
+    {
+        // TODO: Save bonuses of classes
+        UIMap.StartOfMatch = false;
+        popUpOpener.OpenMapPopUp();
+    }
+
+    private void NewGame()
+    {
         ClassInfo.ResetBonusesToAllClasses();
         UIMap.StartOfMatch = true;
         popUpOpener.OpenMapPopUp();

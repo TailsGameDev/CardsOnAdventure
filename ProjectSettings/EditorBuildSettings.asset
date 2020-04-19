@@ -17,9 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: 670b8918af68f3448a0d78da0d188d27
-  - enabled: 1
-    path: Assets/Scenes/Start Adventure Screen.unity
-    guid: 73cc0984742bd9b44ac394953443b305
   - enabled: 0
     path: Assets/Scenes/TEST.unity
     guid: 208987ac8427cff4b8fc0833f56cf6c8

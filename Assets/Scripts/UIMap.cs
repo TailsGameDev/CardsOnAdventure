@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Build.Content;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class UIMap : PopUpOpener
 {
+    private static int NODE_NOT_FOUND = -1;
+
     [SerializeField]
     private Spot[] finalSpotForEachMap = null;
 
@@ -18,68 +17,166 @@ public class UIMap : PopUpOpener
     [SerializeField]
     private AudioClip winSound = null;
 
-    private static bool startOfMatch = true;
+    [SerializeField]
+    private MapPersistence mapPersistence = null;
+    private static bool startOfMatch;
 
     public static bool StartOfMatch { set => startOfMatch = value; }
 
-    Dictionary<string, Spot.SpotInfo> maps;
+    private Dictionary<string, SpotInfo> mapsRoots;
+    private static Dictionary<string, List<SpotInfo>> mapsSpotsInfo = new Dictionary<string, List<SpotInfo>>();
+
+    public static SpotInfo spotToClearIfPlayerWins;
+    private static string nameOfMapThatPlayerCurrentlyIs;
 
     private void Awake()
     {
-        maps = GetMapsFromCacheOrGetNull();
+        mapsRoots = MapsRuntimeCache.Instance.RetrieveMapsOrGetNull();
 
-        if (maps == null || startOfMatch)
+        if (spotToClearIfPlayerWins != null)
+        {
+            spotToClearIfPlayerWins.Cleared = true;
+            SaveInDeviceStorage(spotToClearIfPlayerWins, nameOfMapThatPlayerCurrentlyIs);
+        }
+
+        if (startOfMatch)
         {
             BuildAllMaps();
+        }
+        else if (mapsRoots == null)
+        {
+            bool allSavesFound = true;
+            mapsRoots = new Dictionary<string, SpotInfo>();
+            foreach (Spot root in finalSpotForEachMap)
+            {
+                string mapName = root.MapName;
+                if (mapPersistence.DoSaveExists(mapName))
+                {
+                    MapInfo mapInfo = mapPersistence.LoadMap(mapName);
+
+                    mapsSpotsInfo[mapName] = mapInfo.Recover(out int rootIndex);
+
+                    SpotInfo rootInfo = mapsSpotsInfo[mapName][rootIndex];
+                    mapsRoots.Add(mapName, rootInfo);
+                }
+                else
+                {
+                    allSavesFound = false;
+                }
+            }
+
+            if (allSavesFound)
+            {
+                RecoverSavedMaps();
+            }
+            else
+            {
+                BuildAllMaps();
+            }
         }
         else
         {
             RecoverSavedMaps();
         }
 
-        MapsRuntimeCache.Instance.CacheMaps(maps);
+        MapsRuntimeCache.Instance.CacheMaps(mapsRoots);
     }
 
-    private Dictionary<string, Spot.SpotInfo> GetMapsFromCacheOrGetNull()
+    private void SaveInDeviceStorage(SpotInfo spot, string mapName)
     {
-        MapsCache cache = MapsRuntimeCache.Instance;
+        SpotInfo rootInfo = mapsRoots[mapName];
+        int rootIndex = GetIndex(rootInfo, mapName);
 
-        if (cache == null)
+        MapInfo mapInfo = new MapInfo(mapsSpotsInfo[mapName], rootIndex);
+
+        mapPersistence.SaveMap(mapName, mapInfo);
+    }
+
+    /*
+    private Spot FindSpotInRootsOrGetNull(string mapName)
+    {
+        foreach (Spot spot in finalSpotForEachMap)
         {
-            return null;
+            if (spot.MapName == mapName)
+            {
+                return spot;
+            }
         }
-        else
+        return null;
+    }
+    */
+
+    public int GetIndex(SpotInfo desiredInfo, string mapName)
+    {
+        List<SpotInfo> allSpotsInfo = mapsSpotsInfo[mapName];
+
+        for (int i = 0; i < allSpotsInfo.Count; i++)
         {
-            return cache.RetrieveMapsOrGetNull();
+            if (desiredInfo == allSpotsInfo[i])
+            {
+                return i;
+            }
+        }
+        return NODE_NOT_FOUND;
+    }
+
+    public SpotInfo GetInfoFromGaphOrGetNull(string desiredInfoGOName, string mapName)
+    {
+        List<SpotInfo> allSpotsInfo = mapsSpotsInfo[mapName];
+
+        for (int i = 0; i < allSpotsInfo.Count; i++)
+        {
+            if (desiredInfoGOName == allSpotsInfo[i].GOName)
+            {
+                return allSpotsInfo[i];
+            }
+        }
+        return null;
+    }
+
+    /*
+    private void Update()
+    {
+        LogInfoOfListOfSpots(mapsSpotsInfo["First"]);
+    }
+    */
+
+    public static void LogInfoOfListOfSpots(List<SpotInfo> spots)
+    {
+        foreach (SpotInfo spt in spots)
+        {
+            spt.LogInfo();
         }
     }
 
     private void BuildAllMaps()
     {
         startOfMatch = false;
-        maps = new Dictionary<string, Spot.SpotInfo>();
+        mapsRoots = new Dictionary<string, SpotInfo>();
+        mapsSpotsInfo = new Dictionary<string, List<SpotInfo>>();
 
         foreach (Spot mapFinalSpot in finalSpotForEachMap)
         {
-            BuildMapAndSaveInCollection(mapFinalSpot, maps);
+            BuildMapAndSaveInCollection(mapFinalSpot);
         }
     }
 
-    private void BuildMapAndSaveInCollection(Spot mapFinalSpot, Dictionary<string, Spot.SpotInfo> maps)
+    private void BuildMapAndSaveInCollection(Spot mapFinalSpot)
     {
         string mapName = mapFinalSpot.MapName;
-        if (!maps.ContainsKey(mapName))
-        {
-            mapFinalSpot.BuildFromZero();
-            maps[mapName] = mapFinalSpot.GetInfo();
-        }
+        mapFinalSpot.BuildFromZero();
+        List<SpotInfo> allSpotsInfo = mapFinalSpot.GetInfo(out int rootIndex);
+        mapsSpotsInfo[mapName] = allSpotsInfo;
+        mapsRoots[mapName] = allSpotsInfo[rootIndex];
     }
 
     public void RecoverSavedMaps()
     {
-        foreach (Spot spot in finalSpotForEachMap)
+        foreach (Spot root in finalSpotForEachMap)
         {
-            spot.BuildFromInfo(maps[spot.MapName]);
+            string mapName = root.MapName;
+            SpotInfo rootInfo = mapsRoots[mapName];
+            root.BuildFromInfo(rootInfo, mapsSpotsInfo[mapName]);
         }
     }
 
@@ -103,7 +200,7 @@ public class UIMap : PopUpOpener
         {
             popUpOpener.SetLoadingPopUpActiveToTrue();
             BattleInfo.PrepareSimpleBattle();
-            ClearSpotAndSaveInfo(btnTransform);
+            SetSpotInfoToClearIfPlayerWins(btnTransform);
             DeckPrototypeFactory.PrepareRandomDeckForTheEnemy();
             SetUpBattleAndOpenIt();
         }
@@ -112,7 +209,7 @@ public class UIMap : PopUpOpener
     {
         popUpOpener.SetLoadingPopUpActiveToTrue();
         BattleInfo.PrepareToughBattle();
-        ClearSpotAndSaveInfo(btnTransform);
+        SetSpotInfoToClearIfPlayerWins(btnTransform);
         DeckPrototypeFactory.PrepareToughRandomDeckForTheEnemy();
         SetUpBattleAndOpenIt();
     }
@@ -122,7 +219,7 @@ public class UIMap : PopUpOpener
     {
         popUpOpener.SetLoadingPopUpActiveToTrue();
         BattleInfo.PrepareBossBattle();
-        ClearSpotAndSaveInfo(btnTransform);
+        SetSpotInfoToClearIfPlayerWins(btnTransform);
         DeckPrototypeFactory.PrepareBossRandomDeckForTheEnemy();
         SetUpBattleAndOpenIt();
     }
@@ -136,7 +233,7 @@ public class UIMap : PopUpOpener
         popUpOpener.SetLoadingPopUpActiveToTrue();
         BattleInfo.PrepareMasterBattle(Classes.MAGE);
         DeckPrototypeFactory.PrepareMageDeckForTheEnemy();
-        ClearSpotAndSaveInfo(btnTransform);
+        SetSpotInfoToClearIfPlayerWins(btnTransform);
         SetUpBattleAndOpenIt();
     }
 
@@ -145,7 +242,7 @@ public class UIMap : PopUpOpener
         popUpOpener.SetLoadingPopUpActiveToTrue();
         BattleInfo.PrepareMasterBattle(Classes.WARRIOR);
         DeckPrototypeFactory.PrepareWarriorDeckForTheEnemy();
-        ClearSpotAndSaveInfo(btnTransform);
+        SetSpotInfoToClearIfPlayerWins(btnTransform);
         SetUpBattleAndOpenIt();
     }
 
@@ -154,7 +251,7 @@ public class UIMap : PopUpOpener
         popUpOpener.SetLoadingPopUpActiveToTrue();
         BattleInfo.PrepareMasterBattle(Classes.ROGUE);
         DeckPrototypeFactory.PrepareRogueDeckForTheEnemy();
-        ClearSpotAndSaveInfo(btnTransform);
+        SetSpotInfoToClearIfPlayerWins(btnTransform);
         SetUpBattleAndOpenIt();
     }
 
@@ -163,7 +260,7 @@ public class UIMap : PopUpOpener
         popUpOpener.SetLoadingPopUpActiveToTrue();
         BattleInfo.PrepareMasterBattle(Classes.GUARDIAN);
         DeckPrototypeFactory.PrepareGuardianDeckForTheEnemy();
-        ClearSpotAndSaveInfo(btnTransform);
+        SetSpotInfoToClearIfPlayerWins(btnTransform);
         SetUpBattleAndOpenIt();
     }
 
@@ -176,12 +273,24 @@ public class UIMap : PopUpOpener
         sceneOpener.OpenScene("Battle");
     }
 
+    private void SetSpotInfoToClearIfPlayerWins(Transform spotBtnTransform)
+    {
+        Spot spot = FindAndClearSpotInItsGameObject(spotBtnTransform);
+
+        spotToClearIfPlayerWins = GetInfoFromGaphOrGetNull(spot.gameObject.name, spot.MapName);
+        nameOfMapThatPlayerCurrentlyIs = spot.MapName;
+    }
+    /*
     private void ClearSpotAndSaveInfo(Transform spotBtnTransform)
     {
         Spot spot = FindAndClearSpotInItsGameObject(spotBtnTransform);
 
-        SetClearedInPersistenceDataStructure(spot);
-    }
+        spot.Cleared = true;
+
+        SetClearedInMapsCache(spot);
+
+        SaveInDeviceStorage(spot);
+    }*/
 
     private Spot FindAndClearSpotInItsGameObject(Transform btnTransform)
     {
@@ -192,18 +301,7 @@ public class UIMap : PopUpOpener
             Debug.LogError("[UIMap] spot is null.", this);
         }
 
-        spot.Cleared = true;
-
         return spot;
-    }
-
-    private void SetClearedInPersistenceDataStructure(Spot spot)
-    {
-        Spot.SpotInfo rootInfo = maps[spot.MapName];
-
-        Spot.SpotInfo desiredInfo = rootInfo.GetInfoFromTreeOrGetNull(spot.gameObject.name);
-
-        desiredInfo.Cleared = true;
     }
 
     public void OnPauseMenuOppenerBtnClick()

@@ -16,34 +16,33 @@ public class MapsRuntimeCache : MonoBehaviour
         }
     }
 
+    /*
     private void Update()
     {
-        Dictionary<string, Spot.SpotInfo> maps = Instance.RetrieveMapsOrGetNull();
+        Dictionary<string, SpotInfo> maps = Instance.RetrieveMapsOrGetNull();
         if (maps != null)
         {
-            Spot.LogInfo(maps["First"]);
+            maps["First"].LogInfo();
+        }
+        else
+        {
+            L.ogError("maps[First] is null att MapsRuntimeCache.", this);
         }
     }
+    */
 }
 
 public class MapsCache
 {
-    private Dictionary<string, Spot.SpotInfo> mapsRuntimeCache;
+    private Dictionary<string, SpotInfo> mapsRuntimeCache;
 
-    public void CacheMaps(Dictionary<string, Spot.SpotInfo> mapsRuntimeCache)
+    public void CacheMaps(Dictionary<string, SpotInfo> mapsRuntimeCache)
     {
         this.mapsRuntimeCache = mapsRuntimeCache;
     }
 
-    public Dictionary<string, Spot.SpotInfo> RetrieveMapsOrGetNull()
+    public Dictionary<string, SpotInfo> RetrieveMapsOrGetNull()
     {
-        if (mapsRuntimeCache == null)
-        {
-            return null;
-        }
-        else
-        {
-            return mapsRuntimeCache;
-        }
+        return mapsRuntimeCache;
     }
 }

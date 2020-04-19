@@ -7,8 +7,6 @@ public class MapPersistence : MonoBehaviour
 {
     protected static MapPersistence instance;
 
-
-
     private void Awake()
     {
         if (instance == null){
@@ -16,9 +14,10 @@ public class MapPersistence : MonoBehaviour
         }
     }
 
-    public void SaveMap(string mapName, Spot.SpotInfo rootInfo)
+    public void SaveMap(string mapName, MapInfo mapInfo)
     {
-        GenericSave(mapName, rootInfo);
+        L.og("Saving Map!!", this);
+        GenericSave(mapName, mapInfo);
     }
 
     public bool DoSaveExists(string mapName)
@@ -26,9 +25,10 @@ public class MapPersistence : MonoBehaviour
         return File.Exists(Application.persistentDataPath + mapName);
     }
 
-    public Spot.SpotInfo LoadMap(string mapName)
+    public MapInfo LoadMap(string mapName)
     {
-        return GenericLoad<Spot.SpotInfo>(mapName);
+        L.og("Loading Map!!", this);
+        return GenericLoad<MapInfo>(mapName);
     }
 
     private void GenericSave<T>(string nomeArquivo, T dadosDoObjeto)
