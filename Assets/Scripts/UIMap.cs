@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class UIMap : PopUpOpener
 {
-    private static int NODE_NOT_FOUND = -1;
-
     [SerializeField]
     private Spot[] finalSpotForEachMap = null;
 
@@ -18,128 +16,69 @@ public class UIMap : PopUpOpener
     private AudioClip winSound = null;
 
     [SerializeField]
-    private MapPersistence mapPersistence = null;
-    private static bool startOfMatch;
-
-    public static bool StartOfMatch { set => startOfMatch = value; }
-
-    private Dictionary<string, SpotInfo> mapsRoots;
-    private static Dictionary<string, List<SpotInfo>> mapsSpotsInfo = new Dictionary<string, List<SpotInfo>>();
-
-    public static SpotInfo spotToClearIfPlayerWins;
-    private static string nameOfMapThatPlayerCurrentlyIs;
+    private MapsCacheGetter mapsCache = null;
 
     private void Awake()
     {
-        mapsRoots = MapsRuntimeCache.Instance.RetrieveMapsOrGetNull();
+        mapsCache.UpdateWithPlayerProgress();
 
-        if (spotToClearIfPlayerWins != null)
-        {
-            spotToClearIfPlayerWins.Cleared = true;
-            SaveInDeviceStorage(spotToClearIfPlayerWins, nameOfMapThatPlayerCurrentlyIs);
-        }
-
-        if (startOfMatch)
+        if (mapsCache.StartOfMatch)
         {
             BuildAllMaps();
         }
-        else if (mapsRoots == null)
+        else if ( DataStructuresAreEmpty() )
         {
-            bool allSavesFound = true;
-            mapsRoots = new Dictionary<string, SpotInfo>();
-            foreach (Spot root in finalSpotForEachMap)
+            bool succeed = mapsCache.TryToLoadAllMapsDataFromDeviceStorage(finalSpotForEachMap);
+
+            if (succeed)
             {
-                string mapName = root.MapName;
-                if (mapPersistence.DoSaveExists(mapName))
-                {
-                    MapInfo mapInfo = mapPersistence.LoadMap(mapName);
-
-                    mapsSpotsInfo[mapName] = mapInfo.Recover(out int rootIndex);
-
-                    SpotInfo rootInfo = mapsSpotsInfo[mapName][rootIndex];
-                    mapsRoots.Add(mapName, rootInfo);
-                }
-                else
-                {
-                    allSavesFound = false;
-                }
-            }
-
-            if (allSavesFound)
-            {
-                RecoverSavedMaps();
+                CopyDataFromAttributesToSceneSpots();
             }
             else
             {
                 BuildAllMaps();
             }
         }
-        else
+        else // Player is in the middle of the game and the data should be fresh in mapsCache
         {
-            RecoverSavedMaps();
+            CopyDataFromAttributesToSceneSpots();
         }
-
-        MapsRuntimeCache.Instance.CacheMaps(mapsRoots);
     }
 
-    private void SaveInDeviceStorage(SpotInfo spot, string mapName)
+    private void BuildAllMaps()
     {
-        SpotInfo rootInfo = mapsRoots[mapName];
-        int rootIndex = GetIndex(rootInfo, mapName);
+        mapsCache.StartOfMatch = false;
 
-        MapInfo mapInfo = new MapInfo(mapsSpotsInfo[mapName], rootIndex);
+        mapsCache.ClearRootsAndSpots();
 
-        mapPersistence.SaveMap(mapName, mapInfo);
-    }
-
-    /*
-    private Spot FindSpotInRootsOrGetNull(string mapName)
-    {
-        foreach (Spot spot in finalSpotForEachMap)
+        foreach (Spot mapFinalSpot in finalSpotForEachMap)
         {
-            if (spot.MapName == mapName)
-            {
-                return spot;
-            }
+            BuildMapAndSaveItsDataInMapsCache(mapFinalSpot);
         }
-        return null;
     }
-    */
 
-    public int GetIndex(SpotInfo desiredInfo, string mapName)
+    private void BuildMapAndSaveItsDataInMapsCache(Spot mapFinalSpot)
     {
-        List<SpotInfo> allSpotsInfo = mapsSpotsInfo[mapName];
+        string mapName = mapFinalSpot.MapName;
+        mapFinalSpot.BuildFromZero();
+        List<SpotInfo> allSpotsInfo = mapFinalSpot.GetInfo(out int rootIndex);
+        mapsCache.CacheRootsAndSpotsOfSingleMap(allSpotsInfo, rootIndex, mapName);
+    }
 
-        for (int i = 0; i < allSpotsInfo.Count; i++)
+    private bool DataStructuresAreEmpty()
+    {
+        return mapsCache.DataStructuresAreEmpty();
+    }
+
+    public void CopyDataFromAttributesToSceneSpots()
+    {
+        foreach (Spot root in finalSpotForEachMap)
         {
-            if (desiredInfo == allSpotsInfo[i])
-            {
-                return i;
-            }
+            string mapName = root.MapName;
+            SpotInfo rootInfo = mapsCache.GetRootInfo(mapName);
+            root.BuildFromInfo(rootInfo, mapsCache.GetAllMapsSpotsInfo(mapName));
         }
-        return NODE_NOT_FOUND;
     }
-
-    public SpotInfo GetInfoFromGaphOrGetNull(string desiredInfoGOName, string mapName)
-    {
-        List<SpotInfo> allSpotsInfo = mapsSpotsInfo[mapName];
-
-        for (int i = 0; i < allSpotsInfo.Count; i++)
-        {
-            if (desiredInfoGOName == allSpotsInfo[i].GOName)
-            {
-                return allSpotsInfo[i];
-            }
-        }
-        return null;
-    }
-
-    /*
-    private void Update()
-    {
-        LogInfoOfListOfSpots(mapsSpotsInfo["First"]);
-    }
-    */
 
     public static void LogInfoOfListOfSpots(List<SpotInfo> spots)
     {
@@ -149,49 +88,16 @@ public class UIMap : PopUpOpener
         }
     }
 
-    private void BuildAllMaps()
-    {
-        startOfMatch = false;
-        mapsRoots = new Dictionary<string, SpotInfo>();
-        mapsSpotsInfo = new Dictionary<string, List<SpotInfo>>();
-
-        foreach (Spot mapFinalSpot in finalSpotForEachMap)
-        {
-            BuildMapAndSaveInCollection(mapFinalSpot);
-        }
-    }
-
-    private void BuildMapAndSaveInCollection(Spot mapFinalSpot)
-    {
-        string mapName = mapFinalSpot.MapName;
-        mapFinalSpot.BuildFromZero();
-        List<SpotInfo> allSpotsInfo = mapFinalSpot.GetInfo(out int rootIndex);
-        mapsSpotsInfo[mapName] = allSpotsInfo;
-        mapsRoots[mapName] = allSpotsInfo[rootIndex];
-    }
-
-    public void RecoverSavedMaps()
-    {
-        foreach (Spot root in finalSpotForEachMap)
-        {
-            string mapName = root.MapName;
-            SpotInfo rootInfo = mapsRoots[mapName];
-            root.BuildFromInfo(rootInfo, mapsSpotsInfo[mapName]);
-        }
-    }
-
-    void GoToMenu()
-    {
-        sceneOpener.OpenScene("Main Menu");
-        popUpOpener.CloseAllPopUpsExceptLoading();
-    }
-
     public void OnEndOfGameClicked(Transform btnTransform)
     {
         audioRequisitor.RequestBGM(winSound);
         customPopUpOpener.Open("You Beat the game!!!", "You are Awesome!", "Go to Menu", "Look the Map", GoToMenu);
-        //ClearSpot(btnTransform);
-        //BattleDefaultBehaviour();
+    }
+
+    private void GoToMenu()
+    {
+        sceneOpener.OpenScene("Main Menu");
+        popUpOpener.CloseAllPopUpsExceptLoading();
     }
 
     #region On Battle Spot Buttons Clicked
@@ -214,7 +120,6 @@ public class UIMap : PopUpOpener
         SetUpBattleAndOpenIt();
     }
 
-    // the btnTransform parameter might be used if we substitute the final spot for some battle
     public void OnBossBattleClicked(Transform btnTransform)
     {
         popUpOpener.SetLoadingPopUpActiveToTrue();
@@ -275,24 +180,12 @@ public class UIMap : PopUpOpener
 
     private void SetSpotInfoToClearIfPlayerWins(Transform spotBtnTransform)
     {
-        Spot spot = FindAndClearSpotInItsGameObject(spotBtnTransform);
+        Spot spot = GetSpotComponentInParent(spotBtnTransform);
 
-        spotToClearIfPlayerWins = GetInfoFromGaphOrGetNull(spot.gameObject.name, spot.MapName);
-        nameOfMapThatPlayerCurrentlyIs = spot.MapName;
+        mapsCache.SetSpotInfoToClearIfPlayerWins(spot.gameObject.name, spot.MapName);
     }
-    /*
-    private void ClearSpotAndSaveInfo(Transform spotBtnTransform)
-    {
-        Spot spot = FindAndClearSpotInItsGameObject(spotBtnTransform);
 
-        spot.Cleared = true;
-
-        SetClearedInMapsCache(spot);
-
-        SaveInDeviceStorage(spot);
-    }*/
-
-    private Spot FindAndClearSpotInItsGameObject(Transform btnTransform)
+    private Spot GetSpotComponentInParent(Transform btnTransform)
     {
         Spot spot = btnTransform.parent.GetComponent<Spot>();
 

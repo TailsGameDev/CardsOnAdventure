@@ -16,7 +16,6 @@ public class MapPersistence : MonoBehaviour
 
     public void SaveMap(string mapName, MapInfo mapInfo)
     {
-        L.og("Saving Map!!", this);
         GenericSave(mapName, mapInfo);
     }
 
@@ -27,7 +26,6 @@ public class MapPersistence : MonoBehaviour
 
     public MapInfo LoadMap(string mapName)
     {
-        L.og("Loading Map!!", this);
         return GenericLoad<MapInfo>(mapName);
     }
 

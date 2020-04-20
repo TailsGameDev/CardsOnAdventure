@@ -690,7 +690,6 @@ public class EndGame : BattleState
                         }
                         else
                         {
-                            UIMap.spotToClearIfPlayerWins = null;
                             customPopUpOpener.Open(
                                 title : "Congratulations!",
                                 warningMessage: "You beat those guys. What are you going to do now?",
@@ -703,6 +702,7 @@ public class EndGame : BattleState
                     }
                     else
                     {
+                        MapsCache.SpotToClearIfPlayerWins = null;
                         customPopUpOpener.Open(
                             title: "You've lost the battle",
                             warningMessage: "The enemy start to search you fallen card's pockets",

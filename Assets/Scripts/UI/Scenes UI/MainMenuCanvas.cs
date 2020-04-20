@@ -7,6 +7,9 @@ public class MainMenuCanvas : PauseMenu
 {
     // Inherits OnSettingsBtnClicked, OnRulesBtnClicked, OpenScene
 
+    [SerializeField]
+    private MapsCacheGetter mapsCache = null;
+
     public void OnPlayBtnClicked()
     {
         customPopUpOpener.Open(
@@ -22,14 +25,14 @@ public class MainMenuCanvas : PauseMenu
     private void Continue()
     {
         // TODO: Save bonuses of classes
-        UIMap.StartOfMatch = false;
+        mapsCache.StartOfMatch = false;
         popUpOpener.OpenMapPopUp();
     }
 
     private void NewGame()
     {
         ClassInfo.ResetBonusesToAllClasses();
-        UIMap.StartOfMatch = true;
+        mapsCache.StartOfMatch = true;
         popUpOpener.OpenMapPopUp();
     }
 
