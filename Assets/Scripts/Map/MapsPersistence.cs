@@ -3,5 +3,5 @@ using System.Collections;
 
 public class MapsPersistence : MonoBehaviour
 {
-    protected MapPersistence mapPersistence;
+    protected MapsPersistenceInstance mapPersistence;
 }

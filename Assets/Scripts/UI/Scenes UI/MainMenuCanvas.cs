@@ -10,6 +10,9 @@ public class MainMenuCanvas : PauseMenu
     [SerializeField]
     private MapsCacheGetter mapsCache = null;
 
+    [SerializeField]
+    private ClassesPersistence classesPersistence = null;
+
     public void OnPlayBtnClicked()
     {
         customPopUpOpener.Open(
@@ -24,7 +27,8 @@ public class MainMenuCanvas : PauseMenu
 
     private void Continue()
     {
-        // TODO: Save bonuses of classes
+        ClassesSerializable classesSerializable = classesPersistence.LoadClasses();
+        ClassInfo.LoadBonuses(classesSerializable);
         mapsCache.StartOfMatch = false;
         popUpOpener.OpenMapPopUp();
     }

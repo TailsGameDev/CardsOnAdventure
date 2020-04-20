@@ -1,35 +1,11 @@
 ﻿using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Collections.Generic;
+using System.Collections;
 
-public class MapPersistence : MonoBehaviour
+public class Persistence : MonoBehaviour
 {
-    protected static MapPersistence instance;
-
-    private void Awake()
-    {
-        if (instance == null){
-            instance = this;
-        }
-    }
-
-    public void SaveMap(string mapName, MapInfo mapInfo)
-    {
-        GenericSave(mapName, mapInfo);
-    }
-
-    public bool DoSaveExists(string mapName)
-    {
-        return File.Exists(Application.persistentDataPath + mapName);
-    }
-
-    public MapInfo LoadMap(string mapName)
-    {
-        return GenericLoad<MapInfo>(mapName);
-    }
-
-    private void GenericSave<T>(string nomeArquivo, T dadosDoObjeto)
+    public void GenericSave<T>(string nomeArquivo, T dadosDoObjeto)
     {
         BinaryFormatter formater = new BinaryFormatter();
         string path = Application.persistentDataPath + nomeArquivo;
@@ -38,7 +14,7 @@ public class MapPersistence : MonoBehaviour
         stream.Close();
     }
 
-    private T GenericLoad<T>(string nomeArquivo)
+    public T GenericLoad<T>(string nomeArquivo)
     {
         string path = Application.persistentDataPath + nomeArquivo;
         if (File.Exists(path))

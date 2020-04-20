@@ -4,7 +4,7 @@ using UnityEngine;
 public class MapsCache : MapsRuntimeCache
 {
     [SerializeField]
-    private MapPersistence mapsPersistence = null;
+    private MapsPersistenceInstance mapsPersistence = null;
 
     private static int NODE_NOT_FOUND = -1;
 

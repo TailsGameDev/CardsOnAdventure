@@ -7,6 +7,11 @@ public class ClassInfo : MonoBehaviour
     private static Dictionary<Classes, ClassInfo> classesInfo = new Dictionary<Classes, ClassInfo>();
 
     [SerializeField]
+    private ClassesPersistence classesPersistence = null;
+
+    private static ClassesPersistence staticClassesPersistence = null;
+
+    [SerializeField]
     private Classes classe = Classes.NOT_A_CLASS;
 
     [SerializeField]
@@ -33,6 +38,8 @@ public class ClassInfo : MonoBehaviour
         if (!classesInfo.ContainsKey(classe))
         {
             classesInfo.Add(classe, this);
+            // TODO: the next line don't need to be called moe than once
+            staticClassesPersistence = classesPersistence;
         }
     }
 
@@ -71,11 +78,13 @@ public class ClassInfo : MonoBehaviour
     public static void GiveVitalityBonusToClass(Classes classe)
     {
         classesInfo[classe].vitalityBonus++;
+        staticClassesPersistence.SaveClasses(new ClassesSerializable(classesInfo));
     }
 
     public static void GiveAttackPowerBonusToClass(Classes classe)
     {
         classesInfo[classe].attackPowerBonus++;
+        staticClassesPersistence.SaveClasses(new ClassesSerializable(classesInfo));
     }
 
     public static void ResetBonusesToAllClasses()
@@ -85,5 +94,10 @@ public class ClassInfo : MonoBehaviour
             classesInfo[key].attackPowerBonus = 0;
             classesInfo[key].vitalityBonus = 0;
         }
+    }
+
+    public static void LoadBonuses(ClassesSerializable classesSerializable)
+    {
+        classesSerializable.SetBonusesInDictionary(classesInfo);
     }
 }
