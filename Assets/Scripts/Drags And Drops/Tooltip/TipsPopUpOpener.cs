@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TipPopUpOpener : PopUpOpener
+public class TipsPopUpOpener : PopUpOpener
 {
     public void OpenTipsPopUp(TipSectionData[] tipData, string title)
     {

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UICardsHolderEventHandler : MonoBehaviour
 {
@@ -9,6 +10,12 @@ public class UICardsHolderEventHandler : MonoBehaviour
     [SerializeField]
     private RectTransform parentForDynamicUIThatMustAppear = null;
     public static RectTransform parentOfDynamicUIThatMustAppear;
+
+    [SerializeField]
+    private Text skillTipText = null;
+
+    [SerializeField]
+    private CardsHolder[] emergenceClearCardHolders = null;
 
     private Card cardBeingDragged;
 
@@ -62,6 +69,8 @@ public class UICardsHolderEventHandler : MonoBehaviour
         cardBeingDragged = cardsHolder.GetReferenceToCardAt(index);
         cardBeingDragged.cardDragAndDrop.StartDragging();
 
+        ShowTipAboutCardBeingDragged();
+
         while (isDragging)
         {
             yield return null;
@@ -91,7 +100,19 @@ public class UICardsHolderEventHandler : MonoBehaviour
                 );
         }
 
+        HideCardsBeingDraggedTip();
         ClearWholeDragAndDropSystem(new CardsHolder[] { cardsHolder, cardsHolderBelowMouseOnDrop });
+    }
+
+    private void ShowTipAboutCardBeingDragged()
+    {
+        skillTipText.text = cardBeingDragged.GetSkillsExplanatoryText();
+        skillTipText.transform.parent.gameObject.SetActive(true);
+    }
+
+    private void HideCardsBeingDraggedTip()
+    {
+        skillTipText.transform.parent.gameObject.SetActive(false);
     }
 
     public void OnSlotClicked(CardsHolder cardsHolder, int index)
@@ -113,7 +134,10 @@ public class UICardsHolderEventHandler : MonoBehaviour
             }
             else
             {
-                L.ogError("cardsHolder is null!!", this);
+                // I don't know exactly why that's null. That's why I'll clear some cardHolders that with some luck
+                // are the ones that should be cleared.
+                EmergencyClearCardHolders();
+                L.ogError("cardsHolder is null!! It would be nice if you stop some day to understand why...", this);
             }
         }
 
@@ -121,5 +145,13 @@ public class UICardsHolderEventHandler : MonoBehaviour
 
         cardsHolderBelowMouseOnDrop = null;
         indexOfSlotBelowMouseOnDrop = -1;
+    }
+
+    protected virtual void EmergencyClearCardHolders()
+    {
+        foreach (CardsHolder cardHolder in emergenceClearCardHolders)
+        {
+            cardHolder.ClearSelection();
+        }
     }
 }

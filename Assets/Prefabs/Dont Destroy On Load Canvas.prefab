@@ -1877,7 +1877,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.00002750033}
-  m_SizeDelta: {x: 648, y: 5293.4}
+  m_SizeDelta: {x: 648, y: 2101}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &3429248573404355306
 CanvasRenderer:
@@ -1907,7 +1907,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: b6351f55f62c6ca4eacab29e36e00de1, type: 3}
-    m_FontSize: 36
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1918,51 +1918,15 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Rule Number Zero: You can drag and drop the \u2018?\u2019 at the top left
-    corner to the cards to see info about them and it\u2019s wonderful art.\r\n\r\nRule
-    Number One: You can access the rules pop-up during the battle!\r\n\r\n<color=#1DEFC7>Start
-    Adventure:</color>\r\n\r\nYour and your enemies deck have currently always an
-    aleatory deck with 8 cards.\r\n\r\n<color=#1DEFC7>Map:</color>\r\n\r\nThe map
-    currently has different icons. The white is a simple battle. The one similar
-    to the simple battle, but red, is a tough battle. There are still 4 icons that
-    represent class masters. Win a class master and you will be able to upgrade the
-    cards with the same class of the master. Note that the Cleric class has no master,
-    and can\u2019t be improved. Finally, the last spot (the skull) is just an innocent
-    congratulations pop-up, but soon it will probably be a tough boss. To access
-    further locations, you have to win the spots before them.\r\n\r\n<color=#1DEFC7>Battle:</color>\r\n\r\nA
-    card can attack any other card in the opponent\u2019s battlefield, but CARDS
-    BEHIND OTHERS TAKE JUST HALF OF THE DAMAGE.\r\n\r\nYou end your turn when you
-    attack with all of your cards, or with the End Turn Button.\r\n\r\nYou win when
-    you beat all the enemy\u2019s deck\r\n\r\n<color=#1DEFC7>Classes:</color>\r\n\r\nThere
-    are 5 classes in the game: Warrior, Mage, Rogue, Guardian and Cleric, but currently
-    the only difference is the color in the title of the card\u2019s pop up, and
-    of course, the skills it might have.\r\n\r\n<color=#1DEFC7>Skills:</color>\r\n\r\nEach
-    card can possess currently just one skill. But you can kind of think almost all
-    skills are a sum of a Basic Attack with some special effect.\r\n\r\nAll skills
-    descriptions are also available in the card\u2019s pop-up. To open it, just drag
-    and drop the \u2018?\u2019 at the top left corner to the card you want to see
-    more information about.\r\n\r\n[ - ]: Basic Attack: Deals damage equals the Attack
-    Power to the target.\r\n\r\n<color=#F24725>Warrior:</color>\r\n[PI] Pierce: The
-    attack targets a card on the frontline, but the card in the back takes half of
-    the damage.\r\n[DA] Double Attack: The card performs its attack twice.\r\n\r\n<color=#4BCAE7>Mage:</color>\r\n-[AR]
-    Area: All targets adjacent cards and the target take half of the Attack Power
-    of the mage as damage.\r\n-[FR] Freezing: Freezes the target so it can\u2019t
-    either attack or move in the next round.\r\n\r\n<color=#8DD330>Rogue:</color>\r\n-[HO]
-    Hook: If the attack targets the backline, and there is a card in front of the
-    target, swap these two enemy cards and apply half of the Attack Power as damage
-    to the target. Otherwise it\u2019s just a regular attack.\r\n-[ST] Steal: Apply
-    damage, and steal the enemy\u2019s skill. The enemy then can just perform regular
-    attacks after this.\r\n\r\n<color=#E88813>Guardian:</color>\r\n- [BL] Block:
-    If some enemy tries to attack the card behind this one, this card takes the damage
-    instead of it\u2019s teammate.\r\n- [HA] Heavy Armor: The damage this card receives
-    is limited to half of the attacker power.\r\n- [RE] Reflect: Sends half of the
-    attacker power back to him as damage.\r\n\r\n<color=#FFFE02>Cleric:</color>\r\n-
-    [SA] Sanctuary: Deals half of the damage. Heals the cleric and its allies with
-    half of the Attack Power. Cards can be overhealed until the double of the initial
-    vitality. The cleric is powerful enough just to heal 2 cards. He will try to
-    heal himself, then the card in his side, then the vertical adjacent one, and
-    finally the card in the opposite corner.\r\n\r\nHalf of 1 is 0. Half of 3 is
-    1. Half of 5 is 2.\r\n\r\nIf you have read this far, you are already a hero!\r"
+  m_Text: "Can you see a \" * \" in the top left corner of your screen?\r\n\r\nCan
+    you? Oh my God! That's amazing! That\u2019s a Teaching Spirit!\r\n\r\n<color=#1DEFC7>YOU
+    CAN DRAG AND DROP THE \u201C * \u201D</color>, I mean, the Teaching Spirit, 
+    <color=#1DEFC7>WHEREVER YOU WANT AND MAYBE HE WILL TEACH YOU SOMETHING INTERESTING
+    ABOUT IT!!</color>\r\n\r\nThe legends say that they only appear to the bravest
+    of the bravest ones. You are very special!\r\nAlso, Teaching Spirits get stronger
+    when they teach adventurers like you, so believe me: he will love it if you <color=#1DEFC7>DRAG
+    AND DROP THE \u201C * \u201D ALL OVER THE GAME!!</color>\r\n\r\nTell me, adventurer,
+    do you believe in spirits?\r\n"
 --- !u!1 &4166745349592262699
 GameObject:
   m_ObjectHideFlags: 0
@@ -1992,7 +1956,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 9182716590525795587}
-  m_RootOrder: 7
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1635746702432330688
 MonoBehaviour:
@@ -2038,7 +2002,7 @@ RectTransform:
   m_Father: {fileID: 4716346552866243239}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.7980504}
+  m_AnchorMin: {x: 0, y: 0.3429625}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
@@ -2482,7 +2446,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 4714426639784746685}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.20194958
+  m_Size: 0.6570375
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3827,10 +3791,10 @@ RectTransform:
   - {fileID: 9182716590043828853}
   - {fileID: 7513000122581108895}
   - {fileID: 8332425509524504380}
+  - {fileID: 1166232930941910571}
   - {fileID: 2209605853171767021}
   - {fileID: 1301887486581545761}
   - {fileID: 1632450728224532901}
-  - {fileID: 1166232930941910571}
   - {fileID: 1722111911702359279}
   - {fileID: 1996703682641681838}
   - {fileID: 7072712756640619727}
@@ -3937,11 +3901,6 @@ PrefabInstance:
       value: Tooltip Drag And Drop Disable while test of this system to be battle
         scene exclusive
       objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199628, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4010,12 +3969,12 @@ PrefabInstance:
     - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 61
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 130
       objectReference: {fileID: 0}
     - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
         type: 3}
@@ -4335,7 +4294,7 @@ PrefabInstance:
     - target: {fileID: 8294987184393561361, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8294987184393561361, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}
@@ -4925,7 +4884,7 @@ PrefabInstance:
     - target: {fileID: 8294987184393561361, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8294987184393561361, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}
@@ -5036,7 +4995,7 @@ PrefabInstance:
     - target: {fileID: 2454575002969046046, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}
       propertyPath: m_Text
-      value: RULES
+      value: Teaching Spirit
       objectReference: {fileID: 0}
     - target: {fileID: 3298988228544548924, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}
@@ -5400,7 +5359,7 @@ PrefabInstance:
     - target: {fileID: 8294987184393561361, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8294987184393561361, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}

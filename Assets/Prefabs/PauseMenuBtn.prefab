@@ -246,9 +246,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Pause Menu Button
   tipData:
+  - message: 
+    background: {fileID: 21300000, guid: 05e37aba8312cd641b4fbdc58962dbee, type: 3}
+    height: 500
   - message: The game can't actually pause, once time does not matter. But, if you
-      click this button, you got a menu with a few options like read rules, and go
-      to main menu.
+      click this button, you get a menu with a few options like go to the main menu.
     background: {fileID: 0}
     height: 0
   popUpOpener: {fileID: 2090587139526169330}

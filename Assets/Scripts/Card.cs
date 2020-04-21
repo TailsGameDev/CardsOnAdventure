@@ -404,6 +404,11 @@ public class Card : SkillsMediatorUser
                
     }
 
+    public string GetSkillsExplanatoryText()
+    {
+        return skills.GetExplanatoryText();
+    }
+
     public void SumPlayerBonuses()
     {
         attackPower += classInfo.AttackPowerBonus;

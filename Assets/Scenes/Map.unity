@@ -670,7 +670,7 @@ GameObject:
   - component: {fileID: 173994912}
   - component: {fileID: 173994913}
   m_Layer: 5
-  m_Name: Thoug Battle
+  m_Name: Tough Battle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -797,12 +797,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Thoug Battle
+  title: Tough  Battle
   tipData:
   - message: 
     background: {fileID: 21300000, guid: ff874a0dbc8fb654cbb4297c72991e10, type: 3}
     height: 648
-  - message: Battle against a total random enemy deck, witch size is bigger than
+  - message: Battle against a total random enemy deck, which size is bigger than
       yours.
     background: {fileID: 0}
     height: 500
@@ -1790,7 +1790,6 @@ RectTransform:
   - {fileID: 1360789274}
   - {fileID: 1088648566}
   - {fileID: 1139783806}
-  - {fileID: 1521751511}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1983,7 +1982,7 @@ MonoBehaviour:
   - message: 
     background: {fileID: 21300000, guid: ff874a0dbc8fb654cbb4297c72991e10, type: 3}
     height: 648
-  - message: Battle against a total random enemy deck, witch size is the same as
+  - message: Battle against a total random enemy deck, which size is the same as
       yours.
     background: {fileID: 0}
     height: 500
@@ -2477,7 +2476,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -3142,8 +3141,8 @@ MonoBehaviour:
   - message: 
     background: {fileID: 21300000, guid: b23239c315d377e449b57f9a9c37d78c, type: 3}
     height: 648
-  - message: Hard battle against a total random enemy deck, witch size is considerably
-      bigger than yours. Also is the last battle of the current adventure
+  - message: Hard battle against a total random enemy deck, which size is considerably
+      bigger than yours. Also, it is the last battle of the current adventure.
     background: {fileID: 0}
     height: 700
   popUpOpener: {fileID: 1131209288}
@@ -3231,7 +3230,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Thoug Battle
+  m_Text: Tough Battle
 --- !u!222 &974840408
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3324,6 +3323,9 @@ GameObject:
   - component: {fileID: 1035303617}
   - component: {fileID: 1035303619}
   - component: {fileID: 1035303618}
+  - component: {fileID: 1035303620}
+  - component: {fileID: 1035303621}
+  - component: {fileID: 1035303622}
   m_Layer: 5
   m_Name: Title Background
   m_TagString: Untagged
@@ -3387,6 +3389,75 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035303616}
   m_CullTransparentMesh: 0
+--- !u!114 &1035303620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035303616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Cardland
+  tipData:
+  - message: '                   Cardland'
+    background: {fileID: 21300000, guid: 609eb297ae42cc341a903a845a4ff4ca, type: 3}
+    height: 100
+  - message: It's the name of this land. A place where the mother cries, and the
+      son does not notice.
+    background: {fileID: 0}
+    height: 0
+  popUpOpener: {fileID: 1131209288}
+--- !u!50 &1035303621
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035303616}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
+--- !u!61 &1035303622
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035303616}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 2.7182312, y: -76.13829}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 568.98676, y: 145.20477}
+  m_EdgeRadius: 0
 --- !u!1 &1037450156
 GameObject:
   m_ObjectHideFlags: 0
@@ -4032,7 +4103,7 @@ GameObject:
   - component: {fileID: 1150730511}
   - component: {fileID: 1150730510}
   m_Layer: 5
-  m_Name: End of Game
+  m_Name: Victory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4175,12 +4246,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: End of Adventure
+  title: Victory
   tipData:
   - message: 
     background: {fileID: 21300000, guid: 4a2b0d0ab4b51a6459f78cca0e55f2d8, type: 3}
     height: 700
-  - message: If you got here, you beat the game, bro! Soon we will ad a reward to
+  - message: If you got here, you beat the game, bro! Soon we will add a reward to
       the bravest adventurers, like you!
     background: {fileID: 0}
     height: 500
@@ -4830,131 +4901,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1471672332}
   m_CullTransparentMesh: 0
---- !u!1001 &1521751510
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 520027314}
-    m_Modifications:
-    - target: {fileID: 5081174183955199628, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_Name
-      value: Tooltip Drag And Drop System
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 39.170044
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -21.699951
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 61
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_Pivot.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-        type: 3}
-      propertyPath: m_Pivot.y
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 91648b033d02ebf46a97e41823e004b3, type: 3}
---- !u!224 &1521751511 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5081174183955199629, guid: 91648b033d02ebf46a97e41823e004b3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1521751510}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1532375344
 GameObject:
   m_ObjectHideFlags: 0
@@ -5869,7 +5815,7 @@ PrefabInstance:
     - target: {fileID: 4687705843386997442, guid: 17369afb06db80246b6cadc7bf09618e,
         type: 3}
       propertyPath: defaultDeckSize
-      value: 1
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 9101949744829781060, guid: 17369afb06db80246b6cadc7bf09618e,
         type: 3}
@@ -6163,13 +6109,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Labels
+  title: Map Labels
   tipData:
+  - message: '               <color=#000000>Map labels here!</color>'
+    background: {fileID: 21300000, guid: 318a8268be58bcc489f683afa49a0c1b, type: 3}
+    height: 250
   - message: The labels are below the map, but if you want to know more about each
-      type of spot, drag the "?" and drop above the spot in the map itself (not here,
+      type of spot, <color=#1DEFC7>YOU CAN DRAG AND DROP THE " * "</color>, the Teaching
+      Spirit, <color=#1DEFC7>ABOVE THE SPOTS IN THE ACTUAL MAP</color> (not here,
       please!).
     background: {fileID: 0}
-    height: 0
+    height: 400
   popUpOpener: {fileID: 1131209288}
 --- !u!1 &2113625031
 GameObject:
@@ -6181,7 +6131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2113625032}
   m_Layer: 5
-  m_Name: Thoug Battle Label
+  m_Name: Tough Battle Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

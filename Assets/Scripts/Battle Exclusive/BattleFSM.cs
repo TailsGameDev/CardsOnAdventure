@@ -46,8 +46,9 @@ public class BattleFSM : MonoBehaviour
             {
                 somebodiesTurn = "Your Turn";
             }
-        
-            feedbackText.text = currentStateName + ". It's " +somebodiesTurn;
+            
+            feedbackText.text = "* "+currentStateName + ". It's " +somebodiesTurn;
+            
         }
     }
 }

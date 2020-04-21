@@ -10,7 +10,15 @@ public class TipsDragAndDropReceptor : DragAndDropReceptor
     protected TipSectionData[] tipData = null;
 
     [SerializeField]
-    protected TipPopUpOpener popUpOpener = null;
+    protected TipsPopUpOpener popUpOpener = null;
+
+    private void Awake()
+    {
+        for (int i = 0; i < tipData.Length; i++)
+        {
+            tipData[i].message = tipData[i].message.Replace("<br>", "\n");
+        }
+    }
 
     public override Type GetDragAndDropReceptorType()
     {
