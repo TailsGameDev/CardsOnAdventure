@@ -362,7 +362,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1612099942}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -483,8 +483,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 66}
-  m_SizeDelta: {x: 400, y: 500}
+  m_AnchoredPosition: {x: 0, y: 59.1}
+  m_SizeDelta: {x: 386.2, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &227648552
 MonoBehaviour:
@@ -1932,7 +1932,7 @@ PrefabInstance:
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
@@ -2452,7 +2452,7 @@ MonoBehaviour:
     background: {fileID: 21300000, guid: 76aee4a4b61b4474881fac10e6418afc, type: 3}
     height: 150
   - message: "This is the display of <color=#1DEFC7>HOW MANY CARDS THERE ARE STILL
-      STANDING IN A TEAM</color>. It is the sum of the cards in the battlefield,
+      STANDING IN THE PARTY</color>. It is the sum of the cards in the battlefield,
       with the ones in the hand, and in the deck. You have a counter like this in
       the bottom of the screen, and your enemy\u2019s one is in the top of the screen."
     background: {fileID: 0}
@@ -2718,7 +2718,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.3900146, y: 0}
+  m_AnchoredPosition: {x: -1.3896484, y: 0}
   m_SizeDelta: {x: -71.32001, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1075109119
@@ -3036,7 +3036,7 @@ RectTransform:
   m_Children:
   - {fileID: 1075109118}
   m_Father: {fileID: 1612099942}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -3179,6 +3179,7 @@ GameObject:
   - component: {fileID: 1224258032}
   - component: {fileID: 1224258034}
   - component: {fileID: 1224258033}
+  - component: {fileID: 1224258035}
   m_Layer: 5
   m_Name: Dynamic Feedback
   m_TagString: Untagged
@@ -3225,11 +3226,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: b6351f55f62c6ca4eacab29e36e00de1, type: 3}
-    m_FontSize: 38
+    m_FontSize: 53
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 3
-    m_MaxSize: 43
+    m_MaxSize: 53
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -3245,6 +3246,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1224258031}
   m_CullTransparentMesh: 0
+--- !u!114 &1224258035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1224258031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab55422962ee1f449ceacd2bd8fe28a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expantionMultiplyerMaximum: 1.4
+  minimumExpansionMultiplier: 1
+  text: {fileID: 1224258033}
 --- !u!1 &1225382198
 GameObject:
   m_ObjectHideFlags: 0
@@ -3365,7 +3381,7 @@ MonoBehaviour:
     background: {fileID: 21300000, guid: 76aee4a4b61b4474881fac10e6418afc, type: 3}
     height: 150
   - message: "This is the display of <color=#1DEFC7>HOW MANY CARDS THERE ARE STILL
-      STANDING IN A TEAM</color>. It is the sum of the cards in the battlefield,
+      STANDING IN THE PARTY</color>. It is the sum of the cards in the battlefield,
       with the ones in the hand, and in the deck. You have a counter like this in
       the bottom of the screen, and your enemy\u2019s one is in the top of the screen."
     background: {fileID: 0}
@@ -3937,11 +3953,11 @@ RectTransform:
   - {fileID: 301749283}
   - {fileID: 35391509}
   - {fileID: 1556942913}
+  - {fileID: 4090511394378606099}
+  - {fileID: 1959818951}
   - {fileID: 1210699014}
   - {fileID: 681655009}
   - {fileID: 151458627}
-  - {fileID: 1959818951}
-  - {fileID: 4090511394378606099}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5272,7 +5288,7 @@ PrefabInstance:
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
@@ -5498,8 +5514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstOneToPlayStatesFactory: {fileID: 876186946}
-  currentStateName: 
-  feedbackText: {fileID: 1224258033}
+  feedbackText: {fileID: 1224258035}
 --- !u!4 &2136569349
 Transform:
   m_ObjectHideFlags: 0
@@ -5564,7 +5579,7 @@ PrefabInstance:
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
