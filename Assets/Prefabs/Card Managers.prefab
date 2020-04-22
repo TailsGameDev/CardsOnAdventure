@@ -170,7 +170,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4687705843270994624}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4687705842220992019
 MonoBehaviour:
@@ -184,13 +184,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acronym: RE
+  acronym: RF
   fullName: Reflect
-  description: Sends half of the attacker power back to him as damage.
+  description: 'Sends half of the attacker power back to him as damage. '
   attackVFX: {fileID: 0}
   defenseVFX: {fileID: 6651142999770121848, guid: 145f8de0966e0f548af858369197657a,
     type: 3}
   specialVFX: {fileID: 0}
+  spawnAboveItselfWhenAttackVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: 10e908c21da8a614b8ac143dda9e027c, type: 3}
   defenseSFX: {fileID: 8300000, guid: d40c9ef9810c5024bb66b2bfd35b0527, type: 3}
   block: 0
@@ -202,6 +203,7 @@ MonoBehaviour:
   verticalSpreadDamageMultiplier: 0
   damageReductionPercentage: 0
   damageReflectionPercentage: 0.5
+  healItselfBeforeAttack: 0
 --- !u!1 &4687705842238985659
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,12 +425,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acronym: PI
   fullName: Pierce
-  description: The attack targets a card on the frontline, but the card in the back
-    takes half of the damage.
+  description: The attack targets a card on the frontline, causing The <full>Attack
+    Power as damage. Also, the card in the back takes half of the <half>Attack Power
+    damage.
   attackVFX: {fileID: 5748607524574563189, guid: e04241a417a08784aa21e2a0515d265f,
     type: 3}
   defenseVFX: {fileID: 0}
   specialVFX: {fileID: 0}
+  spawnAboveItselfWhenAttackVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: 6f4e0e57b18fe7f4488ebcdbae831a26, type: 3}
   defenseSFX: {fileID: 0}
   block: 0
@@ -440,6 +444,7 @@ MonoBehaviour:
   verticalSpreadDamageMultiplier: 0.5
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
+  healItselfBeforeAttack: 0
 --- !u!1 &4687705842464198637
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,11 +493,11 @@ MonoBehaviour:
   description: "If some enemy tries to attack the card behind this one, this card
     takes the damage instead of it\u2019s teammate."
   attackVFX: {fileID: 0}
-  defenseVFX: {fileID: 5082940041776008656, guid: 9fc973df5add9384180fdfb3967b22b1,
-    type: 3}
+  defenseVFX: {fileID: 0}
   specialVFX: {fileID: 0}
+  spawnAboveItselfWhenAttackVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: 10e908c21da8a614b8ac143dda9e027c, type: 3}
-  defenseSFX: {fileID: 8300000, guid: ad1fa6c79b6b73a4c8515237ba876589, type: 3}
+  defenseSFX: {fileID: 0}
   block: 1
   ignoreOpponentBlock: 0
   specialEffect: {fileID: 0}
@@ -502,6 +507,7 @@ MonoBehaviour:
   verticalSpreadDamageMultiplier: 0
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
+  healItselfBeforeAttack: 0
 --- !u!1 &4687705842546900961
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +537,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4687705843270994624}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4687705842546900959
 MonoBehaviour:
@@ -547,11 +553,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acronym: HA
   fullName: Heavy Armor
-  description: The damage this card receives is limited to half of the attacker power.
+  description: 'This card receives half of the damage it would receive before. '
   attackVFX: {fileID: 0}
   defenseVFX: {fileID: 5289526594200615245, guid: 6b3cfbc3488009e40bf93abfdeab6afc,
     type: 3}
   specialVFX: {fileID: 0}
+  spawnAboveItselfWhenAttackVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: 10e908c21da8a614b8ac143dda9e027c, type: 3}
   defenseSFX: {fileID: 8300000, guid: 30caf0816c99f2d4190d10726dcc7a19, type: 3}
   block: 0
@@ -563,6 +570,7 @@ MonoBehaviour:
   verticalSpreadDamageMultiplier: 0
   damageReductionPercentage: 0.5
   damageReflectionPercentage: 0
+  healItselfBeforeAttack: 0
 --- !u!1 &4687705842861173695
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,12 +616,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acronym: AR
   fullName: Area
-  description: All targets adjacent cards and the target take half of the Attack
+  description: All targets adjacent cards and the target take half of the <half>Attack
     Power of the mage as damage.
   attackVFX: {fileID: 4034280589589381900, guid: 3d6df27cc8cc1054f8bec7f3c4da598f,
     type: 3}
   defenseVFX: {fileID: 0}
   specialVFX: {fileID: 0}
+  spawnAboveItselfWhenAttackVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: dc70fad93171c9f42ac0e0cb27c5251a, type: 3}
   defenseSFX: {fileID: 0}
   block: 0
@@ -625,6 +634,7 @@ MonoBehaviour:
   verticalSpreadDamageMultiplier: 0.5
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
+  healItselfBeforeAttack: 0
 --- !u!1 &4687705842965504398
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,12 +872,13 @@ MonoBehaviour:
   acronym: HO
   fullName: Hook
   description: "If the attack targets the backline, and there is a card in front
-    of the target, swap these two enemy cards and apply half of the Attack Power
-    as damage to the target. Otherwise it\u2019s just a regular attack."
+    of the target, swap these two enemy cards and apply half of the <half>Attack
+    Power as damage to the target. Otherwise it\u2019s just a regular attack."
   attackVFX: {fileID: 3264905262389925203, guid: 1523e8736678d8e43a480879f188f3e8,
     type: 3}
   defenseVFX: {fileID: 0}
   specialVFX: {fileID: 0}
+  spawnAboveItselfWhenAttackVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: 9a80adc1abe209f4ca99b34f4bcb2afa, type: 3}
   defenseSFX: {fileID: 0}
   block: 0
@@ -879,6 +890,7 @@ MonoBehaviour:
   verticalSpreadDamageMultiplier: 0
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
+  healItselfBeforeAttack: 0
 --- !u!1 &4687705843270994625
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,10 +929,12 @@ Transform:
   - {fileID: 4687705843222055370}
   - {fileID: 4687705844273160574}
   - {fileID: 4687705842464198636}
+  - {fileID: 9146054460271731707}
   - {fileID: 4687705842546900960}
   - {fileID: 4687705842220992020}
   - {fileID: 4687705844203315911}
   - {fileID: 1599061754263724893}
+  - {fileID: 971396867816344130}
   - {fileID: 4687705843623248207}
   m_Father: {fileID: 9101949744829781060}
   m_RootOrder: 3
@@ -1110,10 +1124,11 @@ Transform:
   - {fileID: 4687705842238985658}
   - {fileID: 4687705842965504397}
   - {fileID: 4503385128891681199}
+  - {fileID: 4243951000813551748}
   - {fileID: 4687705844250874796}
   - {fileID: 4687705844120585684}
   m_Father: {fileID: 4687705843270994624}
-  m_RootOrder: 14
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4687705843931158339
 GameObject:
@@ -1166,6 +1181,7 @@ MonoBehaviour:
   defenseVFX: {fileID: 0}
   specialVFX: {fileID: 3681617339535430214, guid: 30a5c609a76f88c47b46a51912cff810,
     type: 3}
+  spawnAboveItselfWhenAttackVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: 55c5b852ca5a4794b88ae7f90165b176, type: 3}
   defenseSFX: {fileID: 0}
   block: 0
@@ -1177,6 +1193,7 @@ MonoBehaviour:
   verticalSpreadDamageMultiplier: 0
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
+  healItselfBeforeAttack: 0
 --- !u!1 &4687705843979180535
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,6 +1287,7 @@ MonoBehaviour:
     type: 3}
   defenseVFX: {fileID: 0}
   specialVFX: {fileID: 0}
+  spawnAboveItselfWhenAttackVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: ed51b883ed3f5f44ebe3f4d1d88f3256, type: 3}
   defenseSFX: {fileID: 0}
   block: 0
@@ -1281,6 +1299,7 @@ MonoBehaviour:
   verticalSpreadDamageMultiplier: 0
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
+  healItselfBeforeAttack: 0
 --- !u!1 &4687705844028134354
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,10 +1345,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acronym: '-'
   fullName: Basic Attack
-  description: Deals damage equals the Attack Power to the target.
+  description: Deals damage equals the <full>Attack Power to the target.
   attackVFX: {fileID: 0}
   defenseVFX: {fileID: 0}
   specialVFX: {fileID: 0}
+  spawnAboveItselfWhenAttackVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: 10e908c21da8a614b8ac143dda9e027c, type: 3}
   defenseSFX: {fileID: 0}
   block: 0
@@ -1341,6 +1361,7 @@ MonoBehaviour:
   verticalSpreadDamageMultiplier: 0
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
+  healItselfBeforeAttack: 0
 --- !u!1 &4687705844120585686
 GameObject:
   m_ObjectHideFlags: 0
@@ -1370,7 +1391,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4687705843623248207}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4687705844120585685
 MonoBehaviour:
@@ -1413,7 +1434,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4687705843270994624}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4687705844203315910
 MonoBehaviour:
@@ -1435,6 +1456,7 @@ MonoBehaviour:
   defenseVFX: {fileID: 0}
   specialVFX: {fileID: 6385494673838626053, guid: 5db526337e4125d48bb2143b574c134f,
     type: 3}
+  spawnAboveItselfWhenAttackVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: 57859224887ccfd4999d175913a7ca62, type: 3}
   defenseSFX: {fileID: 0}
   block: 0
@@ -1446,6 +1468,7 @@ MonoBehaviour:
   verticalSpreadDamageMultiplier: 0
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
+  healItselfBeforeAttack: 0
 --- !u!1 &4687705844232480848
 GameObject:
   m_ObjectHideFlags: 0
@@ -1522,7 +1545,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4687705843623248207}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4687705844250874795
 MonoBehaviour:
@@ -1587,6 +1610,7 @@ MonoBehaviour:
     type: 3}
   defenseVFX: {fileID: 0}
   specialVFX: {fileID: 0}
+  spawnAboveItselfWhenAttackVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: 1f5d5e087a4141346a2f61647ac57c33, type: 3}
   defenseSFX: {fileID: 0}
   block: 0
@@ -1598,6 +1622,72 @@ MonoBehaviour:
   verticalSpreadDamageMultiplier: 0
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
+  healItselfBeforeAttack: 0
+--- !u!1 &5253231041026913847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 971396867816344130}
+  - component: {fileID: 812518840943328645}
+  m_Layer: 0
+  m_Name: Sanctuary Heals Who Need
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &971396867816344130
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5253231041026913847}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -52}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4687705843270994624}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &812518840943328645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5253231041026913847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acronym: SA
+  fullName: Sanctuary
+  description: "Deals half of the damage. Heals two times. Each time, the cleric
+    targets the ally with less Vitality. The heal amount is equal to half of the
+    Cleric\u2019s <half>Attack Power."
+  attackVFX: {fileID: 0}
+  defenseVFX: {fileID: 0}
+  specialVFX: {fileID: 6385494673838626053, guid: 5db526337e4125d48bb2143b574c134f,
+    type: 3}
+  spawnAboveItselfWhenAttackVFX: {fileID: 0}
+  attackSFX: {fileID: 8300000, guid: 57859224887ccfd4999d175913a7ca62, type: 3}
+  defenseSFX: {fileID: 0}
+  block: 0
+  ignoreOpponentBlock: 0
+  specialEffect: {fileID: 2664838750693158289}
+  frontlineTargetDamageMultiplier: 1
+  backlineTargetDamageMultiplier: 0.5
+  horizontalSpreadDamageMultiplier: 0
+  verticalSpreadDamageMultiplier: 0
+  damageReductionPercentage: 0
+  damageReflectionPercentage: 0
+  healItselfBeforeAttack: 0
 --- !u!1 &6985664993239048026
 GameObject:
   m_ObjectHideFlags: 0
@@ -1713,7 +1803,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4687705843270994624}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5201556404538638106
 MonoBehaviour:
@@ -1738,6 +1828,7 @@ MonoBehaviour:
   defenseVFX: {fileID: 0}
   specialVFX: {fileID: 6385494673838626053, guid: 5db526337e4125d48bb2143b574c134f,
     type: 3}
+  spawnAboveItselfWhenAttackVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: 57859224887ccfd4999d175913a7ca62, type: 3}
   defenseSFX: {fileID: 0}
   block: 0
@@ -1749,6 +1840,115 @@ MonoBehaviour:
   verticalSpreadDamageMultiplier: 0
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
+  healItselfBeforeAttack: 0
+--- !u!1 &7691302160356069892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4243951000813551748}
+  - component: {fileID: 2664838750693158289}
+  m_Layer: 0
+  m_Name: Sanctuary Heal Who Need
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4243951000813551748
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7691302160356069892}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4687705843623248207}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2664838750693158289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7691302160356069892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d927ba8dc90a1b24bbb1dd992775c82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &9045297255228633185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9146054460271731707}
+  - component: {fileID: 2869010927420841567}
+  m_Layer: 0
+  m_Name: Regeneragion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9146054460271731707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9045297255228633185}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -52}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4687705843270994624}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2869010927420841567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9045297255228633185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acronym: RG
+  fullName: Regeneration
+  description: This card recovers 1 Vitality before attack, but will never be more
+    than the value at start of battle.
+  attackVFX: {fileID: 0}
+  defenseVFX: {fileID: 5082940041776008656, guid: 9fc973df5add9384180fdfb3967b22b1,
+    type: 3}
+  specialVFX: {fileID: 0}
+  spawnAboveItselfWhenAttackVFX: {fileID: 3264905262389925203, guid: 53e81a78411e6eb4a8ef31f224b27aa5,
+    type: 3}
+  attackSFX: {fileID: 8300000, guid: 651153cce37a80d4bb1f50db8ab5e951, type: 3}
+  defenseSFX: {fileID: 0}
+  block: 1
+  ignoreOpponentBlock: 0
+  specialEffect: {fileID: 0}
+  frontlineTargetDamageMultiplier: 1
+  backlineTargetDamageMultiplier: 0.5
+  horizontalSpreadDamageMultiplier: 0
+  verticalSpreadDamageMultiplier: 0
+  damageReductionPercentage: 0
+  damageReflectionPercentage: 0
+  healItselfBeforeAttack: 1
 --- !u!1001 &4687705842610568892
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2335,7 +2535,7 @@ PrefabInstance:
     - target: {fileID: 439867028889674652, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Name
-      value: Guardian BL
+      value: Guardian RG
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -2461,7 +2661,7 @@ PrefabInstance:
         type: 3}
       propertyPath: skills
       value: 
-      objectReference: {fileID: 4687705842464198635}
+      objectReference: {fileID: 2869010927420841567}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: classe
@@ -3103,7 +3303,7 @@ PrefabInstance:
     - target: {fileID: 439867028889674652, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Name
-      value: Guardian RE
+      value: Guardian RF
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -3421,7 +3621,7 @@ PrefabInstance:
         type: 3}
       propertyPath: skills
       value: 
-      objectReference: {fileID: 5201556404538638106}
+      objectReference: {fileID: 812518840943328645}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: classe

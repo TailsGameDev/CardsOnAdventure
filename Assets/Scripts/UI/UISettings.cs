@@ -24,4 +24,9 @@ public class UISettings : MonoBehaviour
         EnemyAI.AIDelay = aiDelaySlider.value;
         PlayerPrefs.SetFloat(AI_DELAY_KEY, aiDelaySlider.value);
     }
+
+    public static float GetAIDelayFromPlayerPrefs()
+    {
+        return PlayerPrefs.GetFloat(AI_DELAY_KEY);
+    }
 }

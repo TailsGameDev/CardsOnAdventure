@@ -2,24 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UpdateLogger : MonoBehaviour
+namespace NotUsed
 {
-    private static int logCounter = 0;
-
-    void Update()
+    public class UpdateLogger : MonoBehaviour
     {
-        logCounter++;
-        if (logCounter > 60)
+        private static int logCounter = 0;
+
+        void Update()
         {
-            logCounter = 0;
+            logCounter++;
+            if (logCounter > 60)
+            {
+                logCounter = 0;
+            }
         }
-    }
 
-    public static void Log(string message)
-    {
-        if (logCounter == 60)
+        public static void Log(string message)
         {
-            Debug.Log(message);
+            if (logCounter == 60)
+            {
+                Debug.Log(message);
+            }
         }
     }
 }

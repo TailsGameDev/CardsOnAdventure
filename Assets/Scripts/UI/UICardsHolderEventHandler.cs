@@ -137,7 +137,7 @@ public class UICardsHolderEventHandler : MonoBehaviour
                 // I don't know exactly why that's null. That's why I'll clear some cardHolders that with some luck
                 // are the ones that should be cleared.
                 EmergencyClearCardHolders();
-                L.ogError("cardsHolder is null!! It would be nice if you stop some day to understand why...", this);
+                L.og("cardsHolder is null!! It would be nice if you stop some day to understand why...", this);
             }
         }
 

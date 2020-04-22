@@ -30,6 +30,8 @@ public class OldSkill : Skill
     private float damageReductionPercentage = 0.0f;
     [SerializeField]
     private float damageReflectionPercentage = 0.0f;
+    [SerializeField]
+    private int healItselfBeforeAttack = 0;
 
     private Battlefield obf;
     private Battlefield abf;
@@ -70,7 +72,15 @@ public class OldSkill : Skill
             specialEffect.ExecuteEffect(obf, abf, ref targetIndex, specialVFX);
         }
 
+        attacker.HealNotExceedingDoubleVitalityLimit(healItselfBeforeAttack);
+
         skillsMediator.PlaySFX(attackSFX);
+
+        if (spawnAboveItselfWhenAttackVFX != null)
+        {
+            GameObject vfx = Instantiate(spawnAboveItselfWhenAttackVFX);
+            ChildMaker.AdoptTeleportAndScale(attacker.transform, vfx.GetComponent<RectTransform>());
+        }
 
         // Damage
         DamageCard(targetIndex, damageToTarget);

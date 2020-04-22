@@ -24,6 +24,9 @@ public abstract class Skill : SkillsMediatorUser
     protected GameObject specialVFX = null;
 
     [SerializeField]
+    protected GameObject spawnAboveItselfWhenAttackVFX = null;
+
+    [SerializeField]
     protected AudioClip attackSFX = null;
 
     [SerializeField]
