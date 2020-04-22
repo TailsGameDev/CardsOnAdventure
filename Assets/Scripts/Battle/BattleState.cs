@@ -400,6 +400,8 @@ public class Attack : BattleState
     {
         if ( ! clickedEndTurnBtn )
         {
+            opponentBattleField.DisplayProtectionVFXOnlyofCardsInBackline();
+
             attackerBattlefield.MakeOnlySelectedCardBigger();
 
             MakeSureAttackerCardIsClickedFirst();
@@ -479,13 +481,17 @@ public class Attack : BattleState
 
         if (attackerBattlefield.IsEmpty() || opponentBattleField.IsEmpty() || attackTokens.Count == 0 || clickedEndTurnBtn)
         {
-            // ATTENTION: ACTION HERE!! TODO: PUT THIS OUTSIDE THE NEXT STATE LOGIC
-            endTurnBtn.gameObject.SetActive(false);
-
+            OnEndingAttackState();
             nextState = currentBattleStatesFactory.CreateEndTurnState();
         }
 
         return nextState;
+    }
+
+    private void OnEndingAttackState()
+    {
+        endTurnBtn.gameObject.SetActive(false);
+        opponentBattleField.HideAllProtectionVFX();
     }
 }
 

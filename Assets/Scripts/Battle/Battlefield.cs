@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Battlefield : CardsHolder
 {
+    [SerializeField]
+    private GameObject[] protectionVFXtoEachCard = null;
 
     public int GetSize()
     {
@@ -295,6 +297,27 @@ public class Battlefield : CardsHolder
                 cards[i].SetObfuscate(false);
             }
         }
+    }
+
+    public void DisplayProtectionVFXOnlyofCardsInBackline()
+    {
+        for (int i = 0; i < cards.Length; i++)
+        {
+            protectionVFXtoEachCard[i].SetActive( cards[i] != null && IsThereACardInFrontOf(i) );
+        }
+    }
+
+    public void HideAllProtectionVFX()
+    {
+        for (int i = 0; i < cards.Length; i++)
+        {
+            protectionVFXtoEachCard[i].SetActive(false);
+        }
+    }
+
+    public bool IsInBackline(int index)
+    {
+        return IsThereACardInFrontOf(index);
     }
 
     public void BuffAllCardsAttackPowerForThisMatch()

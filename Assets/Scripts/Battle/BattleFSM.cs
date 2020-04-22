@@ -12,6 +12,10 @@ public class BattleFSM : MonoBehaviour
 
     [SerializeField]
     private TextThatExpandsOnUpdated feedbackText = null;
+    [SerializeField]
+    private string prefix = "";
+    [SerializeField]
+    private string sufix = "";
 
     private bool safeToUpdate = false;
 
@@ -49,7 +53,7 @@ public class BattleFSM : MonoBehaviour
             }
             */
 
-            feedbackText.DisplayText( newState.GetType().Name ); //+ ". It's " +somebodiesTurn
+            feedbackText.DisplayText( prefix+ newState.GetType().Name +sufix ); //+ ". It's " +somebodiesTurn
             
         }
     }

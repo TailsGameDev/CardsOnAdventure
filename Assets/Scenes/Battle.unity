@@ -2772,7 +2772,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: b6351f55f62c6ca4eacab29e36e00de1, type: 3}
-    m_FontSize: 53
+    m_FontSize: 36
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 3
@@ -2807,7 +2807,6 @@ MonoBehaviour:
   expantionMultiplyerMaximum: 1.3
   minimumExpansionMultiplier: 1
   text: {fileID: 1224258033}
-  prefix: ' * '
 --- !u!1 &1225382198
 GameObject:
   m_ObjectHideFlags: 0
@@ -4106,17 +4105,17 @@ PrefabInstance:
     - target: {fileID: 8444004942086850600, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.10679958
+      value: 0.8396226
       objectReference: {fileID: 0}
     - target: {fileID: 8444004942086850600, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.2628693
+      value: 0.2415895
       objectReference: {fileID: 0}
     - target: {fileID: 8444004942086850600, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.3018868
+      value: 0.24721865
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d923e06d11c42c4c8ce76b64e93975d, type: 3}
@@ -4263,6 +4262,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstOneToPlayStatesFactory: {fileID: 876186946}
   feedbackText: {fileID: 1224258035}
+  prefix: 
+  sufix: ' ( " * " for more)'
 --- !u!4 &2136569349
 Transform:
   m_ObjectHideFlags: 0
@@ -4288,6 +4289,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: End Repositioning Btn
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045103754934244661, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}

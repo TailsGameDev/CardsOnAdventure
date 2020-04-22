@@ -13,9 +13,6 @@ public class TextThatExpandsOnUpdated : MonoBehaviour
     [SerializeField]
     private Text text = null;
 
-    [SerializeField]
-    private string prefix = " * ";
-
     private Vector3 originalSize;
     private bool animating;
 
@@ -69,7 +66,7 @@ public class TextThatExpandsOnUpdated : MonoBehaviour
         if (message.CompareTo(cachedMessage) != 0)
         {
             cachedMessage = message;
-            text.text = prefix+message;
+            text.text = message;
             StartAnimationFromBeggining();
         }
     }
