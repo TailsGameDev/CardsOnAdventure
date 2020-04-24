@@ -10,7 +10,7 @@ public class TipsDragAndDropReceptor : DragAndDropReceptor
     protected TipSectionData[] tipData = null;
 
     [SerializeField]
-    protected TipsPopUpOpener popUpOpener = null;
+    protected PopUpOpener popUpOpener = null;
 
     private void Awake()
     {
@@ -27,6 +27,6 @@ public class TipsDragAndDropReceptor : DragAndDropReceptor
 
     public override void OnDroppedInReceptor()
     {
-        popUpOpener.OpenTipsPopUp(tipData, title);
+        ((TipsPopUpOpener)popUpOpener).OpenTipsPopUp(tipData, title);
     }
 }

@@ -551,7 +551,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1612099942}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1652,7 +1652,7 @@ PrefabInstance:
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
@@ -2056,6 +2056,49 @@ MonoBehaviour:
   endTurnBtn: {fileID: 1959818952}
   audioHolder: {fileID: 2101965490}
   audioRequisitor: {fileID: 1493936903}
+--- !u!1 &928461781
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 928461783}
+  - component: {fileID: 928461782}
+  m_Layer: 0
+  m_Name: Battle Rules PopUp Opener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &928461782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928461781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3af590173afd7243bbb12a8c04793ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &928461783
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928461781}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -24.83722, y: -49.203552, z: 178}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 975412551}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &970927066
 GameObject:
   m_ObjectHideFlags: 0
@@ -2230,6 +2273,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 140, y: 210}
   m_EdgeRadius: 0
+--- !u!1 &975412550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 975412551}
+  m_Layer: 0
+  m_Name: PopUp Openers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &975412551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 975412550}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 30.092834, y: 226.84436, z: -438.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1973127232}
+  - {fileID: 928461783}
+  m_Father: {fileID: 1612099942}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1075109117
 GameObject:
   m_ObjectHideFlags: 0
@@ -2264,7 +2339,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.3896484, y: 0}
+  m_AnchoredPosition: {x: -1.3886719, y: 0}
   m_SizeDelta: {x: -71.32001, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1075109119
@@ -2384,8 +2459,8 @@ GameObject:
   - component: {fileID: 1085662643}
   - component: {fileID: 1085662645}
   - component: {fileID: 1085662644}
-  - component: {fileID: 1085662647}
   - component: {fileID: 1085662646}
+  - component: {fileID: 1085662647}
   m_Layer: 5
   m_Name: Dynamic Feedback Background
   m_TagString: Untagged
@@ -2484,29 +2559,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1085662642}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 630d146ddc5b04b468ffe9a44b72c842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Battle Rules
-  tipData:
-  - message: '                   Battle Rules'
-    background: {fileID: 21300000, guid: 8af8e8666289f8d4885582a2f45fc37d, type: 3}
-    height: 100
-  - message: "<color=#1DEFC7>PLACE CARD:</color><br> In this state, all you can do
-      is to <color=#1DEFC7>PUT THE CARDS OF YOUR HAND IN THE BATTLEFIELD UNTIL THE
-      BATTLEFIELD IS FULL OR YOUR HAND IS EMPTY</color> <br> <br> <color=#1DEFC7>REPOSITION:</color><br>
-      In this state, <color=#1DEFC7>YOU CAN REPOSITION THE CARDS IN YOUR BATTLEFIELD
-      AS MUCH AS YOU LIKE</color>. <br> <br> <color=#1DEFC7>ATTACK:</color><br> In
-      this state, <color=#1DEFC7>YOU SHOULD MANUALLY USE YOUR CARDS TO ATTACK THE
-      ENEMY CARDS.</color>. If you just click the \u201CEnd Reposition\u201D button,
-      then the \u201CEnd Turn\u201D button: you are not going to attack, and the
-      enemies will make fun out of you. <br> <br> Obs: you can play by drag and drop,
-      or click here then click there. <br> <br> <color=#1DEFC7> SUPER IMPORTANT<br>
-      YOU CAN ATTACK A CARD BEHIND THE OTHER, BUT IF THE SKILL DOES NOT SAY ANYTHING
-      ABOUT THAT, THE DAMAGE IS REDUCED BY THE HALF </color> "
-    background: {fileID: 0}
-    height: 1700
-  popUpOpener: {fileID: 1973127231}
+  title: WILL BE OVERWRITTEN
+  tipData: []
+  popUpOpener: {fileID: 928461782}
 --- !u!1 &1153841345
 GameObject:
   m_ObjectHideFlags: 0
@@ -3319,17 +3377,17 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 1973127232}
+  - {fileID: 975412551}
   - {fileID: 219309586}
   - {fileID: 1085662643}
   - {fileID: 301749283}
   - {fileID: 35391509}
   - {fileID: 1556942913}
-  - {fileID: 4090511394378606099}
   - {fileID: 1959818951}
+  - {fileID: 4090511394378606099}
   - {fileID: 1210699014}
-  - {fileID: 681655009}
   - {fileID: 151458627}
+  - {fileID: 681655009}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3356,7 +3414,7 @@ MonoBehaviour:
   - {fileID: 1898511386}
   - {fileID: 149378011}
   - {fileID: 416688464}
-  delayToComeBackFromEnemyBattlefield: 0.5
+  delayToComeBackFromEnemyBattlefield: 0.25
   pausePopUpOpener: {fileID: 1612099944}
 --- !u!114 &1612099944
 MonoBehaviour:
@@ -4035,7 +4093,7 @@ PrefabInstance:
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
@@ -4174,10 +4232,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973127230}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.255615, y: 177.64081, z: -260.5}
+  m_LocalPosition: {x: -24.83722, y: -49.203552, z: 178}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1612099942}
+  m_Father: {fileID: 975412551}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2101965488
@@ -4262,8 +4320,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstOneToPlayStatesFactory: {fileID: 876186946}
   feedbackText: {fileID: 1224258035}
-  prefix: 
-  sufix: ' ( " * " for more)'
+  prefixToFeedbackText: 
+  sufixToFeedbackText: 
 --- !u!4 &2136569349
 Transform:
   m_ObjectHideFlags: 0
@@ -4333,7 +4391,7 @@ PrefabInstance:
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}

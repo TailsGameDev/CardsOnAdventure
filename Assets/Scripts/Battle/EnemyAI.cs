@@ -28,22 +28,33 @@ public class EnemyAI
     {
         UIBattle.inputEnabled = false;
 
+        HandleAIDelay();
+
         this.enemyHand = enemyHand;
         this.enemyBattlefield = enemyBattlefield;
 
-        if ( enemyHand.HasCards() )
+        coroutineExecutor = CoroutineExecutorPrototype.GetCopy();
+
+        coroutineExecutor.gameObject.AddComponent(typeof(DestroyItselfInTime));
+
+        coroutineExecutor.ExecuteCoroutine(PlaceCardCoroutine());
+    }
+
+    private IEnumerator PlaceCardCoroutine()
+    {
+        if (enemyHand.HasCards())
         {
+            yield return new WaitForSeconds(aiDelay/2);
             enemyHand.SelectFirstOccupiedIndex();
         }
 
-        if ( enemyBattlefield.HasEmptySlot() )
+        if (enemyBattlefield.HasEmptySlot())
         {
             enemyBattlefield.SelectFirstFreeIndex();
         }
     }
 
     #region Reposition
-
     public void Reposition(Battlefield enemyBattlefield, UICustomBtn endRepositionBtn)
     {
         this.enemyBattlefield = enemyBattlefield;
@@ -60,37 +71,27 @@ public class EnemyAI
     {
         bool change0With2 = ChangeCardInFrontWithCardBehind(0, 2);
         bool change1With3 = ChangeCardInFrontWithCardBehind(1, 3);
-        
-        yield return null;
-        yield return null;
-        yield return null;
-        yield return null;
+
+        yield return new WaitForSeconds(aiDelay/2);
 
         if (change0With2)
         {
             enemyBattlefield.SetSelectedIndex(0);
-            yield return null;
-            yield return null;
+            yield return new WaitForSeconds(aiDelay/2);
             enemyBattlefield.SetSelectedIndex(2);
-            yield return null;
-            yield return null;
+            yield return new WaitForSeconds(aiDelay/2);
         }
 
 
         if (change1With3)
         {
             enemyBattlefield.SetSelectedIndex(1);
-            yield return null;
-            yield return null;
+            yield return new WaitForSeconds(aiDelay / 2);
             enemyBattlefield.SetSelectedIndex(3);
-            yield return null;
-            yield return null;
+            yield return new WaitForSeconds(aiDelay / 2);
         }
 
-        yield return null;
-        yield return null;
-        yield return null;
-        yield return null;
+        yield return new WaitForSeconds(aiDelay / 2);
 
         endRepositionBtn.onClicked();
 
@@ -115,32 +116,10 @@ public class EnemyAI
 
         return change;
     }
-
-    /*
-    private void ExecuteRepositionWithCustomUpdate()
-    {
-        if (coroutineExecutor == null)
-        {
-            coroutineExecutor = CoroutineExecutorPrototype.GetCopy();
-        }
-        RepositionAction RepositionAction = new RepositionAction(enemyBattlefield, endRepositionBtn);
-        coroutineExecutor.ExecuteCustomUpdateUntillCountLimit(RepositionAction, 6);
-    }
-    */
     #endregion
 
     public void Attack(Battlefield enemyBattlefield, Battlefield playerBattlefield)
     {
-        if (aiDelay < MIN_AI_DELAY)
-        {
-            aiDelay = UISettings.GetAIDelayFromPlayerPrefs();
-            // Ff the player never modified the value, it will still be less than the minimum.
-            if (aiDelay < MIN_AI_DELAY)
-            {
-                aiDelay = DEFAULT_AI_DELAY;
-            }
-        }
-
         this.enemyBattlefield = enemyBattlefield;
         this.playerBattlefield = playerBattlefield;
 
@@ -153,6 +132,19 @@ public class EnemyAI
         else
         {
             UIBattle.inputEnabled = true;
+        }
+    }
+
+    private void HandleAIDelay()
+    {
+        if (aiDelay < MIN_AI_DELAY)
+        {
+            aiDelay = UISettings.GetAIDelayFromPlayerPrefs();
+            // Ff the player never modified the value, it will still be less than the minimum.
+            if (aiDelay < MIN_AI_DELAY)
+            {
+                aiDelay = DEFAULT_AI_DELAY;
+            }
         }
     }
 
@@ -171,6 +163,7 @@ public class EnemyAI
         }
 
         UIBattle.inputEnabled = true;
+        coroutineExecutor.SelfDestroy();
     }
 
     private bool currentTargetIsBetterThanTheOneBefore(int indexBefore, int currentIndex, int attackPower, Battlefield obf)

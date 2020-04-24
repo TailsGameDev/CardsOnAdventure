@@ -63,12 +63,12 @@ public class BattleStatesFactory : PopUpOpener
 
     public BattleState CreateRepositionState()
     {
-        return new Reposition(battlefield, endRepositioningBtn);
+        return new Reposition(battlefield, otherBattleStatesFactory.battlefield, endRepositioningBtn);
     }
 
     public BattleState CreateAttackState()
     {
-        return new Attack(battlefield, otherBattleStatesFactory.battlefield, endTurnBtn);
+        return new Attack(battlefield, otherBattleStatesFactory.battlefield, endTurnBtn, customPopUpOpener);
     }
 
     public BattleState CreateEndTurnState()

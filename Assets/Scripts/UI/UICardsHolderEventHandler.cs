@@ -23,6 +23,7 @@ public class UICardsHolderEventHandler : MonoBehaviour
     private float delayToComeBackFromEnemyBattlefield = 0.5f;
 
     private bool isDragging = false;
+    private bool isRunningDragHistoryCoroutine = false;
 
     private CardsHolder cardsHolderBelowMouseOnDrop;
     private int indexOfSlotBelowMouseOnDrop;
@@ -36,7 +37,7 @@ public class UICardsHolderEventHandler : MonoBehaviour
 
     public void OnCardsHolderBeginDrag(CardsHolder cardsHolder, int index)
     {
-        if (inputEnabled && cardsHolder.ContainsCardInIndex(index))
+        if (inputEnabled && !isRunningDragHistoryCoroutine && cardsHolder.ContainsCardInIndex(index))
         {
             StartCoroutine(DragHistory(cardsHolder, index));
         }
@@ -57,10 +58,15 @@ public class UICardsHolderEventHandler : MonoBehaviour
 
     private IEnumerator DragHistory(CardsHolder cardsHolder, int index)
     {
+        isRunningDragHistoryCoroutine = true;
         isDragging = true;
         wasDroppedInValidSpot = false;
 
-        ClearWholeDragAndDropSystem(new CardsHolder[] { cardsHolder });
+        ClearSelections(new CardsHolder[] { cardsHolder });
+
+        cardBeingDragged = null;
+        cardsHolderBelowMouseOnDrop = null;
+        indexOfSlotBelowMouseOnDrop = -1;
 
         // Wait for the BattleFSM to recognize that the variables ware cleared
         yield return null;
@@ -101,7 +107,19 @@ public class UICardsHolderEventHandler : MonoBehaviour
         }
 
         HideCardsBeingDraggedTip();
-        ClearWholeDragAndDropSystem(new CardsHolder[] { cardsHolder, cardsHolderBelowMouseOnDrop });
+
+        if (cardsHolderBelowMouseOnDrop == null)
+        {
+            ClearSelections(new CardsHolder[] { cardsHolder });
+        }
+        else
+        {
+            ClearSelections(new CardsHolder[] { cardsHolder, cardsHolderBelowMouseOnDrop });
+        }
+
+        yield return new WaitForSeconds(delayToComeBackFromEnemyBattlefield);
+
+        isRunningDragHistoryCoroutine = false;
     }
 
     private void ShowTipAboutCardBeingDragged()
@@ -117,34 +135,18 @@ public class UICardsHolderEventHandler : MonoBehaviour
 
     public void OnSlotClicked(CardsHolder cardsHolder, int index)
     {
-        if (inputEnabled)
+        if (inputEnabled && !isRunningDragHistoryCoroutine)
         {
             cardsHolder.SetSelectedIndex(index);
         }
     }
 
-    private void ClearWholeDragAndDropSystem(CardsHolder[] cardsHoldersToClear)
+    private void ClearSelections(CardsHolder[] cardsHoldersToClear)
     {
         foreach (CardsHolder cardsHolder in cardsHoldersToClear)
         {
-            // TODO: understand reason of null pointer exception and avoid this possibility if possible
-            if (cardsHolder != null)
-            {
-                cardsHolder.ClearSelection();
-            }
-            else
-            {
-                // I don't know exactly why that's null. That's why I'll clear some cardHolders that with some luck
-                // are the ones that should be cleared.
-                EmergencyClearCardHolders();
-                L.og("cardsHolder is null!! It would be nice if you stop some day to understand why...", this);
-            }
+            cardsHolder.ClearSelection();
         }
-
-        cardBeingDragged = null;
-
-        cardsHolderBelowMouseOnDrop = null;
-        indexOfSlotBelowMouseOnDrop = -1;
     }
 
     protected virtual void EmergencyClearCardHolders()

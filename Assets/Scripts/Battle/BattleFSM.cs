@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,9 +14,9 @@ public class BattleFSM : MonoBehaviour
     [SerializeField]
     private TextThatExpandsOnUpdated feedbackText = null;
     [SerializeField]
-    private string prefix = "";
+    private string prefixToFeedbackText = "";
     [SerializeField]
-    private string sufix = "";
+    private string sufixToFeedbackText = "";
 
     private bool safeToUpdate = false;
 
@@ -41,20 +42,16 @@ public class BattleFSM : MonoBehaviour
             BattleState newState = oldState.GetNextState();
             
             oldState = newState;
-
-            //string newStateName = ;
-
-            /*
-            string somebodiesTurn = "Enemy's Turn";
-
-            if (currentState.IsPlayerTurn())
-            {
-                somebodiesTurn = "Your Turn";
-            }
-            */
-
-            feedbackText.DisplayText( prefix+ newState.GetType().Name +sufix ); //+ ". It's " +somebodiesTurn
             
+            string turnInfo = " (Enemy's Turn)";
+            if (newState.IsPlayerTurn())
+            {
+                turnInfo = " (Your Turn)";
+            }
+
+            string formattedStateName = Regex.Replace(newState.GetType().Name, "([A-Z])", " $1").Trim();
+
+            feedbackText.DisplayText( prefixToFeedbackText + formattedStateName + turnInfo + sufixToFeedbackText );
         }
     }
 }

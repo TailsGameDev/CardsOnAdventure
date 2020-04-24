@@ -25,7 +25,12 @@ public class ThePopUpOpenerInstance : PopUpOpener
 
     [SerializeField]
     private Text tooltipPopUpTitle = null;
-    
+
+    [SerializeField]
+    private string battleRules = null;
+    [SerializeField]
+    private Sprite battleRulesSprite = null;
+
     [SerializeField]
     private GameObject customPopUp = null;
 
@@ -49,6 +54,8 @@ public class ThePopUpOpenerInstance : PopUpOpener
             transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
             Screen.fullScreen = true;
+
+            battleRules = battleRules.Replace("<br>", "\n");
         } else
         {
             Destroy(gameObject);
@@ -118,9 +125,20 @@ public class ThePopUpOpenerInstance : PopUpOpener
         OpenPopUp(pausePopUp);
     }
 
-    public void OpenRulesPopUp()
+    public void OpenWhatTheTeachingSpiritIsPopUp()
     {
         OpenPopUp(rulesPopUp);
+    }
+
+    public void OpenBattleRulesPopUp()
+    {
+        TipSectionData[] battleRulesContent = new TipSectionData[]
+        {
+            new TipSectionData(battleRulesSprite, 100.0f),
+            new TipSectionData(battleRules, 1700.0f)
+        };
+
+        OpenTooltipPopUp( battleRulesContent, title: "Battle Rules" );
     }
 
     public void SetLoadingPopUpActiveToTrue()

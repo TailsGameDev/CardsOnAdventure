@@ -37,8 +37,8 @@ public class CoroutineExecutorPrototype : MonoBehaviour
     }
     #endregion
 
-    #region Custom Update Executor
     /*
+    #region Custom Update Executor
     private CustomUpdate customUpdate;
     private int frameCounter = 0;
     private int countLimit = 0;
@@ -58,6 +58,6 @@ public class CoroutineExecutorPrototype : MonoBehaviour
         this.countLimit = countLimit;
         this.customUpdate = customUpdate;
     }
-    */
     #endregion
+    */
 }

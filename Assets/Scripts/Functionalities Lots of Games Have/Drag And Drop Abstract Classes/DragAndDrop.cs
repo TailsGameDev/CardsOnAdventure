@@ -38,10 +38,62 @@ public abstract class DragAndDrop : MonoBehaviour
 
     public void StartDragging()
     {
+        // maybe the OnTriggerEnter did not work, so
+        if (receptor == null)
+        {
+            receptor = GetValidOverlappingReceptor();
+        }
+
+        if (receptor != null)
+        {
+            RectTransform receptorRectTransform = receptor.GetComponent<RectTransform>();
+            StartDragging(receptorRectTransform);
+        }
+        else
+        {
+            L.ogError("Receptor is null, and I don't know why. I hope trying again will just work.\n", this);
+        }
+    }
+
+    private void SearchForReceptorNow()
+    {
+
+    }
+
+    public void StartDragging(RectTransform receptorRectTransform)
+    {
         originalPosition = rectTransform.position;
         snap = true;
-        offset = originalPosition - Input.mousePosition;
+        offset = AdjustOffset(receptorRectTransform, offsetToAdjust: originalPosition - Input.mousePosition);
+
         OnStartDragging();
+    }
+
+    private Vector2 AdjustOffset(RectTransform receptorRectTransform, Vector2 offsetToAdjust)
+    {
+        const float DIV_CONST = 8.0f;
+
+        Vector2 receptorSizeDelta = this.receptor.GetComponent<RectTransform>().sizeDelta;
+
+        if (offsetToAdjust.x > receptorSizeDelta.x / DIV_CONST)
+        {
+            offsetToAdjust.x = receptorSizeDelta.x / DIV_CONST;
+        }
+        else if (offsetToAdjust.x < -receptorSizeDelta.x / DIV_CONST)
+        {
+            offsetToAdjust.x = -receptorSizeDelta.x / DIV_CONST;
+        }
+
+        if (offsetToAdjust.y > receptorSizeDelta.y / DIV_CONST)
+        {
+            offsetToAdjust.y = receptorSizeDelta.y / DIV_CONST;
+        }
+        else if (offsetToAdjust.y < -receptorSizeDelta.y / DIV_CONST)
+        {
+            offsetToAdjust.y = -receptorSizeDelta.y / DIV_CONST;
+        }
+
+        return offsetToAdjust;
     }
 
     protected abstract void OnStartDragging();
@@ -85,8 +137,17 @@ public abstract class DragAndDrop : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D col)
     {
         DragAndDropReceptor maybeAReceptor = col.GetComponent<DragAndDropReceptor>();
+        if (maybeAReceptor != null)
+        {
+            RegisterIfIsReceptorAndCallWhosInterested(possibleReceptorCollider: col);
+        }
+    }
 
-        if (maybeAReceptor != null && maybeAReceptor.GetDragAndDropReceptorType() == GetDragAndDropType())
+    private void RegisterIfIsReceptorAndCallWhosInterested(Collider2D possibleReceptorCollider)
+    {
+        DragAndDropReceptor maybeAReceptor = possibleReceptorCollider.GetComponent<DragAndDropReceptor>();
+
+        if (maybeAReceptor.GetDragAndDropReceptorType() == GetDragAndDropType())
         {
             this.receptor = maybeAReceptor;
             OnEnteredAReceptor(maybeAReceptor);

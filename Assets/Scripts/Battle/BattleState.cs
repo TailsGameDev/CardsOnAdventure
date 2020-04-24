@@ -159,7 +159,11 @@ public class PlaceCard : BattleState
     {
         BattleState nextState = this;
 
-        if (cardWasSuccessfullyPlaced)
+        if (IsPlayerTryingToReposition())
+        {
+            nextState = currentBattleStatesFactory.CreateDrawCardState();
+        }
+        else if (cardWasSuccessfullyPlaced)
         {
             if (deck.ContainCards())
             {
@@ -189,30 +193,43 @@ public class PlaceCard : BattleState
 
         return nextState;
     }
+
+    private bool IsPlayerTryingToReposition()
+    {
+        return battlefield.GetSelectedIndex() >= 0 && hand.GetSelectedIndex() == -1;
+    }
 }
 
 public class Reposition : BattleState
 {
-    private Battlefield battlefield;
+    private Battlefield attackerBattlefield;
+    private Battlefield opponentBattlefield;
     private UICustomBtn endRepositioningBtn;
 
     private int oldIndex;
     private int currentIndex;
 
-    private bool repositioningEnded = false;
+    private bool repositioningBtnClicked = false;
 
-    public Reposition(Battlefield battlefield, UICustomBtn endRepositioningBtn)
+    // If player tries to attack during the reposition state, let's finish reposition and attack.
+    private bool triedToAttack;
+    private BattleState nextState;
+    private int abfIndex;
+    private int obfIndex;
+
+    public Reposition(Battlefield attackerBattlefield, Battlefield opponentBattlefield, UICustomBtn endRepositioningBtn)
     {
-        this.battlefield = battlefield;
+        this.attackerBattlefield = attackerBattlefield;
+        this.opponentBattlefield = opponentBattlefield;
         this.endRepositioningBtn = endRepositioningBtn;
 
         ClearSelection();
 
-        endRepositioningBtn.onClicked += OnEndRepositioning;
+        endRepositioningBtn.onClicked = OnEndRepositioningBtnClicked;
 
         if (currentBattleStatesFactory == enemyBattleStatesFactory)
         {
-            new EnemyAI().Reposition(battlefield, endRepositioningBtn);
+            new EnemyAI().Reposition(attackerBattlefield, endRepositioningBtn);
         }
         else
         {
@@ -220,20 +237,26 @@ public class Reposition : BattleState
         }
     }
 
-    private void OnEndRepositioning()
+    private void OnEndRepositioningBtnClicked()
     {
-        repositioningEnded = true;
+        repositioningBtnClicked = true;
     }
 
     public override void ExecuteAction()
     {
-        if (repositioningEnded)
+        if (opponentBattlefield.GetSelectedIndex() != -1)
+        {
+            triedToAttack = true;
+        }
+
+        if (repositioningBtnClicked || triedToAttack)
         {
             endRepositioningBtn.gameObject.SetActive(false);
             return;
         }
 
-        currentIndex = battlefield.GetSelectedIndex();
+        // Stay here until player select a card from his battlefield
+        currentIndex = attackerBattlefield.GetSelectedIndex();
 
         if (currentIndex == -1)
         {
@@ -241,26 +264,27 @@ public class Reposition : BattleState
             return;
         }
 
-        battlefield.MakeCardAtIndexBigger(currentIndex);
+        attackerBattlefield.MakeCardAtIndexBigger(currentIndex);
 
+        // Cache the index
         if (oldIndex == -1)
         {
             oldIndex = currentIndex;
             return;
         }
 
-        battlefield.MakeCardAtIndexBigger(oldIndex);
+        attackerBattlefield.MakeCardAtIndexBigger(oldIndex);
 
         if ( oldIndex != currentIndex )
         {
-            Card oldSelectedCard = battlefield.GetReferenceToCardAtOrGetNull(oldIndex);
-            Card currentSelectedCard = battlefield.GetReferenceToCardAtOrGetNull(currentIndex);
+            Card oldSelectedCard = attackerBattlefield.GetReferenceToCardAtOrGetNull(oldIndex);
+            Card currentSelectedCard = attackerBattlefield.GetReferenceToCardAtOrGetNull(currentIndex);
 
             if (oldSelectedCard == null && currentSelectedCard != null)
             {
                 if ( ! currentSelectedCard.Freezing )
                 {
-                    battlefield.MakeCardAtIndexNormalSize(oldIndex);
+                    attackerBattlefield.MakeCardAtIndexNormalSize(oldIndex);
                     SwapCards();
                 }
             } 
@@ -268,7 +292,7 @@ public class Reposition : BattleState
             {
                 if (!oldSelectedCard.Freezing)
                 {
-                    battlefield.MakeCardAtIndexNormalSize(currentIndex);
+                    attackerBattlefield.MakeCardAtIndexNormalSize(currentIndex);
                     SwapCards();
                 }
             }
@@ -276,14 +300,14 @@ public class Reposition : BattleState
             {
                 if (!oldSelectedCard.Freezing && !currentSelectedCard.Freezing)
                 {
-                    if (battlefield.IsSlotIndexOccupied(currentIndex))
+                    if (attackerBattlefield.IsSlotIndexOccupied(currentIndex))
                     {
-                        battlefield.MakeCardAtIndexNormalSize(currentIndex);
+                        attackerBattlefield.MakeCardAtIndexNormalSize(currentIndex);
                     }
 
-                    if (battlefield.IsSlotIndexOccupied(oldIndex))
+                    if (attackerBattlefield.IsSlotIndexOccupied(oldIndex))
                     {
-                        battlefield.MakeCardAtIndexNormalSize(oldIndex);
+                        attackerBattlefield.MakeCardAtIndexNormalSize(oldIndex);
                     }
 
                     SwapCards();
@@ -294,23 +318,18 @@ public class Reposition : BattleState
         }
     }
 
-    private bool ShouldSwap()
-    {
-        return oldIndex != currentIndex;
-    }
-
     private void SwapCards()
     {
-        Card firstCard = battlefield.RemoveCardOrGetNull(oldIndex);
-        Card secondCard = battlefield.RemoveCardOrGetNull(currentIndex);
+        Card firstCard = attackerBattlefield.RemoveCardOrGetNull(oldIndex);
+        Card secondCard = attackerBattlefield.RemoveCardOrGetNull(currentIndex);
         
         if (firstCard != null)
         {
-            battlefield.PutCardInIndex(firstCard, currentIndex);
+            attackerBattlefield.PutCardInIndex(firstCard, currentIndex);
         }
         if (secondCard != null)
         {
-            battlefield.PutCardInIndex(secondCard, oldIndex);
+            attackerBattlefield.PutCardInIndex(secondCard, oldIndex);
         }
     }
 
@@ -318,18 +337,42 @@ public class Reposition : BattleState
     {
         oldIndex = -1;
         currentIndex = -1;
-        battlefield.ClearSelection();
+        attackerBattlefield.ClearSelection();
+        opponentBattlefield.ClearSelection();
     }
 
     public override BattleState GetNextState()
     {
-        BattleState nextState = this;
-        if (repositioningEnded)
+        nextState = this;
+        if (repositioningBtnClicked || triedToAttack)
         {
             endRepositioningBtn.onClicked = null;
+
+            BeforeCreateAttackState();
             nextState = currentBattleStatesFactory.CreateAttackState();
+            AfterCreateAttackState();
         }
         return nextState;
+    }
+
+    // By default, Attack State clear it's selections on the constructor, but if the player tried to
+    // attack during the Reposition State, we want the attack to happen.
+    private void BeforeCreateAttackState()
+    {
+        if (triedToAttack)
+        {
+            abfIndex = attackerBattlefield.GetSelectedIndex();
+            obfIndex = opponentBattlefield.GetSelectedIndex();
+        }
+    }
+
+    private void AfterCreateAttackState()
+    {
+        if (triedToAttack)
+        {
+            ((Attack)nextState).SetAttackerSelectedIndex(abfIndex);
+            ((Attack)nextState).SetOpponentSelectedIndex(obfIndex);
+        }
     }
 }
 
@@ -344,7 +387,9 @@ public class Attack : BattleState
 
     private UICustomBtn endTurnBtn;
 
-    public Attack(Battlefield myBattlefield, Battlefield opponentBattleField, UICustomBtn endTurnBtn)
+    private CustomPopUp popUpOpener;
+
+    public Attack(Battlefield myBattlefield, Battlefield opponentBattleField, UICustomBtn endTurnBtn, CustomPopUp popUpOpener)
     {
         this.attackerBattlefield = myBattlefield;
         this.opponentBattleField = opponentBattleField;
@@ -359,11 +404,11 @@ public class Attack : BattleState
         attackTokens = ListCardsThatShouldAttackDuringThisState();
 
         this.endTurnBtn = endTurnBtn;
+        this.popUpOpener = popUpOpener;
 
         if (currentBattleStatesFactory == playerBattleStatesFactory)
         {
-            endTurnBtn.onClicked = null;
-            endTurnBtn.onClicked += OnClickedEndTurnBtn;
+            endTurnBtn.onClicked = OnClickedEndTurnBtn;
             endTurnBtn.gameObject.SetActive(true);
         }
     }
@@ -376,7 +421,22 @@ public class Attack : BattleState
 
     private void OnClickedEndTurnBtn()
     {
-        clickedEndTurnBtn = true;
+        if (attackTokens.Count == attackerBattlefield.GetStandingAmount())
+        {
+            popUpOpener.OpenAndMakeUncloseable
+                (
+                    title: "Attack!",
+                    warningMessage: "You should attack before end your turn. Strike that foes down!",
+                    confirmBtnMessage: "Ok, I'll attack!",
+                    cancelBtnMessage: "I'm a pacifist...",
+                    onConfirm: () => { popUpOpener.ClosePopUpOnTop(); },
+                    onCancel: () => { clickedEndTurnBtn = true; popUpOpener.ClosePopUpOnTop(); }
+                );
+        } 
+        else
+        {
+            clickedEndTurnBtn = true;
+        }
     }
 
     private List<int> ListCardsThatShouldAttackDuringThisState()
@@ -394,6 +454,16 @@ public class Attack : BattleState
             }
         }
         return cards;
+    }
+
+    public void SetOpponentSelectedIndex(int index)
+    {
+        opponentBattleField.SetSelectedIndex(index);
+    }
+
+    public void SetAttackerSelectedIndex(int index)
+    {
+        attackerBattlefield.SetSelectedIndex(index);
     }
 
     public override void ExecuteAction()

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIMainMenu : PauseMenu
+public class UIMainMenu : UIPauseMenu
 {
     // Inherits OnSettingsBtnClicked, OnRulesBtnClicked, OpenScene
 
@@ -15,11 +15,31 @@ public class UIMainMenu : PauseMenu
 
     public void OnPlayBtnClicked()
     {
+        // If there is no save, there should'nt be a difference between press "continue" or "new game" button.
+        // So I tried to make som fun out of it, and just lead the player to click one of the buttons.
+        
+        string continueBtnText;
+        string warningMessage;
+        string cancelBtnMessage;
+
+        if (classesPersistence.DoSaveExists())
+        {
+            continueBtnText = "Continue";
+            warningMessage = "Are you going to continue your previous adventure, or start a new game?";
+            cancelBtnMessage = "New Game";
+        }
+        else
+        {
+            warningMessage = "Please press one of these two buttons. There is no time to explain!";
+            continueBtnText = "Yellow";
+            cancelBtnMessage = "Red";
+        }
+
         customPopUpOpener.Open(
             title: "Play!",
-            warningMessage: "Are you going to continue your previous adventure (if any), or start a new game?",
-            confirmBtnMessage: "Continue",
-            cancelBtnMessage: "New Game",
+            warningMessage,
+            confirmBtnMessage: continueBtnText,
+            cancelBtnMessage,
             onConfirm: Continue,
             onCancel: NewGame
         );
@@ -27,8 +47,11 @@ public class UIMainMenu : PauseMenu
 
     private void Continue()
     {
-        ClassesSerializable classesSerializable = classesPersistence.LoadClasses();
-        ClassInfo.LoadBonuses(classesSerializable);
+        if (classesPersistence.DoSaveExists())
+        {
+            ClassesSerializable classesSerializable = classesPersistence.LoadClasses();
+            ClassInfo.LoadBonuses(classesSerializable);
+        }
         mapsCache.StartOfMatch = false;
         popUpOpener.OpenMapPopUp();
     }

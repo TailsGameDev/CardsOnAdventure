@@ -44,6 +44,7 @@ RectTransform:
   - {fileID: 1074124071157784450}
   - {fileID: 4167761853560257268}
   - {fileID: 8684597863279426375}
+  - {fileID: 3607672992646576804}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -111,6 +112,8 @@ MonoBehaviour:
   obfuscator: {fileID: 6754206906903102355}
   cardImage: {fileID: 439867028889674655}
   DamageTextPrototype: {fileID: 4675761102842722527}
+  audioRequisitor: {fileID: 808677297046720826}
+  critSFX: {fileID: 8300000, guid: 5daf1d9cabf43b145a9028d1256b2b4d, type: 3}
   horizontalSprite: {fileID: 0}
   skillsHorizontalSpot: {fileID: 1074124071157784450}
   attackPowerHorizontalSpot: {fileID: 4167761853560257268}
@@ -434,6 +437,49 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: V
+--- !u!1 &2121925187039289334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3607672992646576804}
+  - component: {fileID: 808677297046720826}
+  m_Layer: 0
+  m_Name: Audio Requisitor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3607672992646576804
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121925187039289334}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -48.158997, y: -64.22351, z: -302.76947}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 439867028889674653}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &808677297046720826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121925187039289334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8422d7abf4939449539f904e426372, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2364611441808888050
 GameObject:
   m_ObjectHideFlags: 0

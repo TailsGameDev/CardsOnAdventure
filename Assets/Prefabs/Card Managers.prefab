@@ -428,7 +428,7 @@ MonoBehaviour:
   fullName: Pierce
   description: The attack targets a card on the frontline, causing The <full>Attack
     Power as damage. Also, the card in the back takes half of the <half>Attack Power
-    damage.
+    damage. Ignore Protection.
   attackVFX: {fileID: 5748607524574563189, guid: e04241a417a08784aa21e2a0515d265f,
     type: 3}
   defenseVFX: {fileID: 0}
@@ -494,7 +494,8 @@ MonoBehaviour:
   description: "If some enemy tries to attack the card behind this one, this card
     takes the damage instead of it\u2019s teammate."
   attackVFX: {fileID: 0}
-  defenseVFX: {fileID: 0}
+  defenseVFX: {fileID: 5082940041776008656, guid: 9fc973df5add9384180fdfb3967b22b1,
+    type: 3}
   specialVFX: {fileID: 5082940041776008656, guid: 9fc973df5add9384180fdfb3967b22b1,
     type: 3}
   spawnAboveItselfWhenAttackVFX: {fileID: 0}
@@ -555,7 +556,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acronym: HA
   fullName: Heavy Armor
-  description: 'This card receives half of the damage it would receive before. '
+  description: This card receives just half of the damage when it is attacked.
   attackVFX: {fileID: 0}
   defenseVFX: {fileID: 5289526594200615245, guid: 6b3cfbc3488009e40bf93abfdeab6afc,
     type: 3}
@@ -618,8 +619,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acronym: AR
   fullName: Area
-  description: All targets adjacent cards and the target take half of the <half>Attack
-    Power of the mage as damage.
+  description: "If the attack targets the backline, and there is a card in front
+    of the target, swap these two enemy cards and apply half of the <half>Attack
+    Power as damage to the target. Otherwise it\u2019s just a regular attack. Ignore
+    Protection."
   attackVFX: {fileID: 4034280589589381900, guid: 3d6df27cc8cc1054f8bec7f3c4da598f,
     type: 3}
   defenseVFX: {fileID: 0}
@@ -875,7 +878,8 @@ MonoBehaviour:
   fullName: Hook
   description: "If the attack targets the backline, and there is a card in front
     of the target, swap these two enemy cards and apply half of the <half>Attack
-    Power as damage to the target. Otherwise it\u2019s just a regular attack."
+    Power as damage to the target. Otherwise it\u2019s just a regular attack. Ignores
+    Block."
   attackVFX: {fileID: 3264905262389925203, guid: 1523e8736678d8e43a480879f188f3e8,
     type: 3}
   defenseVFX: {fileID: 0}
@@ -1672,7 +1676,8 @@ MonoBehaviour:
   fullName: Sanctuary
   description: "Deals half of the damage. Heals two times. Each time, the cleric
     targets the ally with less Vitality. The heal amount is equal to half of the
-    Cleric\u2019s <half>Attack Power."
+    Cleric\u2019s <half>Attack Power. No card can be healed more than the double
+    of it\u2019s default Vitality."
   attackVFX: {fileID: 0}
   defenseVFX: {fileID: 0}
   specialVFX: {fileID: 6385494673838626053, guid: 5db526337e4125d48bb2143b574c134f,
@@ -2104,6 +2109,11 @@ PrefabInstance:
       propertyPath: classInfo
       value: 
       objectReference: {fileID: 4687705843416389277}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: critSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -2296,6 +2306,11 @@ PrefabInstance:
       propertyPath: classInfo
       value: 
       objectReference: {fileID: 4687705843183491820}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: critSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -2488,6 +2503,11 @@ PrefabInstance:
       propertyPath: classInfo
       value: 
       objectReference: {fileID: 4687705844232480846}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: critSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -2680,6 +2700,11 @@ PrefabInstance:
       propertyPath: classInfo
       value: 
       objectReference: {fileID: 4687705842261200035}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: critSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Sprite
@@ -2877,6 +2902,11 @@ PrefabInstance:
       propertyPath: classInfo
       value: 
       objectReference: {fileID: 4687705843416389277}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: critSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -3069,6 +3099,11 @@ PrefabInstance:
       propertyPath: classInfo
       value: 
       objectReference: {fileID: 4687705843416389277}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: critSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -3261,6 +3296,11 @@ PrefabInstance:
       propertyPath: classInfo
       value: 
       objectReference: {fileID: 4687705843183491820}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: critSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -3453,6 +3493,11 @@ PrefabInstance:
       propertyPath: classInfo
       value: 
       objectReference: {fileID: 4687705842261200035}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: critSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Sprite
@@ -3645,6 +3690,11 @@ PrefabInstance:
       propertyPath: classInfo
       value: 
       objectReference: {fileID: 4687705843416389277}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: critSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -3837,6 +3887,11 @@ PrefabInstance:
       propertyPath: classInfo
       value: 
       objectReference: {fileID: 4687705842969520020}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: critSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -4029,6 +4084,11 @@ PrefabInstance:
       propertyPath: classInfo
       value: 
       objectReference: {fileID: 4687705844232480846}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: critSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r

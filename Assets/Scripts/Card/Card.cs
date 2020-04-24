@@ -48,6 +48,11 @@ public class Card : SkillsMediatorUser
     [SerializeField]
     private Text DamageTextPrototype = null;
 
+    [SerializeField]
+    private AudioRequisitor audioRequisitor = null;
+    [SerializeField]
+    private AudioClip critSFX = null;
+
     private bool freezing = false;
 
     private GameObject freezingEffect = null;
@@ -133,6 +138,11 @@ public class Card : SkillsMediatorUser
     {
         if (damage > 0)
         {
+            if (damage >= 4)
+            {
+                audioRequisitor.RequestSFX(critSFX);
+            }
+
             SetVitalityAndUpdateTextLooks(Vitality - damage);
 
             CreateDamageAnimatedText(damage);
@@ -410,10 +420,7 @@ public class Card : SkillsMediatorUser
 
     public string GetSkillsExplanatoryText()
     {
-        return
-            "- ["+skills.Acronym+"]: "+
-            skills.Description.Replace("<half>Attack Power", "Attack Power (" + attackPower / 2 + ")")
-            .Replace("<full>Attack Power", "Attack Power (" + attackPower + ")");
+        return skills.GetExplanatoryText(attackPower);
     }
 
     public void SumPlayerBonuses()

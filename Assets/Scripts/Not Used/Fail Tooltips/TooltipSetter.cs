@@ -25,7 +25,15 @@ namespace NotUsed
 
         public virtual void OnPointerClicked()
         {
-            tooltipDisplayer.SetMessageAndTimerAndSize(tip, duration, width, height);
+            Debug.LogError("WTF called");
+            if (tooltipDisplayer != null)
+            {
+                tooltipDisplayer.SetMessageAndTimerAndSize(tip, duration, width, height);
+            }
+            else
+            {
+                Debug.LogError("tooltipDisplayer is null, and I don't know why. TODO: find it out and avoid it");
+            }
         }
     }
 }

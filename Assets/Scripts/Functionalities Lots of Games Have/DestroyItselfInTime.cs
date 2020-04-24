@@ -5,7 +5,7 @@ using UnityEngine;
 public class DestroyItselfInTime : MonoBehaviour
 {
     [SerializeField]
-    private float timeToDestruction = 2.0f;
+    private float timeToDestruction = 5.0f;
 
     void Update()
     {

@@ -53,8 +53,10 @@ public abstract class Skill : SkillsMediatorUser
     {
         skillsMediator.PlaySFX(defenseSFX);
     }
-    public string GetExplanatoryText()
+    public string GetExplanatoryText(int attackPower)
     {
-        return "-[" + Acronym + "] " + FullName + ": " + Description;
+        return "-[" + Acronym + "] " + FullName + ": " + Description
+            .Replace("<half>Attack Power", "Attack Power (" + attackPower / 2 + ")")
+            .Replace("<full>Attack Power", "Attack Power (" + attackPower + ")");
     }
 }
