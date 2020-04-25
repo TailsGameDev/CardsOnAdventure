@@ -20,7 +20,7 @@ public class UICardsHolderEventHandler : MonoBehaviour
     private Card cardBeingDragged;
 
     [SerializeField]
-    private float delayToComeBackFromEnemyBattlefield = 0.5f;
+    private float delayToComeBackFromOtherSpot = 0.5f;
 
     private bool isDragging = false;
     private bool isRunningDragHistoryCoroutine = false;
@@ -102,7 +102,7 @@ public class UICardsHolderEventHandler : MonoBehaviour
                 (
                     cardBeingDragged.transform.parent,
                     cardBeingDragged.GetComponent<RectTransform>(),
-                    delayToComeBackFromEnemyBattlefield
+                    delayToComeBackFromOtherSpot
                 );
         }
 
@@ -117,7 +117,7 @@ public class UICardsHolderEventHandler : MonoBehaviour
             ClearSelections(new CardsHolder[] { cardsHolder, cardsHolderBelowMouseOnDrop });
         }
 
-        yield return new WaitForSeconds(delayToComeBackFromEnemyBattlefield);
+        yield return new WaitForSeconds(delayToComeBackFromOtherSpot);
 
         isRunningDragHistoryCoroutine = false;
     }

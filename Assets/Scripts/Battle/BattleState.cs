@@ -804,7 +804,7 @@ public class EndGame : BattleState
         quit = true;
         stopAllSFXRequest.RequestPlaying();
         popUpOpener.CloseAllPopUpsExceptLoading();
-        popUpOpener.OpenMapPopUp();
+        popUpOpener.OpenMapScene();
     }
 
     private void ImproveAttackPowerThenSeeMap()

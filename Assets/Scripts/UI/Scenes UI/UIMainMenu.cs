@@ -20,9 +20,24 @@ public class UIMainMenu : UIPauseMenu
 
     public void OnPlayBtnClicked()
     {
+        OpenContinueOrNewGamePopUp();
+        /*
+        customPopUpOpener.Open(
+            title: "Play!",
+            warningMessage: "Would you like to play the Adventure or the Draft mode?",
+            confirmBtnMessage: "Adventure Mode",
+            cancelBtnMessage: "Draft Mode",
+            onConfirm: OpenContinueOrNewGamePopUp,
+            onCancel: NewGame
+        );
+        */
+    }
+
+    private void OpenContinueOrNewGamePopUp()
+    {
         // If there is no save, there should'nt be a difference between press "continue" or "new game" button.
         // So I tried to make som fun out of it, and just lead the player to click one of the buttons.
-        
+
         string continueBtnText;
         string warningMessage;
         string cancelBtnMessage;
@@ -40,6 +55,7 @@ public class UIMainMenu : UIPauseMenu
             cancelBtnMessage = "Red";
         }
 
+        popUpOpener.CloseAllPopUpsExceptLoading();
         customPopUpOpener.Open(
             title: "Play!",
             warningMessage,
@@ -58,14 +74,14 @@ public class UIMainMenu : UIPauseMenu
             ClassInfo.LoadBonuses(classesSerializable);
         }
         mapsCache.StartOfMatch = false;
-        popUpOpener.OpenMapPopUp();
+        sceneOpener.OpenMapScene();
     }
 
     private void NewGame()
     {
         ClassInfo.ResetBonusesToAllClasses();
         mapsCache.StartOfMatch = true;
-        popUpOpener.OpenMapPopUp();
+        sceneOpener.OpenMapScene();
     }
 
     public void OnCreditsBtnClicked()

@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneOpener : PopUpOpener
 {
+    public void OpenMapScene()
+    {
+        popUpOpener.OpenMapScene();
+    }
+
     // Start is called before the first frame update
     public void OpenMainMenuScene()
     {

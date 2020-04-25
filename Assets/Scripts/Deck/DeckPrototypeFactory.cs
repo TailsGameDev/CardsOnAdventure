@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class DeckPrototypeFactory : MonoBehaviour
 {
-    private static DeckPrototypeFactory battleSceneDeckFactory;
+    private static DeckPrototypeFactory deckPrototypeFactory;
 
     private static DeckMounter enemyDeckMounter;
     private static DeckMounter playerDeckMounter;
@@ -36,9 +36,9 @@ public class DeckPrototypeFactory : MonoBehaviour
 
     private void BecomeSingleton()
     {
-        if (battleSceneDeckFactory == null)
+        if (deckPrototypeFactory == null)
         {
-            battleSceneDeckFactory = this;
+            deckPrototypeFactory = this;
         }
         else
         {
@@ -81,7 +81,7 @@ public class DeckPrototypeFactory : MonoBehaviour
 
         for (int i = 0; i < enemyDeck.Length; i++)
         {
-            enemyDeck[i].AjustCardToDifficult(battleSceneDeckFactory.difficultyLevel);
+            enemyDeck[i].AjustCardToDifficult(deckPrototypeFactory.difficultyLevel);
         }
 
         return enemyDeck;
@@ -103,11 +103,11 @@ public class DeckPrototypeFactory : MonoBehaviour
     {
         if (difficultyLevel < 1)
         {
-            battleSceneDeckFactory.difficultyLevel = 1;
+            deckPrototypeFactory.difficultyLevel = 1;
         }
         else
         {
-            battleSceneDeckFactory.difficultyLevel = difficultyLevel;
+            deckPrototypeFactory.difficultyLevel = difficultyLevel;
         }
     }
 
@@ -174,15 +174,15 @@ public class DeckPrototypeFactory : MonoBehaviour
         {
             if (size == NOT_A_SIZE)
             {
-                size = battleSceneDeckFactory.defaultDeckSize;
+                size = deckPrototypeFactory.defaultDeckSize;
             } 
             else if ( size == TOUGH_SIZE)
             {
-                size = battleSceneDeckFactory.defaultDeckSize + 1;
+                size = deckPrototypeFactory.defaultDeckSize + 1;
             }
             else if (size == BOSS_SIZE)
             {
-                size = battleSceneDeckFactory.defaultDeckSize + 3;
+                size = deckPrototypeFactory.defaultDeckSize + 3;
             }
 
             deck = new Card[size];
@@ -192,7 +192,7 @@ public class DeckPrototypeFactory : MonoBehaviour
         {
             deck = InOrderBuildRangeWithPrototypes(beginningIndex: 0, limitIndex: size/2, notRandomPartPrototypes);
 
-            Card[] allPrototypesThereAre = battleSceneDeckFactory.allCardPrototypes;
+            Card[] allPrototypesThereAre = deckPrototypeFactory.allCardPrototypes;
             deck = OutOfOrderBuildRangeWithPrototypes(beginningIndex: size / 2, limitIndex: size, allPrototypesThereAre);
 
             Shuffle(ref deck);
@@ -244,6 +244,30 @@ public class DeckPrototypeFactory : MonoBehaviour
         }
     }
 
+    public class OneOfEachCardDeckMounter : DeckMounter
+    {
+        private OneOfEachCardDeckMounter(int size) : base (size)
+        {
+        }
+
+        public static OneOfEachCardDeckMounter New()
+        {
+            return new OneOfEachCardDeckMounter(deckPrototypeFactory.allCardPrototypes.Length);
+        }
+
+        public override Card[] GetDeck()
+        {
+            deck = new Card[size];
+
+            for (int i = 0; i < deck.Length; i++)
+            {
+                deck[i] = Instantiate(deckPrototypeFactory.allCardPrototypes[i]);
+            }
+
+            return deck;
+        }
+    }
+
     public class RandomDeckMounter : DeckMounter
     {
         public RandomDeckMounter(int size) : base(size)
@@ -254,9 +278,9 @@ public class DeckPrototypeFactory : MonoBehaviour
         {
             CreateEmptyDeckWithProperSize();
 
-            Card[] prototypes = battleSceneDeckFactory.allCardPrototypes;
+            Card[] prototypes = deckPrototypeFactory.allCardPrototypes;
 
-            deck = BuildFullRandomDeckFromPrototypes(battleSceneDeckFactory.allCardPrototypes);
+            deck = BuildFullRandomDeckFromPrototypes(deckPrototypeFactory.allCardPrototypes);
 
             return deck;
         }

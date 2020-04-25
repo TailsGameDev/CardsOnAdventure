@@ -151,7 +151,7 @@ public class ThePopUpOpenerInstance : PopUpOpener
         OpenPopUp(settingsPopUp);
     }
 
-    public void OpenMapPopUp()
+    public void OpenMapScene()
     {
         audioRequisitor.RequestBGM(mapBGM);
         SetLoadingPopUpActiveToTrue();
