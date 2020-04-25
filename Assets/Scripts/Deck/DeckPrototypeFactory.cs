@@ -156,16 +156,16 @@ public class DeckPrototypeFactory : MonoBehaviour
         playerDeckMounter = new RandomDeckMounter(size);
     }
 
-    #region Deck Mounters
-
     public abstract class DeckMounter
     {
         protected int size;
         protected Card[] deck;
+        protected readonly Card[] allCardPrototypes;
 
         public DeckMounter(int size)
         {
             this.size = size;
+            allCardPrototypes = deckPrototypeFactory.allCardPrototypes;
         }
 
         public abstract Card[] GetDeck();
@@ -184,30 +184,12 @@ public class DeckPrototypeFactory : MonoBehaviour
             {
                 size = deckPrototypeFactory.defaultDeckSize + 3;
             }
+            // Else: keep the size it was before!
 
             deck = new Card[size];
         }
 
-        protected Card[] BuildHalfRandomDeck(Card[] notRandomPartPrototypes)
-        {
-            deck = InOrderBuildRangeWithPrototypes(beginningIndex: 0, limitIndex: size/2, notRandomPartPrototypes);
-
-            Card[] allPrototypesThereAre = deckPrototypeFactory.allCardPrototypes;
-            deck = OutOfOrderBuildRangeWithPrototypes(beginningIndex: size / 2, limitIndex: size, allPrototypesThereAre);
-
-            Shuffle(ref deck);
-
-            return deck;
-        }
-
-        protected Card[] BuildFullRandomDeckFromPrototypes(Card[] prototypes)
-        {
-            deck = OutOfOrderBuildRangeWithPrototypes(beginningIndex: 0, limitIndex: size, prototypes);
-
-            return deck;
-        }
-
-        private Card[] InOrderBuildRangeWithPrototypes(int beginningIndex, int limitIndex, Card[] prototypes)
+        protected Card[] InOrderBuildRangeWithPrototypes(int beginningIndex, int limitIndex, Card[] prototypes)
         {
             for (int i = beginningIndex; i < limitIndex; i++)
             {
@@ -217,7 +199,7 @@ public class DeckPrototypeFactory : MonoBehaviour
             return deck;
         }
 
-        private Card[] OutOfOrderBuildRangeWithPrototypes(int beginningIndex, int limitIndex, Card[] prototypes)
+        protected Card[] OutOfOrderBuildRangeWithPrototypes(int beginningIndex, int limitIndex, Card[] prototypes)
         {
             for (int i = beginningIndex; i < limitIndex; i++)
             {
@@ -242,75 +224,16 @@ public class DeckPrototypeFactory : MonoBehaviour
                 array[n] = value;
             }
         }
-    }
 
-    public class OneOfEachCardDeckMounter : DeckMounter
-    {
-        private OneOfEachCardDeckMounter(int size) : base (size)
+        /// <summary>
+        /// Instantiate a card. The reason not to just use Instantiate is 'DeckMounter' does not inherits MonoBehavior.
+        /// So DeckMounter can access 'Instantiate' because it is an internal class of DeckPrototypeFactory.
+        /// </summary>
+        protected Card InstantiatePlease(Card card)
         {
-        }
-
-        public static OneOfEachCardDeckMounter New()
-        {
-            return new OneOfEachCardDeckMounter(deckPrototypeFactory.allCardPrototypes.Length);
-        }
-
-        public override Card[] GetDeck()
-        {
-            deck = new Card[size];
-
-            for (int i = 0; i < deck.Length; i++)
-            {
-                deck[i] = Instantiate(deckPrototypeFactory.allCardPrototypes[i]);
-            }
-
-            return deck;
+            return Instantiate(card);
         }
     }
-
-    public class RandomDeckMounter : DeckMounter
-    {
-        public RandomDeckMounter(int size) : base(size)
-        {
-        }
-
-        public override Card[] GetDeck()
-        {
-            CreateEmptyDeckWithProperSize();
-
-            Card[] prototypes = deckPrototypeFactory.allCardPrototypes;
-
-            deck = BuildFullRandomDeckFromPrototypes(deckPrototypeFactory.allCardPrototypes);
-
-            return deck;
-        }
-    }
-
-    public class HalfRandomDeckMounter : DeckMounter
-    {
-        private Classes classe;
-
-        public HalfRandomDeckMounter(int size, Classes classe) : base(size)
-        {
-            this.classe = classe;
-        }
-
-        public override Card[] GetDeck()
-        {
-            CreateEmptyDeckWithProperSize();
-
-            Card[] notRandomPartPrototypes = ClassInfo.GetCardsOfClass(classe);
-
-            if (notRandomPartPrototypes == null || notRandomPartPrototypes.Length == 0)
-            {
-                Debug.LogError("[DeckPrototypeFactory] notRandomPartPrototypes.Length == 0. "+
-                                "It should be the size of the available cards of a class.");
-            }
-
-            return BuildHalfRandomDeck(notRandomPartPrototypes);
-        }
-    }
-    #endregion
 }
 
 

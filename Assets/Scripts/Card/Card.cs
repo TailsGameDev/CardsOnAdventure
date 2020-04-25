@@ -174,15 +174,6 @@ public class Card : SkillsMediatorUser
         {
             RegisterDeath();
         }
-
-        string dc = "";
-        for (int i = 0; i < deathCount.Length; i++)
-        {
-            dc += " / " + deathCount[i];
-        }
-        dc += "/// index is: " + deathCountIndex;
-        dc += "/// Sum is: " + GetDeathCount();
-        L.ogWarning(dc, this);
     }
 
     private void CreateDamageAnimatedText(int damage)
