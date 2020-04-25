@@ -18,7 +18,7 @@ public class L : MonoBehaviour
 
     public static void ogWarning(string message, object obj)
     {
-        if (obj.GetType() == typeof(MonoBehaviour))
+        if (obj.GetType().IsAssignableFrom(typeof(MonoBehaviour)))
         {
             Debug.LogWarning("[" + obj.GetType() + "]" + message, (MonoBehaviour)obj);
         }

@@ -40,6 +40,11 @@ public class MapsCache : MapsRuntimeCache
         return mapsRuntimeCache;
     }
 
+    public bool DoesSaveExist()
+    {
+        return mapsPersistence.DoesSaveExist("First");
+    }
+
     public int GetIndex(SpotInfo desiredInfo, string mapName)
     {
         List<SpotInfo> allSpotsInfo = mapsSpotsInfo[mapName];
@@ -92,7 +97,7 @@ public class MapsCache : MapsRuntimeCache
     private bool LoadMapDataFromDeviceStorageIfPossible(Spot root)
     {
         string mapName = root.MapName;
-        bool saveExists = mapsPersistence.DoSaveExists(mapName);
+        bool saveExists = mapsPersistence.DoesSaveExist(mapName);
         if (saveExists)
         {
             LoadDataFromDeviceStorage(mapName);

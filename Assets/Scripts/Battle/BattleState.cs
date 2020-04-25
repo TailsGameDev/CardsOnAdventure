@@ -644,7 +644,7 @@ public class IsGameTied : BattleState
 
         customPopUp.OpenAndMakeUncloseable(
                             title: "Is the game tied?",
-                            warningMessage: "If you wish, get a +1 Attack Power buff to all cards (your enemy's ones included)",
+                            warningMessage: "If you wish, get a +1 Attack Power buff to all cards currently on the battlefield (your enemy's ones included)",
                             confirmBtnMessage: "Buff all Attacks!",
                             cancelBtnMessage: "I don't need buffs.",
                             onConfirm: () => { BuffCards(); Proceed(); },
@@ -809,13 +809,13 @@ public class EndGame : BattleState
 
     private void ImproveAttackPowerThenSeeMap()
     {
-        ClassInfo.GiveAttackPowerBonusToClass(masterClass);
+        ClassInfo.GiveAttackPowerBonusToClassAndSaveInDeviceStorage(masterClass);
         QuitBattleAndGoToMap();
     }
 
     private void ImproveVitalityThenSeeMap()
     {
-        ClassInfo.GiveVitalityBonusToClass(masterClass);
+        ClassInfo.GiveVitalityBonusToClassAndSaveInDeviceStorage(masterClass);
         QuitBattleAndGoToMap();
     }
 

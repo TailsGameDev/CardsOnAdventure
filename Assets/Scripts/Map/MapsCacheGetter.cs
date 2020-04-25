@@ -6,6 +6,11 @@ public class MapsCacheGetter : MapsRuntimeCache
 {
     public bool StartOfMatch { get => cache.StartOfMatch; set => cache.StartOfMatch = value; }
 
+    public bool DoesSaveExist()
+    {
+        return cache.DoesSaveExist();
+    }
+
     public SpotInfo GetRootInfo(string mapName)
     {
         return cache.GetRootInfo(mapName);

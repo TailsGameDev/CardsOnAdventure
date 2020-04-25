@@ -24,7 +24,7 @@ public class UIMap : PopUpOpener
 
         if (mapsCache.StartOfMatch)
         {
-            BuildAllMaps();
+            PrepareStartOfMatch();
         }
         else if ( DataStructuresAreEmpty() )
         {
@@ -36,7 +36,7 @@ public class UIMap : PopUpOpener
             }
             else
             {
-                BuildAllMaps();
+                PrepareStartOfMatch();
             }
         }
         else // Player is in the middle of the game and the data should be fresh in mapsCache
@@ -45,7 +45,7 @@ public class UIMap : PopUpOpener
         }
     }
 
-    private void BuildAllMaps()
+    private void PrepareStartOfMatch()
     {
         mapsCache.StartOfMatch = false;
 

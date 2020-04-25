@@ -11,8 +11,10 @@ public class Card : SkillsMediatorUser
     /// the size is the number of attacks to consider in counting: Ex: let's consider how many died in the last '10' attacks
     /// in this case 10 would be the size of the deathCount array.
     /// it starts as 1,1,1... because it will be used to see if the game tied. They will consider the game tied if in the
-    /// last 10 attacks, any card have died. 1,1,1... suggests 10 cards have died in the last 10 attacks
-    private static int[] deathCount = new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};//{1,1,1,1,1,1,1,1,1,1};
+    /// last 10 attacks, any card have died. 1,1,1... suggests at least 10 cards have died in the last 10 attacks
+    /// but unfortunately, each time the player ask an attack, it count's 2 or 3 times here because the way
+    /// skills ware implemented
+    private static int[] deathCount = new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
     private static int deathCountIndex = 0;
 
     [SerializeField]
@@ -46,7 +48,7 @@ public class Card : SkillsMediatorUser
     private Image cardImage = null;
 
     [SerializeField]
-    private Text DamageTextPrototype = null;
+    private GameObject DamageTextPrototype = null;
 
     [SerializeField]
     private AudioRequisitor audioRequisitor = null;
@@ -136,7 +138,7 @@ public class Card : SkillsMediatorUser
     #region damage
     public void TakeDamageAndManageCardState(int damage)
     {
-        if (damage > 0)
+        if (damage >= 0)
         {
             if (damage >= 4)
             {
@@ -145,26 +147,42 @@ public class Card : SkillsMediatorUser
 
             SetVitalityAndUpdateTextLooks(Vitality - damage);
 
-            CreateDamageAnimatedText(damage);
+            if (damage > 0)
+            {
+                CreateDamageAnimatedText(damage);
+            }
 
             shakeable.Shake();
 
             if (Vitality <= 0)
             {
-                RegisterDeath();
                 RemoveFreezing();
                 battlefield.Remove(this);
                 StartCoroutine(DieWithAnimation());
-            }
-            else
-            {
-                RegisterSurvived();
             }
         }
         else if (damage < 0)
         {
             Debug.LogError("[Card] tryed to apply negative damage. That's wrong! Use Heal method instead");
         }
+
+        if (Vitality > 0)
+        {
+            RegisterSurvived();
+        }
+        else
+        {
+            RegisterDeath();
+        }
+
+        string dc = "";
+        for (int i = 0; i < deathCount.Length; i++)
+        {
+            dc += " / " + deathCount[i];
+        }
+        dc += "/// index is: " + deathCountIndex;
+        dc += "/// Sum is: " + GetDeathCount();
+        L.ogWarning(dc, this);
     }
 
     private void CreateDamageAnimatedText(int damage)

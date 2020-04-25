@@ -13,6 +13,11 @@ public class UIMainMenu : UIPauseMenu
     [SerializeField]
     private ClassesPersistence classesPersistence = null;
 
+    private void Awake()
+    {
+        MapsCache.SpotToClearIfPlayerWins = null;
+    }
+
     public void OnPlayBtnClicked()
     {
         // If there is no save, there should'nt be a difference between press "continue" or "new game" button.
@@ -22,7 +27,7 @@ public class UIMainMenu : UIPauseMenu
         string warningMessage;
         string cancelBtnMessage;
 
-        if (classesPersistence.DoSaveExists())
+        if (mapsCache.DoesSaveExist())
         {
             continueBtnText = "Continue";
             warningMessage = "Are you going to continue your previous adventure, or start a new game?";

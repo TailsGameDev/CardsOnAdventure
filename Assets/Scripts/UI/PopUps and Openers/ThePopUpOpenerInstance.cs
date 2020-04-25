@@ -135,7 +135,7 @@ public class ThePopUpOpenerInstance : PopUpOpener
         TipSectionData[] battleRulesContent = new TipSectionData[]
         {
             new TipSectionData(battleRulesSprite, 100.0f),
-            new TipSectionData(battleRules, 1700.0f)
+            new TipSectionData(battleRules, 2300.0f)
         };
 
         OpenTooltipPopUp( battleRulesContent, title: "Battle Rules" );

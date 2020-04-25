@@ -19,8 +19,17 @@ public class TextThatFadesAndFalls : MonoBehaviour
     [SerializeField]
     private Text text = null;
 
+    
+    [SerializeField]
+    private float bonusToInitialAlpha = 0.5f;
+    
     [SerializeField]
     private float timeToFade = 0.8f;
+
+    /*
+    [SerializeField]
+    private Image[] imagesToMaybeActivate = null;
+    */
 
     private float initialA;
     private float vA;
@@ -39,9 +48,14 @@ public class TextThatFadesAndFalls : MonoBehaviour
 
         xVelocity = Random.Range(-xVelocityRange, xVelocityRange);
 
-        initialA = text.color.a;
+        initialA = text.color.a + bonusToInitialAlpha;
         vA = - initialA / timeToFade;
 
+        SaveColorInRGBAttributes();
+    }
+
+    private void SaveColorInRGBAttributes()
+    {
         Color textColor = text.color;
         r = textColor.r;
         g = textColor.g;
@@ -57,7 +71,7 @@ public class TextThatFadesAndFalls : MonoBehaviour
 
         transform.position = new Vector3(x,y,0);
 
-        float a = initialA + vA * time;
+        float a = initialA + vA * (time);
 
         if (a <= 0)
         {
@@ -66,4 +80,16 @@ public class TextThatFadesAndFalls : MonoBehaviour
 
         text.color = new Color(r, g, b, a);
     }
+
+    /*
+    public void ActivateAssignedImagesAndChangeColorToYellow()
+    {
+        foreach (Image image in imagesToMaybeActivate)
+        {
+            image.enabled = true;
+        }
+        text.color = Color.yellow;
+        SaveColorInRGBAttributes();
+    }
+    */
 }

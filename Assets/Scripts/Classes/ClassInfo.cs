@@ -75,13 +75,13 @@ public class ClassInfo : MonoBehaviour
         return classesInfo[classe].cards.ToArray();
     }
 
-    public static void GiveVitalityBonusToClass(Classes classe)
+    public static void GiveVitalityBonusToClassAndSaveInDeviceStorage(Classes classe)
     {
         classesInfo[classe].vitalityBonus++;
         staticClassesPersistence.SaveClasses(new ClassesSerializable(classesInfo));
     }
 
-    public static void GiveAttackPowerBonusToClass(Classes classe)
+    public static void GiveAttackPowerBonusToClassAndSaveInDeviceStorage(Classes classe)
     {
         classesInfo[classe].attackPowerBonus++;
         staticClassesPersistence.SaveClasses(new ClassesSerializable(classesInfo));

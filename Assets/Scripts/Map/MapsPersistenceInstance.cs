@@ -20,7 +20,7 @@ public class MapsPersistenceInstance : MapsPersistence
         percistence.GenericSave(mapName, mapInfo);
     }
 
-    public bool DoSaveExists(string mapName)
+    public bool DoesSaveExist(string mapName)
     {
         return File.Exists(Application.persistentDataPath + mapName);
     }
