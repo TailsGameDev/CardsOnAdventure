@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HalfRandomDeckMounter : DeckPrototypeFactory.DeckMounter
+public class HalfRandomDeckMounter : DeckPrototypeFactory.DeckBuilder
 {
     private Classes classe;
 

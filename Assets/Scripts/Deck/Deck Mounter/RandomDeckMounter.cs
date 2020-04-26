@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomDeckMounter : DeckPrototypeFactory.DeckMounter
+public class RandomDeckMounter : DeckPrototypeFactory.DeckBuilder
 {
     public RandomDeckMounter(int size) : base(size)
     {

@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OneOfEachCardDeckMounter : DeckPrototypeFactory.DeckMounter
+public class OneOfEachCardDeckMounter : DeckPrototypeFactory.DeckBuilder
 {
     private OneOfEachCardDeckMounter(int size) : base(size)
     {
     }
 
-    public static OneOfEachCardDeckMounter New()
+    public static OneOfEachCardDeckMounter Create()
     {
         const int SENTINEL_NUMBER = 0;
         OneOfEachCardDeckMounter me = new OneOfEachCardDeckMounter(SENTINEL_NUMBER);

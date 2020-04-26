@@ -8,11 +8,11 @@ public class DeckPrototypeFactory : MonoBehaviour
 {
     private static DeckPrototypeFactory deckPrototypeFactory;
 
-    private static DeckMounter enemyDeckMounter;
-    private static DeckMounter playerDeckMounter;
+    private static DeckBuilder enemyDeckMounter;
+    private static DeckBuilder playerDeckMounter;
 
     [SerializeField]
-    protected int defaultDeckSize;
+    private int defaultDeckSize = -1;
 
     private int difficultyLevel = 1;
 
@@ -22,10 +22,13 @@ public class DeckPrototypeFactory : MonoBehaviour
     protected const int TOUGH_SIZE = -2;
     protected const int BOSS_SIZE = -3;
 
+    public static int DefaultDeckSize { get => deckPrototypeFactory.defaultDeckSize; }
+
     private void Awake()
     {
         BecomeSingleton();
 
+        // Useful when play from Battle scene.
         MakeDecksRandomIfTheyAreNull();
     }
 
@@ -111,7 +114,12 @@ public class DeckPrototypeFactory : MonoBehaviour
         }
     }
 
-    #region Prepare XXXX Deck For The Enemy
+    public static Card[] GetCopyOfAllAndEachCardPrototype()
+    {
+        return OneOfEachCardDeckMounter.Create().GetDeck();
+    }
+
+    #region Public Prepare XXXX Deck For The Enemy
 
     public static void PrepareRandomDeckForTheEnemy(int size = NOT_A_SIZE)
     {
@@ -156,13 +164,13 @@ public class DeckPrototypeFactory : MonoBehaviour
         playerDeckMounter = new RandomDeckMounter(size);
     }
 
-    public abstract class DeckMounter
+    public abstract class DeckBuilder
     {
         protected int size;
         protected Card[] deck;
         protected readonly Card[] allCardPrototypes;
 
-        public DeckMounter(int size)
+        public DeckBuilder(int size)
         {
             this.size = size;
             allCardPrototypes = deckPrototypeFactory.allCardPrototypes;

@@ -10,7 +10,7 @@ public class CardsHolder : IndexHolder
     protected Card[] cards = new Card[4];
 
     [SerializeField]
-    protected UICardsHolderEventHandler uiBattle = null;
+    protected UICardsHolderEventHandler uiCardsHolderEventHandler = null;
 
     // to activate animation, uncomment this field and toggle the ChildMaker algorythm inside 'PutCardInIndex' method
     // [SerializeField]
@@ -114,22 +114,22 @@ public class CardsHolder : IndexHolder
 
     public void OnSlotBeginDrag(int index)
     {
-        uiBattle.OnCardsHolderBeginDrag(this, index);
+        uiCardsHolderEventHandler.OnCardsHolderBeginDrag(this, index);
     }
 
     public void OnSlotEndDrag()
     {
-        uiBattle.OnCardsHolderEndDrag();
+        uiCardsHolderEventHandler.OnCardsHolderEndDrag();
     }
 
     public void OnDroppedInSlot(int index)
     {
-        uiBattle.OnCardsHolderDrop(this, index);
+        uiCardsHolderEventHandler.OnCardsHolderDrop(this, index);
     }
 
     public void OnSlotClicked(int index)
     {
-        uiBattle.OnSlotClicked(this, index);
+        uiCardsHolderEventHandler.OnSlotClicked(this, index);
     }
 
     #region Make card bigger or normal size

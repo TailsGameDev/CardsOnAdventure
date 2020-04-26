@@ -117,7 +117,10 @@ public class UICardsHolderEventHandler : MonoBehaviour
             ClearSelections(new CardsHolder[] { cardsHolder, cardsHolderBelowMouseOnDrop });
         }
 
-        yield return new WaitForSeconds(delayToComeBackFromOtherSpot);
+        if (wasDroppedInValidSpot)
+        {
+            yield return new WaitForSeconds(delayToComeBackFromOtherSpot);
+        }
 
         isRunningDragHistoryCoroutine = false;
     }

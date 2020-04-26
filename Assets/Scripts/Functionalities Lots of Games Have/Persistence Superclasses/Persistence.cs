@@ -16,7 +16,6 @@ public class Persistence : MonoBehaviour
 
     public T GenericLoad<T>(string nomeArquivo)
     {
-        Debug.Log(Application.persistentDataPath);
         string path = Application.persistentDataPath + nomeArquivo;
         if (File.Exists(path))
         {

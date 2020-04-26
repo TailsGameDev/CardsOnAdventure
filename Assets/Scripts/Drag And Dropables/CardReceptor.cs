@@ -11,7 +11,9 @@ public class CardReceptor : DragAndDropReceptor
     [SerializeField]
     private CardsHolder cardsHolder = null;
 
-    public int Index { get => index; }
+    public int Index { get => index; set => index = value; }
+
+    public CardsHolder CardsHolder { set => cardsHolder = value; }
 
     #region Overrides
     public override Type GetDragAndDropReceptorType()
