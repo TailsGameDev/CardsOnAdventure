@@ -1,49 +1,38 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MapsCache : MapsRuntimeCache
 {
-    [SerializeField]
-    private MapsPersistenceInstance mapsPersistence = null;
-
     private static int NODE_NOT_FOUND = -1;
+
+    private SaveFacade saveFacade = new SaveFacade();
 
     private Dictionary<string, SpotInfo> mapsRuntimeCache;
 
-    private bool startOfMatch;
-
-    private Dictionary<string, SpotInfo> mapsRoots;
+    private Dictionary<string, SpotInfo> mapsRoots = new Dictionary<string, SpotInfo>();
     private static Dictionary<string, List<SpotInfo>> mapsSpotsInfo = new Dictionary<string, List<SpotInfo>>();
+
+    // private Spot[] finalSpotForEachMap;
 
     public static SpotInfo SpotToClearIfPlayerWins;
     private string nameOfMapThatPlayerCurrentlyIs;
 
-    public bool StartOfMatch { get => startOfMatch; set => startOfMatch = value; }
-    public string NameOfMapThatPlayerCurrentlyIs { get => nameOfMapThatPlayerCurrentlyIs; set => nameOfMapThatPlayerCurrentlyIs = value; }
+    public string NameOfMapThatPlayerCurrentlyIs { set => nameOfMapThatPlayerCurrentlyIs = value; }
     public Dictionary<string, SpotInfo> MapsRoots { get => mapsRoots; set => mapsRoots = value; }
 
-    private void Awake()
-    {
-        if (cache == null)
-        {
-            cache = this;
-        }
-    }
-
+    /*
     public void CacheMaps(Dictionary<string, SpotInfo> mapsRuntimeCache)
     {
         this.mapsRuntimeCache = mapsRuntimeCache;
     }
+    
 
     public Dictionary<string, SpotInfo> GetMapsRootsOrGetNull()
     {
         return mapsRuntimeCache;
     }
-
-    public bool DoesSaveExist()
-    {
-        return mapsPersistence.DoesSaveExist("First");
-    }
+    */
 
     public int GetIndex(SpotInfo desiredInfo, string mapName)
     {
@@ -59,17 +48,16 @@ public class MapsCache : MapsRuntimeCache
         return NODE_NOT_FOUND;
     }
 
-    public MapInfo GetMapInfo(string mapName)
+    public SpotInfo GetRootInfo(string mapName)
     {
-        SpotInfo root = MapsRoots[mapName];
-        int rootIndex = GetIndex(root, mapName);
-        return new MapInfo(mapsSpotsInfo[mapName], rootIndex);
+        return mapsRoots[mapName];
     }
 
-    public void ClearRootsAndSpots()
+    public MapData GetMapInfo(string mapName)
     {
-        mapsRoots = new Dictionary<string, SpotInfo>();
-        mapsSpotsInfo = new Dictionary<string, List<SpotInfo>>();
+        SpotInfo root = mapsRoots[mapName];
+        int rootIndex = GetIndex(root, mapName);
+        return new MapData(mapsSpotsInfo[mapName], rootIndex);
     }
 
     public void CacheRootsAndSpots(List<SpotInfo> allSpotsInfo, int rootIndex, string mapName)
@@ -80,63 +68,20 @@ public class MapsCache : MapsRuntimeCache
 
     public bool DataStructuresAreEmpty()
     {
-        return mapsRoots == null;
+        return mapsRoots.Keys.Count == 0 && mapsSpotsInfo.Keys.Count == 0;
     }
 
-    public bool TryToLoadAllMapsDataFromDeviceStorage(Spot[] finalSpotForEachMap)
-    {
-        bool succeed = true;
-        mapsRoots = new Dictionary<string, SpotInfo>();
-        foreach (Spot root in finalSpotForEachMap)
-        {
-            succeed = succeed && LoadMapDataFromDeviceStorageIfPossible(root);
-        }
-        return succeed;
-    }
-
-    private bool LoadMapDataFromDeviceStorageIfPossible(Spot root)
-    {
-        string mapName = root.MapName;
-        bool saveExists = mapsPersistence.DoesSaveExist(mapName);
-        if (saveExists)
-        {
-            LoadDataFromDeviceStorage(mapName);
-        }
-        return saveExists;
-    }
-
-    private void LoadDataFromDeviceStorage(string mapName)
-    {
-        MapInfo mapInfo = mapsPersistence.LoadMap(mapName);
-
-        mapsSpotsInfo[mapName] = mapInfo.Recover(out int rootIndex);
-
-        SpotInfo rootInfo = mapsSpotsInfo[mapName][rootIndex];
-        mapsRoots.Add(mapName, rootInfo);
-    }
-
-    public SpotInfo GetRootInfo(string mapName)
-    {
-        return cache.MapsRoots[mapName];
-    }
-
-    public List<SpotInfo> GetAllMapsSpotsInfo(string mapName)
+    public List<SpotInfo> GetSpotsInfoList(string mapName)
     {
         return mapsSpotsInfo[mapName];
     }
 
-    public void UpdateWithPlayerProgress()
+    public void ClearLastSpotWon()
     {
         if (SpotToClearIfPlayerWins != null)
         {
             SpotToClearIfPlayerWins.Cleared = true;
-            SaveMapInDeviceStorage(nameOfMapThatPlayerCurrentlyIs);
         }
-    }
-
-    private void SaveMapInDeviceStorage(string mapName)
-    {
-        mapsPersistence.SaveMap(mapName, GetMapInfo(mapName));
     }
 
     public void SetSpotInfoToClearIfPlayerWins(string spotInfoGOName, string mapName)
@@ -157,5 +102,71 @@ public class MapsCache : MapsRuntimeCache
             }
         }
         return null;
+    }
+
+    public void SaveAllMapsInDeviceStorage()
+    {
+        string[] mapNames = GetMapNames();
+
+        int mapsAmount = mapNames.Length;
+
+        // Get Maps Info
+        MapData[] mapsInfo = new MapData[mapsAmount];
+        for (int i = 0; i < mapsAmount; i++)
+        {
+            mapsInfo[i] = GetInfo(mapName: mapNames[i]);
+        }
+        saveFacade.PrepareMapsForSaving(mapNames, mapsInfo);
+        
+        saveFacade.SaveEverything();
+    }
+
+    private MapData GetInfo(string mapName)
+    {
+        List<SpotInfo> spotsInfo = mapsSpotsInfo[mapName];
+
+        SpotInfo root = mapsRoots[mapName];
+        int rootIndex = GetIndex(root, mapName);
+
+        return new MapData(spotsInfo, rootIndex);
+    }
+
+    public bool DoesSaveExist()
+    {
+        return saveFacade.DoesAnySaveExist();
+    }
+
+    private string[] GetMapNames()
+    {
+        return mapsRoots.Keys.ToArray();
+    }
+
+    public void FillMapsCacheWithSaveFilesData(string[] mapNames)
+    {
+        MapData[] mapsData = GetMapsDataFromStorage(mapNames);
+
+        for (int i = 0; i < mapsData.Length; i++)
+        {
+            CopyMapDataToAttributes( mapNames[i], mapsData[i] );
+        }
+    }
+
+    private MapData[] GetMapsDataFromStorage(string[] mapNames)
+    {
+        saveFacade.PrepareMapsForLoading(mapNames);
+        saveFacade.LoadEverything();
+
+        return saveFacade.GetLoadedMapsInfo();
+    }
+
+    private void CopyMapDataToAttributes(string mapName, MapData mapsData)
+    {
+        mapsSpotsInfo[mapName] = mapsData.Recover(out int rootIndex);
+
+        // Get root
+        List<SpotInfo> spotsInfo = mapsSpotsInfo[mapName];
+        SpotInfo rootInfo = spotsInfo[rootIndex];
+
+        mapsRoots[mapName] = rootInfo;
     }
 }

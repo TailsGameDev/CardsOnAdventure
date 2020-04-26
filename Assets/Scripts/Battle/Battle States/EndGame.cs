@@ -97,13 +97,13 @@ public class EndGame : BattleState
 
     private void ImproveAttackPowerThenSeeMap()
     {
-        ClassInfo.GiveAttackPowerBonusToClassAndSaveInDeviceStorage(masterClass);
+        ClassInfo.GiveAttackPowerBonusToClass(masterClass);
         QuitBattleAndGoToMap();
     }
 
     private void ImproveVitalityThenSeeMap()
     {
-        ClassInfo.GiveVitalityBonusToClassAndSaveInDeviceStorage(masterClass);
+        ClassInfo.GiveVitalityBonusToClass(masterClass);
         QuitBattleAndGoToMap();
     }
 

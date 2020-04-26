@@ -7,11 +7,6 @@ public class ClassInfo : MonoBehaviour
     private static Dictionary<Classes, ClassInfo> classesInfo = new Dictionary<Classes, ClassInfo>();
 
     [SerializeField]
-    private ClassesPersistence classesPersistence = null;
-
-    private static ClassesPersistence staticClassesPersistence = null;
-
-    [SerializeField]
     private Classes classe = Classes.NOT_A_CLASS;
 
     [SerializeField]
@@ -19,6 +14,8 @@ public class ClassInfo : MonoBehaviour
 
     [SerializeField]
     private Color color = Color.white;
+
+    private static ClassesPersistence classesPersistence = new ClassesPersistence();
 
     private List<Card> cards = new List<Card>();
 
@@ -38,8 +35,6 @@ public class ClassInfo : MonoBehaviour
         if (!classesInfo.ContainsKey(classe))
         {
             classesInfo.Add(classe, this);
-            // TODO: the next line don't need to be called moe than once
-            staticClassesPersistence = classesPersistence;
         }
     }
 
@@ -75,16 +70,19 @@ public class ClassInfo : MonoBehaviour
         return classesInfo[classe].cards.ToArray();
     }
 
-    public static void GiveVitalityBonusToClassAndSaveInDeviceStorage(Classes classe)
+    public static void GiveVitalityBonusToClass(Classes classe)
     {
         classesInfo[classe].vitalityBonus++;
-        staticClassesPersistence.SaveClasses(new ClassesSerializable(classesInfo));
     }
 
-    public static void GiveAttackPowerBonusToClassAndSaveInDeviceStorage(Classes classe)
+    public static void GiveAttackPowerBonusToClass(Classes classe)
     {
         classesInfo[classe].attackPowerBonus++;
-        staticClassesPersistence.SaveClasses(new ClassesSerializable(classesInfo));
+    }
+
+    public static void SaveClassesBonuses()
+    {
+        classesPersistence.SaveClasses(new ClassesSerializable(classesInfo));
     }
 
     public static void ResetBonusesToAllClasses()
@@ -96,8 +94,12 @@ public class ClassInfo : MonoBehaviour
         }
     }
 
-    public static void LoadBonuses(ClassesSerializable classesSerializable)
+    public static void LoadBonusesIfAny()
     {
-        classesSerializable.SetBonusesInDictionary(classesInfo);
+        if (classesPersistence.DoSaveExists())
+        {
+            ClassesSerializable classesSerializable = classesPersistence.LoadClasses();
+            classesSerializable.SetBonusesInDictionary(classesInfo);
+        }
     }
 }

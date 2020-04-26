@@ -52,7 +52,6 @@ public class UIBtn : MonoBehaviour
         // TODO: 'rectTransform.offsetMax.y;' or somehing should be better but didn't work at the first attempt
         originalRectTransfmOffsetMaxDotY = 0;
         BtnUpTextColor = textComponent.color;
-        eventTrigger = GetComponent<EventTrigger>();
     }
 
     public void OnPointerEntered()

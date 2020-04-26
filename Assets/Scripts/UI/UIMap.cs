@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class UIMap : PopUpOpener
 {
+    public static bool StartOfMatch = true;
+
     [SerializeField]
     private Spot[] finalSpotForEachMap = null;
 
@@ -15,68 +17,83 @@ public class UIMap : PopUpOpener
     [SerializeField]
     private AudioClip winSound = null;
 
-    [SerializeField]
-    private MapsCacheGetter mapsCache = null;
+    private MapsCacheGetter mapsCache = new MapsCacheGetter();
+
+    private SaveFacade saveMediator = new SaveFacade();
 
     private void Awake()
     {
-        mapsCache.UpdateWithPlayerProgress();
+        mapsCache.ClearLastSpotWon();
 
-        if (mapsCache.StartOfMatch)
+        if (StartOfMatch)
         {
-            PrepareStartOfMatch();
+            StartOfMatch = false;
+            BuildSpotsFromZeroThenCacheThem();
         }
-        else if ( DataStructuresAreEmpty() )
+        else if ( CacheIsEmpty() )
         {
-            bool succeed = mapsCache.TryToLoadAllMapsDataFromDeviceStorage(finalSpotForEachMap);
+            FillMapsCache();
+        }
+        else
+        {
+            CopyDataFromMapsCacheToSceneSpots();
+        }
 
-            if (succeed)
-            {
-                CopyDataFromAttributesToSceneSpots();
-            }
-            else
-            {
-                PrepareStartOfMatch();
-            }
-        }
-        else // Player is in the middle of the game and the data should be fresh in mapsCache
-        {
-            CopyDataFromAttributesToSceneSpots();
-        }
+        mapsCache.SaveAllMapsInDeviceStorage();
     }
 
-    private void PrepareStartOfMatch()
+    private void BuildSpotsFromZeroThenCacheThem()
     {
-        mapsCache.StartOfMatch = false;
-
-        mapsCache.ClearRootsAndSpots();
+        foreach (Spot mapFinalSpot in finalSpotForEachMap)
+        {
+            mapFinalSpot.BuildFromZero();
+        }
 
         foreach (Spot mapFinalSpot in finalSpotForEachMap)
         {
-            BuildMapAndSaveItsDataInMapsCache(mapFinalSpot);
+            string mapName = mapFinalSpot.MapName;
+            List<SpotInfo> allSpotsInfo = mapFinalSpot.GetInfo(out int rootIndex);
+
+            mapsCache.CacheRootsAndSpotsOfSingleMap(allSpotsInfo, rootIndex, mapName);
         }
     }
 
-    private void BuildMapAndSaveItsDataInMapsCache(Spot mapFinalSpot)
+    private void FillMapsCache()
     {
-        string mapName = mapFinalSpot.MapName;
-        mapFinalSpot.BuildFromZero();
-        List<SpotInfo> allSpotsInfo = mapFinalSpot.GetInfo(out int rootIndex);
-        mapsCache.CacheRootsAndSpotsOfSingleMap(allSpotsInfo, rootIndex, mapName);
+        if (mapsCache.DoesSaveExist())
+        {
+            mapsCache.FillMapsCacheWithSaveFilesData( GetMapNames() );
+            CopyDataFromMapsCacheToSceneSpots();
+        }
+        else
+        {
+            BuildSpotsFromZeroThenCacheThem();
+        }
     }
 
-    private bool DataStructuresAreEmpty()
+    private string[] GetMapNames()
+    {
+        int amountOfMaps = finalSpotForEachMap.Length;
+        string[] names = new string[amountOfMaps];
+        for (int i = 0; i < amountOfMaps; i++)
+        {
+            names[i] = finalSpotForEachMap[i].MapName;
+        }
+        return names;
+    }
+
+    private bool CacheIsEmpty()
     {
         return mapsCache.DataStructuresAreEmpty();
     }
 
-    public void CopyDataFromAttributesToSceneSpots()
+    public void CopyDataFromMapsCacheToSceneSpots()
     {
         foreach (Spot root in finalSpotForEachMap)
         {
             string mapName = root.MapName;
             SpotInfo rootInfo = mapsCache.GetRootInfo(mapName);
-            root.BuildFromInfo(rootInfo, mapsCache.GetAllMapsSpotsInfo(mapName));
+            root.BuildFromInfo(rootInfo, mapsCache.GetSpotsInfoList(mapName));
         }
     }
 

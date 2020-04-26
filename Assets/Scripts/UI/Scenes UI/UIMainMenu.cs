@@ -1,17 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class UIMainMenu : UIPauseMenu
 {
     // Inherits OnSettingsBtnClicked, OnRulesBtnClicked, OpenScene
 
-    [SerializeField]
-    private MapsCacheGetter mapsCache = null;
-
-    [SerializeField]
-    private ClassesPersistence classesPersistence = null;
+    // private SaveMediator saveMediator = new SaveMediator();
 
     private void Awake()
     {
@@ -20,6 +14,8 @@ public class UIMainMenu : UIPauseMenu
 
     public void OnPlayBtnClicked()
     {
+        ClassInfo.ResetBonusesToAllClasses();
+
         OpenContinueOrNewGamePopUp();
         /*
         customPopUpOpener.Open(
@@ -42,7 +38,7 @@ public class UIMainMenu : UIPauseMenu
         string warningMessage;
         string cancelBtnMessage;
 
-        if (mapsCache.DoesSaveExist())
+        if (new SaveFacade().DoesAnySaveExist())
         {
             continueBtnText = "Continue";
             warningMessage = "Are you going to continue your previous adventure, or start a new game?";
@@ -68,19 +64,13 @@ public class UIMainMenu : UIPauseMenu
 
     private void Continue()
     {
-        if (classesPersistence.DoSaveExists())
-        {
-            ClassesSerializable classesSerializable = classesPersistence.LoadClasses();
-            ClassInfo.LoadBonuses(classesSerializable);
-        }
-        mapsCache.StartOfMatch = false;
+        UIMap.StartOfMatch = false;
         sceneOpener.OpenMapScene();
     }
 
     private void NewGame()
     {
-        ClassInfo.ResetBonusesToAllClasses();
-        mapsCache.StartOfMatch = true;
+        UIMap.StartOfMatch = true;
         sceneOpener.OpenMapScene();
     }
 

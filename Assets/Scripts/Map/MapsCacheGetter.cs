@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public class MapsCacheGetter : MapsRuntimeCache
 {
-    public bool StartOfMatch { get => cache.StartOfMatch; set => cache.StartOfMatch = value; }
-
     public bool DoesSaveExist()
     {
         return cache.DoesSaveExist();
@@ -16,14 +14,9 @@ public class MapsCacheGetter : MapsRuntimeCache
         return cache.GetRootInfo(mapName);
     }
 
-    public MapInfo GetMapInfo(string mapName)
+    public MapData GetMapInfo(string mapName)
     {
         return cache.GetMapInfo(mapName);
-    }
-
-    public void ClearRootsAndSpots()
-    {
-        cache.ClearRootsAndSpots();
     }
 
     public void CacheRootsAndSpotsOfSingleMap(List<SpotInfo> allSpotsInfo, int rootIndex, string mapName)
@@ -36,23 +29,28 @@ public class MapsCacheGetter : MapsRuntimeCache
         return cache.DataStructuresAreEmpty();
     }
 
-    public bool TryToLoadAllMapsDataFromDeviceStorage(Spot[] finalSpotForEachMap)
+    public void FillMapsCacheWithSaveFilesData(string[] mapNames)
     {
-        return cache.TryToLoadAllMapsDataFromDeviceStorage(finalSpotForEachMap);
+       cache.FillMapsCacheWithSaveFilesData(mapNames);
     }
 
-    public List<SpotInfo> GetAllMapsSpotsInfo(string mapName)
+    public List<SpotInfo> GetSpotsInfoList(string mapName)
     {
-        return cache.GetAllMapsSpotsInfo(mapName);
+        return cache.GetSpotsInfoList(mapName);
     }
 
-    public void UpdateWithPlayerProgress()
+    public void ClearLastSpotWon()
     {
-        cache.UpdateWithPlayerProgress();
+        cache.ClearLastSpotWon();
     }
 
     public void SetSpotInfoToClearIfPlayerWins(string spotInfoGOName, string mapName)
     {
         cache.SetSpotInfoToClearIfPlayerWins(spotInfoGOName, mapName);
+    }
+
+    public void SaveAllMapsInDeviceStorage()
+    {
+        cache.SaveAllMapsInDeviceStorage();
     }
 }

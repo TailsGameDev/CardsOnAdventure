@@ -101,7 +101,7 @@ MonoBehaviour:
   textComponent: {fileID: 2001577861149971916}
   textVerticalDesloc: 20
   BtnDownTextColor: {r: 0.68235296, g: 0.68235296, b: 0.68235296, a: 1}
-  eventTrigger: {fileID: 0}
+  eventTrigger: {fileID: 3084420522387046562}
 --- !u!114 &3084420522387046562
 MonoBehaviour:
   m_ObjectHideFlags: 0

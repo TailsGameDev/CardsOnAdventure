@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-
-public class MapsRuntimeCache : MonoBehaviour
+﻿public class MapsRuntimeCache
 {
-    protected static MapsCache cache;
+    protected static MapsCache cache = new MapsCache();
 }
