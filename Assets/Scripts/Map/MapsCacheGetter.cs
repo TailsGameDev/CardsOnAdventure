@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 public class MapsCacheGetter : MapsRuntimeCache
 {
@@ -12,11 +10,6 @@ public class MapsCacheGetter : MapsRuntimeCache
     public SpotInfo GetRootInfo(string mapName)
     {
         return cache.GetRootInfo(mapName);
-    }
-
-    public MapData GetMapInfo(string mapName)
-    {
-        return cache.GetMapInfo(mapName);
     }
 
     public void CacheRootsAndSpotsOfSingleMap(List<SpotInfo> allSpotsInfo, int rootIndex, string mapName)
@@ -31,7 +24,7 @@ public class MapsCacheGetter : MapsRuntimeCache
 
     public void FillMapsCacheWithSaveFilesData(string[] mapNames)
     {
-       cache.FillMapsCacheWithSaveFilesData(mapNames);
+       cache.FillMapsCacheWithLoadedFiles(mapNames);
     }
 
     public List<SpotInfo> GetSpotsInfoList(string mapName)
@@ -49,8 +42,13 @@ public class MapsCacheGetter : MapsRuntimeCache
         cache.SetSpotInfoToClearIfPlayerWins(spotInfoGOName, mapName);
     }
 
-    public void SaveAllMapsInDeviceStorage()
+    public void PrepareAllMapsForSaving()
     {
-        cache.SaveAllMapsInDeviceStorage();
+        cache.PrepareAllMapsForSaving();
+    }
+
+    public void PrepareMapsForLoading(string[] mapNames)
+    {
+        cache.PrepareMapsForLoading(mapNames);
     }
 }

@@ -14,8 +14,6 @@ public class UIMainMenu : UIPauseMenu
 
     public void OnPlayBtnClicked()
     {
-        ClassInfo.ResetBonusesToAllClasses();
-
         OpenContinueOrNewGamePopUp();
         /*
         customPopUpOpener.Open(

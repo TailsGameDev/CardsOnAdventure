@@ -19,7 +19,7 @@ public class UIMap : PopUpOpener
 
     private MapsCacheGetter mapsCache = new MapsCacheGetter();
 
-    private SaveFacade saveMediator = new SaveFacade();
+    private SaveFacade saveFacade = new SaveFacade();
 
     private void Awake()
     {
@@ -27,19 +27,22 @@ public class UIMap : PopUpOpener
 
         if (StartOfMatch)
         {
+            ClassInfo.ResetBonusesToAllClasses();
             StartOfMatch = false;
             BuildSpotsFromZeroThenCacheThem();
         }
         else if ( CacheIsEmpty() )
         {
-            FillMapsCache();
+            InitializeGameDataConsideringStorage();
         }
         else
         {
             CopyDataFromMapsCacheToSceneSpots();
         }
 
-        mapsCache.SaveAllMapsInDeviceStorage();
+        ClassInfo.PrepareClassesBonusesForSaving();
+        mapsCache.PrepareAllMapsForSaving();
+        saveFacade.SaveEverything();
     }
 
     private void BuildSpotsFromZeroThenCacheThem()
@@ -58,17 +61,37 @@ public class UIMap : PopUpOpener
         }
     }
 
-    private void FillMapsCache()
+    private bool CacheIsEmpty()
     {
-        if (mapsCache.DoesSaveExist())
+        return mapsCache.DataStructuresAreEmpty();
+    }
+
+    private void InitializeGameDataConsideringStorage()
+    {
+        if (saveFacade.DoesAnySaveExist())
         {
-            mapsCache.FillMapsCacheWithSaveFilesData( GetMapNames() );
-            CopyDataFromMapsCacheToSceneSpots();
+            BringAllDataFromStorage();
         }
         else
         {
+            // Build the data from the scene and then save into the cache.
             BuildSpotsFromZeroThenCacheThem();
+            // Default class Information should be already set in ClassInfo.
         }
+    }
+
+    private void BringAllDataFromStorage()
+    {
+        // Preparing for load
+        string[] mapNames = GetMapNames();
+        mapsCache.PrepareMapsForLoading(mapNames);
+
+        saveFacade.LoadEverything();
+
+        // Copying loaded information into the game classes.
+        mapsCache.FillMapsCacheWithSaveFilesData(mapNames);
+        CopyDataFromMapsCacheToSceneSpots();
+        ClassInfo.CopyLoadedClassesToAttributes();
     }
 
     private string[] GetMapNames()
@@ -80,11 +103,6 @@ public class UIMap : PopUpOpener
             names[i] = finalSpotForEachMap[i].MapName;
         }
         return names;
-    }
-
-    private bool CacheIsEmpty()
-    {
-        return mapsCache.DataStructuresAreEmpty();
     }
 
     public void CopyDataFromMapsCacheToSceneSpots()

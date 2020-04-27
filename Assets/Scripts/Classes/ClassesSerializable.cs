@@ -25,7 +25,7 @@ public class ClassesSerializable
         }
     }
 
-    public void SetBonusesInDictionary(Dictionary<Classes, ClassInfo> classesInfo)
+    public void SetBonusesInAllClasses(Dictionary<Classes, ClassInfo> classesInfo)
     {
         for (int i = 0; i < classes.Count; i++)
         {

@@ -7,13 +7,16 @@ public class SaveFacade
     private static string[] namesOfMapsToLoad;
 
     private MapsPersistence mapsPersistence = new MapsPersistence();
-    
+    private ClassesPersistence classesPersistence = new ClassesPersistence();
+
     // Needed for saving.
-    private static string[] cachedMapNames;
-    private static MapData[] cachedMapsInfo;
+    private static string[] nameOfMapsToSave;
+    private static MapData[] dataOfMapsToSave;
+    private static ClassesSerializable classesSerializableToSave;
 
     // Results of loading
     private static MapData[] loadedMapsInfo;
+    private static ClassesSerializable loadedClassesSerializable;
 
     public bool DoesAnySaveExist()
     {
@@ -22,8 +25,8 @@ public class SaveFacade
 
     public void PrepareMapsForSaving(string[] mapNames, MapData[] mapsInfo)
     {
-        cachedMapNames = mapNames;
-        cachedMapsInfo = mapsInfo;
+        nameOfMapsToSave = mapNames;
+        dataOfMapsToSave = mapsInfo;
     }
 
     public void PrepareMapsForLoading(string[] mapNames)
@@ -31,12 +34,17 @@ public class SaveFacade
         namesOfMapsToLoad = mapNames;
     }
 
+    public void PrepareClassesBonusesForSaving( ClassesSerializable classesInfo )
+    {
+        classesSerializableToSave = classesInfo;
+    }
+
     public void SaveEverything()
     {
         if ( SafeToSave() )
         {
-            mapsPersistence.SaveAllMaps(cachedMapNames, cachedMapsInfo);
-            ClassInfo.SaveClassesBonuses();
+            mapsPersistence.SaveAllMaps(nameOfMapsToSave, dataOfMapsToSave);
+            classesPersistence.SaveClasses(classesSerializableToSave);
         }
         else
         {
@@ -46,7 +54,9 @@ public class SaveFacade
 
     private bool SafeToSave()
     {
-        return cachedMapsInfo != null && cachedMapNames != null;
+        return  dataOfMapsToSave != null && 
+                nameOfMapsToSave != null && 
+                classesSerializableToSave != null;
     }
 
     public void LoadEverything()
@@ -54,7 +64,7 @@ public class SaveFacade
         if (DoesAnySaveExist())
         {
             loadedMapsInfo = mapsPersistence.LoadAllMaps(namesOfMapsToLoad);
-            ClassInfo.LoadBonusesIfAny();
+            loadedClassesSerializable = classesPersistence.LoadClasses();
         }
         else
         {
@@ -64,6 +74,19 @@ public class SaveFacade
 
     public MapData[] GetLoadedMapsInfo()
     {
+        if (loadedMapsInfo == null)
+        {
+            L.ogError("loadedMapsInfo is null!! LoadAll method should be called first!", this);
+        }
         return loadedMapsInfo;
+    }
+
+    public ClassesSerializable GetLoadedClasses()
+    {
+        if (loadedClassesSerializable == null)
+        {
+            L.ogError("loadedMapsInfo is null!! LoadAll method should be called first!", this);
+        }
+        return loadedClassesSerializable;
     }
 }

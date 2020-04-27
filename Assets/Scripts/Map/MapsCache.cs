@@ -13,26 +13,11 @@ public class MapsCache : MapsRuntimeCache
     private Dictionary<string, SpotInfo> mapsRoots = new Dictionary<string, SpotInfo>();
     private static Dictionary<string, List<SpotInfo>> mapsSpotsInfo = new Dictionary<string, List<SpotInfo>>();
 
-    // private Spot[] finalSpotForEachMap;
-
     public static SpotInfo SpotToClearIfPlayerWins;
     private string nameOfMapThatPlayerCurrentlyIs;
 
     public string NameOfMapThatPlayerCurrentlyIs { set => nameOfMapThatPlayerCurrentlyIs = value; }
     public Dictionary<string, SpotInfo> MapsRoots { get => mapsRoots; set => mapsRoots = value; }
-
-    /*
-    public void CacheMaps(Dictionary<string, SpotInfo> mapsRuntimeCache)
-    {
-        this.mapsRuntimeCache = mapsRuntimeCache;
-    }
-    
-
-    public Dictionary<string, SpotInfo> GetMapsRootsOrGetNull()
-    {
-        return mapsRuntimeCache;
-    }
-    */
 
     public int GetIndex(SpotInfo desiredInfo, string mapName)
     {
@@ -104,7 +89,8 @@ public class MapsCache : MapsRuntimeCache
         return null;
     }
 
-    public void SaveAllMapsInDeviceStorage()
+    #region Deals with saveFacade
+    public void PrepareAllMapsForSaving()
     {
         string[] mapNames = GetMapNames();
 
@@ -116,9 +102,8 @@ public class MapsCache : MapsRuntimeCache
         {
             mapsInfo[i] = GetInfo(mapName: mapNames[i]);
         }
+
         saveFacade.PrepareMapsForSaving(mapNames, mapsInfo);
-        
-        saveFacade.SaveEverything();
     }
 
     private MapData GetInfo(string mapName)
@@ -141,22 +126,19 @@ public class MapsCache : MapsRuntimeCache
         return mapsRoots.Keys.ToArray();
     }
 
-    public void FillMapsCacheWithSaveFilesData(string[] mapNames)
+    public void PrepareMapsForLoading(string[] mapNames)
     {
-        MapData[] mapsData = GetMapsDataFromStorage(mapNames);
+        saveFacade.PrepareMapsForLoading(mapNames);
+    }
+
+    public void FillMapsCacheWithLoadedFiles(string[] mapNames)
+    {
+        MapData[] mapsData = saveFacade.GetLoadedMapsInfo();
 
         for (int i = 0; i < mapsData.Length; i++)
         {
             CopyMapDataToAttributes( mapNames[i], mapsData[i] );
         }
-    }
-
-    private MapData[] GetMapsDataFromStorage(string[] mapNames)
-    {
-        saveFacade.PrepareMapsForLoading(mapNames);
-        saveFacade.LoadEverything();
-
-        return saveFacade.GetLoadedMapsInfo();
     }
 
     private void CopyMapDataToAttributes(string mapName, MapData mapsData)
@@ -169,4 +151,5 @@ public class MapsCache : MapsRuntimeCache
 
         mapsRoots[mapName] = rootInfo;
     }
+    #endregion
 }

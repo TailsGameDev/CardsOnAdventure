@@ -6,6 +6,9 @@ public class ClassInfo : MonoBehaviour
 {
     private static Dictionary<Classes, ClassInfo> classesInfo = new Dictionary<Classes, ClassInfo>();
 
+    private static SaveFacade saveFacade = new SaveFacade();
+
+    // Each class
     [SerializeField]
     private Classes classe = Classes.NOT_A_CLASS;
 
@@ -14,8 +17,6 @@ public class ClassInfo : MonoBehaviour
 
     [SerializeField]
     private Color color = Color.white;
-
-    private static ClassesPersistence classesPersistence = new ClassesPersistence();
 
     private List<Card> cards = new List<Card>();
 
@@ -36,10 +37,6 @@ public class ClassInfo : MonoBehaviour
         {
             classesInfo.Add(classe, this);
         }
-    }
-
-    private void Start()
-    {
         registersEnabled = false;
     }
 
@@ -80,9 +77,10 @@ public class ClassInfo : MonoBehaviour
         classesInfo[classe].attackPowerBonus++;
     }
 
-    public static void SaveClassesBonuses()
+    public static void PrepareClassesBonusesForSaving()
     {
-        classesPersistence.SaveClasses(new ClassesSerializable(classesInfo));
+        ClassesSerializable classesSerializable = new ClassesSerializable(classesInfo);
+        saveFacade.PrepareClassesBonusesForSaving(classesSerializable);
     }
 
     public static void ResetBonusesToAllClasses()
@@ -94,12 +92,9 @@ public class ClassInfo : MonoBehaviour
         }
     }
 
-    public static void LoadBonusesIfAny()
+    public static void CopyLoadedClassesToAttributes()
     {
-        if (classesPersistence.DoSaveExists())
-        {
-            ClassesSerializable classesSerializable = classesPersistence.LoadClasses();
-            classesSerializable.SetBonusesInDictionary(classesInfo);
-        }
+        ClassesSerializable classesSerializable = saveFacade.GetLoadedClasses();
+        classesSerializable.SetBonusesInAllClasses(classesInfo);
     }
 }
