@@ -17,6 +17,11 @@ public class SceneOpener : PopUpOpener
         popUpOpener.CloseAllPopUpsExceptLoading();
     }
 
+    public void OpenDeckBuildingScene()
+    {
+        OpenScene("Deck Building");
+    }
+
     public void OpenScene(string name)
     {
         popUpOpener.SetLoadingPopUpActiveToTrue();

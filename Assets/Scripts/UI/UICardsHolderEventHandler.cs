@@ -97,13 +97,12 @@ public class UICardsHolderEventHandler : MonoBehaviour
             // Wait for battleFSM to do it's job.
             yield return null;
             yield return null;
-
             ChildMaker.AdoptAndSmoothlyMoveToParent
-                (
-                    cardBeingDragged.transform.parent,
-                    cardBeingDragged.GetComponent<RectTransform>(),
-                    delayToComeBackFromOtherSpot
-                );
+            (
+                cardBeingDragged.transform.parent,
+                cardBeingDragged.GetComponent<RectTransform>(),
+                delayToComeBackFromOtherSpot
+            );
         }
 
         HideCardsBeingDraggedTip();

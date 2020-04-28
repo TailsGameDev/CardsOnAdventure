@@ -3185,7 +3185,7 @@ MonoBehaviour:
   - {fileID: 1898511386}
   - {fileID: 149378011}
   - {fileID: 416688464}
-  delayToComeBackFromOtherSpot: 0.5
+  delayToComeBackFromOtherSpot: 0.2
   pausePopUpOpener: {fileID: 1612099944}
 --- !u!114 &1612099944
 MonoBehaviour:

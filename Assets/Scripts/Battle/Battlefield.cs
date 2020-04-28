@@ -13,11 +13,6 @@ public class Battlefield : CardsHolder
         return cards.Length;
     }
 
-    public bool IsSlotIndexFree(int slotIndex)
-    {
-        return cards[slotIndex] == null;
-    }
-
     public bool IsSlotIndexOccupied(int index)
     {
         return cards[index] != null;

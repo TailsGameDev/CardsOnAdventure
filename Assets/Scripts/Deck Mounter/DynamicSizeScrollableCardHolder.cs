@@ -11,13 +11,18 @@ public class DynamicSizeScrollableCardHolder : CardsHolder
 
     protected RectTransform[] slots = null;
 
+    private int amountOfSlots;
+
+    #region Initialization
     protected void InitializeSlotsAndRectSize(int amountOfSlots)
     {
-        SetHorizontalSizeOfRect(amountOfSlots);
-        InstantiateSlots(amountOfSlots);
+        this.amountOfSlots = amountOfSlots;
+        SetHorizontalSizeOfRect();
+        InstantiateSlots();
+        PopulateCardPositionsArray();
     }
 
-    private void SetHorizontalSizeOfRect(int amountOfSlots)
+    private void SetHorizontalSizeOfRect()
     {
         float sizeXOfASlot = slotPrototype.sizeDelta.x;
         float spaceBetweenSlots = GetComponent<HorizontalLayoutGroup>().spacing;
@@ -27,7 +32,7 @@ public class DynamicSizeScrollableCardHolder : CardsHolder
         scrollableBackground.sizeDelta = new Vector2(sizeX, scrollableBackground.sizeDelta.y);
     }
 
-    private void InstantiateSlots(int amountOfSlots)
+    private void InstantiateSlots()
     {
         slotPrototype.GetComponent<CardReceptor>().CardsHolder = this;
 
@@ -38,6 +43,29 @@ public class DynamicSizeScrollableCardHolder : CardsHolder
             slots[i] = Instantiate(slotPrototype);
             slots[i].SetParent(transform);
             slots[i].GetComponent<CardReceptor>().Index = i;
+        }
+    }
+
+    private void PopulateCardPositionsArray()
+    {
+        cardPositions = new Transform[amountOfSlots];
+        for (int i = 0; i < amountOfSlots; i++)
+        {
+            cardPositions[i] = slots[i].transform;
+        }
+    }
+    #endregion
+
+    public Card GetReferenceToSelectedCardOrGetNull()
+    {
+        int selectedIndex = GetSelectedIndex();
+        if (selectedIndex != -1)
+        {
+            return GetReferenceToCardAt(GetSelectedIndex());
+        }
+        else
+        {
+            return null;
         }
     }
 }

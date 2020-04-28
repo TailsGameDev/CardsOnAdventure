@@ -64,6 +64,7 @@
 
         if (IsPlayerTryingToReposition())
         {
+            // This will trigger the Dynamic text in the middle of the screen to expand, remembering the player to "Place Card"
             nextState = currentBattleStatesFactory.CreateDrawCardState();
         }
         else if (cardWasSuccessfullyPlaced)

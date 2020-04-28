@@ -33,17 +33,22 @@ public class ClassInfo : MonoBehaviour
 
     private void Awake()
     {
-        if (!classesInfo.ContainsKey(classe))
+        if (!classesInfo.ContainsKey(classe) && classe != Classes.NOT_A_CLASS)
         {
             classesInfo.Add(classe, this);
         }
+    }
+
+    private void Start()
+    {
         registersEnabled = false;
     }
 
-    // That must be called by cards during Awake
+    // That must be called by cards during Awake. It's not necessary for the class
+    // to be already registered in the dictionary to do it.
     public void TryToRegisterCardInClass(Card card)
     {
-        if ( registersEnabled && ! cards.Contains(card) )
+        if (registersEnabled && ! cards.Contains(card) )
         {
             cards.Add(card);
         }

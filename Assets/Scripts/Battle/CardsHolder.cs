@@ -100,6 +100,11 @@ public class CardsHolder : IndexHolder
     }
     #endregion
 
+    public bool IsSlotIndexFree(int slotIndex)
+    {
+        return cards[slotIndex] == null;
+    }
+
     public void SelectFirstOccupiedIndex()
     {
         for (int i = 0; i < cards.Length; i++)

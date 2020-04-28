@@ -27,7 +27,7 @@ public class Deck : MonoBehaviour
         }
         else
         {
-            cards.AddRange(DeckPrototypeFactory.GetPreparedCardsForThePlayer());
+            cards.AddRange(DeckPrototypeFactory.GetPreparedCardsForThePlayerOrGetRandomDeck());
         }
 
         for (int i = 0; i < cards.Count; i++)

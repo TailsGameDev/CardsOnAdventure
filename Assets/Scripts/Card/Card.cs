@@ -465,4 +465,9 @@ public class Card : SkillsMediatorUser
         attackPower++;
         attackPowerText.text = attackPower.ToString();
     }
+
+    public bool IsAnotherInstanceOf(Card card)
+    {
+        return card.Skills == skills;
+    }
 }

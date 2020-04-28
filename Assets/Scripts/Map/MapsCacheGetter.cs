@@ -32,12 +32,12 @@ public class MapsCacheGetter : MapsRuntimeCache
         return cache.GetSpotsInfoList(mapName);
     }
 
-    public void ClearLastSpotWon()
+    public void ClearLastSpotVisited()
     {
-        cache.ClearLastSpotWon();
+        cache.ClearLastSpotVisited();
     }
 
-    public void SetSpotInfoToClearIfPlayerWins(string spotInfoGOName, string mapName)
+    public void SetSpotInfoToClearIfPlayerSucceed(string spotInfoGOName, string mapName)
     {
         cache.SetSpotInfoToClearIfPlayerWins(spotInfoGOName, mapName);
     }

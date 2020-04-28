@@ -23,7 +23,7 @@ public class UIMap : PopUpOpener
 
     private void Awake()
     {
-        mapsCache.ClearLastSpotWon();
+        mapsCache.ClearLastSpotVisited();
 
         if (StartOfMatch)
         {
@@ -135,13 +135,19 @@ public class UIMap : PopUpOpener
         popUpOpener.CloseAllPopUpsExceptLoading();
     }
 
+    public void OnDeckBuildBtnClicked(Transform btnTransform)
+    {
+        SetSpotInfoToClearIfPlayerSucceed(btnTransform);
+        sceneOpener.OpenDeckBuildingScene();
+    }
+
     #region On Battle Spot Buttons Clicked
 
     public void OnSimpleBattleClicked(Transform btnTransform)
         {
             popUpOpener.SetLoadingPopUpActiveToTrue();
             BattleInfo.PrepareSimpleBattle();
-            SetSpotInfoToClearIfPlayerWins(btnTransform);
+            SetSpotInfoToClearIfPlayerSucceed(btnTransform);
             DeckPrototypeFactory.PrepareRandomDeckForTheEnemy();
             SetUpBattleAndOpenIt();
         }
@@ -150,7 +156,7 @@ public class UIMap : PopUpOpener
     {
         popUpOpener.SetLoadingPopUpActiveToTrue();
         BattleInfo.PrepareToughBattle();
-        SetSpotInfoToClearIfPlayerWins(btnTransform);
+        SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         DeckPrototypeFactory.PrepareToughRandomDeckForTheEnemy();
         SetUpBattleAndOpenIt();
     }
@@ -159,7 +165,7 @@ public class UIMap : PopUpOpener
     {
         popUpOpener.SetLoadingPopUpActiveToTrue();
         BattleInfo.PrepareBossBattle();
-        SetSpotInfoToClearIfPlayerWins(btnTransform);
+        SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         DeckPrototypeFactory.PrepareBossRandomDeckForTheEnemy();
         SetUpBattleAndOpenIt();
     }
@@ -173,7 +179,7 @@ public class UIMap : PopUpOpener
         popUpOpener.SetLoadingPopUpActiveToTrue();
         BattleInfo.PrepareMasterBattle(Classes.MAGE);
         DeckPrototypeFactory.PrepareMageDeckForTheEnemy();
-        SetSpotInfoToClearIfPlayerWins(btnTransform);
+        SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         SetUpBattleAndOpenIt();
     }
 
@@ -182,7 +188,7 @@ public class UIMap : PopUpOpener
         popUpOpener.SetLoadingPopUpActiveToTrue();
         BattleInfo.PrepareMasterBattle(Classes.WARRIOR);
         DeckPrototypeFactory.PrepareWarriorDeckForTheEnemy();
-        SetSpotInfoToClearIfPlayerWins(btnTransform);
+        SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         SetUpBattleAndOpenIt();
     }
 
@@ -191,7 +197,7 @@ public class UIMap : PopUpOpener
         popUpOpener.SetLoadingPopUpActiveToTrue();
         BattleInfo.PrepareMasterBattle(Classes.ROGUE);
         DeckPrototypeFactory.PrepareRogueDeckForTheEnemy();
-        SetSpotInfoToClearIfPlayerWins(btnTransform);
+        SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         SetUpBattleAndOpenIt();
     }
 
@@ -200,7 +206,7 @@ public class UIMap : PopUpOpener
         popUpOpener.SetLoadingPopUpActiveToTrue();
         BattleInfo.PrepareMasterBattle(Classes.GUARDIAN);
         DeckPrototypeFactory.PrepareGuardianDeckForTheEnemy();
-        SetSpotInfoToClearIfPlayerWins(btnTransform);
+        SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         SetUpBattleAndOpenIt();
     }
 
@@ -208,16 +214,15 @@ public class UIMap : PopUpOpener
 
     private void SetUpBattleAndOpenIt()
     {
-        DeckPrototypeFactory.PrepareRandomDeckForThePlayer();
         popUpOpener.CloseAllPopUpsExceptLoading();
         sceneOpener.OpenScene("Battle");
     }
 
-    private void SetSpotInfoToClearIfPlayerWins(Transform spotBtnTransform)
+    private void SetSpotInfoToClearIfPlayerSucceed(Transform spotBtnTransform)
     {
         Spot spot = GetSpotComponentInParent(spotBtnTransform);
 
-        mapsCache.SetSpotInfoToClearIfPlayerWins(spot.gameObject.name, spot.MapName);
+        mapsCache.SetSpotInfoToClearIfPlayerSucceed(spot.gameObject.name, spot.MapName);
     }
 
     private Spot GetSpotComponentInParent(Transform btnTransform)

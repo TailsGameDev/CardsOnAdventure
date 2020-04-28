@@ -61,7 +61,7 @@ public class MapsCache : MapsRuntimeCache
         return mapsSpotsInfo[mapName];
     }
 
-    public void ClearLastSpotWon()
+    public void ClearLastSpotVisited()
     {
         if (SpotToClearIfPlayerWins != null)
         {
