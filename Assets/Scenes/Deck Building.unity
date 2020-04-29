@@ -193,6 +193,28 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3198627527439210757, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: tipData.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198627527439210757, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: title
+      value: Go Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198627527439210757, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: tipData.Array.data[0].background
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3198627527439210757, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: tipData.Array.data[0].message
+      value: Click to leave the tavern, and continue the adventure with the current
+        party. I mean <color=#1DEFC7>SAVE THE CURRENT PARTY AND PROCEED WITH THE
+        ADVENTURE</color>
+      objectReference: {fileID: 0}
     - target: {fileID: 3367427902471985073, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
       propertyPath: normalSprite
@@ -273,12 +295,12 @@ PrefabInstance:
     - target: {fileID: 4090511394279096403, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 203
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4090511394279096403, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 194
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4090511394279096403, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
@@ -309,6 +331,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7027164132230214146, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7027164132230214146, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 7027164132230214146, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7027164132230214146, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 8108720574873910179, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
@@ -379,7 +421,7 @@ PrefabInstance:
     - target: {fileID: 8747812073482344963, guid: 298cd90909942ad4f9fcd5670fb764d1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8747812073482344963, guid: 298cd90909942ad4f9fcd5670fb764d1,
         type: 3}
@@ -536,7 +578,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 966457649}
+    m_TransformParent: {fileID: 1285522163}
     m_Modifications:
     - target: {fileID: 926397736240958128, guid: e0568f40442040b409dd9e8baaac97fe,
         type: 3}
@@ -754,6 +796,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &378093891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 378093892}
+  - component: {fileID: 378093893}
+  m_Layer: 0
+  m_Name: Tips PopUp Opener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &378093892
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378093891}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 728.44617, y: -465.61255, z: -572.93365}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 392569827}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &378093893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378093891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6d4383a485a1c4fb534e6cca6f14d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &392569826
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,12 +872,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1505740474}
+  - {fileID: 378093892}
   - {fileID: 1181270815}
   - {fileID: 839825219}
   - {fileID: 1782054279}
   - {fileID: 542264393}
   m_Father: {fileID: 966457649}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -812,7 +898,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.48627454, g: 0.2784314, b: 0.06666667, a: 1}
+  m_Color: {r: 0.1764706, g: 0.1764706, b: 0.1764706, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -925,7 +1011,7 @@ RectTransform:
   - {fileID: 557646477}
   - {fileID: 44933507}
   m_Father: {fileID: 392569827}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -945,7 +1031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.6156863}
+  m_Color: {r: 0.1764706, g: 0.1764706, b: 0.1764706, a: 0.6156863}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1189,7 +1275,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 966457649}
+    m_TransformParent: {fileID: 1285522163}
     m_Modifications:
     - target: {fileID: 926397736240958129, guid: e0568f40442040b409dd9e8baaac97fe,
         type: 3}
@@ -1376,7 +1462,7 @@ RectTransform:
   - {fileID: 1169875298}
   - {fileID: 1800899675}
   m_Father: {fileID: 392569827}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1396,7 +1482,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.45490196}
+  m_Color: {r: 0.1764706, g: 0.1764706, b: 0.1764706, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1647,6 +1733,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 888107395}
+  - component: {fileID: 888107397}
+  - component: {fileID: 888107396}
   m_Layer: 5
   m_Name: Title Node
   m_TagString: Untagged
@@ -1668,13 +1756,66 @@ RectTransform:
   - {fileID: 557557298}
   - {fileID: 1402790217}
   m_Father: {fileID: 966457649}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -85}
-  m_SizeDelta: {x: 304.5, y: 170}
+  m_SizeDelta: {x: 305, y: 170}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!61 &888107396
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888107394}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 305, y: 100}
+  m_EdgeRadius: 0
+--- !u!114 &888107397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 888107394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Tavern
+  tipData:
+  - message: 
+    background: {fileID: 21300000, guid: d1a5267530b5c614cb17b7af6c0e9f93, type: 3}
+    height: 700
+  - message: "The tavern is a place for the cards to gather. They tell their histories
+      one to the other, drink some alcohol, and finally, <color=#1DEFC7>DECIDE WHAT
+      CARDS ARE GOING TO STAY IN THE ADVENTURE</color>. Maybe one of them will say:
+      \u201CGuys, I have some matters to attend to. See you next time.\u201D, or
+      \u201CI think we should take another cleric with us, to last longer in the
+      battlefield\u201D. <br> Where else did you think adventurers would take this
+      kind of decision, after all?"
+    background: {fileID: 0}
+    height: 900
+  popUpOpener: {fileID: 0}
 --- !u!1 &948783090
 GameObject:
   m_ObjectHideFlags: 0
@@ -1765,7 +1906,7 @@ GameObject:
   - component: {fileID: 966457647}
   - component: {fileID: 966457646}
   m_Layer: 5
-  m_Name: Default Canvas
+  m_Name: Tavern Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1842,15 +1983,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 715496148}
-  - {fileID: 347257100}
   - {fileID: 1704585357}
   - {fileID: 888107395}
+  - {fileID: 1326078357}
   - {fileID: 392569827}
   - {fileID: 107115024}
-  - {fileID: 1326078357}
-  - {fileID: 2023802270}
-  - {fileID: 1107418760}
+  - {fileID: 1285522163}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2194,7 +2332,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 966457649}
+    m_TransformParent: {fileID: 1285522163}
     m_Modifications:
     - target: {fileID: 461324939485858796, guid: 5808e81faf34fbf42b92819a71f2f3bd,
         type: 3}
@@ -2299,7 +2437,7 @@ PrefabInstance:
     - target: {fileID: 461324940139539389, guid: 5808e81faf34fbf42b92819a71f2f3bd,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 461324940139539389, guid: 5808e81faf34fbf42b92819a71f2f3bd,
         type: 3}
@@ -2687,7 +2825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.21176471}
+  m_Color: {r: 0.43529412, g: 0.43529412, b: 0.43529412, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2764,7 +2902,7 @@ GameObject:
   - component: {fileID: 1181270816}
   - component: {fileID: 1181270818}
   m_Layer: 5
-  m_Name: UI Collection
+  m_Name: Collection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2785,7 +2923,7 @@ RectTransform:
   - {fileID: 1629059483}
   - {fileID: 737575175}
   m_Father: {fileID: 392569827}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2805,7 +2943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.6156863}
+  m_Color: {r: 0.1764706, g: 0.1764706, b: 0.1764706, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2858,6 +2996,83 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1285522162
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1285522163}
+  - component: {fileID: 1285522165}
+  - component: {fileID: 1285522164}
+  m_Layer: 5
+  m_Name: Utility Game Objects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1285522163
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285522162}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 715496148}
+  - {fileID: 347257100}
+  - {fileID: 1107418760}
+  - {fileID: 2023802270}
+  m_Father: {fileID: 966457649}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1285522164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285522162}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1285522165
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285522162}
+  m_CullTransparentMesh: 0
 --- !u!1001 &1326078356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2903,7 +3118,7 @@ PrefabInstance:
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
@@ -2992,10 +3207,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1376586955}
-  - component: {fileID: 1376586957}
   - component: {fileID: 1376586956}
+  - component: {fileID: 1376586957}
+  - component: {fileID: 1376586958}
+  - component: {fileID: 1376586959}
   m_Layer: 5
-  m_Name: Title
+  m_Name: Title With Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3033,7 +3250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3207547, g: 0.18510844, b: 0.04690281, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3060,6 +3277,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1376586954}
   m_CullTransparentMesh: 0
+--- !u!114 &1376586958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376586954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Current Party
+  tipData:
+  - message: "<color=#1DEFC7>THIS IS A THEMATIC NAME FOR \u201CDECK\u201D OF CARDS</color>
+      <br> The cards in your Current Party are exactly the ones that will show up
+      in your hand in the next battles. Note that the \u201Cdeck\u201D is always
+      shuffled at the start of each battle. <br> <color=#1DEFC7> TO PUT A CARD FROM
+      THE COLLECTION</color> I mean, from All Friends <color=#1DEFC7>IN THE DECK</color>
+      I mean, in the Current Party <color=#1DEFC7>, DRAG AND DROP IT FROM THE COLLECTION
+      TO THE DECK</color> Although the opposite also works (from the DECK/party to
+      the COLLECTION/friends list). <br> For more information on the All Friends
+      list, or the Random Card, please ask the teaching spirit about it, and he will
+      teach you gladly. "
+    background: {fileID: 0}
+    height: 0
+  popUpOpener: {fileID: 378093893}
+--- !u!61 &1376586959
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376586954}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -30}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 380, y: 60}
+  m_EdgeRadius: 0
 --- !u!1 &1402790216
 GameObject:
   m_ObjectHideFlags: 0
@@ -3216,7 +3486,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -351.45, y: -15}
+  m_AnchoredPosition: {x: -351.44998, y: -15}
   m_SizeDelta: {x: 1422.9, y: -130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1629059484
@@ -3232,7 +3502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.21176471}
+  m_Color: {r: 0.43529412, g: 0.43529412, b: 0.43529412, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3305,10 +3575,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1670829607}
-  - component: {fileID: 1670829609}
   - component: {fileID: 1670829608}
+  - component: {fileID: 1670829611}
+  - component: {fileID: 1670829610}
+  - component: {fileID: 1670829609}
   m_Layer: 5
-  m_Name: Title
+  m_Name: Title With Tip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3346,7 +3618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3207547, g: 0.18510844, b: 0.04690281, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3373,6 +3645,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670829606}
   m_CullTransparentMesh: 0
+--- !u!61 &1670829610
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670829606}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -27.6}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 289.2, y: 58.53}
+  m_EdgeRadius: 0
+--- !u!114 &1670829611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670829606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: All Friends
+  tipData:
+  - message: '<color=#1DEFC7>THIS IS YOUR COLLECTION OF CARDS</color> I mean, these
+      are the cards that can be in your party if you wish, and also the random card.
+      <br> <color=#1DEFC7> TO PUT A CARD FROM THE COLLECTION</color> I mean, from
+      All Friends <color=#1DEFC7>IN THE DECK</color> I mean, in the Current Party
+      <color=#1DEFC7>, DRAG AND DROP IT FROM THE COLLECTION TO THE DECK</color> Although
+      the opposite also works (from the DECK/party to the COLLECTION/friends list).
+      <br> If you want to understand the Current Party, or the Random Card better,
+      please ask the teaching spirit about it, and he will teach you gladly. '
+    background: {fileID: 0}
+    height: 0
+  popUpOpener: {fileID: 378093893}
 --- !u!1 &1704585356
 GameObject:
   m_ObjectHideFlags: 0
@@ -3403,7 +3726,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 966457649}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3423,7 +3746,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.48627454, g: 0.2784314, b: 0.06666667, a: 1}
+  m_Color: {r: 0.1764706, g: 0.1764706, b: 0.1764706, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3490,7 +3813,7 @@ RectTransform:
   - {fileID: 948783091}
   - {fileID: 184527509}
   m_Father: {fileID: 392569827}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -3576,12 +3899,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2023802269}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 966457649}
-  m_RootOrder: 7
+  m_Father: {fileID: 1285522163}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
