@@ -2,45 +2,74 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeckBuilding : MonoBehaviour
+public class DeckBuilding : PopUpOpener
 {
     [SerializeField]
     private CardsCollection cardsCollection = null;
 
     [SerializeField]
-    private DeckCardHolder deckCardHolder = null;
-
-    [SerializeField]
-    private CardsHolder garbage = null;
+    private DeckCardHolder deck = null;
 
     [SerializeField]
     private SceneOpener sceneOpener = null;
 
     void Update()
     {
-        bool selectedCardFromCollection = cardsCollection.SelectedIndexIsOcupied();
-        bool selectedSlotFromDeckHolder = deckCardHolder.SelectedIndexIsFree();
-
-        bool selectedCardFromDeckHolder = deckCardHolder.SelectedIndexIsOcupied();
-
-        if (selectedCardFromCollection && selectedCardFromDeckHolder)
+        if (cardsCollection.SelectedUnavailableCard())
         {
-            Card collectionCard = cardsCollection.GetReferenceToSelectedCardOrGetNull();
-            Card cloneOfCollectionCard = Instantiate(collectionCard);
+            ClearAllSelections();
+            return;
+        }
 
-            Card garbageCard = deckCardHolder.RemoveCardFromSelectedIndex();
-            garbage.PutCardInIndex(garbageCard, 0);
+        if (deck.SomeIndexWasSelected() && cardsCollection.AnyIndexWasSelected())
+        {
+            ClearAllSelections();
+            return;
+        }
 
-            deckCardHolder.PutCardInSelectedIndex(cloneOfCollectionCard);
+        bool selectedCardFromCollection = cardsCollection.SelectedAvailableCard();
+        bool selectedCardFromDeck = deck.SomeIndexWasSelected();
 
-            cardsCollection.ClearSelection();
-            deckCardHolder.ClearSelection();
+        if (selectedCardFromCollection && selectedCardFromDeck)
+        {
+            GiveBackCardOfDeckToTheCollection();
+            PlaceTheCardOfCollectionInTheDeck();
+            ClearAllSelections();
         }
     }
 
-    public void SaveAndQuit()
+    private void PlaceTheCardOfCollectionInTheDeck()
     {
-        Card[] cards = deckCardHolder.GetCards();
+        Card cardToPlaceInTheDeck = cardsCollection.GetCloneOfSelectedCard();
+        deck.PutCardInSelectedIndex(cardToPlaceInTheDeck);
+    }
+
+    private void GiveBackCardOfDeckToTheCollection()
+    {
+        Card cardToGiveBackToTheCollection = deck.RemoveCardFromSelectedIndex();
+        cardsCollection.GiveCardBack(cardToGiveBackToTheCollection);
+    }
+
+    private void ClearAllSelections()
+    {
+        cardsCollection.ClearSelection();
+        deck.ClearSelection();
+    }
+
+    public void OnSaveAndQuitBtnClicked()
+    {
+        customPopUpOpener.OpenConfirmationRequestPopUp
+            (
+                warningMessage: "Once you leave this Tavern, your current party will remain the" +
+                " same until you enter another Tavern.",
+                onConfirm: SaveAndQuit
+            );
+    }
+
+    private void SaveAndQuit()
+    {
+        popUpOpener.SetLoadingPopUpActiveToTrue();
+        Card[] cards = deck.GetCards();
         DeckPrototypeFactory.PrepareManuallyBuiltDeckForThePlayer(cards);
         sceneOpener.OpenMapScene();
     }

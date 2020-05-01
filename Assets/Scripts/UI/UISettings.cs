@@ -8,7 +8,13 @@ public class UISettings : MonoBehaviour
     [SerializeField]
     private Slider aiDelaySlider = null;
 
+    [SerializeField]
+    private Toggle fullscreenToggle = null;
+
     private const string AI_DELAY_KEY = "AI_DELAY_KEY";
+
+    private const int TRUE = 1;
+    private const int FALSE = 0;
 
     private void Awake()
     {
@@ -16,6 +22,29 @@ public class UISettings : MonoBehaviour
         if (PlayerPrefs.HasKey(AI_DELAY_KEY))
         {
             aiDelaySlider.value = PlayerPrefs.GetFloat(AI_DELAY_KEY);
+        }
+
+        fullscreenToggle.isOn = IsTrue( PlayerPrefs.GetInt("Fullscreen", FALSE) ) ;
+
+#if UNITY_ANDROID
+        fullscreenToggle.gameObject.SetActive(false);
+#endif
+    }
+
+    private bool IsTrue(int c)
+    {
+        return c != 0;
+    }
+
+    private int BoolToInt(bool b)
+    {
+        if (b)
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
         }
     }
 
@@ -28,5 +57,11 @@ public class UISettings : MonoBehaviour
     public static float GetAIDelayFromPlayerPrefs()
     {
         return PlayerPrefs.GetFloat(AI_DELAY_KEY);
+    }
+
+    public void ToggleFullscreenMode()
+    {
+        Screen.fullScreen = fullscreenToggle.isOn;
+        PlayerPrefs.SetInt("Fullscreen", BoolToInt( fullscreenToggle.isOn ) );
     }
 }

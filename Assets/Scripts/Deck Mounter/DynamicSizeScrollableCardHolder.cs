@@ -41,7 +41,7 @@ public class DynamicSizeScrollableCardHolder : CardsHolder
         for (int i = 0; i < amountOfSlots; i++)
         {
             slots[i] = Instantiate(slotPrototype);
-            slots[i].SetParent(transform);
+            slots[i].SetParent(transform, false);
             slots[i].GetComponent<CardReceptor>().Index = i;
         }
     }
@@ -56,7 +56,7 @@ public class DynamicSizeScrollableCardHolder : CardsHolder
     }
     #endregion
 
-    public Card GetReferenceToSelectedCardOrGetNull()
+    public virtual Card GetReferenceToSelectedCardOrGetNull()
     {
         int selectedIndex = GetSelectedIndex();
         if (selectedIndex != -1)
@@ -67,5 +67,15 @@ public class DynamicSizeScrollableCardHolder : CardsHolder
         {
             return null;
         }
+    }
+
+    public bool SomeIndexWasSelected()
+    {
+        return GetSelectedIndex() != -1;
+    }
+
+    public bool AnyIndexWasSelected()
+    {
+        return GetSelectedIndex() == -1;
     }
 }

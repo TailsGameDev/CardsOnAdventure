@@ -13,9 +13,8 @@ public class ChildMaker : MonoBehaviour
     public static void AdoptTeleportAndScale(Transform parent, RectTransform child)
     {
         child.position = parent.position;
-        RectTransform childTransform = child.GetComponent<RectTransform>();
-        childTransform.SetParent(parent, true);
-        childTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        child.SetParent(parent, true);
+        child.localScale = new Vector3(1.0f, 1.0f, 1.0f);
     }
 
     public static void AdoptAndSmoothlyMoveToParent(Transform parent, RectTransform child, float totalTime)

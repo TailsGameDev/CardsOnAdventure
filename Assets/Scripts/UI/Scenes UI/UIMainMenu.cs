@@ -38,8 +38,13 @@ public class UIMainMenu : UIPauseMenu
 
         if (new SaveFacade().DoesAnySaveExist())
         {
-            continueBtnText = "Continue";
+#if UNITY_WEBGL
+            warningMessage = "Will you try to continue the adventure, or start a new one? (Save System"+
+                " works poorly in the browse. For a long gameplay, please download the game!";
+#else
             warningMessage = "Are you going to continue your previous adventure, or start a new game?";
+#endif
+            continueBtnText = "Continue";
             cancelBtnMessage = "New Game";
         }
         else

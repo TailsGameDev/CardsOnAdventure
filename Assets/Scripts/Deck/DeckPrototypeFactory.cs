@@ -97,6 +97,8 @@ public class DeckPrototypeFactory : MonoBehaviour
 
         Card[] playerDeck = playerDeckBuilder.GetDeck();
 
+        DeckBuilder.Shuffle(ref playerDeck);
+
         return ReplaceRandomAndSumBonuses(playerDeck);
     }
 
@@ -226,7 +228,7 @@ public class DeckPrototypeFactory : MonoBehaviour
             return deck;
         }
 
-        protected static void Shuffle<T>(ref T[] array)
+        public static void Shuffle<T>(ref T[] array)
         {
             System.Random rng = new System.Random();
 

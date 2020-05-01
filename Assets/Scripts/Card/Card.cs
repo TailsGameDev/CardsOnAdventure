@@ -470,4 +470,16 @@ public class Card : SkillsMediatorUser
     {
         return card.Skills == skills;
     }
+
+    public void MakeColorGray()
+    {
+        const float GRAY_INTENSITY = 0.5f;
+        const float ALPHA = 1.0f;
+        cardImage.color = new Color(GRAY_INTENSITY, GRAY_INTENSITY, GRAY_INTENSITY, ALPHA);
+    }
+
+    public void MakeColorDefault()
+    {
+        cardImage.color = Color.white;
+    }
 }
