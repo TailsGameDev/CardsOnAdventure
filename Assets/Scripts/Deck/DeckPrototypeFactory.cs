@@ -211,7 +211,7 @@ public class DeckPrototypeFactory : MonoBehaviour
         {
             for (int i = beginningIndex; i < limitIndex; i++)
             {
-                deck[i] = Instantiate(prototypes[i % prototypes.Length]);
+                deck[i] = prototypes[i % prototypes.Length].GetClone();
             }
 
             return deck;
@@ -222,7 +222,7 @@ public class DeckPrototypeFactory : MonoBehaviour
             for (int i = beginningIndex; i < limitIndex; i++)
             {
                 int random = UnityEngine.Random.Range(0, prototypes.Length);
-                deck[i] = Instantiate(prototypes[random]);
+                deck[i] = prototypes[random].GetClone();
             }
 
             return deck;
@@ -241,15 +241,6 @@ public class DeckPrototypeFactory : MonoBehaviour
                 array[k] = array[n];
                 array[n] = value;
             }
-        }
-
-        /// <summary>
-        /// Instantiate a card. The reason not to just use Instantiate is 'DeckMounter' does not inherits MonoBehavior.
-        /// So DeckMounter can access 'Instantiate' because it is an internal class of DeckPrototypeFactory.
-        /// </summary>
-        protected Card InstantiatePlease(Card card)
-        {
-            return Instantiate(card);
         }
 
         protected Card GetCloneOfTheRandomCard()

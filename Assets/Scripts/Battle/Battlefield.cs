@@ -1,70 +1,107 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Battlefield : CardsHolder
 {
     [SerializeField]
     private GameObject[] protectionVFXtoEachCard = null;
 
-    public int GetSize()
+    const int CODE_TO_STOP = int.MaxValue;
+
+    public void SwapCards(int index, int anotherIndex)
     {
-        return cards.Length;
+        Card aux = GetReferenceToCardAt(anotherIndex);
+
+        PutCardInIndex(cards[index], anotherIndex);
+
+        PutCardInIndex(aux, index);
     }
 
-    public bool IsSlotIndexOccupied(int index)
+    public void RemoveFreezingStateFromAllCards()
     {
-        return cards[index] != null;
+        for (int i = 0; i < cards.Length; i++)
+        {
+            if (ContainsCardInIndex(i))
+            {
+                cards[i].RemoveFreezing();
+            }
+        }
     }
 
-    public void PlaceCardInSelectedIndex(Card card)
+    public void LoopThrougEnemiesAndSelectBestTarget(EnemyAI.CurrentTargetIsBetterThanTheOneBefore isCurrentTargetBetter, int attackerPower)
+    {
+        int iterator = GetFirstOccupiedIndex();
+        int selected = iterator;
+
+        int k = 10;
+        while (iterator != CODE_TO_STOP && k > 0)
+        {
+            k--;
+            if (isCurrentTargetBetter(indexBefore: selected, currentIndex: iterator, attackerPower, this))
+            {
+                selected = iterator;
+            }
+            iterator = GetNextIndexToAttackOrGetCodeToStop(iterator);
+        }
+
+        if (k < 0)
+        {
+            // Obs: this log was never triggered.
+            L.ogError(this, "k avoided an infinite loop. Please review the loop logic");
+        }
+
+        SetSelectedIndex(selected);
+    }
+    private int GetNextIndexToAttackOrGetCodeToStop(int current)
+    {
+        int MaybeTheNext = GetNextIndexInVerticalOrderOrGetCodeToStop(current: current);
+        if (MaybeTheNext == CODE_TO_STOP || cards[MaybeTheNext] != null)
+        {
+            return MaybeTheNext;
+        }
+        else
+        {
+            return GetNextIndexInVerticalOrderOrGetCodeToStop(MaybeTheNext);
+        }
+    }
+    private int GetNextIndexInVerticalOrderOrGetCodeToStop(int current)
+    {
+        int next;
+        switch (current)
+        {
+            case 0: next = 2; break;
+            case 1: next = 3; break;
+            case 2: next = 1; break;
+            case 3: next = CODE_TO_STOP; break;
+            default:
+                L.ogError("GetNextIndexToAttack called, but current is out of bounds", this);
+                next = CODE_TO_STOP;
+                break;
+        }
+        return next;
+    }
+
+    public void BuffAllCardsAttackPowerForThisMatch()
+    {
+        for (int i = 0; i < cards.Length; i++)
+        {
+            if (cards[i] != null)
+            {
+                cards[i].BuffAttackPowerForThisMatch();
+            }
+        }
+    }
+
+    public void PlaceCardInSelectedIndexAndSetCardsBattlefield(Card card)
     {
         card.Battlefield = this;
         PutCardInIndex(card, GetSelectedIndex());
     }
 
-    public void SelectFirstFreeIndex()
-    {
-        for (int i = 0; i < cards.Length; i++)
-        {
-            if (cards[i] == null)
-            {
-                SetSelectedIndex(i);
-                break;
-            }
-        }
-    }
-
-    public bool HasEmptySlot()
-    {
-        bool has = false;
-        for (int i = 0; i < cards.Length; i++)
-        {
-            if (cards[i] == null)
-            {
-                has = true;
-                break;
-            }
-        }
-        return has;
-    }
-
-    public Card GetReferenceToSelectedCard()
-    {
-        return GetReferenceToCardAt(GetSelectedIndex());
-    }
-
-    public Card GetReferenceToCardAtOrGetNull(int index)
-    {
-        return cards[index];
-    }
-
+    #region Neighborhoods
     public Card GetCardInFrontOf(int index)
     {
         return cards[GetIndexInFrontOf(index)];
     }
-
     public int GetIndexInFrontOf(int index)
     {
         int cardIndex = index;
@@ -81,12 +118,10 @@ public class Battlefield : CardsHolder
 
         return cardIndex;
     }
-
     public Card GetCardBehind(int index)
     {
         return cards[GetCardIndexBehind(index)];
     }
-
     public int GetCardIndexBehind(int index)
     {
         int cardIndex = index;
@@ -103,25 +138,10 @@ public class Battlefield : CardsHolder
 
         return cardIndex;
     }
-
-    internal void Remove(object card)
-    {
-        for (int i = 0; i < cards.Length; i++)
-        {
-            #pragma warning disable CS0253 // Possível comparação de referência inesperada; o lado direito precisa de conversão
-            if (cards[i] == card)
-            #pragma warning restore CS0253 // Possível comparação de referência inesperada; o lado direito precisa de conversão
-            {
-                cards[i] = null;
-            }
-        }
-    }
-
     public Card GetCardBeside(int index)
     {
         return cards[GetCardIndexBeside(index)];
     }
-
     public int GetCardIndexBeside(int index)
     {
         int cardIndex = index;
@@ -144,7 +164,6 @@ public class Battlefield : CardsHolder
 
         return cardIndex;
     }
-
     public int GetVerticalNeighborIndex(int index)
     {
         int verticalNeighbor = index;
@@ -167,12 +186,6 @@ public class Battlefield : CardsHolder
 
         return verticalNeighbor;
     }
-
-    public Card GetSelectedCard()
-    {
-        return cards[GetSelectedIndex()];
-    }
-
     public bool IsThereACardInFrontOf(int index)
     {
         bool thereIs = false;
@@ -189,61 +202,18 @@ public class Battlefield : CardsHolder
 
         return thereIs;
     }
-
-    public void SwapCards(int index, int anotherIndex)
+    public bool IsInBackline(int index)
     {
-        Card aux = GetReferenceToCardAt(anotherIndex);
-
-        PutCardInIndex(cards[index], anotherIndex);
-
-        PutCardInIndex(aux, index);
+        return IsThereACardInFrontOf(index);
     }
+    #endregion
 
-    public void RemoveFreezingStateFromAllCards()
-    {
-        for (int i =0; i < cards.Length; i++)
-        {
-            if (ContainsCardInIndex(i))
-            {
-                cards[i].RemoveFreezing();
-            }
-        }
-    }
-
-    public void LoopThrougEnemyesAndSelectBestTarget(EnemyAI.CurrentTargetIsBetterThanTheOneBefore isCurrentTargetBetter, int attackPower)
-    {
-        int selected = 0;
-
-        while (!ContainsCardInIndex(selected))
-        {
-            selected++;
-            if (selected == cards.Length)
-            {
-                break;
-            }
-        }
-
-        for (int indexBefore = 0; indexBefore < cards.Length-1; indexBefore++)
-        {
-            int currentIndex = indexBefore + 1;
-            if (ContainsCardInIndex(indexBefore) && ContainsCardInIndex(currentIndex))
-            {
-                if (isCurrentTargetBetter(indexBefore, currentIndex, attackPower, this))
-                {
-                    selected = currentIndex;
-                }
-            }
-        }
-
-        SetSelectedIndex(selected);
-    }
-
+    #region Get or Select by Vitality
     public void SelectCardIndexWithLowestVitality()
     {
         int lowestVitalityIndex = GetIndexWithLowestVitality();
         SetSelectedIndex( lowestVitalityIndex );
     }
-
     public int GetIndexWithLowestVitalityThatCanBeHealed()
     {
         int lowest = 999999;
@@ -263,7 +233,6 @@ public class Battlefield : CardsHolder
         }
         return lowestVitalityIndex;
     }
-
     public int GetIndexWithLowestVitality()
     {
         int lowest = 999999;
@@ -282,7 +251,9 @@ public class Battlefield : CardsHolder
         }
         return lowestVitalityIndex;
     }
+    #endregion
 
+    #region VFX and Obfuscate
     public void RemoveObfuscateFromAllCards()
     {
         for (int i = 0; i < cards.Length; i++)
@@ -293,7 +264,6 @@ public class Battlefield : CardsHolder
             }
         }
     }
-
     public void DisplayProtectionVFXOnlyofCardsInBackline()
     {
         for (int i = 0; i < cards.Length; i++)
@@ -301,7 +271,6 @@ public class Battlefield : CardsHolder
             protectionVFXtoEachCard[i].SetActive( cards[i] != null && IsThereACardInFrontOf(i) );
         }
     }
-
     public void HideAllProtectionVFX()
     {
         for (int i = 0; i < cards.Length; i++)
@@ -309,20 +278,5 @@ public class Battlefield : CardsHolder
             protectionVFXtoEachCard[i].SetActive(false);
         }
     }
-
-    public bool IsInBackline(int index)
-    {
-        return IsThereACardInFrontOf(index);
-    }
-
-    public void BuffAllCardsAttackPowerForThisMatch()
-    {
-        for (int i = 0; i < cards.Length; i++)
-        {
-            if (cards[i] != null)
-            {
-                cards[i].BuffAttackPowerForThisMatch();
-            }
-        }
-    }
+    #endregion
 }

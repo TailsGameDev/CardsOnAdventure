@@ -38,7 +38,7 @@ public class SanctuaryEffectLimitedToMaxVitality : SpecialEffect
     private int HealingAlgorithm(int index, int healAmount)
     {
         int healed = COULD_NOT_HEAL;
-        if (abf.IsSlotIndexOccupied(index))
+        if (abf.ContainsCardInIndex(index))
         {
             Card toBeHealed = abf.GetReferenceToCardAt(index);
 

@@ -22,7 +22,7 @@ public class OneOfEachAndOneRandomCardDeckBuilder : DeckPrototypeFactory.DeckBui
 
         for (int i = 0; i < deck.Length-1; i++)
         {
-            deck[i] = InstantiatePlease(allCardPrototypes[i]);
+            deck[i] = allCardPrototypes[i].GetClone();
         }
         deck[size - 1] = GetCloneOfTheRandomCard();
 

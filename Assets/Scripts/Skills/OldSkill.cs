@@ -115,7 +115,7 @@ public class OldSkill : Skill
             if (isDoubleAttack)
             {
                 defenseEffectToExecute.ExecuteEffect(damage/2, obf, abf, toBeDamagedIndex, attackVFX);
-                if (obf.IsSlotIndexOccupied(toBeDamagedIndex) && abf.IsSlotIndexOccupied(abf.GetSelectedIndex()))
+                if (obf.ContainsCardInIndex(toBeDamagedIndex) && abf.ContainsCardInIndex(abf.GetSelectedIndex()))
                 {
                     defenseEffectToExecute.ExecuteEffect(damage/2, obf, abf, toBeDamagedIndex, attackVFX);
                 }

@@ -29,7 +29,7 @@ public class DefenseEffect : MonoBehaviour
     {
         // Attacker might have already died with reflection
         Card attacker = abf.GetSelectedCard();
-        return damage > 0 && obf.IsSlotIndexOccupied(toBeDamagedIndex) && attacker != null;
+        return damage > 0 && obf.ContainsCardInIndex(toBeDamagedIndex) && attacker != null;
     }
 
     // The parent of the VFX must be the slot that holds the car, because the car can be destroyed on attack.

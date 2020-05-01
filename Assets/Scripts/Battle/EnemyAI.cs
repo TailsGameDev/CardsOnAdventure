@@ -155,8 +155,8 @@ public class EnemyAI
             if (enemyBattlefield.ContainsCardInIndex(i))
             {
                 enemyBattlefield.SetSelectedIndex(i);
-                int attackPower = enemyBattlefield.GetSelectedCard().AttackPower;
-                playerBattlefield.LoopThrougEnemyesAndSelectBestTarget(currentTargetIsBetterThanTheOneBefore, attackPower);
+                attackerPower = enemyBattlefield.GetSelectedCard().AttackPower;
+                playerBattlefield.LoopThrougEnemiesAndSelectBestTarget(currentTargetIsBetterThanTheOneBefore, attackerPower);
 
                 yield return new WaitForSeconds(aiDelay);
             }
@@ -166,12 +166,19 @@ public class EnemyAI
         coroutineExecutor.SelfDestroy();
     }
 
+    int attackerPower;
     private bool currentTargetIsBetterThanTheOneBefore(int indexBefore, int currentIndex, int attackPower, Battlefield obf)
     {
         Card cardBefore = obf.GetReferenceToCardAt(indexBefore);
         Card currentCard = obf.GetReferenceToCardAt(currentIndex);
 
-        bool dealsDamage = obf.IsThereACardInFrontOf(currentIndex) && attackPower <= 1;
+        if (currentCard == null)
+        {
+            L.ogError(this, "current card is null. Index: "+currentIndex);
+            currentCard = cardBefore;
+        }
+
+        bool dealsDamage = obf.IsThereACardInFrontOf(currentIndex) && attackerPower <= 1;
         bool vitalityIsSmaller = currentCard.Vitality < cardBefore.Vitality;
 
         return dealsDamage && vitalityIsSmaller;

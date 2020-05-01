@@ -23,7 +23,7 @@ public class SanctuaryHealWhoNeeds : SpecialEffect
 
     private void HealingAlgorithm(int index, int healAmount)
     {
-        if (abf.IsSlotIndexOccupied(index))
+        if (abf.ContainsCardInIndex(index))
         {
             Card toBeHealed = abf.GetReferenceToCardAt(index);
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class CardsHolder : IndexHolder
@@ -17,6 +18,11 @@ public class CardsHolder : IndexHolder
     // private float repositionAnimationDurationInSeconds = 0.5f;
 
     #region Collection Default Opperations
+    public int GetSize()
+    {
+        return cards.Length;
+    }
+
     public void PutCardInIndex(Card card, int index)
     {
         RectTransform cardRect = card.GetComponent<RectTransform>();
@@ -32,6 +38,25 @@ public class CardsHolder : IndexHolder
         cardRect.sizeDelta = new Vector2(slotRect.width, slotRect.height);
     }
 
+    public void Remove(object card)
+    {
+        for (int i = 0; i < cards.Length; i++)
+        {
+#pragma warning disable CS0253 // Possível comparação de referência inesperada; o lado direito precisa de conversão
+            if (cards[i] == card)
+#pragma warning restore CS0253 // Possível comparação de referência inesperada; o lado direito precisa de conversão
+            {
+                cards[i] = null;
+            }
+        }
+    }
+    public Card RemoveCardOrGetNull(int index)
+    {
+        Card card = cards[index];
+        cards[index] = null;
+        return card;
+    }
+
     public Card GetReferenceToCardAt(int index)
     {
         if (cards[index] == null)
@@ -41,25 +66,24 @@ public class CardsHolder : IndexHolder
 
         return cards[index];
     }
-
-    public Card RemoveCardFromSelectedIndex()
+    public Card GetReferenceToCardAtOrGetNull(int index)
     {
-        return RemoveCardOrGetNull(GetSelectedIndex());
-    }
-
-    public Card RemoveCardOrGetNull(int index)
-    {
-        Card card = cards[index];
-        cards[index] = null;
-        return card;
+        return cards[index];
     }
 
     public bool ContainsCardInIndex(int index)
     {
         return cards[index] != null;
     }
-
-    public int GetStandingAmount()
+    public bool IsSlotIndexFree(int slotIndex)
+    {
+        return cards[slotIndex] == null;
+    }
+    public bool IsSlotIndexOccupied(int slotIndex)
+    {
+        return cards[slotIndex] != null;
+    }
+    public int GetAmountOfOccupiedSlots()
     {
         int standing = 0;
         for (int i = 0; i < cards.Length; i++)
@@ -70,6 +94,19 @@ public class CardsHolder : IndexHolder
             }
         }
         return standing;
+    }
+    public int GetFirstOccupiedIndex()
+    {
+        int occupied = -1;
+        for (int i = 0; i < cards.Length; i++)
+        {
+            if (cards[i] != null)
+            {
+                occupied = i;
+                break;
+            }
+        }
+        return occupied;
     }
 
     public bool IsFull()
@@ -84,7 +121,6 @@ public class CardsHolder : IndexHolder
         }
         return full;
     }
-
     public bool IsEmpty()
     {
         bool empty = true;
@@ -98,44 +134,68 @@ public class CardsHolder : IndexHolder
         }
         return empty;
     }
+    public bool HasEmptySlot()
+    {
+        return !IsFull();
+    }
+    public bool HasCards()
+    {
+        return !IsEmpty();
+    }
     #endregion
 
-    public bool IsSlotIndexFree(int slotIndex)
+    #region Operations that Consider Selection And Don't deal with Size
+    public void PutCardInSelectedIndex(Card card)
     {
-        return cards[slotIndex] == null;
+        PutCardInIndex(card, GetSelectedIndex());
     }
-
-    public void SelectFirstOccupiedIndex()
+    public Card RemoveCardFromSelectedIndex()
+    {
+        return RemoveCardOrGetNull(GetSelectedIndex());
+    }
+    public bool SomeIndexWasSelected()
+    {
+        return GetSelectedIndex() != -1;
+    }
+    public bool SelectionIsCleared()
+    {
+        return GetSelectedIndex() == -1;
+    }
+    public Card GetSelectedCard()
+    {
+        return cards[GetSelectedIndex()];
+    }
+    public void SelectFirstFreeIndex()
     {
         for (int i = 0; i < cards.Length; i++)
         {
-            if (cards[i] != null)
+            if (cards[i] == null)
             {
                 SetSelectedIndex(i);
                 break;
             }
         }
     }
+    #endregion
 
+    #region Slot Events
     public void OnSlotBeginDrag(int index)
     {
         uiCardsHolderEventHandler.OnCardsHolderBeginDrag(this, index);
     }
-
     public void OnSlotEndDrag()
     {
         uiCardsHolderEventHandler.OnCardsHolderEndDrag();
     }
-
     public void OnDroppedInSlot(int index)
     {
         uiCardsHolderEventHandler.OnCardsHolderDrop(this, index);
     }
-
     public void OnSlotClicked(int index)
     {
         uiCardsHolderEventHandler.OnSlotClicked(this, index);
     }
+    #endregion
 
     #region Make card bigger or normal size
     public void MakeOnlySelectedCardBigger()
@@ -146,12 +206,10 @@ public class CardsHolder : IndexHolder
         }
         MakeSelectedCardBigger();
     }
-
     public void MakeSelectedCardBigger()
     {
         MakeCardAtIndexBigger(GetSelectedIndex());
     }
-
     public void MakeCardAtIndexBigger(int index)
     {
         if (index != -1 && cards[index] != null)
@@ -159,13 +217,11 @@ public class CardsHolder : IndexHolder
             cards[index].transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
         }
     }
-
-    internal void MakeSelectedCardNormalSize()
+    public void MakeSelectedCardNormalSize()
     {
         MakeCardAtIndexNormalSize(GetSelectedIndex());
     }
-
-    internal void MakeCardAtIndexNormalSize(int index)
+    public void MakeCardAtIndexNormalSize(int index)
     {
         if (index != -1 && cards[index] != null)
         {

@@ -45,7 +45,7 @@ public class Attack : BattleState
 
     private void OnClickedEndTurnBtn()
     {
-        if (attackTokens.Count == attackerBattlefield.GetStandingAmount())
+        if (attackTokens.Count == attackerBattlefield.GetAmountOfOccupiedSlots())
         {
             popUpOpener.OpenAndMakeUncloseable
                 (
@@ -102,7 +102,7 @@ public class Attack : BattleState
 
             if (ReceivedValidInput())
             {
-                Card myCard = attackerBattlefield.GetReferenceToSelectedCard();
+                Card myCard = attackerBattlefield.GetSelectedCard();
                 myCard.AttackSelectedCard(opponentBattleField, attackerBattlefield);
 
                 attackTokens.Remove(attackerBattlefield.GetSelectedIndex());

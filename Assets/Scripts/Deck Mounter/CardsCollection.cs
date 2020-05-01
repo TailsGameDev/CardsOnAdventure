@@ -8,10 +8,6 @@ public class CardsCollection : DynamicSizeScrollableCardHolder
 {
     // Inherits InitializeSlotsAndRectSize
 
-    /*
-    [SerializeField]
-    private Text prototypeOfCardsAmountText = null;
-    */
     private Text[] textForEachCardAmount = null;
 
     private int[] amountOfEachCard = null;
@@ -22,7 +18,6 @@ public class CardsCollection : DynamicSizeScrollableCardHolder
     {
         StartCoroutine(DelayedStart());
     }
-
     IEnumerator DelayedStart()
     {
         // Wait for the DeckPrototypeFactory to PopulateArrayOfAllCardPrototypes.
@@ -43,7 +38,6 @@ public class CardsCollection : DynamicSizeScrollableCardHolder
 
         yield return PopulateSlotsWithCards();
     }
-
     private void PopulateAmountOfEachCard()
     {
         amountOfEachCard = new int[cards.Length];
@@ -52,7 +46,6 @@ public class CardsCollection : DynamicSizeScrollableCardHolder
             amountOfEachCard[i] = 1;
         }
     }
-
     private void PopulateCardAmountTexts()
     {
         textForEachCardAmount = new Text[slots.Length];
@@ -63,7 +56,6 @@ public class CardsCollection : DynamicSizeScrollableCardHolder
             UpdateCardColorAndAmountText(i);
         }
     }
-
     private IEnumerator PopulateSlotsWithCards()
     {
         for (int i = 0; i < cards.Length; i++)
@@ -76,38 +68,14 @@ public class CardsCollection : DynamicSizeScrollableCardHolder
     }
     #endregion
 
-    public bool SelectedIndexIsOcupied()
-    {
-        int selectedIndex = GetSelectedIndex();
-        return selectedIndex != -1 && amountOfEachCard[selectedIndex] > 0;
-    }
-
-    public int GetIndexOfACardEqualTo(Card card)
-    {
-        int index = -1;
-        for (int i = 0; i < cardsOfCollection.Length; i++)
-        {
-            if (card.IsAnotherInstanceOf(cardsOfCollection[i]))
-            {
-                index = i;
-            }
-        }
-        if (index == -1)
-        {
-            L.ogError("Tryed to get index of card but there is not a card like this in the collection", this);
-        }
-        return index;
-    }
-
     // Note this is not exactly the opposite of SelectedUnavailableCard
-    public bool SelectedAvailableCard()
+    public bool AvailableCardWasSelected()
     {
         int selectedIndex = GetSelectedIndex();
         return selectedIndex != -1 && amountOfEachCard[selectedIndex] > 0;
     }
-
     // Note this is not exactly the opposite of SelectedAvailableCard
-    public bool SelectedUnavailableCard()
+    public bool UnavailableCardWasSelected()
     {
         int selectedIndex = GetSelectedIndex();
         if (selectedIndex == -1)
@@ -131,41 +99,6 @@ public class CardsCollection : DynamicSizeScrollableCardHolder
             }
         }
     }
-
-    public Card GetCloneOfSelectedCard()
-    {
-        int selectedIndex = GetSelectedIndex();
-
-        if (selectedIndex == -1 || amountOfEachCard[selectedIndex] <= 0)
-        {
-            L.ogError("shouldn't provide clone. selectedIndex: "+selectedIndex+
-                "; card amount: "+ amountOfEachCard[selectedIndex], this);
-        }
-
-        Card selectedCard = cards[selectedIndex];
-        Card clone = Instantiate(selectedCard);
-
-        amountOfEachCard[selectedIndex]--;
-        UpdateCardColorAndAmountText(selectedIndex);
-
-        return clone;
-    }
-
-    private void UpdateCardColorAndAmountText(int indexToUpdate)
-    {
-        int cardAmount = amountOfEachCard[indexToUpdate];
-        textForEachCardAmount[indexToUpdate].text = cardAmount.ToString();
-
-        if (cardAmount > 0)
-        {
-            cards[indexToUpdate].MakeColorDefault();
-        }
-        else
-        {
-            cards[indexToUpdate].MakeColorGray();
-        }
-    }
-
     public void GiveCardBack(Card card)
     {
         for (int slot = 0; slot < cards.Length; slot++)
@@ -181,5 +114,34 @@ public class CardsCollection : DynamicSizeScrollableCardHolder
         }
 
         L.ogError("Couldn't find card of same type to give the card back.",this);
+    }
+    public Card GetCloneOfSelectedCardAndManageState()
+    {
+        int selectedIndex = GetSelectedIndex();
+
+        if (selectedIndex == -1 || amountOfEachCard[selectedIndex] <= 0)
+        {
+            L.ogError("shouldn't provide clone. selectedIndex: "+selectedIndex+
+                "; card amount: "+ amountOfEachCard[selectedIndex], this);
+        }
+
+        amountOfEachCard[selectedIndex]--;
+        UpdateCardColorAndAmountText(selectedIndex);
+
+        return cards[selectedIndex].GetClone();
+    }
+    private void UpdateCardColorAndAmountText(int indexToUpdate)
+    {
+        int cardAmount = amountOfEachCard[indexToUpdate];
+        textForEachCardAmount[indexToUpdate].text = cardAmount.ToString();
+
+        if (cardAmount > 0)
+        {
+            cards[indexToUpdate].MakeColorDefault();
+        }
+        else
+        {
+            cards[indexToUpdate].MakeColorGray();
+        }
     }
 }

@@ -55,27 +55,4 @@ public class DynamicSizeScrollableCardHolder : CardsHolder
         }
     }
     #endregion
-
-    public virtual Card GetReferenceToSelectedCardOrGetNull()
-    {
-        int selectedIndex = GetSelectedIndex();
-        if (selectedIndex != -1)
-        {
-            return GetReferenceToCardAt(GetSelectedIndex());
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    public bool SomeIndexWasSelected()
-    {
-        return GetSelectedIndex() != -1;
-    }
-
-    public bool AnyIndexWasSelected()
-    {
-        return GetSelectedIndex() == -1;
-    }
 }

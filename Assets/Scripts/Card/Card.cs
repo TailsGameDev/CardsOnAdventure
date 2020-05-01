@@ -482,4 +482,9 @@ public class Card : SkillsMediatorUser
     {
         cardImage.color = Color.white;
     }
+
+    public Card GetClone()
+    {
+        return Instantiate(this);
+    }
 }

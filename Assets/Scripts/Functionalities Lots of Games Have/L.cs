@@ -28,6 +28,10 @@ public class L : MonoBehaviour
         }
     }
 
+    public static void ogError(object obj, string message)
+    {
+        ogError(message, obj);
+    }
     public static void ogError(string message, object obj)
     {
         if (obj.GetType() == typeof(MonoBehaviour))

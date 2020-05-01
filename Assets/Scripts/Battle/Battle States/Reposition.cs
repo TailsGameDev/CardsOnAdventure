@@ -98,12 +98,12 @@
             {
                 if (!oldSelectedCard.Freezing && !currentSelectedCard.Freezing)
                 {
-                    if (attackerBattlefield.IsSlotIndexOccupied(currentIndex))
+                    if (attackerBattlefield.ContainsCardInIndex(currentIndex))
                     {
                         attackerBattlefield.MakeCardAtIndexNormalSize(currentIndex);
                     }
 
-                    if (attackerBattlefield.IsSlotIndexOccupied(oldIndex))
+                    if (attackerBattlefield.ContainsCardInIndex(oldIndex))
                     {
                         attackerBattlefield.MakeCardAtIndexNormalSize(oldIndex);
                     }

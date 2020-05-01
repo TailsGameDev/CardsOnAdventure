@@ -61,7 +61,7 @@ public class ManualDeckBuider : DeckPrototypeFactory.DeckBuilder
             Card card;
             if (prototypeIndex != -1)
             {
-                card = InstantiatePlease(allCardPrototypes[prototypeIndex]);
+                card = allCardPrototypes[prototypeIndex].GetClone();
             }
             else
             {

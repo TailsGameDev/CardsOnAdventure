@@ -28,7 +28,7 @@ public class UIStanding : MonoBehaviour
 
     void Update()
     {
-        int standingAmount = battlefield.GetStandingAmount() + hand.GetStandingAmount() + deck.GetSize();
+        int standingAmount = battlefield.GetAmountOfOccupiedSlots() + hand.GetAmountOfOccupiedSlots() + deck.GetSize();
         if (standingAmount != this.standingAmount)
         {
             text.text = initialText + standingAmount;

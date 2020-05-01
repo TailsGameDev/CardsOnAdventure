@@ -15,19 +15,19 @@ public class DeckBuilding : PopUpOpener
 
     void Update()
     {
-        if (cardsCollection.SelectedUnavailableCard())
+        if (cardsCollection.UnavailableCardWasSelected())
         {
             ClearAllSelections();
             return;
         }
 
-        if (deck.SomeIndexWasSelected() && cardsCollection.AnyIndexWasSelected())
+        if (deck.SomeIndexWasSelected() && cardsCollection.SelectionIsCleared())
         {
             ClearAllSelections();
             return;
         }
 
-        bool selectedCardFromCollection = cardsCollection.SelectedAvailableCard();
+        bool selectedCardFromCollection = cardsCollection.AvailableCardWasSelected();
         bool selectedCardFromDeck = deck.SomeIndexWasSelected();
 
         if (selectedCardFromCollection && selectedCardFromDeck)
@@ -40,7 +40,7 @@ public class DeckBuilding : PopUpOpener
 
     private void PlaceTheCardOfCollectionInTheDeck()
     {
-        Card cardToPlaceInTheDeck = cardsCollection.GetCloneOfSelectedCard();
+        Card cardToPlaceInTheDeck = cardsCollection.GetCloneOfSelectedCardAndManageState();
         deck.PutCardInSelectedIndex(cardToPlaceInTheDeck);
     }
 
