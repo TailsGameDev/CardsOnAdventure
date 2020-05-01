@@ -20,7 +20,9 @@ public class EnemyAI
     private const float MIN_AI_DELAY = 0.5f;
     private const float DEFAULT_AI_DELAY = 1.5f;
 
-    public delegate bool CurrentTargetIsBetterThanTheOneBefore(int indexBefore, int currentIndex, int attackPower, Battlefield obf);
+    private int attackerPower;
+
+    public delegate bool CurrentTargetIsBetterThanTheOneBefore(int indexBefore, int currentIndex, Battlefield obf);
 
     public static float AIDelay { set => aiDelay = value; }
 
@@ -66,7 +68,6 @@ public class EnemyAI
 
         coroutineExecutor.ExecuteCoroutine(RepositionCoroutine());
     }
-
     IEnumerator RepositionCoroutine()
     {
         bool change0With2 = ChangeCardInFrontWithCardBehind(0, 2);
@@ -97,8 +98,6 @@ public class EnemyAI
 
         coroutineExecutor.SelfDestroy();
     }
-    
-
     private bool ChangeCardInFrontWithCardBehind(int inFrontIndex, int behindIndex)
     {
         bool change;
@@ -134,20 +133,18 @@ public class EnemyAI
             UIBattle.inputEnabled = true;
         }
     }
-
     private void HandleAIDelay()
     {
         if (aiDelay < MIN_AI_DELAY)
         {
             aiDelay = UISettings.GetAIDelayFromPlayerPrefs();
-            // Ff the player never modified the value, it will still be less than the minimum.
+            // If the player never modified the value, it will still be less than the minimum.
             if (aiDelay < MIN_AI_DELAY)
             {
                 aiDelay = DEFAULT_AI_DELAY;
             }
         }
     }
-
     IEnumerator AttackCoroutine()
     {
         for (int i = 0; i < playerBattlefield.GetSize(); i++)
@@ -156,7 +153,7 @@ public class EnemyAI
             {
                 enemyBattlefield.SetSelectedIndex(i);
                 attackerPower = enemyBattlefield.GetSelectedCard().AttackPower;
-                playerBattlefield.LoopThrougEnemiesAndSelectBestTarget(currentTargetIsBetterThanTheOneBefore, attackerPower);
+                playerBattlefield.LoopThrougEnemiesAndSelectBestTarget(currentTargetIsBetterThanTheOneBefore);
 
                 yield return new WaitForSeconds(aiDelay);
             }
@@ -165,9 +162,7 @@ public class EnemyAI
         UIBattle.inputEnabled = true;
         coroutineExecutor.SelfDestroy();
     }
-
-    int attackerPower;
-    private bool currentTargetIsBetterThanTheOneBefore(int indexBefore, int currentIndex, int attackPower, Battlefield obf)
+    private bool currentTargetIsBetterThanTheOneBefore(int indexBefore, int currentIndex, Battlefield obf)
     {
         Card cardBefore = obf.GetReferenceToCardAt(indexBefore);
         Card currentCard = obf.GetReferenceToCardAt(currentIndex);
@@ -178,87 +173,17 @@ public class EnemyAI
             currentCard = cardBefore;
         }
 
-        bool dealsDamage = obf.IsThereACardInFrontOf(currentIndex) && attackerPower <= 1;
+        bool curentCardWouldTakeDamege = WouldCurrentCardTakeDamage(obf, currentIndex, currentCard);
+
         bool vitalityIsSmaller = currentCard.Vitality < cardBefore.Vitality;
 
-        return dealsDamage && vitalityIsSmaller;
+        return curentCardWouldTakeDamege && vitalityIsSmaller;
+    }
+    private bool WouldCurrentCardTakeDamage(Battlefield obf, int currentIndex, Card currentCard)
+    {
+        bool hasDamageReduction = obf.IsThereACardInFrontOf(currentIndex) ||
+                                    currentCard.HasHeavyArmorSkill();
+        bool damageWouldBeZero = attackerPower <= 1 && hasDamageReduction;
+        return !damageWouldBeZero;
     }
 }
-
-// Not being used, but CustomUpdate is an alternative to coroutine usage
-/*
-public abstract class CustomUpdate
-{
-    public abstract void Execute();
-}
-
-public class RepositionAction : CustomUpdate
-{
-    private int frameCounter = 0;
-    private Battlefield enemyBattlefield;
-    private UICustomBtn endRepositionBtn;
-
-    public RepositionAction(Battlefield enemyBattlefield, UICustomBtn endRepositionBtn)
-    {
-        this.enemyBattlefield = enemyBattlefield;
-        this.endRepositionBtn = endRepositionBtn;
-    }
-
-    public override void Execute()
-    {
-        bool change0With2 = ChangeCardInFrontWithCardBehind(0, 2);
-        bool change1With3 = ChangeCardInFrontWithCardBehind(1, 3);
-
-        frameCounter++;
-
-        switch (frameCounter)
-        {
-            case 1:
-                if (change0With2)
-                {
-                    enemyBattlefield.SetSelectedIndex(0);
-                }
-                break;
-            case 2:
-                if (change0With2)
-                {
-                    enemyBattlefield.SetSelectedIndex(2);
-                }
-                break;
-            case 3:
-                if (change1With3)
-                {
-                    enemyBattlefield.SetSelectedIndex(1);
-                }
-                break;
-            case 4:
-                if (change1With3)
-                {
-                    enemyBattlefield.SetSelectedIndex(3);
-                }
-                break;
-            case 5:
-                endRepositionBtn.onClicked();
-                break;
-        }
-    }
-
-    private bool ChangeCardInFrontWithCardBehind(int inFrontIndex, int behindIndex)
-    {
-        bool change;
-
-        if (enemyBattlefield.IsSlotIndexFree(inFrontIndex) || enemyBattlefield.IsSlotIndexFree(behindIndex))
-        {
-            change = false;
-        }
-        else
-        {
-            Card cardInFront = enemyBattlefield.GetReferenceToCardAt(inFrontIndex);
-            Card cardBehind = enemyBattlefield.GetReferenceToCardAt(behindIndex);
-            change = cardInFront.GetVitality() < cardBehind.GetVitality();
-        }
-
-        return change;
-    }
-}
-*/

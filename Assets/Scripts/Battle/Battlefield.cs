@@ -27,7 +27,7 @@ public class Battlefield : CardsHolder
         }
     }
 
-    public void LoopThrougEnemiesAndSelectBestTarget(EnemyAI.CurrentTargetIsBetterThanTheOneBefore isCurrentTargetBetter, int attackerPower)
+    public void LoopThrougEnemiesAndSelectBestTarget(EnemyAI.CurrentTargetIsBetterThanTheOneBefore isCurrentTargetBetter)
     {
         int iterator = GetFirstOccupiedIndex();
         int selected = iterator;
@@ -36,10 +36,12 @@ public class Battlefield : CardsHolder
         while (iterator != CODE_TO_STOP && k > 0)
         {
             k--;
-            if (isCurrentTargetBetter(indexBefore: selected, currentIndex: iterator, attackerPower, this))
+            if (isCurrentTargetBetter(indexBefore: selected, currentIndex: iterator, this))
             {
                 selected = iterator;
             }
+            // NOTE: the order of the iteration acctualy does not matter, because if
+            // 'isCurrentTargetBetter' is called in all cards, the best should be found
             iterator = GetNextIndexToAttackOrGetCodeToStop(iterator);
         }
 
