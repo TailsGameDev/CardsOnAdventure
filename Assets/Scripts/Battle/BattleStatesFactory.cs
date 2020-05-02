@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class BattleStatesFactory : PopUpOpener
+public class BattleStatesFactory : OpenersSuperclass
 {
     [SerializeField]
     private BattleStatesFactory otherBattleStatesFactory = null;
@@ -101,6 +102,6 @@ public class BattleStatesFactory : PopUpOpener
         PreMadeSoundRequest stopAllSFXRequest =
             PreMadeSoundRequest.CreateSTOP_SFXSoundRequest(audioRequisitor, assignor: gameObject);
 
-        return new EndGame(winnerFactory, popUpOpener, customPopUpOpener, victoryAudioRequest, defeatAudioRequest, stopAllSFXRequest);
+        return new EndGame(winnerFactory, openerOfPopUpsMadeInEditor, customPopUpOpener, sceneOpener, victoryAudioRequest, defeatAudioRequest, stopAllSFXRequest);
     }
 }

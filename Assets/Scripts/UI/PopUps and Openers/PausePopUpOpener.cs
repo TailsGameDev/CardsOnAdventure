@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PausePopUpOpener : PopUpOpener
+public class PausePopUpOpener : OpenersSuperclass
 {
     public void OpenPausePopUp()
     {
-        popUpOpener.OpenPausePopUp();
+        openerOfPopUpsMadeInEditor.OpenPausePopUp();
     }
 }

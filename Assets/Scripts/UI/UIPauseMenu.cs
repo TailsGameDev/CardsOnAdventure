@@ -3,31 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class UIPauseMenu : PopUpOpener
+public class UIPauseMenu : OpenersSuperclass
 {
-    [SerializeField]
-    protected SceneOpener sceneOpener = null;
-
     public void OnBattleRulesBtnClicked()
     {
-        popUpOpener.OpenBattleRulesPopUp();
+        openerOfPopUpsMadeInEditor.OpenBattleRulesPopUp();
     }
 
     public void OnSettingsBtnClicked()
     {
-        popUpOpener.OpenSettingsPopUp();
+        openerOfPopUpsMadeInEditor.OpenSettingsPopUp();
     }
 
     public void OnQuitToMainMenuBtnClicked()
     {
         string warningMessage = "All unsaved progress will be lost.";
-        customPopUpOpener.OpenConfirmationRequestPopUp(warningMessage, sceneOpener.OpenMainMenuScene);
+        customPopUpOpener.OpenConfirmationRequestPopUp(warningMessage, sceneOpener.OpenMainMenu);
     }
 
     public void OnGoImmediateToMainMenuBtnClicked()
     {
-        sceneOpener.OpenMainMenuScene();
+        sceneOpener.OpenMainMenu();
     }
-
-
 }

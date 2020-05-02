@@ -1,15 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class UIMap : PopUpOpener
+public class UIMap : OpenersSuperclass
 {
     public static bool StartOfMatch = true;
 
     [SerializeField]
     private Spot[] finalSpotForEachMap = null;
-
-    [SerializeField]
-    private SceneOpener sceneOpener = null;
 
     [SerializeField]
     private AudioRequisitor audioRequisitor = null;
@@ -131,8 +128,8 @@ public class UIMap : PopUpOpener
 
     private void GoToMenu()
     {
-        sceneOpener.OpenScene("Main Menu");
-        popUpOpener.CloseAllPopUpsExceptLoading();
+        sceneOpener.OpenMainMenu();
+        openerOfPopUpsMadeInEditor.CloseAllPopUpsExceptLoading();
     }
 
     public void OnDeckBuildBtnClicked(Transform btnTransform)
@@ -145,7 +142,7 @@ public class UIMap : PopUpOpener
 
     public void OnSimpleBattleClicked(Transform btnTransform)
         {
-            popUpOpener.SetLoadingPopUpActiveToTrue();
+            openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
             BattleInfo.PrepareSimpleBattle();
             SetSpotInfoToClearIfPlayerSucceed(btnTransform);
             DeckPrototypeFactory.PrepareRandomDeckForTheEnemy();
@@ -154,7 +151,7 @@ public class UIMap : PopUpOpener
 
     public void OnToughBattleClicked(Transform btnTransform)
     {
-        popUpOpener.SetLoadingPopUpActiveToTrue();
+        openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
         BattleInfo.PrepareToughBattle();
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         DeckPrototypeFactory.PrepareToughRandomDeckForTheEnemy();
@@ -163,7 +160,7 @@ public class UIMap : PopUpOpener
 
     public void OnBossBattleClicked(Transform btnTransform)
     {
-        popUpOpener.SetLoadingPopUpActiveToTrue();
+        openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
         BattleInfo.PrepareBossBattle();
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         DeckPrototypeFactory.PrepareBossRandomDeckForTheEnemy();
@@ -176,7 +173,7 @@ public class UIMap : PopUpOpener
 
     public void OnMageMasterClicked(Transform btnTransform)
     {
-        popUpOpener.SetLoadingPopUpActiveToTrue();
+        openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
         BattleInfo.PrepareMasterBattle(Classes.MAGE);
         DeckPrototypeFactory.PrepareMageDeckForTheEnemy();
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
@@ -185,7 +182,7 @@ public class UIMap : PopUpOpener
 
     public void OnWarriorMasterClicked(Transform btnTransform)
     {
-        popUpOpener.SetLoadingPopUpActiveToTrue();
+        openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
         BattleInfo.PrepareMasterBattle(Classes.WARRIOR);
         DeckPrototypeFactory.PrepareWarriorDeckForTheEnemy();
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
@@ -194,7 +191,7 @@ public class UIMap : PopUpOpener
 
     public void OnRougueMasterClicked(Transform btnTransform)
     {
-        popUpOpener.SetLoadingPopUpActiveToTrue();
+        openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
         BattleInfo.PrepareMasterBattle(Classes.ROGUE);
         DeckPrototypeFactory.PrepareRogueDeckForTheEnemy();
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
@@ -203,7 +200,7 @@ public class UIMap : PopUpOpener
 
     public void OnGuardianMasterClicked(Transform btnTransform)
     {
-        popUpOpener.SetLoadingPopUpActiveToTrue();
+        openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
         BattleInfo.PrepareMasterBattle(Classes.GUARDIAN);
         DeckPrototypeFactory.PrepareGuardianDeckForTheEnemy();
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
@@ -214,8 +211,8 @@ public class UIMap : PopUpOpener
 
     private void SetUpBattleAndOpenIt()
     {
-        popUpOpener.CloseAllPopUpsExceptLoading();
-        sceneOpener.OpenScene("Battle");
+        openerOfPopUpsMadeInEditor.CloseAllPopUpsExceptLoading();
+        sceneOpener.OpenBattle();
     }
 
     private void SetSpotInfoToClearIfPlayerSucceed(Transform spotBtnTransform)
@@ -239,6 +236,6 @@ public class UIMap : PopUpOpener
 
     public void OnPauseMenuOppenerBtnClick()
     {
-        popUpOpener.OpenPausePopUp();
+        openerOfPopUpsMadeInEditor.OpenPausePopUp();
     }
 }

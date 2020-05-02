@@ -26,6 +26,7 @@ public class EnemyAI
 
     public static float AIDelay { set => aiDelay = value; }
 
+    #region PlaceCard
     public void PlaceCard(Hand enemyHand, Battlefield enemyBattlefield)
     {
         UIBattle.inputEnabled = false;
@@ -41,7 +42,18 @@ public class EnemyAI
 
         coroutineExecutor.ExecuteCoroutine(PlaceCardCoroutine());
     }
-
+    private void HandleAIDelay()
+    {
+        if (aiDelay < MIN_AI_DELAY)
+        {
+            aiDelay = UISettings.GetAIDelayFromPlayerPrefs();
+            // If the player never modified the value, it will still be less than the minimum.
+            if (aiDelay < MIN_AI_DELAY)
+            {
+                aiDelay = DEFAULT_AI_DELAY;
+            }
+        }
+    }
     private IEnumerator PlaceCardCoroutine()
     {
         if (enemyHand.HasCards())
@@ -55,6 +67,7 @@ public class EnemyAI
             enemyBattlefield.SelectFirstFreeIndex();
         }
     }
+    #endregion
 
     #region Reposition
     public void Reposition(Battlefield enemyBattlefield, UICustomBtn endRepositionBtn)
@@ -117,6 +130,7 @@ public class EnemyAI
     }
     #endregion
 
+    #region Attack
     public void Attack(Battlefield enemyBattlefield, Battlefield playerBattlefield)
     {
         this.enemyBattlefield = enemyBattlefield;
@@ -133,26 +147,16 @@ public class EnemyAI
             UIBattle.inputEnabled = true;
         }
     }
-    private void HandleAIDelay()
-    {
-        if (aiDelay < MIN_AI_DELAY)
-        {
-            aiDelay = UISettings.GetAIDelayFromPlayerPrefs();
-            // If the player never modified the value, it will still be less than the minimum.
-            if (aiDelay < MIN_AI_DELAY)
-            {
-                aiDelay = DEFAULT_AI_DELAY;
-            }
-        }
-    }
     IEnumerator AttackCoroutine()
     {
         for (int i = 0; i < playerBattlefield.GetSize(); i++)
         {
-            if (enemyBattlefield.ContainsCardInIndex(i))
+            Card attacker = enemyBattlefield.GetReferenceToCardAtOrGetNull(i);
+            bool canAttack = attacker != null && !attacker.Freezing;
+            if (canAttack)
             {
                 enemyBattlefield.SetSelectedIndex(i);
-                attackerPower = enemyBattlefield.GetSelectedCard().AttackPower;
+                this.attackerPower = attacker.AttackPower;
                 playerBattlefield.LoopThrougEnemiesAndSelectBestTarget(currentTargetIsBetterThanTheOneBefore);
 
                 yield return new WaitForSeconds(aiDelay);
@@ -186,4 +190,5 @@ public class EnemyAI
         bool damageWouldBeZero = attackerPower <= 1 && hasDamageReduction;
         return !damageWouldBeZero;
     }
+    #endregion
 }

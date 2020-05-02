@@ -6,6 +6,7 @@ public class EndGame : BattleState
     private BattleStatesFactory winnerFactory;
     private ThePopUpOpenerInstance popUpOpener;
     private CustomPopUp customPopUpOpener;
+    private SceneOpener sceneOpener;
     private PreMadeSoundRequest victoryBGMRequest;
     private PreMadeSoundRequest defeatBGMRequest;
     private PreMadeSoundRequest stopAllSFXRequest;
@@ -14,16 +15,22 @@ public class EndGame : BattleState
 
     private bool quit = false;
 
-    public EndGame(BattleStatesFactory winnerFactory, ThePopUpOpenerInstance popUpOpener, CustomPopUp customPopUpOpener, PreMadeSoundRequest victoryBGMRequest, PreMadeSoundRequest defeatBGMRequest, PreMadeSoundRequest stopAllSFXRequest)
+    public EndGame(BattleStatesFactory winnerFactory,
+                    ThePopUpOpenerInstance popUpOpener,
+                    CustomPopUp customPopUpOpener,
+                    SceneOpener sceneOpener,
+                    PreMadeSoundRequest victoryBGMRequest,
+                    PreMadeSoundRequest defeatBGMRequest,
+                    PreMadeSoundRequest stopAllSFXRequest)
     {
         this.winnerFactory = winnerFactory;
         this.popUpOpener = popUpOpener;
         this.customPopUpOpener = customPopUpOpener;
+        this.sceneOpener = sceneOpener;
         this.victoryBGMRequest = victoryBGMRequest;
         this.defeatBGMRequest = defeatBGMRequest;
         this.stopAllSFXRequest = stopAllSFXRequest;
     }
-
     public override void ExecuteAction()
     {
         if (!quit)
@@ -86,36 +93,28 @@ public class EndGame : BattleState
         }
 
     }
-
     private void QuitBattleAndGoToMap()
     {
         quit = true;
         stopAllSFXRequest.RequestPlaying();
-        popUpOpener.CloseAllPopUpsExceptLoading();
-        popUpOpener.OpenMapScene();
+        sceneOpener.OpenMapScene();
     }
-
     private void ImproveAttackPowerThenSeeMap()
     {
         ClassInfo.GiveAttackPowerBonusToClass(masterClass);
         QuitBattleAndGoToMap();
     }
-
     private void ImproveVitalityThenSeeMap()
     {
         ClassInfo.GiveVitalityBonusToClass(masterClass);
         QuitBattleAndGoToMap();
     }
-
     private void QuitBattleLoadMainMenu()
     {
-        popUpOpener.SetLoadingPopUpActiveToTrue();
-        popUpOpener.CloseAllPopUpsExceptLoading();
         stopAllSFXRequest.RequestPlaying();
         quit = true;
-        SceneManager.LoadScene("Main Menu");
+        sceneOpener.OpenMainMenu();
     }
-
     public override BattleState GetNextState()
     {
         BattleState nextState;

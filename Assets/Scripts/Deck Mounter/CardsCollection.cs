@@ -121,9 +121,11 @@ public class CardsCollection : DynamicSizeScrollableCardHolder
         }
 
         amountOfEachCard[selectedIndex]--;
+
+        Card coloredClone = cards[selectedIndex].GetClone();
         UpdateCardColorAndAmountText(selectedIndex);
 
-        return cards[selectedIndex].GetClone();
+        return coloredClone;
     }
     private void UpdateCardColorAndAmountText(int indexToUpdate)
     {

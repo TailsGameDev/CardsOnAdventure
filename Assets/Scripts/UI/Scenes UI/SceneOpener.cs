@@ -3,18 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneOpener : PopUpOpener
+public class SceneOpener : OpenersSuperclass
 {
+    private void Awake()
+    {
+        if (sceneOpener == null)
+        {
+            sceneOpener = this;
+        }
+    }
+
+    public void OpenBattle()
+    {
+        OpenScene("Battle");
+    }
+
     public void OpenMapScene()
     {
-        popUpOpener.OpenMapScene();
+        OpenScene("Map");
     }
 
     // Start is called before the first frame update
-    public void OpenMainMenuScene()
+    public void OpenMainMenu()
     {
         OpenScene("Main Menu");
-        popUpOpener.CloseAllPopUpsExceptLoading();
+        openerOfPopUpsMadeInEditor.CloseAllPopUpsExceptLoading();
     }
 
     public void OpenDeckBuildingScene()
@@ -29,7 +42,8 @@ public class SceneOpener : PopUpOpener
 
     public void OpenScene(string name)
     {
-        popUpOpener.SetLoadingPopUpActiveToTrue();
+        openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
+        openerOfPopUpsMadeInEditor.CloseAllPopUpsExceptLoading();
         SceneManager.LoadSceneAsync(name);
     }
 }

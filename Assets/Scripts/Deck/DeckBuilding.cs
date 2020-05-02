@@ -1,16 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class DeckBuilding : PopUpOpener
+public class DeckBuilding : OpenersSuperclass
 {
     [SerializeField]
     private CardsCollection cardsCollection = null;
 
     [SerializeField]
     private DeckCardHolder deck = null;
-
-    [SerializeField]
-    private SceneOpener sceneOpener = null;
 
     void Update()
     {
@@ -72,7 +69,7 @@ public class DeckBuilding : PopUpOpener
 
     private IEnumerator SaveAndQuitCoroutine()
     {
-        popUpOpener.SetLoadingPopUpActiveToTrue();
+        openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
         yield return null;
         Card[] cards = deck.GetCards();
         DeckPrototypeFactory.PrepareManuallyBuiltDeckForThePlayer(cards);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CustomPopUp : PopUpOpener
+public class CustomPopUp : OpenersSuperclass
 {
     [SerializeField]
     private Text customPopUpTitle = null;
@@ -126,16 +126,16 @@ public class CustomPopUp : PopUpOpener
         customCancelBtn.onClicked = null;
         customCancelBtn.onClicked += onCancel;
 
-        popUpOpener.OpenCustomPopUp();
+        openerOfPopUpsMadeInEditor.OpenCustomPopUp();
     }
 
     private void DefaultCancelBehaviour()
     {
-        popUpOpener.IfThereIsAPopUpOnTopThenCloseIt();
+        openerOfPopUpsMadeInEditor.IfThereIsAPopUpOnTopThenCloseIt();
     }
 
     public void ClosePopUpOnTop()
     {
-        popUpOpener.IfThereIsAPopUpOnTopThenCloseIt();
+        openerOfPopUpsMadeInEditor.IfThereIsAPopUpOnTopThenCloseIt();
     }
 }

@@ -54,7 +54,7 @@ public class UIMainMenu : UIPauseMenu
             cancelBtnMessage = "Red";
         }
 
-        popUpOpener.CloseAllPopUpsExceptLoading();
+        openerOfPopUpsMadeInEditor.CloseAllPopUpsExceptLoading();
         customPopUpOpener.Open(
             title: "Play!",
             warningMessage,

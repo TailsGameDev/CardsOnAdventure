@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UICredits : MonoBehaviour
+public class UICredits : OpenersSuperclass
 {
-    [SerializeField]
-    private SceneOpener sceneOpener = null;
-
     public void OnCloseBtnClicked()
     {
-        sceneOpener.OpenScene("Main Menu");
+        sceneOpener.OpenMainMenu();
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ThePopUpOpenerInstance : PopUpOpener
+public class ThePopUpOpenerInstance : OpenersSuperclass
 {
 
     [SerializeField]
@@ -36,21 +36,13 @@ public class ThePopUpOpenerInstance : PopUpOpener
 
     private Stack<GameObject> popUpsStack = new Stack<GameObject>();
 
-    #region Sound
-    [SerializeField]
-    private AudioRequisitor audioRequisitor = null;
-
-    [SerializeField]
-    private AudioClip mapBGM = null;
-    #endregion
-
     public delegate void OnBtnClicked();
 
     private void Awake()
     {
-        if (popUpOpener == null)
+        if (openerOfPopUpsMadeInEditor == null)
         {
-            popUpOpener = this;
+            openerOfPopUpsMadeInEditor = this;
             transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
             // Screen.fullScreen = PlayerPrefs.GetInt("Fullscreen", defaultValue: 0) == 0;
@@ -153,7 +145,6 @@ public class ThePopUpOpenerInstance : PopUpOpener
 
     public void OpenMapScene()
     {
-        audioRequisitor.RequestBGM(mapBGM);
         SetLoadingPopUpActiveToTrue();
         CloseAllPopUpsExceptLoading();
         SceneManager.LoadScene("Map");

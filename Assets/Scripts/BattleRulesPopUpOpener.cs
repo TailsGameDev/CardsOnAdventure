@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BattleRulesPopUpOpener : PopUpOpener
+public class BattleRulesPopUpOpener : OpenersSuperclass
 {
     public void OpenBattleRulesPopUp()
     {
-        popUpOpener.OpenBattleRulesPopUp();
+        openerOfPopUpsMadeInEditor.OpenBattleRulesPopUp();
     }
 }
