@@ -11,7 +11,6 @@ public class CardsCollection : DynamicSizeScrollableCardHolder
     private Text[] textForEachCardAmount = null;
 
     private int[] amountOfEachCard = null;
-    private Card[] cardsOfCollection = null;
 
     #region Initialization
     private void Start()
@@ -24,18 +23,10 @@ public class CardsCollection : DynamicSizeScrollableCardHolder
         yield return null;
         cards = DeckPrototypeFactory.GetCopyOfAllAndEachCardPrototypePlusTheRandomCard();
 
-        cardsOfCollection = new Card[cards.Length];
-        for (int i = 0; i < cards.Length; i++)
-        {
-            cardsOfCollection[i] = cards[i];
-        }
-
         PopulateAmountOfEachCard();
-
         InitializeSlotsAndRectSize(amountOfSlots: cards.Length);
-
         PopulateCardAmountTexts();
-
+        ApplyPlayerBonuses();
         PopulateSlotsWithCards();
     }
     private void PopulateAmountOfEachCard()
@@ -54,6 +45,13 @@ public class CardsCollection : DynamicSizeScrollableCardHolder
             Text textCardAmountOfThisSlot = slots[i].GetComponentInChildren<Text>();
             textForEachCardAmount[i] = textCardAmountOfThisSlot;
             UpdateCardColorAndAmountText(i);
+        }
+    }
+    private void ApplyPlayerBonuses()
+    {
+        for (int i = 0; i < cards.Length; i++)
+        {
+            cards[i].ApplyPlayerBonuses();
         }
     }
     private void PopulateSlotsWithCards()

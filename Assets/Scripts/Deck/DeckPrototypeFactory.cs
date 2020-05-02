@@ -8,7 +8,7 @@ public class DeckPrototypeFactory : MonoBehaviour
 {
     private static DeckPrototypeFactory deckPrototypeFactory;
 
-    private static DeckBuilder enemyDeckMounter;
+    private static DeckBuilder enemyDeckBuilder;
     private static DeckBuilder playerDeckBuilder;
 
     [SerializeField]
@@ -25,6 +25,7 @@ public class DeckPrototypeFactory : MonoBehaviour
 
     public static int DefaultDeckSize { get => deckPrototypeFactory.defaultDeckSize; }
 
+    #region Initialization
     private void Awake()
     {
         BecomeSingleton();
@@ -51,9 +52,9 @@ public class DeckPrototypeFactory : MonoBehaviour
 
     private void MakeDecksRandomIfTheyAreNull()
     {
-        if (enemyDeckMounter == null)
+        if (enemyDeckBuilder == null)
         {
-            enemyDeckMounter = new RandomDeckMounter(defaultDeckSize);
+            enemyDeckBuilder = new RandomDeckMounter(defaultDeckSize);
         }
 
         if (playerDeckBuilder == null)
@@ -77,16 +78,55 @@ public class DeckPrototypeFactory : MonoBehaviour
 
         allCardPrototypes = allCardPrototypesList.ToArray();
     }
+    #endregion
 
     public static Card GetCloneOfTheRandomCard()
     {
         return Instantiate(deckPrototypeFactory.theRandomCard);
     }
 
+
+    public static Card[] GetCopyOfAllAndEachCardPrototypePlusTheRandomCard()
+    {
+        return OneOfEachAndOneRandomCardDeckBuilder.Create().GetDeck();
+    }
+
+
     public static Card[] GetPreparedCardsForTheEnemy()
     {
-        return enemyDeckMounter.GetDeck();
+        return enemyDeckBuilder.GetDeck();
     }
+    #region Public Prepare XXXX Deck For The Enemy
+    public static void PrepareRandomDeckForTheEnemy(int size = NOT_A_SIZE)
+    {
+        enemyDeckBuilder = new RandomDeckMounter(size);
+    }
+    public static void PrepareToughRandomDeckForTheEnemy(int size = TOUGH_SIZE)
+    {
+        enemyDeckBuilder = new RandomDeckMounter(size);
+    }
+    public static void PrepareBossRandomDeckForTheEnemy(int size = BOSS_SIZE)
+    {
+        enemyDeckBuilder = new RandomDeckMounter(size);
+    }
+
+    public static void PrepareMageDeckForTheEnemy(int size = NOT_A_SIZE)
+    {
+        enemyDeckBuilder = new HalfRandomDeckMounter(size, Classes.MAGE);
+    }
+    public static void PrepareWarriorDeckForTheEnemy(int size = NOT_A_SIZE)
+    {
+        enemyDeckBuilder = new HalfRandomDeckMounter(size, Classes.WARRIOR);
+    }
+    public static void PrepareRogueDeckForTheEnemy(int size = NOT_A_SIZE)
+    {
+        enemyDeckBuilder = new HalfRandomDeckMounter(size, Classes.ROGUE);
+    }
+    public static void PrepareGuardianDeckForTheEnemy(int size = NOT_A_SIZE)
+    {
+        enemyDeckBuilder = new HalfRandomDeckMounter(size, Classes.GUARDIAN);
+    }
+    #endregion
 
     public static Card[] GetPreparedCardsForThePlayerOrGetRandomDeck()
     {
@@ -101,7 +141,14 @@ public class DeckPrototypeFactory : MonoBehaviour
 
         return ReplaceRandomAndSumBonuses(playerDeck);
     }
-
+    public static void PrepareRandomDeckForThePlayer(int size = NOT_A_SIZE)
+    {
+        playerDeckBuilder = new RandomDeckMounter(size);
+    }
+    public static void PrepareManuallyBuiltDeckForThePlayer(Card[] cards)
+    {
+        playerDeckBuilder = ManualDeckBuider.Create(cards);
+    }
     private static Card[] ReplaceRandomAndSumBonuses(Card[] playerDeck)
     {
         for (int i = 0; i < playerDeck.Length; i++)
@@ -110,7 +157,7 @@ public class DeckPrototypeFactory : MonoBehaviour
             if (playerDeck[i].IsAnotherInstanceOf( deckPrototypeFactory.theRandomCard) )
             {
                 Destroy(playerDeck[i].gameObject);
-                playerDeck[i] = GetCardFromPrototypesRandomly();
+                playerDeck[i] = GetCloneOfCardFromPrototypesRandomly();
             }
 
             // Sum bonuses
@@ -119,59 +166,11 @@ public class DeckPrototypeFactory : MonoBehaviour
 
         return playerDeck;
     }
-
-    private static Card GetCardFromPrototypesRandomly()
+    private static Card GetCloneOfCardFromPrototypesRandomly()
     {
         Card[] prototypes = deckPrototypeFactory.allCardPrototypes;
         int randomIndex = UnityEngine.Random.Range(0, prototypes.Length);
-        return prototypes[randomIndex];
-    }
-
-    public static Card[] GetCopyOfAllAndEachCardPrototypePlusTheRandomCard()
-    {
-        return OneOfEachAndOneRandomCardDeckBuilder.Create().GetDeck();
-    }
-
-    #region Public Prepare XXXX Deck For The Enemy
-    public static void PrepareRandomDeckForTheEnemy(int size = NOT_A_SIZE)
-    {
-        enemyDeckMounter = new RandomDeckMounter(size);
-    }
-    public static void PrepareToughRandomDeckForTheEnemy(int size = TOUGH_SIZE)
-    {
-        enemyDeckMounter = new RandomDeckMounter(size);
-    }
-    public static void PrepareBossRandomDeckForTheEnemy(int size = BOSS_SIZE)
-    {
-        enemyDeckMounter = new RandomDeckMounter(size);
-    }
-
-    public static void PrepareMageDeckForTheEnemy(int size = NOT_A_SIZE)
-    {
-        enemyDeckMounter = new HalfRandomDeckMounter(size, Classes.MAGE);
-    }
-    public static void PrepareWarriorDeckForTheEnemy(int size = NOT_A_SIZE)
-    {
-        enemyDeckMounter = new HalfRandomDeckMounter(size, Classes.WARRIOR);
-    }
-    public static void PrepareRogueDeckForTheEnemy(int size = NOT_A_SIZE)
-    {
-        enemyDeckMounter = new HalfRandomDeckMounter(size, Classes.ROGUE);
-    }
-    public static void PrepareGuardianDeckForTheEnemy(int size = NOT_A_SIZE)
-    {
-        enemyDeckMounter = new HalfRandomDeckMounter(size, Classes.GUARDIAN);
-    }
-    #endregion
-
-    public static void PrepareRandomDeckForThePlayer(int size = NOT_A_SIZE)
-    {
-        playerDeckBuilder = new RandomDeckMounter(size);
-    }
-
-    public static void PrepareManuallyBuiltDeckForThePlayer(Card[] cards)
-    {
-        playerDeckBuilder = ManualDeckBuider.Create(cards);
+        return prototypes[randomIndex].GetClone();
     }
 
     public abstract class DeckBuilder

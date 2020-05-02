@@ -116,28 +116,33 @@ public class Card : SkillsMediatorUser
     #region Damage and Healing
     public void TakeDamageAndManageCardState(int damage, Battlefield battlefieldToRemoveCardInCaseOfDeath)
     {
-        if (damage > 0)
-        {
-            CreateDamageAnimatedText(damage);
-            shakeable.Shake();
-        }
-        else
-        {
-            L.ogError(this,"[Card] tryed to apply negative damage. That's wrong! Use Heal method instead");
+        // Actions conditioned to damage amount
+        { 
+            if (damage > 0)
+            {
+                CreateDamageAnimatedText(damage);
+                shakeable.Shake();
+            }
+            else if (damage < 0)
+            {
+                L.ogError(this, "[Card] tryed to apply negative damage. That's wrong! Use Heal method instead");
+            }
         }
 
-        int newVit = SetVitalityAndUpdateTextLooks(Vitality - damage);
-
-        if (newVit <= 0)
-        {
-            RemoveFreezing();
-            battlefieldToRemoveCardInCaseOfDeath.Remove(this);
-            StartCoroutine(DieWithAnimation());
-            deathCounter.RegisterDeath();
-        }
-        else
-        {
-            deathCounter.RegisterSurvived();
+        // Actions conditioned to the Vitality
+        { 
+            int newVit = SetVitalityAndUpdateTextLooks(Vitality - damage);
+            if (newVit <= 0)
+            {
+                RemoveFreezing();
+                battlefieldToRemoveCardInCaseOfDeath.Remove(this);
+                StartCoroutine(DieWithAnimation());
+                deathCounter.RegisterDeath();
+            }
+            else
+            {
+                deathCounter.RegisterSurvived();
+            }
         }
     }
     private void CreateDamageAnimatedText(int damage)
