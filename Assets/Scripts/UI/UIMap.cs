@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class UIMap : OpenersSuperclass
 {
+    #region Attributes
     public static bool StartOfMatch = true;
 
     [SerializeField]
@@ -14,12 +15,16 @@ public class UIMap : OpenersSuperclass
     [SerializeField]
     private AudioClip winSound = null;
 
-    private MapsCacheGetter mapsCache = new MapsCacheGetter();
+    private MapsCache mapsCache;
 
     private SaveFacade saveFacade = new SaveFacade();
+    #endregion
 
+    #region Initialization
     private void Awake()
     {
+        mapsCache = new MapsCacheGetter().GetCacheInstance();
+
         mapsCache.ClearLastSpotVisited();
 
         if (StartOfMatch)
@@ -76,7 +81,6 @@ public class UIMap : OpenersSuperclass
             // Default class Information should be already set in ClassInfo.
         }
     }
-
     private void BringAllDataFromStorage()
     {
         // Preparing for load
@@ -86,11 +90,10 @@ public class UIMap : OpenersSuperclass
         saveFacade.LoadEverything();
 
         // Copying loaded information into the game classes.
-        mapsCache.FillMapsCacheWithSaveFilesData(mapNames);
+        mapsCache.FillMapsCacheUsingLoadedFiles(mapNames);
         CopyDataFromMapsCacheToSceneSpots();
         ClassInfo.CopyLoadedClassesToAttributes();
     }
-
     private string[] GetMapNames()
     {
         int amountOfMaps = finalSpotForEachMap.Length;
@@ -111,35 +114,27 @@ public class UIMap : OpenersSuperclass
             root.BuildFromInfo(rootInfo, mapsCache.GetSpotsInfoList(mapName));
         }
     }
+    #endregion
 
-    public static void LogInfoOfListOfSpots(List<SpotInfo> spots)
+    public void OnPauseMenuOppenerBtnClick()
     {
-        foreach (SpotInfo spt in spots)
-        {
-            spt.LogInfo();
-        }
+        openerOfPopUpsMadeInEditor.OpenPausePopUp();
     }
 
+    #region On "Some Not Battle Spot" Clicked
     public void OnEndOfGameClicked(Transform btnTransform)
     {
         audioRequisitor.RequestBGM(winSound);
-        customPopUpOpener.Open("You Beat the game!!!", "You are Awesome!", "Go to Menu", "Look the Map", GoToMenu);
+        customPopUpOpener.Open("You Beat the game!!!", "You are Awesome!", "Go to Menu", "Look the Map", sceneOpener.OpenMainMenu);
     }
-
-    private void GoToMenu()
-    {
-        sceneOpener.OpenMainMenu();
-        openerOfPopUpsMadeInEditor.CloseAllPopUpsExceptLoading();
-    }
-
     public void OnDeckBuildBtnClicked(Transform btnTransform)
     {
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         sceneOpener.OpenDeckBuildingScene();
     }
+    #endregion
 
     #region On Battle Spot Buttons Clicked
-
     public void OnSimpleBattleClicked(Transform btnTransform)
         {
             openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
@@ -148,7 +143,6 @@ public class UIMap : OpenersSuperclass
             DeckPrototypeFactory.PrepareRandomDeckForTheEnemy();
             SetUpBattleAndOpenIt();
         }
-
     public void OnToughBattleClicked(Transform btnTransform)
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
@@ -157,7 +151,6 @@ public class UIMap : OpenersSuperclass
         DeckPrototypeFactory.PrepareToughRandomDeckForTheEnemy();
         SetUpBattleAndOpenIt();
     }
-
     public void OnBossBattleClicked(Transform btnTransform)
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
@@ -166,11 +159,9 @@ public class UIMap : OpenersSuperclass
         DeckPrototypeFactory.PrepareBossRandomDeckForTheEnemy();
         SetUpBattleAndOpenIt();
     }
-
     #endregion
 
     #region On Master Buttons Clicked
-
     public void OnMageMasterClicked(Transform btnTransform)
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
@@ -179,7 +170,6 @@ public class UIMap : OpenersSuperclass
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         SetUpBattleAndOpenIt();
     }
-
     public void OnWarriorMasterClicked(Transform btnTransform)
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
@@ -188,7 +178,6 @@ public class UIMap : OpenersSuperclass
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         SetUpBattleAndOpenIt();
     }
-
     public void OnRougueMasterClicked(Transform btnTransform)
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
@@ -197,7 +186,6 @@ public class UIMap : OpenersSuperclass
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         SetUpBattleAndOpenIt();
     }
-
     public void OnGuardianMasterClicked(Transform btnTransform)
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
@@ -206,14 +194,7 @@ public class UIMap : OpenersSuperclass
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         SetUpBattleAndOpenIt();
     }
-
     #endregion
-
-    private void SetUpBattleAndOpenIt()
-    {
-        openerOfPopUpsMadeInEditor.CloseAllPopUpsExceptLoading();
-        sceneOpener.OpenBattle();
-    }
 
     private void SetSpotInfoToClearIfPlayerSucceed(Transform spotBtnTransform)
     {
@@ -221,7 +202,6 @@ public class UIMap : OpenersSuperclass
 
         mapsCache.SetSpotInfoToClearIfPlayerSucceed(spot.gameObject.name, spot.MapName);
     }
-
     private Spot GetSpotComponentInParent(Transform btnTransform)
     {
         Spot spot = btnTransform.parent.GetComponent<Spot>();
@@ -233,9 +213,24 @@ public class UIMap : OpenersSuperclass
 
         return spot;
     }
-
-    public void OnPauseMenuOppenerBtnClick()
+    private void SetUpBattleAndOpenIt()
     {
-        openerOfPopUpsMadeInEditor.OpenPausePopUp();
+        sceneOpener.OpenBattle();
+    }
+
+    private class MapsCacheGetter : MapsRuntimeCache
+    {
+        public MapsCache GetCacheInstance()
+        {
+            return cache;
+        }
+    }
+
+    public static void LogInfoOfListOfSpots(List<SpotInfo> spots)
+    {
+        foreach (SpotInfo spt in spots)
+        {
+            spt.LogInfo();
+        }
     }
 }
