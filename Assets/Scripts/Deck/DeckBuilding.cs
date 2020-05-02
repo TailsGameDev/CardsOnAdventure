@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DeckBuilding : PopUpOpener
@@ -68,7 +67,13 @@ public class DeckBuilding : PopUpOpener
 
     private void SaveAndQuit()
     {
+        StartCoroutine(SaveAndQuitCoroutine());
+    }
+
+    private IEnumerator SaveAndQuitCoroutine()
+    {
         popUpOpener.SetLoadingPopUpActiveToTrue();
+        yield return null;
         Card[] cards = deck.GetCards();
         DeckPrototypeFactory.PrepareManuallyBuiltDeckForThePlayer(cards);
         sceneOpener.OpenMapScene();

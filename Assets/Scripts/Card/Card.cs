@@ -6,17 +6,6 @@ using UnityEngine.UI;
 public class Card : SkillsMediatorUser
 {
     #region Attributes
-
-    /// explaining deathCount
-    /// the size is the number of attacks to consider in counting: Ex: let's consider how many died in the last '10' attacks
-    /// in this case 10 would be the size of the deathCount array.
-    /// it starts as 1,1,1... because it will be used to see if the game tied. They will consider the game tied if in the
-    /// last 10 attacks, any card have died. 1,1,1... suggests at least 10 cards have died in the last 10 attacks
-    /// but unfortunately, each time the player ask an attack, it count's 2 or 3 times here because the way
-    /// skills ware implemented
-    private static int[] deathCount = new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-    private static int deathCountIndex = 0;
-
     [SerializeField]
     public ClassInfo classInfo = null;
 
@@ -50,16 +39,9 @@ public class Card : SkillsMediatorUser
     [SerializeField]
     private GameObject DamageTextPrototype = null;
 
-    [SerializeField]
-    private AudioRequisitor audioRequisitor = null;
-    [SerializeField]
-    private AudioClip critSFX = null;
-
     private bool freezing = false;
 
     private GameObject freezingEffect = null;
-
-    private Battlefield battlefield;
 
     [SerializeField]
     private Sprite horizontalSprite = null;
@@ -81,17 +63,14 @@ public class Card : SkillsMediatorUser
     private Color normalVitalityColor = Color.green;
     private Color overhealedColor = Color.yellow;
 
+    private static DeathCounter deathCounter = new DeathCounter(13);
     #endregion
 
     #region Properties
-
-    private static int[] DeathCount { get => deathCount;  set => deathCount = value;  }
     public bool Freezing { get => freezing; }
     public int Vitality { get => vitality; }
     public int AttackPower { get => attackPower; set => attackPower = value; }
-    public Battlefield Battlefield { get => battlefield; set => battlefield = value; }
     public Classes Classe { get => classInfo.Classe; }
-
     public OldSkill Skills {
         get => skills;
         set {
@@ -99,7 +78,6 @@ public class Card : SkillsMediatorUser
             skillText.text = skills.Acronym;
         }
     }
-
     #endregion
 
     private void Awake()
@@ -110,7 +88,7 @@ public class Card : SkillsMediatorUser
         
         skillText.text = skills.Acronym;
 
-        AjustInitialAndLimitVitality();
+        SetInitialAndLimitVitality();
     }
 
     private void Start()
@@ -124,7 +102,7 @@ public class Card : SkillsMediatorUser
         SetVitalityAndUpdateTextLooks(Vitality);
     }
 
-    private void AjustInitialAndLimitVitality()
+    private void SetInitialAndLimitVitality()
     {
         initialVitality = vitality;
         vitalityLimit = vitality + vitality;
@@ -135,47 +113,33 @@ public class Card : SkillsMediatorUser
         Skills.ApplyEffectsConsideringSelectedTarget(opponentBattlefield, attackerBattlefield);
     }
 
-    #region damage
-    public void TakeDamageAndManageCardState(int damage)
+    #region Damage and Healing
+    public void TakeDamageAndManageCardState(int damage, Battlefield battlefieldToRemoveCardInCaseOfDeath)
     {
-        if (damage >= 0)
+        if (damage > 0)
         {
-            if (damage >= 4)
-            {
-                audioRequisitor.RequestSFX(critSFX);
-            }
-
-            SetVitalityAndUpdateTextLooks(Vitality - damage);
-
-            if (damage > 0)
-            {
-                CreateDamageAnimatedText(damage);
-            }
-
+            CreateDamageAnimatedText(damage);
             shakeable.Shake();
-
-            if (Vitality <= 0)
-            {
-                RemoveFreezing();
-                battlefield.Remove(this);
-                StartCoroutine(DieWithAnimation());
-            }
-        }
-        else if (damage < 0)
-        {
-            Debug.LogError("[Card] tryed to apply negative damage. That's wrong! Use Heal method instead");
-        }
-
-        if (Vitality > 0)
-        {
-            RegisterSurvived();
         }
         else
         {
-            RegisterDeath();
+            L.ogError(this,"[Card] tryed to apply negative damage. That's wrong! Use Heal method instead");
+        }
+
+        int newVit = SetVitalityAndUpdateTextLooks(Vitality - damage);
+
+        if (newVit <= 0)
+        {
+            RemoveFreezing();
+            battlefieldToRemoveCardInCaseOfDeath.Remove(this);
+            StartCoroutine(DieWithAnimation());
+            deathCounter.RegisterDeath();
+        }
+        else
+        {
+            deathCounter.RegisterSurvived();
         }
     }
-
     private void CreateDamageAnimatedText(int damage)
     {
         RectTransform damageTextTransform = Instantiate(DamageTextPrototype).GetComponent<RectTransform>();
@@ -189,104 +153,12 @@ public class Card : SkillsMediatorUser
         damageTextTransform.gameObject.SetActive(true);
     }
 
-    private void RegisterDeath()
-    {
-        deathCountIndex = (deathCountIndex + 1) % DeathCount.Length;
-        DeathCount[deathCountIndex] = 1;
-    }
-
-    private void RegisterSurvived()
-    {
-        deathCountIndex = (deathCountIndex + 1) % DeathCount.Length;
-        DeathCount[deathCountIndex] = 0;
-    }
-
-    // TODO: create script to put in each object that will fade
-    private IEnumerator DieWithAnimation()
-    {
-        float fadePercentage = 1.0f;
-        float countDownFadeTimer = fadingDurationOnDeath;
-
-        Image[] images = GetComponentsInChildren<Image>();
-
-        Text[] texts = GetComponentsInChildren<Text>();
-
-        Color[] originalColors = new Color[images.Length];
-
-        float[] r = new float[originalColors.Length]; float[] g = new float[originalColors.Length];
-        float[] b = new float[originalColors.Length];
-
-        for (int i = 0; i < images.Length; i++)
-        {
-            originalColors[i] = images[i].color;
-            Color color = originalColors[i];
-            r[i] = color.r; g[i] = color.g; b[i] = color.b;
-        }
-
-        float[] tr = new float[originalColors.Length]; float[] tg = new float[originalColors.Length];
-        float[] tb = new float[originalColors.Length];
-        for (int i = 0; i < texts.Length; i++)
-        {
-            tr[i] = texts[i].color.r;
-            tg[i] = texts[i].color.g;
-            tb[i] = texts[i].color.b;
-        }
-
-        while (countDownFadeTimer > 0.0f)
-        {
-            fadePercentage = countDownFadeTimer / fadingDurationOnDeath;
-
-            for (int i = 0; i < images.Length; i++)
-            {
-                if (images[i] != null)
-                {
-                    images[i].color = new Color(r[i], g[i], b[i], fadePercentage); ;
-                }
-            }
-
-            for (int i = 0; i < texts.Length; i++)
-            {
-                if (texts[i] != null)
-                {
-                    texts[i].color = new Color(tr[i], tg[i], tb[i], fadePercentage);
-                }
-            }
-
-            countDownFadeTimer -= Time.deltaTime;
-            yield return null;
-        }
-
-        Destroy(gameObject);
-    }
-
-    public void AjustCardToDifficult(int difficultyLevel)
-    {
-        attackPower = attackPower * difficultyLevel;
-    }
-
-    public void InconditionalHealing(int healAmount)
-    {
-        SetVitalityAndUpdateTextLooks(Vitality + healAmount);
-    }
-
-    public void HealNotExceedingDoubleVitalityLimit(int healAmount)
-    {
-        int vit = Mathf.Min(vitalityLimit, vitality + healAmount);
-
-        SetVitalityAndUpdateTextLooks(vit);
-    }
-
-    public bool CanBeHealed()
-    {
-        return vitality < vitalityLimit;
-    }
-
-    private void SetVitalityAndUpdateTextLooks(int value)
+    private int SetVitalityAndUpdateTextLooks(int value)
     {   
         vitality = value;
         UpdateVitalityTextAndItsColor();
+        return vitality;
     }
-
     private void UpdateVitalityTextAndItsColor()
     {
         vitalityText.text = vitality.ToString();
@@ -300,35 +172,55 @@ public class Card : SkillsMediatorUser
             vitalityText.color = overhealedColor;
         }
     }
+
+    private IEnumerator DieWithAnimation()
+    {
+        Fader fader = new Fader();
+        yield return fader.DieWithAnimation(
+                fadingDuration: fadingDurationOnDeath,
+                allChildrenImages: GetComponentsInChildren<Image>(),
+                allChildrenTexts: GetComponentsInChildren<Text>()
+            );
+
+        Destroy(gameObject);
+    }
+
+    public bool CanBeHealed()
+    {
+        return vitality < vitalityLimit;
+    }
+    public void HealNotExceedingDoubleVitalityLimit(int healAmount)
+    {
+        int vit = Mathf.Min(vitalityLimit, vitality + healAmount);
+
+        SetVitalityAndUpdateTextLooks(vit);
+    }
+    public void InconditionalHealing(int healAmount)
+    {
+        SetVitalityAndUpdateTextLooks(Vitality + healAmount);
+    }
     #endregion
 
-    #region Has XXX Effect
+    #region Has XXXX Skill
     public bool HasBlockSkill()
     {
         return Skills.HasBlockEffect();
     }
-
     public bool HasHeavyArmorSkill()
     {
         return Skills.HasHeavyArmorEffect();
     }
-
     public bool HasReflectSkill()
     {
         return Skills.HasReflectEffect();
     }
     #endregion
 
-    public string GetSkillFullName()
-    {
-        return skills.FullName;
-    }
-
+    #region VFX and Methods to Change Card Visually
     public void SetObfuscate(bool obfuscate)
     {
         obfuscator.gameObject.SetActive(obfuscate);
     }
-
     public void ShowDefenseVFXandSFXIfHasBlockOrReflect(float attackerYPosition)
     {
         if(skills.HasReflectEffect() || skills.HasHeavyArmorEffect())
@@ -336,13 +228,11 @@ public class Card : SkillsMediatorUser
             ShowDefenseVFXandSFX( attackerYPosition );
         }
     }
-
     public void ShowDefenseVFXandSFX(float attackerYPosition)
     {
         ShowDefenseVFX(attackerYPosition);
-        ShowDefenseSFX();
+        skills.PlayDefenseSFX();
     }
-
     public void ShowDefenseVFX(float attackerYPosition)
     {
         UnityEngine.Vector3 forwards = new UnityEngine.Vector3(0, 0, -transform.position.y);
@@ -363,7 +253,6 @@ public class Card : SkillsMediatorUser
             vfx.transform.eulerAngles = new UnityEngine.Vector3(0, 0, 180);
         }
     }
-
     public void ChangeToHorizontalVersion()
     {
         cardImage.sprite = horizontalSprite;
@@ -376,11 +265,43 @@ public class Card : SkillsMediatorUser
         attackPowerText.transform.parent.position = attackPowerHorizontalSpot.position;
         skillText.transform.parent.position = skillsHorizontalSpot.position;
     }
-
-    private void ShowDefenseSFX()
+    public void MakeColorGray()
     {
-        skills.PlayDefenseSFX();
+        const float GRAY_INTENSITY = 0.5f;
+        const float ALPHA = 1.0f;
+        cardImage.color = new Color(GRAY_INTENSITY, GRAY_INTENSITY, GRAY_INTENSITY, ALPHA);
     }
+    public void MakeColorDefault()
+    {
+        cardImage.color = Color.white;
+    }
+    #endregion
+
+
+    #region Get Some Sprite Or Text
+    public Sprite GetCardSprite()
+    {
+        return cardImage.sprite;
+    }
+    public string GetSkillFullName()
+    {
+        return skills.FullName;
+    }
+    public string GetColoredTitleForTooltip()
+    {
+        return "<color=#"+ classInfo.ColorHexCode + ">"+ Classe+"</color>";
+    }
+    public string GetExplanatoryText()
+    {
+        return GetSkillsExplanatoryText() + "\n" +
+               "<color=#FD7878>Attack Power: " + attackPower + "</color>\n" +
+               "<color=#9EFA9D>Vitality: " + vitality + "</color>\n";
+    }
+    public string GetSkillsExplanatoryText()
+    {
+        return skills.GetExplanatoryText(attackPower);
+    }
+    #endregion
 
     public void ApplyFreezing(GameObject freezingEffect)
     {
@@ -390,7 +311,6 @@ public class Card : SkillsMediatorUser
         ChildMaker.AdoptAndTeleport(transform, freezingEffect.GetComponent<RectTransform>());
         freezingEffect.transform.localScale = UnityEngine.Vector3.one;
     }
-
     public void RemoveFreezing()
     {
         freezing = false;
@@ -410,56 +330,15 @@ public class Card : SkillsMediatorUser
         return skills.DamageReflectionPercentage;
     }
 
-    public string GetColoredTitleForTooltip()
-    {
-        return "<color=#"+ classInfo.ColorHexCode + ">"+ Classe+"</color>";
-    }
-
-    public Sprite GetCardSprite()
-    {
-        return cardImage.sprite;
-    }
-
-    public string GetExplanatoryText()
-    {
-        return GetSkillsExplanatoryText() + "\n" +
-               "<color=#FD7878>Attack Power: " + attackPower + "</color>\n" +
-               "<color=#9EFA9D>Vitality: " + vitality + "</color>\n";
-    }
-
-    public string GetSkillsExplanatoryText()
-    {
-        return skills.GetExplanatoryText(attackPower);
-    }
-
-    public void SumPlayerBonuses()
+    public void ApplyPlayerBonuses()
     {
         attackPower += classInfo.AttackPowerBonus;
         attackPowerText.text = attackPower.ToString();
 
         vitality += classInfo.VitalityBonus;
-        AjustInitialAndLimitVitality();
+        SetInitialAndLimitVitality();
         UpdateVitalityTextAndItsColor();
     }
-
-    public static int GetDeathCount()
-    {
-        int counter = 0;
-        for (int i = 0; i < DeathCount.Length; i++)
-        {
-            counter += DeathCount[i];
-        }
-        return counter;
-    }
-
-    public static void ResetDeathCount()
-    {
-        for (int i = 0; i < DeathCount.Length; i++)
-        {
-            DeathCount[i] = 1;
-        }
-    }
-
     public void BuffAttackPowerForThisMatch()
     {
         attackPower++;
@@ -470,21 +349,17 @@ public class Card : SkillsMediatorUser
     {
         return card.Skills == skills;
     }
-
-    public void MakeColorGray()
-    {
-        const float GRAY_INTENSITY = 0.5f;
-        const float ALPHA = 1.0f;
-        cardImage.color = new Color(GRAY_INTENSITY, GRAY_INTENSITY, GRAY_INTENSITY, ALPHA);
-    }
-
-    public void MakeColorDefault()
-    {
-        cardImage.color = Color.white;
-    }
-
     public Card GetClone()
     {
         return Instantiate(this);
+    }
+
+    public static void ResetDeathCount()
+    {
+        deathCounter.ResetDeathCount();
+    }
+    public static int GetDeathCount()
+    {
+        return deathCounter.GetDeathCount();
     }
 }

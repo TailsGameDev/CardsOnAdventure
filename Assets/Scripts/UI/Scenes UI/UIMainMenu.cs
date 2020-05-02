@@ -77,6 +77,11 @@ public class UIMainMenu : UIPauseMenu
         sceneOpener.OpenMapScene();
     }
 
+    public void OnTutorialMainMenuBtnClicked()
+    {
+        sceneOpener.OpenTutorialMainMenuScene();
+    }
+
     public void OnCreditsBtnClicked()
     {
         sceneOpener.OpenScene("Credits");

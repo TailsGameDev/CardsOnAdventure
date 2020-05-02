@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ClassInfo : MonoBehaviour
@@ -58,7 +57,6 @@ public class ClassInfo : MonoBehaviour
     {
         return classesInfo[classe].color;
     }
-
     public static Card[] GetCardsOfClass(Classes classe)
     {
         if (classesInfo[classe].cards == null)
@@ -76,7 +74,6 @@ public class ClassInfo : MonoBehaviour
     {
         classesInfo[classe].vitalityBonus++;
     }
-
     public static void GiveAttackPowerBonusToClass(Classes classe)
     {
         classesInfo[classe].attackPowerBonus++;
@@ -86,6 +83,11 @@ public class ClassInfo : MonoBehaviour
     {
         ClassesSerializable classesSerializable = new ClassesSerializable(classesInfo);
         saveFacade.PrepareClassesBonusesForSaving(classesSerializable);
+    }
+    public static void CopyLoadedClassesToAttributes()
+    {
+        ClassesSerializable classesSerializable = saveFacade.GetLoadedClasses();
+        classesSerializable.SetBonusesInAllClasses(classesInfo);
     }
 
     public static void ResetBonusesToAllClasses()
@@ -97,9 +99,4 @@ public class ClassInfo : MonoBehaviour
         }
     }
 
-    public static void CopyLoadedClassesToAttributes()
-    {
-        ClassesSerializable classesSerializable = saveFacade.GetLoadedClasses();
-        classesSerializable.SetBonusesInAllClasses(classesInfo);
-    }
 }

@@ -36,7 +36,7 @@ public class CardsCollection : DynamicSizeScrollableCardHolder
 
         PopulateCardAmountTexts();
 
-        yield return PopulateSlotsWithCards();
+        PopulateSlotsWithCards();
     }
     private void PopulateAmountOfEachCard()
     {
@@ -56,15 +56,12 @@ public class CardsCollection : DynamicSizeScrollableCardHolder
             UpdateCardColorAndAmountText(i);
         }
     }
-    private IEnumerator PopulateSlotsWithCards()
+    private void PopulateSlotsWithCards()
     {
         for (int i = 0; i < cards.Length; i++)
         {
-            // It's not necessary to wait a frame. Just makes an effect of each card being placed, instead of all in once
-            // yield return null;
             ChildMaker.AdoptTeleportAndScale(slots[i], cards[i].GetComponent<RectTransform>());
         }
-        yield return null;
     }
     #endregion
 

@@ -16,7 +16,7 @@
                             title: "Is the game tied?",
                             warningMessage: "If you wish, get a +1 Attack Power buff to all cards currently on the battlefield (your enemy's ones included)",
                             confirmBtnMessage: "Buff all Attacks!",
-                            cancelBtnMessage: "I don't need buffs.",
+                            cancelBtnMessage: "No need for buffs.",
                             onConfirm: () => { BuffCards(); Proceed(); },
                             onCancel: Proceed
                         );

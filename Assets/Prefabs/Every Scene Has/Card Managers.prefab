@@ -878,10 +878,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acronym: HO
   fullName: Hook
-  description: "If the attack targets the backline, and there is a card in front
-    of the target, swap these two enemy cards and apply half of the <half>Attack
-    Power as damage to the target. Otherwise it\u2019s just a regular attack. Ignores
-    Block."
+  description: If you attack a PROTECTED card, swap the PROTECTED card with the one
+    in front of it.
   attackVFX: {fileID: 3264905262389925203, guid: 1523e8736678d8e43a480879f188f3e8,
     type: 3}
   defenseVFX: {fileID: 0}

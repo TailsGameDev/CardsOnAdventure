@@ -114,7 +114,7 @@ public class DeckPrototypeFactory : MonoBehaviour
             }
 
             // Sum bonuses
-            playerDeck[i].SumPlayerBonuses();
+            playerDeck[i].ApplyPlayerBonuses();
         }
 
         return playerDeck;
@@ -245,7 +245,7 @@ public class DeckPrototypeFactory : MonoBehaviour
 
         protected Card GetCloneOfTheRandomCard()
         {
-            return Instantiate(deckPrototypeFactory.theRandomCard);
+            return deckPrototypeFactory.theRandomCard.GetClone();
         }
     }
 }

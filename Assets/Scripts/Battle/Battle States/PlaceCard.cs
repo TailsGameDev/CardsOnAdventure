@@ -33,7 +33,7 @@
 
             Card card = hand.RemoveCardFromSelectedIndex();
 
-            battlefield.PlaceCardInSelectedIndexAndSetCardsBattlefield(card);
+            battlefield.PutCardInSelectedIndex(card);
             cardWasSuccessfullyPlaced = true;
 
             placeCardSFXRequest.RequestPlaying();

@@ -46,6 +46,11 @@ public class UIBtn : MonoBehaviour
     */
     public EventTrigger eventTrigger;
 
+    private void OnEnable()
+    {
+        rectTransform.localScale = normalSize;
+    }
+
     protected void Awake()
     {
         rectTransform = imageComponent.GetComponent<RectTransform>();

@@ -3,6 +3,7 @@ public class ManualDeckBuider : DeckPrototypeFactory.DeckBuilder
 {
     private int[] indexOfEachCardPrototype;
 
+    #region Initialization
     private ManualDeckBuider(int size) : base(size)
     {
         indexOfEachCardPrototype = new int[size];
@@ -50,6 +51,7 @@ public class ManualDeckBuider : DeckPrototypeFactory.DeckBuilder
         }
         return prototypeIndex;
     }
+    #endregion
 
     public override Card[] GetDeck()
     {

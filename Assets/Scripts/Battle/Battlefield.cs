@@ -93,12 +93,6 @@ public class Battlefield : CardsHolder
         }
     }
 
-    public void PlaceCardInSelectedIndexAndSetCardsBattlefield(Card card)
-    {
-        card.Battlefield = this;
-        PutCardInIndex(card, GetSelectedIndex());
-    }
-
     #region Neighborhoods
     public Card GetCardInFrontOf(int index)
     {

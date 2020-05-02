@@ -8,11 +8,6 @@ public class UIPauseMenu : PopUpOpener
     [SerializeField]
     protected SceneOpener sceneOpener = null;
 
-    public void OnWhatTheTeachingSpiritIsBtnClicked()
-    {
-        popUpOpener.OpenWhatTheTeachingSpiritIsPopUp();
-    }
-
     public void OnBattleRulesBtnClicked()
     {
         popUpOpener.OpenBattleRulesPopUp();

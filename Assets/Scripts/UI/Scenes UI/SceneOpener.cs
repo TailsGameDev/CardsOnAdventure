@@ -22,6 +22,11 @@ public class SceneOpener : PopUpOpener
         OpenScene("Deck Building");
     }
 
+    public void OpenTutorialMainMenuScene()
+    {
+        OpenScene("Tutorial Main Menu");
+    }
+
     public void OpenScene(string name)
     {
         popUpOpener.SetLoadingPopUpActiveToTrue();
