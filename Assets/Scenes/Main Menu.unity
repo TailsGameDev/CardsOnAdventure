@@ -987,7 +987,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97b5c6f0f58702d4390e241b35dce843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneOpener: {fileID: 0}
 --- !u!1 &1204076099
 GameObject:
   m_ObjectHideFlags: 0
@@ -1076,7 +1075,7 @@ PrefabInstance:
     - target: {fileID: 2001577861149971916, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
       propertyPath: m_Text
-      value: What the * is??
+      value: What the '?' is??
       objectReference: {fileID: 0}
     - target: {fileID: 3084420522387046562, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}

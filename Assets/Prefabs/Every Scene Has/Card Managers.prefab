@@ -526,7 +526,7 @@ GameObject:
   - component: {fileID: 4687705842546900960}
   - component: {fileID: 4687705842546900959}
   m_Layer: 0
-  m_Name: Heavy Armor
+  m_Name: Tough
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -559,7 +559,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acronym: HA
-  fullName: Heavy Armor
+  fullName: Tough
   description: This card receives just half of the damage when it is attacked.
   attackVFX: {fileID: 0}
   defenseVFX: {fileID: 5289526594200615245, guid: 6b3cfbc3488009e40bf93abfdeab6afc,
@@ -623,10 +623,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acronym: AR
   fullName: Area
-  description: "If the attack targets the backline, and there is a card in front
-    of the target, swap these two enemy cards and apply half of the <half>Attack
-    Power as damage to the target. Otherwise it\u2019s just a regular attack. Ignore
-    Protection."
+  description: All targets adjacent cards and the target take half of the <half>Attack
+    Power of the mage as damage. Ignore Protection.
   attackVFX: {fileID: 4034280589589381900, guid: 3d6df27cc8cc1054f8bec7f3c4da598f,
     type: 3}
   defenseVFX: {fileID: 0}
@@ -1256,7 +1254,7 @@ GameObject:
   - component: {fileID: 4687705844017114666}
   - component: {fileID: 4687705844017114667}
   m_Layer: 0
-  m_Name: Double Attack
+  m_Name: 2x Atack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1289,7 +1287,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acronym: DA
-  fullName: Double Attack
+  fullName: 2x Attack
   description: The card performs its attack twice.
   attackVFX: {fileID: 5748607524574563189, guid: 98279da2f24c5c14788a1493f4b2b327,
     type: 3}
@@ -1352,7 +1350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acronym: '-'
-  fullName: Basic Attack
+  fullName: No Skill
   description: Deals damage equals the <full>Attack Power to the target.
   attackVFX: {fileID: 0}
   defenseVFX: {fileID: 0}
@@ -1424,7 +1422,7 @@ GameObject:
   - component: {fileID: 4687705844203315911}
   - component: {fileID: 4687705844203315910}
   m_Layer: 0
-  m_Name: Sanctuary
+  m_Name: Heal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1457,7 +1455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acronym: SA
-  fullName: Sanctuary
+  fullName: Heal
   description: "Every time this card attacks, the Cleric and it\u2019s neighbors
     receive +2 Vitality."
   attackVFX: {fileID: 0}
@@ -1747,7 +1745,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acronym: SA
-  fullName: Sanctuary
+  fullName: Heal
   description: "Deals half of the damage. Heals two times. Each time, the cleric
     targets the ally with less Vitality. The heal amount is equal to half of the
     Cleric\u2019s <half>Attack Power. No card can be healed more than the double
@@ -1862,7 +1860,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6660459552713144829}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 63}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2039,7 +2037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acronym: SA
-  fullName: Sanctuary
+  fullName: Heal
   description: Deals half of the damage. Heals the cleric and its allies with half
     of the Attack Power. Cards can be overhealed until the double of the initial
     vitality. The cleric is powerful enough just to heal 2 cards. He will try to

@@ -71,11 +71,13 @@ public class Card : SkillsMediatorUser
     public int Vitality { get => vitality; }
     public int AttackPower { get => attackPower; set => attackPower = value; }
     public Classes Classe { get => classInfo.Classe; }
+    public bool IgnoreOpponentsBlock { get => skills.IgnoreOpponentsBlock; }
     public OldSkill Skills {
         get => skills;
         set {
             skills = value;
-            skillText.text = skills.Acronym;
+            skillText.text = skills.FullName;
+            skillText.color = classInfo.Color;
         }
     }
     #endregion
@@ -86,8 +88,9 @@ public class Card : SkillsMediatorUser
         classInfo.TryToRegisterCardInClass(this);
 
         attackPowerText.text = AttackPower.ToString();
-        
-        skillText.text = skills.Acronym;
+
+        // Triggers update in skill text
+        Skills = skills;
 
         SetInitialAndLimitVitality();
     }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class UIMap : OpenersSuperclass
@@ -125,7 +126,14 @@ public class UIMap : OpenersSuperclass
     public void OnEndOfGameClicked(Transform btnTransform)
     {
         audioRequisitor.RequestBGM(winSound);
-        customPopUpOpener.Open("You Beat the game!!!", "You are Awesome!", "Go to Menu", "Look the Map", sceneOpener.OpenMainMenu);
+        customPopUpOpener.Open(
+                title: "You Beat the game!!!",
+                warningMessage: "You are Awesome!",
+                confirmBtnMessage: "Look the Map",
+                cancelBtnMessage: "Go to Menu",
+                onConfirm: () => { customPopUpOpener.ClosePopUpOnTop(); },
+                onCancel: sceneOpener.OpenMainMenu
+            );
     }
     public void OnDeckBuildBtnClicked(Transform btnTransform)
     {

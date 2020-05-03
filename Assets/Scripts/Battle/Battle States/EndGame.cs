@@ -50,8 +50,9 @@ public class EndGame : BattleState
                         if (IsMasterBattle())
                         {
                             customPopUpOpener.Open(
-                                title: "You've beaten a Master!",
-                                warningMessage: "All your cards of class " + masterClass + " level up!\nPlease, choose what to improve on them!",
+                                title: "You beat a Master!",
+                                warningMessage: "<color=#FFFFFF>And then you 'borrowed' some of their equipment!</color>" +
+                                    " ALL YOUR " + masterClass + " CARDS WILL BE BUFFED! PLEASE CHOOSE:",
                                 confirmBtnMessage: "+1 Vitality",
                                 cancelBtnMessage: "+1 Attack Power",
                                 onConfirm: ImproveVitalityThenSeeMap,
@@ -77,9 +78,9 @@ public class EndGame : BattleState
                         customPopUpOpener.Open(
                             title: "You've lost the battle",
                             warningMessage: "The enemy start to search you fallen card's pockets",
-                            confirmBtnMessage: "Go to main menu",
+                            confirmBtnMessage: "Go back in time",
                             cancelBtnMessage: "Sit and cry",
-                            QuitBattleLoadMainMenu,
+                            GoBackInTime,
                             defeatBGMRequest
                         );
                     }
@@ -109,11 +110,11 @@ public class EndGame : BattleState
         ClassInfo.GiveVitalityBonusToClass(masterClass);
         QuitBattleAndGoToMap();
     }
-    private void QuitBattleLoadMainMenu()
+    private void GoBackInTime()
     {
         stopAllSFXRequest.RequestPlaying();
         quit = true;
-        sceneOpener.OpenMainMenu();
+        sceneOpener.OpenBattle();
     }
     public override BattleState GetNextState()
     {

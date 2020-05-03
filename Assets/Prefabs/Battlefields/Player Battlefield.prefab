@@ -99,7 +99,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 161, y: 241.5}
-  m_Spacing: {x: 23.9, y: 26.9}
+  m_Spacing: {x: 36, y: 26.9}
   m_Constraint: 0
   m_ConstraintCount: 2
 --- !u!1 &8817748024268384894
@@ -544,12 +544,14 @@ MonoBehaviour:
   - {fileID: 8817748024570194549}
   - {fileID: 8817748024268384895}
   - {fileID: 8817748024906613213}
-  uiBattle: {fileID: 0}
+  uiCardsHolderEventHandler: {fileID: 0}
   protectionVFXtoEachCard:
   - {fileID: 3986965499263608791}
   - {fileID: 1552526313960588391}
   - {fileID: 5121190280910781554}
   - {fileID: 6368066039146852663}
+  increaseScaleValueInProtectionAnimation: 0.2
+  increaseScaleSpeedMultiplier: 1
 --- !u!1 &8817748024906613212
 GameObject:
   m_ObjectHideFlags: 0

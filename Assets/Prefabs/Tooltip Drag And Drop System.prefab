@@ -173,7 +173,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: b6351f55f62c6ca4eacab29e36e00de1, type: 3}
-    m_FontSize: 167
+    m_FontSize: 121
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -184,7 +184,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '*'
+  m_Text: '?'
 --- !u!1 &4172432685806495869
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,10 +245,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: '*'
+  title: '?'
   tipData:
   - message: "Greetings, I am the Teaching Spirit. I get stronger every time I teach
-      you, so you better <color=#1DEFC7>DRAG AND DROP THE \u201C * \u201D</color>,
+      you, so you better <color=#1DEFC7>DRAG AND DROP THE \u201C ? \u201D</color>,
       I mean, me, <color=#1DEFC7>WHEREVER YOU WANT AND IF I CAN, I WILL TEACH YOU
       SOMETHING INTERESTING ABOUT IT!!</color> Ah\u2026 I feel great adventure awaits
       us, my dear. Can you also feel this? "
@@ -287,7 +287,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: b6351f55f62c6ca4eacab29e36e00de1, type: 3}
-    m_FontSize: 167
+    m_FontSize: 121
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 10
@@ -298,7 +298,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '*'
+  m_Text: '?'
 --- !u!61 &8084669244331487166
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -106,7 +106,8 @@ public class SaveFacade
         }
         else
         {
-            L.ogError("SaveEverything was called, but at least one attribute is still null.", this);
+            L.ogWarning("SaveEverything was called, but at least one attribute is still null. " +
+                "This is ok at the start of the game", this);
         }
     }
 }

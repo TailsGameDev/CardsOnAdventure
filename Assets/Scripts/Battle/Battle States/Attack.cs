@@ -102,6 +102,9 @@ public class Attack : BattleState
 
             if (ReceivedValidInput())
             {
+                bool attackerIgnoresBlock = attackerBattlefield.GetSelectedCard().IgnoreOpponentsBlock;
+                opponentBattleField.MakeProtectionEvidentOnSelectedIfNeeded(attackerIgnoresBlock);
+
                 Card myCard = attackerBattlefield.GetSelectedCard();
                 myCard.AttackSelectedCard(opponentBattleField, attackerBattlefield);
 

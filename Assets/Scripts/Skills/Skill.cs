@@ -55,7 +55,7 @@ public abstract class Skill : SkillsMediatorUser
     }
     public string GetExplanatoryText(int attackPower)
     {
-        return "-[" + Acronym + "] " + FullName + ": " + Description
+        return FullName + ": " + Description
             .Replace("<half>Attack Power", "Attack Power (" + attackPower / 2 + ")")
             .Replace("<full>Attack Power", "Attack Power (" + attackPower + ")");
     }

@@ -98,8 +98,8 @@ MonoBehaviour:
       card in front of it has the <color=#1DEFC7>BLOCK SKILL</color>, normal attacks
       that target this card will actually hit the card in front of it.<br> <color=#1DEFC7>SOME
       CARDS</color>, however, <color=#1DEFC7>IGNORE PROTECTION.</color> If a card
-      ignores the block skill, it\u2019s description ends with \u201CIgnore Protection\u201D
-      words.<br> "
+      ignores protection and the block skill, it\u2019s description ends with \u201CIgnore
+      Protection\u201D words.<br> "
     background: {fileID: 0}
     height: 800
   popUpOpener: {fileID: 0}

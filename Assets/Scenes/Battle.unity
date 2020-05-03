@@ -131,7 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 35391509}
   m_Layer: 5
-  m_Name: Standing
+  m_Name: Cards Counter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1049,7 +1049,7 @@ GameObject:
   - component: {fileID: 523226921}
   - component: {fileID: 523226920}
   m_Layer: 5
-  m_Name: Standing Enemy
+  m_Name: Counter Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1071,8 +1071,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 26.179972, y: -16.06}
-  m_SizeDelta: {x: -52.360058, y: 51.190002}
+  m_AnchoredPosition: {x: 22.759972, y: -16.06}
+  m_SizeDelta: {x: -45.520058, y: 51.190002}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &523226920
 MonoBehaviour:
@@ -1121,7 +1121,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Standing: '
+  m_Text: 'Cards: '
 --- !u!222 &523226922
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1338,8 +1338,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 28.7}
-  m_SizeDelta: {x: 789.7, y: 1042.6}
+  m_AnchoredPosition: {x: 0, y: 38}
+  m_SizeDelta: {x: 789.7, y: 1061.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &668044074
 MonoBehaviour:
@@ -1576,12 +1576,12 @@ PrefabInstance:
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
@@ -1796,7 +1796,7 @@ GameObject:
   - component: {fileID: 848171997}
   - component: {fileID: 848171999}
   m_Layer: 5
-  m_Name: Standing Enemy Background
+  m_Name: Counter Enemy Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1817,10 +1817,10 @@ RectTransform:
   m_Father: {fileID: 35391509}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1208}
-  m_SizeDelta: {x: 327, y: 100}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -36}
+  m_SizeDelta: {x: 234.56, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &848171997
 MonoBehaviour:
@@ -2324,7 +2324,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 67.025024}
+  m_AnchoredPosition: {x: 0, y: 85}
   m_SizeDelta: {x: 0, y: 134.05}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1085662644
@@ -2650,7 +2650,7 @@ GameObject:
   - component: {fileID: 1225382200}
   - component: {fileID: 1225382202}
   m_Layer: 5
-  m_Name: Standing Player Background
+  m_Name: Counter Player Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2674,7 +2674,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 241}
-  m_SizeDelta: {x: 327, y: 100}
+  m_SizeDelta: {x: 234.56, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1225382200
 MonoBehaviour:
@@ -3385,7 +3385,7 @@ GameObject:
   - component: {fileID: 1893482750}
   - component: {fileID: 1893482749}
   m_Layer: 5
-  m_Name: Standing Player
+  m_Name: Counter Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3407,8 +3407,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 26.179972, y: -16.06}
-  m_SizeDelta: {x: -52.360058, y: 51.190002}
+  m_AnchoredPosition: {x: 22.759972, y: -16.06}
+  m_SizeDelta: {x: -45.520058, y: 51.190002}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1893482749
 MonoBehaviour:
@@ -3457,7 +3457,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Standing: '
+  m_Text: 'Cards: '
 --- !u!222 &1893482751
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4391,7 +4391,7 @@ PrefabInstance:
     - target: {fileID: 461324940139539389, guid: 5808e81faf34fbf42b92819a71f2f3bd,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 10
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 461324940139539389, guid: 5808e81faf34fbf42b92819a71f2f3bd,
         type: 3}

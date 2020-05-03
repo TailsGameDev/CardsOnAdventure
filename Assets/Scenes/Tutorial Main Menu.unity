@@ -1052,14 +1052,14 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "Can you see a \" * \" in the top left corner of your screen?\r\n\r\nCan
+  m_Text: "Can you see a \" ? \" in the top left corner of your screen?\r\n\r\nCan
     you? Oh my God! That's amazing! That\u2019s a Teaching Spirit!\r\n\r\n<color=#1DEFC7>YOU
-    CAN DRAG AND DROP THE \u201C * \u201D</color>, I mean, the Teaching Spirit, 
+    CAN DRAG AND DROP THE \u201C ? \u201D</color>, I mean, the Teaching Spirit, 
     <color=#1DEFC7>WHEREVER YOU WANT AND MAYBE HE WILL TEACH YOU SOMETHING INTERESTING
     ABOUT IT!!</color>\r\n\r\nThe legends say that they only appear to the bravest
     of the bravest ones. You are very special!\r\nAlso, Teaching Spirits get stronger
     when they teach adventurers like you, so believe me: he will love it if you <color=#1DEFC7>DRAG
-    AND DROP THE \u201C * \u201D ALL OVER THE GAME!!</color>\r\n\r\nTell me, adventurer,
+    AND DROP THE \u201C ? \u201D ALL OVER THE GAME!!</color>\r\n\r\nTell me, adventurer,
     do you believe in spirits?\r\n"
 --- !u!222 &1539777103
 CanvasRenderer:

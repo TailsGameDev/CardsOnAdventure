@@ -1,9 +1,15 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Battlefield : CardsHolder
 {
     [SerializeField]
     private GameObject[] protectionVFXtoEachCard = null;
+
+    [SerializeField]
+    private float increaseScaleValueInProtectionAnimation = 0.2f;
+    [SerializeField]
+    private float increaseScaleSpeedMultiplier = 1.0f;
 
     const int CODE_TO_STOP = int.MaxValue;
 
@@ -272,6 +278,36 @@ public class Battlefield : CardsHolder
         for (int i = 0; i < cards.Length; i++)
         {
             protectionVFXtoEachCard[i].SetActive(false);
+        }
+    }
+    public void MakeProtectionEvidentOnSelectedIfNeeded(bool attackerIgnoresBlock)
+    {
+        int selectedIndex = GetSelectedIndex();
+        Card cardInFrontOfTarget = GetCardInFrontOf(selectedIndex);
+        bool attackWillBeBlocked = cardInFrontOfTarget!= null && cardInFrontOfTarget.HasBlockSkill();
+        if (IsThereACardInFrontOf(selectedIndex) && !attackerIgnoresBlock && !attackWillBeBlocked)
+        {
+            StartCoroutine(MakeProtectionEvident(selectedIndex));
+        }
+    }
+    private IEnumerator MakeProtectionEvident(int selectedIndex)
+    {
+        Transform protection = protectionVFXtoEachCard[selectedIndex].transform;
+        Vector3 originalScale = protection.localScale;
+        Vector3 targetScale = originalScale + new Vector3(increaseScaleValueInProtectionAnimation,
+                                                        increaseScaleValueInProtectionAnimation,0.0f);
+        while (protection.localScale.x < targetScale.x)
+        {
+            float t = Time.deltaTime * increaseScaleSpeedMultiplier;
+            protection.localScale += new Vector3(t,t,t);
+            yield return null;
+        }
+
+        while (protection.localScale.x > originalScale.x)
+        {
+            float t = Time.deltaTime * increaseScaleSpeedMultiplier;
+            protection.localScale -= new Vector3(t, t, t);
+            yield return null;
         }
     }
     #endregion
