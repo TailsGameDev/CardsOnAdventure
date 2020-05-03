@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 public class CardDragAndDrop : DragAndDrop
 {
@@ -12,6 +9,8 @@ public class CardDragAndDrop : DragAndDrop
     private Transform originalParent;
 
     private bool isDragging;
+
+    public bool IsDragging { get => isDragging; }
 
     protected override void Update()
     {
