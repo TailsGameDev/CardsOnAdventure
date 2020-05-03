@@ -74,6 +74,7 @@ public class UIMainMenu : UIPauseMenu
     private void NewGame()
     {
         UIMap.StartOfMatch = true;
+        DeckPrototypeFactory.PrepareRandomDeckForThePlayerAndSaveItInStorage();
         sceneOpener.OpenMapScene();
     }
 

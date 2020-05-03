@@ -4,7 +4,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class Persistence
 {
-    public void GenericSave<T>(string nomeArquivo, T dadosDoObjeto)
+    protected void GenericSave<T>(string nomeArquivo, T dadosDoObjeto)
     {
         BinaryFormatter formater = new BinaryFormatter();
         string path = Application.persistentDataPath + nomeArquivo;
@@ -12,14 +12,11 @@ public class Persistence
         formater.Serialize(stream, dadosDoObjeto);
         stream.Close();
     }
-
-    
-    public bool DoesSaveExist(string fileName)
+    protected bool DoesSaveExist(string fileName)
     {
         return File.Exists(Application.persistentDataPath + fileName);
     }
-    
-    public T GenericLoad<T>(string nomeArquivo)
+    protected T GenericLoad<T>(string nomeArquivo)
     {
         string path = Application.persistentDataPath + nomeArquivo;
         if (File.Exists(path))

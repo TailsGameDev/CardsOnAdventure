@@ -27,7 +27,7 @@ public class Battlefield : CardsHolder
         }
     }
 
-    public void LoopThrougEnemiesAndSelectBestTarget(EnemyAI.CurrentTargetIsBetterThanTheOneBefore isCurrentTargetBetter)
+    public void LoopThrougCardsAndSelectBestTarget(EnemyAI.CurrentTargetIsBetterThanTheOneBefore isCurrentTargetBetter)
     {
         int iterator = GetFirstOccupiedIndex();
         int selected = iterator;

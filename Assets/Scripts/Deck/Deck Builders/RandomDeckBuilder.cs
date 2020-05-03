@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomDeckMounter : DeckPrototypeFactory.DeckBuilder
+public class RandomDeckBuilder : DeckPrototypeFactory.DeckBuilder
 {
-    public RandomDeckMounter(int size) : base(size)
+    public RandomDeckBuilder(int size) : base(size)
     {
     }
 

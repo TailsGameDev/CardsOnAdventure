@@ -42,8 +42,14 @@ public class SceneOpener : OpenersSuperclass
 
     public void OpenScene(string name)
     {
+        StartCoroutine(OpenSceneCoroutine(name));
+    }
+
+    private IEnumerator OpenSceneCoroutine(string name)
+    {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
         openerOfPopUpsMadeInEditor.CloseAllPopUpsExceptLoading();
+        yield return null;
         SceneManager.LoadSceneAsync(name);
     }
 }

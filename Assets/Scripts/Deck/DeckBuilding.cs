@@ -72,7 +72,7 @@ public class DeckBuilding : OpenersSuperclass
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
         yield return null;
         Card[] cards = deck.GetCards();
-        DeckPrototypeFactory.PrepareManuallyBuiltDeckForThePlayer(cards);
+        DeckPrototypeFactory.PrepareManuallyBuiltDeckForThePlayerAndSaveInStorage(cards);
         sceneOpener.OpenMapScene();
     }
 }

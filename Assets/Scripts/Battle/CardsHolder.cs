@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditorInternal;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CardsHolder : IndexHolder
 {
@@ -47,8 +44,10 @@ public class CardsHolder : IndexHolder
 #pragma warning restore CS0253 // Possível comparação de referência inesperada; o lado direito precisa de conversão
             {
                 cards[i] = null;
+                return;
             }
         }
+        L.ogError(this,"No card was removed at Remove method!!");
     }
     public Card RemoveCardOrGetNull(int index)
     {

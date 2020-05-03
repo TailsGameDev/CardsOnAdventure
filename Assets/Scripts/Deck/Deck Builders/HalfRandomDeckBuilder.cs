@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HalfRandomDeckMounter : DeckPrototypeFactory.DeckBuilder
+public class HalfRandomDeckBuilder : DeckPrototypeFactory.DeckBuilder
 {
     private Classes classe;
 
-    public HalfRandomDeckMounter(int size, Classes classe) : base(size)
+    public HalfRandomDeckBuilder(int size, Classes classe) : base(size)
     {
         this.classe = classe;
     }

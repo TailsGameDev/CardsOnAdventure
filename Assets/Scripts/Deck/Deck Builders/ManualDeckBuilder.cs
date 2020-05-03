@@ -1,7 +1,7 @@
-﻿using UnityEngine;
-public class ManualDeckBuider : DeckPrototypeFactory.DeckBuilder
+﻿public class ManualDeckBuider : DeckPrototypeFactory.DeckBuilder
 {
     private int[] indexOfEachCardPrototype;
+    public static readonly int INDEX_OF_RANDOM_CARD = -1;
 
     #region Initialization
     private ManualDeckBuider(int size) : base(size)
@@ -13,33 +13,33 @@ public class ManualDeckBuider : DeckPrototypeFactory.DeckBuilder
     {
         ManualDeckBuider builder = new ManualDeckBuider(cardsToBeOnDeck.Length);
 
-        builder.FindAndSaveThePrototypeIndexForEachCard(cardsToBeOnDeck);
-
-        /* funcionando...
-        for (int i = 0; i < builder.indexOfEachCardPrototype.Length; i++)
-        {
-            Debug.Log(builder.indexOfEachCardPrototype[i]);
-        }
-        */
+        builder.FindAndCacheThePrototypeIndexForEachCard(cardsToBeOnDeck);
 
         return builder;
     }
 
-    private void FindAndSaveThePrototypeIndexForEachCard(Card[] cardsToBeOnDeck)
+    public static ManualDeckBuider Create(int[] indexOfEachCardPrototype)
+    {
+        ManualDeckBuider builder = new ManualDeckBuider(indexOfEachCardPrototype.Length);
+        builder.indexOfEachCardPrototype = indexOfEachCardPrototype;
+        return builder;
+    }
+    
+    private void FindAndCacheThePrototypeIndexForEachCard(Card[] cardsToBeOnDeck)
     {
         for (int i = 0; i < size; i++)
         {
             // Find
             Card cardOfDeck = cardsToBeOnDeck[i];
             int prototypeIndex = FindIndexOnPrototypesArray(cardOfDeck);
-            // Save
+            // Cache
             indexOfEachCardPrototype[i] = prototypeIndex;
         }
     }
 
     private int FindIndexOnPrototypesArray(Card card)
     {
-        int prototypeIndex = -1;
+        int prototypeIndex = INDEX_OF_RANDOM_CARD;
         for (int iterationIndex = 0; iterationIndex < allCardPrototypes.Length; iterationIndex++)
         {
             Card prototype = allCardPrototypes[iterationIndex];
@@ -53,6 +53,11 @@ public class ManualDeckBuider : DeckPrototypeFactory.DeckBuilder
     }
     #endregion
 
+    public int[] GetIndexesOfEachCardPrototype()
+    {
+        return indexOfEachCardPrototype;
+    }
+
     public override Card[] GetDeck()
     {
         deck = new Card[size];
@@ -61,7 +66,7 @@ public class ManualDeckBuider : DeckPrototypeFactory.DeckBuilder
         {
             int prototypeIndex = indexOfEachCardPrototype[i];
             Card card;
-            if (prototypeIndex != -1)
+            if (prototypeIndex != INDEX_OF_RANDOM_CARD)
             {
                 card = allCardPrototypes[prototypeIndex].GetClone();
             }

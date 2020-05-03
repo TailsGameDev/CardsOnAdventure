@@ -149,18 +149,34 @@ public class EnemyAI
     }
     IEnumerator AttackCoroutine()
     {
-        for (int i = 0; i < playerBattlefield.GetSize(); i++)
+        // Populate attackers List
+        List<Card> attackerCards = new List<Card>();
+        List<int> attackerIndexes = new List<int>();
+        for (int i = 0; i < enemyBattlefield.GetSize(); i++)
         {
-            Card attacker = enemyBattlefield.GetReferenceToCardAtOrGetNull(i);
-            bool canAttack = attacker != null && !attacker.Freezing;
-            if (canAttack)
+            Card card = enemyBattlefield.GetReferenceToCardAtOrGetNull(i);
+            if (card != null && !card.Freezing)
             {
-                enemyBattlefield.SetSelectedIndex(i);
-                this.attackerPower = attacker.AttackPower;
-                playerBattlefield.LoopThrougEnemiesAndSelectBestTarget(currentTargetIsBetterThanTheOneBefore);
-
-                yield return new WaitForSeconds(aiDelay);
+                attackerCards.Add(card);
+                attackerIndexes.Add(i);
             }
+        }
+
+        // Perform attack for each card in attackers list
+        for (int i = 0; i < attackerCards.Count; i++)
+        {
+            enemyBattlefield.ClearSelection();
+            playerBattlefield.ClearSelection();
+
+            Card attacker = attackerCards[i];
+
+            // Note: here, "i" is not always equals to the index in the index of the card in the bf
+            enemyBattlefield.SetSelectedIndex(attackerIndexes[i]);
+
+            this.attackerPower = attacker.AttackPower;
+            playerBattlefield.LoopThrougCardsAndSelectBestTarget(currentTargetIsBetterThanTheOneBefore);
+
+            yield return new WaitForSeconds(aiDelay);
         }
 
         UIBattle.inputEnabled = true;

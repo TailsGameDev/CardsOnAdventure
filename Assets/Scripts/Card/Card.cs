@@ -80,6 +80,7 @@ public class Card : SkillsMediatorUser
     }
     #endregion
 
+    #region Initialization
     private void Awake()
     {
         classInfo.TryToRegisterCardInClass(this);
@@ -90,7 +91,6 @@ public class Card : SkillsMediatorUser
 
         SetInitialAndLimitVitality();
     }
-
     private void Start()
     {
         if (skills == null)
@@ -101,12 +101,12 @@ public class Card : SkillsMediatorUser
         overhealedColor = ClassInfo.GetColorOfClass(Classes.CLERIC);
         SetVitalityAndUpdateTextLooks(Vitality);
     }
-
     private void SetInitialAndLimitVitality()
     {
         initialVitality = vitality;
         vitalityLimit = vitality + vitality;
     }
+    #endregion
 
     public void AttackSelectedCard(Battlefield opponentBattlefield, Battlefield attackerBattlefield)
     {
@@ -150,7 +150,7 @@ public class Card : SkillsMediatorUser
         RectTransform damageTextTransform = Instantiate(DamageTextPrototype).GetComponent<RectTransform>();
 
         damageTextTransform.SetParent(UIBattle.parentOfDynamicUIThatMustAppear, false);
-        damageTextTransform.position = DamageTextPrototype.transform.position;
+        damageTextTransform.position = cardImage.transform.position;
         damageTextTransform.Rotate(new UnityEngine.Vector3(0, 0, 90));
 
         damageTextTransform.GetComponent<Text>().text = damage.ToString();

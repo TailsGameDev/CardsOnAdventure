@@ -2857,7 +2857,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: affa407c2669389428310ea4b294450b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneOpener: {fileID: 1635746702432330688}
 --- !u!1 &9182716590043828850
 GameObject:
   m_ObjectHideFlags: 0
@@ -3587,13 +3586,14 @@ MonoBehaviour:
     CAN REPOSITION THE CARDS IN YOUR BATTLEFIELD AS MUCH AS YOU LIKE</color>. <br>
     <br> <color=#1DEFC7>->ATTACK</color><br> In this state, <color=#1DEFC7>YOU SHOULD
     MANUALLY USE YOUR CARDS TO ATTACK THE ENEMY CARDS.</color>. Otherwise the enemies
-    will make fun out of you. <br> <br> Obs: you can play by drag and drop, or click
-    here then click there. But drag and drop triggers a very nice tooltip of the
-    card in the bottom of the screen. <br> <br> "
+    will make fun out of you. <br> <br> <color=#1DEFC7>->TIES</color><br> In this
+    state, <color=#1DEFC7>IF TOO MANY ATTACKS OCCUR WITH NO DEATHS, A +1 BUFF OF
+    ATTACK POWER TO ALL BATTLEFIELD MIGHT BE APPLIED.</color> In such a situation,
+    a pop-up would appear asking if you want the buff or not. <br> <br> Obs: you
+    can play by drag and drop, or click here then click there. But drag and drop
+    triggers a very nice tooltip of the card in the bottom of the screen. "
   battleRulesSprite: {fileID: 21300000, guid: 8af8e8666289f8d4885582a2f45fc37d, type: 3}
   customPopUp: {fileID: 8097394994039783889}
-  audioRequisitor: {fileID: 1935715517312006474}
-  mapBGM: {fileID: 8300000, guid: 8f85ff84ce29039419098e1b8f75a8f0, type: 3}
 --- !u!223 &9182716590525795585
 Canvas:
   m_ObjectHideFlags: 0

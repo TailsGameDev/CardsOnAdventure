@@ -52,15 +52,11 @@ public class MapsCache : MapsRuntimeCache
     {
         SpotToClearIfPlayerWins = GetInfoFromGraphOrGetNull(spotInfoGOName, mapName);
     }
-    public void ClearLastSpotVisited()
+    public void ClearLastSpotVisitedIfAny()
     {
         if (SpotToClearIfPlayerWins != null)
         {
             SpotToClearIfPlayerWins.Cleared = true;
-        }
-        else
-        {
-            L.ogError(this,"Tried to clear last spot visited but it is null.");
         }
     }
 
