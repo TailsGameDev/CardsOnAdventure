@@ -301,13 +301,19 @@ public class Card : SkillsMediatorUser
     }
     public string GetExplanatoryText()
     {
-        return GetSkillsExplanatoryText() + "\n" +
-               "<color=#FD7878>Attack Power: " + attackPower + "</color>\n" +
-               "<color=#9EFA9D>Vitality: " + vitality + "</color>\n";
+        return 
+                (GetSkillsExplanatoryText()) + "\n" +
+                "<color=#FD7878>Attack Power: " + attackPower + "</color>\n" +
+                "<color=#9EFA9D>Vitality: " + vitality + "</color>\n"
+                ;
     }
     public string GetSkillsExplanatoryText()
     {
-        return skills.GetExplanatoryText(attackPower);
+        return 
+                "<color=#" + classInfo.ColorHexCode + ">" + 
+                skills.GetExplanatoryText(attackPower).ToUpper()
+                + "</color>"
+                ;
     }
     #endregion
 

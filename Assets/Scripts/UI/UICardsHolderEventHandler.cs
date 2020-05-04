@@ -126,8 +126,8 @@ public class UICardsHolderEventHandler : MonoBehaviour
 
     private void ShowTipAboutCardBeingDragged()
     {
-        skillTipText.text = cardBeingDragged.GetSkillsExplanatoryText();
         skillTipText.transform.parent.gameObject.SetActive(true);
+        skillTipText.text = cardBeingDragged.GetSkillsExplanatoryText();
     }
 
     private void HideCardsBeingDraggedTip()

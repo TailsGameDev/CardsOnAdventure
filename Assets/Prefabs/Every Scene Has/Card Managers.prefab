@@ -1609,8 +1609,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acronym: ST
   fullName: Steal
-  description: "Apply damage, and steal the enemy\u2019s skill. The enemy then can
-    just perform regular attacks after this."
+  description: "Apply damage, and steal the enemy\u2019s skill. The enemy can just
+    perform regular attacks after this."
   attackVFX: {fileID: 3578503582660777522, guid: ddc77b688d2313d48b58d44cb8b5c65b,
     type: 3}
   defenseVFX: {fileID: 0}

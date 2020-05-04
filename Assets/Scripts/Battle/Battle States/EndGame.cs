@@ -52,7 +52,7 @@ public class EndGame : BattleState
                             customPopUpOpener.Open(
                                 title: "You beat a Master!",
                                 warningMessage: "<color=#FFFFFF>And then you 'borrowed' some of their equipment!</color>" +
-                                    " ALL YOUR " + masterClass + " CARDS WILL BE BUFFED! PLEASE CHOOSE:",
+                                   Formater.Paint(" ALL YOUR " + masterClass + " CARDS WILL BE BUFFED. PLEASE CHOOSE:", backgroundColor),
                                 confirmBtnMessage: "+1 Vitality",
                                 cancelBtnMessage: "+1 Attack Power",
                                 onConfirm: ImproveVitalityThenSeeMap,
