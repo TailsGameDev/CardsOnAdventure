@@ -4242,6 +4242,8 @@ MonoBehaviour:
   finalSpotForEachMap:
   - {fileID: 52829779}
   audioRequisitor: {fileID: 1338282692}
+  bossBGM: {fileID: 8300000, guid: d4e1263996b6d8d4f99ca89f25c19462, type: 3}
+  mastersBGM: {fileID: 8300000, guid: ce325b6a1052d204eb6ef0aa21d3333d, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
 --- !u!1 &1118353066
 GameObject:
@@ -4814,16 +4816,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5475805653861575104, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -91.47266
-      objectReference: {fileID: 0}
-    - target: {fileID: 8995090809325219216, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -91.90234
-      objectReference: {fileID: 0}
     - target: {fileID: 9182716590525795587, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
         type: 3}
       propertyPath: m_LocalPosition.x

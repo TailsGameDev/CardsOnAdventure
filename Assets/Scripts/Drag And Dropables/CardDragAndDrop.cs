@@ -10,7 +10,10 @@ public class CardDragAndDrop : DragAndDrop
 
     private bool isDragging;
 
+    private bool forceReceptorToNullBeforeDrop = false;
+
     public bool IsDragging { get => isDragging; }
+    public bool ForceReceptorToNullBeforeDrop { set => forceReceptorToNullBeforeDrop = value; }
 
     protected override void Update()
     {
@@ -39,6 +42,10 @@ public class CardDragAndDrop : DragAndDrop
 
     protected override void BeforeDrop()
     {
+        if (forceReceptorToNullBeforeDrop)
+        {
+            receptor = null;
+        }
         transform.SetParent(originalParent);
         transform.localScale = Vector3.one;
     }

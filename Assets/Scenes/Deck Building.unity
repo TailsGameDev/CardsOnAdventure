@@ -1138,7 +1138,7 @@ MonoBehaviour:
   m_ChildForceExpandWidth: 1
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 1
-  m_ChildControlHeight: 1
+  m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
 --- !u!114 &392569831
@@ -1205,7 +1205,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 123}
+  m_AnchoredPosition: {x: 0, y: 165}
   m_SizeDelta: {x: 80, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &530021058
@@ -1284,7 +1284,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 190.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &542264394
 MonoBehaviour:
@@ -1660,7 +1660,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &839825220
 MonoBehaviour:
@@ -2145,7 +2145,7 @@ MonoBehaviour:
       kind of decision, after all?"
     background: {fileID: 0}
     height: 900
-  popUpOpener: {fileID: 0}
+  popUpOpener: {fileID: 378093893}
 --- !u!1 &966457645
 GameObject:
   m_ObjectHideFlags: 0
@@ -2802,8 +2802,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -15}
-  m_SizeDelta: {x: 720, y: -130}
+  m_AnchoredPosition: {x: 0, y: -25}
+  m_SizeDelta: {x: 720, y: -150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1169875299
 MonoBehaviour:
@@ -2847,6 +2847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPositions: []
   uiCardsHolderEventHandler: {fileID: 392569831}
+  repositionAnimationDurationInSeconds: 0.25
   slotPrototype: {fileID: 715496148}
   scrollableBackground: {fileID: 1169875298}
 --- !u!114 &1169875301
@@ -2923,7 +2924,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1181270816
 MonoBehaviour:
@@ -3574,8 +3575,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -351.45007, y: -15}
-  m_SizeDelta: {x: 1422.9, y: -130}
+  m_AnchoredPosition: {x: -351.45068, y: -40}
+  m_SizeDelta: {x: 1422.9, y: -180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1629059484
 MonoBehaviour:
@@ -3627,6 +3628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPositions: []
   uiCardsHolderEventHandler: {fileID: 392569831}
+  repositionAnimationDurationInSeconds: 0.25
   slotPrototype: {fileID: 347257100}
   scrollableBackground: {fileID: 1629059483}
 --- !u!114 &1629059487

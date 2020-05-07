@@ -59,4 +59,9 @@ public class Deck : MonoBehaviour
         cards.RemoveAt(0);
         return card;
     }
+
+    public void PutCardInTop(Card card)
+    {
+        cards.Insert(0, card);
+    }
 }

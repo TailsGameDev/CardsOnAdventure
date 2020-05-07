@@ -19,16 +19,16 @@ public class Card : SkillsMediatorUser
     private int initialVitality;
 
     [SerializeField]
-    private Text vitalityText = null;
+    private Text[] vitalityTexts = null;
 
     [SerializeField]
-    private Text attackPowerText = null;
+    private Text[] attackPowerTexts = null;
+
+    [SerializeField]
+    private Text[] skillTexts = null;
 
     [SerializeField]
     private OldSkill skills = null;
-
-    [SerializeField]
-    private Text skillText = null;
 
     [SerializeField]
     private Image obfuscator = null;
@@ -45,13 +45,7 @@ public class Card : SkillsMediatorUser
 
     [SerializeField]
     private Sprite horizontalSprite = null;
-
-    [SerializeField]
-    private RectTransform skillsHorizontalSpot = null;
-    [SerializeField]
-    private RectTransform attackPowerHorizontalSpot = null;
-    [SerializeField]
-    private RectTransform vitalityHorizontalSpot = null;
+    private Sprite verticalSprite = null;
 
     [SerializeField]
     private Shakeable shakeable = null;
@@ -76,8 +70,8 @@ public class Card : SkillsMediatorUser
         get => skills;
         set {
             skills = value;
-            skillText.text = skills.FullName;
-            skillText.color = classInfo.Color;
+            SetTextArray(skillTexts, skills.FullName);
+            SetTextArrayColor(skillTexts, classInfo.Color);
         }
     }
     #endregion
@@ -87,12 +81,14 @@ public class Card : SkillsMediatorUser
     {
         classInfo.TryToRegisterCardInClass(this);
 
-        attackPowerText.text = AttackPower.ToString();
+        SetTextArray(attackPowerTexts, AttackPower.ToString());
 
         // Triggers update in skill text
         Skills = skills;
 
         SetInitialAndLimitVitality();
+
+        verticalSprite = cardImage.sprite;
     }
     private void Start()
     {
@@ -169,15 +165,15 @@ public class Card : SkillsMediatorUser
     }
     private void UpdateVitalityTextAndItsColor()
     {
-        vitalityText.text = vitality.ToString();
+        SetTextArray(vitalityTexts, vitality.ToString());
 
         if (vitality <= initialVitality)
         {
-            vitalityText.color = normalVitalityColor;
+            SetTextArrayColor(vitalityTexts, normalVitalityColor);
         }
         else
         {
-            vitalityText.color = overhealedColor;
+            SetTextArrayColor(vitalityTexts, overhealedColor);
         }
     }
 
@@ -225,6 +221,10 @@ public class Card : SkillsMediatorUser
     #endregion
 
     #region VFX and Methods to Change Card Visually
+    public bool CanAttack()
+    {
+        return !obfuscator.gameObject.activeSelf && !freezing;
+    }
     public void SetObfuscate(bool obfuscate)
     {
         obfuscator.gameObject.SetActive(obfuscate);
@@ -263,15 +263,29 @@ public class Card : SkillsMediatorUser
     }
     public void ChangeToHorizontalVersion()
     {
+        attackPowerTexts[0].transform.parent.gameObject.SetActive(false);
+        attackPowerTexts[1].transform.parent.gameObject.SetActive(true);
+
+        vitalityTexts[0].transform.parent.gameObject.SetActive(false);
+        vitalityTexts[1].transform.parent.gameObject.SetActive(true);
+
+        skillTexts[0].transform.parent.gameObject.SetActive(false);
+        skillTexts[1].transform.parent.gameObject.SetActive(true);
+
         cardImage.sprite = horizontalSprite;
+    }
+    public void ChangeToVerticalVersion()
+    {
+        attackPowerTexts[1].transform.parent.gameObject.SetActive(false);
+        attackPowerTexts[0].transform.parent.gameObject.SetActive(true);
 
-        attackPowerText.transform.Rotate(new UnityEngine.Vector3(0,0,-90));
-        vitalityText.transform.Rotate(new UnityEngine.Vector3(0, 0, -90));
-        skillText.transform.parent.Rotate(new UnityEngine.Vector3(0, 0, -90));
+        vitalityTexts[1].transform.parent.gameObject.SetActive(false);
+        vitalityTexts[0].transform.parent.gameObject.SetActive(true);
 
-        vitalityText.transform.parent.position = vitalityHorizontalSpot.position;
-        attackPowerText.transform.parent.position = attackPowerHorizontalSpot.position;
-        skillText.transform.parent.position = skillsHorizontalSpot.position;
+        skillTexts[1].transform.parent.gameObject.SetActive(false);
+        skillTexts[0].transform.parent.gameObject.SetActive(true);
+
+        cardImage.sprite = verticalSprite;
     }
     public void MakeColorGray()
     {
@@ -347,7 +361,7 @@ public class Card : SkillsMediatorUser
     public void ApplyPlayerBonuses()
     {
         attackPower += classInfo.AttackPowerBonus;
-        attackPowerText.text = attackPower.ToString();
+        SetTextArray(attackPowerTexts, attackPower.ToString());
 
         vitality += classInfo.VitalityBonus;
         SetInitialAndLimitVitality();
@@ -356,7 +370,7 @@ public class Card : SkillsMediatorUser
     public void BuffAttackPowerForThisMatch()
     {
         attackPower++;
-        attackPowerText.text = attackPower.ToString();
+        SetTextArray(attackPowerTexts, attackPower.ToString());
     }
 
     public bool IsAnotherInstanceOf(Card card)
@@ -375,5 +389,21 @@ public class Card : SkillsMediatorUser
     public static int GetDeathCount()
     {
         return deathCounter.GetDeathCount();
+    }
+
+    private void SetTextArray(Text[] array, string message)
+    {
+        for (int i =0; i < array.Length; i++)
+        {
+            array[i].text = message;
+        }
+    }
+
+    private void SetTextArrayColor(Text[] array, Color color)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            array[i].color = color;
+        }
     }
 }

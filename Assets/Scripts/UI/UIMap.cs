@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using UnityEditor.VersionControl;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UIMap : OpenersSuperclass
@@ -12,6 +12,11 @@ public class UIMap : OpenersSuperclass
 
     [SerializeField]
     private AudioRequisitor audioRequisitor = null;
+
+    [SerializeField]
+    private AudioClip bossBGM = null;
+    [SerializeField]
+    private AudioClip mastersBGM = null;
 
     [SerializeField]
     private AudioClip winSound = null;
@@ -162,7 +167,7 @@ public class UIMap : OpenersSuperclass
     public void OnBossBattleClicked(Transform btnTransform)
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
-        BattleInfo.PrepareBossBattle();
+        BattleInfo.PrepareBossBattle(bossBGM);
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         DeckPrototypeFactory.PrepareBossRandomDeckForTheEnemy();
         SetUpBattleAndOpenIt();
@@ -173,7 +178,7 @@ public class UIMap : OpenersSuperclass
     public void OnMageMasterClicked(Transform btnTransform)
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
-        BattleInfo.PrepareMasterBattle(Classes.MAGE);
+        BattleInfo.PrepareMasterBattle(Classes.MAGE, mastersBGM);
         DeckPrototypeFactory.PrepareMageDeckForTheEnemy();
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         SetUpBattleAndOpenIt();
@@ -181,7 +186,7 @@ public class UIMap : OpenersSuperclass
     public void OnWarriorMasterClicked(Transform btnTransform)
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
-        BattleInfo.PrepareMasterBattle(Classes.WARRIOR);
+        BattleInfo.PrepareMasterBattle(Classes.WARRIOR, mastersBGM);
         DeckPrototypeFactory.PrepareWarriorDeckForTheEnemy();
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         SetUpBattleAndOpenIt();
@@ -189,7 +194,7 @@ public class UIMap : OpenersSuperclass
     public void OnRougueMasterClicked(Transform btnTransform)
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
-        BattleInfo.PrepareMasterBattle(Classes.ROGUE);
+        BattleInfo.PrepareMasterBattle(Classes.ROGUE, mastersBGM);
         DeckPrototypeFactory.PrepareRogueDeckForTheEnemy();
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         SetUpBattleAndOpenIt();
@@ -197,7 +202,7 @@ public class UIMap : OpenersSuperclass
     public void OnGuardianMasterClicked(Transform btnTransform)
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
-        BattleInfo.PrepareMasterBattle(Classes.GUARDIAN);
+        BattleInfo.PrepareMasterBattle(Classes.GUARDIAN, mastersBGM);
         DeckPrototypeFactory.PrepareGuardianDeckForTheEnemy();
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         SetUpBattleAndOpenIt();

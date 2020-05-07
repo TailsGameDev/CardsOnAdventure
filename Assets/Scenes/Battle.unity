@@ -455,7 +455,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1612099942}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -917,6 +917,7 @@ MonoBehaviour:
   - {fileID: 1927484165}
   - {fileID: 593358138}
   uiCardsHolderEventHandler: {fileID: 1612099943}
+  repositionAnimationDurationInSeconds: 0.25
 --- !u!114 &416688465
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1556,7 +1557,7 @@ PrefabInstance:
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
@@ -1896,9 +1897,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Standing
+  title: Cards Counter
   tipData:
-  - message: '<br>                  Standing: X'
+  - message: '<br>             Cards: x'
     background: {fileID: 21300000, guid: 76aee4a4b61b4474881fac10e6418afc, type: 3}
     height: 150
   - message: "This is the display of <color=#1DEFC7>HOW MANY CARDS THERE ARE STILL
@@ -1957,9 +1958,11 @@ MonoBehaviour:
   hand: {fileID: 1718507082}
   battlefield: {fileID: 1898511386}
   endRepositioningBtn: {fileID: 506357318}
+  repositionAgainBtn: {fileID: 1106090657}
   endTurnBtn: {fileID: 1959818952}
   audioHolder: {fileID: 2101965490}
   audioRequisitor: {fileID: 1493936903}
+  sceneCanvasGameObject: {fileID: 1612099938}
 --- !u!1 &928461781
 GameObject:
   m_ObjectHideFlags: 0
@@ -2404,6 +2407,179 @@ MonoBehaviour:
   title: WILL BE OVERWRITTEN
   tipData: []
   popUpOpener: {fileID: 928461782}
+--- !u!114 &1106090657 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1114031705}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1d2e81d211b3634fbe87f24f4c54104, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &1114031705
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1612099942}
+    m_Modifications:
+    - target: {fileID: 1045103754934244661, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Name
+      value: Reposition Again Btn
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045103754934244661, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193217639723640391, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Text
+      value: Reposition Again
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193217639723640391, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: b6351f55f62c6ca4eacab29e36e00de1,
+        type: 3}
+    - target: {fileID: 2193217639723640391, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -584
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 600.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444004942086850600, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.10196079
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444004942086850600, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.19215688
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444004942086850600, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.07058824
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d923e06d11c42c4c8ce76b64e93975d, type: 3}
+--- !u!224 &1114031706 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1114031705}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1153841345
 GameObject:
   m_ObjectHideFlags: 0
@@ -2750,9 +2926,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Standing
+  title: Cards Counter
   tipData:
-  - message: '<br>                  Standing: X'
+  - message: '<br>             Cards: x'
     background: {fileID: 21300000, guid: 76aee4a4b61b4474881fac10e6418afc, type: 3}
     height: 150
   - message: "This is the display of <color=#1DEFC7>HOW MANY CARDS THERE ARE STILL
@@ -2811,9 +2987,11 @@ MonoBehaviour:
   hand: {fileID: 416688464}
   battlefield: {fileID: 149378011}
   endRepositioningBtn: {fileID: 506357318}
+  repositionAgainBtn: {fileID: 1106090657}
   endTurnBtn: {fileID: 1959818952}
   audioHolder: {fileID: 2101965490}
   audioRequisitor: {fileID: 1493936903}
+  sceneCanvasGameObject: {fileID: 1612099938}
 --- !u!1 &1378405285
 GameObject:
   m_ObjectHideFlags: 0
@@ -2850,7 +3028,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 6, y: -1990}
+  m_AnchoredPosition: {x: 36, y: -969}
   m_SizeDelta: {x: 82.4, y: 143.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1378405288
@@ -3156,6 +3334,7 @@ RectTransform:
   - {fileID: 1556942913}
   - {fileID: 1959818951}
   - {fileID: 4090511394378606099}
+  - {fileID: 1114031706}
   - {fileID: 1210699014}
   - {fileID: 151458627}
   - {fileID: 681655009}
@@ -3336,6 +3515,7 @@ MonoBehaviour:
   - {fileID: 1456297024}
   - {fileID: 249394380}
   uiCardsHolderEventHandler: {fileID: 1612099943}
+  repositionAnimationDurationInSeconds: 0.25
 --- !u!114 &1718507083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3826,6 +4006,17 @@ PrefabInstance:
       propertyPath: m_Text
       value: End Turn
       objectReference: {fileID: 0}
+    - target: {fileID: 2193217639723640391, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: b6351f55f62c6ca4eacab29e36e00de1,
+        type: 3}
+    - target: {fileID: 2193217639723640391, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3889,7 +4080,7 @@ PrefabInstance:
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -507.6
+      value: -484
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
@@ -4124,6 +4315,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2193217639723640391, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: b6351f55f62c6ca4eacab29e36e00de1,
+        type: 3}
+    - target: {fileID: 2193217639723640391, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4187,7 +4389,7 @@ PrefabInstance:
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -507.6
+      value: -484
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
@@ -4551,7 +4753,7 @@ PrefabInstance:
     - target: {fileID: 8747812073482344963, guid: 298cd90909942ad4f9fcd5670fb764d1,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8747812073482344963, guid: 298cd90909942ad4f9fcd5670fb764d1,
         type: 3}

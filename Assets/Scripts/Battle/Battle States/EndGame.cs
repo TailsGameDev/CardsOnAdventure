@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class EndGame : BattleState
 {
     private BattleStatesFactory winnerFactory;
+    private GameObject sceneCanvas;
     private ThePopUpOpenerInstance popUpOpener;
     private CustomPopUp customPopUpOpener;
     private SceneOpener sceneOpener;
@@ -16,6 +17,7 @@ public class EndGame : BattleState
     private bool quit = false;
 
     public EndGame(BattleStatesFactory winnerFactory,
+                    GameObject sceneCanvas,
                     ThePopUpOpenerInstance popUpOpener,
                     CustomPopUp customPopUpOpener,
                     SceneOpener sceneOpener,
@@ -24,6 +26,7 @@ public class EndGame : BattleState
                     PreMadeSoundRequest stopAllSFXRequest)
     {
         this.winnerFactory = winnerFactory;
+        this.sceneCanvas = sceneCanvas;
         this.popUpOpener = popUpOpener;
         this.customPopUpOpener = customPopUpOpener;
         this.sceneOpener = sceneOpener;
@@ -49,6 +52,7 @@ public class EndGame : BattleState
                     {
                         if (IsMasterBattle())
                         {
+                            sceneCanvas.SetActive(false);
                             customPopUpOpener.Open(
                                 title: "You beat a Master!",
                                 warningMessage: "<color=#FFFFFF>And then you 'borrowed' some of their equipment!</color>" +
@@ -57,7 +61,8 @@ public class EndGame : BattleState
                                 cancelBtnMessage: "+1 Attack Power",
                                 onConfirm: ImproveVitalityThenSeeMap,
                                 onCancel: ImproveAttackPowerThenSeeMap,
-                                victoryBGMRequest
+                                victoryBGMRequest,
+                                masterClass
                             );
                         }
                         else
@@ -114,7 +119,7 @@ public class EndGame : BattleState
     {
         stopAllSFXRequest.RequestPlaying();
         quit = true;
-        sceneOpener.OpenBattle();
+        sceneOpener.OpenMapScene();
     }
     public override BattleState GetNextState()
     {

@@ -17,20 +17,9 @@ public class Battlefield : CardsHolder
     {
         Card aux = GetReferenceToCardAt(anotherIndex);
 
-        PutCardInIndex(cards[index], anotherIndex);
+        PutCardInIndex(cards[index], anotherIndex, smooth: true);
 
-        PutCardInIndex(aux, index);
-    }
-
-    public void RemoveFreezingStateFromAllCards()
-    {
-        for (int i = 0; i < cards.Length; i++)
-        {
-            if (ContainsCardInIndex(i))
-            {
-                cards[i].RemoveFreezing();
-            }
-        }
+        PutCardInIndex(aux, index, smooth: true);
     }
 
     public void LoopThrougCardsAndSelectBestTarget(EnemyAI.CurrentTargetIsBetterThanTheOneBefore isCurrentTargetBetter)
@@ -255,17 +244,7 @@ public class Battlefield : CardsHolder
     }
     #endregion
 
-    #region VFX and Obfuscate
-    public void RemoveObfuscateFromAllCards()
-    {
-        for (int i = 0; i < cards.Length; i++)
-        {
-            if (cards[i] != null)
-            {
-                cards[i].SetObfuscate(false);
-            }
-        }
-    }
+    #region Protection
     public void DisplayProtectionVFXOnlyofCardsInBackline()
     {
         for (int i = 0; i < cards.Length; i++)

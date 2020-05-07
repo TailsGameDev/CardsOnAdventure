@@ -11,6 +11,11 @@ public class UISettings : MonoBehaviour
     [SerializeField]
     private Toggle fullscreenToggle = null;
 
+    [SerializeField]
+    private Toggle customCursorToggle = null;
+    [SerializeField]
+    private Texture2D customCursor = null;
+
     private const string AI_DELAY_KEY = "AI_DELAY_KEY";
 
     private const int TRUE = 1;
@@ -26,14 +31,21 @@ public class UISettings : MonoBehaviour
 
         fullscreenToggle.isOn = IsTrue( PlayerPrefs.GetInt("Fullscreen", FALSE) ) ;
 
+        customCursorToggle.isOn = IsTrue(PlayerPrefs.GetInt("CustomCursor", FALSE));
+        if (customCursorToggle.isOn)
+        {
+            Cursor.SetCursor(customCursor, Vector2.zero, CursorMode.Auto);
+        }
+
 #if UNITY_ANDROID
         fullscreenToggle.gameObject.SetActive(false);
+        customCursorToggle.gameObject.SetActive(false);
 #endif
     }
 
-    private bool IsTrue(int c)
+    private static bool IsTrue(int c)
     {
-        return c != 0;
+        return c == 1;
     }
 
     private int BoolToInt(bool b)
@@ -63,5 +75,30 @@ public class UISettings : MonoBehaviour
     {
         Screen.fullScreen = fullscreenToggle.isOn;
         PlayerPrefs.SetInt("Fullscreen", BoolToInt( fullscreenToggle.isOn ) );
+    }
+
+    public void ToggleCustomCursor()
+    {
+        if (customCursorToggle.isOn)
+        {
+            Cursor.SetCursor(customCursor, Vector2.zero, CursorMode.Auto);
+        }
+        else
+        {
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        }
+        PlayerPrefs.SetInt("CustomCursor", BoolToInt(customCursorToggle.isOn));
+    }
+
+    public static void RefreshCursor(Texture2D customCursor)
+    {
+        if (IsTrue(PlayerPrefs.GetInt("CustomCursor", FALSE)))
+        {
+            Cursor.SetCursor(customCursor, Vector2.zero, CursorMode.Auto);
+        }
+        else
+        {
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+        }
     }
 }

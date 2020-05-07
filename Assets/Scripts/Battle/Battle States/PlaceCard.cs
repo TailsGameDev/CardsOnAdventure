@@ -1,9 +1,9 @@
 ﻿public class PlaceCard : BattleState
 {
-    private Hand hand;
-    private Battlefield battlefield;
-    private Deck deck;
-    private PreMadeSoundRequest placeCardSFXRequest;
+    protected Hand hand;
+    protected Battlefield battlefield;
+    protected Deck deck;
+    protected PreMadeSoundRequest placeCardSFXRequest;
 
     bool cardWasSuccessfullyPlaced = false;
 
@@ -13,6 +13,7 @@
         this.battlefield = battlefield;
         this.deck = deck;
         this.placeCardSFXRequest = placeCardSFX;
+
 
         playerHand.ClearSelection();
         battlefield.ClearSelection();
@@ -33,7 +34,7 @@
 
             Card card = hand.RemoveCardFromSelectedIndex();
 
-            battlefield.PutCardInSelectedIndex(card);
+            battlefield.PutCardInSelectedIndex(card, smooth: currentBattleStatesFactory == enemyBattleStatesFactory);
             cardWasSuccessfullyPlaced = true;
 
             placeCardSFXRequest.RequestPlaying();
@@ -77,11 +78,8 @@
             {
                 if (hand.HasCards() && battlefield.HasEmptySlot())
                 {
-                    if (currentBattleStatesFactory == enemyBattleStatesFactory)
-                    {
-                        // Create the state again triggers EnemyAI
-                        nextState = currentBattleStatesFactory.CreatePlaceCardState();
-                    }
+                    // Create the state again triggers EnemyAI
+                    nextState = currentBattleStatesFactory.CreatePlaceCardState();
                 }
                 else
                 {
@@ -89,7 +87,7 @@
                 }
             }
         }
-
+        
         if (hand.IsEmpty() || battlefield.IsFull())
         {
             nextState = currentBattleStatesFactory.CreateRepositionState();
@@ -97,7 +95,7 @@
 
         return nextState;
     }
-    private bool IsPlayerTryingToReposition()
+    protected bool IsPlayerTryingToReposition()
     {
         return battlefield.GetSelectedIndex() >= 0 && hand.GetSelectedIndex() == -1;
     }

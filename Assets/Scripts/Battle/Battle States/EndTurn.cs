@@ -12,6 +12,9 @@
         battlefield.RemoveFreezingStateFromAllCards();
         battlefield.RemoveObfuscateFromAllCards();
 
+        hand.RemoveFreezingStateFromAllCards();
+        hand.RemoveObfuscateFromAllCards();
+
         currentBattleStatesFactory = GetTheOtherFactory();
     }
 

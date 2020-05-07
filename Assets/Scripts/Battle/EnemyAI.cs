@@ -56,6 +56,10 @@ public class EnemyAI
     }
     private IEnumerator PlaceCardCoroutine()
     {
+        // Waiting in case of Bonus Reposition from AI, because I think the base constructor is executed first.
+        yield return null;
+        yield return null;
+
         if (enemyHand.HasCards())
         {
             yield return new WaitForSeconds(aiDelay/2);
@@ -184,6 +188,12 @@ public class EnemyAI
     }
     private bool currentTargetIsBetterThanTheOneBefore(int indexBefore, int currentIndex, Battlefield obf)
     {
+        if (indexBefore < 0)
+        {
+            L.ogError(this, "negative indexBefore in currentTargetIsBetterThanTheOneBefore");
+            return false;
+        }
+
         Card cardBefore = obf.GetReferenceToCardAt(indexBefore);
         Card currentCard = obf.GetReferenceToCardAt(currentIndex);
 

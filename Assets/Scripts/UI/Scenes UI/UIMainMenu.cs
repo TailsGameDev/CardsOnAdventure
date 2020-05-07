@@ -7,9 +7,13 @@ public class UIMainMenu : UIPauseMenu
 
     // private SaveMediator saveMediator = new SaveMediator();
 
+    [SerializeField]
+    private Texture2D customCursor = null;
+
     private void Awake()
     {
         MapsCache.SpotToClearIfPlayerWins = null;
+        UISettings.RefreshCursor(customCursor);
     }
 
     public void OnPlayBtnClicked()

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ChildMaker : MonoBehaviour
 {
+    private static readonly float DEFAULT_TRANSITION_TIME = 0.25f;
+
     public static void AdoptAndTeleport(Transform parent, RectTransform child)
     {
         child.position = parent.position;
@@ -17,8 +19,13 @@ public class ChildMaker : MonoBehaviour
         child.localScale = new Vector3(1.0f, 1.0f, 1.0f);
     }
 
-    public static void AdoptAndSmoothlyMoveToParent(Transform parent, RectTransform child, float totalTime)
+    public static void AdoptAndSmoothlyMoveToParent(Transform parent, RectTransform child, float totalTime = -1.0f)
     {
+        if (totalTime < 0)
+        {
+            totalTime = DEFAULT_TRANSITION_TIME;
+        }
+
         if (parent != null && child != null)
         {
             GameObject childMaker = new GameObject();
@@ -60,5 +67,27 @@ public class ChildMaker : MonoBehaviour
         child.GetComponent<RectTransform>().SetParent(parent, true);
 
         Destroy(gameObject);
+    }
+
+    public static void AdoptAndSmoothlyMoveToPosition(Transform parent, RectTransform child, Vector3 position, float totalTime = -1.0f)
+    {
+        if (totalTime < 0)
+        {
+            totalTime = DEFAULT_TRANSITION_TIME;
+        }
+
+        if (parent != null && child != null)
+        {
+            GameObject childMaker = new GameObject();
+            childMaker.AddComponent(typeof(ChildMaker));
+            ChildMaker maker = childMaker.GetComponent<ChildMaker>();
+
+            maker.SmoothlyMoveChildToParentPosition(parent, child, totalTime);
+        }
+    }
+
+    private void SmoothlyMoveChildToPosition(Transform parent, RectTransform child, Vector3 position, float totalTime)
+    {
+        StartCoroutine(SmothlyMoveToPos(parent, child, totalTime));
     }
 }   

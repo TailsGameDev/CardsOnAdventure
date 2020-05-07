@@ -25,6 +25,9 @@ public class BattleStatesFactory : OpenersSuperclass
     private UICustomBtn endRepositioningBtn = null;
 
     [SerializeField]
+    private UICustomBtn repositionAgainBtn = null;
+
+    [SerializeField]
     private UICustomBtn endTurnBtn = null;
 
     [SerializeField]
@@ -33,15 +36,18 @@ public class BattleStatesFactory : OpenersSuperclass
     [SerializeField]
     private AudioRequisitor audioRequisitor = null;
 
+    [SerializeField]
+    private GameObject sceneCanvasGameObject = null;
+
     public BattleState CreateGameStartState()
     {
         if (isThePlayersFactory)
         {
-            return new GameStart(firstToPlayStatesFactory: this, playerStatesFactory: this, enemyStatesFactory: otherBattleStatesFactory);
+            return new GameStart(firstToPlayStatesFactory: this, playerStatesFactory: this, enemyStatesFactory: otherBattleStatesFactory, audioRequisitor);
         }
         else
         {
-            return new GameStart(firstToPlayStatesFactory: this, playerStatesFactory: otherBattleStatesFactory, enemyStatesFactory: this);
+            return new GameStart(firstToPlayStatesFactory: this, playerStatesFactory: otherBattleStatesFactory, enemyStatesFactory: this, audioRequisitor);
         }
     }
 
@@ -62,6 +68,18 @@ public class BattleStatesFactory : OpenersSuperclass
         return new PlaceCard(hand, battlefield, deck, placeCardSoundRequest);
     }
 
+    public BattleState CreateBonusRepositionState()
+    {
+        string[] AUDIO_NAMES = { "0 Place Card SFX", "1 Place Card SFX",
+            "2 Place Card SFX", "3 Place Card SFX", "4 Place Card SFX" };
+        AudioClip placeCardSFX = audioHolder.GetAleatoryClipAmong(AUDIO_NAMES);
+
+        PreMadeSoundRequest placeCardSoundRequest =
+            PreMadeSoundRequest.CreateSFXSoundRequest(placeCardSFX, audioRequisitor, assignor: gameObject);
+
+        return new BonusReposition(hand, battlefield, deck, placeCardSoundRequest, otherBattleStatesFactory.hand, otherBattleStatesFactory.deck);
+    }
+
     public BattleState CreateRepositionState()
     {
         return new Reposition(battlefield, otherBattleStatesFactory.battlefield, endRepositioningBtn);
@@ -69,7 +87,7 @@ public class BattleStatesFactory : OpenersSuperclass
 
     public BattleState CreateAttackState()
     {
-        return new Attack(battlefield, otherBattleStatesFactory.battlefield, endTurnBtn, customPopUpOpener);
+        return new Attack(battlefield, otherBattleStatesFactory.battlefield, endTurnBtn, repositionAgainBtn, customPopUpOpener);
     }
 
     public BattleState CreateEndTurnState()
@@ -102,6 +120,6 @@ public class BattleStatesFactory : OpenersSuperclass
         PreMadeSoundRequest stopAllSFXRequest =
             PreMadeSoundRequest.CreateSTOP_SFXSoundRequest(audioRequisitor, assignor: gameObject);
 
-        return new EndGame(winnerFactory, openerOfPopUpsMadeInEditor, customPopUpOpener, sceneOpener, victoryAudioRequest, defeatAudioRequest, stopAllSFXRequest);
+        return new EndGame(winnerFactory, sceneCanvasGameObject, openerOfPopUpsMadeInEditor, customPopUpOpener, sceneOpener, victoryAudioRequest, defeatAudioRequest, stopAllSFXRequest);
     }
 }

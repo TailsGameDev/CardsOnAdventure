@@ -7,16 +7,24 @@ public class Attack : BattleState
 
     private List<int> attackTokens = new List<int>();
 
-    private bool clickedEndTurnBtn = false;
-
     private UICustomBtn endTurnBtn;
+    private bool clickedEndTurnBtn = false;
 
     private CustomPopUp popUpOpener;
 
-    public Attack(Battlefield myBattlefield, Battlefield opponentBattleField, UICustomBtn endTurnBtn, CustomPopUp popUpOpener)
+    private bool obfWasFullAtBeggining = false;
+
+    private UICustomBtn repositionAgainBtn;
+    private bool clickedRepositionAgainBtn = false;
+
+    public Attack(Battlefield myBattlefield, Battlefield opponentBattleField, UICustomBtn endTurnBtn, UICustomBtn repositionAgainBtn, CustomPopUp popUpOpener)
     {
         this.attackerBattlefield = myBattlefield;
         this.opponentBattleField = opponentBattleField;
+
+        obfWasFullAtBeggining = opponentBattleField.IsFull();
+
+        this.repositionAgainBtn = repositionAgainBtn;
 
         ClearSelections();
 
@@ -34,7 +42,11 @@ public class Attack : BattleState
         {
             endTurnBtn.onClicked = OnClickedEndTurnBtn;
             endTurnBtn.gameObject.SetActive(true);
+
+            repositionAgainBtn.onClicked = OnClickedRepositionAgainBtn;
+            repositionAgainBtn.gameObject.SetActive(true);
         }
+
     }
 
     private void ClearSelections()
@@ -63,6 +75,11 @@ public class Attack : BattleState
         }
     }
 
+    private void OnClickedRepositionAgainBtn()
+    {
+        clickedRepositionAgainBtn = true;
+    }
+
     private List<int> ListCardsThatShouldAttackDuringThisState()
     {
         List<int> cards = new List<int>();
@@ -71,7 +88,7 @@ public class Attack : BattleState
             if (attackerBattlefield.ContainsCardInIndex(i))
             {
                 Card possibleAttacker = attackerBattlefield.GetReferenceToCardAt(i);
-                if (!possibleAttacker.Freezing)
+                if (possibleAttacker.CanAttack())
                 {
                     cards.Add(i);
                 }
@@ -92,7 +109,7 @@ public class Attack : BattleState
 
     public override void ExecuteAction()
     {
-        if (!clickedEndTurnBtn)
+        if (!clickedEndTurnBtn && !clickedRepositionAgainBtn)
         {
             opponentBattleField.DisplayProtectionVFXOnlyofCardsInBackline();
 
@@ -176,10 +193,22 @@ public class Attack : BattleState
     {
         BattleState nextState = this;
 
-        if (attackerBattlefield.IsEmpty() || opponentBattleField.IsEmpty() || attackTokens.Count == 0 || clickedEndTurnBtn)
+        if (clickedRepositionAgainBtn)
+        {
+            nextState = currentBattleStatesFactory.CreateRepositionState();
+        }
+        if (obfWasFullAtBeggining && opponentBattleField.IsEmpty())
+        {
+            nextState = currentBattleStatesFactory.CreateBonusRepositionState(); 
+        }
+        else if (attackerBattlefield.IsEmpty() || opponentBattleField.IsEmpty() || attackTokens.Count == 0 || clickedEndTurnBtn)
+        {
+            nextState = currentBattleStatesFactory.CreateEndTurnState();
+        }
+
+        if (nextState != this)
         {
             OnEndingAttackState();
-            nextState = currentBattleStatesFactory.CreateEndTurnState();
         }
 
         return nextState;
@@ -188,6 +217,7 @@ public class Attack : BattleState
     private void OnEndingAttackState()
     {
         endTurnBtn.gameObject.SetActive(false);
+        repositionAgainBtn.gameObject.SetActive(false);
         opponentBattleField.HideAllProtectionVFX();
     }
 }

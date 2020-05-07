@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class CustomPopUp : OpenersSuperclass
@@ -24,6 +22,9 @@ public class CustomPopUp : OpenersSuperclass
 
     [SerializeField]
     private UIBtn closeBtn = null;
+
+    [SerializeField]
+    private CustomPopUpCardsHolder cardsDisplay = null;
 
     public delegate void OnBtnClicked();
 
@@ -78,7 +79,28 @@ public class CustomPopUp : OpenersSuperclass
         )
     {
         openingBGM.RequestPlaying();
-        Open( title, warningMessage, confirmBtnMessage, cancelBtnMessage, onConfirm, onCancel );
+        Open(title, warningMessage, confirmBtnMessage, cancelBtnMessage, onConfirm, onCancel);
+    }
+
+    public void Open // With Custom Cancel / With BGM
+    (
+        string title,
+        string warningMessage,
+        string confirmBtnMessage,
+        string cancelBtnMessage,
+        OnBtnClicked onConfirm,
+        OnBtnClicked onCancel,
+        PreMadeSoundRequest openingBGM,
+        Classes classeOfCardsToShow
+    )
+    {
+        openingBGM.RequestPlaying();
+        cardsDisplay.ShowCardsOfClass(classeOfCardsToShow);
+        Open(title, warningMessage, confirmBtnMessage, 
+            cancelBtnMessage,
+            onConfirm: ()=> { cardsDisplay.ClearAttributes(); onConfirm(); },
+            onCancel: () => { cardsDisplay.ClearAttributes(); onCancel(); }
+            );
     }
 
     public void OpenAndMakeUncloseable
@@ -95,9 +117,9 @@ public class CustomPopUp : OpenersSuperclass
                 title,
                 warningMessage,
                 confirmBtnMessage,
-                cancelBtnMessage, 
-                onConfirm: ()=> { closeBtn.gameObject.SetActive(true); onConfirm(); },
-                onCancel: ()=> { closeBtn.gameObject.SetActive(true); onCancel(); }
+                cancelBtnMessage,
+                onConfirm: () => { closeBtn.gameObject.SetActive(true); onConfirm(); },
+                onCancel: () => { closeBtn.gameObject.SetActive(true); onCancel(); }
             );
         closeBtn.gameObject.SetActive(false);
     }

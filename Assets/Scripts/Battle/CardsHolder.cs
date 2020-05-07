@@ -10,9 +10,8 @@ public class CardsHolder : IndexHolder
     [SerializeField]
     protected UICardsHolderEventHandler uiCardsHolderEventHandler = null;
 
-    // to activate animation, uncomment this field and toggle the ChildMaker algorythm inside 'PutCardInIndex' method
-    // [SerializeField]
-    // private float repositionAnimationDurationInSeconds = 0.5f;
+    [SerializeField]
+    private float repositionAnimationDurationInSeconds = 0.25f;
 
     #region Collection Default Opperations
     public int GetSize()
@@ -20,15 +19,21 @@ public class CardsHolder : IndexHolder
         return cards.Length;
     }
 
-    public void PutCardInIndex(Card card, int index)
+    public void PutCardInIndex(Card card, int index, bool smooth)
     {
         RectTransform cardRect = card.GetComponent<RectTransform>();
 
         cards[index] = card;
         cardRect.rotation = transform.rotation;
 
-        // ChildMaker.AdoptAndSmoothlyMoveToParent(cardPositions[index].transform, card.GetComponent<RectTransform>(), repositionAnimationDurationInSeconds);
-        ChildMaker.AdoptAndTeleport(cardPositions[index].transform, card.GetComponent<RectTransform>());
+        if (smooth)
+        {
+            ChildMaker.AdoptAndSmoothlyMoveToParent(cardPositions[index].transform, card.GetComponent<RectTransform>(), repositionAnimationDurationInSeconds);
+        }
+        else
+        {
+            ChildMaker.AdoptAndTeleport(cardPositions[index].transform, card.GetComponent<RectTransform>());
+        }
 
         cardRect.localScale = new Vector3(1, 1, 1);
         Rect slotRect = cardPositions[index].GetComponent<RectTransform>().rect;
@@ -144,9 +149,9 @@ public class CardsHolder : IndexHolder
     #endregion
 
     #region Operations that Consider Selection And Don't deal with Size
-    public void PutCardInSelectedIndex(Card card)
+    public void PutCardInSelectedIndex(Card card, bool smooth)
     {
-        PutCardInIndex(card, GetSelectedIndex());
+        PutCardInIndex(card, GetSelectedIndex(), smooth);
     }
     public Card RemoveCardFromSelectedIndex()
     {
@@ -228,4 +233,25 @@ public class CardsHolder : IndexHolder
         }
     }
     #endregion
+
+    public void RemoveFreezingStateFromAllCards()
+    {
+        for (int i = 0; i < cards.Length; i++)
+        {
+            if (ContainsCardInIndex(i))
+            {
+                cards[i].RemoveFreezing();
+            }
+        }
+    }
+    public void RemoveObfuscateFromAllCards()
+    {
+        for (int i = 0; i < cards.Length; i++)
+        {
+            if (cards[i] != null)
+            {
+                cards[i].SetObfuscate(false);
+            }
+        }
+    }
 }

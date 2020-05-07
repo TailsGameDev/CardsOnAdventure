@@ -121,13 +121,14 @@
         Card firstCard = attackerBattlefield.RemoveCardOrGetNull(oldIndex);
         Card secondCard = attackerBattlefield.RemoveCardOrGetNull(currentIndex);
 
+        bool smooth = currentBattleStatesFactory == enemyBattleStatesFactory;
         if (firstCard != null)
         {
-            attackerBattlefield.PutCardInIndex(firstCard, currentIndex);
+            attackerBattlefield.PutCardInIndex(firstCard, currentIndex, smooth);
         }
         if (secondCard != null)
         {
-            attackerBattlefield.PutCardInIndex(secondCard, oldIndex);
+            attackerBattlefield.PutCardInIndex(secondCard, oldIndex, smooth);
         }
     }
 

@@ -37,7 +37,7 @@ public class DeckBuilding : OpenersSuperclass
     private void PlaceTheCardOfCollectionInTheDeck()
     {
         Card cardToPlaceInTheDeck = cardsCollection.GetCloneOfSelectedCardAndManageState();
-        deck.PutCardInSelectedIndex(cardToPlaceInTheDeck);
+        deck.PutCardInSelectedIndex(cardToPlaceInTheDeck, smooth: false);
     }
 
     private void GiveBackCardOfDeckToTheCollection()

@@ -20,7 +20,7 @@ public class UICardsHolderEventHandler : MonoBehaviour
     private Card cardBeingDragged;
 
     [SerializeField]
-    private float delayToComeBackFromOtherSpot = 0.5f;
+    private float delayToComeBackFromOtherSpot = 0.25f;
 
     private bool isDragging = false;
     private bool isRunningDragHistoryCoroutine = false;
@@ -94,7 +94,7 @@ public class UICardsHolderEventHandler : MonoBehaviour
         {
             cardsHolderBelowMouseOnDrop.SetSelectedIndex(indexOfSlotBelowMouseOnDrop);
 
-            // Wait for battleFSM to do it's job.
+            // Wait for battleFSM to do it's job (like set the parent of the card).
             yield return null;
             yield return null;
             ChildMaker.AdoptAndSmoothlyMoveToParent

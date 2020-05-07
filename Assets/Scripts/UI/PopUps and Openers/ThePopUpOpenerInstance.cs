@@ -12,9 +12,6 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
     private GameObject pausePopUp = null;
 
     [SerializeField]
-    private GameObject rulesPopUp = null;
-
-    [SerializeField]
     private GameObject loadingPopUp = null;
 
     [SerializeField]
@@ -117,17 +114,12 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
         OpenPopUp(pausePopUp);
     }
 
-    public void OpenWhatTheTeachingSpiritIsPopUp()
-    {
-        OpenPopUp(rulesPopUp);
-    }
-
     public void OpenBattleRulesPopUp()
     {
         TipSectionData[] battleRulesContent = new TipSectionData[]
         {
             new TipSectionData(battleRulesSprite, 100.0f),
-            new TipSectionData(battleRules, 2500.0f)
+            new TipSectionData(battleRules, 3050.0f)
         };
 
         OpenTooltipPopUp( battleRulesContent, title: "Battle Rules" );
