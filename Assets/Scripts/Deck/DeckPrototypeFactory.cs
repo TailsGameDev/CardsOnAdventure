@@ -98,6 +98,10 @@ public class DeckPrototypeFactory : MonoBehaviour
     {
         enemyDeckBuilder = new RandomDeckBuilder(size);
     }
+    public static void PrepareModifiedSizeRandomDeckForTheEnemy(float sizeMultiplier)
+    {
+        enemyDeckBuilder = new RandomDeckBuilder(Mathf.CeilToInt(DefaultDeckSize * sizeMultiplier));
+    }
 
     public static void PrepareMageDeckForTheEnemy(int size = NOT_A_SIZE)
     {
@@ -114,6 +118,10 @@ public class DeckPrototypeFactory : MonoBehaviour
     public static void PrepareGuardianDeckForTheEnemy(int size = NOT_A_SIZE)
     {
         enemyDeckBuilder = new HalfRandomDeckBuilder(size, Classes.GUARDIAN);
+    }
+    public static void PrepareClassDeckForTheEnemy(float sizeMultiplier, Classes classe)
+    {
+        enemyDeckBuilder = new HalfRandomDeckBuilder(Mathf.CeilToInt(DefaultDeckSize * sizeMultiplier), classe);
     }
     #endregion
 

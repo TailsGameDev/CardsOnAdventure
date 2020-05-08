@@ -149,17 +149,17 @@ public class UIMap : OpenersSuperclass
 
     #region On Battle Spot Buttons Clicked
     public void OnSimpleBattleClicked(Transform btnTransform)
-        {
-            openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
-            BattleInfo.PrepareSimpleBattle();
-            SetSpotInfoToClearIfPlayerSucceed(btnTransform);
-            DeckPrototypeFactory.PrepareRandomDeckForTheEnemy();
-            SetUpBattleAndOpenIt();
-        }
+    {
+        openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
+        CurrentBattleInfo.PrepareBattle(Color.white);
+        SetSpotInfoToClearIfPlayerSucceed(btnTransform);
+        DeckPrototypeFactory.PrepareRandomDeckForTheEnemy();
+        SetUpBattleAndOpenIt();
+    }
     public void OnToughBattleClicked(Transform btnTransform)
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
-        BattleInfo.PrepareToughBattle();
+        CurrentBattleInfo.PrepareBattle(Color.red);
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         DeckPrototypeFactory.PrepareToughRandomDeckForTheEnemy();
         SetUpBattleAndOpenIt();
@@ -167,7 +167,7 @@ public class UIMap : OpenersSuperclass
     public void OnBossBattleClicked(Transform btnTransform)
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
-        BattleInfo.PrepareBossBattle(bossBGM);
+        CurrentBattleInfo.PrepareBattle(Color.black, bgmParam: bossBGM);
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         DeckPrototypeFactory.PrepareBossRandomDeckForTheEnemy();
         SetUpBattleAndOpenIt();
@@ -178,38 +178,43 @@ public class UIMap : OpenersSuperclass
     public void OnMageMasterClicked(Transform btnTransform)
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
-        BattleInfo.PrepareMasterBattle(Classes.MAGE, mastersBGM);
-        DeckPrototypeFactory.PrepareMageDeckForTheEnemy();
+        CurrentBattleInfo.PrepareBattle(Classes.MAGE, mastersBGM);
+        DeckPrototypeFactory.PrepareClassDeckForTheEnemy(0, Classes.MAGE);
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         SetUpBattleAndOpenIt();
     }
     public void OnWarriorMasterClicked(Transform btnTransform)
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
-        BattleInfo.PrepareMasterBattle(Classes.WARRIOR, mastersBGM);
-        DeckPrototypeFactory.PrepareWarriorDeckForTheEnemy();
+        CurrentBattleInfo.PrepareBattle(Classes.WARRIOR, mastersBGM);
+        DeckPrototypeFactory.PrepareClassDeckForTheEnemy(0, Classes.WARRIOR);
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         SetUpBattleAndOpenIt();
     }
     public void OnRougueMasterClicked(Transform btnTransform)
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
-        BattleInfo.PrepareMasterBattle(Classes.ROGUE, mastersBGM);
-        DeckPrototypeFactory.PrepareRogueDeckForTheEnemy();
+        CurrentBattleInfo.PrepareBattle(Classes.ROGUE, mastersBGM);
+        DeckPrototypeFactory.PrepareClassDeckForTheEnemy(0, Classes.ROGUE);
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         SetUpBattleAndOpenIt();
     }
     public void OnGuardianMasterClicked(Transform btnTransform)
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
-        BattleInfo.PrepareMasterBattle(Classes.GUARDIAN, mastersBGM);
-        DeckPrototypeFactory.PrepareGuardianDeckForTheEnemy();
+        CurrentBattleInfo.PrepareBattle(Classes.GUARDIAN, mastersBGM);
+        DeckPrototypeFactory.PrepareClassDeckForTheEnemy(0, Classes.GUARDIAN);
         SetSpotInfoToClearIfPlayerSucceed(btnTransform);
         SetUpBattleAndOpenIt();
     }
     #endregion
 
-    private void SetSpotInfoToClearIfPlayerSucceed(Transform spotBtnTransform)
+    public void SetSpotInfoToClearIfPlayerSucceed(Spot spot)
+    {
+        mapsCache.SetSpotInfoToClearIfPlayerSucceed(spot.gameObject.name, spot.MapName);
+    }
+
+    public void SetSpotInfoToClearIfPlayerSucceed(Transform spotBtnTransform)
     {
         Spot spot = GetSpotComponentInParent(spotBtnTransform);
 
