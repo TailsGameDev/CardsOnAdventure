@@ -6,10 +6,12 @@ using UnityEngine;
 public class SpotPrototype : OpenersSuperclass
 {
     [SerializeField]
-    private Color backgroundColor = Color.white;
+    private Map uiMap = null;
+    [SerializeField]
+    private AudioRequisitor audioRequisitor = null;
 
     [SerializeField]
-    private UIMap uiMap = null;
+    private Color backgroundColor = Color.white;
 
     [SerializeField]
     private Classes deckClass = Classes.NOT_A_CLASS;
@@ -19,19 +21,10 @@ public class SpotPrototype : OpenersSuperclass
 
     [SerializeField]
     private AudioClip battleBGM = null;
+    [SerializeField]
+    private AudioClip winSound = null;
 
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void GoToSpot()
+    public void OnBattleSpotBtnClicked()
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
         if (deckClass == Classes.NOT_A_CLASS)
@@ -48,4 +41,25 @@ public class SpotPrototype : OpenersSuperclass
         uiMap.SetSpotInfoToClearIfPlayerSucceed(spot);
         sceneOpener.OpenBattle();
     }
+
+    #region On "Some Not Battle Spot" Clicked
+    public void OnEndOfGameClicked()
+    {
+        audioRequisitor.RequestBGM(winSound);
+        customPopUpOpener.Open(
+                title: "You Beat the game!!!",
+                warningMessage: "You are Awesome!",
+                confirmBtnMessage: "Look the Map",
+                cancelBtnMessage: "Go to Menu",
+                onConfirm: () => { customPopUpOpener.ClosePopUpOnTop(); },
+                onCancel: sceneOpener.OpenMainMenu
+            );
+    }
+    public void OnDeckBuildBtnClicked()
+    {
+        Spot spot = transform.parent.GetComponent<Spot>();
+        uiMap.SetSpotInfoToClearIfPlayerSucceed(spot);
+        sceneOpener.OpenDeckBuildingScene();
+    }
+    #endregion
 }

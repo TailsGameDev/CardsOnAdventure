@@ -71,13 +71,13 @@ public class UIMainMenu : UIPauseMenu
 
     private void Continue()
     {
-        UIMap.StartOfMatch = false;
+        Map.StartOfMatch = false;
         sceneOpener.OpenMapScene();
     }
 
     private void NewGame()
     {
-        UIMap.StartOfMatch = true;
+        Map.StartOfMatch = true;
         DeckPrototypeFactory.PrepareRandomDeckForThePlayerAndSaveItInStorage();
         sceneOpener.OpenMapScene();
     }

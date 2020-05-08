@@ -435,6 +435,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 52829778}
   m_CullTransparentMesh: 0
+--- !u!1 &53754417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 53754419}
+  - component: {fileID: 53754418}
+  m_Layer: 0
+  m_Name: Audio Requisitor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &53754418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53754417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c8422d7abf4939449539f904e426372, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &53754419
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53754417}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -341.56857, y: 391.85406, z: -1018.40625}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_Children: []
+  m_Father: {fileID: 1360789274}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &95551240
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,12 +635,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1112407828}
-        m_MethodName: OnRougueMasterClicked
-        m_Mode: 2
+      - m_Target: {fileID: 112996337}
+        m_MethodName: OnBattleSpotBtnClicked
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 112996331}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -653,6 +696,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0357425162abc91458179afbe27dc3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiMap: {fileID: 1112407828}
+  audioRequisitor: {fileID: 53754418}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  deckClass: 3
+  deckSizeMultiplier: 1
+  battleBGM: {fileID: 8300000, guid: ce325b6a1052d204eb6ef0aa21d3333d, type: 3}
+  winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
 --- !u!1 &170018926
 GameObject:
   m_ObjectHideFlags: 0
@@ -810,12 +860,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1112407828}
-        m_MethodName: OnToughBattleClicked
-        m_Mode: 2
+      - m_Target: {fileID: 173994914}
+        m_MethodName: OnBattleSpotBtnClicked
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 173994909}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -926,6 +976,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0357425162abc91458179afbe27dc3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiMap: {fileID: 1112407828}
+  audioRequisitor: {fileID: 53754418}
+  backgroundColor: {r: 1, g: 0, b: 0, a: 1}
+  deckClass: 0
+  deckSizeMultiplier: 1.25
+  battleBGM: {fileID: 8300000, guid: 3485bb149c5c70643947d901273aebc5, type: 3}
+  winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
 --- !u!1 &181793546
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,12 +1903,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1112407828}
-        m_MethodName: OnGuardianMasterClicked
-        m_Mode: 2
+      - m_Target: {fileID: 492105820}
+        m_MethodName: OnBattleSpotBtnClicked
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 492105815}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1962,6 +2019,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0357425162abc91458179afbe27dc3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiMap: {fileID: 1112407828}
+  audioRequisitor: {fileID: 53754418}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  deckClass: 4
+  deckSizeMultiplier: 1
+  battleBGM: {fileID: 8300000, guid: ce325b6a1052d204eb6ef0aa21d3333d, type: 3}
+  winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
 --- !u!1 &520027310
 GameObject:
   m_ObjectHideFlags: 0
@@ -2259,12 +2323,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1112407828}
-        m_MethodName: OnSimpleBattleClicked
-        m_Mode: 2
+      - m_Target: {fileID: 671785477}
+        m_MethodName: OnBattleSpotBtnClicked
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 671785471}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -2320,6 +2384,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0357425162abc91458179afbe27dc3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiMap: {fileID: 1112407828}
+  audioRequisitor: {fileID: 53754418}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  deckClass: 0
+  deckSizeMultiplier: 1
+  battleBGM: {fileID: 8300000, guid: 3485bb149c5c70643947d901273aebc5, type: 3}
+  winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
 --- !u!1 &681631204
 GameObject:
   m_ObjectHideFlags: 0
@@ -3094,7 +3165,7 @@ RectTransform:
   - {fileID: 173994909}
   - {fileID: 964956663}
   m_Father: {fileID: 1360789274}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3257,12 +3328,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1112407828}
-        m_MethodName: OnWarriorMasterClicked
-        m_Mode: 2
+      - m_Target: {fileID: 958992381}
+        m_MethodName: OnBattleSpotBtnClicked
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 958992375}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3318,6 +3389,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0357425162abc91458179afbe27dc3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiMap: {fileID: 1112407828}
+  audioRequisitor: {fileID: 53754418}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  deckClass: 2
+  deckSizeMultiplier: 1
+  battleBGM: {fileID: 8300000, guid: ce325b6a1052d204eb6ef0aa21d3333d, type: 3}
+  winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
 --- !u!1 &964956662
 GameObject:
   m_ObjectHideFlags: 0
@@ -3438,12 +3516,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1112407828}
-        m_MethodName: OnBossBattleClicked
-        m_Mode: 2
+      - m_Target: {fileID: 964956669}
+        m_MethodName: OnBattleSpotBtnClicked
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 964956663}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -3499,6 +3577,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0357425162abc91458179afbe27dc3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiMap: {fileID: 1112407828}
+  audioRequisitor: {fileID: 53754418}
+  backgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  deckClass: 0
+  deckSizeMultiplier: 1.5
+  battleBGM: {fileID: 8300000, guid: d4e1263996b6d8d4f99ca89f25c19462, type: 3}
+  winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
 --- !u!1 &974840405
 GameObject:
   m_ObjectHideFlags: 0
@@ -3936,6 +4021,7 @@ GameObject:
   - component: {fileID: 1042082693}
   - component: {fileID: 1042082692}
   - component: {fileID: 1042082691}
+  - component: {fileID: 1042082694}
   - component: {fileID: 1042082690}
   - component: {fileID: 1042082689}
   m_Layer: 5
@@ -3957,7 +4043,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1360789274}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4050,12 +4136,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1112407828}
+      - m_Target: {fileID: 1042082694}
         m_MethodName: OnDeckBuildBtnClicked
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1042082688}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4097,6 +4183,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042082687}
   m_CullTransparentMesh: 0
+--- !u!114 &1042082694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042082687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0357425162abc91458179afbe27dc3f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiMap: {fileID: 1112407828}
+  audioRequisitor: {fileID: 53754418}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  deckClass: 0
+  deckSizeMultiplier: 0
+  battleBGM: {fileID: 0}
+  winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
 --- !u!1 &1077831749
 GameObject:
   m_ObjectHideFlags: 0
@@ -4314,15 +4419,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1112407826}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17306376fb383f64cab2c1a58dc80e54, type: 3}
+  m_Script: {fileID: 11500000, guid: 97a39d8db16b9af45a2002f9e1fcd344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   finalSpotForEachMap:
   - {fileID: 52829779}
-  audioRequisitor: {fileID: 1338282692}
-  bossBGM: {fileID: 8300000, guid: d4e1263996b6d8d4f99ca89f25c19462, type: 3}
-  mastersBGM: {fileID: 8300000, guid: ce325b6a1052d204eb6ef0aa21d3333d, type: 3}
-  winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
 --- !u!1 &1118353066
 GameObject:
   m_ObjectHideFlags: 0
@@ -4566,6 +4667,7 @@ GameObject:
   - component: {fileID: 1150730509}
   - component: {fileID: 1150730508}
   - component: {fileID: 1150730506}
+  - component: {fileID: 1150730512}
   - component: {fileID: 1150730511}
   - component: {fileID: 1150730510}
   m_Layer: 5
@@ -4618,12 +4720,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1112407828}
+      - m_Target: {fileID: 1150730512}
         m_MethodName: OnEndOfGameClicked
-        m_Mode: 2
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1150730507}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -4641,7 +4743,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1360789274}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4722,6 +4824,25 @@ MonoBehaviour:
     background: {fileID: 0}
     height: 500
   popUpOpener: {fileID: 1131209288}
+--- !u!114 &1150730512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150730505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0357425162abc91458179afbe27dc3f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiMap: {fileID: 1112407828}
+  audioRequisitor: {fileID: 53754418}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  deckClass: 0
+  deckSizeMultiplier: 0
+  battleBGM: {fileID: 0}
+  winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
 --- !u!1 &1240995696
 GameObject:
   m_ObjectHideFlags: 0
@@ -5006,18 +5127,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b, type: 3}
---- !u!114 &1338282692 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1935715517312006474, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
-    type: 3}
-  m_PrefabInstance: {fileID: 1338282691}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c8422d7abf4939449539f904e426372, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1360789273
 GameObject:
   m_ObjectHideFlags: 0
@@ -5048,6 +5157,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 53754419}
   - {fileID: 1609366073}
   - {fileID: 933378948}
   - {fileID: 1150730507}
@@ -5571,12 +5681,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1112407828}
-        m_MethodName: OnMageMasterClicked
-        m_Mode: 2
+      - m_Target: {fileID: 1566057376}
+        m_MethodName: OnBattleSpotBtnClicked
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1566057370}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5632,6 +5742,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0357425162abc91458179afbe27dc3f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiMap: {fileID: 1112407828}
+  audioRequisitor: {fileID: 53754418}
+  backgroundColor: {r: 0.29411766, g: 0.79215693, b: 0.9058824, a: 1}
+  deckClass: 1
+  deckSizeMultiplier: 1
+  battleBGM: {fileID: 8300000, guid: ce325b6a1052d204eb6ef0aa21d3333d, type: 3}
+  winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
 --- !u!1 &1580739385
 GameObject:
   m_ObjectHideFlags: 0
@@ -5703,7 +5820,7 @@ RectTransform:
   - {fileID: 112996331}
   - {fileID: 492105815}
   m_Father: {fileID: 1360789274}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

@@ -96,7 +96,7 @@ public class CustomPopUp : OpenersSuperclass
     {
         openingBGM.RequestPlaying();
         cardsDisplay.ShowCardsOfClass(classeOfCardsToShow);
-        Open(title, warningMessage, confirmBtnMessage, 
+        OpenAndMakeUncloseable(title, warningMessage, confirmBtnMessage, 
             cancelBtnMessage,
             onConfirm: ()=> { cardsDisplay.ClearAttributes(); onConfirm(); },
             onCancel: () => { cardsDisplay.ClearAttributes(); onCancel(); }

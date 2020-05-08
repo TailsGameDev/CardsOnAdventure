@@ -13,7 +13,7 @@ public class CurrentBattleInfo
 
     public static void PrepareBattle(Color backgroundColorParam, Classes masterClassParam = Classes.NOT_A_CLASS, AudioClip bgmParam = null)
     {
-        backgroundColor = masterClassParam == Classes.NOT_A_CLASS ? ClassInfo.GetColorOfClass(masterClassParam) : backgroundColorParam;
+        backgroundColor = masterClassParam == Classes.NOT_A_CLASS ? backgroundColorParam : ClassInfo.GetColorOfClass(masterClassParam);
         masterClass = masterClassParam;
         bgm = bgmParam;
     }
