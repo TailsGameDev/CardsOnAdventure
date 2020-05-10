@@ -233,9 +233,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3efbdcb5038d61e46a85cdce2937abc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priority: 0
+  popUpOpener: {fileID: 0}
   title: 
   tipData: []
-  popUpOpener: {fileID: 0}
   cardToPullData: {fileID: 439867028889674654}
 --- !u!114 &5535211136222558472
 MonoBehaviour:
@@ -2438,4 +2439,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 2x Attack
+  m_Text: 12345678

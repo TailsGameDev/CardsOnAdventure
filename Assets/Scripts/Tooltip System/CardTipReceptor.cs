@@ -11,7 +11,7 @@ public class CardTipReceptor : TipsDragAndDropReceptor
     {
         Card c = cardToPullData;
 
-        title = c.GetColoredTitleForTooltip();
+        title = c.GetColoredTitleForTip();
 
         TipSectionData section1 = new TipSectionData(background: c.GetCardSprite());
 

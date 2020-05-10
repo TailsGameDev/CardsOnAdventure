@@ -18,6 +18,8 @@ public class DeckPrototypeFactory : MonoBehaviour
 
     [SerializeField]
     protected Card theRandomCard;
+    [SerializeField]
+    protected Card trainingDummyCard;
 
     protected const int NOT_A_SIZE = -1;
     protected const int TOUGH_SIZE = -2;
@@ -86,38 +88,13 @@ public class DeckPrototypeFactory : MonoBehaviour
         return enemyDeckBuilder.GetDeck();
     }
     #region Public Prepare XXXX Deck For The Enemy
-    public static void PrepareRandomDeckForTheEnemy(int size = NOT_A_SIZE)
+    public static void PrepareTrainingDummyDeckForTheEnemy()
     {
-        enemyDeckBuilder = new RandomDeckBuilder(size);
-    }
-    public static void PrepareToughRandomDeckForTheEnemy(int size = TOUGH_SIZE)
-    {
-        enemyDeckBuilder = new RandomDeckBuilder(size);
-    }
-    public static void PrepareBossRandomDeckForTheEnemy(int size = BOSS_SIZE)
-    {
-        enemyDeckBuilder = new RandomDeckBuilder(size);
+        enemyDeckBuilder = new TrainingDummyDeckBuilder( Mathf.FloorToInt(DefaultDeckSize * 0.75f) );
     }
     public static void PrepareModifiedSizeRandomDeckForTheEnemy(float sizeMultiplier)
     {
         enemyDeckBuilder = new RandomDeckBuilder(Mathf.CeilToInt(DefaultDeckSize * sizeMultiplier));
-    }
-
-    public static void PrepareMageDeckForTheEnemy(int size = NOT_A_SIZE)
-    {
-        enemyDeckBuilder = new HalfRandomDeckBuilder(size, Classes.MAGE);
-    }
-    public static void PrepareWarriorDeckForTheEnemy(int size = NOT_A_SIZE)
-    {
-        enemyDeckBuilder = new HalfRandomDeckBuilder(size, Classes.WARRIOR);
-    }
-    public static void PrepareRogueDeckForTheEnemy(int size = NOT_A_SIZE)
-    {
-        enemyDeckBuilder = new HalfRandomDeckBuilder(size, Classes.ROGUE);
-    }
-    public static void PrepareGuardianDeckForTheEnemy(int size = NOT_A_SIZE)
-    {
-        enemyDeckBuilder = new HalfRandomDeckBuilder(size, Classes.GUARDIAN);
     }
     public static void PrepareClassDeckForTheEnemy(float sizeMultiplier, Classes classe)
     {
@@ -289,6 +266,11 @@ public class DeckPrototypeFactory : MonoBehaviour
         protected Card GetCloneOfTheRandomCard()
         {
             return deckPrototypeFactory.theRandomCard.GetClone();
+        }
+
+        protected Card GetCloneOfTrainingDummyCard()
+        {
+            return deckPrototypeFactory.trainingDummyCard.GetClone();
         }
     }
 }

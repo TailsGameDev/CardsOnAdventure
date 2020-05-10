@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Transactions;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SpotPrototype : OpenersSuperclass
 {
@@ -20,28 +21,46 @@ public class SpotPrototype : OpenersSuperclass
     private float deckSizeMultiplier = 0;
 
     [SerializeField]
-    private AudioClip battleBGM = null;
+    private AudioClip spotBGM = null;
     [SerializeField]
     private AudioClip winSound = null;
     [SerializeField]
     private AudioClip celebrateSFX = null;
 
+    private bool isTraining = false;
+
     public void OnBattleSpotBtnClicked()
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
-        if (deckClass == Classes.NOT_A_CLASS)
+        if (isTraining)
         {
-            CurrentBattleInfo.PrepareBattle(backgroundColor, bgmParam: battleBGM);
+            CurrentBattleInfo.PrepareBattle(backgroundColor, bgmParam: spotBGM);
+            DeckPrototypeFactory.PrepareTrainingDummyDeckForTheEnemy();
+        }
+        else if (deckClass == Classes.NOT_A_CLASS)
+        {
+            CurrentBattleInfo.PrepareBattle(backgroundColor, bgmParam: spotBGM);
             DeckPrototypeFactory.PrepareModifiedSizeRandomDeckForTheEnemy(deckSizeMultiplier);
         }
         else
         {
-            CurrentBattleInfo.PrepareBattle(deckClass, battleBGM);
+            CurrentBattleInfo.PrepareBattle(deckClass, spotBGM);
             DeckPrototypeFactory.PrepareClassDeckForTheEnemy(deckSizeMultiplier, deckClass);
         }
+        MarkSpotToBeCleared();
+        sceneOpener.OpenBattle();
+    }
+
+    public void OnTrainingSpotBtnClicked()
+    {
+        isTraining = true;
+        OnBattleSpotBtnClicked();
+    }
+
+    private void MarkSpotToBeCleared()
+    {
         Spot spot = transform.parent.GetComponent<Spot>();
         uiMap.SetSpotInfoToClearIfPlayerSucceed(spot);
-        sceneOpener.OpenBattle();
     }
 
     #region On "Some Not Battle Spot" Clicked
@@ -59,8 +78,7 @@ public class SpotPrototype : OpenersSuperclass
     }
     public void OnDeckBuildBtnClicked()
     {
-        Spot spot = transform.parent.GetComponent<Spot>();
-        uiMap.SetSpotInfoToClearIfPlayerSucceed(spot);
+        MarkSpotToBeCleared();
         sceneOpener.OpenDeckBuildingScene();
     }
     #endregion

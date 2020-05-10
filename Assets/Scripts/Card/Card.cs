@@ -309,10 +309,16 @@ public class Card : SkillsMediatorUser
     {
         return skills.FullName;
     }
-    public string GetColoredTitleForTooltip()
+    public string GetColoredTitleForTip()
     {
-        return "<color=#"+ classInfo.ColorHexCode + ">"+ Classe+" "+skills.gameObject+"</color>";
+        return "<color=#"+ClassColorHexCode()+ ">"+ Classe +" "+ skills.FullName +"</color>";
     }
+
+    private string ClassColorHexCode()
+    {
+        return classInfo == null ? "FFFFFF" : classInfo.ColorHexCode; ;
+    }
+
     public string GetExplanatoryText()
     {
         return 
@@ -324,7 +330,7 @@ public class Card : SkillsMediatorUser
     public string GetSkillsExplanatoryText()
     {
         return 
-                "<color=#" + classInfo.ColorHexCode + ">" + 
+                "<color=#" + ClassColorHexCode() + ">" + 
                 skills.GetExplanatoryText(attackPower).ToUpper()
                 + "</color>"
                 ;

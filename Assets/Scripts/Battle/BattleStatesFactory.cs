@@ -138,10 +138,10 @@ public class BattleStatesFactory : OpenersSuperclass
     public BattleState CreateEndGameState(BattleStatesFactory winnerFactory)
     {
         
-        AudioClip victoryBGM = audioHolder.GetAudioByName("Victory");
+        AudioClip victoryBGM = audioHolder.GetAudioByName("VICTORY");
         PreMadeSoundRequest victoryAudioRequest =
             PreMadeSoundRequest.CreateSFX_AND_STOP_BGMSoundRequest(victoryBGM, audioRequisitor, assignor: gameObject);
-        AudioClip defeatBGM = audioHolder.GetAudioByName("Defeat");
+        AudioClip defeatBGM = audioHolder.GetAudioByName("DEFEAT");
         PreMadeSoundRequest defeatAudioRequest =
             PreMadeSoundRequest.CreateSFX_AND_STOP_BGMSoundRequest(defeatBGM, audioRequisitor, assignor: gameObject);
 
