@@ -15,7 +15,7 @@ public class CustomPopUpCardsHolder : DynamicSizeScrollableCardHolder
 
         for (int i = 0; i < cards.Length; i++)
         {
-            PutCardInIndex(cards[i], i, smooth: true);
+            PutCardInIndexWithSmoothMovement(cards[i], i);
             cards[i].GetComponent<CardDragAndDrop>().ForceReceptorToNullBeforeDrop = true;
             cards[i].ApplyPlayerBonuses();
         }

@@ -29,8 +29,7 @@ public class ChildMaker : MonoBehaviour
         if (parent != null && child != null)
         {
             GameObject childMaker = new GameObject();
-            childMaker.AddComponent(typeof(ChildMaker));
-            ChildMaker maker = childMaker.GetComponent<ChildMaker>();
+            ChildMaker maker = (ChildMaker) childMaker.AddComponent(typeof(ChildMaker));
 
             maker.ScaleAndSmoothlyMoveChildToParentPosition(parent, child, totalTime);
         }
@@ -73,23 +72,6 @@ public class ChildMaker : MonoBehaviour
         child.GetComponent<RectTransform>().SetParent(parent, true);
 
         Destroy(gameObject);
-    }
-
-    public static void AdoptAndSmoothlyMoveToPosition(Transform parent, RectTransform child, Vector3 position, float totalTime = -1.0f)
-    {
-        if (totalTime < 0)
-        {
-            totalTime = DEFAULT_TRANSITION_TIME;
-        }
-
-        if (parent != null && child != null)
-        {
-            GameObject childMaker = new GameObject();
-            childMaker.AddComponent(typeof(ChildMaker));
-            ChildMaker maker = childMaker.GetComponent<ChildMaker>();
-
-            maker.ScaleAndSmoothlyMoveChildToParentPosition(parent, child, totalTime);
-        }
     }
 
     private void SmoothlyMoveChildToPosition(Transform parent, RectTransform child, Vector3 position, float totalTime)

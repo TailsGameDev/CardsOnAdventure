@@ -59,26 +59,18 @@ public class BattleStatesFactory : OpenersSuperclass
 
     public BattleState CreatePlaceCardState()
     {
-        string[] AUDIO_NAMES = { "0 Place Card SFX", "1 Place Card SFX", 
-            "2 Place Card SFX", "3 Place Card SFX", "4 Place Card SFX" };
-        AudioClip placeCardSFX = audioHolder.GetAleatoryClipAmong(AUDIO_NAMES);
-
-        PreMadeSoundRequest placeCardSoundRequest = 
-            PreMadeSoundRequest.CreateSFXSoundRequest(placeCardSFX, audioRequisitor, assignor: gameObject);
-
         return new PlaceCard
             (
                 hand,
                 battlefield,
                 deck,
-                placeCardSoundRequest,
+                placeCardSFX: GetRandomPlaceCardPreMadeSoundRequest(),
                 btnsBackground,
-                customPopUpOpener,
-                PreMadeSoundRequest.CreateSFXSoundRequest(audioHolder.GetAudioByName("Fuck You"), audioRequisitor, assignor: gameObject)
+                customPopUpOpener
             );
     }
 
-    public BattleState CreateBonusRepositionState()
+    private PreMadeSoundRequest GetRandomPlaceCardPreMadeSoundRequest()
     {
         string[] AUDIO_NAMES = { "0 Place Card SFX", "1 Place Card SFX",
             "2 Place Card SFX", "3 Place Card SFX", "4 Place Card SFX" };
@@ -87,15 +79,19 @@ public class BattleStatesFactory : OpenersSuperclass
         PreMadeSoundRequest placeCardSoundRequest =
             PreMadeSoundRequest.CreateSFXSoundRequest(placeCardSFX, audioRequisitor, assignor: gameObject);
 
+        return placeCardSoundRequest;
+    }
+
+    public BattleState CreateBonusRepositionState()
+    {
         return new BonusReposition
             (
                 hand,
                 battlefield,
                 deck,
-                placeCardSoundRequest,
+                placeCardSFX: GetRandomPlaceCardPreMadeSoundRequest(),
                 btnsBackground,
                 customPopUpOpener,
-                PreMadeSoundRequest.CreateSFXSoundRequest(audioHolder.GetAudioByName("Fuck You"), audioRequisitor, assignor: gameObject),
                 otherBattleStatesFactory.hand,
                 otherBattleStatesFactory.deck
             );

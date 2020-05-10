@@ -8,7 +8,6 @@ public class PlaceCard : BattleState
     protected PreMadeSoundRequest placeCardSFXRequest;
     protected GameObject btnsBackground;
     protected CustomPopUp customPopUpOpener;
-    protected PreMadeSoundRequest offendDeveloper;
 
     bool cardWasSuccessfullyPlaced = false;
 
@@ -19,8 +18,7 @@ public class PlaceCard : BattleState
             Deck deck,
             PreMadeSoundRequest placeCardSFX,
             GameObject btnsBackground,
-            CustomPopUp customPopUpOpener,
-            PreMadeSoundRequest offendDeveloper
+            CustomPopUp customPopUpOpener
         )
     {
         this.hand = hand;
@@ -29,7 +27,6 @@ public class PlaceCard : BattleState
         this.placeCardSFXRequest = placeCardSFX;
         this.btnsBackground = btnsBackground;
         this.customPopUpOpener = customPopUpOpener;
-        this.offendDeveloper = offendDeveloper;
         
         btnsBackground.SetActive(false);
 
@@ -68,7 +65,15 @@ public class PlaceCard : BattleState
 
             Card card = hand.RemoveCardFromSelectedIndex();
 
-            battlefield.PutCardInSelectedIndex(card, smooth: currentBattleStatesFactory == enemyBattleStatesFactory);
+            bool smooth = currentBattleStatesFactory == enemyBattleStatesFactory;
+            if (smooth)
+            {
+                battlefield.PutCardInSelectedIndexWithSmoothMovement(card);
+            }
+            else
+            {
+                battlefield.PutCardInSelectedIndexThenTeleportToSlot(card);
+            }
             cardWasSuccessfullyPlaced = true;
 
             placeCardSFXRequest.RequestPlaying();

@@ -13,7 +13,6 @@ public class BonusReposition : PlaceCard
             PreMadeSoundRequest placeCardSFX,
             GameObject btnsBackground,
             CustomPopUp customPopUpOpener,
-            PreMadeSoundRequest offendDeveloperAudioRequisitor,
             Hand opponentHand,
             Deck opponentDeck
         )
@@ -24,8 +23,7 @@ public class BonusReposition : PlaceCard
             deck,
             placeCardSFX,
             btnsBackground,
-            customPopUpOpener,
-            offendDeveloperAudioRequisitor
+            customPopUpOpener
         )
     {
         this.opponentHand = opponentHand;

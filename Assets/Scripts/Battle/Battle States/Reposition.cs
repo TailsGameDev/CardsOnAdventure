@@ -124,11 +124,23 @@
         bool smooth = currentBattleStatesFactory == enemyBattleStatesFactory;
         if (firstCard != null)
         {
-            attackerBattlefield.PutCardInIndex(firstCard, currentIndex, smooth);
+            PutCardInIndex(firstCard, currentIndex, smooth);
         }
         if (secondCard != null)
         {
-            attackerBattlefield.PutCardInIndex(secondCard, oldIndex, smooth);
+            PutCardInIndex(secondCard, oldIndex, smooth);
+        }
+    }
+
+    private void PutCardInIndex(Card card, int index, bool smooth)
+    {
+        if (smooth)
+        {
+            attackerBattlefield.PutCardInIndexWithSmoothMovement(card, index);
+        }
+        else
+        {
+            attackerBattlefield.PutCardInIndexThenTeleportToSlot(card, index);
         }
     }
 

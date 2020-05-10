@@ -22,7 +22,7 @@ public class DeckCardHolder : DynamicSizeScrollableCardHolder
         cards = new Card[amountOfSlots];
         for (int i = 0; i < amountOfSlots; i++)
         {
-            PutCardInIndex(DeckPrototypeFactory.GetCloneOfTheRandomCard(), i, smooth: true);
+            PutCardInIndexWithSmoothMovement(DeckPrototypeFactory.GetCloneOfTheRandomCard(), i);
         }
     }
     #endregion

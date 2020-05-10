@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1419978966775109193}
   - component: {fileID: 6049878548495232461}
   m_Layer: 0
-  m_Name: No Attack
+  m_Name: PunchBag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,8 +44,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acronym: '-'
-  fullName: No Attack
-  description: This card does not attack.
+  fullName: PunchBag
+  description: 'This card does not attack. It is a  mannequin. It''s purpose is to
+    be a training dummy: a Punching Bag.'
   attackVFX: {fileID: 0}
   defenseVFX: {fileID: 0}
   specialVFX: {fileID: 0}
@@ -2821,6 +2822,11 @@ PrefabInstance:
       propertyPath: popUpOpener
       value: 
       objectReference: {fileID: 4073906798286987060}
+    - target: {fileID: 8988087068539831836, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: m_Text
+      value: PunchBag
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
 --- !u!224 &4589943427510237242 stripped

@@ -11,7 +11,7 @@ public class Hand : CardsHolder
         {
             if (cards[i] == null)
             {
-                PutCardInIndex(card, i, smooth: true);
+                PutCardInIndexWithSmoothMovement(card, i);
                 break;
             }
         }

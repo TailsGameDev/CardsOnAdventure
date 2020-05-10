@@ -19,7 +19,17 @@ public class CardsHolder : IndexHolder
         return cards.Length;
     }
 
-    public void PutCardInIndex(Card card, int index, bool smooth)
+    public void PutCardInIndexWithSmoothMovement(Card card, int index)
+    {
+        PutCardInIndex(card, index, smooth: true);
+    }
+
+    public void PutCardInIndexThenTeleportToSlot(Card card, int index)
+    {
+        PutCardInIndex(card, index, smooth: false);
+    }
+
+    private void PutCardInIndex(Card card, int index, bool smooth)
     {
         RectTransform cardRect = card.GetComponent<RectTransform>();
 
@@ -149,9 +159,13 @@ public class CardsHolder : IndexHolder
     #endregion
 
     #region Operations that Consider Selection And Don't deal with Size
-    public void PutCardInSelectedIndex(Card card, bool smooth)
+    public void PutCardInSelectedIndexWithSmoothMovement(Card card)
     {
-        PutCardInIndex(card, GetSelectedIndex(), smooth);
+        PutCardInIndex(card, GetSelectedIndex(), smooth: true);
+    }
+    public void PutCardInSelectedIndexThenTeleportToSlot(Card card)
+    {
+        PutCardInIndex(card, GetSelectedIndex(), smooth: false);
     }
     public Card RemoveCardFromSelectedIndex()
     {

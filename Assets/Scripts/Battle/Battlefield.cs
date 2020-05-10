@@ -17,9 +17,9 @@ public class Battlefield : CardsHolder
     {
         Card aux = GetReferenceToCardAt(anotherIndex);
 
-        PutCardInIndex(cards[index], anotherIndex, smooth: true);
+        PutCardInIndexWithSmoothMovement(cards[index], anotherIndex);
 
-        PutCardInIndex(aux, index, smooth: true);
+        PutCardInIndexWithSmoothMovement(aux, index);
     }
 
     public void LoopThrougCardsAndSelectBestTarget(EnemyAI.CurrentTargetIsBetterThanTheOneBefore isCurrentTargetBetter)
