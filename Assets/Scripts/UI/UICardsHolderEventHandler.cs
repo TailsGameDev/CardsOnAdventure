@@ -97,7 +97,7 @@ public class UICardsHolderEventHandler : MonoBehaviour
             // Wait for battleFSM to do it's job (like set the parent of the card).
             yield return null;
             yield return null;
-            ChildMaker.AdoptAndSmoothlyMoveToParent
+            ChildMaker.AdoptAndScaleAndSmoothlyMoveToParent
             (
                 cardBeingDragged.transform.parent,
                 cardBeingDragged.GetComponent<RectTransform>(),

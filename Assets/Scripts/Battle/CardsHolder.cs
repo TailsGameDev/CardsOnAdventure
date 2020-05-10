@@ -28,7 +28,7 @@ public class CardsHolder : IndexHolder
 
         if (smooth)
         {
-            ChildMaker.AdoptAndSmoothlyMoveToParent(cardPositions[index].transform, card.GetComponent<RectTransform>(), repositionAnimationDurationInSeconds);
+            ChildMaker.AdoptAndScaleAndSmoothlyMoveToParent(cardPositions[index].transform, card.GetComponent<RectTransform>(), repositionAnimationDurationInSeconds);
         }
         else
         {

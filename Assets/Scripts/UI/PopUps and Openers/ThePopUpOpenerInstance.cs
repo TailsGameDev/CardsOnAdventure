@@ -63,7 +63,6 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
         Debug.Log("[ThePopUpOpenerInstance] " + names, this);
         */
     }
-
     private void OpenPopUp(GameObject popUp)
     {
         popUp.SetActive(true);
@@ -74,7 +73,6 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
         popUpsStack.Push(popUp);
          LogStack();
     }
-
     // Called by editor
     public void IfThereIsAPopUpOnTopThenCloseIt()
     {
@@ -90,7 +88,10 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
         }
          LogStack();
     }
-
+    public bool customPopUpIsClosed()
+    {
+        return ! customPopUp.activeSelf;
+    }
     public void CloseAllPopUpsExceptLoading()
     {
         while (popUpsStack.Count > 0)
@@ -99,21 +100,17 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
         }
          LogStack();
     }
-
     public bool AllPopUpsAreClosed()
     {
         return popUpsStack.Count == 0;
     }
-
     #endregion
 
     #region Open XXX PopUp
-
     public void OpenPausePopUp()
     {
         OpenPopUp(pausePopUp);
     }
-
     public void OpenBattleRulesPopUp()
     {
         TipSectionData[] battleRulesContent = new TipSectionData[]
@@ -124,24 +121,20 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
 
         OpenTooltipPopUp( battleRulesContent, title: "Battle Rules" );
     }
-
     public void SetLoadingPopUpActiveToTrue()
     {
         loadingPopUp.SetActive(true);
     }
-
     public void OpenSettingsPopUp()
     {
         OpenPopUp(settingsPopUp);
     }
-
     public void OpenMapScene()
     {
         SetLoadingPopUpActiveToTrue();
         CloseAllPopUpsExceptLoading();
         SceneManager.LoadScene("Map");
     }
-
     public void OpenCustomPopUp()
     {
         if (!customPopUp.activeSelf)
@@ -153,7 +146,6 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
             L.ogWarning(this,"Called OpenCustomPopUp but it was already opened");
         }
     }
-    
     public void OpenTooltipPopUp(TipSectionData[] tipsData, string title)
     {
         tooltipPopUpTitle.text = title;

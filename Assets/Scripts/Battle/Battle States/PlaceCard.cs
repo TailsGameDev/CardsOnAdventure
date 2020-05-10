@@ -51,11 +51,11 @@ public class PlaceCard : BattleState
     {
         hand.MakeOnlySelectedCardBigger();
 
-        if (IsPlayerTryingToReposition())
+        if (PlayerIsTryingToReposition())
         {
             ClearSelections();
 
-            customPopUpOpener.OpenWithNoBtns
+            customPopUpOpener.OpenMessageIfNoCustomPopUpIsOpenned
                 (
                     title: "Place Cards",
                         warningMessage: "<color=#FFFFFF> You must <color=#1DEFC7>PLACE ALL CARDS YOU CAN BEFORE REPOSITIONING</color>. Drag and Drop from your hand" +
@@ -77,7 +77,7 @@ public class PlaceCard : BattleState
         }
     }
 
-    protected bool IsPlayerTryingToReposition()
+    protected bool PlayerIsTryingToReposition()
     {
         return battlefield.GetSelectedIndex() >= 0 && hand.GetSelectedIndex() == -1;
     }

@@ -169,18 +169,27 @@ public abstract class DragAndDrop : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
-        if ( ExitedAllValidReceptors() )
+        if ( OverlapsNoReceptor() )
         {
             receptor = null;
             OnExitedAllReceptors();
         } 
         else
         {
-            receptor = GetValidOverlappingReceptor();
+            // If this does not hold a receptor, or if the overlappingReceptor priority is enough, cache the overlapping receptor
+            DragAndDropReceptor receptorCandidate = GetValidOverlappingReceptor();
+            if (receptor == null)
+            {
+                receptor = receptorCandidate;
+            }
+            else if (receptorCandidate != null && receptor.Priority <= receptorCandidate.Priority)
+            {
+                receptor = receptorCandidate;
+            }
         }
     }
 
-    private bool ExitedAllValidReceptors()
+    private bool OverlapsNoReceptor()
     {
         return new ExitedAllValidReceptorsVerifier(this).Verify();
     }

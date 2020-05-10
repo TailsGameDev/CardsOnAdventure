@@ -19,7 +19,7 @@ public class ChildMaker : MonoBehaviour
         child.localScale = new Vector3(1.0f, 1.0f, 1.0f);
     }
 
-    public static void AdoptAndSmoothlyMoveToParent(Transform parent, RectTransform child, float totalTime = -1.0f)
+    public static void AdoptAndScaleAndSmoothlyMoveToParent(Transform parent, RectTransform child, float totalTime = -1.0f)
     {
         if (totalTime < 0)
         {
@@ -32,17 +32,23 @@ public class ChildMaker : MonoBehaviour
             childMaker.AddComponent(typeof(ChildMaker));
             ChildMaker maker = childMaker.GetComponent<ChildMaker>();
 
-            maker.SmoothlyMoveChildToParentPosition(parent, child, totalTime);
+            maker.ScaleAndSmoothlyMoveChildToParentPosition(parent, child, totalTime);
         }
     }
 
-    private void SmoothlyMoveChildToParentPosition(Transform parent, RectTransform child, float totalTime)
+    private void ScaleAndSmoothlyMoveChildToParentPosition(Transform parent, RectTransform child, float totalTime)
     {
-        StartCoroutine(SmothlyMoveToPos(parent, child, totalTime));
+        StartCoroutine(ScaleAndSmothlyMoveToPos(parent, child, totalTime));
     }
 
-    IEnumerator SmothlyMoveToPos(Transform parent, RectTransform child, float totalTime)
+    IEnumerator ScaleAndSmothlyMoveToPos(Transform parent, RectTransform child, float totalTime)
     {
+        // Scale
+        child.GetComponent<RectTransform>().SetParent(parent, true);
+        yield return null;
+        child.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+
+        // Make it float above everybody.
         child.GetComponent<RectTransform>().SetParent(UIBattle.parentOfDynamicUIThatMustAppear, true);
 
         Vector3 initialPosition = child.transform.position;
@@ -82,12 +88,12 @@ public class ChildMaker : MonoBehaviour
             childMaker.AddComponent(typeof(ChildMaker));
             ChildMaker maker = childMaker.GetComponent<ChildMaker>();
 
-            maker.SmoothlyMoveChildToParentPosition(parent, child, totalTime);
+            maker.ScaleAndSmoothlyMoveChildToParentPosition(parent, child, totalTime);
         }
     }
 
     private void SmoothlyMoveChildToPosition(Transform parent, RectTransform child, Vector3 position, float totalTime)
     {
-        StartCoroutine(SmothlyMoveToPos(parent, child, totalTime));
+        StartCoroutine(ScaleAndSmothlyMoveToPos(parent, child, totalTime));
     }
 }   

@@ -15,6 +15,8 @@ public class Map : OpenersSuperclass
 
     private static bool shouldAskForTip = true;
 
+    private bool shouldSave = false;
+
     #region Initialization
     private void Awake()
     {
@@ -43,9 +45,17 @@ public class Map : OpenersSuperclass
             shouldAskForTip = false;
         }
 
-        ClassInfo.PrepareClassesBonusesForSaving();
-        mapsCache.PrepareAllMapsForSaving();
-        saveFacade.SaveEverything();
+        // The game shouldn't be saved at the first time on the map. It would be useless, and cause a LogWarning.
+        if (shouldSave)
+        {
+            ClassInfo.PrepareClassesBonusesForSaving();
+            mapsCache.PrepareAllMapsForSaving();
+            saveFacade.SaveEverything();
+        }
+        else
+        {
+            shouldSave = true;
+        }
     }
 
     private void BuildSpotsFromZeroThenCacheThem()

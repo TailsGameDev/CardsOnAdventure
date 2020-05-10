@@ -50,7 +50,7 @@ public class BonusReposition : PlaceCard
             {
                 deck.PutCardInTop(card);
                 const float TIME_GOING_TO_HAND = 0.7f;
-                ChildMaker.AdoptAndSmoothlyMoveToParent(deck.transform, card.GetComponent<RectTransform>(), TIME_GOING_TO_HAND);
+                ChildMaker.AdoptAndScaleAndSmoothlyMoveToParent(deck.transform, card.GetComponent<RectTransform>(), TIME_GOING_TO_HAND);
             }
         }
     }

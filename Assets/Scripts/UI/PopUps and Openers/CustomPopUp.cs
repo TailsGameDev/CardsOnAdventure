@@ -43,11 +43,14 @@ public class CustomPopUp : OpenersSuperclass
         Open(title: "Are You sure?", warningMessage, "I'm Sure", "Cancel", onConfirm, DefaultCancelBehaviour);
     }
 
-    public void OpenWithNoBtns(string title, string warningMessage)
+    public void OpenMessageIfNoCustomPopUpIsOpenned(string title, string warningMessage)
     {
-        btnsActive = false;
-        Open(title, warningMessage, " ", " ", ()=> { }, ()=> { });
-        btnsActive = true;
+        if (openerOfPopUpsMadeInEditor.customPopUpIsClosed())
+        {
+            btnsActive = false;
+            Open(title, warningMessage, " ", " ", ()=> { }, ()=> { });
+            btnsActive = true;
+        }
     }
 
     public void Open // with BGM
@@ -91,7 +94,7 @@ public class CustomPopUp : OpenersSuperclass
         Open(title, warningMessage, confirmBtnMessage, cancelBtnMessage, onConfirm, onCancel);
     }
 
-    public void Open // With Custom Cancel / With BGM
+    public void Open
     (
         string title,
         string warningMessage,
