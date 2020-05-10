@@ -21,6 +21,7 @@ public abstract class DragAndDrop : MonoBehaviour
     private delegate void DoForEachValidOverlappingReceptor();
 
     private DragAndDropReceptor maybeAReceptor;
+
     #endregion
 
     protected virtual void Update()
@@ -139,8 +140,16 @@ public abstract class DragAndDrop : MonoBehaviour
         DragAndDropReceptor maybeAReceptor = col.GetComponent<DragAndDropReceptor>();
         if (maybeAReceptor != null)
         {
-            RegisterIfIsReceptorAndCallWhosInterested(possibleReceptorCollider: col);
+            if (ConditionToReplace(maybeAReceptor))
+            {
+                RegisterIfIsReceptorAndCallWhosInterested(possibleReceptorCollider: col);
+            }
         }
+    }
+
+    protected virtual bool ConditionToReplace(DragAndDropReceptor maybeAReceptor)
+    {
+        return receptor == null || (receptor!=null && receptor.Priority <= maybeAReceptor.Priority);
     }
 
     private void RegisterIfIsReceptorAndCallWhosInterested(Collider2D possibleReceptorCollider)

@@ -4,13 +4,13 @@ using UnityEngine;
 public class TipsDragAndDropReceptor : DragAndDropReceptor
 {
     [SerializeField]
+    protected OpenersSuperclass popUpOpener = null;
+
+    [SerializeField]
     protected string title = null;
 
     [SerializeField]
     protected TipSectionData[] tipData = null;
-
-    [SerializeField]
-    protected OpenersSuperclass popUpOpener = null;
 
     private void Awake()
     {

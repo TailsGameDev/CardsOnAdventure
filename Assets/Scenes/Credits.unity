@@ -233,7 +233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b91dcef9192bd74e899e4aef8f3e586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneOpener: {fileID: 0}
 --- !u!1001 &739349740
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -469,6 +468,11 @@ PrefabInstance:
     - target: {fileID: 3707952952828222997, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707952952828222997, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3707952952828222997, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
@@ -494,6 +498,31 @@ PrefabInstance:
     - target: {fileID: 3707952952828222997, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}
       propertyPath: m_Delegates.Array.data[2].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707952952828222997, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707952952828222997, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707952952828222997, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 602256159}
+    - target: {fileID: 3707952952828222997, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnCloseBtnClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707952952828222997, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4251757072372339948, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
@@ -534,17 +563,23 @@ PrefabInstance:
     - target: {fileID: 6987321625034104170, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}
       propertyPath: m_Text
-      value: "<color=#1fdab6ff>Game Design</color>\nCain\xE3 Correa Caldas\nLuiz
-        Henrique Marquetti Rondon\n\n<color=#1fdab6>Programming</color>\nCain\xE3
-        Correa Caldas\n\n<color=#1fdab6>Illustrations</color>\nThayse Fortes (Coati)\n\n<color=#1fdab6>User
-        Interface</color>\nArthur Neves\n\n<color=#1fdab6>BGM / SFX / VFX</color>\nLuiz
-        Henrique Marquetti Rondon\n\n<color=#1fdab6>Quallity Assurance</color>\nLuis
-        Felipe Bruno Azeredo\n"
+      value: "<color=#1fdab6ff>Game Design</color>\r\nCain\xE3 Correa Caldas\r\nLuiz
+        Henrique Marquetti Rondon\r\n\r\n<color=#1fdab6>Programming</color>\r\nCain\xE3
+        Correa Caldas\r\n\r\n<color=#1fdab6>Illustrations</color>\r\nThayse Fortes
+        (Coati)\r\n\r\n<color=#1fdab6>User Interface</color>\r\nArthur Neves\r\nCain\xE3
+        Correa Caldas\r\n\r\n<color=#1fdab6>Assets Google Search</color>\r\nLuiz
+        Henrique Marquetti Rondon\r\nCain\xE3 Correa Caldas\r\n\r\n<color=#1fdab6>Testers</color>\r\nLuis
+        Felipe Bruno Azeredo\r\nVictor Armando Neis\r\nVictor Vighi\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 6987321625034104170, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}
       propertyPath: m_FontData.m_Alignment
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987321625034104170, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_FontData.m_LineSpacing
+      value: 0.97
       objectReference: {fileID: 0}
     - target: {fileID: 7370358630484074833, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}

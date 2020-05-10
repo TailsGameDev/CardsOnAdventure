@@ -2131,6 +2131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popUpOpener: {fileID: 378093893}
   title: Tavern
   tipData:
   - message: 
@@ -2145,7 +2146,6 @@ MonoBehaviour:
       kind of decision, after all?"
     background: {fileID: 0}
     height: 900
-  popUpOpener: {fileID: 378093893}
 --- !u!1 &966457645
 GameObject:
   m_ObjectHideFlags: 0
@@ -3024,6 +3024,7 @@ RectTransform:
   - {fileID: 715496148}
   - {fileID: 347257100}
   - {fileID: 2023802270}
+  - {fileID: 2144656107}
   m_Father: {fileID: 966457649}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3284,6 +3285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popUpOpener: {fileID: 378093893}
   title: Current Party
   tipData:
   - message: "<color=#1DEFC7>THIS IS A THEMATIC NAME FOR \u201CDECK\u201D OF CARDS</color>
@@ -3298,7 +3300,6 @@ MonoBehaviour:
       teach you gladly. "
     background: {fileID: 0}
     height: 0
-  popUpOpener: {fileID: 378093893}
 --- !u!61 &1376586959
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3575,7 +3576,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -351.45068, y: -40}
+  m_AnchoredPosition: {x: -382.62924, y: -40}
   m_SizeDelta: {x: 1422.9, y: -180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1629059484
@@ -3773,6 +3774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popUpOpener: {fileID: 378093893}
   title: All Friends
   tipData:
   - message: '<color=#1DEFC7>THIS IS YOUR COLLECTION OF CARDS</color> I mean, these
@@ -3785,7 +3787,6 @@ MonoBehaviour:
       please ask the teaching spirit about it, and he will teach you gladly. '
     background: {fileID: 0}
     height: 0
-  popUpOpener: {fileID: 378093893}
 --- !u!1 &1704585356
 GameObject:
   m_ObjectHideFlags: 0
@@ -3993,3 +3994,48 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2023802269}
   m_CullTransparentMesh: 0
+--- !u!1 &2144656106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2144656107}
+  - component: {fileID: 2144656108}
+  m_Layer: 0
+  m_Name: TipsUseAsker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2144656107
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144656106}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -9.499168, y: 21.710815, z: -1164.1896}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_Children: []
+  m_Father: {fileID: 1285522163}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2144656108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144656106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aecd8d95a53894e458a516219374f86d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  askOnStart: 0
+  delayAfterStartBeforeAsk: 1

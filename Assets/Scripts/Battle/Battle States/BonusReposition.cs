@@ -5,7 +5,28 @@ public class BonusReposition : PlaceCard
     private Hand opponentHand;
     private Deck opponentDeck;
 
-    public BonusReposition(Hand playerHand, Battlefield battlefield, Deck deck, PreMadeSoundRequest placeCardSFX, Hand opponentHand, Deck opponentDeck) : base(playerHand, battlefield, deck, placeCardSFX)
+    public BonusReposition
+        (
+            Hand playerHand,
+            Battlefield battlefield,
+            Deck deck,
+            PreMadeSoundRequest placeCardSFX,
+            GameObject btnsBackground,
+            CustomPopUp customPopUpOpener,
+            PreMadeSoundRequest offendDeveloperAudioRequisitor,
+            Hand opponentHand,
+            Deck opponentDeck
+        )
+        : base
+        (
+            playerHand,
+            battlefield,
+            deck,
+            placeCardSFX,
+            btnsBackground,
+            customPopUpOpener,
+            offendDeveloperAudioRequisitor
+        )
     {
         this.opponentHand = opponentHand;
         this.opponentDeck = opponentDeck;

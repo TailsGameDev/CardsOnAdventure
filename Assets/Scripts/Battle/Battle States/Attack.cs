@@ -17,7 +17,20 @@ public class Attack : BattleState
     private UICustomBtn repositionAgainBtn;
     private bool clickedRepositionAgainBtn = false;
 
-    public Attack(Battlefield myBattlefield, Battlefield opponentBattleField, UICustomBtn endTurnBtn, UICustomBtn repositionAgainBtn, CustomPopUp popUpOpener)
+    private PreMadeSoundRequest confirmOnUselessAtackSFXRequisitor;
+    private PreMadeSoundRequest onCancelUselessAtackSFXRequisitor;
+
+    public static bool shouldAskForTip = true;
+
+    public Attack(
+                    Battlefield myBattlefield,
+                    Battlefield opponentBattleField,
+                    UICustomBtn endTurnBtn,
+                    UICustomBtn repositionAgainBtn,
+                    CustomPopUp popUpOpener,
+                    PreMadeSoundRequest confirmOnUselessAtackSFXRequisitor,
+                    PreMadeSoundRequest onCancelUselessAtackSFXRequisitor
+                 )
     {
         this.attackerBattlefield = myBattlefield;
         this.opponentBattleField = opponentBattleField;
@@ -26,11 +39,22 @@ public class Attack : BattleState
 
         this.repositionAgainBtn = repositionAgainBtn;
 
+        this.confirmOnUselessAtackSFXRequisitor = confirmOnUselessAtackSFXRequisitor;
+        this.onCancelUselessAtackSFXRequisitor = onCancelUselessAtackSFXRequisitor;
+
         ClearSelections();
 
         if (currentBattleStatesFactory == enemyBattleStatesFactory)
         {
             new EnemyAI().Attack(enemyBattlefield: myBattlefield, playerBattlefield: opponentBattleField);
+        }
+        else
+        {
+            if (shouldAskForTip)
+            {
+                TipsDragAndDrop.AskToUseTips();
+                shouldAskForTip = false;
+            }
         }
 
         attackTokens = ListCardsThatShouldAttackDuringThisState();
@@ -61,9 +85,10 @@ public class Attack : BattleState
         {
             popUpOpener.OpenAndMakeUncloseable
                 (
-                    title: "Attack!",
-                    warningMessage: "You should attack before end your turn. Strike that foes down!",
-                    confirmBtnMessage: "Ok, I'll attack!",
+                    title: "Attack",
+                    warningMessage: "<color=#FFFFFF>You should attack before end your turn.</color> " +
+                        "<color=#1DEFC7>DRAG AND DROP YOUR CARDS ABOVE ENEMY'S CARDS</color>",
+                    confirmBtnMessage: "Ok, I'll attack",
                     cancelBtnMessage: "I'm a pacifist...",
                     onConfirm: () => { popUpOpener.ClosePopUpOnTop(); },
                     onCancel: () => { clickedEndTurnBtn = true; popUpOpener.ClosePopUpOnTop(); }
@@ -122,6 +147,8 @@ public class Attack : BattleState
                 bool attackerIgnoresBlock = attackerBattlefield.GetSelectedCard().IgnoreOpponentsBlock;
                 opponentBattleField.MakeProtectionEvidentOnSelectedIfNeeded(attackerIgnoresBlock);
 
+                HandleUselessAttacks();
+
                 Card myCard = attackerBattlefield.GetSelectedCard();
                 myCard.AttackSelectedCard(opponentBattleField, attackerBattlefield);
 
@@ -149,17 +176,6 @@ public class Attack : BattleState
         }
     }
 
-    private bool ClickedInvalidCard()
-    {
-        int myIndex = attackerBattlefield.GetSelectedIndex();
-        bool invalidClickInMyBattlefield = (myIndex != -1) && (!attackTokens.Contains(myIndex));
-
-        int opponentIndex = opponentBattleField.GetSelectedIndex();
-        bool invalidClickInOpponentsBattlefield = (opponentIndex != -1) && opponentBattleField.IsSlotIndexFree(opponentIndex);
-
-        return invalidClickInMyBattlefield || invalidClickInOpponentsBattlefield;
-    }
-
     private bool ReceivedValidInput()
     {
         bool receivedInput = ReceivedInputInBothBattlefields();
@@ -174,6 +190,41 @@ public class Attack : BattleState
         bool cardHasAnAttackToken = attackTokens.Contains(attackerBattlefield.GetSelectedIndex());
 
         return receivedInput && receivedInputIsValid && cardHasAnAttackToken;
+    }
+
+    private bool HandleUselessAttacks()
+    {
+        Card myCard = attackerBattlefield.GetSelectedCard();
+        bool isUseless = myCard.AttackPower == 1 && opponentBattleField.IsThereACardInFrontOf(opponentBattleField.GetSelectedIndex());
+
+        if (currentBattleStatesFactory == playerBattleStatesFactory)
+        {
+            if (isUseless)
+            {
+                popUpOpener.Open
+                    (
+                        title: "Protected",
+                        warningMessage: "<color=#FFFFFF>Your <color=#FD7878>Attack Power</color> of <color=#FD7878>1</color> was not enough to deal damage because cards behind others are 'Protected'</color>" +
+                        "\n<color=#1DEFC7>DAMAGE = 1/2 = 0.5 = 0 (integer)</color>",
+                        confirmBtnMessage: "Facepalm",
+                        cancelBtnMessage: "Offend enemy",
+                        onConfirm: () => { confirmOnUselessAtackSFXRequisitor.RequestPlaying(); popUpOpener.ClosePopUpOnTop(); },
+                        onCancel: () => { onCancelUselessAtackSFXRequisitor.RequestPlaying() ; popUpOpener.ClosePopUpOnTop(); }
+                    );
+            }
+        }
+        return isUseless;
+    }
+
+    private bool ClickedInvalidCard()
+    {
+        int myIndex = attackerBattlefield.GetSelectedIndex();
+        bool invalidClickInMyBattlefield = (myIndex != -1) && (!attackTokens.Contains(myIndex));
+
+        int opponentIndex = opponentBattleField.GetSelectedIndex();
+        bool invalidClickInOpponentsBattlefield = (opponentIndex != -1) && opponentBattleField.IsSlotIndexFree(opponentIndex);
+
+        return invalidClickInMyBattlefield || invalidClickInOpponentsBattlefield;
     }
 
     private bool ReceivedInputInBothBattlefields()
@@ -197,7 +248,7 @@ public class Attack : BattleState
         {
             nextState = currentBattleStatesFactory.CreateRepositionState();
         }
-        if (obfWasFullAtBeggining && opponentBattleField.IsEmpty())
+        if (obfWasFullAtBeggining && opponentBattleField.IsEmpty() && attackerBattlefield.IsFull())
         {
             nextState = currentBattleStatesFactory.CreateBonusRepositionState(); 
         }

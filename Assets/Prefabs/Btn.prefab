@@ -218,9 +218,8 @@ MonoBehaviour:
   - message: '                      Button'
     background: {fileID: 21300000, guid: 88d45c2a8549ce340adf1e6801eeab8e, type: 3}
     height: 100
-  - message: This is a button. There is nothing ultra cool about it, but the Teaching
-      Spirit is probably very happy to see that you learned how to ask him about
-      something!
+  - message: This is a button. By the way, the Teaching Spirit is very happy to see
+      that you learned how to ask him about something!
     background: {fileID: 0}
     height: 300
   popUpOpener: {fileID: 7967699319178745419}

@@ -18,9 +18,12 @@ public class TextThatExpandsOnUpdated : MonoBehaviour
 
     private bool growing;
 
+    private Color originalColor;
+
     private void Awake()
     {
         originalSize = transform.localScale;
+        originalColor = text.color;
     }
     private void Update()
     {
@@ -67,6 +70,20 @@ public class TextThatExpandsOnUpdated : MonoBehaviour
         {
             cachedMessage = message;
             text.text = message;
+
+            if (message.Contains("Attack"))
+            {
+                text.color = new Color(0xFD, 0x78, 0x78);
+            }
+            else if (message.Contains("Bonus"))
+            {
+                text.color = new Color(0x9E, 0xFA, 0x9D);
+            }
+            else
+            {
+                text.color = originalColor;
+            }
+
             StartAnimationFromBeggining();
         }
     }

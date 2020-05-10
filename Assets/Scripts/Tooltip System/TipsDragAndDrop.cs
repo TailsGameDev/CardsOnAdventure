@@ -1,19 +1,24 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TipsDragAndDrop : DragAndDrop
 {
-
     [SerializeField]
     private Text text = null;
 
+    [SerializeField]
+    private GameObject speakBaloon = null;
+
+    private static GameObject staticSpeakBalloon;
+
     protected void Awake()
     {
+        if (staticSpeakBalloon == null)
+        {
+            staticSpeakBalloon = speakBaloon;
+        }
         StartCoroutine(MakeFontNormalInsistently());
     }
 
@@ -25,11 +30,18 @@ public class TipsDragAndDrop : DragAndDrop
         text.fontStyle = FontStyle.Normal;
     }
 
+    public static void AskToUseTips()
+    {
+        if (Settings.ShouldAskForTips())
+        {
+            staticSpeakBalloon.SetActive(true);
+        }
+    }
+
     protected override void OnStartDragging()
     {
         text.fontStyle = FontStyle.Italic;
     }
-
     protected override void OnEnteredAReceptor(DragAndDropReceptor receptor)
     {
         text.fontStyle = FontStyle.BoldAndItalic;

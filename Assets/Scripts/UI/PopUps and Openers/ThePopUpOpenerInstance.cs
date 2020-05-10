@@ -144,7 +144,14 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
 
     public void OpenCustomPopUp()
     {
-        OpenPopUp(customPopUp);
+        if (!customPopUp.activeSelf)
+        {
+            OpenPopUp(customPopUp);
+        }
+        else
+        {
+            L.ogWarning(this,"Called OpenCustomPopUp but it was already opened");
+        }
     }
     
     public void OpenTooltipPopUp(TipSectionData[] tipsData, string title)

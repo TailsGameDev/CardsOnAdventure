@@ -13,6 +13,8 @@ public class Map : OpenersSuperclass
 
     private SaveFacade saveFacade = new SaveFacade();
 
+    private static bool shouldAskForTip = true;
+
     #region Initialization
     private void Awake()
     {
@@ -33,6 +35,12 @@ public class Map : OpenersSuperclass
         else
         {
             CopyDataFromMapsCacheToSceneSpots();
+        }
+
+        if (shouldAskForTip)
+        {
+            TipsDragAndDrop.AskToUseTips();
+            shouldAskForTip = false;
         }
 
         ClassInfo.PrepareClassesBonusesForSaving();

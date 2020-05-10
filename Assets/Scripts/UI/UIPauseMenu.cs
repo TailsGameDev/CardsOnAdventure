@@ -5,6 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class UIPauseMenu : OpenersSuperclass
 {
+
+    [SerializeField]
+    private GameObject fleeFromBattleBtn = null;
+
+    private void OnEnable()
+    {
+        fleeFromBattleBtn.SetActive(SceneManager.GetActiveScene().name == "Battle");
+    }
+
     public void OnBattleRulesBtnClicked()
     {
         openerOfPopUpsMadeInEditor.OpenBattleRulesPopUp();
@@ -19,6 +28,12 @@ public class UIPauseMenu : OpenersSuperclass
     {
         string warningMessage = "All unsaved progress will be lost.";
         customPopUpOpener.OpenConfirmationRequestPopUp(warningMessage, sceneOpener.OpenMainMenu);
+    }
+
+    public void OnFleeFromBattleBtnClicked()
+    {
+        string warningMessage = "If You flee, the enemies will make fun out of You.";
+        customPopUpOpener.OpenConfirmationRequestPopUp(warningMessage, sceneOpener.OpenMapScene);
     }
 
     public void OnGoImmediateToMainMenuBtnClicked()

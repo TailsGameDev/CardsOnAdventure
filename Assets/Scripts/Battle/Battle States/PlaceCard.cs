@@ -1,34 +1,68 @@
-﻿public class PlaceCard : BattleState
+﻿using UnityEngine;
+
+public class PlaceCard : BattleState
 {
     protected Hand hand;
     protected Battlefield battlefield;
     protected Deck deck;
     protected PreMadeSoundRequest placeCardSFXRequest;
+    protected GameObject btnsBackground;
+    protected CustomPopUp customPopUpOpener;
+    protected PreMadeSoundRequest offendDeveloper;
 
     bool cardWasSuccessfullyPlaced = false;
 
-    public PlaceCard(Hand playerHand, Battlefield battlefield, Deck deck, PreMadeSoundRequest placeCardSFX)
+    public PlaceCard
+        (
+            Hand hand,
+            Battlefield battlefield,
+            Deck deck,
+            PreMadeSoundRequest placeCardSFX,
+            GameObject btnsBackground,
+            CustomPopUp customPopUpOpener,
+            PreMadeSoundRequest offendDeveloper
+        )
     {
-        this.hand = playerHand;
+        this.hand = hand;
         this.battlefield = battlefield;
         this.deck = deck;
         this.placeCardSFXRequest = placeCardSFX;
+        this.btnsBackground = btnsBackground;
+        this.customPopUpOpener = customPopUpOpener;
+        this.offendDeveloper = offendDeveloper;
+        
+        btnsBackground.SetActive(false);
 
-
-        playerHand.ClearSelection();
-        battlefield.ClearSelection();
+        ClearSelections();
 
         if (currentBattleStatesFactory == enemyBattleStatesFactory)
         {
-            new EnemyAI().PlaceCard(hand, battlefield);
+            new EnemyAI().PlaceCard(this.hand, battlefield);
         }
+    }
+
+    private void ClearSelections()
+    {
+        hand.ClearSelection();
+        battlefield.ClearSelection();
     }
 
     public override void ExecuteAction()
     {
         hand.MakeOnlySelectedCardBigger();
 
-        if (ReceivedValidInput())
+        if (IsPlayerTryingToReposition())
+        {
+            ClearSelections();
+
+            customPopUpOpener.OpenWithNoBtns
+                (
+                    title: "Place Cards",
+                    warningMessage: "<color=#FFFFFF> You must <color=#1DEFC7>PLACE ALL CARDS YOU CAN BEFORE REPOSITIONING</color>. Drag and Drop from your hand" +
+                    " to the battlefield, please.</color>"
+                );
+        }
+        else if (ReceivedValidInput())
         {
             hand.MakeSelectedCardNormalSize();
 
@@ -41,6 +75,11 @@
 
             card.ChangeToHorizontalVersion();
         }
+    }
+
+    protected bool IsPlayerTryingToReposition()
+    {
+        return battlefield.GetSelectedIndex() >= 0 && hand.GetSelectedIndex() == -1;
     }
 
     public bool ReceivedValidInput()
@@ -63,12 +102,7 @@
     {
         BattleState nextState = this;
 
-        if (IsPlayerTryingToReposition())
-        {
-            // This will trigger the Dynamic text in the middle of the screen to expand, remembering the player to "Place Card"
-            nextState = currentBattleStatesFactory.CreateDrawCardState();
-        }
-        else if (cardWasSuccessfullyPlaced)
+        if (cardWasSuccessfullyPlaced)
         {
             if (deck.ContainCards())
             {
@@ -83,6 +117,7 @@
                 }
                 else
                 {
+                    OnGoToRepositionState();
                     nextState = currentBattleStatesFactory.CreateRepositionState();
                 }
             }
@@ -90,13 +125,15 @@
         
         if (hand.IsEmpty() || battlefield.IsFull())
         {
+            OnGoToRepositionState();
             nextState = currentBattleStatesFactory.CreateRepositionState();
         }
 
         return nextState;
     }
-    protected bool IsPlayerTryingToReposition()
+
+    protected void OnGoToRepositionState()
     {
-        return battlefield.GetSelectedIndex() >= 0 && hand.GetSelectedIndex() == -1;
+        btnsBackground.SetActive(currentBattleStatesFactory == playerBattleStatesFactory);
     }
 }

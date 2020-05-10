@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class L : MonoBehaviour
 {
+    public static void og(object obj, string message)
+    {
+        og(message, obj);
+    }
+
     public static void og(string message, object obj)
     {
         if (obj.GetType() == typeof(MonoBehaviour))
@@ -14,6 +19,11 @@ public class L : MonoBehaviour
         {
             Debug.Log("[" + obj.GetType() + "]" + message);
         }
+    }
+
+    public static void ogWarning(object obj, string message)
+    {
+        ogWarning(message,obj);
     }
 
     public static void ogWarning(string message, object obj)

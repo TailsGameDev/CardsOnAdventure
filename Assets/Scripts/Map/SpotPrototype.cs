@@ -23,6 +23,8 @@ public class SpotPrototype : OpenersSuperclass
     private AudioClip battleBGM = null;
     [SerializeField]
     private AudioClip winSound = null;
+    [SerializeField]
+    private AudioClip celebrateSFX = null;
 
     public void OnBattleSpotBtnClicked()
     {
@@ -47,11 +49,11 @@ public class SpotPrototype : OpenersSuperclass
     {
         audioRequisitor.RequestBGM(winSound);
         customPopUpOpener.Open(
-                title: "You Beat the game!!!",
-                warningMessage: "You are Awesome!",
-                confirmBtnMessage: "Look the Map",
+                title: "You Beat the game",
+                warningMessage: "You are Awesome",
+                confirmBtnMessage: "Celebrate",
                 cancelBtnMessage: "Go to Menu",
-                onConfirm: () => { customPopUpOpener.ClosePopUpOnTop(); },
+                onConfirm: () => { audioRequisitor.RequestSFX(celebrateSFX); },
                 onCancel: sceneOpener.OpenMainMenu
             );
     }

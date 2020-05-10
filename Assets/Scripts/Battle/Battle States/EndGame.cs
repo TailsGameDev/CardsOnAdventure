@@ -11,6 +11,7 @@ public class EndGame : BattleState
     private PreMadeSoundRequest victoryBGMRequest;
     private PreMadeSoundRequest defeatBGMRequest;
     private PreMadeSoundRequest stopAllSFXRequest;
+    private PreMadeSoundRequest cryingAudioRequest;
 
     private float timer = 0;
 
@@ -23,7 +24,8 @@ public class EndGame : BattleState
                     SceneOpener sceneOpener,
                     PreMadeSoundRequest victoryBGMRequest,
                     PreMadeSoundRequest defeatBGMRequest,
-                    PreMadeSoundRequest stopAllSFXRequest)
+                    PreMadeSoundRequest stopAllSFXRequest,
+                    PreMadeSoundRequest cryingAudioRequest)
     {
         this.winnerFactory = winnerFactory;
         this.sceneCanvas = sceneCanvas;
@@ -33,6 +35,7 @@ public class EndGame : BattleState
         this.victoryBGMRequest = victoryBGMRequest;
         this.defeatBGMRequest = defeatBGMRequest;
         this.stopAllSFXRequest = stopAllSFXRequest;
+        this.cryingAudioRequest = cryingAudioRequest;
     }
     public override void ExecuteAction()
     {
@@ -54,8 +57,8 @@ public class EndGame : BattleState
                         {
                             sceneCanvas.SetActive(false);
                             customPopUpOpener.Open(
-                                title: "You beat a Master!",
-                                warningMessage: "<color=#FFFFFF>And then you 'borrowed' some of their equipment!</color>" +
+                                title: "You beat a Master",
+                                warningMessage: "<color=#FFFFFF>And then you 'borrowed' some of their equipment</color>" +
                                    Formater.Paint(" ALL YOUR " + masterClass + " CARDS WILL BE BUFFED. PLEASE CHOOSE:", backgroundColor),
                                 confirmBtnMessage: "+1 Vitality",
                                 cancelBtnMessage: "+1 Attack Power",
@@ -68,9 +71,9 @@ public class EndGame : BattleState
                         else
                         {
                             customPopUpOpener.Open(
-                                title: "Congratulations!",
+                                title: "Congratulations",
                                 warningMessage: "You beat those guys. What are you going to do now?",
-                                confirmBtnMessage: "Look the map!",
+                                confirmBtnMessage: "Look the map",
                                 cancelBtnMessage: "Nothing",
                                 QuitBattleAndGoToMap,
                                 victoryBGMRequest
@@ -86,6 +89,7 @@ public class EndGame : BattleState
                             confirmBtnMessage: "Go back in time",
                             cancelBtnMessage: "Sit and cry",
                             GoBackInTime,
+                            () => { cryingAudioRequest.RequestPlaying(); },
                             defeatBGMRequest
                         );
                     }

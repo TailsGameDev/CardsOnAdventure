@@ -311,7 +311,7 @@ public class Card : SkillsMediatorUser
     }
     public string GetColoredTitleForTooltip()
     {
-        return "<color=#"+ classInfo.ColorHexCode + ">"+ Classe+"</color>";
+        return "<color=#"+ classInfo.ColorHexCode + ">"+ Classe+" "+skills.gameObject+"</color>";
     }
     public string GetExplanatoryText()
     {

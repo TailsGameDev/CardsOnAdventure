@@ -13,7 +13,7 @@ public class UIMainMenu : UIPauseMenu
     private void Awake()
     {
         MapsCache.SpotToClearIfPlayerWins = null;
-        UISettings.RefreshCursor(customCursor);
+        Settings.RefreshCursor(customCursor);
     }
 
     public void OnPlayBtnClicked()
@@ -21,7 +21,7 @@ public class UIMainMenu : UIPauseMenu
         OpenContinueOrNewGamePopUp();
         /*
         customPopUpOpener.Open(
-            title: "Play!",
+            title: "Play",
             warningMessage: "Would you like to play the Adventure or the Draft mode?",
             confirmBtnMessage: "Adventure Mode",
             cancelBtnMessage: "Draft Mode",
@@ -43,24 +43,28 @@ public class UIMainMenu : UIPauseMenu
         if (new SaveFacade().DoesAnySaveExist())
         {
 #if UNITY_WEBGL
-            warningMessage = "Will you try to continue the adventure, or start a new one? (Save System"+
-                " works properly just in downloadable builds!)";
+            warningMessage = "Will you try to continue the adventure, or generate a randomized new map? (Save System"+
+                " works properly just in downloadable builds)";
 #else
-            warningMessage = "Are you going to continue your previous adventure, or start a new game?";
+            //warningMessage = "Are you going to continue your previous adventure, or start a new game (with randomized master spots)?";
+            warningMessage = "Will you try to continue the adventure, or generate a randomized new map? (Save System" +
+    " works properly only in downloadable builds)";
 #endif
             continueBtnText = "Continue";
-            cancelBtnMessage = "New Game";
+            cancelBtnMessage = "New Map";
         }
         else
         {
-            warningMessage = "Please press one of these two buttons. There is no time to explain!";
-            continueBtnText = "Yellow";
-            cancelBtnMessage = "Red";
+            //warningMessage = "Some choices in the game are mere role play. But You find out which ones";
+            warningMessage = "Some pop-up buttons in the game don’t actually modify the gameplay. It’s just “role play”. " +
+                                 "Like these two below.";
+            continueBtnText = "Sounds Nice";
+            cancelBtnMessage = "Pfff boring...";
         }
 
         openerOfPopUpsMadeInEditor.CloseAllPopUpsExceptLoading();
         customPopUpOpener.Open(
-            title: "Play!",
+            title: "Play",
             warningMessage,
             confirmBtnMessage: continueBtnText,
             cancelBtnMessage,
@@ -94,7 +98,7 @@ public class UIMainMenu : UIPauseMenu
 
     public void OnQuitGameBtnClicked()
     {
-        string warningMessage = " We dedicated so mutch to build this game! ";
+        string warningMessage = " We dedicated so much to build this game";
         customPopUpOpener.OpenConfirmationRequestPopUp(warningMessage, Application.Quit);
     }
 }

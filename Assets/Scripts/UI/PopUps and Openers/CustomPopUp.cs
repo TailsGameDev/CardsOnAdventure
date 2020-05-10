@@ -26,6 +26,8 @@ public class CustomPopUp : OpenersSuperclass
     [SerializeField]
     private CustomPopUpCardsHolder cardsDisplay = null;
 
+    private bool btnsActive = true;
+
     public delegate void OnBtnClicked();
 
     private void Awake()
@@ -39,6 +41,13 @@ public class CustomPopUp : OpenersSuperclass
     public void OpenConfirmationRequestPopUp(string warningMessage, OnBtnClicked onConfirm)
     {
         Open(title: "Are You sure?", warningMessage, "I'm Sure", "Cancel", onConfirm, DefaultCancelBehaviour);
+    }
+
+    public void OpenWithNoBtns(string title, string warningMessage)
+    {
+        btnsActive = false;
+        Open(title, warningMessage, " ", " ", ()=> { }, ()=> { });
+        btnsActive = true;
     }
 
     public void Open // with BGM
@@ -139,14 +148,12 @@ public class CustomPopUp : OpenersSuperclass
         warningText.text = warningMessage;
 
         customConfirmText.text = confirmBtnMessage;
+        customConfirmBtn.onClicked = onConfirm;
+        customConfirmBtn.gameObject.SetActive( btnsActive );
 
         customCancelText.text = cancelBtnMessage;
-
-        customConfirmBtn.onClicked = null;
-        customConfirmBtn.onClicked += onConfirm;
-
-        customCancelBtn.onClicked = null;
-        customCancelBtn.onClicked += onCancel;
+        customCancelBtn.onClicked = onCancel;
+        customCancelBtn.gameObject.SetActive( btnsActive );
 
         openerOfPopUpsMadeInEditor.OpenCustomPopUp();
     }

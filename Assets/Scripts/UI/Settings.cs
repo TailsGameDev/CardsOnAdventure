@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UISettings : MonoBehaviour
+public class Settings : MonoBehaviour
 {
     [SerializeField]
     private Slider aiDelaySlider = null;
@@ -16,10 +16,17 @@ public class UISettings : MonoBehaviour
     [SerializeField]
     private Texture2D customCursor = null;
 
+    [SerializeField]
+    private Toggle shutSpiritsMouth = null;
+
     private const string AI_DELAY_KEY = "AI_DELAY_KEY";
 
-    private const int TRUE = 1;
-    private const int FALSE = 0;
+    public static readonly int TRUE = 1;
+    public static readonly int FALSE = 0;
+
+    private const string SHUT_SPIRIT_MOUTH_KEY = "ShutSpiritsMouth";
+
+    private static bool shouldDisplayTipOnEnable = true;
 
     private void Awake()
     {
@@ -28,6 +35,8 @@ public class UISettings : MonoBehaviour
         {
             aiDelaySlider.value = PlayerPrefs.GetFloat(AI_DELAY_KEY);
         }
+
+        shutSpiritsMouth.isOn = IsTrue(PlayerPrefs.GetInt(SHUT_SPIRIT_MOUTH_KEY, FALSE));
 
         fullscreenToggle.isOn = IsTrue( PlayerPrefs.GetInt("Fullscreen", FALSE) ) ;
 
@@ -43,12 +52,26 @@ public class UISettings : MonoBehaviour
 #endif
     }
 
-    private static bool IsTrue(int c)
+    private void OnEnable()
     {
-        return c == 1;
+        if (shouldDisplayTipOnEnable)
+        {
+            TipsDragAndDrop.AskToUseTips();
+            shouldDisplayTipOnEnable = false;
+        }
     }
 
-    private int BoolToInt(bool b)
+    private static bool IsTrue(int c)
+    {
+        return c == TRUE;
+    }
+
+    private static bool IsFalse(int c)
+    {
+        return c == FALSE;
+    }
+
+    private int ToInt(bool b)
     {
         if (b)
         {
@@ -71,10 +94,21 @@ public class UISettings : MonoBehaviour
         return PlayerPrefs.GetFloat(AI_DELAY_KEY);
     }
 
+    public void ToggleSpiritsMouthShut()
+    {
+        PlayerPrefs.SetInt(SHUT_SPIRIT_MOUTH_KEY, ToInt(shutSpiritsMouth.isOn) );
+    }
+
     public void ToggleFullscreenMode()
     {
         Screen.fullScreen = fullscreenToggle.isOn;
-        PlayerPrefs.SetInt("Fullscreen", BoolToInt( fullscreenToggle.isOn ) );
+
+        if (fullscreenToggle.isOn)
+        {
+            Screen.SetResolution(576, 1024, true);
+        }
+
+        PlayerPrefs.SetInt("Fullscreen", ToInt( fullscreenToggle.isOn ) );
     }
 
     public void ToggleCustomCursor()
@@ -87,7 +121,7 @@ public class UISettings : MonoBehaviour
         {
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         }
-        PlayerPrefs.SetInt("CustomCursor", BoolToInt(customCursorToggle.isOn));
+        PlayerPrefs.SetInt("CustomCursor", ToInt(customCursorToggle.isOn));
     }
 
     public static void RefreshCursor(Texture2D customCursor)
@@ -100,5 +134,10 @@ public class UISettings : MonoBehaviour
         {
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         }
+    }
+
+    public static bool ShouldAskForTips()
+    {
+        return IsFalse(PlayerPrefs.GetInt(SHUT_SPIRIT_MOUTH_KEY, defaultValue: FALSE));
     }
 }

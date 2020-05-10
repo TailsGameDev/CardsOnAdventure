@@ -46,7 +46,7 @@ public class EnemyAI
     {
         if (aiDelay < MIN_AI_DELAY)
         {
-            aiDelay = UISettings.GetAIDelayFromPlayerPrefs();
+            aiDelay = Settings.GetAIDelayFromPlayerPrefs();
             // If the player never modified the value, it will still be less than the minimum.
             if (aiDelay < MIN_AI_DELAY)
             {
