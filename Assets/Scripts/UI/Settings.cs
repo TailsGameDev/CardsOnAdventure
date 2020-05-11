@@ -61,6 +61,11 @@ public class Settings : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        PlayerPrefs.Save();
+    }
+
     private static bool IsTrue(int c)
     {
         return c == TRUE;
@@ -124,7 +129,7 @@ public class Settings : MonoBehaviour
         PlayerPrefs.SetInt("CustomCursor", ToInt(customCursorToggle.isOn));
     }
 
-    public static void RefreshCursor(Texture2D customCursor)
+    public void RefreshCursor()
     {
         if (IsTrue(PlayerPrefs.GetInt("CustomCursor", FALSE)))
         {
@@ -139,5 +144,10 @@ public class Settings : MonoBehaviour
     public static bool ShouldAskForTips()
     {
         return IsFalse(PlayerPrefs.GetInt(SHUT_SPIRIT_MOUTH_KEY, defaultValue: FALSE));
+    }
+
+    public GameObject GetGameObject()
+    {
+        return gameObject;
     }
 }

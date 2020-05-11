@@ -81,7 +81,7 @@ public class Attack : BattleState
 
     private void OnClickedEndTurnBtn()
     {
-        if (attackTokens.Count == attackerBattlefield.GetAmountOfOccupiedSlots())
+        if (attackTokens.Count == attackerBattlefield.GetAmountOfCardsThatCanAttack())
         {
             popUpOpener.OpenAndMakeUncloseable
                 (

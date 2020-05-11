@@ -264,7 +264,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 5
-  popUpOpener: {fileID: 2401269274359898625}
   title: Settings
   tipData:
   - message: Some self descriptive settings for the game.
@@ -1121,7 +1120,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 5
-  popUpOpener: {fileID: 2401269274359898625}
   title: Settings
   tipData:
   - message: Title of the Settings Pop-Up.
@@ -1475,7 +1473,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 5
-  popUpOpener: {fileID: 2401269274359898625}
   title: Enemy's Delay
   tipData:
   - message: 
@@ -2839,7 +2836,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 5
-  popUpOpener: {fileID: 2401269274359898625}
   title: Settings
   tipData:
   - message: Some self descriptive settings for the game.
@@ -3469,7 +3465,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 5
-  popUpOpener: {fileID: 2401269274359898625}
   title: Shut '?''s Mouth
   tipData:
   - message: "If the Teaching Spirit\u2019s mouth is shut, he does not remind you
@@ -5294,7 +5289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pausePopUp: {fileID: 8999488156710587421}
   loadingPopUp: {fileID: 8478212896843658783}
-  settingsPopUp: {fileID: 8424303425413067605}
+  settingsPopUp: {fileID: 1820686525119358222}
   tipPopUp: {fileID: 7243779551697985600}
   tipPopUpTitle: {fileID: 6324251324388549567}
   battleRules: "<color=#1DEFC7> SUPER IMPORTANT RULES <br> 1 - PROTECTION: YOU CAN

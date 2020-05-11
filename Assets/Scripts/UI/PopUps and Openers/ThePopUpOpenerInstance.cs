@@ -15,7 +15,7 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
     private GameObject loadingPopUp = null;
 
     [SerializeField]
-    private GameObject settingsPopUp = null;
+    private Settings settingsPopUp = null;
 
     [SerializeField]
     private GameObject tipPopUp = null;
@@ -49,6 +49,11 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        settingsPopUp.RefreshCursor();
     }
 
     #region Operations involving the stack
@@ -127,7 +132,7 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
     }
     public void OpenSettingsPopUp()
     {
-        OpenPopUp(settingsPopUp);
+        OpenPopUp(settingsPopUp.GetGameObject());
     }
     public void OpenMapScene()
     {

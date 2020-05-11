@@ -109,6 +109,18 @@ public class CardsHolder : IndexHolder
         }
         return standing;
     }
+    public int GetAmountOfCardsThatCanAttack()
+    {
+        int canAttack = 0;
+        for (int i = 0; i < cards.Length; i++)
+        {
+            if (cards[i] != null && !cards[i].Freezing)
+            {
+                canAttack++;
+            }
+        }
+        return canAttack;
+    }
     public int GetFirstOccupiedIndex()
     {
         int occupied = -1;

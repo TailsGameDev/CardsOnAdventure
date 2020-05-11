@@ -5,13 +5,9 @@ public class UIMainMenu : UIPauseMenu
 {
     // Inherits OnSettingsBtnClicked, OnRulesBtnClicked, OpenScene
 
-    [SerializeField]
-    private Texture2D customCursor = null;
-
     private void Awake()
     {
         MapsCache.SpotToClearIfPlayerWins = null;
-        Settings.RefreshCursor(customCursor);
     }
 
     public void OnPlayBtnClicked()
