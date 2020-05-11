@@ -45,8 +45,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acronym: '-'
   fullName: PunchBag
-  description: 'This card does not attack. It is a  mannequin. It''s purpose is to
-    be a training dummy: a Punching Bag.'
+  description: "This card does not attack. It is a  mannequin. It's purpose is to
+    be a training dummy: a Punching Bag. Well, technically, it deals a normal attack,
+    but the original PunchBag card\u2019s Attack Power is equal to zero."
   attackVFX: {fileID: 0}
   defenseVFX: {fileID: 0}
   specialVFX: {fileID: 0}
