@@ -58,7 +58,7 @@ public class CardsCollection : DynamicSizeScrollableCardHolder
     {
         for (int i = 0; i < cards.Length; i++)
         {
-            ChildMaker.AdoptTeleportAndScale(slots[i], cards[i].GetComponent<RectTransform>());
+            ChildMaker.AdoptTeleportAndScale(slots[i], cards[i].GetRectTransform());
         }
     }
     #endregion

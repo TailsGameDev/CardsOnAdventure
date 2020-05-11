@@ -38,9 +38,19 @@ public class CustomPopUp : OpenersSuperclass
         }
     }
 
+    public void ClosePopUpOnTop()
+    {
+        openerOfPopUpsMadeInEditor.IfThereIsAPopUpOnTopThenCloseIt();
+    }
+
     public void OpenConfirmationRequestPopUp(string warningMessage, OnBtnClicked onConfirm)
     {
         Open(title: "Are You sure?", warningMessage, "I'm Sure", "Cancel", onConfirm, DefaultCancelBehaviour);
+    }
+
+    private void DefaultCancelBehaviour()
+    {
+        openerOfPopUpsMadeInEditor.IfThereIsAPopUpOnTopThenCloseIt();
     }
 
     public void OpenMessageIfNoCustomPopUpIsOpenned(string title, string warningMessage)
@@ -53,33 +63,7 @@ public class CustomPopUp : OpenersSuperclass
         }
     }
 
-    public void Open // with BGM
-        (
-            string title,
-            string warningMessage,
-            string confirmBtnMessage,
-            string cancelBtnMessage,
-            OnBtnClicked onConfirm,
-            PreMadeSoundRequest openingBGM
-        )
-    {
-        openingBGM.RequestPlaying();
-        Open(title, warningMessage, confirmBtnMessage, cancelBtnMessage, onConfirm, DefaultCancelBehaviour);
-    }
-
-    public void Open // With Default Cancel
-    (
-        string title,
-        string warningMessage,
-        string confirmBtnMessage,
-        string cancelBtnMessage,
-        OnBtnClicked onConfirm
-    )
-    {
-        Open(title, warningMessage, confirmBtnMessage, cancelBtnMessage, onConfirm, DefaultCancelBehaviour);
-    }
-
-    public void Open // With Custom Cancel / With BGM
+    public void OpenWithBGM // With Custom Cancel / With BGM
         (
             string title,
             string warningMessage,
@@ -94,7 +78,7 @@ public class CustomPopUp : OpenersSuperclass
         Open(title, warningMessage, confirmBtnMessage, cancelBtnMessage, onConfirm, onCancel);
     }
 
-    public void Open
+    public void OpenDisplayingCardsOfClass
     (
         string title,
         string warningMessage,
@@ -159,15 +143,5 @@ public class CustomPopUp : OpenersSuperclass
         customCancelBtn.gameObject.SetActive( btnsActive );
 
         openerOfPopUpsMadeInEditor.OpenCustomPopUp();
-    }
-
-    private void DefaultCancelBehaviour()
-    {
-        openerOfPopUpsMadeInEditor.IfThereIsAPopUpOnTopThenCloseIt();
-    }
-
-    public void ClosePopUpOnTop()
-    {
-        openerOfPopUpsMadeInEditor.IfThereIsAPopUpOnTopThenCloseIt();
     }
 }

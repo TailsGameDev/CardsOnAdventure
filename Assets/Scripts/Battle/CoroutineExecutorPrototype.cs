@@ -19,9 +19,7 @@ public class CoroutineExecutorPrototype : MonoBehaviour
 
     public static CoroutineExecutorPrototype GetCopy()
     {
-        GameObject copy = Instantiate(prototype.gameObject);
-
-        return copy.GetComponent<CoroutineExecutorPrototype>();
+        return Instantiate(prototype);
     }
     #endregion
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class TipsDragAndDropReceptor : DragAndDropReceptor
+public class TipReceptor : DragAndDropReceptor
 {
     [SerializeField]
     protected OpenersSuperclass popUpOpener = null;
@@ -22,11 +22,11 @@ public class TipsDragAndDropReceptor : DragAndDropReceptor
 
     public override Type GetDragAndDropReceptorType()
     {
-        return typeof(TipsDragAndDrop);
+        return typeof(TipDragAndDrop);
     }
 
     public override void OnDroppedInReceptor()
     {
-        ((TipsPopUpOpener)popUpOpener).OpenTipsPopUp(tipData, title);
+        ((TipPopUpOpener)popUpOpener).OpenTipPopUp(tipData, title);
     }
 }

@@ -52,7 +52,7 @@ namespace NotUsed
                 this.message.text = message;
                 this.timer = timeInSeconds;
 
-                RectTransform rt = background.GetComponent(typeof(RectTransform)) as RectTransform;
+                RectTransform rt = background.GetComponent<RectTransform>();
                 rt.sizeDelta = new Vector2(width, height);
             }
         }

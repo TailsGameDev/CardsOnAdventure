@@ -18,10 +18,10 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
     private GameObject settingsPopUp = null;
 
     [SerializeField]
-    private GameObject tipsPopUp = null;
+    private GameObject tipPopUp = null;
 
     [SerializeField]
-    private Text tooltipPopUpTitle = null;
+    private Text tipPopUpTitle = null;
 
     [SerializeField]
     private string battleRules = null;
@@ -119,7 +119,7 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
             new TipSectionData(battleRules, 3050.0f)
         };
 
-        OpenTooltipPopUp( battleRulesContent, title: "Battle Rules" );
+        OpenTipPopUp( battleRulesContent, title: "Battle Rules" );
     }
     public void SetLoadingPopUpActiveToTrue()
     {
@@ -146,11 +146,11 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
             L.ogWarning(this,"Called OpenCustomPopUp but it was already opened");
         }
     }
-    public void OpenTooltipPopUp(TipSectionData[] tipsData, string title)
+    public void OpenTipPopUp(TipSectionData[] tipsData, string title)
     {
-        tooltipPopUpTitle.text = title;
-        tipsPopUp.GetComponent<TipsPopUp>().PopulateAllSections(tipsData);
-        OpenPopUp(tipsPopUp);
+        tipPopUpTitle.text = title;
+        tipPopUp.GetComponent<TipPopUp>().PopulateAllSections(tipsData);
+        OpenPopUp(tipPopUp);
     }
     #endregion
 }

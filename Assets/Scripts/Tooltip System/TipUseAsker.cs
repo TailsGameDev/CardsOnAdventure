@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TipsUseAsker : MonoBehaviour
+public class TipUseAsker : MonoBehaviour
 {
     [SerializeField]
     private bool askOnStart = false;
@@ -20,6 +20,6 @@ public class TipsUseAsker : MonoBehaviour
 
     private void Ask()
     {
-        TipsDragAndDrop.AskToUseTips();
+        TipDragAndDrop.AskToUseTips();
     }
 }

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TipsPopUp : MonoBehaviour
+public class TipPopUp : MonoBehaviour
 {
     [SerializeField]
     GameObject tooltipSectionPrototype = null;
 
-    TipsPopUpSection[] storedSections = null;
+    TipPopUpSection[] storedSections = null;
 
     [SerializeField]
     RectTransform verticalLayoutGroup = null;
@@ -53,14 +53,14 @@ public class TipsPopUp : MonoBehaviour
     {
         DestroySectionsFromLastCallIfThereAreAny();
 
-        this.storedSections = new TipsPopUpSection[tipsData.Length];
+        this.storedSections = new TipPopUpSection[tipsData.Length];
     }
 
     private void DestroySectionsFromLastCallIfThereAreAny()
     {
         if (this.storedSections != null)
         {
-            foreach (TipsPopUpSection section in this.storedSections)
+            foreach (TipPopUpSection section in this.storedSections)
             {
                 Destroy(section.gameObject);
             }
@@ -69,19 +69,19 @@ public class TipsPopUp : MonoBehaviour
 
     private void MakeAndStoreSection(int i) 
     {
-        TipsPopUpSection newSection = CloneDefaultSection();
+        TipPopUpSection newSection = CloneDefaultSection();
 
         ConfigureSection(newSection, tipsData[i]);
 
         storedSections[i] = newSection;
     }
 
-    private TipsPopUpSection CloneDefaultSection()
+    private TipPopUpSection CloneDefaultSection()
     {
-        return Instantiate(tooltipSectionPrototype).GetComponent<TipsPopUpSection>();
+        return Instantiate(tooltipSectionPrototype).GetComponent<TipPopUpSection>();
     }
 
-    private void ConfigureSection(TipsPopUpSection newSection, TipSectionData sectionData)
+    private void ConfigureSection(TipPopUpSection newSection, TipSectionData sectionData)
     {
         newSection.PopulateSection(sectionData);
         newSection.transform.SetParent(verticalLayoutGroup, false);

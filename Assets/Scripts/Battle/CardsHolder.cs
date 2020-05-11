@@ -3,7 +3,7 @@
 public class CardsHolder : IndexHolder
 {
     [SerializeField]
-    protected Transform[] cardPositions = null;
+    protected RectTransform[] cardPositions = null;
 
     protected Card[] cards = new Card[4];
 
@@ -31,22 +31,22 @@ public class CardsHolder : IndexHolder
 
     private void PutCardInIndex(Card card, int index, bool smooth)
     {
-        RectTransform cardRect = card.GetComponent<RectTransform>();
+        RectTransform cardRect = card.GetRectTransform();
 
         cards[index] = card;
         cardRect.rotation = transform.rotation;
 
         if (smooth)
         {
-            ChildMaker.AdoptAndScaleAndSmoothlyMoveToParent(cardPositions[index].transform, card.GetComponent<RectTransform>(), repositionAnimationDurationInSeconds);
+            ChildMaker.AdoptAndScaleAndSmoothlyMoveToParent(cardPositions[index].transform, card.GetRectTransform(), repositionAnimationDurationInSeconds);
         }
         else
         {
-            ChildMaker.AdoptAndTeleport(cardPositions[index].transform, card.GetComponent<RectTransform>());
+            ChildMaker.AdoptAndTeleport(cardPositions[index].transform, card.GetRectTransform());
         }
 
         cardRect.localScale = new Vector3(1, 1, 1);
-        Rect slotRect = cardPositions[index].GetComponent<RectTransform>().rect;
+        Rect slotRect = cardPositions[index].rect;
         cardRect.sizeDelta = new Vector2(slotRect.width, slotRect.height);
     }
 

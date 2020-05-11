@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TipsPopUpSection : MonoBehaviour
+public class TipPopUpSection : MonoBehaviour
 {
     [SerializeField]
     private Image backgroundImage = null;
@@ -11,14 +11,14 @@ public class TipsPopUpSection : MonoBehaviour
     [SerializeField]
     private Text text = null;
 
-    public void PopulateSection(TipSectionData tooltipSectionData)
+    public void PopulateSection(TipSectionData tipSectionData)
     {
-        backgroundImage.sprite = tooltipSectionData.background;
-        text.text = tooltipSectionData.message;
+        backgroundImage.sprite = tipSectionData.background;
+        text.text = tipSectionData.message;
 
         // If there is an Image, make it's colors appear. Otherwise it should mantain the default color.
         // The default color should be set in editor to alpha == 0 or equals to the pop-up background
-        if (tooltipSectionData.background != null)
+        if (tipSectionData.background != null)
         {
             backgroundImage.color = Color.white;
         } 

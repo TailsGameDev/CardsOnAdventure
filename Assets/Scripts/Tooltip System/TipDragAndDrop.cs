@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
-public class TipsDragAndDrop : DragAndDrop
+public class TipDragAndDrop : DragAndDrop
 {
     [SerializeField]
     private Text text = null;
@@ -50,7 +50,7 @@ public class TipsDragAndDrop : DragAndDrop
 
     protected override Type GetDragAndDropType()
     {
-        return typeof(TipsDragAndDrop);
+        return typeof(TipDragAndDrop);
     }
 
     protected override void OnExitedAllReceptors()

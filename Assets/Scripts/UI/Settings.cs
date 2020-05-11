@@ -56,7 +56,7 @@ public class Settings : MonoBehaviour
     {
         if (shouldDisplayTipOnEnable)
         {
-            TipsDragAndDrop.AskToUseTips();
+            TipDragAndDrop.AskToUseTips();
             shouldDisplayTipOnEnable = false;
         }
     }

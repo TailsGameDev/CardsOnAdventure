@@ -37,10 +37,4 @@ public class SanctuaryHealWhoNeeds : SpecialEffect
             }
         }
     }
-
-    void InstantiateObjAsSonOf(GameObject toInstantiate, Transform parent)
-    {
-        RectTransform instantiated = Instantiate(toInstantiate).GetComponent<RectTransform>();
-        ChildMaker.AdoptAndTeleport(parent, instantiated);
-    }
 }

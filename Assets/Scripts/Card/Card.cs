@@ -388,6 +388,16 @@ public class Card : SkillsMediatorUser
         return Instantiate(this);
     }
 
+    public RectTransform GetRectTransform()
+    {
+        return GetComponent<RectTransform>();
+    }
+
+    public CardDragAndDrop GetCardDragAndDrop()
+    {
+        return GetComponent<CardDragAndDrop>();
+    }
+
     public static void ResetDeathCount()
     {
         deathCounter.ResetDeathCount();

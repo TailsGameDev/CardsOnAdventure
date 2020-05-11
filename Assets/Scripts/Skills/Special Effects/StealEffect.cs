@@ -17,6 +17,6 @@ public class StealEffect : SpecialEffect
             target = obf.GetReferenceToCardAt(targetIndex);
         }
         attacker.Skills = target.Skills;
-        target.Skills = skillsMediator.GetComponent<TheOnlySkillsMediatorInstance>().GetBasicAttackSkill();
+        target.Skills = skillsMediator.GetBasicAttackSkill();
     }
 }

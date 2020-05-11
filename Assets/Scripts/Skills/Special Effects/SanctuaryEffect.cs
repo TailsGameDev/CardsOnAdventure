@@ -27,10 +27,4 @@ public class SanctuaryEffect : SpecialEffect
             InstantiateObjAsSonOf(specialVFX, toBeHealed.transform.parent);
         }
     }
-
-    void InstantiateObjAsSonOf(GameObject toInstantiate, Transform parent)
-    {
-        RectTransform instantiated = Instantiate(toInstantiate).GetComponent<RectTransform>();
-        ChildMaker.AdoptAndTeleport(parent, instantiated);
-    }
 }

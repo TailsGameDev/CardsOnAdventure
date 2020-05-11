@@ -54,10 +54,4 @@ public class SanctuaryEffectLimitedToMaxVitality : SpecialEffect
         }
         return healed;
     }
-
-    void InstantiateObjAsSonOf(GameObject toInstantiate, Transform parent)
-    {
-        RectTransform instantiated = Instantiate(toInstantiate).GetComponent<RectTransform>();
-        ChildMaker.AdoptAndTeleport(parent, instantiated);
-    }
 }

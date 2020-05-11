@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardTipReceptor : TipsDragAndDropReceptor
+public class CardTipReceptor : TipReceptor
 {
     [SerializeField]
     private Card cardToPullData = null;

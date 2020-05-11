@@ -6,9 +6,6 @@ using UnityEngine;
 public abstract class Skill : SkillsMediatorUser
 {
     [SerializeField]
-    private string acronym = "";
-
-    [SerializeField]
     private string fullName = "";
 
     [SerializeField]
@@ -32,7 +29,6 @@ public abstract class Skill : SkillsMediatorUser
     [SerializeField]
     protected AudioClip defenseSFX = null;
 
-    public string Acronym { get => acronym; }
     public string FullName { get => fullName; }
     public GameObject DefenseVFX { get => defenseVFX; }
     public string Description { get => description; }

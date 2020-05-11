@@ -2,7 +2,7 @@
 {
     // Inherit GenericSave, DoesSaveExist, GenericLoad
 
-    public void SaveAllMaps(string[] mapNames, MapData[] mapsInfo)
+    public void SaveAllMaps(string[] mapNames, MapSerializable[] mapsInfo)
     {
         for (int i = 0; i < mapNames.Length; i++)
         {
@@ -15,13 +15,13 @@
         return DoesSaveExist(mapName);
     }
 
-    public MapData[] LoadAllMaps(string[] mapNames)
+    public MapSerializable[] LoadAllMaps(string[] mapNames)
     {
-        MapData[] mapsInfo = new MapData[mapNames.Length];
+        MapSerializable[] mapsInfo = new MapSerializable[mapNames.Length];
 
         for (int i = 0; i < mapNames.Length; i++)
         {
-            mapsInfo[i] = GenericLoad<MapData>(mapNames[i]);
+            mapsInfo[i] = GenericLoad<MapSerializable>(mapNames[i]);
         }
 
         return mapsInfo;

@@ -5,8 +5,6 @@ public class UIMainMenu : UIPauseMenu
 {
     // Inherits OnSettingsBtnClicked, OnRulesBtnClicked, OpenScene
 
-    // private SaveMediator saveMediator = new SaveMediator();
-
     [SerializeField]
     private Texture2D customCursor = null;
 

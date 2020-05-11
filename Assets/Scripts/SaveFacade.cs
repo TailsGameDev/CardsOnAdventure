@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class SaveFacade
+﻿public class SaveFacade
 {
     private MapsPersistence mapsPersistence = new MapsPersistence();
     private ClassesPersistence classesPersistence = new ClassesPersistence();
@@ -9,7 +6,7 @@ public class SaveFacade
 
     // Needed for saving.
     private static string[] nameOfMapsToSave;
-    private static MapData[] dataOfMapsToSave;
+    private static MapSerializable[] dataOfMapsToSave;
     private static ClassesSerializable classesSerializableToSave;
     private static DeckSerializable deckSerializableToSave;
 
@@ -17,7 +14,7 @@ public class SaveFacade
     private static string[] namesOfMapsToLoad;
 
     // Results of loading
-    private static MapData[] loadedMapsInfo;
+    private static MapSerializable[] loadedMapsInfo;
     private static ClassesSerializable loadedClassesSerializable;
     private static DeckSerializable loadedDeckSerializable;
 
@@ -26,7 +23,7 @@ public class SaveFacade
         return mapsPersistence.DoesMapSaveExist("First");
     }
 
-    public void PrepareMapsForSaving(string[] mapNames, MapData[] mapsInfo)
+    public void PrepareMapsForSaving(string[] mapNames, MapSerializable[] mapsInfo)
     {
         nameOfMapsToSave = mapNames;
         dataOfMapsToSave = mapsInfo;
@@ -63,7 +60,7 @@ public class SaveFacade
         }
     }
     
-    public MapData[] GetLoadedMapsInfo()
+    public MapSerializable[] GetLoadedMapsInfo()
     {
         if (loadedMapsInfo == null)
         {

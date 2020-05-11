@@ -2,7 +2,7 @@
 using System;
 
 [Serializable]
-public class MapData
+public class MapSerializable
 {
     private int rootIndex;
     private List<string> GONames = new List<string>();
@@ -10,7 +10,7 @@ public class MapData
     private List<int> PlayLvlBtnIndexes = new List<int>();
     private List<List<int>> AntecessorsIndexes = new List<List<int>>();
 
-    public MapData( List<SpotInfo> spotsInfo, int rootIndex )
+    public MapSerializable( List<SpotInfo> spotsInfo, int rootIndex )
     {
         this.rootIndex = rootIndex;
         for (int i = 0; i < spotsInfo.Count; i++)

@@ -52,7 +52,7 @@ public class Attack : BattleState
         {
             if (shouldAskForTip)
             {
-                TipsDragAndDrop.AskToUseTips();
+                TipDragAndDrop.AskToUseTips();
                 shouldAskForTip = false;
             }
         }

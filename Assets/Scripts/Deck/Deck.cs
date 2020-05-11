@@ -33,7 +33,7 @@ public class Deck : MonoBehaviour
         for (int i = 0; i < cards.Count; i++)
         {
             cards[i].transform.position = transform.position;
-            cards[i].GetComponent<RectTransform>().SetParent(transform, true);
+            cards[i].GetRectTransform().SetParent(transform, true);
         }
 
     }

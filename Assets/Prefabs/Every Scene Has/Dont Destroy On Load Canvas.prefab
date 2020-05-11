@@ -2310,7 +2310,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3561098657434239102}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a3dd230f150b8b47a47c03a330710b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 127e750c236f11f4aa7946ce4913dd98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundImage: {fileID: 6728353404983827286}
@@ -5295,8 +5295,8 @@ MonoBehaviour:
   pausePopUp: {fileID: 8999488156710587421}
   loadingPopUp: {fileID: 8478212896843658783}
   settingsPopUp: {fileID: 8424303425413067605}
-  tipsPopUp: {fileID: 7243779551697985600}
-  tooltipPopUpTitle: {fileID: 6324251324388549567}
+  tipPopUp: {fileID: 7243779551697985600}
+  tipPopUpTitle: {fileID: 6324251324388549567}
   battleRules: "<color=#1DEFC7> SUPER IMPORTANT RULES <br> 1 - PROTECTION: YOU CAN
     ATTACK A CARD BEHIND THE OTHER, BUT IF THE SKILL DOES NOT SAY ANYTHING ABOUT
     \u201CIGNORE PROTECTION\u201D, THE DAMAGE IS REDUCED BY THE HALF. <br> <br> 2

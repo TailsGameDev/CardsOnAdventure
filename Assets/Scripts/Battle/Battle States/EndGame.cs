@@ -56,7 +56,7 @@ public class EndGame : BattleState
                         if (IsMasterBattle())
                         {
                             sceneCanvas.SetActive(false);
-                            customPopUpOpener.Open(
+                            customPopUpOpener.OpenDisplayingCardsOfClass(
                                 title: "You beat a Master",
                                 warningMessage: "<color=#FFFFFF>And then you 'borrowed' some of their equipment</color>" +
                                    Formater.Paint(" ALL YOUR " + masterClass + " CARDS WILL BE BUFFED. PLEASE CHOOSE:", backgroundColor),
@@ -70,12 +70,13 @@ public class EndGame : BattleState
                         }
                         else
                         {
-                            customPopUpOpener.Open(
+                            customPopUpOpener.OpenWithBGM(
                                 title: "Congratulations",
                                 warningMessage: "You beat those guys. What are you going to do now?",
                                 confirmBtnMessage: "Look the map",
                                 cancelBtnMessage: "Nothing",
-                                QuitBattleAndGoToMap,
+                                onConfirm: QuitBattleAndGoToMap,
+                                onCancel: () => { },
                                 victoryBGMRequest
                             );
                         }
@@ -83,7 +84,7 @@ public class EndGame : BattleState
                     else
                     {
                         MapsCache.SpotToClearIfPlayerWins = null;
-                        customPopUpOpener.Open(
+                        customPopUpOpener.OpenWithBGM(
                             title: "You've lost the battle",
                             warningMessage: "The enemy start to search you fallen card's pockets",
                             confirmBtnMessage: "Go back in time",

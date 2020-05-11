@@ -68,7 +68,7 @@ public class MapsCache : MapsRuntimeCache
         int mapsAmount = mapNames.Length;
 
         // Get All Maps Info
-        MapData[] mapsInfo = new MapData[mapsAmount];
+        MapSerializable[] mapsInfo = new MapSerializable[mapsAmount];
         for (int i = 0; i < mapsAmount; i++)
         {
             mapsInfo[i] = GetInfo(mapName: mapNames[i]);
@@ -80,14 +80,14 @@ public class MapsCache : MapsRuntimeCache
     {
         return mapsRoots.Keys.ToArray();
     }
-    private MapData GetInfo(string mapName)
+    private MapSerializable GetInfo(string mapName)
     {
         List<SpotInfo> spotsInfo = mapsSpotsInfo[mapName];
 
         SpotInfo root = mapsRoots[mapName];
         int rootIndex = GetIndex(root, mapName);
 
-        return new MapData(spotsInfo, rootIndex);
+        return new MapSerializable(spotsInfo, rootIndex);
     }
     private int GetIndex(SpotInfo desiredInfo, string mapName)
     {
@@ -117,14 +117,14 @@ public class MapsCache : MapsRuntimeCache
 
     public void FillMapsCacheUsingLoadedFiles(string[] mapNames)
     {
-        MapData[] mapsData = saveFacade.GetLoadedMapsInfo();
+        MapSerializable[] mapsData = saveFacade.GetLoadedMapsInfo();
 
         for (int i = 0; i < mapsData.Length; i++)
         {
             CopyMapDataToAttributes( mapNames[i], mapsData[i] );
         }
     }
-    private void CopyMapDataToAttributes(string mapName, MapData mapsData)
+    private void CopyMapDataToAttributes(string mapName, MapSerializable mapsData)
     {
         mapsSpotsInfo[mapName] = mapsData.Recover(out int rootIndex);
 

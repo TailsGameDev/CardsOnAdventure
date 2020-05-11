@@ -9,7 +9,7 @@ public class ChildMaker : MonoBehaviour
     public static void AdoptAndTeleport(Transform parent, RectTransform child)
     {
         child.position = parent.position;
-        child.GetComponent<RectTransform>().SetParent(parent, true);
+        child.SetParent(parent, true);
     }
 
     public static void AdoptTeleportAndScale(Transform parent, RectTransform child)
@@ -43,12 +43,12 @@ public class ChildMaker : MonoBehaviour
     IEnumerator ScaleAndSmothlyMoveToPos(Transform parent, RectTransform child, float totalTime)
     {
         // Scale
-        child.GetComponent<RectTransform>().SetParent(parent, true);
+        child.SetParent(parent, true);
         yield return null;
         child.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
         // Make it float above everybody.
-        child.GetComponent<RectTransform>().SetParent(UIBattle.parentOfDynamicUIThatMustAppear, true);
+        child.SetParent(UIBattle.parentOfDynamicUIThatMustAppear, true);
 
         Vector3 initialPosition = child.transform.position;
 
@@ -69,7 +69,7 @@ public class ChildMaker : MonoBehaviour
 
         child.transform.position = parent.transform.position;
         
-        child.GetComponent<RectTransform>().SetParent(parent, true);
+        child.SetParent(parent, true);
 
         Destroy(gameObject);
     }

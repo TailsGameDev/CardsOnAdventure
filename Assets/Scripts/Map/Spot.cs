@@ -38,7 +38,6 @@ public class Spot : MonoBehaviour
         originalScale = transform.localScale;
     }
 
-
     private void Update()
     {
         if (shouldBeExpanding)

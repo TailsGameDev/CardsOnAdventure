@@ -47,7 +47,7 @@ public abstract class DragAndDrop : MonoBehaviour
 
         if (receptor != null)
         {
-            RectTransform receptorRectTransform = receptor.GetComponent<RectTransform>();
+            RectTransform receptorRectTransform = receptor.GetRectTransform();
             StartDragging(receptorRectTransform);
         }
         else
@@ -74,7 +74,7 @@ public abstract class DragAndDrop : MonoBehaviour
     {
         const float DIV_CONST = 8.0f;
 
-        Vector2 receptorSizeDelta = this.receptor.GetComponent<RectTransform>().sizeDelta;
+        Vector2 receptorSizeDelta = this.receptor.GetRectTransform().sizeDelta;
 
         if (offsetToAdjust.x > receptorSizeDelta.x / DIV_CONST)
         {

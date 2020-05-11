@@ -48,10 +48,10 @@ public class DynamicSizeScrollableCardHolder : CardsHolder
 
     private void PopulateCardPositionsArray()
     {
-        cardPositions = new Transform[amountOfSlots];
+        cardPositions = new RectTransform[amountOfSlots];
         for (int i = 0; i < amountOfSlots; i++)
         {
-            cardPositions[i] = slots[i].transform;
+            cardPositions[i] = slots[i].GetComponent<RectTransform>();
         }
     }
     #endregion

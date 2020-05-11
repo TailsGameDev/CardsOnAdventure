@@ -41,7 +41,7 @@ public class Map : OpenersSuperclass
 
         if (shouldAskForTip)
         {
-            TipsDragAndDrop.AskToUseTips();
+            TipDragAndDrop.AskToUseTips();
             shouldAskForTip = false;
         }
 

@@ -11,4 +11,9 @@ public abstract class DragAndDropReceptor : MonoBehaviour
     public abstract Type GetDragAndDropReceptorType();
 
     public abstract void OnDroppedInReceptor();
+
+    public RectTransform GetRectTransform()
+    {
+        return GetComponent<RectTransform>();
+    }
 }
