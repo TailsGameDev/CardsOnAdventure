@@ -1900,7 +1900,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 0
-  popUpOpener: {fileID: 1973127231}
   title: Cards Counter
   tipData:
   - message: '<br>             Cards: x'
@@ -2326,6 +2325,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1751643838}
   - {fileID: 1224258032}
   m_Father: {fileID: 1612099942}
   m_RootOrder: 2
@@ -2410,9 +2410,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 0
-  popUpOpener: {fileID: 928461782}
   title: WILL BE OVERWRITTEN
   tipData: []
+  battleRulesPopUpOpener: {fileID: 1751643839}
 --- !u!114 &1106090657 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
@@ -2891,7 +2891,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1085662643}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3068,7 +3068,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 0
-  popUpOpener: {fileID: 1973127231}
   title: Cards Counter
   tipData:
   - message: '<br>             Cards: x'
@@ -3719,6 +3718,49 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1718507080}
   m_CullTransparentMesh: 0
+--- !u!1 &1751643837
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1751643838}
+  - component: {fileID: 1751643839}
+  m_Layer: 0
+  m_Name: Battle Rules PopUp Opener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1751643838
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751643837}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -44.437447, y: -63.63556, z: -117.65625}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
+  m_Children: []
+  m_Father: {fileID: 1085662643}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1751643839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751643837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3af590173afd7243bbb12a8c04793ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1893482747
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,6 +7,9 @@ using UnityEngine.UI;
 public class TipDragAndDrop : DragAndDrop
 {
     [SerializeField]
+    private TipPopUpOpener tipPopUpOpener = null;
+
+    [SerializeField]
     private Text text = null;
 
     [SerializeField]
@@ -60,6 +63,10 @@ public class TipDragAndDrop : DragAndDrop
 
     protected override void BeforeDrop()
     {
+        if (this.receptor != null)
+        {
+            ((TipReceptor)this.receptor).OpenTip(tipPopUpOpener);
+        }
     }
 
     protected override void OnDroppedSpecificBehaviour()

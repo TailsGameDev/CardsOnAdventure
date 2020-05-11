@@ -4,9 +4,6 @@ using UnityEngine;
 public class TipReceptor : DragAndDropReceptor
 {
     [SerializeField]
-    protected OpenersSuperclass popUpOpener = null;
-
-    [SerializeField]
     protected string title = null;
 
     [SerializeField]
@@ -25,8 +22,14 @@ public class TipReceptor : DragAndDropReceptor
         return typeof(TipDragAndDrop);
     }
 
+    public virtual void OpenTip(TipPopUpOpener tipPopUpOpener)
+    {
+        tipPopUpOpener.OpenTipPopUp(tipData, title);
+    }
+
     public override void OnDroppedInReceptor()
     {
-        ((TipPopUpOpener)popUpOpener).OpenTipPopUp(tipData, title);
+        // NOTE: the following line was substituted by OpenTip Method. This way receptors does not need opener attribute
+        // ((TipPopUpOpener)popUpOpener).OpenTipPopUp(tipData, title);
     }
 }

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class DragAndDrop : MonoBehaviour
@@ -24,6 +22,8 @@ public abstract class DragAndDrop : MonoBehaviour
 
     #endregion
 
+    protected abstract Type GetDragAndDropType();
+
     protected virtual void Update()
     {
         if (snap)
@@ -32,78 +32,53 @@ public abstract class DragAndDrop : MonoBehaviour
         }
     }
 
+    #region Drag
     public void OnPointerDown()
     {
         StartDragging();
     }
-
     public void StartDragging()
-    {
-        // maybe the OnTriggerEnter did not work, so
-        if (receptor == null)
-        {
-            receptor = GetValidOverlappingReceptor();
-        }
-
-        if (receptor != null)
-        {
-            RectTransform receptorRectTransform = receptor.GetRectTransform();
-            StartDragging(receptorRectTransform);
-        }
-        else
-        {
-            L.ogError("Receptor is null, and I don't know why. I hope trying again will just work.\n", this);
-        }
-    }
-
-    private void SearchForReceptorNow()
-    {
-
-    }
-
-    public void StartDragging(RectTransform receptorRectTransform)
     {
         originalPosition = rectTransform.position;
         snap = true;
-        offset = AdjustOffset(receptorRectTransform, offsetToAdjust: originalPosition - Input.mousePosition);
+        offset = AdjustOffset(offsetToAdjust: originalPosition - Input.mousePosition);
 
         OnStartDragging();
     }
-
-    private Vector2 AdjustOffset(RectTransform receptorRectTransform, Vector2 offsetToAdjust)
+    private Vector2 AdjustOffset(Vector2 offsetToAdjust)
     {
         const float DIV_CONST = 8.0f;
 
-        Vector2 receptorSizeDelta = this.receptor.GetRectTransform().sizeDelta;
+        Vector2 draggedSizeDelta = rectTransform.sizeDelta;
 
-        if (offsetToAdjust.x > receptorSizeDelta.x / DIV_CONST)
+        if (offsetToAdjust.x > draggedSizeDelta.x / DIV_CONST)
         {
-            offsetToAdjust.x = receptorSizeDelta.x / DIV_CONST;
+            offsetToAdjust.x = draggedSizeDelta.x / DIV_CONST;
         }
-        else if (offsetToAdjust.x < -receptorSizeDelta.x / DIV_CONST)
+        else if (offsetToAdjust.x < -draggedSizeDelta.x / DIV_CONST)
         {
-            offsetToAdjust.x = -receptorSizeDelta.x / DIV_CONST;
+            offsetToAdjust.x = -draggedSizeDelta.x / DIV_CONST;
         }
 
-        if (offsetToAdjust.y > receptorSizeDelta.y / DIV_CONST)
+        if (offsetToAdjust.y > draggedSizeDelta.y / DIV_CONST)
         {
-            offsetToAdjust.y = receptorSizeDelta.y / DIV_CONST;
+            offsetToAdjust.y = draggedSizeDelta.y / DIV_CONST;
         }
-        else if (offsetToAdjust.y < -receptorSizeDelta.y / DIV_CONST)
+        else if (offsetToAdjust.y < -draggedSizeDelta.y / DIV_CONST)
         {
-            offsetToAdjust.y = -receptorSizeDelta.y / DIV_CONST;
+            offsetToAdjust.y = -draggedSizeDelta.y / DIV_CONST;
         }
 
         return offsetToAdjust;
     }
-
     protected abstract void OnStartDragging();
+    #endregion
 
+    #region Drop
     public void OnPointerUp()
     {
         Drop();
     }
-
     public void Drop()
     {
         if (snap)
@@ -125,16 +100,15 @@ public abstract class DragAndDrop : MonoBehaviour
             this.receptor = null;
         }
     }
-
     protected abstract void BeforeDrop();
-
     public void ReturnToOriginalPosition()
     {
         rectTransform.position = originalPosition;
     }
-
     protected abstract void OnDroppedSpecificBehaviour();
+    #endregion
 
+    #region OnTriggerEnter (try to get receptor)
     private void OnTriggerEnter2D(Collider2D col)
     {
         DragAndDropReceptor maybeAReceptor = col.GetComponent<DragAndDropReceptor>();
@@ -146,12 +120,10 @@ public abstract class DragAndDrop : MonoBehaviour
             }
         }
     }
-
     protected virtual bool ConditionToReplace(DragAndDropReceptor maybeAReceptor)
     {
         return receptor == null || (receptor!=null && receptor.Priority <= maybeAReceptor.Priority);
     }
-
     private void RegisterIfIsReceptorAndCallWhosInterested(Collider2D possibleReceptorCollider)
     {
         DragAndDropReceptor maybeAReceptor = possibleReceptorCollider.GetComponent<DragAndDropReceptor>();
@@ -162,11 +134,10 @@ public abstract class DragAndDrop : MonoBehaviour
             OnEnteredAReceptor(maybeAReceptor);
         }
     }
-
     protected abstract void OnEnteredAReceptor(DragAndDropReceptor receptor);
+    #endregion
 
-    protected abstract Type GetDragAndDropType();
-
+    #region OnTriggerEXIT (should receptor become null, or something else?
     private void OnTriggerExit2D(Collider2D col)
     {
         if ( OverlapsNoReceptor() )
@@ -188,18 +159,16 @@ public abstract class DragAndDrop : MonoBehaviour
             }
         }
     }
-
     private bool OverlapsNoReceptor()
     {
         return new ExitedAllValidReceptorsVerifier(this).Verify();
     }
-
     protected abstract void OnExitedAllReceptors();
-
     private DragAndDropReceptor GetValidOverlappingReceptor()
     {
         return new ValidOverlappingReceptorGetter(this).Get();
     }
+    #endregion
 
     private class ExitedAllValidReceptorsVerifier
     {
@@ -221,7 +190,6 @@ public abstract class DragAndDrop : MonoBehaviour
             return exitedAllRespectiveReceptors;
         }
     }
-
     private class ValidOverlappingReceptorGetter
     {
         private DragAndDrop dragAndDrop;

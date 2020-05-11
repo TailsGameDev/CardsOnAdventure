@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-public class BattleRulesPopUpOpener : OpenersSuperclass
+﻿public class BattleRulesPopUpOpener : OpenersSuperclass
 {
     public void OpenBattleRulesPopUp()
     {

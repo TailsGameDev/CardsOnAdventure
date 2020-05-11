@@ -3,8 +3,11 @@ using System.Collections;
 
 public class BattleRulesTipReceptor : TipReceptor
 {
-    public override void OnDroppedInReceptor()
+    [SerializeField]
+    private BattleRulesPopUpOpener battleRulesPopUpOpener = null;
+
+    public override void OpenTip(TipPopUpOpener _)
     {
-        ((BattleRulesPopUpOpener)popUpOpener).OpenBattleRulesPopUp();
+        battleRulesPopUpOpener.OpenBattleRulesPopUp();
     }
 }
