@@ -43,7 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acronym: '-'
   fullName: PunchBag
   description: "This card does not attack. It is a  mannequin. It's purpose is to
     be a training dummy: a Punching Bag. Well, technically, it deals a normal attack,
@@ -255,7 +254,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acronym: RF
   fullName: Reflect
   description: 'Sends half of the attacker power back to him as damage. '
   attackVFX: {fileID: 0}
@@ -493,7 +491,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acronym: PI
   fullName: Pierce
   description: The attack targets a card on the frontline, causing The <full>Attack
     Power as damage. Also, the card in the back takes half of the <half>Attack Power
@@ -558,7 +555,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acronym: BL
   fullName: Block
   description: "If some enemy tries to attack the card behind this one, this card
     takes the damage instead of it\u2019s teammate."
@@ -623,7 +619,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acronym: HA
   fullName: Tough
   description: This card receives just half of the damage when it is attacked.
   attackVFX: {fileID: 0}
@@ -686,7 +681,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acronym: AR
   fullName: Area
   description: All targets adjacent cards and the target take half of the <half>Attack
     Power of the mage as damage. Ignore Protection.
@@ -939,7 +933,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acronym: HO
   fullName: Hook
   description: If you attack a PROTECTED card, swap the PROTECTED card with the one
     in front of it.
@@ -1246,7 +1239,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acronym: FR
   fullName: Freezing
   description: "Freezes the target so it can\u2019t either attack or move in the
     next round."
@@ -1353,9 +1345,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acronym: DA
   fullName: 2x Attack
-  description: The card performs its attack twice.
+  description: When this card attacks, it automatically strikes again the same target.
   attackVFX: {fileID: 5748607524574563189, guid: 98279da2f24c5c14788a1493f4b2b327,
     type: 3}
   defenseVFX: {fileID: 0}
@@ -1416,7 +1407,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acronym: '-'
   fullName: No Skill
   description: Deals damage equals the <full>Attack Power to the target.
   attackVFX: {fileID: 0}
@@ -1521,7 +1511,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acronym: SA
   fullName: Heal
   description: "Every time this card attacks, the Cleric and it\u2019s neighbors
     receive +2 Vitality."
@@ -1674,7 +1663,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acronym: ST
   fullName: Steal
   description: "Apply damage, and steal the enemy\u2019s skill. The enemy can just
     perform regular attacks after this."
@@ -1811,7 +1799,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acronym: SA
   fullName: Heal
   description: "Deals half of the damage. Heals two times. Each time, the cleric
     targets the ally with less Vitality. The heal amount is equal to half of the
@@ -1877,7 +1864,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acronym: RN
   fullName: Random
   description: Right at the beginning of the battle, before you can even see, this
     card is substituted for a random card of your collection.
@@ -2103,7 +2089,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acronym: SA
   fullName: Heal
   description: Deals half of the damage. Heals the cleric and its allies with half
     of the Attack Power. Cards can be overhealed until the double of the initial
@@ -2213,7 +2198,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acronym: RG
   fullName: Regeneration
   description: This card recovers 1 Vitality before attack, but will never be more
     than the value at start of battle.

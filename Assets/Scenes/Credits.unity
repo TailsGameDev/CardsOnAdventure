@@ -435,6 +435,41 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 648760829302878769, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -90.99994
+      objectReference: {fileID: 0}
+    - target: {fileID: 648760829302878769, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -182.00012
+      objectReference: {fileID: 0}
+    - target: {fileID: 648760829302878769, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 648760829302878769, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 648760829302878769, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 648760829302878769, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 648760829302878769, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 933150367737452666, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -580,6 +615,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_FontData.m_LineSpacing
       value: 0.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 6987321625034104170, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: 7370358630484074833, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}

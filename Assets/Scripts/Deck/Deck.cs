@@ -12,10 +12,10 @@ public class Deck : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(DelayedStart());
+        StartCoroutine(PopulateDeck());
     }
 
-    private IEnumerator DelayedStart()
+    private IEnumerator PopulateDeck()
     {
         yield return null;
 

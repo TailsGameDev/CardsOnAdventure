@@ -26,7 +26,7 @@ public class DeckPersistence : Persistence
         else
         {
             L.ogError(this, "Trying to load inexistend deck files");
-            return new DeckSerializable(DeckPrototypeFactory.GetDefaultIndexes());
+            return new DeckSerializable(DeckPrototypeFactory.GetArrayFilledWithTheRandomCardIndex());
         }
     }
 }

@@ -53,7 +53,7 @@
     }
     #endregion
 
-    public int[] GetIndexesOfEachCardPrototype()
+    public int[] GetIndexOfEachCardPrototype()
     {
         return indexOfEachCardPrototype;
     }

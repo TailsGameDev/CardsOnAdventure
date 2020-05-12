@@ -25,6 +25,8 @@ public class DeckPrototypeFactory : MonoBehaviour
     protected const int TOUGH_SIZE = -2;
     protected const int BOSS_SIZE = -3;
 
+    private static int deckLife = 0;
+
     private static SaveFacade saveFacade = new SaveFacade();
 
     public static int DefaultDeckSize { get => deckPrototypeFactory.defaultDeckSize; }
@@ -102,10 +104,10 @@ public class DeckPrototypeFactory : MonoBehaviour
     }
     #endregion
 
-    // Player's Deck
+    #region Player's Deck
     public static Card[] GetPreparedCardsForThePlayerOrGetRandomDeck()
     {
-        if (playerDeckBuilder == null)
+        if (deckLife<=0)
         {
             if ( saveFacade.IsDeckLoaded() )
             {
@@ -116,7 +118,10 @@ public class DeckPrototypeFactory : MonoBehaviour
             {
                 PrepareRandomDeckForThePlayerAndSaveItInStorage();
             }
+            deckLife = int.MaxValue;
         }
+
+        deckLife--;
 
         Card[] playerDeck = playerDeckBuilder.GetDeck();
 
@@ -124,58 +129,12 @@ public class DeckPrototypeFactory : MonoBehaviour
 
         return ReplaceRandomAndSumBonuses(playerDeck);
     }
-    public static void PrepareRandomDeckForThePlayerAndSaveItInStorage(int size = NOT_A_SIZE)
-    {
-        playerDeckBuilder = new RandomDeckBuilder(size);
-
-        int adjustedSize;
-        if (size == NOT_A_SIZE)
-        {
-            adjustedSize = DefaultDeckSize;
-        }
-        else
-        {
-            adjustedSize = size;
-        }
-
-        int[] cardIndexes = GetDefaultIndexes(adjustedSize);
-        SaveIndexesInStorage(cardIndexes);
-    }
-    public static int[] GetDefaultIndexes()
-    {
-        return GetDefaultIndexes(DefaultDeckSize);
-    }
-    public static int[] GetDefaultIndexes(int adjustedSize)
-    {
-        int[] cardIndexes = new int[adjustedSize];
-        for (int i = 0; i < adjustedSize; i++)
-        {
-            cardIndexes[i] = ManualDeckBuider.INDEX_OF_RANDOM_CARD;
-        }
-        return cardIndexes;
-    }
-    private static void SaveIndexesInStorage(int[] cardIndexes)
-    {
-        DeckSerializable deckSerializable = new DeckSerializable(cardIndexes);
-        saveFacade.PrepareDeckForSaving(deckSerializable);
-    }
-    public static void PrepareManuallyBuiltDeckForThePlayerAndSaveInStorage(Card[] cards)
-    {
-        playerDeckBuilder = ManualDeckBuider.Create(cards);
-
-        int[] cardIndexes = ((ManualDeckBuider)playerDeckBuilder).GetIndexesOfEachCardPrototype();
-        SaveIndexesInStorage(cardIndexes);
-    }
-    public static void PrepareLoadedDeckForThePlayer(int[] cardIndexes)
-    {
-        playerDeckBuilder = ManualDeckBuider.Create(cardIndexes);
-    }
     private static Card[] ReplaceRandomAndSumBonuses(Card[] playerDeck)
     {
         for (int i = 0; i < playerDeck.Length; i++)
         {
             // Replace Random
-            if (playerDeck[i].IsAnotherInstanceOf( deckPrototypeFactory.theRandomCard) )
+            if (playerDeck[i].IsAnotherInstanceOf(deckPrototypeFactory.theRandomCard))
             {
                 Destroy(playerDeck[i].gameObject);
                 playerDeck[i] = GetCloneOfCardFromPrototypesRandomly();
@@ -192,6 +151,61 @@ public class DeckPrototypeFactory : MonoBehaviour
         Card[] prototypes = deckPrototypeFactory.allCardPrototypes;
         int randomIndex = UnityEngine.Random.Range(0, prototypes.Length);
         return prototypes[randomIndex].GetClone();
+    }
+
+    public static void PrepareRandomDeckForThePlayerAndSaveItInStorage(int size = NOT_A_SIZE)
+    {
+        playerDeckBuilder = new RandomDeckBuilder(size);
+
+        int adjustedSize;
+        if (size == NOT_A_SIZE)
+        {
+            adjustedSize = DefaultDeckSize;
+        }
+        else
+        {
+            adjustedSize = size;
+        }
+
+        int[] cardIndexes = GetArrayFilledWithTheRandomCardIndex(adjustedSize);
+        SaveIndexesInStorage(cardIndexes);
+    }
+    public static void PrepareManuallyBuiltDeckForThePlayerAndSaveInStorage(Card[] cards)
+    {
+        playerDeckBuilder = ManualDeckBuider.Create(cards);
+
+        int[] cardIndexes = ((ManualDeckBuider)playerDeckBuilder).GetIndexOfEachCardPrototype();
+        SaveIndexesInStorage(cardIndexes);
+    }
+    public static void PrepareLoadedDeckForThePlayer(int[] cardIndexes)
+    {
+        playerDeckBuilder = ManualDeckBuider.Create(cardIndexes);
+    }
+    public static void PrepareTrainingDeckForThePlayer()
+    {
+        deckLife = 1;
+        playerDeckBuilder = new RandomBattlefieldSizeDeckBuilder();
+    }
+    #endregion
+
+    public static int[] GetArrayFilledWithTheRandomCardIndex()
+    {
+        return GetArrayFilledWithTheRandomCardIndex(DefaultDeckSize);
+    }
+    private static int[] GetArrayFilledWithTheRandomCardIndex(int adjustedSize)
+    {
+        int[] cardIndexes = new int[adjustedSize];
+        for (int i = 0; i < adjustedSize; i++)
+        {
+            cardIndexes[i] = ManualDeckBuider.INDEX_OF_RANDOM_CARD;
+        }
+        return cardIndexes;
+    }
+
+    private static void SaveIndexesInStorage(int[] cardIndexes)
+    {
+        DeckSerializable deckSerializable = new DeckSerializable(cardIndexes);
+        saveFacade.PrepareDeckForSaving(deckSerializable);
     }
 
     public abstract class DeckBuilder
