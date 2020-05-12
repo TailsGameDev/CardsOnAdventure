@@ -13,7 +13,7 @@
         this.theOtherBF = theOtherBF;
 
         customPopUp.OpenAndMakeUncloseable(
-                            title: "Is the game tied?",
+                            title: "You guys die so slow",
                             warningMessage: "If you wish, get a +1 Attack Power buff to all cards currently on the battlefield (your enemy's ones included)",
                             confirmBtnMessage: "Buff all Attacks",
                             cancelBtnMessage: "No need for buffs.",

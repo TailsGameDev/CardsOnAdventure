@@ -3,15 +3,21 @@ using UnityEngine;
 
 public class Shakeable : MonoBehaviour
 {
-    public int pointsQty;
-    public int range;
-    public float durationForEachPoint;
+    [SerializeField]
+    private int pointsQty = 20;
+    [SerializeField]
+    private int range = 20;
+    [SerializeField]
+    private float durationForEachPoint = 0.2f;
+
+    [SerializeField]
+    public bool infinite = false;
 
     public void Shake()
     {
         StartCoroutine(shake());
     }
-    IEnumerator shake()
+    private IEnumerator shake()
     {
         // Create points
         Vector3[] points = new Vector3[pointsQty];
@@ -52,5 +58,10 @@ public class Shakeable : MonoBehaviour
         // Quick solving bug of cards staying in the wrong place
         yield return null;
         transform.position = points[0];
+
+        if (infinite)
+        {
+            Shake();
+        }
     }
 }

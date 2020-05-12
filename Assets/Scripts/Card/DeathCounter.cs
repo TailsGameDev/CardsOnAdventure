@@ -1,7 +1,4 @@
-﻿using UnityEngine;
-using System.Collections;
-
-/// explaining deathCounter
+﻿/// explaining deathCounter
 /// the size is the number of attacks to consider in counting: Ex: let's consider how many died in the last '10' attacks
 /// in this case 10 would be the size of the deathCount array.
 /// it starts as 1,1,1... because it will be used to see if the game tied. They will consider the game tied if in the
@@ -10,7 +7,7 @@ using System.Collections;
 /// skills and damage ware implemented
 public class DeathCounter
 {
-    private int[] deathCount = new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+    private int[] deathCount = new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
     private int deathCountIndex = 0;
 
     public DeathCounter(int size)

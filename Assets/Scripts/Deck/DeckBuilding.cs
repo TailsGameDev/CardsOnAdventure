@@ -9,6 +9,17 @@ public class DeckBuilding : OpenersSuperclass
     [SerializeField]
     private DeckCardHolder deck = null;
 
+    private static bool shouldAskTip = true;
+
+    private void Start()
+    {
+        if (shouldAskTip)
+        {
+            shouldAskTip = false;
+            TipDragAndDrop.AskToUseTips();
+        }
+    }
+
     void Update()
     {
         if (cardsCollection.UnavailableCardWasSelected())
@@ -54,12 +65,15 @@ public class DeckBuilding : OpenersSuperclass
 
     public void OnSaveAndQuitBtnClicked()
     {
+        SaveAndQuit();
+        /*
         customPopUpOpener.OpenConfirmationRequestPopUp
             (
                 warningMessage: "Once you leave this Tavern, your current party will remain the" +
                 " same until you enter another Tavern.",
                 onConfirm: SaveAndQuit
             );
+        */
     }
 
     private void SaveAndQuit()

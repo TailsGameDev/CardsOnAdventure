@@ -215,6 +215,11 @@ PrefabInstance:
         party. I mean <color=#1DEFC7>SAVE THE CURRENT PARTY AND PROCEED WITH THE
         ADVENTURE</color>
       objectReference: {fileID: 0}
+    - target: {fileID: 3198627527439210757, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: tipData.Array.data[0].height
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 3367427902471985073, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
       propertyPath: normalSprite
@@ -2131,7 +2136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popUpOpener: {fileID: 378093893}
+  priority: 0
   title: Tavern
   tipData:
   - message: 
@@ -3285,7 +3290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popUpOpener: {fileID: 378093893}
+  priority: 0
   title: Current Party
   tipData:
   - message: "<color=#1DEFC7>THIS IS A THEMATIC NAME FOR \u201CDECK\u201D OF CARDS</color>
@@ -3576,7 +3581,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -382.62924, y: -40}
+  m_AnchoredPosition: {x: -351.45007, y: -40}
   m_SizeDelta: {x: 1422.9, y: -180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1629059484
@@ -3774,7 +3779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popUpOpener: {fileID: 378093893}
+  priority: 0
   title: All Friends
   tipData:
   - message: '<color=#1DEFC7>THIS IS YOUR COLLECTION OF CARDS</color> I mean, these

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class TipDragAndDrop : DragAndDrop
@@ -13,9 +12,16 @@ public class TipDragAndDrop : DragAndDrop
     private Text text = null;
 
     [SerializeField]
+    private GameObject tipSignal = null;
+
+    [SerializeField]
     private GameObject speakBaloon = null;
 
     private static GameObject staticSpeakBalloon;
+
+    public delegate void OnDragOrDrop();
+    public static event OnDragOrDrop onDrag;
+    public static event OnDragOrDrop onDrop;
 
     protected void Awake()
     {
@@ -26,7 +32,15 @@ public class TipDragAndDrop : DragAndDrop
         StartCoroutine(MakeFontNormalInsistently());
     }
 
-    IEnumerator MakeFontNormalInsistently()
+    private void Start()
+    {
+        if (TipReceptor.HeyImATipReceptor == null)
+        {
+            TipReceptor.HeyImATipReceptor = tipSignal;
+        }
+    }
+
+    private IEnumerator MakeFontNormalInsistently()
     {
         yield return null;
         text.fontStyle = FontStyle.Normal;
@@ -45,6 +59,7 @@ public class TipDragAndDrop : DragAndDrop
     protected override void OnStartDragging()
     {
         text.fontStyle = FontStyle.Italic;
+        onDrag?.Invoke();
     }
     protected override void OnEnteredAReceptor(DragAndDropReceptor receptor)
     {
@@ -63,6 +78,7 @@ public class TipDragAndDrop : DragAndDrop
 
     protected override void BeforeDrop()
     {
+        onDrop?.Invoke();
         if (this.receptor != null)
         {
             ((TipReceptor)this.receptor).OpenTip(tipPopUpOpener);

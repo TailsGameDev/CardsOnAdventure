@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class SpotPrototype : OpenersSuperclass
 {
     [SerializeField]
+    private bool belongsToMap = true;
+    [SerializeField]
     private Map uiMap = null;
     [SerializeField]
     private AudioRequisitor audioRequisitor = null;
@@ -47,7 +49,7 @@ public class SpotPrototype : OpenersSuperclass
             CurrentBattleInfo.PrepareBattle(deckClass, spotBGM);
             DeckPrototypeFactory.PrepareClassDeckForTheEnemy(deckSizeMultiplier, deckClass);
         }
-        MarkSpotToBeCleared();
+        MarkSpotToBeClearedIfBelongsToMap();
         sceneOpener.OpenBattle();
     }
 
@@ -58,10 +60,13 @@ public class SpotPrototype : OpenersSuperclass
         OnBattleSpotBtnClicked();
     }
 
-    private void MarkSpotToBeCleared()
+    private void MarkSpotToBeClearedIfBelongsToMap()
     {
-        Spot spot = transform.parent.GetComponent<Spot>();
-        uiMap.SetSpotInfoToClearIfPlayerSucceed(spot);
+        if (belongsToMap)
+        {
+            Spot spot = transform.parent.GetComponent<Spot>();
+            uiMap.SetSpotInfoToClearIfPlayerSucceed(spot);
+        }
     }
 
     #region On "Some Not Battle Spot" Clicked
@@ -79,7 +84,7 @@ public class SpotPrototype : OpenersSuperclass
     }
     public void OnDeckBuildBtnClicked()
     {
-        MarkSpotToBeCleared();
+        MarkSpotToBeClearedIfBelongsToMap();
         sceneOpener.OpenDeckBuildingScene();
     }
     #endregion

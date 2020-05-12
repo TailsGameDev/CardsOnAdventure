@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TipReceptor : DragAndDropReceptor
 {
@@ -9,12 +10,38 @@ public class TipReceptor : DragAndDropReceptor
     [SerializeField]
     protected TipSectionData[] tipData = null;
 
+    protected static GameObject heyImATipReceptor;
+    protected GameObject myHeyImATipReceptor;
+
+    public static GameObject HeyImATipReceptor { get => heyImATipReceptor; set => heyImATipReceptor = value; }
+
     private void Awake()
     {
         for (int i = 0; i < tipData.Length; i++)
         {
             tipData[i].message = tipData[i].message.Replace("<br>", "\n");
         }
+    }
+
+    private void OnEnable()
+    {
+        TipDragAndDrop.onDrag += HeyImHereImATipReceptor;
+        TipDragAndDrop.onDrop += TurnSignalOff;
+    }
+    private void OnDisable()
+    {
+        TipDragAndDrop.onDrag -= HeyImHereImATipReceptor;
+        TipDragAndDrop.onDrop -= TurnSignalOff;
+    }
+
+    private void HeyImHereImATipReceptor()
+    {
+        myHeyImATipReceptor = Instantiate(heyImATipReceptor, transform.position, transform.rotation);
+        myHeyImATipReceptor.transform.SetParent(transform, false);
+    }
+    private void TurnSignalOff()
+    {
+        Destroy(myHeyImATipReceptor);
     }
 
     public override Type GetDragAndDropReceptorType()
