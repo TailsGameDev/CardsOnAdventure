@@ -126,7 +126,7 @@ public class BattleStatesFactory : OpenersSuperclass
 
     public BattleState CreateEndTurnState()
     {
-        return new EndTurn(battlefield, deck, hand);
+        return new EndTurn(battlefield, deck, hand, btnsBackground);
     }
 
     public BattleState CreateIsGameTiedState()

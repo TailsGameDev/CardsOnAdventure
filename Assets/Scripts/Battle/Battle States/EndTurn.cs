@@ -1,10 +1,14 @@
-﻿public class EndTurn : TurnBattleState
+﻿using UnityEngine;
+
+public class EndTurn : TurnBattleState
 {
-    public EndTurn(Battlefield battlefield, Deck deck, Hand hand)
+    public EndTurn(Battlefield battlefield, Deck deck, Hand hand, GameObject toDeactivate)
     {
         this.battlefield = battlefield;
         this.deck = deck;
         this.hand = hand;
+
+        toDeactivate.SetActive(false);
     }
 
     public override void ExecuteAction()
