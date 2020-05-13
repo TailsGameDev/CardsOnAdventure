@@ -15,7 +15,7 @@ public class CardTipReceptor : TipReceptor
 
         TipSectionData section1 = new TipSectionData(background: c.GetCardSprite());
 
-        TipSectionData section2 = new TipSectionData("<color=#1DEFC7> * SCROLL DOWN FOR MORE TEACHING</color>", 62.5f);
+        TipSectionData section2 = new TipSectionData("<color=#9EFA9D> * SCROLL DOWN FOR MORE TEACHING</color>", 62.5f);
 
         TipSectionData section3 = new TipSectionData(c.GetExplanatoryText());
 

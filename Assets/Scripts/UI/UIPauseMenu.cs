@@ -9,8 +9,12 @@ public class UIPauseMenu : OpenersSuperclass
     [SerializeField]
     private GameObject fleeFromBattleBtn = null;
 
+    [SerializeField]
+    protected RandomSprite cardBackground = null;
+
     private void OnEnable()
     {
+        cardBackground.ChangeSprite();
         fleeFromBattleBtn.SetActive(SceneManager.GetActiveScene().name == "Battle");
     }
 
@@ -19,7 +23,7 @@ public class UIPauseMenu : OpenersSuperclass
         openerOfPopUpsMadeInEditor.OpenBattleRulesPopUp();
     }
 
-    public void OnSettingsBtnClicked()
+    public virtual void OnSettingsBtnClicked()
     {
         openerOfPopUpsMadeInEditor.OpenSettingsPopUp();
     }

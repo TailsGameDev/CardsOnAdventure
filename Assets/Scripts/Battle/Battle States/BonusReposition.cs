@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class BonusReposition : PlaceCard
 {
@@ -14,7 +15,8 @@ public class BonusReposition : PlaceCard
             GameObject btnsBackground,
             CustomPopUp customPopUpOpener,
             Hand opponentHand,
-            Deck opponentDeck
+            Deck opponentDeck,
+            Text endRepositioningBtnText
         )
         : base
         (
@@ -28,6 +30,11 @@ public class BonusReposition : PlaceCard
     {
         this.opponentHand = opponentHand;
         this.opponentDeck = opponentDeck;
+
+        if (currentBattleStatesFactory == playerBattleStatesFactory)
+        {
+            endRepositioningBtnText.text = "Pass ->";
+        }
 
         if ( ! EnemyIsCompletelyDefeated() )
         GiveHandBackToDeck();

@@ -13,6 +13,7 @@ public class UIMainMenu : UIPauseMenu
     public void OnPlayBtnClicked()
     {
         OpenContinueOrNewGamePopUp();
+        cardBackground.ChangeSprite();
         /*
         customPopUpOpener.Open(
             title: "Play",
@@ -85,6 +86,12 @@ public class UIMainMenu : UIPauseMenu
         sceneOpener.OpenTutorialMainMenuScene();
     }
 
+    public override void OnSettingsBtnClicked()
+    {
+        base.OnSettingsBtnClicked();
+        cardBackground.ChangeSprite();
+    }
+
     public void OnCreditsBtnClicked()
     {
         sceneOpener.OpenScene("Credits");
@@ -94,5 +101,6 @@ public class UIMainMenu : UIPauseMenu
     {
         string warningMessage = " We dedicated so much to build this game";
         customPopUpOpener.OpenConfirmationRequestPopUp(warningMessage, Application.Quit);
+        cardBackground.ChangeSprite();
     }
 }

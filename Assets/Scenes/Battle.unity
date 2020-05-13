@@ -1905,7 +1905,7 @@ MonoBehaviour:
   - message: '<br>             Cards: x'
     background: {fileID: 21300000, guid: 76aee4a4b61b4474881fac10e6418afc, type: 3}
     height: 150
-  - message: "This is the display of <color=#1DEFC7>HOW MANY CARDS THERE ARE STILL
+  - message: "This is the display of <color=#9EFA9D>HOW MANY CARDS THERE ARE STILL
       STANDING IN THE PARTY</color>. It is the sum of the cards in the battlefield,
       with the ones in the hand, and in the deck. You have a counter like this in
       the bottom of the screen, and your enemy\u2019s one is in the top of the screen."
@@ -1966,6 +1966,8 @@ MonoBehaviour:
   audioHolder: {fileID: 2101965490}
   audioRequisitor: {fileID: 1493936903}
   sceneCanvasGameObject: {fileID: 1612099938}
+  activateOnRepositionState: {fileID: 1795980430}
+  activateOnAttackState: {fileID: 997322729}
 --- !u!1 &928461781
 GameObject:
   m_ObjectHideFlags: 0
@@ -2216,6 +2218,131 @@ Transform:
   m_Father: {fileID: 1612099942}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &997322729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 997322730}
+  - component: {fileID: 997322732}
+  - component: {fileID: 997322731}
+  - component: {fileID: 997322734}
+  - component: {fileID: 997322733}
+  m_Layer: 5
+  m_Name: You Can Attack Now
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &997322730
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997322729}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1143793801}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 59.5}
+  m_SizeDelta: {x: 700, y: 70}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &997322731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997322729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: b6351f55f62c6ca4eacab29e36e00de1, type: 3}
+    m_FontSize: 55
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 174
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: You can attack now
+--- !u!222 &997322732
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997322729}
+  m_CullTransparentMesh: 0
+--- !u!61 &997322733
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997322729}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 700, y: 70}
+  m_EdgeRadius: 0
+--- !u!114 &997322734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997322729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 0
+  title: Attack
+  tipData:
+  - message: "<color=#FFFF00>YOU MUST DRAG YOUR CARDS AND DROP ABOVE ENEMY CARDS
+      TO PERFORM ATTACKS.</color> Otherwise, the enemies will make fun out of you\u2026
+      Or be bored to death, maybe, but I don\u2019t recommend this strategy."
+    background: {fileID: 0}
+    height: 0
 --- !u!114 &1075109119 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8747812073619377146, guid: 298cd90909942ad4f9fcd5670fb764d1,
@@ -2432,6 +2559,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1143793801}
     m_Modifications:
+    - target: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: normalSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1241a6fc3fa9f294da2878791f83e590,
+        type: 3}
+    - target: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: clickedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 184f34ef664b8d447bba477f0cd29355,
+        type: 3}
+    - target: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: BtnDownTextColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: BtnDownTextColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: BtnDownTextColor.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1045103754934244661, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_Name
@@ -2445,7 +2599,7 @@ PrefabInstance:
     - target: {fileID: 2193217639723640391, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_Text
-      value: Reposition Again
+      value: <-
       objectReference: {fileID: 0}
     - target: {fileID: 2193217639723640391, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
@@ -2456,6 +2610,41 @@ PrefabInstance:
     - target: {fileID: 2193217639723640391, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415636962646061865, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415636962646061865, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415636962646061865, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415636962646061865, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1795980430}
+    - target: {fileID: 3415636962646061865, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415636962646061865, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415636962646061865, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
@@ -2496,7 +2685,7 @@ PrefabInstance:
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
@@ -2516,17 +2705,17 @@ PrefabInstance:
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -58
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 600.8
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
@@ -2536,7 +2725,7 @@ PrefabInstance:
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
@@ -2546,7 +2735,7 @@ PrefabInstance:
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
@@ -2556,7 +2745,7 @@ PrefabInstance:
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_Pivot.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
@@ -2576,6 +2765,17 @@ PrefabInstance:
     - target: {fileID: 8444004942086850600, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444004942086850600, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1241a6fc3fa9f294da2878791f83e590,
+        type: 3}
+    - target: {fileID: 8444004942086850600, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Type
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -3073,7 +3273,7 @@ MonoBehaviour:
   - message: '<br>             Cards: x'
     background: {fileID: 21300000, guid: 76aee4a4b61b4474881fac10e6418afc, type: 3}
     height: 150
-  - message: "This is the display of <color=#1DEFC7>HOW MANY CARDS THERE ARE STILL
+  - message: "This is the display of <color=#9EFA9D>HOW MANY CARDS THERE ARE STILL
       STANDING IN THE PARTY</color>. It is the sum of the cards in the battlefield,
       with the ones in the hand, and in the deck. You have a counter like this in
       the bottom of the screen, and your enemy\u2019s one is in the top of the screen."
@@ -3134,6 +3334,8 @@ MonoBehaviour:
   audioHolder: {fileID: 2101965490}
   audioRequisitor: {fileID: 1493936903}
   sceneCanvasGameObject: {fileID: 1612099938}
+  activateOnRepositionState: {fileID: 1795980430}
+  activateOnAttackState: {fileID: 997322729}
 --- !u!1 &1378405285
 GameObject:
   m_ObjectHideFlags: 0
@@ -3761,6 +3963,135 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3af590173afd7243bbb12a8c04793ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1795980430
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1795980431}
+  - component: {fileID: 1795980433}
+  - component: {fileID: 1795980432}
+  - component: {fileID: 1795980435}
+  - component: {fileID: 1795980434}
+  m_Layer: 5
+  m_Name: You Can Reposition Now
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1795980431
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795980430}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1143793801}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 59.5}
+  m_SizeDelta: {x: 700, y: 70}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1795980432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795980430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: b6351f55f62c6ca4eacab29e36e00de1, type: 3}
+    m_FontSize: 55
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 10
+    m_MaxSize: 174
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: You can reposition now
+--- !u!222 &1795980433
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795980430}
+  m_CullTransparentMesh: 0
+--- !u!61 &1795980434
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795980430}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 700, y: 70}
+  m_EdgeRadius: 0
+--- !u!114 &1795980435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795980430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 0
+  title: Reposition
+  tipData:
+  - message: "<color=#FFFF00>YOU CAN DRAG AND DROP THE CARDS INSIDE YOUR BATTLEFIELD
+      TO REPOSITION THEM.</color> I strongly recommend you to keep the cards with
+      more <color=#9EFA9D>Vitality</color> in the Front Line, and the ones with great
+      <color=#FD7878>Attack Power</color> in the Back Line. The reason is: cards
+      behind others receive the PROTECTED buff. For more information on the PROTECTED
+      buff, drag and drop the \u2019?\u2019, I mean, me, on the shields in the side
+      of the PROTECTED cards."
+    background: {fileID: 0}
+    height: 0
 --- !u!1 &1893482747
 GameObject:
   m_ObjectHideFlags: 0
@@ -4201,6 +4532,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1143793801}
     m_Modifications:
+    - target: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: normalSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1241a6fc3fa9f294da2878791f83e590,
+        type: 3}
+    - target: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: clickedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 184f34ef664b8d447bba477f0cd29355,
+        type: 3}
+    - target: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: BtnDownTextColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: BtnDownTextColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: BtnDownTextColor.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1045103754934244661, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_Name
@@ -4214,7 +4572,7 @@ PrefabInstance:
     - target: {fileID: 2193217639723640391, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_Text
-      value: End Turn
+      value: Pass ->
       objectReference: {fileID: 0}
     - target: {fileID: 2193217639723640391, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
@@ -4225,6 +4583,21 @@ PrefabInstance:
     - target: {fileID: 2193217639723640391, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193217639723640391, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193217639723640391, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193217639723640391, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
@@ -4265,7 +4638,7 @@ PrefabInstance:
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
@@ -4285,17 +4658,17 @@ PrefabInstance:
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 58
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 417.2
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
@@ -4335,17 +4708,28 @@ PrefabInstance:
     - target: {fileID: 8444004942086850600, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.98039216
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8444004942086850600, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.4392157
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8444004942086850600, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.4392157
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444004942086850600, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1241a6fc3fa9f294da2878791f83e590,
+        type: 3}
+    - target: {fileID: 8444004942086850600, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Type
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d923e06d11c42c4c8ce76b64e93975d, type: 3}
@@ -4514,6 +4898,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1143793801}
     m_Modifications:
+    - target: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: normalSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1241a6fc3fa9f294da2878791f83e590,
+        type: 3}
+    - target: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: clickedSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 184f34ef664b8d447bba477f0cd29355,
+        type: 3}
+    - target: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: BtnDownTextColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: BtnDownTextColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: BtnDownTextColor.b
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1045103754934244661, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_Name
@@ -4533,6 +4944,46 @@ PrefabInstance:
     - target: {fileID: 2193217639723640391, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_FontData.m_FontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2193217639723640391, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Text
+      value: To Attack ->
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415636962646061865, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415636962646061865, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415636962646061865, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415636962646061865, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1795980430}
+    - target: {fileID: 3415636962646061865, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetActive
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415636962646061865, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3415636962646061865, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_BoolArgument
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
@@ -4573,7 +5024,7 @@ PrefabInstance:
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
@@ -4598,12 +5049,12 @@ PrefabInstance:
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3.1999817
+      value: 44
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 600.8
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
@@ -4653,6 +5104,17 @@ PrefabInstance:
     - target: {fileID: 8444004942086850600, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8444004942086850600, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1241a6fc3fa9f294da2878791f83e590,
+        type: 3}
+    - target: {fileID: 8444004942086850600, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: m_Type
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

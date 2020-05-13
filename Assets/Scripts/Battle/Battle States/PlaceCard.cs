@@ -55,7 +55,7 @@ public class PlaceCard : BattleState
             customPopUpOpener.OpenMessageIfNoCustomPopUpIsOpenned
                 (
                     title: "Place Cards",
-                        warningMessage: "<color=#FFFFFF> You must <color=#1DEFC7>PLACE ALL CARDS YOU CAN BEFORE REPOSITIONING</color>. Drag and Drop from your hand" +
+                        warningMessage: "<color=#FFFFFF> You must <color=#9EFA9D>PLACE ALL CARDS YOU CAN BEFORE REPOSITIONING</color>. Drag and Drop from your hand" +
                         " to the battlefield, please.</color>"
                 );
         }

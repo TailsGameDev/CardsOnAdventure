@@ -7548,8 +7548,8 @@ MonoBehaviour:
     background: {fileID: 21300000, guid: 318a8268be58bcc489f683afa49a0c1b, type: 3}
     height: 250
   - message: The labels are below the map, but if you want to know more about each
-      type of spot, <color=#1DEFC7>YOU CAN DRAG AND DROP THE " ? "</color>, the Teaching
-      Spirit, <color=#1DEFC7>ABOVE THE SPOTS IN THE ACTUAL MAP</color> (not here,
+      type of spot, <color=#9EFA9D>YOU CAN DRAG AND DROP THE " ? "</color>, the Teaching
+      Spirit, <color=#9EFA9D>ABOVE THE SPOTS IN THE ACTUAL MAP</color> (not here,
       please!).
     background: {fileID: 0}
     height: 400

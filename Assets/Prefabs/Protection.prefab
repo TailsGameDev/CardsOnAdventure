@@ -88,21 +88,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priority: 0
   title: Protection
   tipData:
   - message: 
     background: {fileID: 21300000, guid: deda76258741c7b4986a16b2a4be64b6, type: 3}
     height: 648
-  - message: "<color=#1DEFC7>A CARD IS PROTECTED WHENEVER THERE IS A CARD IN FRONT
+  - message: "<color=#9EFA9D>A CARD IS PROTECTED WHENEVER THERE IS A CARD IN FRONT
       OF IT.<br> PROTECTED CARDS TAKE HALF OF THE DAMAGE.</color><br> Also, if the
-      card in front of it has the <color=#1DEFC7>BLOCK SKILL</color>, normal attacks
-      that target this card will actually hit the card in front of it.<br> <color=#1DEFC7>SOME
-      CARDS</color>, however, <color=#1DEFC7>IGNORE PROTECTION.</color> If a card
+      card in front of it has the <color=#9EFA9D>BLOCK SKILL</color>, normal attacks
+      that target this card will actually hit the card in front of it.<br> <color=#9EFA9D>SOME
+      CARDS</color>, however, <color=#9EFA9D>IGNORE PROTECTION.</color> If a card
       ignores protection and the block skill, it\u2019s description ends with \u201CIgnore
       Protection\u201D words.<br> "
     background: {fileID: 0}
     height: 800
-  popUpOpener: {fileID: 0}
 --- !u!61 &4915932795223258010
 BoxCollider2D:
   m_ObjectHideFlags: 0

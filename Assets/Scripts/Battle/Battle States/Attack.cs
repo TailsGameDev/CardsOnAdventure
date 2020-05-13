@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Attack : BattleState
 {
@@ -17,6 +18,8 @@ public class Attack : BattleState
     private UICustomBtn repositionAgainBtn;
     private bool clickedRepositionAgainBtn = false;
 
+    private GameObject toActivate;
+
     private PreMadeSoundRequest confirmOnUselessAtackSFXRequisitor;
     private PreMadeSoundRequest onCancelUselessAtackSFXRequisitor;
 
@@ -27,6 +30,7 @@ public class Attack : BattleState
                     Battlefield opponentBattleField,
                     UICustomBtn endTurnBtn,
                     UICustomBtn repositionAgainBtn,
+                    GameObject toActivate,
                     CustomPopUp popUpOpener,
                     PreMadeSoundRequest confirmOnUselessAtackSFXRequisitor,
                     PreMadeSoundRequest onCancelUselessAtackSFXRequisitor
@@ -39,8 +43,12 @@ public class Attack : BattleState
 
         this.repositionAgainBtn = repositionAgainBtn;
 
+        this.toActivate = toActivate;
+
         this.confirmOnUselessAtackSFXRequisitor = confirmOnUselessAtackSFXRequisitor;
         this.onCancelUselessAtackSFXRequisitor = onCancelUselessAtackSFXRequisitor;
+
+        toActivate.SetActive(true);
 
         ClearSelections();
 
@@ -87,7 +95,7 @@ public class Attack : BattleState
                 (
                     title: "Attack",
                     warningMessage: "<color=#FFFFFF>You should attack before end your turn.</color> " +
-                        "<color=#1DEFC7>DRAG AND DROP YOUR CARDS ABOVE ENEMY'S CARDS</color>",
+                        "<color=#9EFA9D>DRAG AND DROP YOUR CARDS ABOVE ENEMY'S CARDS</color>",
                     confirmBtnMessage: "Ok, I'll attack",
                     cancelBtnMessage: "I'm a pacifist...",
                     onConfirm: () => { popUpOpener.ClosePopUpOnTop(); },
@@ -205,7 +213,7 @@ public class Attack : BattleState
                     (
                         title: "Protected",
                         warningMessage: "<color=#FFFFFF>Your <color=#FD7878>Attack Power</color> of <color=#FD7878>1</color> was not enough to deal damage because cards behind others are 'Protected'</color>" +
-                        "\n<color=#1DEFC7>DAMAGE = 1/2 = 0.5 = 0 (integer)</color>",
+                        "\n<color=#9EFA9D>DAMAGE = 1/2 = 0.5 = 0 (integer)</color>",
                         confirmBtnMessage: "Facepalm",
                         cancelBtnMessage: "Offend enemy",
                         onConfirm: () => { confirmOnUselessAtackSFXRequisitor.RequestPlaying(); popUpOpener.ClosePopUpOnTop(); },
@@ -267,6 +275,7 @@ public class Attack : BattleState
 
     private void OnEndingAttackState()
     {
+        toActivate.SetActive(false);
         endTurnBtn.gameObject.SetActive(false);
         repositionAgainBtn.gameObject.SetActive(false);
         opponentBattleField.HideAllProtectionVFX();

@@ -598,12 +598,12 @@ PrefabInstance:
     - target: {fileID: 6987321625034104170, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}
       propertyPath: m_Text
-      value: "<color=#1fdab6ff>Game Design</color>\r\nCain\xE3 Correa Caldas\r\nLuiz
-        Henrique Marquetti Rondon\r\n\r\n<color=#1fdab6>Programming</color>\r\nCain\xE3
-        Correa Caldas\r\n\r\n<color=#1fdab6>Illustrations</color>\r\nThayse Fortes
-        (Coati)\r\n\r\n<color=#1fdab6>User Interface</color>\r\nArthur Neves\r\nCain\xE3
-        Correa Caldas\r\n\r\n<color=#1fdab6>Assets Google Search</color>\r\nLuiz
-        Henrique Marquetti Rondon\r\nCain\xE3 Correa Caldas\r\n\r\n<color=#1fdab6>Testers</color>\r\nLuis
+      value: "<color=#9EFA9Dff>Game Design</color>\r\nCain\xE3 Correa Caldas\r\nLuiz
+        Henrique Marquetti Rondon\r\n\r\n<color=#9EFA9D>Programming</color>\r\nCain\xE3
+        Correa Caldas\r\n\r\n<color=#9EFA9D>Illustrations</color>\r\nThayse Fortes
+        (Coati)\r\n\r\n<color=#9EFA9D>User Interface</color>\r\nArthur Neves\r\nCain\xE3
+        Correa Caldas\r\n\r\n<color=#9EFA9D>Assets Google Search</color>\r\nLuiz
+        Henrique Marquetti Rondon\r\nCain\xE3 Correa Caldas\r\n\r\n<color=#9EFA9D>Testers</color>\r\nLuis
         Felipe Bruno Azeredo\r\nVictor Armando Neis\r\nVictor Vighi\r\n"
       objectReference: {fileID: 0}
     - target: {fileID: 6987321625034104170, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,

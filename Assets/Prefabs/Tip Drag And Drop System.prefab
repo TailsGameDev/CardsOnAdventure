@@ -435,8 +435,8 @@ MonoBehaviour:
   title: '?'
   tipData:
   - message: "Greetings, I am the Teaching Spirit. I get stronger every time I teach
-      you, so you better <color=#1DEFC7>DRAG AND DROP THE \u201C ? \u201D</color>,
-      I mean, me, <color=#1DEFC7>WHEREVER YOU WANT AND IF I CAN, I WILL TEACH YOU
+      you, so you better <color=#9EFA9D>DRAG AND DROP THE \u201C ? \u201D</color>,
+      I mean, me, <color=#9EFA9D>WHEREVER YOU WANT AND IF I CAN, I WILL TEACH YOU
       SOMETHING INTERESTING ABOUT IT!!</color> Ah\u2026 I feel great adventure awaits
       us, my dear. Can you also feel this? "
     background: {fileID: 0}
@@ -730,8 +730,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   max: 5
   dr: 0
-  dg: 0
-  db: 1
   divisor: 10
   crazyColorText: {fileID: 8223592684893772216}
 --- !u!114 &8223592684893772216

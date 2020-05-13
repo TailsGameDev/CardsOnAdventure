@@ -1,8 +1,12 @@
-﻿public class Reposition : BattleState
+﻿using UnityEngine;
+using UnityEngine.UI;
+
+public class Reposition : BattleState
 {
     private Battlefield attackerBattlefield;
     private Battlefield opponentBattlefield;
     private UICustomBtn endRepositioningBtn;
+    private GameObject toActivate;
 
     private int oldIndex;
     private int currentIndex;
@@ -15,11 +19,14 @@
     private int abfIndex;
     private int obfIndex;
 
-    public Reposition(Battlefield attackerBattlefield, Battlefield opponentBattlefield, UICustomBtn endRepositioningBtn)
+    public Reposition(Battlefield attackerBattlefield, Battlefield opponentBattlefield, UICustomBtn endRepositioningBtn, GameObject toActivate)
     {
         this.attackerBattlefield = attackerBattlefield;
         this.opponentBattlefield = opponentBattlefield;
         this.endRepositioningBtn = endRepositioningBtn;
+        this.toActivate = toActivate;
+
+        toActivate.SetActive(true);
 
         ClearSelection();
 
@@ -184,5 +191,8 @@
             ((Attack)nextState).SetAttackerSelectedIndex(abfIndex);
             ((Attack)nextState).SetOpponentSelectedIndex(obfIndex);
         }
+
+        endRepositioningBtn.ChangeText("To Attack ->");
+        toActivate.SetActive(false);
     }
 }

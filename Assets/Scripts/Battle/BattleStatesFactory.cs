@@ -40,6 +40,12 @@ public class BattleStatesFactory : OpenersSuperclass
     [SerializeField]
     private GameObject sceneCanvasGameObject = null;
 
+    [SerializeField]
+    private GameObject activateOnRepositionState = null;
+
+    [SerializeField]
+    private GameObject activateOnAttackState = null;
+
     public BattleState CreateGameStartState()
     {
         if (isThePlayersFactory)
@@ -93,13 +99,14 @@ public class BattleStatesFactory : OpenersSuperclass
                 btnsBackground,
                 customPopUpOpener,
                 otherBattleStatesFactory.hand,
-                otherBattleStatesFactory.deck
+                otherBattleStatesFactory.deck,
+                endRepositioningBtn.GetTextComponent()
             );
     }
 
     public BattleState CreateRepositionState()
     {
-        return new Reposition(battlefield, otherBattleStatesFactory.battlefield, endRepositioningBtn);
+        return new Reposition(battlefield, otherBattleStatesFactory.battlefield, endRepositioningBtn, activateOnRepositionState);
     }
 
     public BattleState CreateAttackState()
@@ -110,6 +117,7 @@ public class BattleStatesFactory : OpenersSuperclass
                 otherBattleStatesFactory.battlefield,
                 endTurnBtn,
                 repositionAgainBtn,
+                activateOnAttackState,
                 customPopUpOpener,
                 PreMadeSoundRequest.CreateSFXSoundRequest(audioHolder.GetAudioByName("Facepalm"), audioRequisitor, assignor: gameObject),
                 PreMadeSoundRequest.CreateSFXSoundRequest(audioHolder.GetAudioByName("Fuck You"), audioRequisitor, assignor: gameObject)
