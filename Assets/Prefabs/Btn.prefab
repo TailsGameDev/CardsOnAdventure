@@ -70,8 +70,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 88d45c2a8549ce340adf1e6801eeab8e, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 1241a6fc3fa9f294da2878791f83e590, type: 3}
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -95,12 +95,12 @@ MonoBehaviour:
   soundRequisitor: {fileID: 6438536567918031258}
   btnClickSound: {fileID: 8300000, guid: a5cd0902735e31e4382e2333d4c4cf08, type: 3}
   imageComponent: {fileID: 8108720574873910179}
-  normalSprite: {fileID: 21300000, guid: 88d45c2a8549ce340adf1e6801eeab8e, type: 3}
-  clickedSprite: {fileID: 21300000, guid: ddbeef81a96f69a489a1394180aec3e4, type: 3}
+  normalSprite: {fileID: 21300000, guid: 1241a6fc3fa9f294da2878791f83e590, type: 3}
+  clickedSprite: {fileID: 21300000, guid: 184f34ef664b8d447bba477f0cd29355, type: 3}
   bigSize: {x: 1.1, y: 1.1, z: 1.1}
   textComponent: {fileID: 2001577861149971916}
   textVerticalDesloc: 20
-  BtnDownTextColor: {r: 0.68235296, g: 0.68235296, b: 0.68235296, a: 1}
+  BtnDownTextColor: {r: 1, g: 1, b: 1, a: 1}
   eventTrigger: {fileID: 3084420522387046562}
 --- !u!114 &3084420522387046562
 MonoBehaviour:
@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priority: 0
   title: Button
   tipData:
   - message: '                      Button'
@@ -222,7 +223,6 @@ MonoBehaviour:
       that you learned how to ask him about something!
     background: {fileID: 0}
     height: 300
-  popUpOpener: {fileID: 7967699319178745419}
 --- !u!1 &3395666988398941279
 GameObject:
   m_ObjectHideFlags: 0
@@ -281,7 +281,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

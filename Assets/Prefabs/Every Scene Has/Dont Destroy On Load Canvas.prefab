@@ -2323,12 +2323,12 @@ MonoBehaviour:
   soundRequisitor: {fileID: 1935715517312006474}
   btnClickSound: {fileID: 8300000, guid: a5cd0902735e31e4382e2333d4c4cf08, type: 3}
   imageComponent: {fileID: 5694756828312102033}
-  normalSprite: {fileID: 21300000, guid: 88d45c2a8549ce340adf1e6801eeab8e, type: 3}
-  clickedSprite: {fileID: 21300000, guid: ddbeef81a96f69a489a1394180aec3e4, type: 3}
+  normalSprite: {fileID: 21300000, guid: 1241a6fc3fa9f294da2878791f83e590, type: 3}
+  clickedSprite: {fileID: 21300000, guid: 184f34ef664b8d447bba477f0cd29355, type: 3}
   bigSize: {x: 1.1, y: 1.1, z: 1.1}
   textComponent: {fileID: 2614103441515350782}
   textVerticalDesloc: 20
-  BtnDownTextColor: {r: 0.68235296, g: 0.68235296, b: 0.68235296, a: 1}
+  BtnDownTextColor: {r: 0.9921569, g: 0.47058827, b: 0.47058827, a: 1}
   eventTrigger: {fileID: 0}
 --- !u!1 &3874649263597080975
 GameObject:
@@ -3174,12 +3174,12 @@ MonoBehaviour:
   soundRequisitor: {fileID: 2213154597100337448}
   btnClickSound: {fileID: 8300000, guid: a5cd0902735e31e4382e2333d4c4cf08, type: 3}
   imageComponent: {fileID: 3993290866481394449}
-  normalSprite: {fileID: 21300000, guid: 88d45c2a8549ce340adf1e6801eeab8e, type: 3}
-  clickedSprite: {fileID: 21300000, guid: ddbeef81a96f69a489a1394180aec3e4, type: 3}
+  normalSprite: {fileID: 21300000, guid: 1241a6fc3fa9f294da2878791f83e590, type: 3}
+  clickedSprite: {fileID: 21300000, guid: 184f34ef664b8d447bba477f0cd29355, type: 3}
   bigSize: {x: 1.1, y: 1.1, z: 1.1}
   textComponent: {fileID: 6641677991318166910}
   textVerticalDesloc: 20
-  BtnDownTextColor: {r: 0.68235296, g: 0.68235296, b: 0.68235296, a: 1}
+  BtnDownTextColor: {r: 0.61960787, g: 0.98039216, b: 0.6156863, a: 1}
   eventTrigger: {fileID: 0}
 --- !u!1 &5552356376143754423
 GameObject:
@@ -5735,6 +5735,21 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontStyle
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2001577861149971916, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.9921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 2001577861149971916, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.47058827
+      objectReference: {fileID: 0}
+    - target: {fileID: 2001577861149971916, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.47058827
+      objectReference: {fileID: 0}
     - target: {fileID: 3084420522387046562, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.size
@@ -5764,6 +5779,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3367427902471985073, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: BtnDownTextColor.r
+      value: 0.9803922
+      objectReference: {fileID: 0}
+    - target: {fileID: 3367427902471985073, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: BtnDownTextColor.g
+      value: 0.43921572
+      objectReference: {fileID: 0}
+    - target: {fileID: 3367427902471985073, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: BtnDownTextColor.b
+      value: 0.43921572
       objectReference: {fileID: 0}
     - target: {fileID: 4090511394279096403, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
@@ -5900,6 +5930,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9182716590525795587}
     m_Modifications:
+    - target: {fileID: 179110421075102587, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.99215686
+      objectReference: {fileID: 0}
+    - target: {fileID: 179110421075102587, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.47058824
+      objectReference: {fileID: 0}
+    - target: {fileID: 179110421075102587, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.47058824
+      objectReference: {fileID: 0}
     - target: {fileID: 602354739181723955, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}
       propertyPath: BtnDownTextColor.a
@@ -6109,6 +6154,66 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963407755900160262, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: BtnDownTextColor.r
+      value: 0.9921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963407755900160262, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: BtnDownTextColor.g
+      value: 0.47058827
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963407755900160262, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: BtnDownTextColor.b
+      value: 0.47058827
+      objectReference: {fileID: 0}
+    - target: {fileID: 4406622503695721294, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.61960787
+      objectReference: {fileID: 0}
+    - target: {fileID: 4406622503695721294, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.98039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 4406622503695721294, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.6156863
+      objectReference: {fileID: 0}
+    - target: {fileID: 4993265045940745422, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.9921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 4993265045940745422, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.47058827
+      objectReference: {fileID: 0}
+    - target: {fileID: 4993265045940745422, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.47058827
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226096480279940385, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.61960787
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226096480279940385, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.98039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226096480279940385, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.6156863
       objectReference: {fileID: 0}
     - target: {fileID: 6525589343952429226, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}
@@ -6989,6 +7094,21 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 3963407755900160262, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: BtnDownTextColor.r
+      value: 0.9921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963407755900160262, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: BtnDownTextColor.g
+      value: 0.47058827
+      objectReference: {fileID: 0}
+    - target: {fileID: 3963407755900160262, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: BtnDownTextColor.b
+      value: 0.47058827
+      objectReference: {fileID: 0}
     - target: {fileID: 4406622503695721294, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}
       propertyPath: m_Text
@@ -7005,6 +7125,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 12800000, guid: b6351f55f62c6ca4eacab29e36e00de1,
         type: 3}
+    - target: {fileID: 4993265045940745422, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.9803922
+      objectReference: {fileID: 0}
+    - target: {fileID: 4993265045940745422, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.43921572
+      objectReference: {fileID: 0}
+    - target: {fileID: 4993265045940745422, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.43921572
+      objectReference: {fileID: 0}
     - target: {fileID: 6171215288982128572, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}
       propertyPath: m_Name
@@ -7024,6 +7159,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -260
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085981936429414067, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: BtnDownTextColor.r
+      value: 0.9921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085981936429414067, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: BtnDownTextColor.g
+      value: 0.47058827
+      objectReference: {fileID: 0}
+    - target: {fileID: 8085981936429414067, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
+        type: 3}
+      propertyPath: BtnDownTextColor.b
+      value: 0.47058827
       objectReference: {fileID: 0}
     - target: {fileID: 8294987184393561361, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}
