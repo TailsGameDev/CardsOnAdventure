@@ -12,6 +12,11 @@ public class TheOnlyAudioManagerInstance : AudioManager
     public Slider MusicSlider;
     public Slider SFXSlider;
 
+    [SerializeField]
+    private Text currentValueMusic = null;
+    [SerializeField]
+    private Text currentValueSFX = null;
+
     public float LowPitchRange = .95f;
     public float HighPitchRange = 1.05f;
 
@@ -31,6 +36,7 @@ public class TheOnlyAudioManagerInstance : AudioManager
         {
             BGMSource.volume = PlayerPrefs.GetFloat(BGM_VOLUME_KEY);
             MusicSlider.value = BGMSource.volume * 4;
+            UpdateCurrentValueText(currentValueMusic, MusicSlider);
         }
 
         if (PlayerPrefs.HasKey(SFX_VOLUME_KEY))
@@ -40,7 +46,15 @@ public class TheOnlyAudioManagerInstance : AudioManager
                 source.volume = PlayerPrefs.GetFloat(SFX_VOLUME_KEY);
             }
             SFXSlider.value = SFXSources[0].volume * 4;
+            UpdateCurrentValueText(currentValueSFX, SFXSlider);
         }
+    }
+
+    private void UpdateCurrentValueText(Text text, Slider slider)
+    {
+        int intermediate = (int)(slider.value * 100);
+        float v = intermediate; // ((float)intermediate) / 10;
+        text.text = v.ToString();
     }
 
     public void PlayBGM(AudioClip clip)
@@ -102,6 +116,7 @@ public class TheOnlyAudioManagerInstance : AudioManager
     {
         BGMSource.volume = MusicSlider.value/4;
         PlayerPrefs.SetFloat(BGM_VOLUME_KEY, BGMSource.volume);
+        UpdateCurrentValueText(currentValueMusic, MusicSlider);
     }
 
     public void OnSFXSliderValueChanged()
@@ -111,5 +126,6 @@ public class TheOnlyAudioManagerInstance : AudioManager
             source.volume = SFXSlider.value/4;
         }
         PlayerPrefs.SetFloat(SFX_VOLUME_KEY, SFXSources[0].volume);
+        UpdateCurrentValueText(currentValueSFX, SFXSlider);
     }
 }

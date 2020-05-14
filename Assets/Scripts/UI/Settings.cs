@@ -7,6 +7,8 @@ public class Settings : MonoBehaviour
 {
     [SerializeField]
     private Slider aiDelaySlider = null;
+    [SerializeField]
+    private Text aiDelayCurrentValue = null;
 
     [SerializeField]
     private Toggle fullscreenToggle = null;
@@ -59,6 +61,14 @@ public class Settings : MonoBehaviour
             TipDragAndDrop.AskToUseTips();
             shouldDisplayTipOnEnable = false;
         }
+
+        StartCoroutine(OnAFrameAfterEnabled());
+    }
+
+    private IEnumerator OnAFrameAfterEnabled()
+    {
+        yield return null;
+        UpdateCurrentAIValueText();
     }
 
     private void OnDisable()
@@ -92,6 +102,15 @@ public class Settings : MonoBehaviour
     {
         EnemyAI.AIDelay = aiDelaySlider.value;
         PlayerPrefs.SetFloat(AI_DELAY_KEY, aiDelaySlider.value);
+
+        UpdateCurrentAIValueText();
+    }
+
+    private void UpdateCurrentAIValueText()
+    {
+        int intermediate = (int)(aiDelaySlider.value * 100);
+        float v = ((float)intermediate) / 100;//((int)(aiDelaySlider.value * 10)) / 10;
+        aiDelayCurrentValue.text = v.ToString();
     }
 
     public static float GetAIDelayFromPlayerPrefs()

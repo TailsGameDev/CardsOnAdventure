@@ -18,6 +18,7 @@ public class Reposition : BattleState
     private BattleState nextState;
     private int abfIndex;
     private int obfIndex;
+    private static bool alreadyAskedTip = false;
 
     public Reposition(Battlefield attackerBattlefield, Battlefield opponentBattlefield, UICustomBtn endRepositioningBtn, GameObject toActivate)
     {
@@ -26,9 +27,15 @@ public class Reposition : BattleState
         this.endRepositioningBtn = endRepositioningBtn;
         this.toActivate = toActivate;
 
+        ClearSelection();
+
         toActivate.SetActive(true);
 
-        ClearSelection();
+        if (!alreadyAskedTip)
+        {
+            TipDragAndDrop.AskToUseTips();
+            alreadyAskedTip = true;
+        }
 
         endRepositioningBtn.onClicked = OnEndRepositioningBtnClicked;
 

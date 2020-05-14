@@ -37,6 +37,7 @@ public class CardsCollection : DynamicSizeScrollableCardHolder
 
         const int DEFAULT_AMOUNT = 1;
 
+        // For each card on Deck, subtract 1 from it's amount in the collection.
         for (int i = 1; i < cards.Length; i++)
         {
             int amount = DEFAULT_AMOUNT;
