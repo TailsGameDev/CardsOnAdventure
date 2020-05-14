@@ -2623,6 +2623,7 @@ MonoBehaviour:
   soundRequisitor: {fileID: 1935715517312006474}
   btnClickSound: {fileID: 8300000, guid: a5cd0902735e31e4382e2333d4c4cf08, type: 3}
   imageComponent: {fileID: 5694756828312102033}
+  rectTransform: {fileID: 0}
   normalSprite: {fileID: 21300000, guid: 1241a6fc3fa9f294da2878791f83e590, type: 3}
   clickedSprite: {fileID: 21300000, guid: 184f34ef664b8d447bba477f0cd29355, type: 3}
   bigSize: {x: 1.1, y: 1.1, z: 1.1}
@@ -3476,6 +3477,7 @@ MonoBehaviour:
   soundRequisitor: {fileID: 2213154597100337448}
   btnClickSound: {fileID: 8300000, guid: a5cd0902735e31e4382e2333d4c4cf08, type: 3}
   imageComponent: {fileID: 3993290866481394449}
+  rectTransform: {fileID: 0}
   normalSprite: {fileID: 21300000, guid: 1241a6fc3fa9f294da2878791f83e590, type: 3}
   clickedSprite: {fileID: 21300000, guid: 184f34ef664b8d447bba477f0cd29355, type: 3}
   bigSize: {x: 1.1, y: 1.1, z: 1.1}
@@ -6068,6 +6070,11 @@ PrefabInstance:
       propertyPath: BtnDownTextColor.b
       value: 0.47058827
       objectReference: {fileID: 0}
+    - target: {fileID: 3367427902471985073, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: rectTransform
+      value: 
+      objectReference: {fileID: 688386421864188597}
     - target: {fileID: 4090511394279096403, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6566,6 +6573,11 @@ PrefabInstance:
       propertyPath: BtnDownTextColor.b
       value: 0.43921572
       objectReference: {fileID: 0}
+    - target: {fileID: 3367427902471985073, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: rectTransform
+      value: 
+      objectReference: {fileID: 7975553096006119055}
     - target: {fileID: 4090511394279096403, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8426,6 +8438,11 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3367427902471985073, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: rectTransform
+      value: 
+      objectReference: {fileID: 5181529355623570437}
     - target: {fileID: 4090511394279096403, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8792,6 +8809,11 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[3].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3367427902471985073, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: rectTransform
+      value: 
+      objectReference: {fileID: 4229041194934302517}
     - target: {fileID: 4090511394279096403, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
       propertyPath: m_LocalPosition.x

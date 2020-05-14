@@ -711,6 +711,11 @@ PrefabInstance:
       propertyPath: popUpOpener
       value: 
       objectReference: {fileID: 1972442939}
+    - target: {fileID: 3367427902471985073, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: rectTransform
+      value: 
+      objectReference: {fileID: 1104830655}
     - target: {fileID: 4090511394279096403, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1809,6 +1814,11 @@ PrefabInstance:
       propertyPath: popUpOpener
       value: 
       objectReference: {fileID: 1972442939}
+    - target: {fileID: 3367427902471985073, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: rectTransform
+      value: 
+      objectReference: {fileID: 941005242}
     - target: {fileID: 4090511394279096403, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1974,6 +1984,11 @@ PrefabInstance:
       propertyPath: popUpOpener
       value: 
       objectReference: {fileID: 1972442939}
+    - target: {fileID: 3367427902471985073, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: rectTransform
+      value: 
+      objectReference: {fileID: 1163731144}
     - target: {fileID: 4090511394279096403, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2378,6 +2393,26 @@ PrefabInstance:
       propertyPath: popUpOpener
       value: 
       objectReference: {fileID: 1972442939}
+    - target: {fileID: 3367427902471985073, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: BtnDownTextColor.r
+      value: 0.9921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 3367427902471985073, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: BtnDownTextColor.g
+      value: 0.47058827
+      objectReference: {fileID: 0}
+    - target: {fileID: 3367427902471985073, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: BtnDownTextColor.b
+      value: 0.47058827
+      objectReference: {fileID: 0}
+    - target: {fileID: 3367427902471985073, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: rectTransform
+      value: 
+      objectReference: {fileID: 498292485}
     - target: {fileID: 4090511394279096403, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2588,6 +2623,11 @@ PrefabInstance:
       propertyPath: popUpOpener
       value: 
       objectReference: {fileID: 1972442939}
+    - target: {fileID: 3367427902471985073, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: rectTransform
+      value: 
+      objectReference: {fileID: 1957576812786548296}
     - target: {fileID: 4090511394279096403, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
       propertyPath: m_LocalPosition.x

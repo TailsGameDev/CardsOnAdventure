@@ -6,6 +6,11 @@ public class ChildMaker : MonoBehaviour
 {
     private static readonly float DEFAULT_TRANSITION_TIME = 0.25f;
 
+    public static void CopySizeDelta(RectTransform fontOfDelta, RectTransform deltaToChange)
+    {
+        deltaToChange.sizeDelta = fontOfDelta.sizeDelta;
+    }
+
     public static void AdoptAndTeleport(Transform parent, RectTransform child)
     {
         child.position = parent.position;

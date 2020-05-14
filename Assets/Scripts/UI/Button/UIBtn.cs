@@ -15,6 +15,7 @@ public class UIBtn : MonoBehaviour
     [SerializeField]
     private Image imageComponent = null;
 
+    [SerializeField]
     private RectTransform rectTransform = null;
 
     [SerializeField]
@@ -40,10 +41,7 @@ public class UIBtn : MonoBehaviour
     private Color BtnDownTextColor = Color.white;
 
     protected Color BtnUpTextColor = Color.white;
-    /*
-    public delegate void OnUIBtnClicked();
-    public OnUIBtnClicked onUIBtnClicked;
-    */
+
     public EventTrigger eventTrigger;
 
     private void OnEnable()
@@ -53,7 +51,10 @@ public class UIBtn : MonoBehaviour
 
     protected void Awake()
     {
-        rectTransform = imageComponent.GetComponent<RectTransform>();
+        if (rectTransform == null)
+        {
+            rectTransform = imageComponent.GetComponent<RectTransform>();
+        }
         // TODO: 'rectTransform.offsetMax.y;' or somehing should be better but didn't work at the first attempt
         originalRectTransfmOffsetMaxDotY = 0;
         BtnUpTextColor = textComponent.color;

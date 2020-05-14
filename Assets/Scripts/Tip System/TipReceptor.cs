@@ -14,6 +14,7 @@ public class TipReceptor : DragAndDropReceptor
     protected GameObject myHeyImATipReceptor;
 
     public static GameObject HeyImATipReceptor { get => heyImATipReceptor; set => heyImATipReceptor = value; }
+    public string Title { get => title; }
 
     private void Awake()
     {

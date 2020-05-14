@@ -63,7 +63,11 @@ public class TipDragAndDrop : DragAndDrop
     }
     protected override void OnEnteredAReceptor(DragAndDropReceptor receptor)
     {
-        text.fontStyle = FontStyle.BoldAndItalic;
+        bool isTheTipOfHowToUseTips = ((TipReceptor)receptor).Title == text.text;
+        if (!isTheTipOfHowToUseTips)
+        {
+            text.fontStyle = FontStyle.BoldAndItalic;
+        }
     }
 
     protected override Type GetDragAndDropType()

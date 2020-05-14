@@ -41,9 +41,7 @@ public class UIMainMenu : UIPauseMenu
             warningMessage = "Will you try to continue the adventure, or generate a randomized new map? (Save System"+
                 " works properly just in downloadable builds)";
 #else
-            //warningMessage = "Are you going to continue your previous adventure, or start a new game (with randomized master spots)?";
-            warningMessage = "Will you try to continue the adventure, or generate a randomized new map? (Save System" +
-    " works properly only in downloadable builds)";
+            //warningMessage = "Are you going to continue your previous adventure, or start a new game, with randomized master spots?";
 #endif
             continueBtnText = "Continue";
             cancelBtnMessage = "New Map";
