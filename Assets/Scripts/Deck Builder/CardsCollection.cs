@@ -1,8 +1,5 @@
-﻿using UnityEngine;
-using System.Collections;
-using System.Runtime.InteropServices.WindowsRuntime;
+﻿using System.Collections;
 using UnityEngine.UI;
-using UnityEngine.PlayerLoop;
 
 public class CardsCollection : DynamicSizeScrollableCardHolder
 {
@@ -23,8 +20,8 @@ public class CardsCollection : DynamicSizeScrollableCardHolder
         yield return null;
         cards = DeckPrototypeFactory.GetCopyOfAllAndEachCardPrototypePlusTheRandomCard();
 
-        PopulateAmountOfEachCard();
         InitializeSlotsAndRectSize(amountOfSlots: cards.Length);
+        PopulateAmountOfEachCard();
         PopulateCardAmountTexts();
         ApplyPlayerBonuses();
         PopulateSlotsWithCards();
@@ -32,9 +29,26 @@ public class CardsCollection : DynamicSizeScrollableCardHolder
     private void PopulateAmountOfEachCard()
     {
         amountOfEachCard = new int[cards.Length];
-        for (int i = 0; i < cards.Length; i++)
+
+        const int THE_RANDOM_CARD_INDEX = 0;
+        amountOfEachCard[THE_RANDOM_CARD_INDEX] = 50;
+
+        Card[] currentDeck = DeckPrototypeFactory.GetPreparedCardsForThePlayerWithTheRandomCards();
+
+        const int DEFAULT_AMOUNT = 1;
+
+        for (int i = 1; i < cards.Length; i++)
         {
-            amountOfEachCard[i] = 1;
+            int amount = DEFAULT_AMOUNT;
+            for (int k = 0; k < currentDeck.Length; k++)
+            {
+                if (cards[i].IsAnotherInstanceOf(currentDeck[k]))
+                {
+                    amount--;
+                }
+            }
+
+            amountOfEachCard[i] = amount;
         }
     }
     private void PopulateCardAmountTexts()
@@ -58,6 +72,13 @@ public class CardsCollection : DynamicSizeScrollableCardHolder
     {
         for (int i = 0; i < cards.Length; i++)
         {
+            // Background
+            Card slotBackground = cards[i].GetClone();
+            slotBackground.MakeColorGray();
+            ChildMaker.AdoptTeleportAndScale(slots[i], slotBackground.GetRectTransform());
+            ChildMaker.CopySizeDelta(slots[i], slotBackground.GetRectTransform());
+            
+            // The actual card
             ChildMaker.AdoptTeleportAndScale(slots[i], cards[i].GetRectTransform());
             ChildMaker.CopySizeDelta(slots[i], cards[i].GetRectTransform());
         }
@@ -104,14 +125,17 @@ public class CardsCollection : DynamicSizeScrollableCardHolder
             {
                 amountOfEachCard[slot] ++ ;
                 UpdateCardColorAndAmountText(slot);
-                Destroy(card.gameObject);
+                // Destroy(card.gameObject);
+                ChildMaker.AdoptAndScaleAndSmoothlyMoveToParentThenDestroyChild
+                    (slots[slot], card.GetRectTransform(), repositionAnimationDurationInSeconds);
                 return;
             }
         }
 
         L.ogError("Couldn't find card of same type to give the card back.",this);
     }
-    public Card GetCloneOfSelectedCardAndManageState()
+
+    public Card GetCloneOfSelectedCardAndReduceAmountInDeck()
     {
         int selectedIndex = GetSelectedIndex();
 

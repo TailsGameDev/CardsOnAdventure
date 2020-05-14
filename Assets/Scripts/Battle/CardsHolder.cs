@@ -11,7 +11,7 @@ public class CardsHolder : IndexHolder
     protected UICardsHolderEventHandler uiCardsHolderEventHandler = null;
 
     [SerializeField]
-    private float repositionAnimationDurationInSeconds = 0.25f;
+    protected float repositionAnimationDurationInSeconds = 0.25f;
 
     #region Collection Default Opperations
     public int GetSize()

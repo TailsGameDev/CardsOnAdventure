@@ -12,16 +12,10 @@ public class RandomDeckBuilder : DeckPrototypeFactory.DeckBuilder
     {
         CreateEmptyDeckWithProperSize();
 
-        Card[] prototypes = allCardPrototypes;
-
-        deck = BuildFullRandomDeckFromPrototypes(allCardPrototypes);
-
-        return deck;
-    }
-
-    private Card[] BuildFullRandomDeckFromPrototypes(Card[] prototypes)
-    {
-        deck = OutOfOrderBuildRangeWithPrototypes(beginningIndex: 0, limitIndex: size, prototypes);
+        for (int i = 0; i < deck.Length; i++)
+        {
+            deck[i] = GetCloneOfTheRandomCard();
+        }
 
         return deck;
     }

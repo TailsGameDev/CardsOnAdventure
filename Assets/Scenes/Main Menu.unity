@@ -1747,7 +1747,7 @@ PrefabInstance:
     - target: {fileID: 2001577861149971916, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
       propertyPath: m_Text
-      value: What the '?' is??
+      value: '?'
       objectReference: {fileID: 0}
     - target: {fileID: 3084420522387046562, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}

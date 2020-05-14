@@ -35,6 +35,8 @@
     public void PrepareDeckForSaving(DeckSerializable deckSerializableParam)
     {
         deckSerializableToSave = deckSerializableParam;
+        // Because DeckPrototypeFactory checks if deck is loaded. And from this moment on we can say it is.
+        loadedDeckSerializable = deckSerializableParam;
     }
 
     public void PrepareMapsForLoading(string[] mapNames)

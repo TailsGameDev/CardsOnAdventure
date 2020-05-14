@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class OneOfEachAndOneRandomCardDeckBuilder : DeckPrototypeFactory.DeckBuilder
+﻿public class OneOfEachAndOneRandomCardDeckBuilder : DeckPrototypeFactory.DeckBuilder
 {
     private OneOfEachAndOneRandomCardDeckBuilder(int size) : base(size)
     {
@@ -20,11 +16,12 @@ public class OneOfEachAndOneRandomCardDeckBuilder : DeckPrototypeFactory.DeckBui
     {
         CreateEmptyDeckWithProperSize();
 
-        for (int i = 0; i < deck.Length-1; i++)
+        deck[0] = GetCloneOfTheRandomCard();
+
+        for (int i = 1; i < deck.Length; i++)
         {
-            deck[i] = allCardPrototypes[i].GetClone();
+            deck[i] = allCardPrototypes[i-1].GetClone();
         }
-        deck[size - 1] = GetCloneOfTheRandomCard();
 
         return deck;
     }

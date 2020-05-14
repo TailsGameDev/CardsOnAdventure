@@ -1,7 +1,7 @@
 ﻿public class ManualDeckBuider : DeckPrototypeFactory.DeckBuilder
 {
     private int[] indexOfEachCardPrototype;
-    public static readonly int INDEX_OF_RANDOM_CARD = -1;
+    public static readonly int INDEX_OF_THE_RANDOM_CARD = -1;
 
     #region Initialization
     private ManualDeckBuider(int size) : base(size)
@@ -39,7 +39,7 @@
 
     private int FindIndexOnPrototypesArray(Card card)
     {
-        int prototypeIndex = INDEX_OF_RANDOM_CARD;
+        int prototypeIndex = INDEX_OF_THE_RANDOM_CARD;
         for (int iterationIndex = 0; iterationIndex < allCardPrototypes.Length; iterationIndex++)
         {
             Card prototype = allCardPrototypes[iterationIndex];
@@ -66,7 +66,7 @@
         {
             int prototypeIndex = indexOfEachCardPrototype[i];
             Card card;
-            if (prototypeIndex != INDEX_OF_RANDOM_CARD)
+            if (prototypeIndex != INDEX_OF_THE_RANDOM_CARD)
             {
                 card = allCardPrototypes[prototypeIndex].GetClone();
             }

@@ -24,6 +24,13 @@ public class ChildMaker : MonoBehaviour
         child.localScale = new Vector3(1.0f, 1.0f, 1.0f);
     }
 
+    public static void AdoptAndScaleAndSmoothlyMoveToParentThenDestroyChild(Transform parent, RectTransform child, float totalTime = -1.0f)
+    {
+        AdoptAndScaleAndSmoothlyMoveToParent(parent, child, totalTime);
+        DestroyItselfInTime suicideChild = child.gameObject.AddComponent(typeof(DestroyItselfInTime)) as DestroyItselfInTime;
+        suicideChild.SetDestructionTime(totalTime + 0.2f);
+    }
+
     public static void AdoptAndScaleAndSmoothlyMoveToParent(Transform parent, RectTransform child, float totalTime = -1.0f)
     {
         if (totalTime < 0)
@@ -61,7 +68,7 @@ public class ChildMaker : MonoBehaviour
 
         float time = 0.0f;
 
-        while (time < totalTime && child != null)
+        while (child != null && time < totalTime && child != null)
         {
             time += Time.deltaTime;
 
@@ -72,11 +79,14 @@ public class ChildMaker : MonoBehaviour
             yield return null;
         }
 
-        child.transform.position = parent.transform.position;
+        if (child != null)
+        {
+            child.transform.position = parent.transform.position;
         
-        child.SetParent(parent, true);
+            child.SetParent(parent, true);
 
-        Destroy(gameObject);
+            Destroy(gameObject);
+        }
     }
 
     private void SmoothlyMoveChildToPosition(Transform parent, RectTransform child, Vector3 position, float totalTime)

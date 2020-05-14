@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class L : MonoBehaviour
+public class L
 {
     public static void og(object obj, string message)
     {
@@ -52,5 +52,23 @@ public class L : MonoBehaviour
         {
             Debug.LogError("[" + obj.GetType() + "]" + message);
         }
+    }
+
+    private string GetTypeInBrackets(object obj)
+    {
+        return "[" + obj.GetType() + "]";
+    }
+
+    public static void ogArrayInt(object obj, int[] a)
+    {
+        string s = "";
+        int sum = 0;
+        for (int i = 0; i < a.Length; i++)
+        {
+            s += a[i] + "; ";
+            sum += a[i];
+        }
+
+        L.og(obj, "L.ogArrayInt. indexes: " + s + "; sum: " + sum);
     }
 }

@@ -1,6 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class DeckCardHolder : DynamicSizeScrollableCardHolder
 {
@@ -19,10 +17,12 @@ public class DeckCardHolder : DynamicSizeScrollableCardHolder
     }
     private void InitializeCards(int amountOfSlots)
     {
-        cards = new Card[amountOfSlots];
+        cards = DeckPrototypeFactory.GetPreparedCardsForThePlayerWithTheRandomCards();
+
         for (int i = 0; i < amountOfSlots; i++)
         {
-            PutCardInIndexWithSmoothMovement(DeckPrototypeFactory.GetCloneOfTheRandomCard(), i);
+            PutCardInIndexWithSmoothMovement(cards[i], i);
+
             ChildMaker.CopySizeDelta(slots[i], cards[i].GetRectTransform());
         }
     }
