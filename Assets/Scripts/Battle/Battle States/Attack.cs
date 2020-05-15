@@ -20,8 +20,8 @@ public class Attack : BattleState
 
     private GameObject toActivate;
 
-    private PreMadeSoundRequest confirmOnUselessAtackSFXRequisitor;
-    private PreMadeSoundRequest onCancelUselessAtackSFXRequisitor;
+    private PreMadeAudioRequest confirmOnUselessAtackSFXRequisitor;
+    private PreMadeAudioRequest onCancelUselessAtackSFXRequisitor;
 
     public static bool shouldAskForTip = true;
 
@@ -32,8 +32,8 @@ public class Attack : BattleState
                     UICustomBtn repositionAgainBtn,
                     GameObject toActivate,
                     CustomPopUp popUpOpener,
-                    PreMadeSoundRequest confirmOnUselessAtackSFXRequisitor,
-                    PreMadeSoundRequest onCancelUselessAtackSFXRequisitor
+                    PreMadeAudioRequest confirmOnUselessAtackSFXRequisitor,
+                    PreMadeAudioRequest onCancelUselessAtackSFXRequisitor
                  )
     {
         this.attackerBattlefield = myBattlefield;

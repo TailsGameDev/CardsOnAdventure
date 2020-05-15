@@ -1,4 +1,4 @@
-﻿public class IsGameTied : BattleState
+﻿public class OfferBuff : BattleState
 {
     private CustomPopUp customPopUp;
     private Battlefield whateverBF;
@@ -6,7 +6,7 @@
 
     private bool answeredThePopUp;
 
-    public IsGameTied(CustomPopUp customPopUp, Battlefield whateverBF, Battlefield theOtherBF)
+    public OfferBuff(CustomPopUp customPopUp, Battlefield whateverBF, Battlefield theOtherBF)
     {
         this.customPopUp = customPopUp;
         this.whateverBF = whateverBF;

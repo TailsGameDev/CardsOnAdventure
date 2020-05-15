@@ -9,6 +9,9 @@ public class DeckBuilding : OpenersSuperclass
     [SerializeField]
     private DeckCardHolder deck = null;
 
+    [SerializeField]
+    private PreMadeAudioFactory preMadeAudioFactory = null;
+
     private static bool shouldAskTip = true;
 
     private void Start()
@@ -41,6 +44,7 @@ public class DeckBuilding : OpenersSuperclass
         {
             GiveBackCardOfDeckToTheCollection();
             PlaceTheCardOfCollectionInTheDeck();
+            preMadeAudioFactory.CreateRandomPlaceCardAudioRequest(gameObject).RequestPlaying();
             ClearAllSelections();
         }
     }
@@ -63,17 +67,14 @@ public class DeckBuilding : OpenersSuperclass
         deck.ClearSelection();
     }
 
+    public void OnDrinkBtnClicked()
+    {
+        preMadeAudioFactory.CreateDrinkAudioRequest(gameObject).RequestPlaying();
+    }
+
     public void OnSaveAndQuitBtnClicked()
     {
         SaveAndQuit();
-        /*
-        customPopUpOpener.OpenConfirmationRequestPopUp
-            (
-                warningMessage: "Once you leave this Tavern, your current party will remain the" +
-                " same until you enter another Tavern.",
-                onConfirm: SaveAndQuit
-            );
-        */
     }
 
     private void SaveAndQuit()

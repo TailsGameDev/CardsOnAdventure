@@ -95,6 +95,7 @@ MonoBehaviour:
   soundRequisitor: {fileID: 6438536567918031258}
   btnClickSound: {fileID: 8300000, guid: a5cd0902735e31e4382e2333d4c4cf08, type: 3}
   imageComponent: {fileID: 8108720574873910179}
+  rectTransform: {fileID: 0}
   normalSprite: {fileID: 21300000, guid: 1241a6fc3fa9f294da2878791f83e590, type: 3}
   clickedSprite: {fileID: 21300000, guid: 184f34ef664b8d447bba477f0cd29355, type: 3}
   bigSize: {x: 1.1, y: 1.1, z: 1.1}

@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class BattleStatesFactory : OpenersSuperclass
 {
@@ -32,7 +27,7 @@ public class BattleStatesFactory : OpenersSuperclass
     private UICustomBtn endTurnBtn = null;
 
     [SerializeField]
-    private AudioHolder audioHolder = null;
+    private PreMadeAudioFactory preMadeAudioFactory = null;
 
     [SerializeField]
     private AudioRequisitor audioRequisitor = null;
@@ -57,10 +52,54 @@ public class BattleStatesFactory : OpenersSuperclass
             return new GameStart(firstToPlayStatesFactory: this, playerStatesFactory: otherBattleStatesFactory, enemyStatesFactory: this, audioRequisitor);
         }
     }
-
     public BattleState CreateDrawCardState()
     {
         return new DrawCard(deck, battlefield, hand);
+    }
+    // If fully ordered by flow order, the Place Card state would be here, but it is at the end of the class.
+    public BattleState CreateRepositionState()
+    {
+        return new Reposition(battlefield, otherBattleStatesFactory.battlefield, endRepositioningBtn, activateOnRepositionState);
+    }
+    public BattleState CreateAttackState()
+    {
+        return new Attack
+            (
+                battlefield,
+                otherBattleStatesFactory.battlefield,
+                endTurnBtn,
+                repositionAgainBtn,
+                activateOnAttackState,
+                customPopUpOpener,
+                preMadeAudioFactory.CreateFacepalmAudioRequest(assignor: gameObject),
+                preMadeAudioFactory.CreateOffendAudioRequest(assignor: gameObject)
+            );
+    }
+    public BattleState CreateEndTurnState()
+    {
+        return new EndTurn(battlefield, deck, hand, btnsBackground);
+    }
+    public BattleState CreateIsGameTiedState()
+    {
+        return new OfferBuff(customPopUpOpener, whateverBF: battlefield, theOtherBF: otherBattleStatesFactory.battlefield);
+    }
+    public BattleState CreateBeginTurnState()
+    {
+        return new BeginTurn(battlefield, deck, hand);
+    }
+    public BattleState CreateEndGameState(BattleStatesFactory winnerFactory)
+    {
+        return new EndGame (
+                                winnerFactory, 
+                                sceneCanvasGameObject,
+                                openerOfPopUpsMadeInEditor,
+                                customPopUpOpener,
+                                sceneOpener,
+                                preMadeAudioFactory.CreateVictoryAudioRequest(gameObject),
+                                preMadeAudioFactory.CreateDefeatAudioRequest(gameObject),
+                                preMadeAudioFactory.CreateStopAllSFXRequest(gameObject),
+                                preMadeAudioFactory.CreateCryingAudioRequest(gameObject)
+                            );
     }
 
     public BattleState CreatePlaceCardState()
@@ -75,19 +114,6 @@ public class BattleStatesFactory : OpenersSuperclass
                 customPopUpOpener
             );
     }
-
-    private PreMadeSoundRequest GetRandomPlaceCardPreMadeSoundRequest()
-    {
-        string[] AUDIO_NAMES = { "0 Place Card SFX", "1 Place Card SFX",
-            "2 Place Card SFX", "3 Place Card SFX", "4 Place Card SFX" };
-        AudioClip placeCardSFX = audioHolder.GetAleatoryClipAmong(AUDIO_NAMES);
-
-        PreMadeSoundRequest placeCardSoundRequest =
-            PreMadeSoundRequest.CreateSFXSoundRequest(placeCardSFX, audioRequisitor, assignor: gameObject);
-
-        return placeCardSoundRequest;
-    }
-
     public BattleState CreateBonusRepositionState()
     {
         return new BonusReposition
@@ -103,73 +129,8 @@ public class BattleStatesFactory : OpenersSuperclass
                 endRepositioningBtn.GetTextComponent()
             );
     }
-
-    public BattleState CreateRepositionState()
+    private PreMadeAudioRequest GetRandomPlaceCardPreMadeSoundRequest()
     {
-        return new Reposition(battlefield, otherBattleStatesFactory.battlefield, endRepositioningBtn, activateOnRepositionState);
-    }
-
-    public BattleState CreateAttackState()
-    {
-        return new Attack
-            (
-                battlefield,
-                otherBattleStatesFactory.battlefield,
-                endTurnBtn,
-                repositionAgainBtn,
-                activateOnAttackState,
-                customPopUpOpener,
-                PreMadeSoundRequest.CreateSFXSoundRequest(audioHolder.GetAudioByName("Facepalm"), audioRequisitor, assignor: gameObject),
-                PreMadeSoundRequest.CreateSFXSoundRequest(audioHolder.GetAudioByName("Fuck You"), audioRequisitor, assignor: gameObject)
-            );
-    }
-
-    public BattleState CreateEndTurnState()
-    {
-        return new EndTurn(battlefield, deck, hand, btnsBackground);
-    }
-
-    public BattleState CreateIsGameTiedState()
-    {
-        return new IsGameTied(customPopUpOpener, whateverBF: battlefield, theOtherBF: otherBattleStatesFactory.battlefield);
-    }
-
-    public BattleState CreateBeginTurnState()
-    {
-        return new BeginTurn(battlefield, deck, hand);
-    }
-
-    public BattleState CreateEndGameState(BattleStatesFactory winnerFactory)
-    {
-        
-        AudioClip victoryBGM = audioHolder.GetAudioByName("VICTORY");
-        PreMadeSoundRequest victoryAudioRequest =
-            PreMadeSoundRequest.CreateSFX_AND_STOP_BGMSoundRequest(victoryBGM, audioRequisitor, assignor: gameObject);
-        AudioClip defeatBGM = audioHolder.GetAudioByName("DEFEAT");
-        PreMadeSoundRequest defeatAudioRequest =
-            PreMadeSoundRequest.CreateSFX_AND_STOP_BGMSoundRequest(defeatBGM, audioRequisitor, assignor: gameObject);
-
-
-
-        string[] AUDIO_NAMES = { "Sit And Cry", "Sit And Cry 2" };
-        AudioClip cryingSFX = audioHolder.GetAleatoryClipAmong(AUDIO_NAMES);
-        PreMadeSoundRequest cryingAudioRequest =
-            PreMadeSoundRequest.CreateSFXSoundRequest(cryingSFX, audioRequisitor, assignor: gameObject);
-
-
-
-
-        PreMadeSoundRequest stopAllSFXRequest =
-            PreMadeSoundRequest.CreateSTOP_SFXSoundRequest(audioRequisitor, assignor: gameObject);
-
-        return new EndGame (winnerFactory, 
-                            sceneCanvasGameObject,
-                            openerOfPopUpsMadeInEditor,
-                            customPopUpOpener,
-                            sceneOpener,
-                            victoryAudioRequest,
-                            defeatAudioRequest,
-                            stopAllSFXRequest,
-                            cryingAudioRequest);
+        return preMadeAudioFactory.CreateRandomPlaceCardAudioRequest(gameObject);
     }
 }

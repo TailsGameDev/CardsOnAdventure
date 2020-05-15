@@ -5,7 +5,7 @@ public class PlaceCard : BattleState
     protected Hand hand;
     protected Battlefield battlefield;
     protected Deck deck;
-    protected PreMadeSoundRequest placeCardSFXRequest;
+    protected PreMadeAudioRequest placeCardSFXRequest;
     protected GameObject btnsBackground;
     protected CustomPopUp customPopUpOpener;
 
@@ -16,7 +16,7 @@ public class PlaceCard : BattleState
             Hand hand,
             Battlefield battlefield,
             Deck deck,
-            PreMadeSoundRequest placeCardSFX,
+            PreMadeAudioRequest placeCardSFX,
             GameObject btnsBackground,
             CustomPopUp customPopUpOpener
         )

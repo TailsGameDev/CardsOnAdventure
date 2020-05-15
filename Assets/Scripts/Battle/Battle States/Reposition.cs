@@ -31,7 +31,7 @@ public class Reposition : BattleState
 
         toActivate.SetActive(true);
 
-        if (!alreadyAskedTip)
+        if (!alreadyAskedTip && currentBattleStatesFactory == playerBattleStatesFactory)
         {
             TipDragAndDrop.AskToUseTips();
             alreadyAskedTip = true;

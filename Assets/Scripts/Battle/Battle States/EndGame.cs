@@ -8,10 +8,10 @@ public class EndGame : BattleState
     private ThePopUpOpenerInstance popUpOpener;
     private CustomPopUp customPopUpOpener;
     private SceneOpener sceneOpener;
-    private PreMadeSoundRequest victoryBGMRequest;
-    private PreMadeSoundRequest defeatBGMRequest;
-    private PreMadeSoundRequest stopAllSFXRequest;
-    private PreMadeSoundRequest cryingAudioRequest;
+    private PreMadeAudioRequest victoryBGMRequest;
+    private PreMadeAudioRequest defeatBGMRequest;
+    private PreMadeAudioRequest stopAllSFXRequest;
+    private PreMadeAudioRequest cryingAudioRequest;
 
     private float timer = 0;
 
@@ -22,10 +22,10 @@ public class EndGame : BattleState
                     ThePopUpOpenerInstance popUpOpener,
                     CustomPopUp customPopUpOpener,
                     SceneOpener sceneOpener,
-                    PreMadeSoundRequest victoryBGMRequest,
-                    PreMadeSoundRequest defeatBGMRequest,
-                    PreMadeSoundRequest stopAllSFXRequest,
-                    PreMadeSoundRequest cryingAudioRequest)
+                    PreMadeAudioRequest victoryBGMRequest,
+                    PreMadeAudioRequest defeatBGMRequest,
+                    PreMadeAudioRequest stopAllSFXRequest,
+                    PreMadeAudioRequest cryingAudioRequest)
     {
         this.winnerFactory = winnerFactory;
         this.sceneCanvas = sceneCanvas;

@@ -71,7 +71,7 @@ public class CustomPopUp : OpenersSuperclass
             string cancelBtnMessage,
             OnBtnClicked onConfirm,
             OnBtnClicked onCancel,
-            PreMadeSoundRequest openingBGM
+            PreMadeAudioRequest openingBGM
         )
     {
         openingBGM.RequestPlaying();
@@ -86,7 +86,7 @@ public class CustomPopUp : OpenersSuperclass
         string cancelBtnMessage,
         OnBtnClicked onConfirm,
         OnBtnClicked onCancel,
-        PreMadeSoundRequest openingBGM,
+        PreMadeAudioRequest openingBGM,
         Classes classeOfCardsToShow
     )
     {

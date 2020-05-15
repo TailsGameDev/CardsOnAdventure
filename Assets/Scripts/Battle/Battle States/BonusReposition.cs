@@ -11,7 +11,7 @@ public class BonusReposition : PlaceCard
             Hand playerHand,
             Battlefield battlefield,
             Deck deck,
-            PreMadeSoundRequest placeCardSFX,
+            PreMadeAudioRequest placeCardSFX,
             GameObject btnsBackground,
             CustomPopUp customPopUpOpener,
             Hand opponentHand,
