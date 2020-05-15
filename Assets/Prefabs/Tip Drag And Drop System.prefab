@@ -729,8 +729,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   max: 5
-  dr: 0
-  divisor: 10
+  dr: 0.1
+  divisor: 5
   crazyColorText: {fileID: 8223592684893772216}
 --- !u!114 &8223592684893772216
 MonoBehaviour:

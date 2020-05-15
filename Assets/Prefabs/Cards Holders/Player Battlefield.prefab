@@ -1,5 +1,91 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &408211834638808735
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6792891199651822788}
+  - component: {fileID: 4367426263046312260}
+  - component: {fileID: 275755619698574557}
+  m_Layer: 5
+  m_Name: Slot tip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6792891199651822788
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408211834638808735}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6440798, y: 0.6440798, z: 0.64408}
+  m_Children: []
+  m_Father: {fileID: 8817748025194216294}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 254.07, y: 190}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4367426263046312260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408211834638808735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 0
+  title: Front Line
+  tipData:
+  - message: "I strongly recommend you to keep the cards with more <color=#9EFA9D>Vitality</color>
+      in the Front Line, and the ones with great <color=#FD7878>Attack Power</color>
+      in the Back Line. The reason is: cards behind others receive the PROTECTED
+      buff. For more information on the PROTECTED buff, drag and drop the \u2019?\u2019,
+      I mean, me, on the shields in the side of the PROTECTED. Obs: the shields only
+      appear in the Attack State."
+    background: {fileID: 0}
+    height: 0
+--- !u!61 &275755619698574557
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408211834638808735}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 100, y: 100}
+  m_EdgeRadius: 0
 --- !u!1 &2970014735546217170
 GameObject:
   m_ObjectHideFlags: 0
@@ -77,6 +163,178 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Front Line (Tough cards)
+--- !u!1 &3677791827125288829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4163750299852469699}
+  - component: {fileID: 3956553276337166666}
+  - component: {fileID: 517637908274570788}
+  m_Layer: 5
+  m_Name: Slot tip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4163750299852469699
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3677791827125288829}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6440798, y: 0.6440798, z: 0.64408}
+  m_Children: []
+  m_Father: {fileID: 8817748024906613213}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 254.07, y: 190}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3956553276337166666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3677791827125288829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 0
+  title: Front Line
+  tipData:
+  - message: "I strongly recommend you to keep the cards with more <color=#9EFA9D>Vitality</color>
+      in the Front Line, and the ones with great <color=#FD7878>Attack Power</color>
+      in the Back Line. The reason is: cards behind others receive the PROTECTED
+      buff. For more information on the PROTECTED buff, drag and drop the \u2019?\u2019,
+      I mean, me, on the shields in the side of the PROTECTED. Obs: the shields only
+      appear in the Attack State."
+    background: {fileID: 0}
+    height: 0
+--- !u!61 &517637908274570788
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3677791827125288829}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 100, y: 100}
+  m_EdgeRadius: 0
+--- !u!1 &5358369765912802071
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1769530557017095559}
+  - component: {fileID: 2469167903675487284}
+  - component: {fileID: 2353681416642357904}
+  m_Layer: 5
+  m_Name: Slot tip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1769530557017095559
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5358369765912802071}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6440798, y: 0.6440798, z: 0.64408}
+  m_Children: []
+  m_Father: {fileID: 8817748024570194549}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 254.07, y: 190}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2469167903675487284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5358369765912802071}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 0
+  title: Front Line
+  tipData:
+  - message: "I strongly recommend you to keep the cards with more <color=#9EFA9D>Vitality</color>
+      in the Front Line, and the ones with great <color=#FD7878>Attack Power</color>
+      in the Back Line. The reason is: cards behind others receive the PROTECTED
+      buff. For more information on the PROTECTED buff, drag and drop the \u2019?\u2019,
+      I mean, me, on the shields in the side of the PROTECTED. Obs: the shields only
+      appear in the Attack State."
+    background: {fileID: 0}
+    height: 0
+--- !u!61 &2353681416642357904
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5358369765912802071}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 100, y: 100}
+  m_EdgeRadius: 0
 --- !u!1 &6148466715475185645
 GameObject:
   m_ObjectHideFlags: 0
@@ -156,6 +414,92 @@ MonoBehaviour:
   m_Text: 'Back Line
 
     (Attack > Vitality)'
+--- !u!1 &7662000828309410343
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4889052588413627677}
+  - component: {fileID: 5308043032516224699}
+  - component: {fileID: 5005489757460577820}
+  m_Layer: 5
+  m_Name: Slot tip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4889052588413627677
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7662000828309410343}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6440798, y: 0.6440798, z: 0.64408}
+  m_Children: []
+  m_Father: {fileID: 8817748024268384895}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 254.07, y: 190}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5308043032516224699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7662000828309410343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 0
+  title: Front Line
+  tipData:
+  - message: "I strongly recommend you to keep the cards with more <color=#9EFA9D>Vitality</color>
+      in the Front Line, and the ones with great <color=#FD7878>Attack Power</color>
+      in the Back Line. The reason is: cards behind others receive the PROTECTED
+      buff. For more information on the PROTECTED buff, drag and drop the \u2019?\u2019,
+      I mean, me, on the shields in the side of the PROTECTED. Obs: the shields only
+      appear in the Attack State."
+    background: {fileID: 0}
+    height: 0
+--- !u!61 &5005489757460577820
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7662000828309410343}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 100, y: 100}
+  m_EdgeRadius: 0
 --- !u!1 &7729301001183931155
 GameObject:
   m_ObjectHideFlags: 0
@@ -447,6 +791,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4677818931345125552}
+  - {fileID: 4889052588413627677}
   m_Father: {fileID: 7845759711110581909}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -561,6 +906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f05b7c4ef32996c4382b07a055d1e420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priority: 0
   index: 2
   cardsHolder: {fileID: 8817748024853179788}
 --- !u!61 &8817748024268384888
@@ -622,6 +968,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2408840281561152598}
+  - {fileID: 1769530557017095559}
   m_Father: {fileID: 7845759711110581909}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -736,6 +1083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f05b7c4ef32996c4382b07a055d1e420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priority: 0
   index: 1
   cardsHolder: {fileID: 8817748024853179788}
 --- !u!61 &8817748024570194558
@@ -900,6 +1248,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8831713544319176085}
+  - {fileID: 4163750299852469699}
   m_Father: {fileID: 7845759711110581909}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1014,6 +1363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f05b7c4ef32996c4382b07a055d1e420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priority: 0
   index: 3
   cardsHolder: {fileID: 8817748024853179788}
 --- !u!61 &8817748024906613030

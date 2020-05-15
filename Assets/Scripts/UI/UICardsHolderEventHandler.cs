@@ -137,10 +137,13 @@ public class UICardsHolderEventHandler : MonoBehaviour
 
     public void OnSlotClicked(CardsHolder cardsHolder, int index)
     {
+        // TODO: uncomment after Lucas play the game
+        /*
         if (inputEnabled && !isRunningDragHistoryCoroutine)
         {
             cardsHolder.SetSelectedIndex(index);
         }
+        */
     }
 
     private void ClearSelections(CardsHolder[] cardsHoldersToClear)

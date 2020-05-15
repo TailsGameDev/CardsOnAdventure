@@ -12,14 +12,21 @@ public class PreMadeAudioRequest
         STOP_SFX,
     }
 
-    private AudioClip audioClip;
+    private AudioClip[] audioClips;
     private AudioRequisitor requisitor;
     private SoundType soundType;
     private GameObject assignor;
 
     private PreMadeAudioRequest(AudioClip audioClip, AudioRequisitor requisitor, GameObject assignor, SoundType soundType)
     {
-        this.audioClip = audioClip;
+        this.audioClips = new AudioClip[1] { audioClip };
+        this.requisitor = requisitor;
+        this.soundType = soundType;
+        this.assignor = assignor;
+    }
+    private PreMadeAudioRequest(AudioClip[] audioClips, AudioRequisitor requisitor, GameObject assignor, SoundType soundType)
+    {
+        this.audioClips = audioClips;
         this.requisitor = requisitor;
         this.soundType = soundType;
         this.assignor = assignor;
@@ -29,34 +36,36 @@ public class PreMadeAudioRequest
     {
         return new PreMadeAudioRequest(audioClip, requisitor, assignor, SoundType.BGM);
     }
-
-    public static PreMadeAudioRequest CreateSFXSoundRequest(AudioClip audioClip, AudioRequisitor requisitor, GameObject assignor)
+    public static PreMadeAudioRequest CreateSFXSoundRequest(AudioClip[] audioClips, AudioRequisitor requisitor, GameObject assignor)
     {
-        return new PreMadeAudioRequest(audioClip, requisitor,assignor, SoundType.SFX);
+        return new PreMadeAudioRequest(audioClips, requisitor,assignor, SoundType.SFX);
     }
-
+    public static PreMadeAudioRequest CreateSFXSoundRequest(AudioClip audioClips, AudioRequisitor requisitor, GameObject assignor)
+    {
+        return new PreMadeAudioRequest(audioClips, requisitor, assignor, SoundType.SFX);
+    }
     public static PreMadeAudioRequest CreateSFX_AND_STOP_BGMSoundRequest(AudioClip audioClip, AudioRequisitor requisitor, GameObject assignor)
     {
         return new PreMadeAudioRequest(audioClip, requisitor, assignor, SoundType.SFX_AND_STOP_BGM);
     }
-
     public static PreMadeAudioRequest CreateSTOP_SFXAudioRequest(AudioRequisitor requisitor, GameObject assignor)
     {
-        return new PreMadeAudioRequest(null, requisitor, assignor, SoundType.STOP_SFX);
+        return new PreMadeAudioRequest(new AudioClip[] { }, requisitor, assignor, SoundType.STOP_SFX);
     }
-
     public void RequestPlaying()
     {
+        int r = Random.Range(0,audioClips.Length);
+
         switch (soundType)
         {
             case SoundType.BGM:
-                requisitor.RequestBGM(audioClip);
+                requisitor.RequestBGM(audioClips[r]);
                 break;
             case SoundType.SFX:
-                requisitor.RequestSFX(audioClip);
+                requisitor.RequestSFX(audioClips[r]);
                 break;
             case SoundType.SFX_AND_STOP_BGM:
-                requisitor.RequestSFX(audioClip);
+                requisitor.RequestSFX(audioClips[r]);
                 requisitor.RequestStopBGM();
                 break;
             case SoundType.STOP_SFX:
@@ -64,5 +73,4 @@ public class PreMadeAudioRequest
                 break;
         }
     }
-
 }

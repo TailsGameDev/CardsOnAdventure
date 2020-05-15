@@ -37,8 +37,9 @@ public class TipReceptor : DragAndDropReceptor
 
     private void HeyImHereImATipReceptor()
     {
-        myHeyImATipReceptor = Instantiate(heyImATipReceptor, transform.position, transform.rotation);
+        myHeyImATipReceptor = Instantiate(heyImATipReceptor, transform.position, Quaternion.identity);
         myHeyImATipReceptor.transform.SetParent(transform, false);
+        myHeyImATipReceptor.transform.rotation = Quaternion.identity;
     }
     private void TurnSignalOff()
     {

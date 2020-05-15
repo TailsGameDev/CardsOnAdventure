@@ -14,25 +14,27 @@ public class PreMadeAudioFactory : MonoBehaviour
         return PreMadeAudioRequest.CreateSTOP_SFXAudioRequest(audioRequisitor, assignor);
     }
 
-    #region Created Using AudioClip
+    #region Created Using AudioClips
     public PreMadeAudioRequest CreateRandomPlaceCardAudioRequest(GameObject assignor)
     {
         string[] AUDIO_NAMES = { "0 Place Card SFX", "1 Place Card SFX",
             "2 Place Card SFX", "3 Place Card SFX", "4 Place Card SFX" };
         AudioClip placeCardSFX = audioHolder.GetAleatoryClipAmong(AUDIO_NAMES);
 
-        return CreateSFXRequestUsingTheClip(placeCardSFX, assignor);
+        return CreateSFXRequestUsingTheClip(new AudioClip[1] { placeCardSFX }, assignor);
     }
     public PreMadeAudioRequest CreateCryingAudioRequest(GameObject assignor)
     {
-        string[] AUDIO_NAMES = { "Sit And Cry", "Sit And Cry 2" };
-        AudioClip cryingSFX = audioHolder.GetAleatoryClipAmong(AUDIO_NAMES);
+        AudioClip crying = audioHolder.GetAudioByName("Sit And Cry");
+        AudioClip crying2 = audioHolder.GetAudioByName("Sit And Cry 2");
+        AudioClip crying3 = audioHolder.GetAudioByName("Sit And Cry 3");
+        AudioClip crying4 = audioHolder.GetAudioByName("Sit And Cry 4");
 
-        return CreateSFXRequestUsingTheClip(cryingSFX, assignor);
+        return CreateSFXRequestUsingTheClip(new AudioClip[4] { crying, crying2, crying3, crying4 }, assignor);
     }
-    private PreMadeAudioRequest CreateSFXRequestUsingTheClip(AudioClip clip, GameObject assignor)
+    private PreMadeAudioRequest CreateSFXRequestUsingTheClip(AudioClip[] clips, GameObject assignor)
     {
-        return PreMadeAudioRequest.CreateSFXSoundRequest(clip, audioRequisitor, assignor);
+        return PreMadeAudioRequest.CreateSFXSoundRequest(clips, audioRequisitor, assignor);
     }
     #endregion
 
@@ -67,7 +69,7 @@ public class PreMadeAudioFactory : MonoBehaviour
     }
     private PreMadeAudioRequest CreateSFX_AND_STOP_BGMSoundRequest(string audioName, GameObject assignor)
     {
-        AudioClip defeatBGM = audioHolder.GetAudioByName("DEFEAT");
+        AudioClip defeatBGM = audioHolder.GetAudioByName(audioName);
         PreMadeAudioRequest preMadeAudioRequest =
             PreMadeAudioRequest.CreateSFX_AND_STOP_BGMSoundRequest(defeatBGM, audioRequisitor, assignor);
         return preMadeAudioRequest;

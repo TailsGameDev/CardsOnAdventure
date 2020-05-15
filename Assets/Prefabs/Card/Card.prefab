@@ -233,8 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3efbdcb5038d61e46a85cdce2937abc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priority: 0
-  popUpOpener: {fileID: 0}
+  priority: 1
   title: 
   tipData: []
   cardToPullData: {fileID: 439867028889674654}
@@ -253,6 +252,7 @@ MonoBehaviour:
   pointsQty: 5
   range: 20
   durationForEachPoint: 0.02
+  infinite: 0
 --- !u!114 &8189255950368695548
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1485,11 +1485,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Card Managers
       objectReference: {fileID: 0}
-    - target: {fileID: 4687705843386997442, guid: 17369afb06db80246b6cadc7bf09618e,
-        type: 3}
-      propertyPath: defaultDeckSize
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 9101949744829781060, guid: 17369afb06db80246b6cadc7bf09618e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1604,6 +1599,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1612099942}
     m_Modifications:
+    - target: {fileID: 8927320338861311031, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.399994
+      objectReference: {fileID: 0}
     - target: {fileID: 8927320339288579048, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1672,12 +1672,12 @@ PrefabInstance:
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -60
       objectReference: {fileID: 0}
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -60
       objectReference: {fileID: 0}
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
@@ -1712,17 +1712,22 @@ PrefabInstance:
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
       propertyPath: m_Pivot.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
       propertyPath: m_Pivot.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8927320339288579050, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
       propertyPath: m_Name
       value: PauseMenuBtn (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8927320339446832523, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 4.399994
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7ddc0547d7d5de47b02fe1d8b0e910b, type: 3}
@@ -4137,7 +4142,7 @@ MonoBehaviour:
       <color=#FD7878>Attack Power</color> in the Back Line. The reason is: cards
       behind others receive the PROTECTED buff. For more information on the PROTECTED
       buff, drag and drop the \u2019?\u2019, I mean, me, on the shields in the side
-      of the PROTECTED cards."
+      of the PROTECTED. Obs: the shields only appear in the Attack State."
     background: {fileID: 0}
     height: 0
 --- !u!1 &1893482747

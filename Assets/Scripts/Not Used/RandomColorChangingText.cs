@@ -5,6 +5,7 @@ public class RandomColorChangingText : MonoBehaviour
 {
     [SerializeField]
     private float max = 20;
+
     private float r = 0;
 
     [SerializeField]
