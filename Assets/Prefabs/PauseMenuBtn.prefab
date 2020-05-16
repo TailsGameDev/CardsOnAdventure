@@ -294,8 +294,9 @@ MonoBehaviour:
   - message: 
     background: {fileID: 21300000, guid: 05e37aba8312cd641b4fbdc58962dbee, type: 3}
     height: 500
-  - message: The game can't actually pause, once time does not matter. But, if you
-      click this button, you get a menu with a few options like go to the main menu.
+  - message: This is the Pause Menu. Here you get a menu with a few options like
+      go to the main menu. And a beautiful art of a card in the background, of course.
+      Also, the time stops for everyone except us.
     background: {fileID: 0}
     height: 0
 --- !u!1 &8927320339446832524

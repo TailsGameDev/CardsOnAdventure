@@ -59,15 +59,23 @@ public class PreMadeAudioFactory : MonoBehaviour
     #endregion
 
     #region Stop BGM
+    public PreMadeAudioRequest CreateCoolAudioRequest(GameObject assignor)
+    {
+        return CreateSFX_AND_STOP_BGMSoundRequest(assignor, "Cool");
+    }
+    public PreMadeAudioRequest CreateBoringAudioRequest(GameObject assignor)
+    {
+        return CreateSFX_AND_STOP_BGMSoundRequest(assignor, "Bored");
+    }
     public PreMadeAudioRequest CreateVictoryAudioRequest(GameObject assignor)
     {
-        return CreateSFX_AND_STOP_BGMSoundRequest("VICTORY", assignor);
+        return CreateSFX_AND_STOP_BGMSoundRequest(assignor, "VICTORY");
     }
     public PreMadeAudioRequest CreateDefeatAudioRequest(GameObject assignor)
     {
-        return CreateSFX_AND_STOP_BGMSoundRequest("DEFEAT", assignor);
+        return CreateSFX_AND_STOP_BGMSoundRequest(assignor, "DEFEAT");
     }
-    private PreMadeAudioRequest CreateSFX_AND_STOP_BGMSoundRequest(string audioName, GameObject assignor)
+    private PreMadeAudioRequest CreateSFX_AND_STOP_BGMSoundRequest(GameObject assignor, string audioName)
     {
         AudioClip defeatBGM = audioHolder.GetAudioByName(audioName);
         PreMadeAudioRequest preMadeAudioRequest =

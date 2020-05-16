@@ -653,6 +653,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 500, y: 360}
   m_EdgeRadius: 0
+--- !u!114 &156982370 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5908142126775363980, guid: 5ec41ff422cdbb0479a53deda6e29e9c,
+    type: 3}
+  m_PrefabInstance: {fileID: 6111557258496121803}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6d4383a485a1c4fb534e6cca6f14d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &260771084
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,6 +1187,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentForDynamicUIThatMustAppear: {fileID: 2023802270}
   skillTipText: {fileID: 1721542321}
+  tipPopUpOpener: {fileID: 156982370}
   emergenceClearCardHolders: []
   delayToComeBackFromOtherSpot: 0.25
 --- !u!114 &392569832
@@ -2455,6 +2468,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2792320346292305431, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -120.60022
+      objectReference: {fileID: 0}
     - target: {fileID: 3346088126110782692, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -2926,7 +2944,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 426.66672, y: -25}
+  m_AnchoredPosition: {x: 426.66653, y: -25}
   m_SizeDelta: {x: 1573.333, y: -150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1169875299
@@ -4039,7 +4057,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 795.0003, y: -40}
+  m_AnchoredPosition: {x: 795, y: -40}
   m_SizeDelta: {x: 2310, y: -180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1629059484

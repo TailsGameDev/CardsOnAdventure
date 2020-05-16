@@ -106,6 +106,7 @@ MonoBehaviour:
   range: 40
   durationForEachPoint: 0.2
   infinite: 0
+  timeCanStop: 0
 --- !u!1 &1966418763023050242
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,10 +729,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c0e6808cc55b2342a2fff468b1916d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  max: 5
-  dr: 0.1
-  divisor: 5
+  max: 25
+  r: 0
+  dr: 10
+  divisor: 25
   crazyColorText: {fileID: 8223592684893772216}
+  timeCanStop: 0
 --- !u!114 &8223592684893772216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -793,3 +796,4 @@ MonoBehaviour:
   range: 10
   durationForEachPoint: 0.1
   infinite: 1
+  timeCanStop: 0

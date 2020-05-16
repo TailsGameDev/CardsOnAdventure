@@ -58,6 +58,9 @@ public class Card : SkillsMediatorUser
     private Color overhealedColor = Color.yellow;
 
     private static DeathCounter deathCounter = new DeathCounter(13);
+
+    [SerializeField]
+    private TipReceptor tipReceptor = null;
     #endregion
 
     #region Properties
@@ -405,6 +408,11 @@ public class Card : SkillsMediatorUser
     public static int GetDeathCount()
     {
         return deathCounter.GetDeathCount();
+    }
+
+    public void OpenTip(TipPopUpOpener tipPopUpOpener)
+    {
+        tipReceptor.OpenTip(tipPopUpOpener);
     }
 
     private void SetTextArray(Text[] array, string message)

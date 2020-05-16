@@ -16,6 +16,12 @@ public class UIPauseMenu : OpenersSuperclass
     {
         cardBackground.ChangeSprite();
         fleeFromBattleBtn.SetActive(SceneManager.GetActiveScene().name == "Battle");
+        TimeFacade.TimeIsStopped = true;
+    }
+
+    private void OnDisable()
+    {
+        TimeFacade.RestoreTimeInNextFrameIfAllPopUpsAreClosed();
     }
 
     public void OnBattleRulesBtnClicked()

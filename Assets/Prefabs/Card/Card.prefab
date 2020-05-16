@@ -146,13 +146,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6320754, g: 0.4680936, b: 0.4680936, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f3856d6091f1ec04a9463451e7217201, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -195,6 +195,7 @@ MonoBehaviour:
   shakeable: {fileID: 5535211136222558472}
   fadingDurationOnDeath: 1
   normalVitalityColor: {r: 0.61960787, g: 0.9803922, b: 0.6156863, a: 1}
+  tipReceptor: {fileID: 1808189365913690268}
 --- !u!61 &9204129527013661130
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -253,6 +254,7 @@ MonoBehaviour:
   range: 20
   durationForEachPoint: 0.02
   infinite: 0
+  timeCanStop: 1
 --- !u!114 &8189255950368695548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -881,7 +883,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: V
+  m_Text: 3
 --- !u!1 &1946684729749214751
 GameObject:
   m_ObjectHideFlags: 0
@@ -2085,7 +2087,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: A
+  m_Text: 99
 --- !u!1 &7970400809111240523
 GameObject:
   m_ObjectHideFlags: 0
@@ -2428,15 +2430,15 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: b6351f55f62c6ca4eacab29e36e00de1, type: 3}
-    m_FontSize: 30
+    m_FontSize: 29
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 3
+    m_MinSize: 2
     m_MaxSize: 40
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 12345678
+  m_Text: Ingratitude

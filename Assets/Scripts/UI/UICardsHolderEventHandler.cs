@@ -15,6 +15,9 @@ public class UICardsHolderEventHandler : MonoBehaviour
     private Text skillTipText = null;
 
     [SerializeField]
+    private TipPopUpOpener tipPopUpOpener = null;
+
+    [SerializeField]
     private CardsHolder[] emergenceClearCardHolders = null;
 
     private Card cardBeingDragged;
@@ -137,13 +140,11 @@ public class UICardsHolderEventHandler : MonoBehaviour
 
     public void OnSlotClicked(CardsHolder cardsHolder, int index)
     {
-        // TODO: uncomment after Lucas play the game
-        /*
-        if (inputEnabled && !isRunningDragHistoryCoroutine)
+        Card cardInSlot = cardsHolder.GetReferenceToCardAtOrGetNull(index);
+        if (cardInSlot != null)
         {
-            cardsHolder.SetSelectedIndex(index);
+            cardInSlot.OpenTip(tipPopUpOpener);
         }
-        */
     }
 
     private void ClearSelections(CardsHolder[] cardsHoldersToClear)

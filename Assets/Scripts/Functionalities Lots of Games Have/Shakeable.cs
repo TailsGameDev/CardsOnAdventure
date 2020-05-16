@@ -13,6 +13,9 @@ public class Shakeable : MonoBehaviour
     [SerializeField]
     public bool infinite = false;
 
+    [SerializeField]
+    private bool timeCanStop = true;
+
     public void Shake()
     {
         StartCoroutine(shake());
@@ -41,7 +44,14 @@ public class Shakeable : MonoBehaviour
 
         while (t < durationForEachPoint && k < pointsQty - 1)
         {
-            t += Time.deltaTime;
+            if (timeCanStop)
+            {
+                t += TimeFacade.DeltaTime;
+            }
+            else
+            {
+                t += TimeFacade.GetDeltaTimeEvenIfTimeIsStopped();
+            }
             
             float x = Mathf.Lerp(points[k].x, points[k + 1].x, t / durationForEachPoint);
             float y = Mathf.Lerp(points[k].y, points[k + 1].y, t / durationForEachPoint);

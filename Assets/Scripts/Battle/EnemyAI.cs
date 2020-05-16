@@ -26,6 +26,16 @@ public class EnemyAI
 
     public static float AIDelay { set => aiDelay = value; }
 
+    protected IEnumerator WaitForSeconds(float seconds)
+    {
+        while (TimeFacade.TimeIsStopped)
+        {
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(seconds);
+    }
+
     #region PlaceCard
     public void PlaceCard(Hand enemyHand, Battlefield enemyBattlefield)
     {
@@ -62,7 +72,7 @@ public class EnemyAI
 
         if (enemyHand.HasCards())
         {
-            yield return new WaitForSeconds(aiDelay/2);
+            yield return WaitForSeconds(aiDelay/2);
             enemyHand.SelectFirstOccupiedIndex();
         }
 
@@ -90,26 +100,26 @@ public class EnemyAI
         bool change0With2 = ChangeCardInFrontWithCardBehind(0, 2);
         bool change1With3 = ChangeCardInFrontWithCardBehind(1, 3);
 
-        yield return new WaitForSeconds(aiDelay/2);
+        yield return WaitForSeconds(aiDelay/2);
 
         if (change0With2)
         {
             enemyBattlefield.SetSelectedIndex(0);
-            yield return new WaitForSeconds(aiDelay/2);
+            yield return WaitForSeconds(aiDelay/2);
             enemyBattlefield.SetSelectedIndex(2);
-            yield return new WaitForSeconds(aiDelay/2);
+            yield return WaitForSeconds(aiDelay/2);
         }
 
 
         if (change1With3)
         {
             enemyBattlefield.SetSelectedIndex(1);
-            yield return new WaitForSeconds(aiDelay / 2);
+            yield return WaitForSeconds(aiDelay / 2);
             enemyBattlefield.SetSelectedIndex(3);
-            yield return new WaitForSeconds(aiDelay / 2);
+            yield return WaitForSeconds(aiDelay / 2);
         }
 
-        yield return new WaitForSeconds(aiDelay / 2);
+        yield return WaitForSeconds(aiDelay / 2);
 
         endRepositionBtn.onClicked();
 
@@ -180,7 +190,7 @@ public class EnemyAI
             this.attackerPower = attacker.AttackPower;
             playerBattlefield.LoopThrougCardsAndSelectBestTarget(currentTargetIsBetterThanTheOneBefore);
 
-            yield return new WaitForSeconds(aiDelay);
+            yield return WaitForSeconds(aiDelay);
         }
 
         UIBattle.inputEnabled = true;

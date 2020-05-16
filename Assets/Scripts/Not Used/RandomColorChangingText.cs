@@ -6,6 +6,7 @@ public class RandomColorChangingText : MonoBehaviour
     [SerializeField]
     private float max = 20;
 
+    [SerializeField]
     private float r = 0;
 
     [SerializeField]
@@ -17,14 +18,23 @@ public class RandomColorChangingText : MonoBehaviour
     [SerializeField]
     private Text crazyColorText = null;
 
-    void FixedUpdate()
+    [SerializeField]
+    private bool timeCanStop = true;
+
+    void Update()
     {
         if (r > max)
         {
             r = -max;
         }
-        r += dr;
-
+        if (timeCanStop)
+        {
+            r += dr * TimeFacade.DeltaTime;
+        }
+        else
+        {
+            r += dr * TimeFacade.GetDeltaTimeEvenIfTimeIsStopped();
+        }
 
         crazyColorText.color = new Color(changed(r), changed(r), changed(r));;
     }

@@ -2413,6 +2413,11 @@ PrefabInstance:
       propertyPath: popUpOpener
       value: 
       objectReference: {fileID: 4073906798286987060}
+    - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: textHeight
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
 --- !u!224 &1356116768294516539 stripped
@@ -2610,6 +2615,11 @@ PrefabInstance:
       propertyPath: popUpOpener
       value: 
       objectReference: {fileID: 4073906798286987060}
+    - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: textHeight
+      value: 350
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
 --- !u!224 &1406880486227770029 stripped
@@ -2807,6 +2817,11 @@ PrefabInstance:
       propertyPath: popUpOpener
       value: 
       objectReference: {fileID: 4073906798286987060}
+    - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: textHeight
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 8988087068539831836, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Text
@@ -3021,6 +3036,11 @@ PrefabInstance:
       propertyPath: popUpOpener
       value: 
       objectReference: {fileID: 4073906798286987060}
+    - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: textHeight
+      value: 450
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
 --- !u!224 &5121906812659129633 stripped
@@ -3218,6 +3238,11 @@ PrefabInstance:
       propertyPath: popUpOpener
       value: 
       objectReference: {fileID: 4073906798286987060}
+    - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: textHeight
+      value: 350
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
 --- !u!224 &5121906812695138479 stripped
@@ -3415,6 +3440,11 @@ PrefabInstance:
       propertyPath: popUpOpener
       value: 
       objectReference: {fileID: 4073906798286987060}
+    - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: textHeight
+      value: 300
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
 --- !u!224 &5121906812685789643 stripped
@@ -3617,6 +3647,11 @@ PrefabInstance:
       propertyPath: popUpOpener
       value: 
       objectReference: {fileID: 4073906798286987060}
+    - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: textHeight
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
 --- !u!224 &5121906812622532248 stripped
@@ -3814,6 +3849,11 @@ PrefabInstance:
       propertyPath: popUpOpener
       value: 
       objectReference: {fileID: 4073906798286987060}
+    - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: textHeight
+      value: 260
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
 --- !u!224 &5121906811948855673 stripped
@@ -4011,6 +4051,11 @@ PrefabInstance:
       propertyPath: popUpOpener
       value: 
       objectReference: {fileID: 4073906798286987060}
+    - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: textHeight
+      value: 300
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
 --- !u!224 &5121906811762264398 stripped
@@ -4208,6 +4253,11 @@ PrefabInstance:
       propertyPath: popUpOpener
       value: 
       objectReference: {fileID: 4073906798286987060}
+    - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: textHeight
+      value: 300
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
 --- !u!224 &5121906811438567543 stripped
@@ -4405,6 +4455,11 @@ PrefabInstance:
       propertyPath: popUpOpener
       value: 
       objectReference: {fileID: 4073906798286987060}
+    - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: textHeight
+      value: 250
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
 --- !u!224 &5121906811552508439 stripped
@@ -4602,6 +4657,11 @@ PrefabInstance:
       propertyPath: popUpOpener
       value: 
       objectReference: {fileID: 4073906798286987060}
+    - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: textHeight
+      value: 500
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
 --- !u!224 &5121906811175544357 stripped
@@ -4799,6 +4859,11 @@ PrefabInstance:
       propertyPath: popUpOpener
       value: 
       objectReference: {fileID: 4073906798286987060}
+    - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: textHeight
+      value: 250
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
 --- !u!224 &5121906811303076462 stripped
@@ -4927,12 +4992,12 @@ PrefabInstance:
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: attackPower
-      value: 99
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: vitality
-      value: 99
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -5001,6 +5066,11 @@ PrefabInstance:
       propertyPath: popUpOpener
       value: 
       objectReference: {fileID: 4073906798286987060}
+    - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: textHeight
+      value: 400
+      objectReference: {fileID: 0}
     - target: {fileID: 2446027511490683668, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_IsActive

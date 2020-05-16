@@ -1,9 +1,16 @@
 ﻿
+using System.Collections;
 using UnityEngine;
 
 public class UIMainMenu : UIPauseMenu
 {
     // Inherits OnSettingsBtnClicked, OnRulesBtnClicked, OpenScene
+
+    [SerializeField]
+    private PreMadeAudioFactory preMadeAudioFactory = null;
+
+    CustomPopUp.OnBtnClicked ContinueAction;
+    CustomPopUp.OnBtnClicked CancelAction;
 
     private void Awake()
     {
@@ -37,23 +44,30 @@ public class UIMainMenu : UIPauseMenu
 
         if (new SaveFacade().DoesAnySaveExist())
         {
+            warningMessage = "Are you going to continue your previous adventure, or start a new game, with randomized master spots?";
 #if UNITY_WEBGL
             warningMessage = "Will you try to continue the adventure, or generate a randomized new map? (Save System"+
                 " works properly just in downloadable builds)";
-#else
-            //warningMessage = "Are you going to continue your previous adventure, or start a new game, with randomized master spots?";
 #endif
             continueBtnText = "Continue";
             cancelBtnMessage = "New Map";
+
+            ContinueAction = Continue;
+            CancelAction = NewGame;
         }
         else
         {
             //warningMessage = "Some choices in the game are mere role play. But You find out which ones";
             warningMessage = "Some pop-up buttons in the game don’t actually modify the gameplay. It’s just “role play”. " +
                                  "Like these two below.";
-            continueBtnText = "Sounds Nice";
-            cancelBtnMessage = "Pfff boring...";
+            continueBtnText = "Cool";
+            cancelBtnMessage = "Bored pffff...";
+
+            ContinueAction = () => { StartCoroutine(CoolContinue()); };
+            CancelAction = () => { StartCoroutine(BoringNewGame()); };
         }
+
+        
 
         openerOfPopUpsMadeInEditor.CloseAllPopUpsExceptLoading();
         customPopUpOpener.Open(
@@ -61,9 +75,22 @@ public class UIMainMenu : UIPauseMenu
             warningMessage,
             confirmBtnMessage: continueBtnText,
             cancelBtnMessage,
-            onConfirm: Continue,
-            onCancel: NewGame
+            onConfirm: ContinueAction,
+            onCancel: CancelAction
         );
+    }
+
+    IEnumerator CoolContinue()
+    {
+        preMadeAudioFactory.CreateCoolAudioRequest(gameObject).RequestPlaying();
+        yield return null;
+        Continue();
+    }
+    IEnumerator BoringNewGame()
+    {
+        preMadeAudioFactory.CreateBoringAudioRequest(gameObject).RequestPlaying();
+        yield return null;
+        NewGame();
     }
 
     private void Continue()

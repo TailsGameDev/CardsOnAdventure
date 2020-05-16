@@ -58,6 +58,7 @@ public class TipDragAndDrop : DragAndDrop
 
     protected override void OnStartDragging()
     {
+        staticSpeakBalloon.SetActive(false);
         text.fontStyle = FontStyle.Italic;
         onDrag?.Invoke();
     }
