@@ -90,6 +90,11 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
                 secondOnTop.SetActive(true);
             }
             popUpOnTop.SetActive(false);
+
+            if (popUpOnTop == pausePopUp)
+            {
+                TimeFacade.TimeIsStopped = false;
+            }
         }
          LogStack();
     }
@@ -101,9 +106,8 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
     {
         while (popUpsStack.Count > 0)
         {
-            popUpsStack.Pop().SetActive(false);
+            IfThereIsAPopUpOnTopThenCloseIt();
         }
-         LogStack();
     }
     public bool AllPopUpsAreClosed()
     {
@@ -114,6 +118,7 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
     #region Open XXX PopUp
     public void OpenPausePopUp()
     {
+        TimeFacade.TimeIsStopped = true;
         OpenPopUp(pausePopUp);
     }
     public void OpenBattleRulesPopUp()

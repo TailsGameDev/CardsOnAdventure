@@ -50,7 +50,7 @@ public class Fader
                 }
             }
 
-            countDownFadeTimer -= Time.deltaTime;
+            countDownFadeTimer -= TimeFacade.DeltaTime;
             yield return null;
         }
     }

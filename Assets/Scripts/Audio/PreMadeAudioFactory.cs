@@ -51,6 +51,10 @@ public class PreMadeAudioFactory : MonoBehaviour
     {
         return CreateSFXRequestUsingTheName(assignor, "Fuck You");
     }
+    public PreMadeAudioRequest CreateCricketsAudioRequest(GameObject assignor)
+    {
+        return CreateSFXRequestUsingTheName(assignor, "Crickets");
+    }
     private PreMadeAudioRequest CreateSFXRequestUsingTheName(GameObject assignor, string audioName)
     {
         return PreMadeAudioRequest.CreateSFXSoundRequest

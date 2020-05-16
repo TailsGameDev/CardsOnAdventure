@@ -64,7 +64,7 @@ public class TextThatFadesAndFalls : MonoBehaviour
 
     private void Update()
     {
-        time += Time.deltaTime;
+        time += TimeFacade.DeltaTime;
 
         float y = initialY + initialYVelocity * time + gravity * time * time / 2;
         float x = initialX + xVelocity * time;

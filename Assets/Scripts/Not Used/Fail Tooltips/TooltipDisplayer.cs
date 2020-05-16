@@ -42,7 +42,7 @@ namespace NotUsed
 
             tooltipNode.SetActive(timer > 0 && !string.IsNullOrEmpty(message.text));
 
-            timer -= Time.deltaTime;
+            timer -= Time. deltaTime;
         }
 
         public void SetMessageAndTimerAndSize(string message, float timeInSeconds = 1.0f, int width = 60, int height = 17)

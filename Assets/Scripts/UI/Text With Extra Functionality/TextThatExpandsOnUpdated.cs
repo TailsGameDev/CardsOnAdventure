@@ -33,7 +33,7 @@ public class TextThatExpandsOnUpdated : MonoBehaviour
             {
                 if (currentExpansionMultiplier < expantionMultiplyerMaximum)
                 {
-                    currentExpansionMultiplier += Time.deltaTime;
+                    currentExpansionMultiplier += TimeFacade.DeltaTime;
                     transform.localScale = originalSize * currentExpansionMultiplier;
                 } else
                 {
@@ -44,7 +44,7 @@ public class TextThatExpandsOnUpdated : MonoBehaviour
             {
                 if (currentExpansionMultiplier > minimumExpansionMultiplier)
                 {
-                    currentExpansionMultiplier -= Time.deltaTime;
+                    currentExpansionMultiplier -= TimeFacade.DeltaTime;
                     transform.localScale = originalSize * currentExpansionMultiplier;
                 }
                 else

@@ -34,13 +34,12 @@ public class BonusReposition : PlaceCard
         if (currentBattleStatesFactory == playerBattleStatesFactory)
         {
             endRepositioningBtnText.text = "Pass ->";
+            TipDragAndDrop.ShowBonusRepositioningTip();
         }
 
         if ( ! EnemyIsCompletelyDefeated() )
         GiveHandBackToDeck();
         GiveBattlefieldBackToHand();
-
-        TipDragAndDrop.ShowBonusRepositioningTip();
     }
 
     private bool EnemyIsCompletelyDefeated()

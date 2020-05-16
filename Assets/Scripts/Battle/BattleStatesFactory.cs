@@ -98,6 +98,7 @@ public class BattleStatesFactory : OpenersSuperclass
                                 preMadeAudioFactory.CreateVictoryAudioRequest(gameObject),
                                 preMadeAudioFactory.CreateDefeatAudioRequest(gameObject),
                                 preMadeAudioFactory.CreateStopAllSFXRequest(gameObject),
+                                preMadeAudioFactory.CreateCricketsAudioRequest(gameObject),
                                 preMadeAudioFactory.CreateCryingAudioRequest(gameObject)
                             );
     }

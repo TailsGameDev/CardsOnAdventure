@@ -13,7 +13,7 @@ public class SanctuaryHealWhoNeeds : SpecialEffect
         int healerIndex = abf.GetSelectedIndex();
 
         Card healerCard = abf.GetReferenceToCardAt(healerIndex);
-        int healAmount = healerCard.AttackPower / 2;
+        int healAmount = healerCard.AttackPower;
 
         int whoNeeds = abf.GetIndexWithLowestVitalityThatCanBeHealed();
         HealingAlgorithm(whoNeeds, healAmount);

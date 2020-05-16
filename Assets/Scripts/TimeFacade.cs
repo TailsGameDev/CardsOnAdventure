@@ -23,19 +23,6 @@ public class TimeFacade : OpenersSuperclass
         }
     }
 
-    public static float FixedDeltaTime {
-        get {
-            if (timeIsStopped)
-            {
-                return 0;
-            }
-            else
-            {
-                return Time.fixedDeltaTime;
-            }
-        }
-    }
-
     private void Awake()
     {
         timeFacadeOfCurrentScene = this;
@@ -43,7 +30,7 @@ public class TimeFacade : OpenersSuperclass
 
     public static float GetDeltaTimeEvenIfTimeIsStopped()
     {
-        return Time.deltaTime;
+        return Time. deltaTime;
     }
 
     public static void RestoreTimeInNextFrameIfAllPopUpsAreClosed()

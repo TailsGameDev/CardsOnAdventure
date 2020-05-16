@@ -7047,7 +7047,7 @@ MonoBehaviour:
     \u201CIGNORE PROTECTION\u201D, THE DAMAGE IS REDUCED BY THE HALF. <br> <br> 2
     - SKILLS ARE ACTIVATED ONLY DURING ATTACKS OR DEFENSES. WANNA USE ANY SKILL?
     THEN JUST ATTACK OR OBSERVE WHEN THE CARD OF INTEREST IS ATTACKED. <br> <br>
-    BATTLE STATES:</color> <br> <br> <color=#9EFA9D>->PLACE CARD</color><br> In this
+    BATTLE STATES: </color> <br> <color=#9EFA9D>->PLACE CARD</color><br> In this
     state, all you can do is to <color=#9EFA9D>PUT THE CARDS OF YOUR HAND IN THE
     BATTLEFIELD UNTIL THE BATTLEFIELD IS FULL OR YOUR HAND IS EMPTY</color> <br>
     <br> <color=#9EFA9D>->REPOSITION</color><br> In this state, <color=#9EFA9D>YOU
@@ -7059,12 +7059,12 @@ MonoBehaviour:
     BONUS OF PLACE CARDS AND REPOSITIONING AGAIN!</color> That means if you put a
     lot of attack cards, now you can go for a more defensive formation, to hold the
     attacks that are going to come. If you interrupt your attack state to reposition
-    again, this bonus is lost. <br> <br> <color=#9EFA9D>->TOO SLOW DYING</color><br>
-    In this state, <color=#9EFA9D>IF TOO MANY ATTACKS OCCUR WITH NO DEATHS, A +1
-    BUFF OF ATTACK POWER TO ALL BATTLEFIELD MIGHT BE APPLIED.</color> In such a situation,
-    a pop-up would appear asking if you want the buff or not. <br> <br> Obs: you
-    can play by drag and drop, or click here then click there. But drag and drop
-    triggers a very nice tooltip of the card in the bottom of the screen. <br> <br> "
+    again, this bonus is lost. <br> <br> Other Rules: <br>  No card can be healed
+    more than 2x it\u2019s original Vitality. <br> <br> <color=#9EFA9D>->TOO SLOW
+    DYING</color><br> In this state, <color=#9EFA9D>IF TOO MANY ATTACKS OCCUR WITH
+    NO DEATHS, A +1 BUFF OF ATTACK POWER TO ALL BATTLEFIELD MIGHT BE APPLIED.</color>
+    In such a situation, a pop-up would appear asking if you want the buff or not.
+    <br> <br> "
   battleRulesSprite: {fileID: 21300000, guid: 8af8e8666289f8d4885582a2f45fc37d, type: 3}
   customPopUp: {fileID: 8097394994039783889}
 --- !u!223 &9182716590525795585

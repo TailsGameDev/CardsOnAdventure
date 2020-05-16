@@ -17,29 +17,10 @@ public class UIMainMenu : UIPauseMenu
         MapsCache.SpotToClearIfPlayerWins = null;
     }
 
-    protected override void OnEnable()
-    {
-        base.OnEnable();
-        TimeFacade.RestoreTimeInNextFrameIfAllPopUpsAreClosed();
-    }
-    protected override void OnDisable()
-    {
-    }
-
     public void OnPlayBtnClicked()
     {
         OpenContinueOrNewGamePopUp();
         cardBackground.ChangeSprite();
-        /*
-        customPopUpOpener.Open(
-            title: "Play",
-            warningMessage: "Would you like to play the Adventure or the Draft mode?",
-            confirmBtnMessage: "Adventure Mode",
-            cancelBtnMessage: "Draft Mode",
-            onConfirm: OpenContinueOrNewGamePopUp,
-            onCancel: NewGame
-        );
-        */
     }
 
     private void OpenContinueOrNewGamePopUp()

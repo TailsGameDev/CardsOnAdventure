@@ -70,7 +70,7 @@ public class ChildMaker : MonoBehaviour
 
         while (child != null && time < totalTime && child != null)
         {
-            time += Time.deltaTime;
+            time += TimeFacade.DeltaTime;
 
             float completePercentage = time / totalTime;
 

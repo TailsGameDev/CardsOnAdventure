@@ -16,7 +16,7 @@ public class DestroyItselfInTime : MonoBehaviour
     {
         if (timeToDestruction > 0)
         {
-            timeToDestruction -= Time.deltaTime;
+            timeToDestruction -= TimeFacade.DeltaTime;
         }
         else
         {

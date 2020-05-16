@@ -11,6 +11,7 @@ public class EndGame : BattleState
     private PreMadeAudioRequest victoryBGMRequest;
     private PreMadeAudioRequest defeatBGMRequest;
     private PreMadeAudioRequest stopAllSFXRequest;
+    private PreMadeAudioRequest cricketsAudioRequest;
     private PreMadeAudioRequest cryingAudioRequest;
 
     private float timer = 0;
@@ -25,6 +26,7 @@ public class EndGame : BattleState
                     PreMadeAudioRequest victoryBGMRequest,
                     PreMadeAudioRequest defeatBGMRequest,
                     PreMadeAudioRequest stopAllSFXRequest,
+                    PreMadeAudioRequest cricketsAudioRequest,
                     PreMadeAudioRequest cryingAudioRequest)
     {
         this.winnerFactory = winnerFactory;
@@ -35,6 +37,7 @@ public class EndGame : BattleState
         this.victoryBGMRequest = victoryBGMRequest;
         this.defeatBGMRequest = defeatBGMRequest;
         this.stopAllSFXRequest = stopAllSFXRequest;
+        this.cricketsAudioRequest = cricketsAudioRequest;
         this.cryingAudioRequest = cryingAudioRequest;
     }
     public override void ExecuteAction()
@@ -43,7 +46,7 @@ public class EndGame : BattleState
         {
             if (timer < 1.5f)
             {
-                timer += Time.deltaTime;
+                timer += TimeFacade.DeltaTime;
             }
             else
             {
@@ -76,7 +79,7 @@ public class EndGame : BattleState
                                 confirmBtnMessage: "Look the map",
                                 cancelBtnMessage: "Nothing",
                                 onConfirm: QuitBattleAndGoToMap,
-                                onCancel: () => { },
+                                onCancel: () => { cricketsAudioRequest.RequestPlaying(); },
                                 victoryBGMRequest
                             );
                         }

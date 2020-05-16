@@ -44,7 +44,7 @@ public class Spot : MonoBehaviour
         {
             if (isGrowing)
             {
-                t += Time.deltaTime;
+                t += TimeFacade.DeltaTime;
                 if (t > 2)
                 {
                     t = 1.99f;
@@ -53,7 +53,7 @@ public class Spot : MonoBehaviour
             }
             else
             {
-                t -= Time.deltaTime;
+                t -= TimeFacade.DeltaTime;
                 if (t < 1)
                 {
                     t = 1.01f;

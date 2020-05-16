@@ -277,14 +277,14 @@ public class Battlefield : CardsHolder
                                                         increaseScaleValueInProtectionAnimation,0.0f);
         while (protection.localScale.x < targetScale.x)
         {
-            float t = Time.deltaTime * increaseScaleSpeedMultiplier;
+            float t = TimeFacade.DeltaTime * increaseScaleSpeedMultiplier;
             protection.localScale += new Vector3(t,t,t);
             yield return null;
         }
 
         while (protection.localScale.x > originalScale.x)
         {
-            float t = Time.deltaTime * increaseScaleSpeedMultiplier;
+            float t = TimeFacade.DeltaTime * increaseScaleSpeedMultiplier;
             protection.localScale -= new Vector3(t, t, t);
             yield return null;
         }
