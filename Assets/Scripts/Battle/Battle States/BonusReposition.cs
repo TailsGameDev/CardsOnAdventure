@@ -39,6 +39,8 @@ public class BonusReposition : PlaceCard
         if ( ! EnemyIsCompletelyDefeated() )
         GiveHandBackToDeck();
         GiveBattlefieldBackToHand();
+
+        TipDragAndDrop.ShowBonusRepositioningTip();
     }
 
     private bool EnemyIsCompletelyDefeated()

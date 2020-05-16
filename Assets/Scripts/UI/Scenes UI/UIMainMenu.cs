@@ -17,6 +17,15 @@ public class UIMainMenu : UIPauseMenu
         MapsCache.SpotToClearIfPlayerWins = null;
     }
 
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        TimeFacade.RestoreTimeInNextFrameIfAllPopUpsAreClosed();
+    }
+    protected override void OnDisable()
+    {
+    }
+
     public void OnPlayBtnClicked()
     {
         OpenContinueOrNewGamePopUp();

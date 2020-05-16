@@ -202,9 +202,25 @@ public class DeckPrototypeFactory : MonoBehaviour
     }
     public static void PrepareTrainingDeckForThePlayer()
     {
+        // TODO: remove duplicated code
         if (playerDeckBuilder == null)
         {
-            trainingDeckForThePlayer = new RandomBattlefieldSizeDeckBuilder();
+            Card[] theCards = new Card[4];
+
+            for (int i = 0; i < theCards.Length; i++)
+            {
+                // Get some cards without skill, and others random.
+                if (i % 2 == 0)
+                {
+                    theCards[i] = ClassInfo.GetCardsOfClass(Classes.REGULAR)[0].GetClone();
+                }
+                else
+                {
+                    theCards[i] = GetCloneOfTheRandomCard();
+                }
+            }
+
+            trainingDeckForThePlayer = ManualDeckBuider.Create(theCards);
         }
         else
         {
@@ -213,7 +229,15 @@ public class DeckPrototypeFactory : MonoBehaviour
 
             for (int i = 0; i < theCards.Length; i++)
             {
-                theCards[i] = i < cards.Length ? cards[i] : GetCloneOfTheRandomCard();
+                // Get some cards without skill, and others random.
+                if (i % 2 == 0)
+                {
+                    theCards[i] = i < cards.Length ? cards[i] : ClassInfo.GetCardsOfClass(Classes.REGULAR)[0].GetClone();
+                }
+                else
+                {
+                    theCards[i] = i < cards.Length ? cards[i] : GetCloneOfTheRandomCard();
+                }
             }
 
             trainingDeckForThePlayer = ManualDeckBuider.Create(theCards);

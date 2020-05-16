@@ -26,7 +26,7 @@ public class Attack : BattleState
     public static bool shouldAskForTip = true;
 
     public Attack(
-                    Battlefield myBattlefield,
+                    Battlefield attackerBattlefield,
                     Battlefield opponentBattleField,
                     UICustomBtn endTurnBtn,
                     UICustomBtn repositionAgainBtn,
@@ -36,7 +36,7 @@ public class Attack : BattleState
                     PreMadeAudioRequest onCancelUselessAtackSFXRequisitor
                  )
     {
-        this.attackerBattlefield = myBattlefield;
+        this.attackerBattlefield = attackerBattlefield;
         this.opponentBattleField = opponentBattleField;
 
         obfWasFullAtBeggining = opponentBattleField.IsFull();
@@ -54,7 +54,7 @@ public class Attack : BattleState
 
         if (currentBattleStatesFactory == enemyBattleStatesFactory)
         {
-            new EnemyAI().Attack(enemyBattlefield: myBattlefield, playerBattlefield: opponentBattleField);
+            new EnemyAI().Attack(enemyBattlefield: attackerBattlefield, playerBattlefield: opponentBattleField);
         }
         else
         {

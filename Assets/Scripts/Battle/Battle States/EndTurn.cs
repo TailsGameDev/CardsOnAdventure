@@ -9,6 +9,9 @@ public class EndTurn : TurnBattleState
         this.hand = hand;
 
         toDeactivate.SetActive(false);
+
+        // It might be active if there was a Bonus Reposition State
+        TipDragAndDrop.HideBonusRepositioningTip();
     }
 
     public override void ExecuteAction()

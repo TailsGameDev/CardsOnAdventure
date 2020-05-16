@@ -10,4 +10,5 @@ public enum Classes
     ROGUE,
     GUARDIAN,
     CLERIC,
+    REGULAR,
 }

@@ -12,14 +12,14 @@ public class UIPauseMenu : OpenersSuperclass
     [SerializeField]
     protected RandomSprite cardBackground = null;
 
-    private void OnEnable()
+    protected virtual void OnEnable()
     {
         cardBackground.ChangeSprite();
         fleeFromBattleBtn.SetActive(SceneManager.GetActiveScene().name == "Battle");
         TimeFacade.TimeIsStopped = true;
     }
 
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         TimeFacade.RestoreTimeInNextFrameIfAllPopUpsAreClosed();
     }

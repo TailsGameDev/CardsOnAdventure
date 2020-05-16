@@ -12,6 +12,9 @@ public class GameStart : BattleState
             audioRequisitor.RequestBGM(bgm);
             bgm = null;
         }
+
+        // Just in case
+        TimeFacade.RestoreTimeInNextFrameIfAllPopUpsAreClosed();
     }
 
     public override void ExecuteAction()
