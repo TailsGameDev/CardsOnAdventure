@@ -7,6 +7,9 @@ public class Card : SkillsMediatorUser
 {
     #region Attributes
     [SerializeField]
+    private string nickname = null;
+
+    [SerializeField]
     public ClassInfo classInfo = null;
 
     public CardDragAndDrop cardDragAndDrop = null;
@@ -26,6 +29,12 @@ public class Card : SkillsMediatorUser
 
     [SerializeField]
     private Text[] skillTexts = null;
+
+    [SerializeField]
+    private GameObject[] ignoreProtectionIcons = null;
+
+    [SerializeField]
+    private GameObject protectionIcon = null;
 
     [SerializeField]
     private OldSkill skills = null;
@@ -61,6 +70,9 @@ public class Card : SkillsMediatorUser
 
     [SerializeField]
     private TipReceptor tipReceptor = null;
+
+    float increaseScaleValueInProtectionAnimation = 0.2f;
+    float increaseScaleSpeedMultiplier = 1.0f;
     #endregion
 
     #region Properties
@@ -68,13 +80,19 @@ public class Card : SkillsMediatorUser
     public int Vitality { get => vitality; }
     public int AttackPower { get => attackPower; set => attackPower = value; }
     public Classes Classe { get => classInfo.Classe; }
-    public bool IgnoreOpponentsBlock { get => skills.IgnoreOpponentsBlock; }
+    public bool IgnoreOpponentsBlock { get => skills.IgnoreProtection; }
     public OldSkill Skills {
         get => skills;
-        set {
+        set 
+        {
             skills = value;
             SetTextArray(skillTexts, skills.FullName);
             SetTextArrayColor(skillTexts, classInfo.Color);
+            for (int i = 0; i < ignoreProtectionIcons.Length; i++)
+            {
+                bool appearInThisAlignment = skillTexts[i].transform.parent.gameObject.activeSelf;
+                ignoreProtectionIcons[i].SetActive(appearInThisAlignment && value.IgnoreProtection);
+            }
         }
     }
     #endregion
@@ -275,6 +293,12 @@ public class Card : SkillsMediatorUser
         skillTexts[0].transform.parent.gameObject.SetActive(false);
         skillTexts[1].transform.parent.gameObject.SetActive(true);
 
+        if (skills.IgnoreProtection)
+        {
+            ignoreProtectionIcons[0].SetActive(false);
+            ignoreProtectionIcons[1].SetActive(true);
+        }
+
         cardImage.sprite = horizontalSprite;
     }
     public void ChangeToVerticalVersion()
@@ -288,6 +312,12 @@ public class Card : SkillsMediatorUser
         skillTexts[1].transform.parent.gameObject.SetActive(false);
         skillTexts[0].transform.parent.gameObject.SetActive(true);
 
+        if (skills.IgnoreProtection)
+        {
+            ignoreProtectionIcons[0].SetActive(true);
+            ignoreProtectionIcons[1].SetActive(false);
+        }
+
         cardImage.sprite = verticalSprite;
     }
     public void MakeColorGray()
@@ -299,6 +329,34 @@ public class Card : SkillsMediatorUser
     public void MakeColorDefault()
     {
         cardImage.color = Color.white;
+    }
+    public void SetProtectionIconActive(bool active)
+    {
+        protectionIcon.SetActive(active);
+    }
+    public void MakeProtectionEvident()
+    {
+        StartCoroutine(MakeProtectionEvident(protectionIcon.transform));
+    }
+    private IEnumerator MakeProtectionEvident(Transform toScale)
+    {
+        Transform protection = toScale;
+        UnityEngine.Vector3 originalScale = protection.localScale;
+        UnityEngine.Vector3 targetScale = originalScale + new UnityEngine.Vector3(increaseScaleValueInProtectionAnimation,
+                                                        increaseScaleValueInProtectionAnimation, 0.0f);
+        while (protection.localScale.x < targetScale.x)
+        {
+            float t = TimeFacade.DeltaTime * increaseScaleSpeedMultiplier;
+            protection.localScale += new UnityEngine.Vector3(t, t, t);
+            yield return null;
+        }
+
+        while (protection.localScale.x > originalScale.x)
+        {
+            float t = TimeFacade.DeltaTime * increaseScaleSpeedMultiplier;
+            protection.localScale -= new UnityEngine.Vector3(t, t, t);
+            yield return null;
+        }
     }
     #endregion
 
@@ -314,7 +372,8 @@ public class Card : SkillsMediatorUser
     }
     public string GetColoredTitleForTip()
     {
-        return "<color=#"+ClassColorHexCode()+ ">"+ Classe +" "+ skills.FullName +"</color>";
+        // return "<color=#"+ClassColorHexCode()+ ">"+ Classe +" "+ skills.FullName +"</color>";
+        return "<color=#" + ClassColorHexCode() + ">" + nickname + "</color>";
     }
 
     private string ClassColorHexCode()
@@ -325,7 +384,8 @@ public class Card : SkillsMediatorUser
     public string GetExplanatoryText()
     {
         return 
-                (GetSkillsExplanatoryText()) + "\n" +
+                "Class: "+ "<color=#" + ClassColorHexCode() + ">" + (classInfo.name.ToUpperInvariant()) + "</color>\n"+
+                "Skill: "+(GetSkillsExplanatoryText()) + "\n" +
                 "<color=#FD7878>Attack Power: " + attackPower + "</color>\n" +
                 "<color=#9EFA9D>Vitality: " + vitality + "</color>\n"
                 ;

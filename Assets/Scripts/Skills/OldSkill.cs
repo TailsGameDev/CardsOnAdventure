@@ -41,7 +41,7 @@ public class OldSkill : Skill
 
     public float DamageReductionPercentage { get => damageReductionPercentage; }
     public float DamageReflectionPercentage { get => damageReflectionPercentage; }
-    public bool IgnoreOpponentsBlock { get => ignoreOpponentBlock; }
+    public bool IgnoreProtection { get => ignoreOpponentBlock; }
 
     public override void ApplyEffectsConsideringSelectedTarget(
                                                                 Battlefield opponentBattlefield,

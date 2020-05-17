@@ -18,9 +18,12 @@ public class TipDragAndDrop : DragAndDrop
     private GameObject speakBaloon = null;
     [SerializeField]
     private GameObject bonusRepositioningTip = null;
+    [SerializeField]
+    private GameObject placeCardsNowTip = null;
 
     private static GameObject staticSpeakBalloon;
     private static GameObject staticBonusRepositioningTip;
+    private static GameObject staticPlaceCardsNowTip;
 
     public delegate void OnDragOrDrop();
     public static event OnDragOrDrop onDrag;
@@ -35,6 +38,10 @@ public class TipDragAndDrop : DragAndDrop
         if (staticBonusRepositioningTip == null)
         {
             staticBonusRepositioningTip = bonusRepositioningTip;
+        }
+        if (staticPlaceCardsNowTip == null)
+        {
+            staticPlaceCardsNowTip = placeCardsNowTip;
         }
         StartCoroutine(MakeFontNormalInsistently());
     }
@@ -70,9 +77,21 @@ public class TipDragAndDrop : DragAndDrop
             staticBonusRepositioningTip.SetActive(true);
         }
     }
+    public static void ShowPlaceCardsNowTip()
+    {
+        if (Settings.ShouldAskForTips())
+        {
+            staticPlaceCardsNowTip.SetActive(true);
+        }
+    }
+
     public static void HideBonusRepositioningTip()
     {
         staticBonusRepositioningTip.SetActive(false);
+    }
+    public static void HidePlaceCardsNowTip()
+    {
+        staticPlaceCardsNowTip.SetActive(false);
     }
 
     protected override void OnStartDragging()

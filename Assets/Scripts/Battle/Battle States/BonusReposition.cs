@@ -37,9 +37,11 @@ public class BonusReposition : PlaceCard
             TipDragAndDrop.ShowBonusRepositioningTip();
         }
 
-        if ( ! EnemyIsCompletelyDefeated() )
-        GiveHandBackToDeck();
-        GiveBattlefieldBackToHand();
+        if ( ! EnemyIsCompletelyDefeated())
+        {
+            GiveHandBackToDeck();
+            GiveBattlefieldBackToHand();
+        }
     }
 
     private bool EnemyIsCompletelyDefeated()
@@ -55,7 +57,7 @@ public class BonusReposition : PlaceCard
             if (card != null)
             {
                 deck.PutCardInTop(card);
-                const float TIME_GOING_TO_HAND = 0.7f;
+                const float TIME_GOING_TO_HAND = 0.25f;
                 ChildMaker.AdoptAndScaleAndSmoothlyMoveToParent(deck.transform, card.GetRectTransform(), TIME_GOING_TO_HAND);
             }
         }
@@ -69,7 +71,7 @@ public class BonusReposition : PlaceCard
             if (card != null)
             {
                 card.ChangeToVerticalVersion();
-                hand.AddCard(card);
+                hand.AddCardInconditionally(card);
             }
         }
     }

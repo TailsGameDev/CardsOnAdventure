@@ -51,13 +51,15 @@ public class PlaceCard : BattleState
         if (PlayerIsTryingToReposition())
         {
             ClearSelections();
-
+            TipDragAndDrop.ShowPlaceCardsNowTip();
+            /*
             customPopUpOpener.OpenMessageIfNoCustomPopUpIsOpenned
                 (
                     title: "Place Cards",
                         warningMessage: "<color=#FFFFFF> You must <color=#9EFA9D>PLACE ALL CARDS YOU CAN BEFORE REPOSITIONING</color>. Drag and Drop from your hand" +
                         " to the battlefield, please.</color>"
                 );
+            */
         }
         else if (ReceivedValidInput())
         {
@@ -139,6 +141,7 @@ public class PlaceCard : BattleState
 
     protected void OnGoToRepositionState()
     {
+        TipDragAndDrop.HidePlaceCardsNowTip();
         btnsBackground.SetActive(currentBattleStatesFactory == playerBattleStatesFactory);
     }
 }

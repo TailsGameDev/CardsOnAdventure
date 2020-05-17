@@ -555,7 +555,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullName: Pierce
   description: The Attack Strikes the enemies in a vertical line, damaging the card
-    in the Front Line and the one in the Back Line. Ignore Protection.
+    in the Front Line and the one in the Back Line.
   attackVFX: {fileID: 5748607524574563189, guid: e04241a417a08784aa21e2a0515d265f,
     type: 3}
   defenseVFX: {fileID: 0}
@@ -618,7 +618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullName: Block
   description: "If some enemy tries to attack the card behind this one, this card
-    takes the damage instead of it\u2019s teammate."
+    takes the damage instead of it\u2019s teammate, unless the enemy ignores protection."
   attackVFX: {fileID: 0}
   defenseVFX: {fileID: 5082940041776008656, guid: 9fc973df5add9384180fdfb3967b22b1,
     type: 3}
@@ -743,8 +743,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fullName: Area
-  description: All targets adjacent cards and the target take the <full>Attack Power
-    of the mage as damage. Ignore Protection.
+  description: All targets adjacent cards AND the target take the damage.
   attackVFX: {fileID: 4034280589589381900, guid: 3d6df27cc8cc1054f8bec7f3c4da598f,
     type: 3}
   defenseVFX: {fileID: 0}
@@ -1008,7 +1007,7 @@ MonoBehaviour:
   ignoreOpponentBlock: 1
   specialEffect: {fileID: 4687705843979180533}
   frontlineTargetDamageMultiplier: 1
-  backlineTargetDamageMultiplier: 0.5
+  backlineTargetDamageMultiplier: 1
   horizontalSpreadDamageMultiplier: 0
   verticalSpreadDamageMultiplier: 0
   damageReductionPercentage: 0
@@ -1472,8 +1471,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fullName: No Skill
-  description: Deals damage equals the <full>Attack Power to the target, and has
-    no defensive bonuses.
+  description: Deals damage equals the <full>Attack Power to the target (like everybody
+    else).
   attackVFX: {fileID: 0}
   defenseVFX: {fileID: 0}
   specialVFX: {fileID: 0}
@@ -1729,8 +1728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fullName: Steal
-  description: "Apply damage, and steal the enemy\u2019s skill. The enemy can just
-    perform regular attacks after this."
+  description: "Steal the enemy\u2019s skill. Left the enemy with \u201CNo Skill\u201D."
   attackVFX: {fileID: 3578503582660777522, guid: ddc77b688d2313d48b58d44cb8b5c65b,
     type: 3}
   defenseVFX: {fileID: 0}
@@ -2693,6 +2691,11 @@ PrefabInstance:
       propertyPath: critSFX
       value: 
       objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: nickname
+      value: Renet
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -2727,7 +2730,7 @@ PrefabInstance:
     - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: textHeight
-      value: 350
+      value: 400
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
@@ -2883,7 +2886,7 @@ PrefabInstance:
         type: 3}
       propertyPath: horizontalSprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6c2e52112dbfd264dbbdd9f5d7b1737f,
+      objectReference: {fileID: 21300000, guid: d0a5e620afb680e45ada3890372e73ca,
         type: 3}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -2895,6 +2898,11 @@ PrefabInstance:
       propertyPath: critSFX
       value: 
       objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: nickname
+      value: Joe
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -2914,7 +2922,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 76fb20b4270cc3047af3622c82bd9776,
+      objectReference: {fileID: 21300000, guid: 8507194148a49264fada41bba4ec1b0e,
         type: 3}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -3102,6 +3110,11 @@ PrefabInstance:
       propertyPath: critSFX
       value: 
       objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: nickname
+      value: Train Dummy
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -3321,6 +3334,11 @@ PrefabInstance:
       propertyPath: critSFX
       value: 
       objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: nickname
+      value: Tulius
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -3355,7 +3373,12 @@ PrefabInstance:
     - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: textHeight
-      value: 400
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507189293398817769, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
@@ -3523,6 +3546,11 @@ PrefabInstance:
       propertyPath: critSFX
       value: 
       objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: nickname
+      value: Flow
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -3557,7 +3585,12 @@ PrefabInstance:
     - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: textHeight
-      value: 350
+      value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507189293398817769, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
@@ -3725,6 +3758,11 @@ PrefabInstance:
       propertyPath: critSFX
       value: 
       objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: nickname
+      value: Wezz
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Sprite
@@ -3759,7 +3797,7 @@ PrefabInstance:
     - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: textHeight
-      value: 300
+      value: 250
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
@@ -4134,6 +4172,11 @@ PrefabInstance:
       propertyPath: critSFX
       value: 
       objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: nickname
+      value: Crug
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -4188,7 +4231,7 @@ PrefabInstance:
     - target: {fileID: 439867028889674652, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Name
-      value: Warrior 2x Attack
+      value: Warrior Strong
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -4336,6 +4379,11 @@ PrefabInstance:
       propertyPath: critSFX
       value: 
       objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: nickname
+      value: Laplace
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -4538,6 +4586,11 @@ PrefabInstance:
       propertyPath: critSFX
       value: 
       objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: nickname
+      value: Shadow
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Sprite
@@ -4573,6 +4626,11 @@ PrefabInstance:
         type: 3}
       propertyPath: textHeight
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507189293398817769, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
@@ -4745,6 +4803,11 @@ PrefabInstance:
       propertyPath: critSFX
       value: 
       objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: nickname
+      value: Tandra
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -4947,6 +5010,11 @@ PrefabInstance:
       propertyPath: critSFX
       value: 
       objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: nickname
+      value: Haskell
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -5149,6 +5217,11 @@ PrefabInstance:
       propertyPath: critSFX
       value: 
       objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: nickname
+      value: Freya
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -5183,7 +5256,7 @@ PrefabInstance:
     - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: textHeight
-      value: 250
+      value: 300
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
@@ -5351,6 +5424,11 @@ PrefabInstance:
       propertyPath: critSFX
       value: 
       objectReference: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: nickname
+      value: Random Card
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -5391,6 +5469,16 @@ PrefabInstance:
         type: 3}
       propertyPath: textHeight
       value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 1959508595210334821, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2388426719636904819, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2446027511490683668, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}

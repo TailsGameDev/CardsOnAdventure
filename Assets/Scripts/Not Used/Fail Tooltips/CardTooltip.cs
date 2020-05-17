@@ -2,6 +2,7 @@
 
 namespace NotUsed
 {
+   /* 
     public class CardTooltip : TooltipSetter
     {
         [SerializeField]
@@ -14,4 +15,5 @@ namespace NotUsed
             base.OnPointerClicked();
         }
     }
+ */   
 }

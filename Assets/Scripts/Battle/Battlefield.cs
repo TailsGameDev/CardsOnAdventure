@@ -249,7 +249,11 @@ public class Battlefield : CardsHolder
     {
         for (int i = 0; i < cards.Length; i++)
         {
-            protectionVFXtoEachCard[i].SetActive( cards[i] != null && IsThereACardInFrontOf(i) );
+            protectionVFXtoEachCard[i].SetActive(cards[i] != null && IsThereACardInFrontOf(i));
+            if (cards[i] != null)
+            {
+                cards[i].SetProtectionIconActive( IsThereACardInFrontOf(i) );
+            }
         }
     }
     public void HideAllProtectionVFX()
@@ -257,6 +261,10 @@ public class Battlefield : CardsHolder
         for (int i = 0; i < cards.Length; i++)
         {
             protectionVFXtoEachCard[i].SetActive(false);
+            if (cards[i] != null)
+            {
+                cards[i].SetProtectionIconActive(false);
+            }
         }
     }
     public void MakeProtectionEvidentOnSelectedIfNeeded(bool attackerIgnoresBlock)
@@ -267,6 +275,7 @@ public class Battlefield : CardsHolder
         if (IsThereACardInFrontOf(selectedIndex) && !attackerIgnoresBlock && !attackWillBeBlocked)
         {
             StartCoroutine(MakeProtectionEvident(selectedIndex));
+            cards[selectedIndex].MakeProtectionEvident();
         }
     }
     private IEnumerator MakeProtectionEvident(int selectedIndex)

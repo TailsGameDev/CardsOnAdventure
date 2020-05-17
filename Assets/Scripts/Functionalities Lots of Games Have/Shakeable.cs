@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Shakeable : MonoBehaviour
@@ -16,9 +17,15 @@ public class Shakeable : MonoBehaviour
     [SerializeField]
     private bool timeCanStop = true;
 
+    private int shakeTokens = 0;
+
     public void Shake()
     {
-        StartCoroutine(shake());
+        shakeTokens++;
+        if (shakeTokens == 1)
+        {
+            StartCoroutine(shake());
+        }
     }
     private IEnumerator shake()
     {
@@ -69,7 +76,9 @@ public class Shakeable : MonoBehaviour
         yield return null;
         transform.position = points[0];
 
-        if (infinite)
+        shakeTokens--;
+
+        if (infinite || shakeTokens > 0)
         {
             transform.position = transform.parent.position;
             transform.rotation = Quaternion.identity;
