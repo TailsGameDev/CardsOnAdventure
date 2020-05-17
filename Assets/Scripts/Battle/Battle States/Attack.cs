@@ -203,7 +203,7 @@ public class Attack : BattleState
     private bool HandleUselessAttacks()
     {
         Card myCard = attackerBattlefield.GetSelectedCard();
-        bool isUseless = myCard.AttackPower == 1 && opponentBattleField.IsThereACardInFrontOf(opponentBattleField.GetSelectedIndex());
+        bool isUseless = !myCard.IgnoreOpponentsBlock && myCard.AttackPower == 1 && opponentBattleField.IsThereACardInFrontOf(opponentBattleField.GetSelectedIndex());
 
         if (currentBattleStatesFactory == playerBattleStatesFactory)
         {

@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &16537284
 RectTransform:
   m_ObjectHideFlags: 0
@@ -341,6 +341,7 @@ MonoBehaviour:
   - {fileID: 492105814}
   antecessors:
   - {fileID: 1240995700}
+  canBeRevisited: 0
 --- !u!1 &40158699
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,6 +456,7 @@ MonoBehaviour:
   - {fileID: 1150730506}
   antecessors:
   - {fileID: 170018927}
+  canBeRevisited: 0
 --- !u!224 &52829780
 RectTransform:
   m_ObjectHideFlags: 0
@@ -817,6 +819,7 @@ MonoBehaviour:
   - {fileID: 964956666}
   antecessors:
   - {fileID: 1398395369}
+  canBeRevisited: 0
 --- !u!224 &170018928
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1586,6 +1589,7 @@ MonoBehaviour:
   - {fileID: 492105814}
   antecessors:
   - {fileID: 1077831753}
+  canBeRevisited: 0
 --- !u!114 &292410717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1754,6 +1758,7 @@ MonoBehaviour:
   - {fileID: 492105814}
   antecessors:
   - {fileID: 1037450157}
+  canBeRevisited: 0
 --- !u!224 &452572279
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2749,6 +2754,7 @@ MonoBehaviour:
   antecessors:
   - {fileID: 833321641}
   - {fileID: 1532375348}
+  canBeRevisited: 1
 --- !u!1 &719417624
 GameObject:
   m_ObjectHideFlags: 0
@@ -2862,6 +2868,7 @@ MonoBehaviour:
   - {fileID: 492105814}
   antecessors:
   - {fileID: 1841749205}
+  canBeRevisited: 0
 --- !u!114 &826160452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3087,6 +3094,7 @@ MonoBehaviour:
   antecessors:
   - {fileID: 1885720381}
   - {fileID: 826160451}
+  canBeRevisited: 0
 --- !u!1 &836395212
 GameObject:
   m_ObjectHideFlags: 0
@@ -4259,6 +4267,7 @@ MonoBehaviour:
   - {fileID: 173994908}
   antecessors:
   - {fileID: 681631208}
+  canBeRevisited: 0
 --- !u!114 &1037450158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4637,6 +4646,7 @@ MonoBehaviour:
   possiblePlayLvlBtns:
   - {fileID: 1846012495}
   antecessors: []
+  canBeRevisited: 1
 --- !u!224 &1088648566 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
@@ -5281,6 +5291,7 @@ MonoBehaviour:
   - {fileID: 173994908}
   antecessors:
   - {fileID: 681631208}
+  canBeRevisited: 0
 --- !u!1 &1273341579
 GameObject:
   m_ObjectHideFlags: 0
@@ -5365,6 +5376,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -120.60022
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513000122581108895, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 97
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513000122581108895, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 192
+      objectReference: {fileID: 0}
+    - target: {fileID: 8332425509524504380, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -152
+      objectReference: {fileID: 0}
+    - target: {fileID: 8332425509524504380, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 234
       objectReference: {fileID: 0}
     - target: {fileID: 9182716590525795587, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
         type: 3}
@@ -5723,6 +5754,7 @@ MonoBehaviour:
   - {fileID: 452572278}
   - {fileID: 39488278}
   - {fileID: 681631208}
+  canBeRevisited: 0
 --- !u!224 &1398395370
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6140,6 +6172,7 @@ MonoBehaviour:
   - {fileID: 671785474}
   antecessors:
   - {fileID: 292410716}
+  canBeRevisited: 0
 --- !u!1 &1566057369
 GameObject:
   m_ObjectHideFlags: 0
@@ -6982,6 +7015,7 @@ MonoBehaviour:
   - {fileID: 671785474}
   antecessors:
   - {fileID: 1077831753}
+  canBeRevisited: 0
 --- !u!1 &1846012490
 GameObject:
   m_ObjectHideFlags: 0
@@ -7212,6 +7246,7 @@ MonoBehaviour:
   - {fileID: 492105814}
   antecessors:
   - {fileID: 1841749205}
+  canBeRevisited: 0
 --- !u!114 &1885720382
 MonoBehaviour:
   m_ObjectHideFlags: 0

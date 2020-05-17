@@ -31,6 +31,8 @@ public class SpotPrototype : OpenersSuperclass
 
     private bool isTraining = false;
 
+    public bool BelongsToMap { set => belongsToMap = value; }
+
     public void OnBattleSpotBtnClicked()
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();

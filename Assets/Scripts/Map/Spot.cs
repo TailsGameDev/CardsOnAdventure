@@ -23,7 +23,11 @@ public class Spot : MonoBehaviour
 
     private Vector3 originalScale;
 
+    [SerializeField]
+    private bool canBeRevisited = false;
+
     private bool cleared = false;
+
     private bool visited = false;
 
     float t = 1;
@@ -70,6 +74,8 @@ public class Spot : MonoBehaviour
 
         LockIfNeededDownTheGraph();
         HighlightOrObfuscateDownTheGraph();
+        ClearVisitedDownTheGraph();
+        MakeRevisitingPossibleDownTheGraph();
     }
 
     private void BuildFromInfoDownTheGraph(SpotInfo spotInfo, List<SpotInfo> rootAllSpotsInfo)
@@ -83,6 +89,8 @@ public class Spot : MonoBehaviour
         {
             if ( ! antecessors[a].visited )
             {
+                antecessors[a].playLvlBtnIndex = spotInfo.PlayLvlBtnIndex;
+
                 int antecessorIndex = spotInfo.AntecessorsIndexes[a];
                 SpotInfo antecessorSpotInfo = rootAllSpotsInfo[antecessorIndex];
                 antecessors[a].BuildFromInfoDownTheGraph(antecessorSpotInfo, rootAllSpotsInfo);
@@ -178,6 +186,28 @@ public class Spot : MonoBehaviour
         foreach (Spot antecessor in antecessors)
         {
             antecessor.HighlightOrObfuscateDownTheGraph();
+        }
+    }
+
+    private void MakeRevisitingPossibleDownTheGraph()
+    {
+        visited = true;
+
+        if (cleared && canBeRevisited)
+        {
+            
+            Button revisitBtn = Instantiate(possiblePlayLvlBtns[playLvlBtnIndex]);
+            revisitBtn.transform.SetParent( transform.parent, true );
+            revisitBtn.transform.position = transform.position;
+            revisitBtn.GetComponent<SpotPrototype>().BelongsToMap = false;
+        }
+
+        foreach (Spot antecessor in antecessors)
+        {
+            if ( ! antecessor.visited )
+            {
+                antecessor.MakeRevisitingPossibleDownTheGraph();
+            }
         }
     }
 

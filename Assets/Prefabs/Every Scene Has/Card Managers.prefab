@@ -554,9 +554,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fullName: Pierce
-  description: The attack targets a card on the frontline, causing The <full>Attack
-    Power as damage. Also, the card in the back takes half of the <half>Attack Power
-    damage. Ignore Protection.
+  description: The Attack Strikes the enemies in a vertical line, damaging the card
+    in the Front Line and the one in the Back Line. Ignore Protection.
   attackVFX: {fileID: 5748607524574563189, guid: e04241a417a08784aa21e2a0515d265f,
     type: 3}
   defenseVFX: {fileID: 0}
@@ -570,7 +569,7 @@ MonoBehaviour:
   frontlineTargetDamageMultiplier: 1
   backlineTargetDamageMultiplier: 1
   horizontalSpreadDamageMultiplier: 0
-  verticalSpreadDamageMultiplier: 0.5
+  verticalSpreadDamageMultiplier: 1
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
   healItselfBeforeAttack: 0
@@ -744,8 +743,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fullName: Area
-  description: All targets adjacent cards and the target take half of the <half>Attack
-    Power of the mage as damage. Ignore Protection.
+  description: All targets adjacent cards and the target take the <full>Attack Power
+    of the mage as damage. Ignore Protection.
   attackVFX: {fileID: 4034280589589381900, guid: 3d6df27cc8cc1054f8bec7f3c4da598f,
     type: 3}
   defenseVFX: {fileID: 0}
@@ -756,10 +755,10 @@ MonoBehaviour:
   block: 0
   ignoreOpponentBlock: 1
   specialEffect: {fileID: 0}
-  frontlineTargetDamageMultiplier: 0.5
-  backlineTargetDamageMultiplier: 0.5
-  horizontalSpreadDamageMultiplier: 0.5
-  verticalSpreadDamageMultiplier: 0.5
+  frontlineTargetDamageMultiplier: 1
+  backlineTargetDamageMultiplier: 1
+  horizontalSpreadDamageMultiplier: 1
+  verticalSpreadDamageMultiplier: 1
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
   healItselfBeforeAttack: 0
@@ -3284,7 +3283,7 @@ PrefabInstance:
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: attackPower
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -3486,7 +3485,7 @@ PrefabInstance:
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: attackPower
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
