@@ -1310,7 +1310,7 @@ MonoBehaviour:
   specialVFX: {fileID: 3681617339535430214, guid: 30a5c609a76f88c47b46a51912cff810,
     type: 3}
   spawnAboveItselfWhenAttackVFX: {fileID: 0}
-  attackSFX: {fileID: 8300000, guid: 55c5b852ca5a4794b88ae7f90165b176, type: 3}
+  attackSFX: {fileID: 8300000, guid: 25cda2a44b9033c40be808064835a253, type: 3}
   defenseSFX: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
   block: 0
   ignoreOpponentBlock: 0
@@ -1376,7 +1376,7 @@ GameObject:
   - component: {fileID: 4687705844017114666}
   - component: {fileID: 4687705844017114667}
   m_Layer: 0
-  m_Name: 2x Atack
+  m_Name: Strong
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1408,20 +1408,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda320245b022a34cb354de5bd8ccb85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fullName: 2x Attack
-  description: When this card attacks, it automatically strikes again the same target.
+  fullName: Strong
+  description: This card has greater Attack Power and/or Vitality than what is considered
+    the usual.
   attackVFX: {fileID: 5748607524574563189, guid: 98279da2f24c5c14788a1493f4b2b327,
     type: 3}
   defenseVFX: {fileID: 0}
   specialVFX: {fileID: 0}
   spawnAboveItselfWhenAttackVFX: {fileID: 0}
-  attackSFX: {fileID: 8300000, guid: ed51b883ed3f5f44ebe3f4d1d88f3256, type: 3}
+  attackSFX: {fileID: 8300000, guid: 6f4e0e57b18fe7f4488ebcdbae831a26, type: 3}
   defenseSFX: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
   block: 0
   ignoreOpponentBlock: 0
   specialEffect: {fileID: 0}
-  frontlineTargetDamageMultiplier: 2
-  backlineTargetDamageMultiplier: 1
+  frontlineTargetDamageMultiplier: 1
+  backlineTargetDamageMultiplier: 0.5
   horizontalSpreadDamageMultiplier: 0
   verticalSpreadDamageMultiplier: 0
   damageReductionPercentage: 0
@@ -3354,7 +3355,7 @@ PrefabInstance:
     - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: textHeight
-      value: 450
+      value: 400
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
@@ -4297,7 +4298,7 @@ PrefabInstance:
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: attackPower
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
