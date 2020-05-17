@@ -7,7 +7,7 @@
 /// skills and damage ware implemented
 public class DeathCounter
 {
-    private int[] deathCount = new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+    private int[] deathCount = new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
     private int deathCountIndex = 0;
 
     public DeathCounter(int size)

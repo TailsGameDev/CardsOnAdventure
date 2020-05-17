@@ -1663,6 +1663,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 839825219}
+  - component: {fileID: 839825223}
   - component: {fileID: 839825221}
   - component: {fileID: 839825220}
   - component: {fileID: 839825222}
@@ -1763,6 +1764,23 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &839825223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839825218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5edd5526d9d91348a3690ee1e05e39f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentForDynamicUIThatMustAppear: {fileID: 2023802270}
+  skillTipText: {fileID: 1721542321}
+  tipPopUpOpener: {fileID: 156982370}
+  emergenceClearCardHolders: []
+  delayToComeBackFromOtherSpot: 0
 --- !u!1 &854520376
 GameObject:
   m_ObjectHideFlags: 0
@@ -2944,7 +2962,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 426.66653, y: -25}
+  m_AnchoredPosition: {x: 426.6666, y: -25}
   m_SizeDelta: {x: 1573.333, y: -150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1169875299
@@ -4057,7 +4075,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 795, y: -40}
+  m_AnchoredPosition: {x: 795.0002, y: -40}
   m_SizeDelta: {x: 2310, y: -180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1629059484

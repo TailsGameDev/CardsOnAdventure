@@ -71,7 +71,7 @@ public class UIBtn : MonoBehaviour
     }
 
     public void UpToDownBtnVisualAndSoundEffects()
-    {
+{
         ConfigureBtnLooks(clickedSprite, textVerticalDesloc, BtnDownTextColor);
         soundRequisitor.RequestSFX(btnClickSound);
     }
@@ -79,7 +79,6 @@ public class UIBtn : MonoBehaviour
     public virtual void OnPointerUp()
     {
         ConfigureBtnLooks(normalSprite, originalRectTransfmOffsetMaxDotY, BtnUpTextColor);
-        //onUIBtnClicked?.Invoke();
     }
 
     protected void ConfigureBtnLooks(Sprite sprite, float top, Color color)

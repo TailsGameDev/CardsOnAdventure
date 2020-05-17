@@ -53,6 +53,12 @@ public class DeckBuilding : OpenersSuperclass
     {
         Card cardToPlaceInTheDeck = cardsCollection.GetCloneOfSelectedCardAndReduceAmountInDeck();
         deck.PutCardInSelectedIndexThenTeleportToSlot(cardToPlaceInTheDeck);
+
+        Card selected = cardsCollection.GetSelectedCard();
+        Card secondClone = selected.GetClone();
+
+        Destroy(selected.gameObject);
+        cardsCollection.PutCardInIndexThenTeleportToSlot(secondClone, cardsCollection.GetSelectedIndex());
     }
 
     private void GiveBackCardOfDeckToTheCollection()

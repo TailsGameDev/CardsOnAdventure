@@ -71,6 +71,8 @@ public class Shakeable : MonoBehaviour
 
         if (infinite)
         {
+            transform.position = transform.parent.position;
+            transform.rotation = Quaternion.identity;
             Shake();
         }
     }

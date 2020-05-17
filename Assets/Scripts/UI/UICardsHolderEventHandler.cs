@@ -100,12 +100,17 @@ public class UICardsHolderEventHandler : MonoBehaviour
             // Wait for battleFSM to do it's job (like set the parent of the card).
             yield return null;
             yield return null;
-            ChildMaker.AdoptAndScaleAndSmoothlyMoveToParent
-            (
-                cardBeingDragged.transform.parent,
-                cardBeingDragged.GetComponent<RectTransform>(),
-                delayToComeBackFromOtherSpot
-            );
+            // A card can be null because to make the card go back instantly, a controller script should delete
+            // this card, and put a clone in the place the original was.
+            if (cardBeingDragged != null)
+            {
+                ChildMaker.AdoptAndScaleAndSmoothlyMoveToParent
+                (
+                    cardBeingDragged.transform.parent,
+                    cardBeingDragged.GetComponent<RectTransform>(),
+                    delayToComeBackFromOtherSpot
+                );
+            }
         }
 
         HideCardsBeingDraggedTip();
@@ -119,7 +124,7 @@ public class UICardsHolderEventHandler : MonoBehaviour
             ClearSelections(new CardsHolder[] { cardsHolder, cardsHolderBelowMouseOnDrop });
         }
 
-        if (wasDroppedInValidSpot)
+        if (wasDroppedInValidSpot && cardBeingDragged != null)
         {
             yield return new WaitForSeconds(delayToComeBackFromOtherSpot);
         }
