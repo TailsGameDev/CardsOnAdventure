@@ -86,7 +86,7 @@ public class TipDragAndDrop : DragAndDrop
         bool isTheTipOfHowToUseTips = ((TipReceptor)receptor).Title == text.text;
         if (!isTheTipOfHowToUseTips)
         {
-            text.fontStyle = FontStyle.BoldAndItalic;
+            text.fontStyle = FontStyle.Bold;
         }
     }
 

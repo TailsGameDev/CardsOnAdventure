@@ -29,6 +29,17 @@ public abstract class DragAndDrop : MonoBehaviour
         if (snap)
         {
             rectTransform.position = Input.mousePosition + offset;
+
+            IfIsAboveASingleReceptorMakeItBecomeTheReceptor();
+        }
+    }
+    private void IfIsAboveASingleReceptorMakeItBecomeTheReceptor()
+    {
+        int count = 0;
+        ForEachOverlappingValidReceptorDo(() => { count++; });
+        if (count == 1)
+        {
+            receptor = GetValidOverlappingReceptor();
         }
     }
 
@@ -140,22 +151,35 @@ public abstract class DragAndDrop : MonoBehaviour
     #region OnTriggerEXIT (should receptor become null, or something else?
     private void OnTriggerExit2D(Collider2D col)
     {
-        if ( OverlapsNoReceptor() )
+        // if it's not my receptor I'm exiting, there is nothing to do.
+        if (col.GetComponent<DragAndDropReceptor>() == receptor)
         {
-            receptor = null;
-            OnExitedAllReceptors();
-        } 
-        else
-        {
-            // If this does not hold a receptor, or if the overlappingReceptor priority is enough, cache the overlapping receptor
-            DragAndDropReceptor receptorCandidate = GetValidOverlappingReceptor();
-            if (receptor == null)
+            if ( OverlapsNoReceptor() )
             {
-                receptor = receptorCandidate;
-            }
-            else if (receptorCandidate != null && receptor.Priority <= receptorCandidate.Priority)
+                receptor = null;
+                OnExitedAllReceptors();
+            } 
+            else
             {
-                receptor = receptorCandidate;
+                // If this does not hold a receptor, or if the overlappingReceptor priority is enough, cache the overlapping receptor
+                DragAndDropReceptor receptorCandidate = GetValidOverlappingReceptor();
+                if (receptor == null)
+                {
+                    receptor = receptorCandidate;
+                }
+                else if (receptorCandidate != null && receptor.Priority <= receptorCandidate.Priority)
+                {
+                    if (receptorCandidate == receptor)
+                    {
+                        L.ogError(this,"Damn, How can this be overlapping something it exited?");
+                    }
+                    receptor = receptorCandidate;
+                }
+                else
+                {
+                    // I exited my receptor and I'm not overlapping nothing interesting enough
+                    receptor = null;
+                }
             }
         }
     }
