@@ -12,9 +12,10 @@ public class AudioRequisitor : AudioManager
         audioManager.PlaySFX(audioClip);
     }
 
-    public void RequestStopBGM()
+    public void RequestStopBGMAndSetBGMClipToNull()
     {
         audioManager.StopBGM();
+        audioManager.SetBGMClipToNull();
     }
 
     public void RequestStopSFX()

@@ -8,7 +8,7 @@ public class PreMadeAudioRequest
     {
         BGM,
         SFX,
-        SFX_AND_STOP_BGM,
+        SFX_AND_STOP_BGM_AND_SET_BGMCLIP_TO_NULL,
         STOP_SFX,
     }
 
@@ -46,7 +46,7 @@ public class PreMadeAudioRequest
     }
     public static PreMadeAudioRequest CreateSFX_AND_STOP_BGMSoundRequest(AudioClip audioClip, AudioRequisitor requisitor, GameObject assignor)
     {
-        return new PreMadeAudioRequest(audioClip, requisitor, assignor, SoundType.SFX_AND_STOP_BGM);
+        return new PreMadeAudioRequest(audioClip, requisitor, assignor, SoundType.SFX_AND_STOP_BGM_AND_SET_BGMCLIP_TO_NULL);
     }
     public static PreMadeAudioRequest CreateSTOP_SFXAudioRequest(AudioRequisitor requisitor, GameObject assignor)
     {
@@ -64,9 +64,9 @@ public class PreMadeAudioRequest
             case SoundType.SFX:
                 requisitor.RequestSFX(audioClips[r]);
                 break;
-            case SoundType.SFX_AND_STOP_BGM:
+            case SoundType.SFX_AND_STOP_BGM_AND_SET_BGMCLIP_TO_NULL:
                 requisitor.RequestSFX(audioClips[r]);
-                requisitor.RequestStopBGM();
+                requisitor.RequestStopBGMAndSetBGMClipToNull();
                 break;
             case SoundType.STOP_SFX:
                 requisitor.RequestStopSFX();

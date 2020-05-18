@@ -70,6 +70,10 @@ public class TheOnlyAudioManagerInstance : AudioManager
     {
         BGMSource.Stop();
     }
+    public void SetBGMClipToNull()
+    {
+        BGMSource.clip = null;
+    }
 
     public void PlaySFX(AudioClip clip)
     {
