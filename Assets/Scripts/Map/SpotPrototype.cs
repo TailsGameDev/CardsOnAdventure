@@ -31,11 +31,21 @@ public class SpotPrototype : OpenersSuperclass
 
     private bool isTraining = false;
 
+    [SerializeField]
+    private IncidentPopUp[] incidentPopUps = null;
+
     public bool BelongsToMap { set => belongsToMap = value; }
 
     public void OnBattleSpotBtnClicked()
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
+        PrepareBattle();
+        MarkSpotToBeClearedIfBelongsToMap();
+        sceneOpener.OpenBattle();
+    }
+    public void PrepareBattle()
+    {
+        
         if (isTraining)
         {
             CurrentBattleInfo.PrepareBattle(backgroundColor, bgmParam: spotBGM);
@@ -51,8 +61,6 @@ public class SpotPrototype : OpenersSuperclass
             CurrentBattleInfo.PrepareBattle(deckClass, spotBGM);
             DeckPrototypeFactory.PrepareClassDeckForTheEnemy(deckSizeMultiplier, deckClass);
         }
-        MarkSpotToBeClearedIfBelongsToMap();
-        sceneOpener.OpenBattle();
     }
 
     public void OnTrainingSpotBtnClicked()
@@ -62,7 +70,13 @@ public class SpotPrototype : OpenersSuperclass
         OnBattleSpotBtnClicked();
     }
 
-    private void MarkSpotToBeClearedIfBelongsToMap()
+    public void OnIncidentSpotClicked()
+    {
+        MarkSpotToBeClearedIfBelongsToMap();
+        incidentPopUps[Random.Range(0, incidentPopUps.Length)].Open(incidentPopUpOpener);
+    }
+
+    public void MarkSpotToBeClearedIfBelongsToMap()
     {
         if (belongsToMap)
         {

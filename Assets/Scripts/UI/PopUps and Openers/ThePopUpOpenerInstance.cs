@@ -31,6 +31,9 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
     [SerializeField]
     private GameObject customPopUp = null;
 
+    [SerializeField]
+    private GameObject incidentPopUp =  null;
+
     private Stack<GameObject> popUpsStack = new Stack<GameObject>();
 
     public delegate void OnBtnClicked();
@@ -154,6 +157,17 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
         else
         {
             L.ogWarning(this,"Called OpenCustomPopUp but it was already opened");
+        }
+    }
+    public void OpenIncidentPopUp()
+    {
+        if (!incidentPopUp.activeSelf)
+        {
+            OpenPopUp(incidentPopUp);
+        }
+        else
+        {
+            L.ogWarning(this, "Called OpenIncidentPopUp but it was already opened");
         }
     }
     public void OpenTipPopUp(TipSectionData[] tipsData, string title)

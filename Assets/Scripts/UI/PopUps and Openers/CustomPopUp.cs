@@ -30,11 +30,24 @@ public class CustomPopUp : OpenersSuperclass
 
     public delegate void OnBtnClicked();
 
+    [SerializeField]
+    private bool isIncidentPopUp = false;
+
     private void Awake()
     {
-        if (customPopUpOpener == null)
+        if (isIncidentPopUp)
         {
-            customPopUpOpener = this;
+            if (incidentPopUpOpener == null)
+            {
+                incidentPopUpOpener = this;
+            }
+        }
+        else
+        {
+            if (customPopUpOpener == null)
+            {
+                customPopUpOpener = this;
+            }
         }
     }
 
@@ -142,6 +155,18 @@ public class CustomPopUp : OpenersSuperclass
         customCancelBtn.onClicked = onCancel;
         customCancelBtn.gameObject.SetActive( btnsActive );
 
-        openerOfPopUpsMadeInEditor.OpenCustomPopUp();
+        if (isIncidentPopUp)
+        {
+            openerOfPopUpsMadeInEditor.OpenIncidentPopUp();
+        }
+        else
+        {
+            openerOfPopUpsMadeInEditor.OpenCustomPopUp();
+        }
+    }
+
+    public void DeactivateCancel()
+    {
+        customCancelBtn.gameObject.SetActive(false);
     }
 }
