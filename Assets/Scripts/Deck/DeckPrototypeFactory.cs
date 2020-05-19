@@ -13,6 +13,7 @@ public class DeckPrototypeFactory : MonoBehaviour
     private int defaultDeckSize = -1;
 
     protected Card[] allCardPrototypes;
+    protected List<Card> notMonsterPrototypes;
 
     [SerializeField]
     protected Card theRandomCard;
@@ -36,6 +37,7 @@ public class DeckPrototypeFactory : MonoBehaviour
     private void Start()
     {
         PopulateArrayOfAllCardPrototypes();
+        PopulateArrayOfNotMonsterPrototypes();
     }
 
     private void BecomeSingleton()
@@ -65,6 +67,17 @@ public class DeckPrototypeFactory : MonoBehaviour
 
         allCardPrototypes = allCardPrototypesList.ToArray();
     }
+    private void PopulateArrayOfNotMonsterPrototypes()
+    {
+        notMonsterPrototypes = new List<Card>();
+        for (int i = 0; i < allCardPrototypes.Length; i++)
+        {
+            if (allCardPrototypes[i].Classe != Classes.MONSTER)
+            {
+                notMonsterPrototypes.Add(allCardPrototypes[i]);
+            }
+        }
+    }
     #endregion
 
     public static Card GetCloneOfTheRandomCard()
@@ -83,6 +96,7 @@ public class DeckPrototypeFactory : MonoBehaviour
         {
             enemyDeckBuilder = new RandomDeckBuilder(DefaultDeckSize);
         }
+
         return ReplaceTheRandomCards( enemyDeckBuilder.GetDeck() );
     }
     #region Public Prepare XXXX Deck For The Enemy
@@ -94,9 +108,17 @@ public class DeckPrototypeFactory : MonoBehaviour
     {
         enemyDeckBuilder = new RandomDeckBuilder(Mathf.CeilToInt(DefaultDeckSize * sizeMultiplier));
     }
-    public static void PrepareClassDeckForTheEnemy(float sizeMultiplier, Classes classe)
+    public static void PrepareModifiedSizeRandomDeckWithoutMonstersForTheEnemy(float sizeMultiplier)
+    {
+        enemyDeckBuilder = new NoMonstersDeckBuilder(Mathf.CeilToInt(DefaultDeckSize * sizeMultiplier));
+    }
+    public static void PrepareHalfClassDeckForTheEnemy(float sizeMultiplier, Classes classe)
     {
         enemyDeckBuilder = new HalfRandomDeckBuilder(Mathf.CeilToInt(DefaultDeckSize * sizeMultiplier), classe);
+    }
+    public static void PrepareFullClassDeckForTheEnemy(float sizeMultiplier, Classes classe)
+    {
+        enemyDeckBuilder = new FullClassDeckBuilder(Mathf.CeilToInt(DefaultDeckSize * sizeMultiplier), classe);
     }
     #endregion
 
@@ -108,6 +130,8 @@ public class DeckPrototypeFactory : MonoBehaviour
         DeckBuilder.Shuffle(ref playerDeck);
 
         playerDeck = ReplaceTheRandomCards(playerDeck);
+
+        playerDeck = ReplaceMonsters(playerDeck);
 
         return ApplyPlayerBonuses(playerDeck);
     }
@@ -147,10 +171,29 @@ public class DeckPrototypeFactory : MonoBehaviour
 
         return playerDeck;
     }
+    private static Card[] ReplaceMonsters(Card[] playerDeck)
+    {
+        for (int i = 0; i < playerDeck.Length; i++)
+        {
+            if (playerDeck[i].Classe == Classes.MONSTER)
+            {
+                Destroy(playerDeck[i].gameObject);
+                playerDeck[i] = GetCloneFromNotMonsterPrototypesRandomly();
+            }
+        }
+
+        return playerDeck;
+    }
     private static Card GetCloneOfCardFromPrototypesRandomly()
     {
         Card[] prototypes = deckPrototypeFactory.allCardPrototypes;
         int randomIndex = UnityEngine.Random.Range(0, prototypes.Length);
+        return prototypes[randomIndex].GetClone();
+    }
+    private static Card GetCloneFromNotMonsterPrototypesRandomly()
+    {
+        List<Card> prototypes = deckPrototypeFactory.notMonsterPrototypes;
+        int randomIndex = UnityEngine.Random.Range(0, prototypes.Count);
         return prototypes[randomIndex].GetClone();
     }
     private static Card[] ApplyPlayerBonuses(Card[] playerDeck)
@@ -270,11 +313,13 @@ public class DeckPrototypeFactory : MonoBehaviour
         protected int size;
         protected Card[] deck;
         protected readonly Card[] allCardPrototypes;
+        protected readonly List<Card> notMonsterPrototypes;
 
         public DeckBuilder(int size)
         {
             this.size = size;
             allCardPrototypes = deckPrototypeFactory.allCardPrototypes;
+            notMonsterPrototypes = deckPrototypeFactory.notMonsterPrototypes;
         }
 
         public abstract Card[] GetDeck();

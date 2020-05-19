@@ -23,6 +23,9 @@ public class SpotPrototype : OpenersSuperclass
     private float deckSizeMultiplier = 0;
 
     [SerializeField]
+    private bool fillWholeDeckWithClass = false;
+
+    [SerializeField]
     private AudioClip spotBGM = null;
     [SerializeField]
     private AudioClip winSound = null;
@@ -54,12 +57,19 @@ public class SpotPrototype : OpenersSuperclass
         else if (deckClass == Classes.NOT_A_CLASS)
         {
             CurrentBattleInfo.PrepareBattle(backgroundColor, bgmParam: spotBGM);
-            DeckPrototypeFactory.PrepareModifiedSizeRandomDeckForTheEnemy(deckSizeMultiplier);
+            DeckPrototypeFactory.PrepareModifiedSizeRandomDeckWithoutMonstersForTheEnemy(deckSizeMultiplier);
         }
         else
         {
             CurrentBattleInfo.PrepareBattle(deckClass, spotBGM);
-            DeckPrototypeFactory.PrepareClassDeckForTheEnemy(deckSizeMultiplier, deckClass);
+            if (fillWholeDeckWithClass)
+            {
+                DeckPrototypeFactory.PrepareFullClassDeckForTheEnemy(deckSizeMultiplier, deckClass);
+            }
+            else
+            {
+                DeckPrototypeFactory.PrepareHalfClassDeckForTheEnemy(deckSizeMultiplier, deckClass);
+            }
         }
     }
 

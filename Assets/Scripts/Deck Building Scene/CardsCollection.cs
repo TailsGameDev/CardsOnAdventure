@@ -51,6 +51,15 @@ public class CardsCollection : DynamicSizeScrollableCardHolder
 
             amountOfEachCard[i] = amount;
         }
+
+        // Don't allow the player to fight alongside monsters (yet)
+        for (int i = 1; i < cards.Length; i++)
+        {
+            if (cards[i].Classe == Classes.MONSTER)
+            {
+                amountOfEachCard[i] = 0;
+            }
+        }
     }
     private void PopulateCardAmountTexts()
     {

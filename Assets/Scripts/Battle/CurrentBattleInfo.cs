@@ -3,7 +3,7 @@
 public class CurrentBattleInfo
 {
     protected static Color backgroundColor;
-    protected static Classes masterClass;
+    protected static Classes enemyDeckClass;
     protected static AudioClip bgm;
 
     public static void PrepareBattle(Classes masterClassParam = Classes.NOT_A_CLASS, AudioClip bgmParam = null)
@@ -14,13 +14,13 @@ public class CurrentBattleInfo
     public static void PrepareBattle(Color backgroundColorParam, Classes masterClassParam = Classes.NOT_A_CLASS, AudioClip bgmParam = null)
     {
         backgroundColor = masterClassParam == Classes.NOT_A_CLASS ? backgroundColorParam : ClassInfo.GetColorOfClass(masterClassParam);
-        masterClass = masterClassParam;
+        enemyDeckClass = masterClassParam;
         bgm = bgmParam;
     }
 
     public static bool IsMasterBattle()
     {
-        return masterClass != Classes.NOT_A_CLASS;
+        return enemyDeckClass != Classes.NOT_A_CLASS && enemyDeckClass != Classes.MONSTER;
     }
 
 }

@@ -62,13 +62,13 @@ public class EndGame : BattleState
                             customPopUpOpener.OpenDisplayingCardsOfClass(
                                 title: "You beat a Master",
                                 warningMessage: "<color=#FFFFFF>And then you 'borrowed' some of their equipment</color>" +
-                                   Formater.Paint(" ALL YOUR " + masterClass + " CARDS WILL BE BUFFED. PLEASE CHOOSE:", backgroundColor),
+                                   Formater.Paint(" ALL YOUR " + enemyDeckClass + " CARDS WILL BE BUFFED. PLEASE CHOOSE:", backgroundColor),
                                 confirmBtnMessage: "+1 Vitality",
                                 cancelBtnMessage: "+1 Attack Power",
                                 onConfirm: ImproveVitalityThenSeeMap,
                                 onCancel: ImproveAttackPowerThenSeeMap,
                                 victoryBGMRequest,
-                                masterClass
+                                enemyDeckClass
                             );
                         }
                         else
@@ -115,12 +115,12 @@ public class EndGame : BattleState
     }
     private void ImproveAttackPowerThenSeeMap()
     {
-        ClassInfo.GiveAttackPowerBonusToClass(masterClass);
+        ClassInfo.GiveAttackPowerBonusToClass(enemyDeckClass);
         QuitBattleAndGoToMap();
     }
     private void ImproveVitalityThenSeeMap()
     {
-        ClassInfo.GiveVitalityBonusToClass(masterClass);
+        ClassInfo.GiveVitalityBonusToClass(enemyDeckClass);
         QuitBattleAndGoToMap();
     }
     private void GoBackInTime()
