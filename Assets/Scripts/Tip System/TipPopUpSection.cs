@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class TipPopUpSection : MonoBehaviour
@@ -13,14 +11,21 @@ public class TipPopUpSection : MonoBehaviour
 
     public void PopulateSection(TipSectionData tipSectionData)
     {
-        backgroundImage.sprite = tipSectionData.background;
-        text.text = tipSectionData.message;
+        Color c = tipSectionData.color;
+        Color color = c;
+        // Change the default color from 'transparent' to white
+        if (c.r + c.g + c.b + c.a < 0.01)
+        {
+            color = Color.white;
+        }
 
-        // If there is an Image, make it's colors appear. Otherwise it should mantain the default color.
-        // The default color should be set in editor to alpha == 0 or equals to the pop-up background
         if (tipSectionData.background != null)
         {
-            backgroundImage.color = Color.white;
-        } 
+            backgroundImage.sprite = tipSectionData.background;
+            backgroundImage.color = color;
+        }
+
+        text.text = tipSectionData.message;
+        text.color = color;
     }
 }

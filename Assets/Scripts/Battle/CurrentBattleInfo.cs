@@ -5,22 +5,18 @@ public class CurrentBattleInfo
     protected static Color backgroundColor;
     protected static Classes enemyDeckClass;
     protected static AudioClip bgm;
+    protected static bool IsMasterBattle;
 
-    public static void PrepareBattle(Classes masterClassParam = Classes.NOT_A_CLASS, AudioClip bgmParam = null)
+    public static void PrepareBattle(bool isMasterBattle = false, Classes masterClassParam = Classes.NOT_A_CLASS, AudioClip bgmParam = null)
     {
-        PrepareBattle(Color.gray, masterClassParam, bgmParam);
+        PrepareBattle(Color.gray, isMasterBattle, masterClassParam, bgmParam);
     }
 
-    public static void PrepareBattle(Color backgroundColorParam, Classes masterClassParam = Classes.NOT_A_CLASS, AudioClip bgmParam = null)
+    public static void PrepareBattle(Color backgroundColorParam, bool isMasterBattle = false, Classes masterClassParam = Classes.NOT_A_CLASS, AudioClip bgmParam = null)
     {
         backgroundColor = masterClassParam == Classes.NOT_A_CLASS ? backgroundColorParam : ClassInfo.GetColorOfClass(masterClassParam);
         enemyDeckClass = masterClassParam;
         bgm = bgmParam;
+        IsMasterBattle = isMasterBattle;
     }
-
-    public static bool IsMasterBattle()
-    {
-        return enemyDeckClass != Classes.NOT_A_CLASS && enemyDeckClass != Classes.MONSTER;
-    }
-
 }

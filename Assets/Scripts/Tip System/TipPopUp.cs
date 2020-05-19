@@ -75,12 +75,10 @@ public class TipPopUp : MonoBehaviour
 
         storedSections[i] = newSection;
     }
-
     private TipPopUpSection CloneDefaultSection()
     {
         return Instantiate(tooltipSectionPrototype).GetComponent<TipPopUpSection>();
     }
-
     private void ConfigureSection(TipPopUpSection newSection, TipSectionData sectionData)
     {
         newSection.PopulateSection(sectionData);
@@ -90,7 +88,6 @@ public class TipPopUp : MonoBehaviour
         
         newSection.gameObject.SetActive(true);
     }
-
     private void SetRectTransformHeight(RectTransform rt, float height)
     {
         Vector2 sizeDelta = rt.sizeDelta;

@@ -760,10 +760,12 @@ MonoBehaviour:
   - message: 
     background: {fileID: 21300000, guid: 3211e5be97b69fb4f96f61c288f6bf33, type: 3}
     height: 648
+    color: {r: 0.5529412, g: 0.82745105, b: 0.18823531, a: 1}
   - message: Fight with a deck composed mainly by Rogues. If you win, all your Rogues
       get +1 bonus Vitality or Attack Power.
     background: {fileID: 0}
     height: 500
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &112996337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -781,6 +783,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 3
+  isMasterBattle: 1
   deckSizeMultiplier: 1
   fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: ce325b6a1052d204eb6ef0aa21d3333d, type: 3}
@@ -1139,10 +1142,12 @@ MonoBehaviour:
   - message: 
     background: {fileID: 21300000, guid: ff874a0dbc8fb654cbb4297c72991e10, type: 3}
     height: 648
+    color: {r: 0.9333334, g: 0.5686275, b: 0.5686275, a: 1}
   - message: Battle against a total random enemy deck, which size is bigger than
       yours.
     background: {fileID: 0}
     height: 500
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!58 &173994913
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1176,6 +1181,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 0, b: 0, a: 1}
   deckClass: 0
+  isMasterBattle: 0
   deckSizeMultiplier: 1.5
   fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: d4e1263996b6d8d4f99ca89f25c19462, type: 3}
@@ -1367,10 +1373,12 @@ MonoBehaviour:
   - message: 
     background: {fileID: 21300000, guid: 7b42eeb76cecbb84481edd0c6f056bcf, type: 3}
     height: 700
+    color: {r: 0, g: 0, b: 0, a: 0}
   - message: Battle against a deck of training dummies, to test some skills, and
       get familiar with the battle rules.
     background: {fileID: 0}
     height: 500
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &205767121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1478,6 +1486,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 0.40784314, g: 0.4117647, b: 0.5372549, a: 1}
   deckClass: 0
+  isMasterBattle: 0
   deckSizeMultiplier: -1
   fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: 88019e371c1ef494fb82795f44f95422, type: 3}
@@ -1847,7 +1856,7 @@ GameObject:
   - component: {fileID: 292410718}
   - component: {fileID: 292410717}
   m_Layer: 5
-  m_Name: Master Southwest
+  m_Name: Incident Southwest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1868,10 +1877,7 @@ MonoBehaviour:
   mapName: First
   playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
-  - {fileID: 1566057373}
-  - {fileID: 958992378}
-  - {fileID: 112996334}
-  - {fileID: 492105814}
+  - {fileID: 1240832968}
   antecessors:
   - {fileID: 1283136552}
   - {fileID: 1292008157}
@@ -1889,7 +1895,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9607844, g: 0.9490197, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -2932,10 +2938,12 @@ MonoBehaviour:
   - message: 
     background: {fileID: 21300000, guid: a9a1872f66a91e847a45bc7964464ffa, type: 3}
     height: 648
+    color: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
   - message: Fight with a deck composed mainly by Guardians. If you win, all your
       Guardians get +1 bonus Vitality or Attack Power.
     background: {fileID: 0}
     height: 500
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &492105820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2953,6 +2961,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 4
+  isMasterBattle: 1
   deckSizeMultiplier: 1
   fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: ce325b6a1052d204eb6ef0aa21d3333d, type: 3}
@@ -3373,10 +3382,12 @@ MonoBehaviour:
   - message: 
     background: {fileID: 21300000, guid: ff874a0dbc8fb654cbb4297c72991e10, type: 3}
     height: 648
+    color: {r: 0, g: 0, b: 0, a: 0}
   - message: Battle against a total random enemy deck, which size is the same as
       yours.
     background: {fileID: 0}
     height: 500
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!58 &671785476
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3410,6 +3421,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 0
+  isMasterBattle: 0
   deckSizeMultiplier: 1
   fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: 3485bb149c5c70643947d901273aebc5, type: 3}
@@ -3914,10 +3926,12 @@ MonoBehaviour:
   - message: 
     background: {fileID: 21300000, guid: ff874a0dbc8fb654cbb4297c72991e10, type: 3}
     height: 648
+    color: {r: 0.69803923, g: 0.7058824, b: 0.8862745, a: 1}
   - message: Battle against a deck full of monster cards, which size is the same
       as yours.
     background: {fileID: 0}
     height: 500
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &822150035
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3935,6 +3949,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 0.40784314, g: 0.4117647, b: 0.5372549, a: 1}
   deckClass: 7
+  isMasterBattle: 0
   deckSizeMultiplier: 1
   fillWholeDeckWithClass: 1
   spotBGM: {fileID: 8300000, guid: 3485bb149c5c70643947d901273aebc5, type: 3}
@@ -4924,10 +4939,12 @@ MonoBehaviour:
   - message: 
     background: {fileID: 21300000, guid: 16801cd1636fd584181648ed6079c694, type: 3}
     height: 648
+    color: {r: 0.9490197, g: 0.2784314, b: 0.14509805, a: 1}
   - message: Fight with a deck composed mainly by Warriors. If you win, all your
       Warriors get +1 bonus Vitality or Attack Power.
     background: {fileID: 0}
     height: 500
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &958992381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4945,6 +4962,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 2
+  isMasterBattle: 1
   deckSizeMultiplier: 1
   fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: ce325b6a1052d204eb6ef0aa21d3333d, type: 3}
@@ -5100,10 +5118,12 @@ MonoBehaviour:
   - message: 
     background: {fileID: 21300000, guid: b23239c315d377e449b57f9a9c37d78c, type: 3}
     height: 648
+    color: {r: 0, g: 0, b: 0, a: 0}
   - message: Hard battle against a total random enemy deck, which size is considerably
       bigger than yours. Also, it is the last battle of the current adventure.
     background: {fileID: 0}
     height: 700
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!58 &964956668
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5137,6 +5157,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 0, g: 0, b: 0, a: 1}
   deckClass: 0
+  isMasterBattle: 0
   deckSizeMultiplier: 1.7
   fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: b021fc8b80649dc49b4c4caf546517a8, type: 3}
@@ -5416,7 +5437,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -33.91516}
+  m_AnchoredPosition: {x: 0, y: -33.916016}
   m_SizeDelta: {x: 717, y: 243}
   m_Pivot: {x: 0.5, y: 0.7}
 --- !u!114 &1035303618
@@ -5473,10 +5494,12 @@ MonoBehaviour:
   - message: '                   Cardland'
     background: {fileID: 21300000, guid: 609eb297ae42cc341a903a845a4ff4ca, type: 3}
     height: 100
+    color: {r: 0, g: 0, b: 0, a: 0}
   - message: It's the name of this land. A place where the son cries, and the mother
       does not notice.
     background: {fileID: 0}
     height: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!50 &1035303621
 Rigidbody2D:
   serializedVersion: 4
@@ -5729,6 +5752,7 @@ MonoBehaviour:
   - message: 
     background: {fileID: 21300000, guid: d1a5267530b5c614cb17b7af6c0e9f93, type: 3}
     height: 700
+    color: {r: 0, g: 0, b: 0, a: 0}
   - message: "The tavern is a place for the cards to gather. They tell their histories
       one to the other, drink some alcohol, and finally, <color=#1DEFC7>DECIDE WHAT
       CARDS ARE GOING TO STAY IN THE ADVENTURE</color>. Maybe one of them will say:
@@ -5738,6 +5762,7 @@ MonoBehaviour:
       kind of decision, after all?"
     background: {fileID: 0}
     height: 900
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1042082691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5845,6 +5870,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 0
+  isMasterBattle: 0
   deckSizeMultiplier: 0
   fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: 547083a15975fb14c9457001348fa2ad, type: 3}
@@ -6389,12 +6415,14 @@ MonoBehaviour:
   - message: '               <color=#000000>Map labels here!</color>'
     background: {fileID: 21300000, guid: 318a8268be58bcc489f683afa49a0c1b, type: 3}
     height: 250
+    color: {r: 0, g: 0, b: 0, a: 0}
   - message: The labels are below the map, but if you want to know more about each
       type of spot, <color=#9EFA9D>YOU CAN DRAG AND DROP THE " ? "</color>, the Teaching
       Spirit, <color=#9EFA9D>ABOVE THE SPOTS IN THE ACTUAL MAP</color> (not here,
       please!).
     background: {fileID: 0}
     height: 400
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1150730505
 GameObject:
   m_ObjectHideFlags: 0
@@ -6560,10 +6588,12 @@ MonoBehaviour:
   - message: 
     background: {fileID: 21300000, guid: 4a2b0d0ab4b51a6459f78cca0e55f2d8, type: 3}
     height: 700
+    color: {r: 0, g: 0, b: 0, a: 0}
   - message: If you got here, you beat the game, bro! Soon we will add a reward to
       the bravest adventurers, like you!
     background: {fileID: 0}
     height: 500
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1150730512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6581,6 +6611,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 0
+  isMasterBattle: 0
   deckSizeMultiplier: 0
   fillWholeDeckWithClass: 0
   spotBGM: {fileID: 0}
@@ -6663,10 +6694,12 @@ MonoBehaviour:
     background: {fileID: -1913829997170851792, guid: 5c301080d4defc947b41f21c0fd5bca1,
       type: 3}
     height: 700
+    color: {r: 0, g: 0, b: 0, a: 0}
   - message: "It\u2019s a little story, and then you need to make a choice about
       it, then face the consequences of your action."
     background: {fileID: 0}
     height: 900
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1240832967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6684,15 +6717,15 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 0
+  isMasterBattle: 0
   deckSizeMultiplier: 0
   fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: 547083a15975fb14c9457001348fa2ad, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
   incidentPopUps:
-  - {fileID: 329707382}
-  - {fileID: 472032479}
   - {fileID: 566709456}
+  - {fileID: 472032479}
 --- !u!114 &1240832968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7008,7 +7041,7 @@ GameObject:
   - component: {fileID: 1283136551}
   - component: {fileID: 1283136550}
   m_Layer: 5
-  m_Name: Weak Monsters Southwest
+  m_Name: Master Southwest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7046,7 +7079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.40784314, g: 0.4117647, b: 0.5372549, a: 1}
+  m_Color: {r: 0, g: 0.9607844, b: 0.9607844, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7084,7 +7117,10 @@ MonoBehaviour:
   mapName: First
   playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
-  - {fileID: 822150036}
+  - {fileID: 1566057373}
+  - {fileID: 958992378}
+  - {fileID: 112996334}
+  - {fileID: 492105814}
   antecessors:
   - {fileID: 1077831753}
   canBeRevisited: 0
@@ -7191,12 +7227,12 @@ PrefabInstance:
     - target: {fileID: 1193498804994366982, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -120.60022
+      value: -120.59961
       objectReference: {fileID: 0}
     - target: {fileID: 2792320346292305431, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -120.60022
+      value: -120.59961
       objectReference: {fileID: 0}
     - target: {fileID: 7513000122581108895, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
         type: 3}
@@ -7412,7 +7448,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 367, y: 638.97}
+  m_AnchoredPosition: {x: 367, y: 638.9707}
   m_SizeDelta: {x: 617.9, y: 1282.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1360789275
@@ -7685,7 +7721,7 @@ GameObject:
   - component: {fileID: 1399136909}
   - component: {fileID: 1399136908}
   m_Layer: 5
-  m_Name: Weak Monsters Southeast
+  m_Name: Master Very Southeast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7723,7 +7759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3921569, g: 0.39607847, b: 0.5176471, a: 1}
+  m_Color: {r: 0, g: 0.9215687, b: 0.9215687, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -7761,7 +7797,10 @@ MonoBehaviour:
   mapName: First
   playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
-  - {fileID: 822150036}
+  - {fileID: 1566057373}
+  - {fileID: 958992378}
+  - {fileID: 112996334}
+  - {fileID: 492105814}
   antecessors:
   - {fileID: 1077831753}
   canBeRevisited: 0
@@ -7987,6 +8026,7 @@ MonoBehaviour:
   - message: 
     background: {fileID: 21300000, guid: d1a5267530b5c614cb17b7af6c0e9f93, type: 3}
     height: 700
+    color: {r: 0, g: 0, b: 0, a: 0}
   - message: "The tavern is a place for the cards to gather. They tell their histories
       one to the other, drink some alcohol, and finally, <color=#1DEFC7>DECIDE WHAT
       CARDS ARE GOING TO STAY IN THE ADVENTURE</color>. Maybe one of them will say:
@@ -7996,6 +8036,7 @@ MonoBehaviour:
       kind of decision, after all?"
     background: {fileID: 0}
     height: 900
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1516882897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8013,6 +8054,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 0
+  isMasterBattle: 0
   deckSizeMultiplier: 0
   fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: 547083a15975fb14c9457001348fa2ad, type: 3}
@@ -8367,10 +8409,12 @@ MonoBehaviour:
   - message: 
     background: {fileID: 21300000, guid: 2111ab3f944d8184d954b2fbc2a4ac56, type: 3}
     height: 648
+    color: {r: 0.29411766, g: 0.79215693, b: 0.9058824, a: 1}
   - message: Fight with a deck composed mainly by Mages. If you win, all your Mages
       get +1 bonus Vitality or Attack Power.
     background: {fileID: 0}
     height: 500
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1566057376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8388,6 +8432,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 0.29411766, g: 0.79215693, b: 0.9058824, a: 1}
   deckClass: 1
+  isMasterBattle: 1
   deckSizeMultiplier: 1
   fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: ce325b6a1052d204eb6ef0aa21d3333d, type: 3}
@@ -9193,7 +9238,7 @@ GameObject:
   - component: {fileID: 1841749204}
   - component: {fileID: 1841749203}
   m_Layer: 5
-  m_Name: Incident Southeast
+  m_Name: Weak Monster Southeast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9231,7 +9276,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.754717, g: 0.69419724, b: 0.69419724, a: 1}
+  m_Color: {r: 0.69803923, g: 0.7058824, b: 0.8862745, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -9269,7 +9314,7 @@ MonoBehaviour:
   mapName: First
   playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
-  - {fileID: 1240832968}
+  - {fileID: 822150036}
   antecessors:
   - {fileID: 1399136910}
   - {fileID: 1292008157}
@@ -9349,10 +9394,12 @@ MonoBehaviour:
   - message: 
     background: {fileID: 21300000, guid: 7b42eeb76cecbb84481edd0c6f056bcf, type: 3}
     height: 700
+    color: {r: 0, g: 0, b: 0, a: 0}
   - message: Battle against a deck of training dummies, to test some skills, and
       get familiar with the battle rules.
     background: {fileID: 0}
     height: 500
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &1846012494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9370,6 +9417,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 0.40784314, g: 0.4117647, b: 0.5372549, a: 1}
   deckClass: 0
+  isMasterBattle: 0
   deckSizeMultiplier: -1
   fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: 88019e371c1ef494fb82795f44f95422, type: 3}
@@ -10216,10 +10264,12 @@ MonoBehaviour:
   - message: 
     background: {fileID: 21300000, guid: ff874a0dbc8fb654cbb4297c72991e10, type: 3}
     height: 648
+    color: {r: 0.6313726, g: 0.03137255, b: 0.6117647, a: 1}
   - message: Battle against a deck full of monster cards, which size is bigger than
       yours.
     background: {fileID: 0}
     height: 500
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &2119048983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10237,6 +10287,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 0.40784314, g: 0.4117647, b: 0.5372549, a: 1}
   deckClass: 7
+  isMasterBattle: 0
   deckSizeMultiplier: 1.5
   fillWholeDeckWithClass: 1
   spotBGM: {fileID: 8300000, guid: d4e1263996b6d8d4f99ca89f25c19462, type: 3}

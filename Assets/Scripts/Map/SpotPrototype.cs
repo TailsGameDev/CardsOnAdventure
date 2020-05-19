@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Transactions;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 
 public class SpotPrototype : OpenersSuperclass
 {
@@ -18,6 +14,9 @@ public class SpotPrototype : OpenersSuperclass
 
     [SerializeField]
     private Classes deckClass = Classes.NOT_A_CLASS;
+
+    [SerializeField]
+    private bool isMasterBattle = false;
 
     [SerializeField]
     private float deckSizeMultiplier = 0;
@@ -61,7 +60,7 @@ public class SpotPrototype : OpenersSuperclass
         }
         else
         {
-            CurrentBattleInfo.PrepareBattle(deckClass, spotBGM);
+            CurrentBattleInfo.PrepareBattle(isMasterBattle, deckClass, spotBGM);
             if (fillWholeDeckWithClass)
             {
                 DeckPrototypeFactory.PrepareFullClassDeckForTheEnemy(deckSizeMultiplier, deckClass);

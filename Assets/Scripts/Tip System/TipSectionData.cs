@@ -9,6 +9,7 @@ public struct TipSectionData
     public string message;
     public Sprite background;
     public float height;
+    public Color color;
     private const float DEFAULT_HEIGHT = 972.0f;
 
     public TipSectionData(string message)
@@ -16,6 +17,7 @@ public struct TipSectionData
         this.message = message;
         this.background = null;
         this.height = DEFAULT_HEIGHT;
+        this.color = Color.white;
     }
 
     public TipSectionData(Sprite background)
@@ -23,6 +25,7 @@ public struct TipSectionData
         this.message = "";
         this.background = background;
         this.height = DEFAULT_HEIGHT;
+        this.color = Color.white;
     }
 
     public TipSectionData(Sprite background, float height)
@@ -30,6 +33,7 @@ public struct TipSectionData
         this.message = "";
         this.background = background;
         this.height = height;
+        this.color = Color.white;
     }
 
     public TipSectionData(string message, float height)
@@ -37,6 +41,7 @@ public struct TipSectionData
         this.message = message;
         this.background = null;
         this.height = height;
+        this.color = Color.white;
     }
 
     public TipSectionData(string message, Sprite background, float height)
@@ -44,5 +49,6 @@ public struct TipSectionData
         this.message = message;
         this.background = background;
         this.height = height;
+        this.color = Color.white;
     }
 }

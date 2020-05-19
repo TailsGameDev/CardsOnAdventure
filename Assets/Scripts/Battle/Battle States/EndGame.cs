@@ -56,7 +56,7 @@ public class EndGame : BattleState
 
                     if (winnerFactory == playerBattleStatesFactory)
                     {
-                        if (IsMasterBattle())
+                        if ( CurrentBattleInfo.IsMasterBattle )
                         {
                             sceneCanvas.SetActive(false);
                             customPopUpOpener.OpenDisplayingCardsOfClass(

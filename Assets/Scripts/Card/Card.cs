@@ -121,7 +121,7 @@ public class Card : SkillsMediatorUser
         overhealedColor = ClassInfo.GetColorOfClass(Classes.CLERIC);
         SetVitalityAndUpdateTextLooks(Vitality);
     }
-    private void SetInitialAndLimitVitality()
+    public void SetInitialAndLimitVitality()
     {
         initialVitality = vitality;
         vitalityLimit = vitality + vitality;
