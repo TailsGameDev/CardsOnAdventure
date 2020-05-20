@@ -90,7 +90,7 @@ public class DeckBuilding : OpenersSuperclass
 
     private IEnumerator SaveAndQuitCoroutine()
     {
-        openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
+        openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrueAndDeactivateTips();
         yield return null;
         Card[] cards = deck.GetCards();
         DeckPrototypeFactory.PrepareManuallyBuiltDeckForThePlayerAndSaveInStorage(cards);

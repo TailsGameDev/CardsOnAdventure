@@ -34,12 +34,16 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
     [SerializeField]
     private GameObject incidentPopUp =  null;
 
+    [SerializeField]
+    private GameObject tipSystem = null;
+
     private Stack<GameObject> popUpsStack = new Stack<GameObject>();
 
     public delegate void OnBtnClicked();
 
     private void Awake()
     {
+        SceneManager.sceneLoaded += OnLoaded;
         if (openerOfPopUpsMadeInEditor == null)
         {
             openerOfPopUpsMadeInEditor = this;
@@ -52,6 +56,16 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
         {
             Destroy(gameObject);
         }
+    }
+
+    void OnLoaded(Scene scene, LoadSceneMode mode)
+    {
+        tipSystem.SetActive(true);
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnLoaded;
     }
 
     private void Start()
@@ -134,9 +148,10 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
 
         OpenTipPopUp( battleRulesContent, title: "Battle Rules" );
     }
-    public void SetLoadingPopUpActiveToTrue()
+    public void SetLoadingPopUpActiveToTrueAndDeactivateTips()
     {
         loadingPopUp.SetActive(true);
+        tipSystem.SetActive(false);
     }
     public void OpenSettingsPopUp()
     {
@@ -144,7 +159,7 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
     }
     public void OpenMapScene()
     {
-        SetLoadingPopUpActiveToTrue();
+        SetLoadingPopUpActiveToTrueAndDeactivateTips();
         CloseAllPopUpsExceptLoading();
         SceneManager.LoadScene("Map");
     }

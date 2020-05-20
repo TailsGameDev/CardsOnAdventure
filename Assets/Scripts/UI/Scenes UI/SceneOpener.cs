@@ -47,7 +47,7 @@ public class SceneOpener : OpenersSuperclass
 
     private IEnumerator OpenSceneCoroutine(string name)
     {
-        openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
+        openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrueAndDeactivateTips();
         openerOfPopUpsMadeInEditor.CloseAllPopUpsExceptLoading();
         yield return null;
         SceneManager.LoadSceneAsync(name);

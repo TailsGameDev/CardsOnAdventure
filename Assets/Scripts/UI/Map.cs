@@ -39,13 +39,16 @@ public class Map : OpenersSuperclass
             CopyDataFromMapsCacheToSceneSpots();
         }
 
+        HandlePersistence();
+    }
+
+    private void Start()
+    {
         if (shouldAskForTip)
         {
             TipDragAndDrop.AskToUseTips();
             shouldAskForTip = false;
         }
-
-        HandlePersistence();
     }
 
     private void BuildSpotsFromZeroThenCacheThem()

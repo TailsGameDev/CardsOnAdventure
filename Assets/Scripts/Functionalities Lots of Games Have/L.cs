@@ -11,7 +11,8 @@ public class L
 
     public static void og(string message, object obj)
     {
-        if (obj.GetType() == typeof(MonoBehaviour))
+        MonoBehaviour o = obj as MonoBehaviour;
+        if (o != null)
         {
             Debug.Log("[" + obj.GetType() + "]" + message, (MonoBehaviour)obj);
         }
@@ -44,7 +45,7 @@ public class L
     }
     public static void ogError(string message, object obj)
     {
-        if (obj.GetType() == typeof(MonoBehaviour))
+        if (obj.GetType().IsAssignableFrom(typeof(MonoBehaviour)))
         {
             Debug.LogError("[" + obj.GetType() + "]" + message, (MonoBehaviour)obj);
         }

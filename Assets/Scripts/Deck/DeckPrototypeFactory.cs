@@ -112,6 +112,10 @@ public class DeckPrototypeFactory : MonoBehaviour
     {
         enemyDeckBuilder = new NoMonstersDeckBuilder(Mathf.CeilToInt(DefaultDeckSize * sizeMultiplier));
     }
+    public static void PrepareMasterDeckForTheEnemy(float sizeMultiplier, Classes classe)
+    {
+        enemyDeckBuilder = new MasterDeckBuilder(Mathf.CeilToInt(DefaultDeckSize * sizeMultiplier), classe);
+    }
     public static void PrepareHalfClassDeckForTheEnemy(float sizeMultiplier, Classes classe)
     {
         enemyDeckBuilder = new HalfRandomDeckBuilder(Mathf.CeilToInt(DefaultDeckSize * sizeMultiplier), classe);

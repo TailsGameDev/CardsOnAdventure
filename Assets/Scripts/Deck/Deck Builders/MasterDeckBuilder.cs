@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-public class MasterDeckBuilder : DeckPrototypeFactory.DeckBuilder
+﻿public class MasterDeckBuilder : DeckPrototypeFactory.DeckBuilder
 {
     private Classes classe;
     public MasterDeckBuilder(int size, Classes classe) : base(size)
@@ -33,11 +31,11 @@ public class MasterDeckBuilder : DeckPrototypeFactory.DeckBuilder
             {
                 if ( i%2 == 0)
                 {
-                    deck[i].AttackPower++;
+                    deck[i].BuffAttackPowerForThisMatch();
                 }
                 else
                 {
-                    deck[i].InconditionalHealing( (i + 1) % 2 );
+                    deck[i].InconditionalHealing( healAmount: 1 );
                     deck[i].SetInitialAndLimitVitality();
                 }
             }

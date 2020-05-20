@@ -84,12 +84,14 @@ public class Spot : MonoBehaviour
 
         cleared = spotInfo.Cleared;
         MakePlayLvlBtnFrom(possiblePlayLvlBtns[spotInfo.PlayLvlBtnIndex]);
+        
+        playLvlBtnIndex = spotInfo.PlayLvlBtnIndex;
 
         for (int a = 0; a < antecessors.Length; a++)
         {
             if ( ! antecessors[a].visited )
             {
-                antecessors[a].playLvlBtnIndex = spotInfo.PlayLvlBtnIndex;
+                //antecessors[a].playLvlBtnIndex = spotInfo.PlayLvlBtnIndex;
 
                 int antecessorIndex = spotInfo.AntecessorsIndexes[a];
                 SpotInfo antecessorSpotInfo = rootAllSpotsInfo[antecessorIndex];
@@ -195,7 +197,6 @@ public class Spot : MonoBehaviour
 
         if (cleared && canBeRevisited)
         {
-            
             Button revisitBtn = Instantiate(possiblePlayLvlBtns[playLvlBtnIndex]);
             revisitBtn.transform.SetParent( transform.parent, true );
             revisitBtn.transform.position = transform.position;

@@ -100,16 +100,23 @@ public class EnemyAI
         bool change0With2 = ChangeCardInFrontWithCardBehind(0, 2);
         bool change1With3 = ChangeCardInFrontWithCardBehind(1, 3);
 
-        yield return WaitForSeconds(aiDelay/2);
+        // Shit Avoidance that you can test to see if is necessary
+        yield return null; yield return null;
+        enemyBattlefield.ClearSelection();
+        yield return null; yield return null;
 
         if (change0With2)
         {
             enemyBattlefield.SetSelectedIndex(0);
-            yield return WaitForSeconds(aiDelay/2);
+            yield return WaitForSeconds(aiDelay / 2);
             enemyBattlefield.SetSelectedIndex(2);
-            yield return WaitForSeconds(aiDelay/2);
+            yield return WaitForSeconds(aiDelay / 2);
         }
 
+        // Shit Avoidance that you can test to see if is necessary
+        yield return null; yield return null;
+        enemyBattlefield.ClearSelection();
+        yield return null; yield return null;
 
         if (change1With3)
         {
@@ -119,7 +126,10 @@ public class EnemyAI
             yield return WaitForSeconds(aiDelay / 2);
         }
 
-        yield return WaitForSeconds(aiDelay / 2);
+        // Shit Avoidance that you can test to see if is necessary
+        yield return null; yield return null;
+        enemyBattlefield.ClearSelection();
+        yield return null; yield return null;
 
         endRepositionBtn.onClicked();
 

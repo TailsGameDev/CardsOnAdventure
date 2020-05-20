@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 0
-  title: Front Line
+  title: <color=#9EFA9D>Front Line</color>
   tipData:
   - message: "I strongly recommend you to keep the cards with more <color=#9EFA9D>Vitality</color>
       in the Front Line, and the ones with great <color=#FD7878>Attack Power</color>
@@ -60,6 +60,7 @@ MonoBehaviour:
       appear in the Attack State."
     background: {fileID: 0}
     height: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!61 &275755619698574557
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -213,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 0
-  title: Front Line
+  title: <color=#FD7878>Back Line</color>
   tipData:
   - message: "I strongly recommend you to keep the cards with more <color=#9EFA9D>Vitality</color>
       in the Front Line, and the ones with great <color=#FD7878>Attack Power</color>
@@ -223,6 +224,7 @@ MonoBehaviour:
       appear in the Attack State."
     background: {fileID: 0}
     height: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!61 &517637908274570788
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -299,7 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 0
-  title: Front Line
+  title: <color=#9EFA9D>Front Line</color>
   tipData:
   - message: "I strongly recommend you to keep the cards with more <color=#9EFA9D>Vitality</color>
       in the Front Line, and the ones with great <color=#FD7878>Attack Power</color>
@@ -309,6 +311,7 @@ MonoBehaviour:
       appear in the Attack State."
     background: {fileID: 0}
     height: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!61 &2353681416642357904
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -464,7 +467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 0
-  title: Front Line
+  title: <color=#FD7878>Back Line</color>
   tipData:
   - message: "I strongly recommend you to keep the cards with more <color=#9EFA9D>Vitality</color>
       in the Front Line, and the ones with great <color=#FD7878>Attack Power</color>
@@ -474,6 +477,7 @@ MonoBehaviour:
       appear in the Attack State."
     background: {fileID: 0}
     height: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!61 &5005489757460577820
 BoxCollider2D:
   m_ObjectHideFlags: 0

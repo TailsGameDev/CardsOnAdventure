@@ -9,6 +9,9 @@ public abstract class DragAndDrop : MonoBehaviour
 
     protected DragAndDropReceptor receptor;
 
+    enum State { NOT_DRAGGING, JUST_START_DRAGGING, IS_DRAGGING};
+    private State state = State.NOT_DRAGGING;
+
     private bool snap;
 
     protected Vector3 originalPosition;
@@ -26,11 +29,39 @@ public abstract class DragAndDrop : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (snap)
+        // Actions Logic
+        switch (state)
         {
-            rectTransform.position = Input.mousePosition + offset;
+            case State.NOT_DRAGGING:
+                break;
+            case State.JUST_START_DRAGGING:
+                break;
+            case State.IS_DRAGGING:
+                {
+                    rectTransform.position = Input.mousePosition + offset;
+                    IfIsAboveASingleReceptorMakeItBecomeTheReceptor();
+                }
+                break;
+        }
 
-            IfIsAboveASingleReceptorMakeItBecomeTheReceptor();
+        // Next State Logic
+        switch (state)
+        {
+            case State.NOT_DRAGGING:
+                if (snap)
+                {
+                    state = State.JUST_START_DRAGGING;
+                }
+                break;
+            case State.JUST_START_DRAGGING:
+                state = State.IS_DRAGGING;
+                break;
+            case State.IS_DRAGGING:
+                if (!snap || Input.GetMouseButtonDown(0))
+                {
+                    state = State.NOT_DRAGGING;
+                }
+                break;
         }
     }
     private void IfIsAboveASingleReceptorMakeItBecomeTheReceptor()

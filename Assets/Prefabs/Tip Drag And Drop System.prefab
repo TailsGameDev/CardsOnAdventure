@@ -699,6 +699,7 @@ MonoBehaviour:
       us, my dear. Can you also feel this? "
     background: {fileID: 0}
     height: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &7827566746762681424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -974,7 +975,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shakeable: {fileID: 6812616309533127607}
-  timeToHide: 100000000
+  timeToHide: 5
 --- !u!114 &6812616309533127607
 MonoBehaviour:
   m_ObjectHideFlags: 0

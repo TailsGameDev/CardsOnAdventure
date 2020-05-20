@@ -40,7 +40,7 @@ public class SpotPrototype : OpenersSuperclass
 
     public void OnBattleSpotBtnClicked()
     {
-        openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrue();
+        openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrueAndDeactivateTips();
         PrepareBattle();
         MarkSpotToBeClearedIfBelongsToMap();
         sceneOpener.OpenBattle();
@@ -61,7 +61,11 @@ public class SpotPrototype : OpenersSuperclass
         else
         {
             CurrentBattleInfo.PrepareBattle(isMasterBattle, deckClass, spotBGM);
-            if (fillWholeDeckWithClass)
+            if (isMasterBattle)
+            {
+                DeckPrototypeFactory.PrepareMasterDeckForTheEnemy(deckSizeMultiplier, deckClass);
+            }
+            else if (fillWholeDeckWithClass)
             {
                 DeckPrototypeFactory.PrepareFullClassDeckForTheEnemy(deckSizeMultiplier, deckClass);
             }
