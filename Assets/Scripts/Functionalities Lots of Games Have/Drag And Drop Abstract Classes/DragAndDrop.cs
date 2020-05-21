@@ -9,9 +9,6 @@ public abstract class DragAndDrop : MonoBehaviour
 
     protected DragAndDropReceptor receptor;
 
-    enum State { NOT_DRAGGING, JUST_START_DRAGGING, IS_DRAGGING};
-    private State state = State.NOT_DRAGGING;
-
     private bool snap;
 
     protected Vector3 originalPosition;
@@ -29,39 +26,11 @@ public abstract class DragAndDrop : MonoBehaviour
 
     protected virtual void Update()
     {
-        // Actions Logic
-        switch (state)
+        if (snap)
         {
-            case State.NOT_DRAGGING:
-                break;
-            case State.JUST_START_DRAGGING:
-                break;
-            case State.IS_DRAGGING:
-                {
-                    rectTransform.position = Input.mousePosition + offset;
-                    IfIsAboveASingleReceptorMakeItBecomeTheReceptor();
-                }
-                break;
-        }
+            rectTransform.position = Input.mousePosition + offset;
 
-        // Next State Logic
-        switch (state)
-        {
-            case State.NOT_DRAGGING:
-                if (snap)
-                {
-                    state = State.JUST_START_DRAGGING;
-                }
-                break;
-            case State.JUST_START_DRAGGING:
-                state = State.IS_DRAGGING;
-                break;
-            case State.IS_DRAGGING:
-                if (!snap || Input.GetMouseButtonDown(0))
-                {
-                    state = State.NOT_DRAGGING;
-                }
-                break;
+            IfIsAboveASingleReceptorMakeItBecomeTheReceptor();
         }
     }
     private void IfIsAboveASingleReceptorMakeItBecomeTheReceptor()
@@ -132,7 +101,8 @@ public abstract class DragAndDrop : MonoBehaviour
             if (this.receptor != null)
             {
                 this.receptor.OnDroppedInReceptor();
-            } else
+            }
+            else
             {
                 ReturnToOriginalPosition();
             }
@@ -164,7 +134,7 @@ public abstract class DragAndDrop : MonoBehaviour
     }
     protected virtual bool ConditionToReplace(DragAndDropReceptor maybeAReceptor)
     {
-        return receptor == null || (receptor!=null && receptor.Priority <= maybeAReceptor.Priority);
+        return receptor == null || (receptor != null && receptor.Priority <= maybeAReceptor.Priority);
     }
     private void RegisterIfIsReceptorAndCallWhosInterested(Collider2D possibleReceptorCollider)
     {
@@ -185,11 +155,11 @@ public abstract class DragAndDrop : MonoBehaviour
         // if it's not my receptor I'm exiting, there is nothing to do.
         if (col.GetComponent<DragAndDropReceptor>() == receptor)
         {
-            if ( OverlapsNoReceptor() )
+            if (OverlapsNoReceptor())
             {
                 receptor = null;
                 OnExitedAllReceptors();
-            } 
+            }
             else
             {
                 // If this does not hold a receptor, or if the overlappingReceptor priority is enough, cache the overlapping receptor
@@ -202,7 +172,7 @@ public abstract class DragAndDrop : MonoBehaviour
                 {
                     if (receptorCandidate == receptor)
                     {
-                        L.ogError(this,"Damn, How can this be overlapping something it exited?");
+                        L.ogError(this, "Damn, How can this be overlapping something it exited?");
                     }
                     receptor = receptorCandidate;
                 }
@@ -258,7 +228,7 @@ public abstract class DragAndDrop : MonoBehaviour
 
         public DragAndDropReceptor Get()
         {
-            dragAndDrop.ForEachOverlappingValidReceptorDo( () => { validOverlappingReceptor = dragAndDrop.maybeAReceptor; } );
+            dragAndDrop.ForEachOverlappingValidReceptorDo(() => { validOverlappingReceptor = dragAndDrop.maybeAReceptor; });
 
             return validOverlappingReceptor;
         }
