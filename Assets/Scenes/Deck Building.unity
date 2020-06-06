@@ -2217,6 +2217,7 @@ MonoBehaviour:
   - message: 
     background: {fileID: 21300000, guid: d1a5267530b5c614cb17b7af6c0e9f93, type: 3}
     height: 700
+    color: {r: 0, g: 0, b: 0, a: 0}
   - message: "The tavern is a place for the cards to gather. They tell their histories
       one to the other, drink some alcohol, and finally, <color=#9EFA9D>DECIDE WHAT
       CARDS ARE GOING TO STAY IN THE ADVENTURE</color>. Maybe one of them will say:
@@ -2226,6 +2227,7 @@ MonoBehaviour:
       kind of decision, after all?"
     background: {fileID: 0}
     height: 900
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &966457645
 GameObject:
   m_ObjectHideFlags: 0
@@ -2664,7 +2666,7 @@ PrefabInstance:
         type: 3}
       propertyPath: clip
       value: 
-      objectReference: {fileID: 8300000, guid: 547083a15975fb14c9457001348fa2ad, type: 3}
+      objectReference: {fileID: 8300000, guid: 3844553cb775e8d4692fa33f66c3a975, type: 3}
     - target: {fileID: 636239117054406837, guid: 58c3b94ec4dc62d40bc1b70221dcff92,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2967,7 +2969,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 426.66644, y: -25}
+  m_AnchoredPosition: {x: 426.66727, y: -25}
   m_SizeDelta: {x: 1573.333, y: -150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1169875299
@@ -3465,6 +3467,7 @@ MonoBehaviour:
       teach you gladly. "
     background: {fileID: 0}
     height: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!61 &1376586959
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4080,7 +4083,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 1320, y: -40}
+  m_AnchoredPosition: {x: 1320.0009, y: -40}
   m_SizeDelta: {x: 3360, y: -180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1629059484
@@ -4291,6 +4294,7 @@ MonoBehaviour:
       please ask the teaching spirit about it, and he will teach you gladly. '
     background: {fileID: 0}
     height: 0
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &1704585356
 GameObject:
   m_ObjectHideFlags: 0

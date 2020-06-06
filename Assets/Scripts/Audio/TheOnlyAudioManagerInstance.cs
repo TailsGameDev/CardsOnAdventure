@@ -57,12 +57,24 @@ public class TheOnlyAudioManagerInstance : AudioManager
         text.text = v.ToString();
     }
 
-    public void PlayBGM(AudioClip clip)
+    public void PlayBGMLoop(AudioClip clip)
     {
         if (clip != BGMSource.clip)
         {
             BGMSource.clip = clip;
             BGMSource.Play();
+            // BGMSource.loop should be true already. Maybe unnecessary set below.
+            BGMSource.loop = true;
+        }
+    }
+    public void PlayBGMOneSingleTime(AudioClip clip)
+    {
+        if (clip != BGMSource.clip)
+        {
+            BGMSource.clip = clip;
+            BGMSource.Play();
+            // BGMSource.loop should be true already. Maybe unnecessary set below.
+            BGMSource.loop = false;
         }
     }
 

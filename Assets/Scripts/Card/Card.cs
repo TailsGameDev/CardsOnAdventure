@@ -81,7 +81,7 @@ public class Card : SkillsMediatorUser
     public int AttackPower { get => attackPower; set => attackPower = value; }
     public Classes Classe { get => classInfo.Classe; }
     public bool IgnoreOpponentsBlock { get => skills.IgnoreProtection; }
-    public OldSkill Skills {
+    public OldSkill Skill {
         get => skills;
         set 
         {
@@ -105,7 +105,7 @@ public class Card : SkillsMediatorUser
         SetTextArray(attackPowerTexts, AttackPower.ToString());
 
         // Triggers update in skill text
-        Skills = skills;
+        Skill = skills;
 
         SetInitialAndLimitVitality();
 
@@ -130,7 +130,7 @@ public class Card : SkillsMediatorUser
 
     public void AttackSelectedCard(Battlefield opponentBattlefield, Battlefield attackerBattlefield)
     {
-        Skills.ApplyEffectsConsideringSelectedTarget(opponentBattlefield, attackerBattlefield);
+        Skill.ApplyEffectsConsideringSelectedTarget(opponentBattlefield, attackerBattlefield);
     }
 
     #region Damage and Healing
@@ -229,15 +229,15 @@ public class Card : SkillsMediatorUser
     #region Has XXXX Skill
     public bool HasBlockSkill()
     {
-        return Skills.HasBlockEffect();
+        return Skill.HasBlockEffect();
     }
     public bool HasHeavyArmorSkill()
     {
-        return Skills.HasHeavyArmorEffect();
+        return Skill.HasHeavyArmorEffect();
     }
     public bool HasReflectSkill()
     {
-        return Skills.HasReflectEffect();
+        return Skill.HasReflectEffect();
     }
     #endregion
 
@@ -436,15 +436,15 @@ public class Card : SkillsMediatorUser
         SetInitialAndLimitVitality();
         UpdateVitalityTextAndItsColor();
     }
-    public void BuffAttackPowerForThisMatch()
+    public void ModifyAttackPowerForThisMatch(int valueToSum)
     {
-        attackPower++;
+        attackPower += valueToSum;
         SetTextArray(attackPowerTexts, attackPower.ToString());
     }
 
     public bool IsAnotherInstanceOf(Card card)
     {
-        return card.Skills == skills;
+        return card.Skill == skills;
     }
     public Card GetClone()
     {

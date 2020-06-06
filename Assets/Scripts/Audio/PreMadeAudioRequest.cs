@@ -6,10 +6,11 @@ public class PreMadeAudioRequest
 {
     private enum SoundType
     {
-        BGM,
+        BGM_LOOP,
         SFX,
         SFX_AND_STOP_BGM_AND_SET_BGMCLIP_TO_NULL,
         STOP_SFX,
+        BGM_ONE_SHOT,
     }
 
     private AudioClip[] audioClips;
@@ -32,9 +33,9 @@ public class PreMadeAudioRequest
         this.assignor = assignor;
     }
 
-    public static PreMadeAudioRequest CreateBGMSoundRequest(AudioClip audioClip, AudioRequisitor requisitor, GameObject assignor)
+    public static PreMadeAudioRequest CreateBGMOneShotAudioRequest(AudioClip audioClip, AudioRequisitor requisitor, GameObject assignor)
     {
-        return new PreMadeAudioRequest(audioClip, requisitor, assignor, SoundType.BGM);
+        return new PreMadeAudioRequest(audioClip, requisitor, assignor, SoundType.BGM_LOOP);
     }
     public static PreMadeAudioRequest CreateSFXSoundRequest(AudioClip[] audioClips, AudioRequisitor requisitor, GameObject assignor)
     {
@@ -44,7 +45,7 @@ public class PreMadeAudioRequest
     {
         return new PreMadeAudioRequest(audioClips, requisitor, assignor, SoundType.SFX);
     }
-    public static PreMadeAudioRequest CreateSFX_AND_STOP_BGMSoundRequest(AudioClip audioClip, AudioRequisitor requisitor, GameObject assignor)
+    public static PreMadeAudioRequest CreateSFX_AND_STOP_BGMAudioRequest(AudioClip audioClip, AudioRequisitor requisitor, GameObject assignor)
     {
         return new PreMadeAudioRequest(audioClip, requisitor, assignor, SoundType.SFX_AND_STOP_BGM_AND_SET_BGMCLIP_TO_NULL);
     }
@@ -58,8 +59,8 @@ public class PreMadeAudioRequest
 
         switch (soundType)
         {
-            case SoundType.BGM:
-                requisitor.RequestBGM(audioClips[r]);
+            case SoundType.BGM_LOOP:
+                requisitor.RequestBGMAndLoop(audioClips[r]);
                 break;
             case SoundType.SFX:
                 requisitor.RequestSFX(audioClips[r]);
@@ -70,6 +71,9 @@ public class PreMadeAudioRequest
                 break;
             case SoundType.STOP_SFX:
                 requisitor.RequestStopSFX();
+                break;
+            case SoundType.BGM_ONE_SHOT:
+                requisitor.RequestBGMToPlayOneSingleTime(audioClips[r]);
                 break;
         }
     }

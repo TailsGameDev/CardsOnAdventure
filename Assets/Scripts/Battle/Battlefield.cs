@@ -83,7 +83,7 @@ public class Battlefield : CardsHolder
         {
             if (cards[i] != null)
             {
-                cards[i].BuffAttackPowerForThisMatch();
+                cards[i].ModifyAttackPowerForThisMatch(valueToSum: 1);
             }
         }
     }

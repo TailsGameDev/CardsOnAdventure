@@ -10484,7 +10484,7 @@ MonoBehaviour:
   backgroundColor: {r: 0.40784314, g: 0.4117647, b: 0.5372549, a: 1}
   deckClass: 7
   isMasterBattle: 0
-  deckSizeMultiplier: 2
+  deckSizeMultiplier: 1.7
   fillWholeDeckWithClass: 1
   spotBGM: {fileID: 8300000, guid: d4e1263996b6d8d4f99ca89f25c19462, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}

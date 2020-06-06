@@ -55,4 +55,9 @@ public abstract class Skill : SkillsMediatorUser
             .Replace("<half>Attack Power", "<color=#FD7878>Attack Power (" + attackPower / 2 + ")</color>")
             .Replace("<full>Attack Power", "<color=#FD7878>Attack Power (" + attackPower + ")</color>");
     }
+
+    public bool IsAnotherInstanceOf(Skill skill)
+    {
+        return skill.fullName.Equals( fullName ) && skill.description.Equals( description );
+    }
 }

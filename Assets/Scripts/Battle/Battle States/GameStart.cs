@@ -9,7 +9,7 @@ public class GameStart : BattleState
         enemyBattleStatesFactory = enemyStatesFactory;
         if (bgm != null)
         {
-            audioRequisitor.RequestBGM(bgm);
+            audioRequisitor.RequestBGMAndLoop(bgm);
             bgm = null;
         }
 

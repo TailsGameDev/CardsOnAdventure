@@ -8,6 +8,9 @@ public class TheOnlySkillsMediatorInstance : SkillsMediatorUser
     private OldSkill basicAttack = null;
 
     [SerializeField]
+    private OldSkill skillNamedStrong = null;
+
+    [SerializeField]
     protected AudioRequisitor audioRequisitor = null;
 
     [SerializeField]
@@ -34,6 +37,11 @@ public class TheOnlySkillsMediatorInstance : SkillsMediatorUser
     public OldSkill GetBasicAttackSkill()
     {
         return basicAttack;
+    }
+
+    public bool IsTheSkillNamedStrong (OldSkill skill)
+    {
+        return skillNamedStrong.IsAnotherInstanceOf(skill);
     }
 
     public void PlaySFX(AudioClip audioClip)

@@ -14,14 +14,14 @@ public class PreMadeAudioFactory : MonoBehaviour
         return PreMadeAudioRequest.CreateSTOP_SFXAudioRequest(audioRequisitor, assignor);
     }
 
-    #region Created Using AudioClips
+    #region SFX Created Using Array Of Clips
     public PreMadeAudioRequest CreateRandomPlaceCardAudioRequest(GameObject assignor)
     {
         string[] AUDIO_NAMES = { "0 Place Card SFX", "1 Place Card SFX",
             "2 Place Card SFX", "3 Place Card SFX", "4 Place Card SFX" };
         AudioClip placeCardSFX = audioHolder.GetAleatoryClipAmong(AUDIO_NAMES);
 
-        return CreateSFXRequestUsingTheClip(new AudioClip[1] { placeCardSFX }, assignor);
+        return CreateSFXRequestUsingArrayOfClips(new AudioClip[1] { placeCardSFX }, assignor);
     }
     public PreMadeAudioRequest CreateCryingAudioRequest(GameObject assignor)
     {
@@ -30,15 +30,15 @@ public class PreMadeAudioFactory : MonoBehaviour
         AudioClip crying3 = audioHolder.GetAudioByName("Sit And Cry 3");
         AudioClip crying4 = audioHolder.GetAudioByName("Sit And Cry 4");
 
-        return CreateSFXRequestUsingTheClip(new AudioClip[4] { crying, crying2, crying3, crying4 }, assignor);
+        return CreateSFXRequestUsingArrayOfClips(new AudioClip[4] { crying, crying2, crying3, crying4 }, assignor);
     }
-    private PreMadeAudioRequest CreateSFXRequestUsingTheClip(AudioClip[] clips, GameObject assignor)
+    private PreMadeAudioRequest CreateSFXRequestUsingArrayOfClips(AudioClip[] clips, GameObject assignor)
     {
         return PreMadeAudioRequest.CreateSFXSoundRequest(clips, audioRequisitor, assignor);
     }
     #endregion
 
-    #region Created Using Name
+    #region Single SFX Created Using Name
     public PreMadeAudioRequest CreateDrinkAudioRequest(GameObject assignor)
     {
         return CreateSFXRequestUsingTheName(assignor, "Drink");
@@ -71,19 +71,29 @@ public class PreMadeAudioFactory : MonoBehaviour
     {
         return CreateSFX_AND_STOP_BGMSoundRequest(assignor, "Bored");
     }
-    public PreMadeAudioRequest CreateVictoryAudioRequest(GameObject assignor)
-    {
-        return CreateSFX_AND_STOP_BGMSoundRequest(assignor, "VICTORY");
-    }
-    public PreMadeAudioRequest CreateDefeatAudioRequest(GameObject assignor)
-    {
-        return CreateSFX_AND_STOP_BGMSoundRequest(assignor, "DEFEAT");
-    }
     private PreMadeAudioRequest CreateSFX_AND_STOP_BGMSoundRequest(GameObject assignor, string audioName)
     {
         AudioClip defeatBGM = audioHolder.GetAudioByName(audioName);
         PreMadeAudioRequest preMadeAudioRequest =
-            PreMadeAudioRequest.CreateSFX_AND_STOP_BGMSoundRequest(defeatBGM, audioRequisitor, assignor);
+            PreMadeAudioRequest.CreateSFX_AND_STOP_BGMAudioRequest(defeatBGM, audioRequisitor, assignor);
+        return preMadeAudioRequest;
+    }
+    #endregion
+
+    #region BGM Request
+    public PreMadeAudioRequest CreateVictoryAudioRequest(GameObject assignor)
+    {
+        return CreateBGMAudioRequest(assignor, "VICTORY");
+    }
+    public PreMadeAudioRequest CreateDefeatAudioRequest(GameObject assignor)
+    {
+        return CreateBGMAudioRequest(assignor, "DEFEAT");
+    }
+    private PreMadeAudioRequest CreateBGMAudioRequest(GameObject assignor, string audioName)
+    {
+        AudioClip defeatBGM = audioHolder.GetAudioByName(audioName);
+        PreMadeAudioRequest preMadeAudioRequest =
+            PreMadeAudioRequest.CreateBGMOneShotAudioRequest(defeatBGM, audioRequisitor, assignor);
         return preMadeAudioRequest;
     }
     #endregion

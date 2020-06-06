@@ -16,7 +16,13 @@ public class StealEffect : SpecialEffect
         {
             target = obf.GetReferenceToCardAt(targetIndex);
         }
-        attacker.Skills = target.Skills;
-        target.Skills = skillsMediator.GetBasicAttackSkill();
+        attacker.Skill = target.Skill;
+        target.Skill = skillsMediator.GetBasicAttackSkill();
+
+        if (skillsMediator.IsTheSkillNamedStrong(attacker.Skill))
+        {
+            attacker.ModifyAttackPowerForThisMatch(valueToSum: 2);
+            target.ModifyAttackPowerForThisMatch(valueToSum: -2);
+        }
     }
 }

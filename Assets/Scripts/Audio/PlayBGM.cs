@@ -9,6 +9,6 @@ public class PlayBGM : AudioManager
 
     private void Start()
     {
-        audioManager.PlayBGM(clip);
+        audioManager.PlayBGMLoop(clip);
     }
 }

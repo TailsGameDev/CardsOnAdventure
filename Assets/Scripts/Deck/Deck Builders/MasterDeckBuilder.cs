@@ -31,7 +31,7 @@
             {
                 if ( i%2 == 0)
                 {
-                    deck[i].BuffAttackPowerForThisMatch();
+                    deck[i].ModifyAttackPowerForThisMatch( valueToSum: 1 );
                 }
                 else
                 {

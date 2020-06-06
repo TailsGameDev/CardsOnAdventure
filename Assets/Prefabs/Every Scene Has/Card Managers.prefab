@@ -1199,6 +1199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   basicAttack: {fileID: 4687705844028134352}
+  skillNamedStrong: {fileID: 4687705844017114667}
   audioRequisitor: {fileID: 4687705842360420129}
   regularDefenseEffect: {fileID: 4687705844250874795}
   blockDefenseEffect: {fileID: 4687705844120585685}
@@ -2956,6 +2957,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guardian Block Renet
       objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674652, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3162,6 +3168,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Regular No Skill Joe
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674652, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -4235,6 +4246,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mage Area Flow
       objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674652, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4861,6 +4877,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Guardian Tough Crug
       objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674652, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5068,6 +5089,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Warrior Pierce Laplace
       objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674652, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5274,6 +5300,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Rogue Hook Shadow
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674652, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -5699,6 +5730,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cleric Heal Haskell
       objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674652, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5905,6 +5941,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mage Freeze Freya
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674652, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}

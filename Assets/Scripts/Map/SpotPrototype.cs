@@ -101,7 +101,7 @@ public class SpotPrototype : OpenersSuperclass
     #region On "Some Not Battle Spot" Clicked
     public void OnEndOfGameClicked()
     {
-        audioRequisitor.RequestBGM(winSound);
+        audioRequisitor.RequestBGMToPlayOneSingleTime(winSound);
         customPopUpOpener.Open(
                 title: "You Beat the game",
                 warningMessage: "You are Awesome",

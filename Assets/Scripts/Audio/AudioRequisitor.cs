@@ -2,9 +2,13 @@
 
 public class AudioRequisitor : AudioManager
 {
-    public void RequestBGM(AudioClip audioClip)
+    public void RequestBGMAndLoop(AudioClip audioClip)
     {
-        audioManager.PlayBGM(audioClip);
+        audioManager.PlayBGMLoop(audioClip);
+    }
+    public void RequestBGMToPlayOneSingleTime(AudioClip audioClip)
+    {
+        audioManager.PlayBGMOneSingleTime(audioClip);
     }
 
     public void RequestSFX(AudioClip audioClip)
