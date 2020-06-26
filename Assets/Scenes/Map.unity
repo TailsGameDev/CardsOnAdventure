@@ -1033,12 +1033,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5529412, g: 0.82745105, b: 0.18823531, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3211e5be97b69fb4f96f61c288f6bf33, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e12808b8c51a097499ecdeaf6864f866, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1076,11 +1076,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.5529412, g: 0.82745105, b: 0.18823531, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.8980393, g: 0.8235295, b: 0.04705883, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.5529412, g: 0.82745105, b: 0.18823531, a: 0.39215687}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39215687}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1142,9 +1142,9 @@ MonoBehaviour:
   title: Master Rogue
   tipData:
   - message: 
-    background: {fileID: 21300000, guid: 3211e5be97b69fb4f96f61c288f6bf33, type: 3}
+    background: {fileID: 21300000, guid: e12808b8c51a097499ecdeaf6864f866, type: 3}
     height: 648
-    color: {r: 0.5529412, g: 0.82745105, b: 0.18823531, a: 1}
+    color: {r: 1, g: 1, b: 1, a: 1}
   - message: Fight with a deck composed mainly by Rogues. If you win, all your Rogues
       get +1 bonus Vitality or Attack Power.
     background: {fileID: 0}
@@ -1565,11 +1565,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.9339623, g: 0.5683072, b: 0.5683072, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.8980393, g: 0.8235295, b: 0.04705883, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.9333334, g: 0.5686275, b: 0.5686275, a: 0.39215687}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39215687}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1631,12 +1631,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9333334, g: 0.5686275, b: 0.5686275, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ff874a0dbc8fb654cbb4297c72991e10, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 42b87d39a4606984cbbeb54c44dcfccb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1670,9 +1670,9 @@ MonoBehaviour:
   title: Hard Battle
   tipData:
   - message: 
-    background: {fileID: 21300000, guid: ff874a0dbc8fb654cbb4297c72991e10, type: 3}
+    background: {fileID: 21300000, guid: 42b87d39a4606984cbbeb54c44dcfccb, type: 3}
     height: 648
-    color: {r: 0.9333334, g: 0.5686275, b: 0.5686275, a: 1}
+    color: {r: 1, g: 1, b: 1, a: 1}
   - message: Battle against a total random enemy deck, which size is bigger than
       yours.
     background: {fileID: 0}
@@ -2891,12 +2891,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8705883, g: 0.32156864, b: 0.32156864, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ff874a0dbc8fb654cbb4297c72991e10, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 42b87d39a4606984cbbeb54c44dcfccb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3086,7 +3086,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d1a5267530b5c614cb17b7af6c0e9f93, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 51b962cc81beb2a4fb66aab6a43d2a65, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3601,7 +3601,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ff874a0dbc8fb654cbb4297c72991e10, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e7dbc00738fc28c45a978e74514eabed, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3729,8 +3729,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 15}
-  m_SizeDelta: {x: -120, y: -90}
+  m_AnchoredPosition: {x: -1.5, y: 0}
+  m_SizeDelta: {x: -153, y: -100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &380148178
 MonoBehaviour:
@@ -3788,7 +3788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9811321, g: 0.942662, b: 0.8191527, a: 1}
+  m_Color: {r: 0.9811321, g: 0.942662, b: 0.8191527, a: 0.003921569}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3861,12 +3861,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6313726, g: 0.03137255, b: 0.6117647, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ff874a0dbc8fb654cbb4297c72991e10, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 62d4142d99b40404c8297d6bbf935294, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4492,8 +4492,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 40.3}
-  m_SizeDelta: {x: 185.79, y: 66.4}
+  m_AnchoredPosition: {x: 0, y: 47.4}
+  m_SizeDelta: {x: 265.72, y: 64.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &469902593
 MonoBehaviour:
@@ -4508,18 +4508,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 0.7647059}
+  m_Color: {r: 0.11212696, g: 0.11320752, b: 0.09024562, a: 0.9490196}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: b6351f55f62c6ca4eacab29e36e00de1, type: 3}
-    m_FontSize: 41
+    m_FontSize: 60
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 41
+    m_MinSize: 6
+    m_MaxSize: 60
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -4773,11 +4773,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.8980393, g: 0.8235295, b: 0.04705883, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 0.39215687}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39215687}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -4839,12 +4839,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a9a1872f66a91e847a45bc7964464ffa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da81345ccbe28e341909718261052f24, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4894,9 +4894,9 @@ MonoBehaviour:
   title: Master Guardian
   tipData:
   - message: 
-    background: {fileID: 21300000, guid: a9a1872f66a91e847a45bc7964464ffa, type: 3}
+    background: {fileID: 21300000, guid: da81345ccbe28e341909718261052f24, type: 3}
     height: 648
-    color: {r: 0.7607844, g: 0.7607844, b: 0.7607844, a: 1}
+    color: {r: 1, g: 1, b: 1, a: 1}
   - message: Fight with a deck composed mainly by Guardians. If you win, all your
       Guardians get +1 bonus Vitality or Attack Power.
     background: {fileID: 0}
@@ -5761,7 +5761,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ff874a0dbc8fb654cbb4297c72991e10, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e7dbc00738fc28c45a978e74514eabed, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5849,9 +5849,9 @@ MonoBehaviour:
   title: Simple Battle
   tipData:
   - message: 
-    background: {fileID: 21300000, guid: ff874a0dbc8fb654cbb4297c72991e10, type: 3}
+    background: {fileID: 21300000, guid: e7dbc00738fc28c45a978e74514eabed, type: 3}
     height: 648
-    color: {r: 0, g: 0, b: 0, a: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
   - message: Battle against a total random enemy deck, which size is the same as
       yours.
     background: {fileID: 0}
@@ -6475,12 +6475,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5803922, g: 0.5803922, b: 0.5803922, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a9a1872f66a91e847a45bc7964464ffa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da81345ccbe28e341909718261052f24, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6787,17 +6787,17 @@ PrefabInstance:
     - target: {fileID: 413957192872592172, guid: 8371f0a83e0b79d4cbe7e18fa31250ad,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 20.75
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 413957192872592172, guid: 8371f0a83e0b79d4cbe7e18fa31250ad,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: -119.999985
+      value: -150
       objectReference: {fileID: 0}
     - target: {fileID: 413957192872592172, guid: 8371f0a83e0b79d4cbe7e18fa31250ad,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 37.2
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 413957192872592172, guid: 8371f0a83e0b79d4cbe7e18fa31250ad,
         type: 3}
@@ -6867,22 +6867,47 @@ PrefabInstance:
     - target: {fileID: 4247472804745630856, guid: 8371f0a83e0b79d4cbe7e18fa31250ad,
         type: 3}
       propertyPath: m_Size
-      value: 0.39577836
+      value: 0.37401056
       objectReference: {fileID: 0}
     - target: {fileID: 5692177371995035004, guid: 8371f0a83e0b79d4cbe7e18fa31250ad,
         type: 3}
       propertyPath: m_Color.r
-      value: 0.64705884
+      value: 0.25882354
       objectReference: {fileID: 0}
     - target: {fileID: 5692177371995035004, guid: 8371f0a83e0b79d4cbe7e18fa31250ad,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.45098042
+      value: 0.24705884
       objectReference: {fileID: 0}
     - target: {fileID: 5692177371995035004, guid: 8371f0a83e0b79d4cbe7e18fa31250ad,
         type: 3}
       propertyPath: m_Color.b
-      value: 0.35686275
+      value: 0.14901961
+      objectReference: {fileID: 0}
+    - target: {fileID: 5692177371995035004, guid: 8371f0a83e0b79d4cbe7e18fa31250ad,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051592823806541788, guid: 8371f0a83e0b79d4cbe7e18fa31250ad,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051592823806541788, guid: 8371f0a83e0b79d4cbe7e18fa31250ad,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.70980394
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051592823806541788, guid: 8371f0a83e0b79d4cbe7e18fa31250ad,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.68235296
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051592823806541788, guid: 8371f0a83e0b79d4cbe7e18fa31250ad,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.38823533
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8371f0a83e0b79d4cbe7e18fa31250ad, type: 3}
@@ -7196,9 +7221,9 @@ MonoBehaviour:
   title: Weak Monsters
   tipData:
   - message: 
-    background: {fileID: 21300000, guid: ff874a0dbc8fb654cbb4297c72991e10, type: 3}
+    background: {fileID: 21300000, guid: c69c6af37e3b0e64e9809b4fca7d89cc, type: 3}
     height: 648
-    color: {r: 0.69803923, g: 0.7058824, b: 0.8862745, a: 1}
+    color: {r: 1, g: 1, b: 1, a: 1}
   - message: Battle against a deck full of monster cards, which size is the same
       as yours.
     background: {fileID: 0}
@@ -7252,7 +7277,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.8980393, g: 0.8235295, b: 0.04705883, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.39215687}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39607844}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -7295,12 +7320,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.69855815, g: 0.70426226, b: 0.8867924, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ff874a0dbc8fb654cbb4297c72991e10, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c69c6af37e3b0e64e9809b4fca7d89cc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8310,12 +8335,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.90196085, g: 0.078431375, b: 0.019607844, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 16801cd1636fd584181648ed6079c694, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 91dafbea7ce1d7245bfd02b1e6099d7c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8608,12 +8633,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9490197, g: 0.2784314, b: 0.14509805, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 16801cd1636fd584181648ed6079c694, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 91dafbea7ce1d7245bfd02b1e6099d7c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8651,11 +8676,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.9490197, g: 0.2784314, b: 0.14509805, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.8980393, g: 0.8235295, b: 0.04705883, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.9490197, g: 0.2784314, b: 0.14509805, a: 0.39215687}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39215687}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -8717,9 +8742,9 @@ MonoBehaviour:
   title: Master Warrior
   tipData:
   - message: 
-    background: {fileID: 21300000, guid: 16801cd1636fd584181648ed6079c694, type: 3}
+    background: {fileID: 21300000, guid: 91dafbea7ce1d7245bfd02b1e6099d7c, type: 3}
     height: 648
-    color: {r: 0.9490197, g: 0.2784314, b: 0.14509805, a: 1}
+    color: {r: 1, g: 1, b: 1, a: 1}
   - message: Fight with a deck composed mainly by Warriors. If you win, all your
       Warriors get +1 bonus Vitality or Attack Power.
     background: {fileID: 0}
@@ -8881,7 +8906,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b23239c315d377e449b57f9a9c37d78c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 560eb9c12258c29459a8f5222af5003a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8923,7 +8948,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39215687}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39607844}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -8969,9 +8994,9 @@ MonoBehaviour:
   title: Boss Battle
   tipData:
   - message: 
-    background: {fileID: 21300000, guid: b23239c315d377e449b57f9a9c37d78c, type: 3}
+    background: {fileID: 21300000, guid: 560eb9c12258c29459a8f5222af5003a, type: 3}
     height: 648
-    color: {r: 0, g: 0, b: 0, a: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
   - message: Hard battle against a total random enemy deck, which size is considerably
       bigger than yours. Also, it is the last battle of the current adventure.
     background: {fileID: 0}
@@ -9302,12 +9327,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.08627451, g: 0.627451, b: 0.8196079, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2111ab3f944d8184d954b2fbc2a4ac56, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cb85341ba3f41414d958f8509a6ec91a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9598,13 +9623,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9528302, g: 0.16629584, b: 0.18939847, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 609eb297ae42cc341a903a845a4ff4ca, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 2e36888e197fff740825865dd55b56d2, type: 3}
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -9612,7 +9637,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.1
 --- !u!222 &1035303619
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9895,9 +9920,9 @@ MonoBehaviour:
   title: Tavern
   tipData:
   - message: 
-    background: {fileID: 21300000, guid: d1a5267530b5c614cb17b7af6c0e9f93, type: 3}
+    background: {fileID: 21300000, guid: 51b962cc81beb2a4fb66aab6a43d2a65, type: 3}
     height: 700
-    color: {r: 0, g: 0, b: 0, a: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
   - message: "The tavern is a place for the cards to gather. They tell their histories
       one to the other, drink some alcohol, and finally, <color=#1DEFC7>DECIDE WHAT
       CARDS ARE GOING TO STAY IN THE ADVENTURE</color>. Maybe one of them will say:
@@ -9980,7 +10005,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d1a5267530b5c614cb17b7af6c0e9f93, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 51b962cc81beb2a4fb66aab6a43d2a65, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10624,7 +10649,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 150}
-  m_SizeDelta: {x: 0, y: 300}
+  m_SizeDelta: {x: 0, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1139783807
 MonoBehaviour:
@@ -10644,16 +10669,16 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 318a8268be58bcc489f683afa49a0c1b, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: b8db0df1cd0981748847372be6f045df, type: 3}
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_FillOrigin: 1
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.08
 --- !u!222 &1139783808
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10973,7 +10998,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4a2b0d0ab4b51a6459f78cca0e55f2d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 52f883eea98cb8c449f7d63aa59f4d76, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11023,9 +11048,9 @@ MonoBehaviour:
   title: Victory
   tipData:
   - message: 
-    background: {fileID: 21300000, guid: 4a2b0d0ab4b51a6459f78cca0e55f2d8, type: 3}
+    background: {fileID: 21300000, guid: 52f883eea98cb8c449f7d63aa59f4d76, type: 3}
     height: 700
-    color: {r: 0, g: 0, b: 0, a: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
   - message: If you got here, you beat the game, bro! Soon we will add a reward to
       the bravest adventurers, like you!
     background: {fileID: 0}
@@ -11347,10 +11372,9 @@ MonoBehaviour:
   title: Incident
   tipData:
   - message: 
-    background: {fileID: -1913829997170851792, guid: 5c301080d4defc947b41f21c0fd5bca1,
-      type: 3}
+    background: {fileID: 21300000, guid: 514e72f96d549f34d8883f92cbd90ca7, type: 3}
     height: 700
-    color: {r: 0, g: 0, b: 0, a: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
   - message: "It\u2019s a little story, and then you need to make a choice about
       it, then face the consequences of your action."
     background: {fileID: 0}
@@ -11454,8 +11478,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1913829997170851792, guid: 5c301080d4defc947b41f21c0fd5bca1,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 514e72f96d549f34d8883f92cbd90ca7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -11958,7 +11981,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b23239c315d377e449b57f9a9c37d78c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 560eb9c12258c29459a8f5222af5003a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13747,12 +13770,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.69803923, g: 0.7058824, b: 0.8862745, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ff874a0dbc8fb654cbb4297c72991e10, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c69c6af37e3b0e64e9809b4fca7d89cc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -13933,12 +13956,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.94117653, g: 0.8705883, b: 0.62352943, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 4a2b0d0ab4b51a6459f78cca0e55f2d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 52f883eea98cb8c449f7d63aa59f4d76, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14744,12 +14767,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.29411766, g: 0.79215693, b: 0.9058824, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2111ab3f944d8184d954b2fbc2a4ac56, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cb85341ba3f41414d958f8509a6ec91a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -14787,11 +14810,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.29411766, g: 0.79215693, b: 0.9058824, a: 1}
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.8980393, g: 0.8235295, b: 0.04705883, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.29411766, g: 0.79215693, b: 0.9058824, a: 0.39215687}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39215687}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -14853,9 +14876,9 @@ MonoBehaviour:
   title: Master Mage
   tipData:
   - message: 
-    background: {fileID: 21300000, guid: 2111ab3f944d8184d954b2fbc2a4ac56, type: 3}
+    background: {fileID: 21300000, guid: cb85341ba3f41414d958f8509a6ec91a, type: 3}
     height: 648
-    color: {r: 0.29411766, g: 0.79215693, b: 0.9058824, a: 1}
+    color: {r: 1, g: 1, b: 1, a: 1}
   - message: Fight with a deck composed mainly by Mages. If you win, all your Mages
       get +1 bonus Vitality or Attack Power.
     background: {fileID: 0}
@@ -14876,7 +14899,7 @@ MonoBehaviour:
   belongsToMap: 1
   uiMap: {fileID: 1112407828}
   audioRequisitor: {fileID: 53754418}
-  backgroundColor: {r: 0.29411766, g: 0.79215693, b: 0.9058824, a: 1}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 1
   isMasterBattle: 1
   deckSizeMultiplier: 1
@@ -15123,7 +15146,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7b42eeb76cecbb84481edd0c6f056bcf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f240079c954b9044691111fa13475298, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15637,12 +15660,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.30588236, g: 0.6862745, b: 0.03529412, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3211e5be97b69fb4f96f61c288f6bf33, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e12808b8c51a097499ecdeaf6864f866, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16102,10 +16125,9 @@ MonoBehaviour:
   title: Incident
   tipData:
   - message: 
-    background: {fileID: -1913829997170851792, guid: 5c301080d4defc947b41f21c0fd5bca1,
-      type: 3}
+    background: {fileID: 21300000, guid: 514e72f96d549f34d8883f92cbd90ca7, type: 3}
     height: 700
-    color: {r: 0, g: 0, b: 0, a: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
   - message: "It\u2019s a little story, and then you need to make a choice about
       it, then face the consequences of your action."
     background: {fileID: 0}
@@ -16208,8 +16230,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1913829997170851792, guid: 5c301080d4defc947b41f21c0fd5bca1,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 514e72f96d549f34d8883f92cbd90ca7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16979,9 +17000,9 @@ MonoBehaviour:
   title: Training
   tipData:
   - message: 
-    background: {fileID: 21300000, guid: 7b42eeb76cecbb84481edd0c6f056bcf, type: 3}
+    background: {fileID: 21300000, guid: f240079c954b9044691111fa13475298, type: 3}
     height: 700
-    color: {r: 0, g: 0, b: 0, a: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
   - message: Battle against a deck of training dummies, to test some skills, and
       get familiar with the battle rules.
     background: {fileID: 0}
@@ -17083,7 +17104,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7b42eeb76cecbb84481edd0c6f056bcf, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f240079c954b9044691111fa13475298, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -17370,8 +17391,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -1913829997170851792, guid: 5c301080d4defc947b41f21c0fd5bca1,
-    type: 3}
+  m_Sprite: {fileID: 21300000, guid: 514e72f96d549f34d8883f92cbd90ca7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -18101,7 +18121,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 457.99997, y: 0}
+  m_AnchoredPosition: {x: 474.5, y: 0}
   m_SizeDelta: {x: 1516, y: 210}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2006455870
@@ -18829,9 +18849,9 @@ MonoBehaviour:
   title: Strong Monsters
   tipData:
   - message: 
-    background: {fileID: 21300000, guid: ff874a0dbc8fb654cbb4297c72991e10, type: 3}
+    background: {fileID: 21300000, guid: 62d4142d99b40404c8297d6bbf935294, type: 3}
     height: 648
-    color: {r: 0.6313726, g: 0.03137255, b: 0.6117647, a: 1}
+    color: {r: 1, g: 1, b: 1, a: 1}
   - message: Battle against a deck full of monster cards, which size is bigger than
       yours.
     background: {fileID: 0}
@@ -18885,7 +18905,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.8980393, g: 0.8235295, b: 0.04705883, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.39215687}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39607844}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -18928,12 +18948,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6320754, g: 0.032796368, b: 0.61324334, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ff874a0dbc8fb654cbb4297c72991e10, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 62d4142d99b40404c8297d6bbf935294, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -19176,22 +19196,22 @@ PrefabInstance:
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -70
+      value: -66.6
       objectReference: {fileID: 0}
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -70
+      value: -66.6
       objectReference: {fileID: 0}
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 120
+      value: 133.1
       objectReference: {fileID: 0}
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 120
+      value: 133.1
       objectReference: {fileID: 0}
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
