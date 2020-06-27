@@ -71,11 +71,7 @@ public class TextThatExpandsOnUpdated : MonoBehaviour
             cachedMessage = message;
             text.text = message;
 
-            if (message.Contains("Attack"))
-            {
-                text.color = new Color(0xFD, 0x78, 0x78);
-            }
-            else if (message.Contains("Bonus"))
+            if (message.Contains("Bonus"))
             {
                 text.color = new Color(0x9E, 0xFA, 0x9D);
             }

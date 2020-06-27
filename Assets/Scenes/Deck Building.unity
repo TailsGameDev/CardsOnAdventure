@@ -352,6 +352,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6660314283855018390, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 10.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6660314283855018390, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -21.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7027164132230214146, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
       propertyPath: m_Offset.x
@@ -376,8 +386,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 05e37aba8312cd641b4fbdc58962dbee,
+      objectReference: {fileID: 21300000, guid: 4696b3f70a598f34f9b45bf93b88ea02,
         type: 3}
+    - target: {fileID: 8108720574873910179, guid: d5f56a938ea4da54e85060c10e814b85,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d5f56a938ea4da54e85060c10e814b85, type: 3}
 --- !u!224 &44933507 stripped
@@ -1083,7 +1098,7 @@ GameObject:
   - component: {fileID: 392569831}
   - component: {fileID: 392569832}
   m_Layer: 5
-  m_Name: SECTIONS WITH CARD HOLDERS
+  m_Name: SECTIONS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1412,7 +1427,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d1a5267530b5c614cb17b7af6c0e9f93, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 51b962cc81beb2a4fb66aab6a43d2a65, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2215,7 +2230,7 @@ MonoBehaviour:
   title: Tavern
   tipData:
   - message: 
-    background: {fileID: 21300000, guid: d1a5267530b5c614cb17b7af6c0e9f93, type: 3}
+    background: {fileID: 21300000, guid: 51b962cc81beb2a4fb66aab6a43d2a65, type: 3}
     height: 700
     color: {r: 0, g: 0, b: 0, a: 0}
   - message: "The tavern is a place for the cards to gather. They tell their histories
@@ -2969,7 +2984,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 426.66727, y: -25}
+  m_AnchoredPosition: {x: 432.11646, y: -25}
   m_SizeDelta: {x: 1573.333, y: -150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1169875299
@@ -3657,7 +3672,7 @@ PrefabInstance:
         type: 3}
       propertyPath: tipData.Array.data[0].background
       value: 
-      objectReference: {fileID: 21300000, guid: a9068f4e89013894b88d7a95c5d835e0,
+      objectReference: {fileID: 21300000, guid: 77e9775bdddc89c4c8d334c9d3e316e6,
         type: 3}
     - target: {fileID: 3198627527439210757, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
@@ -3824,7 +3839,7 @@ PrefabInstance:
     - target: {fileID: 6660314283855018390, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6660314283855018390, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
@@ -3860,7 +3875,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 05e37aba8312cd641b4fbdc58962dbee,
+      objectReference: {fileID: 21300000, guid: 4696b3f70a598f34f9b45bf93b88ea02,
         type: 3}
     - target: {fileID: 8108720574873910179, guid: d5f56a938ea4da54e85060c10e814b85,
         type: 3}
@@ -3895,12 +3910,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6981132, g: 0.68164825, b: 0.68164825, a: 0.6313726}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a9068f4e89013894b88d7a95c5d835e0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 77e9775bdddc89c4c8d334c9d3e316e6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4083,7 +4098,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 1320.0009, y: -40}
+  m_AnchoredPosition: {x: 1325.45, y: -40}
   m_SizeDelta: {x: 3360, y: -180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1629059484

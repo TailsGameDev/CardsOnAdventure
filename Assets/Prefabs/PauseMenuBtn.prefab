@@ -217,8 +217,8 @@ MonoBehaviour:
   title: Pause Menu Button
   tipData:
   - message: 
-    background: {fileID: 21300000, guid: 05e37aba8312cd641b4fbdc58962dbee, type: 3}
-    height: 500
+    background: {fileID: 21300000, guid: 580ab460b6cd5404fa37240f24f7a43e, type: 3}
+    height: 700
     color: {r: 0, g: 0, b: 0, a: 0}
   - message: "If you click this button, you get a menu with a few options like go
       to the main menu. Ah, and the time stops for everyone except us. Crazy, isn\u2019t
