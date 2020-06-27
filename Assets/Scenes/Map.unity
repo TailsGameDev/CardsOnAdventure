@@ -995,7 +995,7 @@ GameObject:
   - component: {fileID: 112996336}
   - component: {fileID: 112996335}
   m_Layer: 5
-  m_Name: Master Rougue
+  m_Name: Master Rogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1168,12 +1168,11 @@ MonoBehaviour:
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 3
   isMasterBattle: 1
-  deckSizeMultiplier: 1
-  fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: ce325b6a1052d204eb6ef0aa21d3333d, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
+  editorMadeEnemyDeckName: RogueDeckBuff1Vit
 --- !u!1 &114793549
 GameObject:
   m_ObjectHideFlags: 0
@@ -1539,7 +1538,7 @@ GameObject:
   - component: {fileID: 173994912}
   - component: {fileID: 173994913}
   m_Layer: 5
-  m_Name: Hard Battle
+  m_Name: Tough Battle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1712,12 +1711,11 @@ MonoBehaviour:
   backgroundColor: {r: 1, g: 0, b: 0, a: 1}
   deckClass: 0
   isMasterBattle: 0
-  deckSizeMultiplier: 1.5
-  fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: d4e1263996b6d8d4f99ca89f25c19462, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
+  editorMadeEnemyDeckName: ToughBattleDeck
 --- !u!1 &174757323
 GameObject:
   m_ObjectHideFlags: 0
@@ -2163,12 +2161,11 @@ MonoBehaviour:
   backgroundColor: {r: 0.40784314, g: 0.4117647, b: 0.5372549, a: 1}
   deckClass: 0
   isMasterBattle: 0
-  deckSizeMultiplier: -1
-  fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: 88019e371c1ef494fb82795f44f95422, type: 3}
   winSound: {fileID: 0}
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
+  editorMadeEnemyDeckName: 
 --- !u!1 &214087146
 GameObject:
   m_ObjectHideFlags: 0
@@ -4920,12 +4917,11 @@ MonoBehaviour:
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 4
   isMasterBattle: 1
-  deckSizeMultiplier: 1
-  fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: ce325b6a1052d204eb6ef0aa21d3333d, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
+  editorMadeEnemyDeckName: GuardianDeckBuff1Vit
 --- !u!1 &510010088
 GameObject:
   m_ObjectHideFlags: 0
@@ -5891,12 +5887,11 @@ MonoBehaviour:
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 0
   isMasterBattle: 0
-  deckSizeMultiplier: 1
-  fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: 3485bb149c5c70643947d901273aebc5, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
+  editorMadeEnemyDeckName: SimpleBattleDeck
 --- !u!1 &672327209
 GameObject:
   m_ObjectHideFlags: 0
@@ -7247,12 +7242,11 @@ MonoBehaviour:
   backgroundColor: {r: 0.40784314, g: 0.4117647, b: 0.5372549, a: 1}
   deckClass: 7
   isMasterBattle: 0
-  deckSizeMultiplier: 1
-  fillWholeDeckWithClass: 1
   spotBGM: {fileID: 8300000, guid: 3485bb149c5c70643947d901273aebc5, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
+  editorMadeEnemyDeckName: WeakMonstersDeck
 --- !u!114 &822150036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8768,12 +8762,11 @@ MonoBehaviour:
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 2
   isMasterBattle: 1
-  deckSizeMultiplier: 1
-  fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: ce325b6a1052d204eb6ef0aa21d3333d, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
+  editorMadeEnemyDeckName: WarriorDeckBuff1Vit
 --- !u!1 &961802570
 GameObject:
   m_ObjectHideFlags: 0
@@ -9036,12 +9029,11 @@ MonoBehaviour:
   backgroundColor: {r: 0, g: 0, b: 0, a: 1}
   deckClass: 0
   isMasterBattle: 0
-  deckSizeMultiplier: 1.7
-  fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: b021fc8b80649dc49b4c4caf546517a8, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
+  editorMadeEnemyDeckName: BossBattleDeck
 --- !u!1 &970457392
 GameObject:
   m_ObjectHideFlags: 0
@@ -10041,12 +10033,11 @@ MonoBehaviour:
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 0
   isMasterBattle: 0
-  deckSizeMultiplier: 0
-  fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: 547083a15975fb14c9457001348fa2ad, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
+  editorMadeEnemyDeckName: 
 --- !u!1 &1052487536
 GameObject:
   m_ObjectHideFlags: 0
@@ -11074,12 +11065,11 @@ MonoBehaviour:
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 0
   isMasterBattle: 0
-  deckSizeMultiplier: 0
-  fillWholeDeckWithClass: 0
   spotBGM: {fileID: 0}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 8300000, guid: 526b5138d6fb1db48a08dcdd24943375, type: 3}
   incidentPopUps: []
+  editorMadeEnemyDeckName: 
 --- !u!1 &1153016704
 GameObject:
   m_ObjectHideFlags: 0
@@ -11398,14 +11388,13 @@ MonoBehaviour:
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 0
   isMasterBattle: 0
-  deckSizeMultiplier: 0
-  fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: 547083a15975fb14c9457001348fa2ad, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
   incidentPopUps:
   - {fileID: 566709456}
   - {fileID: 472032479}
+  editorMadeEnemyDeckName: 
 --- !u!114 &1240832968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13043,7 +13032,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1360789274}
-  - component: {fileID: 1360789277}
   - component: {fileID: 1360789276}
   - component: {fileID: 1360789275}
   m_Layer: 5
@@ -13112,18 +13100,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360789273}
   m_CullTransparentMesh: 0
---- !u!114 &1360789277
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1360789273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56c4d731862017a469d92bd39e07b340, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1364915030
 GameObject:
   m_ObjectHideFlags: 0
@@ -13829,7 +13805,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -91.77439, y: -159.07486}
+  m_AnchoredPosition: {x: -91.774414, y: -159.07422}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1443243460
@@ -14229,12 +14205,11 @@ MonoBehaviour:
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 0
   isMasterBattle: 0
-  deckSizeMultiplier: 0
-  fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: 547083a15975fb14c9457001348fa2ad, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
+  editorMadeEnemyDeckName: 
 --- !u!114 &1516882898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14902,12 +14877,11 @@ MonoBehaviour:
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 1
   isMasterBattle: 1
-  deckSizeMultiplier: 1
-  fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: ce325b6a1052d204eb6ef0aa21d3333d, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
+  editorMadeEnemyDeckName: MageDeckBuff1Atk
 --- !u!1 &1567634415
 GameObject:
   m_ObjectHideFlags: 0
@@ -16151,13 +16125,12 @@ MonoBehaviour:
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 0
   isMasterBattle: 0
-  deckSizeMultiplier: 0
-  fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: 547083a15975fb14c9457001348fa2ad, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
   incidentPopUps:
   - {fileID: 329707382}
+  editorMadeEnemyDeckName: SimpleBattleDeck
 --- !u!114 &1756221734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17026,12 +16999,11 @@ MonoBehaviour:
   backgroundColor: {r: 0.40784314, g: 0.4117647, b: 0.5372549, a: 1}
   deckClass: 0
   isMasterBattle: 0
-  deckSizeMultiplier: -1
-  fillWholeDeckWithClass: 0
   spotBGM: {fileID: 8300000, guid: 88019e371c1ef494fb82795f44f95422, type: 3}
   winSound: {fileID: 0}
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
+  editorMadeEnemyDeckName: PunchBagDeck
 --- !u!114 &1846012495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17958,6 +17930,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2154352919460389446, guid: 17369afb06db80246b6cadc7bf09618e,
+        type: 3}
+      propertyPath: m_Name
+      value: WeakMonstersDeck
+      objectReference: {fileID: 0}
     - target: {fileID: 4116427526114499703, guid: 17369afb06db80246b6cadc7bf09618e,
         type: 3}
       propertyPath: m_Name
@@ -17967,6 +17944,11 @@ PrefabInstance:
         type: 3}
       propertyPath: defaultDeckSize
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8327094360435403148, guid: 17369afb06db80246b6cadc7bf09618e,
+        type: 3}
+      propertyPath: m_Name
+      value: StrongMonstersDeck
       objectReference: {fileID: 0}
     - target: {fileID: 9101949744829781060, guid: 17369afb06db80246b6cadc7bf09618e,
         type: 3}
@@ -18875,12 +18857,11 @@ MonoBehaviour:
   backgroundColor: {r: 0.40784314, g: 0.4117647, b: 0.5372549, a: 1}
   deckClass: 7
   isMasterBattle: 0
-  deckSizeMultiplier: 1.7
-  fillWholeDeckWithClass: 1
   spotBGM: {fileID: 8300000, guid: d4e1263996b6d8d4f99ca89f25c19462, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
+  editorMadeEnemyDeckName: StrongMonstersDeck
 --- !u!114 &2119048984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19196,12 +19177,12 @@ PrefabInstance:
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -66.6
+      value: -66.59961
       objectReference: {fileID: 0}
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -66.6
+      value: -66.59961
       objectReference: {fileID: 0}
     - target: {fileID: 8927320339288579049, guid: e7ddc0547d7d5de47b02fe1d8b0e910b,
         type: 3}

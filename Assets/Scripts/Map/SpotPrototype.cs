@@ -19,12 +19,6 @@ public class SpotPrototype : OpenersSuperclass
     private bool isMasterBattle = false;
 
     [SerializeField]
-    private float deckSizeMultiplier = 0;
-
-    [SerializeField]
-    private bool fillWholeDeckWithClass = false;
-
-    [SerializeField]
     private AudioClip spotBGM = null;
     [SerializeField]
     private AudioClip winSound = null;
@@ -35,6 +29,9 @@ public class SpotPrototype : OpenersSuperclass
 
     [SerializeField]
     private IncidentPopUp[] incidentPopUps = null;
+
+    [SerializeField]
+    private string editorMadeEnemyDeckName = null;
 
     public bool BelongsToMap { set => belongsToMap = value; }
 
@@ -47,32 +44,15 @@ public class SpotPrototype : OpenersSuperclass
     }
     public void PrepareBattle()
     {
-        
-        if (isTraining)
+        DeckPrototypeFactory.PrepareEditorMadeDeckForTheEnemy(editorMadeEnemyDeckName);
+
+        if (isTraining || deckClass == Classes.NOT_A_CLASS)
         {
-            CurrentBattleInfo.PrepareBattle(backgroundColor, bgmParam: spotBGM);
-            DeckPrototypeFactory.PrepareTrainingDummyDeckForTheEnemy();
-        }
-        else if (deckClass == Classes.NOT_A_CLASS)
-        {
-            CurrentBattleInfo.PrepareBattle(backgroundColor, bgmParam: spotBGM);
-            DeckPrototypeFactory.PrepareModifiedSizeRandomDeckWithoutMonstersForTheEnemy(deckSizeMultiplier);
+            CurrentBattleInfo.PrepareBattle(backgroundColor, isMasterBattle: false, bgmParam: spotBGM);
         }
         else
         {
             CurrentBattleInfo.PrepareBattle(isMasterBattle, deckClass, spotBGM);
-            if (isMasterBattle)
-            {
-                DeckPrototypeFactory.PrepareMasterDeckForTheEnemy(deckSizeMultiplier, deckClass);
-            }
-            else if (fillWholeDeckWithClass)
-            {
-                DeckPrototypeFactory.PrepareFullClassDeckForTheEnemy(deckSizeMultiplier, deckClass);
-            }
-            else
-            {
-                DeckPrototypeFactory.PrepareHalfClassDeckForTheEnemy(deckSizeMultiplier, deckClass);
-            }
         }
     }
 

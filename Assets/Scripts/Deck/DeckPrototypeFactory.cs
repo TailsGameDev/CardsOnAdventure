@@ -100,29 +100,9 @@ public class DeckPrototypeFactory : MonoBehaviour
         return ReplaceTheRandomCards( enemyDeckBuilder.GetDeck() );
     }
     #region Public Prepare XXXX Deck For The Enemy
-    public static void PrepareTrainingDummyDeckForTheEnemy()
+    public static void PrepareEditorMadeDeckForTheEnemy(string deckName)
     {
-        enemyDeckBuilder = new TrainingDummyDeckBuilder( Mathf.FloorToInt(DefaultDeckSize * 0.75f) );
-    }
-    public static void PrepareModifiedSizeRandomDeckForTheEnemy(float sizeMultiplier)
-    {
-        enemyDeckBuilder = new RandomDeckBuilder(Mathf.CeilToInt(DefaultDeckSize * sizeMultiplier));
-    }
-    public static void PrepareModifiedSizeRandomDeckWithoutMonstersForTheEnemy(float sizeMultiplier)
-    {
-        enemyDeckBuilder = new NoMonstersDeckBuilder(Mathf.CeilToInt(DefaultDeckSize * sizeMultiplier));
-    }
-    public static void PrepareMasterDeckForTheEnemy(float sizeMultiplier, Classes classe)
-    {
-        enemyDeckBuilder = new MasterDeckBuilder(Mathf.CeilToInt(DefaultDeckSize * sizeMultiplier), classe);
-    }
-    public static void PrepareHalfClassDeckForTheEnemy(float sizeMultiplier, Classes classe)
-    {
-        enemyDeckBuilder = new HalfRandomDeckBuilder(Mathf.CeilToInt(DefaultDeckSize * sizeMultiplier), classe);
-    }
-    public static void PrepareFullClassDeckForTheEnemy(float sizeMultiplier, Classes classe)
-    {
-        enemyDeckBuilder = new FullClassDeckBuilder(Mathf.CeilToInt(DefaultDeckSize * sizeMultiplier), classe);
+        enemyDeckBuilder = EditorMadeDeckBuilder.CreateEditorMadeDeckBuilder(deckName);
     }
     #endregion
 
@@ -289,6 +269,10 @@ public class DeckPrototypeFactory : MonoBehaviour
 
             trainingDeckForThePlayer = ManualDeckBuider.Create(theCards);
         }
+    }
+    public static void PrepareEditorMadeDeckForThePlayer()
+    {
+        playerDeckBuilder = EditorMadeDeckBuilder.CreateEditorMadeDeckBuilder("PlayerDeck");
     }
     #endregion
 
