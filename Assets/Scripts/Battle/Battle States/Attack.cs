@@ -93,9 +93,8 @@ public class Attack : BattleState
         {
             popUpOpener.OpenAndMakeUncloseable
                 (
-                    title: "Attack",
-                    warningMessage: "<color=#FFFFFF>You should attack before end your turn.</color> " +
-                        "<color=#9EFA9D>DRAG AND DROP YOUR CARDS ABOVE ENEMY'S CARDS</color>",
+                    title: "ATTACK",
+                    warningMessage: "<color=#9EFA9D>DRAG AND DROP YOUR CARDS ABOVE ENEMY'S CARDS</color>",
                     confirmBtnMessage: "Ok, I'll attack",
                     cancelBtnMessage: "I'm a pacifist...",
                     onConfirm: () => { popUpOpener.ClosePopUpOnTop(); },

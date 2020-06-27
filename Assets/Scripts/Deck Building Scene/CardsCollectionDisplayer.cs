@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine.UI;
 
-public class CardsCollection : DynamicSizeScrollableCardHolder
+public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
 {
     // Inherits InitializeSlotsAndRectSize
 

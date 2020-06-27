@@ -4,7 +4,7 @@ using UnityEngine;
 public class DeckBuilding : OpenersSuperclass
 {
     [SerializeField]
-    private CardsCollection cardsCollection = null;
+    private CardsCollectionDisplayer cardsCollection = null;
 
     [SerializeField]
     private DeckCardHolder deck = null;
