@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class ChildMaker : MonoBehaviour
 {
+    private static List<RectTransform> movingRects = new List<RectTransform>();
+
     private static readonly float DEFAULT_TRANSITION_TIME = 0.25f;
+
+    public static bool IsRectTransformBeingMoved(RectTransform rt)
+    {
+        return movingRects.Contains(rt);
+    }
 
     public static void CopySizeDelta(RectTransform fontOfDelta, RectTransform deltaToChange)
     {
@@ -49,11 +56,23 @@ public class ChildMaker : MonoBehaviour
 
     private void ScaleAndSmoothlyMoveChildToParentPosition(Transform parent, RectTransform child, float totalTime)
     {
+        StartCoroutine(WaitForPreviousCoroutinesToEndThenMakeSmoothMovement(parent, child, totalTime));
+    }
+
+    private IEnumerator WaitForPreviousCoroutinesToEndThenMakeSmoothMovement(Transform parent, RectTransform child, float totalTime)
+    {
+        while (parent != null && child != null && movingRects.Contains(child))
+        {
+            yield return null;
+        }
+
         StartCoroutine(ScaleAndSmothlyMoveToPos(parent, child, totalTime));
     }
 
-    IEnumerator ScaleAndSmothlyMoveToPos(Transform parent, RectTransform child, float totalTime)
+    private IEnumerator ScaleAndSmothlyMoveToPos(Transform parent, RectTransform child, float totalTime)
     {
+        movingRects.Add(child);
+
         // Scale
         child.SetParent(parent, true);
         yield return null;
@@ -68,7 +87,7 @@ public class ChildMaker : MonoBehaviour
 
         float time = 0.0f;
 
-        while (child != null && time < totalTime && child != null)
+        while (child != null && time < totalTime)
         {
             time += TimeFacade.DeltaTime;
 
@@ -87,10 +106,14 @@ public class ChildMaker : MonoBehaviour
 
             Destroy(gameObject);
         }
+
+        movingRects.Remove(child);
     }
 
+    /*
     private void SmoothlyMoveChildToPosition(Transform parent, RectTransform child, Vector3 position, float totalTime)
     {
         StartCoroutine(ScaleAndSmothlyMoveToPos(parent, child, totalTime));
     }
+    */
 }   

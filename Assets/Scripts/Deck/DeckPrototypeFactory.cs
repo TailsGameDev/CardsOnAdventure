@@ -80,6 +80,41 @@ public class DeckPrototypeFactory : MonoBehaviour
     }
     #endregion
 
+    public static void AddCardToPlayerCardsCollection(Card card)
+    {
+        int c = 0;
+        for (int i = 0; i < deckPrototypeFactory.allCardPrototypes.Length; i++)
+        {
+            if (card.IsAnotherInstanceOf(deckPrototypeFactory.allCardPrototypes[i]))
+            {
+                c = i;
+                break;
+            }
+        }
+
+        int[] cardsCollectionAmounts = GetCardsCollectionAmounts();
+        // c+1 because the random card index is 0.
+        cardsCollectionAmounts[c+1] += 1;
+        saveFacade.PrepareCardsCollectionForSaving(new DeckSerializable(cardsCollectionAmounts));
+    }
+    public static int[] GetCardsCollectionAmounts()
+    {
+        int[] cardAmounts;
+        if (saveFacade.IsCardsCollectionLoaded())
+        {
+            cardAmounts = saveFacade.GetLoadedCardsCollection().cardsIndexes;
+        }
+        else
+        {
+            cardAmounts = new int[deckPrototypeFactory.allCardPrototypes.Length+1];
+            cardAmounts[0] = 99;
+            for (int i = 1; i < cardAmounts.Length; i++)
+            {
+                cardAmounts[i] = 0;
+            }
+        }
+        return cardAmounts;
+    }
     public static Card GetCloneOfTheRandomCard()
     {
         return Instantiate(deckPrototypeFactory.theRandomCard);
@@ -136,13 +171,13 @@ public class DeckPrototypeFactory : MonoBehaviour
         }
         else
         {
-            PrepareRandomDeckForThePlayerAndSaveItInStorage();
+            PrepareEditorMadeDeckForThePlayer();
             playerDeck = playerDeckBuilder.GetDeck();
         }
 
         return playerDeck;
     }
-    private static Card[] ReplaceTheRandomCards(Card[] playerDeck)
+    public static Card[] ReplaceTheRandomCards(Card[] playerDeck)
     {
         for (int i = 0; i < playerDeck.Length; i++)
         {

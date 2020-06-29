@@ -95,11 +95,11 @@ public class BattleStatesFactory : OpenersSuperclass
                                 openerOfPopUpsMadeInEditor,
                                 customPopUpOpener,
                                 sceneOpener,
-                                preMadeAudioFactory.CreateVictoryAudioRequest(gameObject),
-                                preMadeAudioFactory.CreateDefeatAudioRequest(gameObject),
-                                preMadeAudioFactory.CreateStopAllSFXRequest(gameObject),
-                                preMadeAudioFactory.CreateCricketsAudioRequest(gameObject),
-                                preMadeAudioFactory.CreateCryingAudioRequest(gameObject)
+                                victoryBGMRequest: preMadeAudioFactory.CreateVictoryAudioRequest(gameObject),
+                                defeatBGMRequest: preMadeAudioFactory.CreateDefeatAudioRequest(gameObject),
+                                stopAllSFXRequest: preMadeAudioFactory.CreateStopAllSFXRequest(gameObject),
+                                cricketsAudioRequest: preMadeAudioFactory.CreateCricketsAudioRequest(gameObject),
+                                cryingAudioRequest: preMadeAudioFactory.CreateCryingAudioRequest(gameObject)
                             );
     }
 

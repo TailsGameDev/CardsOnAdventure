@@ -17,24 +17,6 @@ public class Hand : CardsHolder
         }
     }
 
-    public void AddCardInconditionally(Card card)
-    {
-        bool added = false;
-        for (int i = 0; i < cards.Length; i++)
-        {
-            if (cards[i] == null)
-            {
-                PutCardInIndexWithSmoothMovement(card, i);
-                added = true;
-                break;
-            }
-        }
-        if (!added)
-        {
-            PutCardInIndexWithSmoothMovement(card, 0);
-        }
-    }
-
     public void SelectFirstOccupiedIndex()
     {
         for (int i = 0; i < cards.Length; i++)

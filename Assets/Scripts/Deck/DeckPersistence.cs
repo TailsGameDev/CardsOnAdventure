@@ -4,28 +4,33 @@ using UnityEngine;
 
 public class DeckPersistence : Persistence
 {
-
-    const string FIRST_DECK_FILENAME = "FirstDeck";
     
+    private string fileName;
+    
+    public DeckPersistence(string fileName)
+    {
+        this.fileName = fileName;
+    }
+
     public void Save(DeckSerializable deckSerializable)
     {
-        GenericSave(FIRST_DECK_FILENAME, deckSerializable);
+        GenericSave(fileName, deckSerializable);
     }
 
     public bool SaveExists()
     {
-        return base.DoesSaveExist(FIRST_DECK_FILENAME);
+        return base.DoesSaveExist(fileName);
     }
 
     public DeckSerializable Load()
     {
         if (SaveExists())
         {
-            return GenericLoad<DeckSerializable>(FIRST_DECK_FILENAME);
+            return GenericLoad<DeckSerializable>(fileName);
         }
         else
         {
-            L.ogError(this, "Trying to load inexistend deck files");
+            L.ogError(this, "Trying to load inexistent files");
             return new DeckSerializable(DeckPrototypeFactory.GetArrayFilledWithTheRandomCardIndex());
         }
     }

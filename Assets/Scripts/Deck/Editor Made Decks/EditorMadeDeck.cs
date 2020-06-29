@@ -6,10 +6,10 @@ public class EditorMadeDeck : MonoBehaviour
 {
     // Let the deck name be the game object's name.
 
-    static Dictionary<string, EditorMadeDeck> allEditorMadeDecks = null;
+    protected static Dictionary<string, EditorMadeDeck> allEditorMadeDecks = null;
 
     [SerializeField]
-    private Card[] cards = null;
+    protected List<Card> cards = new List<Card>();
 
     [System.Serializable]
     public struct Buff
@@ -19,19 +19,18 @@ public class EditorMadeDeck : MonoBehaviour
         public int vitBuff;
     }
     [SerializeField]
-    private Buff[] buffs;
+    protected Buff[] buffs;
 
     public Buff[] Buffs { get => buffs; }
-    public static Dictionary<string, EditorMadeDeck> AllEditorMadeDecks { get => allEditorMadeDecks; }
 
-    private void Start()
+    protected void Start()
     {
         if (allEditorMadeDecks == null)
         {
             allEditorMadeDecks = new Dictionary<string, EditorMadeDeck>();
         }
 
-        if (!AllEditorMadeDecks.ContainsKey(gameObject.name))
+        if (!allEditorMadeDecks.ContainsKey(gameObject.name))
         {
             allEditorMadeDecks.Add(gameObject.name, this);
         }
@@ -39,9 +38,22 @@ public class EditorMadeDeck : MonoBehaviour
         // previous keys in the dicionary.
     }
 
-    public Card[] GetCardPrototypes()
+    public List<Card> GetCardPrototypes()
     {
         return cards;
+    }
+
+    public static EditorMadeDeck GetDeckByName(string deckName)
+    {
+        return allEditorMadeDecks[deckName];
+    }
+}
+
+public class PlayerEditorMadeDeck : EditorMadeDeck
+{
+    public void AddCard(Card card)
+    {
+        cards.Add(card);
     }
 }
 
@@ -52,8 +64,8 @@ public class EditorMadeDeckBuilder : DeckPrototypeFactory.DeckBuilder
 
     public static EditorMadeDeckBuilder CreateEditorMadeDeckBuilder(string deckName)
     {
-        EditorMadeDeck madeDeck = EditorMadeDeck.AllEditorMadeDecks[deckName];
-        Card[] cards = madeDeck.GetCardPrototypes();
+        EditorMadeDeck madeDeck = EditorMadeDeck.GetDeckByName(deckName);
+        Card[] cards = madeDeck.GetCardPrototypes().ToArray();
         return new EditorMadeDeckBuilder(cards.Length, cards, madeDeck.Buffs);
     }
 

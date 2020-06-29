@@ -13,12 +13,28 @@ public class CustomPopUpCardsHolder : DynamicSizeScrollableCardHolder
         cards = OneOfEachClassDeckBuilder.Create(classe).GetDeck();
         base.InitializeSlotsAndRectSize(cards.Length);
 
+        MoveAndBuffCards(cards);
+
+        UICardsHolderEventHandler.inputEnabled = false;
+    }
+
+    private void MoveAndBuffCards(Card[] cards)
+    {
         for (int i = 0; i < cards.Length; i++)
         {
             PutCardInIndexWithSmoothMovement(cards[i], i);
             cards[i].GetCardDragAndDrop().ForceReceptorToNullBeforeDrop = true;
             cards[i].ApplyPlayerBonuses();
         }
+    }
+
+    public void ShowCards(Card[] cards)
+    {
+        node.SetActive(true);
+        this.cards = cards;
+        base.InitializeSlotsAndRectSize(cards.Length);
+
+        MoveAndBuffCards(cards);
 
         UICardsHolderEventHandler.inputEnabled = false;
     }

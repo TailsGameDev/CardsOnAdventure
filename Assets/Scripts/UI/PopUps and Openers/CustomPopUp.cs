@@ -112,6 +112,27 @@ public class CustomPopUp : OpenersSuperclass
             );
     }
 
+    public void OpenDisplayingCards
+(
+    string title,
+    string warningMessage,
+    string confirmBtnMessage,
+    string cancelBtnMessage,
+    OnBtnClicked onConfirm,
+    OnBtnClicked onCancel,
+    PreMadeAudioRequest openingBGM,
+    Card[] cards
+)
+    {
+        openingBGM.RequestPlaying();
+        cardsDisplay.ShowCards(cards);
+        OpenAndMakeUncloseable(title, warningMessage, confirmBtnMessage,
+            cancelBtnMessage,
+            onConfirm: () => { onConfirm(); cardsDisplay.ClearAttributes(); },
+            onCancel: () => { onCancel(); cardsDisplay.ClearAttributes(); }
+            );
+    }
+
     public void OpenAndMakeUncloseable
         (
             string title,

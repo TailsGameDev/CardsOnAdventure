@@ -71,7 +71,7 @@ public class BonusReposition : PlaceCard
             if (card != null)
             {
                 card.ChangeToVerticalVersion();
-                hand.AddCardInconditionally(card);
+                hand.AddCard(card);
             }
         }
     }

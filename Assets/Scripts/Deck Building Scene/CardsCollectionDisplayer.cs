@@ -33,14 +33,14 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
         const int THE_RANDOM_CARD_INDEX = 0;
         amountOfEachCard[THE_RANDOM_CARD_INDEX] = 50;
 
-        Card[] currentDeck = DeckPrototypeFactory.GetPreparedCardsForThePlayerWithTheRandomCards();
+        int[] cardAmounts = DeckPrototypeFactory.GetCardsCollectionAmounts();
 
-        const int DEFAULT_AMOUNT = 1;
+        Card[] currentDeck = DeckPrototypeFactory.GetPreparedCardsForThePlayerWithTheRandomCards();
 
         // For each card on Deck, subtract 1 from it's amount in the collection.
         for (int i = 1; i < cards.Length; i++)
         {
-            int amount = DEFAULT_AMOUNT;
+            int amount = cardAmounts[i];
             for (int k = 0; k < currentDeck.Length; k++)
             {
                 if (cards[i].IsAnotherInstanceOf(currentDeck[k]))
@@ -50,15 +50,6 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
             }
 
             amountOfEachCard[i] = amount;
-        }
-
-        // Don't allow the player to fight alongside monsters (yet)
-        for (int i = 1; i < cards.Length; i++)
-        {
-            if (cards[i].Classe == Classes.MONSTER)
-            {
-                amountOfEachCard[i] = 0;
-            }
         }
     }
     private void PopulateCardAmountTexts()

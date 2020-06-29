@@ -83,11 +83,11 @@ public class PreMadeAudioFactory : MonoBehaviour
     #region BGM Request
     public PreMadeAudioRequest CreateVictoryAudioRequest(GameObject assignor)
     {
-        return CreateBGMAudioRequest(assignor, "VICTORY");
+        return CreateSFX_AND_STOP_BGMSoundRequest(assignor, "VICTORY");
     }
     public PreMadeAudioRequest CreateDefeatAudioRequest(GameObject assignor)
     {
-        return CreateBGMAudioRequest(assignor, "DEFEAT");
+        return CreateSFX_AND_STOP_BGMSoundRequest(assignor, "DEFEAT");
     }
     private PreMadeAudioRequest CreateBGMAudioRequest(GameObject assignor, string audioName)
     {
