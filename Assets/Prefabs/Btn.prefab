@@ -70,7 +70,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1241a6fc3fa9f294da2878791f83e590, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ed8da694cd8b464e93e5348194dd016, type: 3}
   m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.65
 --- !u!114 &3367427902471985073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,13 +95,14 @@ MonoBehaviour:
   soundRequisitor: {fileID: 6438536567918031258}
   btnClickSound: {fileID: 8300000, guid: a5cd0902735e31e4382e2333d4c4cf08, type: 3}
   imageComponent: {fileID: 8108720574873910179}
-  rectTransform: {fileID: 0}
-  normalSprite: {fileID: 21300000, guid: 1241a6fc3fa9f294da2878791f83e590, type: 3}
-  clickedSprite: {fileID: 21300000, guid: 184f34ef664b8d447bba477f0cd29355, type: 3}
+  rectTransform: {fileID: 4090511394279096403}
+  normalSprite: {fileID: 21300000, guid: 4ed8da694cd8b464e93e5348194dd016, type: 3}
+  clickedSprite: {fileID: 21300000, guid: 3a991329a1bd0e94590f7b6ed758517a, type: 3}
   bigSize: {x: 1.1, y: 1.1, z: 1.1}
   textComponent: {fileID: 2001577861149971916}
+  rectTransformToGoDownWhileBtnPressed: {fileID: 6660314283855018390}
   textVerticalDesloc: 20
-  BtnDownTextColor: {r: 1, g: 1, b: 1, a: 1}
+  BtnDownTextColor: {r: 0.79215693, g: 0.7803922, b: 0.77647066, a: 1}
   eventTrigger: {fileID: 3084420522387046562}
 --- !u!114 &3084420522387046562
 MonoBehaviour:
@@ -220,10 +221,12 @@ MonoBehaviour:
   - message: '                      Button'
     background: {fileID: 21300000, guid: 88d45c2a8549ce340adf1e6801eeab8e, type: 3}
     height: 100
+    color: {r: 0, g: 0, b: 0, a: 0}
   - message: This is a button. By the way, the Teaching Spirit is very happy to see
       that you learned how to ask him about something!
     background: {fileID: 0}
     height: 300
+    color: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &3395666988398941279
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,8 +261,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -2.9999995}
+  m_SizeDelta: {x: 0, y: -6.000001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3115328332770535382
 CanvasRenderer:
@@ -282,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.79215693, g: 0.7803922, b: 0.77647066, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

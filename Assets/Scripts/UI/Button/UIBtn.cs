@@ -33,9 +33,13 @@ public class UIBtn : MonoBehaviour
     private Text textComponent = null;
 
     [SerializeField]
+    private RectTransform rectTransformToGoDownWhileBtnPressed = null;
+
+    [SerializeField]
     private float textVerticalDesloc = 0.0f;
 
     protected float originalRectTransfmOffsetMaxDotY;
+    protected float originalRectTransformOffsetMinDotY;
 
     [SerializeField]
     private Color BtnDownTextColor = Color.white;
@@ -51,12 +55,10 @@ public class UIBtn : MonoBehaviour
 
     protected void Awake()
     {
-        if (rectTransform == null)
-        {
-            rectTransform = imageComponent.GetComponent<RectTransform>();
-        }
         // TODO: 'rectTransform.offsetMax.y;' or somehing should be better but didn't work at the first attempt
-        originalRectTransfmOffsetMaxDotY = 0;
+        originalRectTransfmOffsetMaxDotY = rectTransformToGoDownWhileBtnPressed.offsetMax.y;
+        originalRectTransformOffsetMinDotY = rectTransformToGoDownWhileBtnPressed.offsetMin.y;
+
         BtnUpTextColor = textComponent.color;
     }
 
@@ -72,25 +74,29 @@ public class UIBtn : MonoBehaviour
 
     public void UpToDownBtnVisualAndSoundEffects()
 {
-        ConfigureBtnLooks(clickedSprite, textVerticalDesloc, BtnDownTextColor);
+        float yMax = originalRectTransfmOffsetMaxDotY - textVerticalDesloc;
+        float yMin = originalRectTransformOffsetMinDotY - textVerticalDesloc;
+        ConfigureBtnLooks(clickedSprite, yMax, yMin, BtnDownTextColor);
         soundRequisitor.RequestSFX(btnClickSound);
     }
 
     public virtual void OnPointerUp()
     {
-        ConfigureBtnLooks(normalSprite, originalRectTransfmOffsetMaxDotY, BtnUpTextColor);
+        ConfigureBtnLooks(normalSprite, originalRectTransfmOffsetMaxDotY, originalRectTransformOffsetMinDotY, BtnUpTextColor);
     }
 
-    protected void ConfigureBtnLooks(Sprite sprite, float top, Color color)
+    protected void ConfigureBtnLooks(Sprite sprite, float top, float bottom, Color color)
     {
         imageComponent.sprite = sprite;
-        SetTop(top);
+        SetTop(top, bottom);
         textComponent.color = color;
     }
 
-    public void SetTop(float top)
+    public void SetTop(float top, float bottom)
     {
-        RectTransform rt = textComponent.GetComponent<RectTransform>(); 
-        rt.offsetMax = new Vector2(rt.offsetMax.x, -top);
+        float x = rectTransformToGoDownWhileBtnPressed.offsetMax.x;
+        rectTransformToGoDownWhileBtnPressed.offsetMax = new Vector2(x, top);
+        x = rectTransformToGoDownWhileBtnPressed.offsetMin.x;
+        rectTransformToGoDownWhileBtnPressed.offsetMin = new Vector2(x, bottom);
     }
 }

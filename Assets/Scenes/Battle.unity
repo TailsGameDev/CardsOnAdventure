@@ -2923,6 +2923,16 @@ PrefabInstance:
       propertyPath: BtnDownTextColor.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: rectTransform
+      value: 
+      objectReference: {fileID: 1114031706}
+    - target: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: rectTransformToGoDownWhileBtnPressed
+      value: 
+      objectReference: {fileID: 1114031707}
     - target: {fileID: 1045103754934244661, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_Name
@@ -3132,6 +3142,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d923e06d11c42c4c8ce76b64e93975d, type: 3}
+--- !u!224 &1114031706 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1114031705}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1114031707 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6469112085079591453, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1114031705}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1143793800
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5267,6 +5289,16 @@ PrefabInstance:
       propertyPath: BtnDownTextColor.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: rectTransform
+      value: 
+      objectReference: {fileID: 1959818951}
+    - target: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: rectTransformToGoDownWhileBtnPressed
+      value: 
+      objectReference: {fileID: 1959818953}
     - target: {fileID: 1045103754934244661, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_Name
@@ -5441,6 +5473,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d923e06d11c42c4c8ce76b64e93975d, type: 3}
+--- !u!224 &1959818951 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1959818950}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1959818952 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
@@ -5453,6 +5491,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1d2e81d211b3634fbe87f24f4c54104, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &1959818953 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6469112085079591453, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+    type: 3}
+  m_PrefabInstance: {fileID: 1959818950}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1973127230
 GameObject:
   m_ObjectHideFlags: 0
@@ -5739,6 +5783,16 @@ PrefabInstance:
       propertyPath: BtnDownTextColor.b
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: rectTransform
+      value: 
+      objectReference: {fileID: 407812878953223628}
+    - target: {fileID: 407812878653485965, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+        type: 3}
+      propertyPath: rectTransformToGoDownWhileBtnPressed
+      value: 
+      objectReference: {fileID: 407812878953223629}
     - target: {fileID: 1045103754934244661, guid: 5d923e06d11c42c4c8ce76b64e93975d,
         type: 3}
       propertyPath: m_Name
@@ -5948,6 +6002,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d923e06d11c42c4c8ce76b64e93975d, type: 3}
+--- !u!224 &407812878953223628 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4426121268324594648, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+    type: 3}
+  m_PrefabInstance: {fileID: 407812878953223627}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &407812878953223629 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6469112085079591453, guid: 5d923e06d11c42c4c8ce76b64e93975d,
+    type: 3}
+  m_PrefabInstance: {fileID: 407812878953223627}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &461324940392748970
 PrefabInstance:
   m_ObjectHideFlags: 0
