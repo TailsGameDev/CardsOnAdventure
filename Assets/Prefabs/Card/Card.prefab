@@ -197,7 +197,7 @@ MonoBehaviour:
   protectionIcon: {fileID: 6491345581572652226}
   skills: {fileID: 0}
   obfuscator: {fileID: 6754206906903102355}
-  cardImage: {fileID: 439867028889674655}
+  cardImage: {fileID: 6958751856864284297}
   DamageTextPrototype: {fileID: 3530895837192552274, guid: 76246bb0450b1bf43806d8274cd7d569,
     type: 3}
   horizontalSprite: {fileID: 0}
