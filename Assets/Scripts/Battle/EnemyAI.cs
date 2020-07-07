@@ -189,6 +189,8 @@ public class EnemyAI
         // Perform attack for each card in attackers list
         for (int i = 0; i < attackerCards.Count; i++)
         {
+            yield return WaitForSeconds(aiDelay);
+
             enemyBattlefield.ClearSelection();
             playerBattlefield.ClearSelection();
 
@@ -199,8 +201,6 @@ public class EnemyAI
 
             this.attackerPower = attacker.AttackPower;
             playerBattlefield.LoopThrougCardsAndSelectBestTarget(currentTargetIsBetterThanTheOneBefore);
-
-            yield return WaitForSeconds(aiDelay);
         }
 
         UIBattle.inputEnabled = true;
