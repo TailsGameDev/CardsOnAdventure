@@ -1,8 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class GameStart : BattleState
 {
-    public GameStart(BattleStatesFactory firstToPlayStatesFactory, BattleStatesFactory playerStatesFactory, BattleStatesFactory enemyStatesFactory, AudioRequisitor audioRequisitor)
+    public GameStart
+        (
+            BattleStatesFactory firstToPlayStatesFactory, 
+            BattleStatesFactory playerStatesFactory, 
+            BattleStatesFactory enemyStatesFactory, 
+            AudioRequisitor audioRequisitor, 
+            Image battleIconImage
+        )
     {
         currentBattleStatesFactory = firstToPlayStatesFactory;
         playerBattleStatesFactory = playerStatesFactory;
@@ -15,11 +23,16 @@ public class GameStart : BattleState
 
         // Just in case
         TimeFacade.RestoreTimeInNextFrameIfAllPopUpsAreClosed();
+
+        if (CurrentBattleInfo.BattleIcon != null)
+        {
+            battleIconImage.sprite = CurrentBattleInfo.BattleIcon;
+        }
     }
 
     public override void ExecuteAction()
     {
-        Camera.main.backgroundColor = backgroundColor;
+        Camera.main.backgroundColor = deckColor;
         Card.ResetDeathCount();
     }
 

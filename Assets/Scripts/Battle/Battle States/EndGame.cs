@@ -56,13 +56,13 @@ public class EndGame : BattleState
 
                     if (winnerFactory == playerBattleStatesFactory)
                     {
-                        if ( CurrentBattleInfo.IsMasterBattle )
+                        if ( CurrentBattleInfo.GiveRewardToSameClassOfMasterDeckOnWin )
                         {
                             sceneCanvas.SetActive(false);
                             customPopUpOpener.OpenDisplayingCardsOfClass(
                                 title: "You beat a Master",
                                 warningMessage: "<color=#FFFFFF>And then you 'borrowed' some of their equipment</color>" +
-                                   Formater.Paint(" ALL YOUR " + enemyDeckClass + " CARDS WILL BE BUFFED. PLEASE CHOOSE:", backgroundColor),
+                                   Formater.Paint(" ALL YOUR " + enemyDeckClass + " CARDS WILL BE BUFFED. PLEASE CHOOSE:", deckColor),
                                 confirmBtnMessage: "+1 Vitality",
                                 cancelBtnMessage: "+1 Attack Power",
                                 onConfirm: ImproveVitalityThenSeeMap,

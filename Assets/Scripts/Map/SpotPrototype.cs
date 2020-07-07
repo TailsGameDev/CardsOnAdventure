@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class SpotPrototype : OpenersSuperclass
 {
@@ -33,7 +34,14 @@ public class SpotPrototype : OpenersSuperclass
     [SerializeField]
     private string editorMadeEnemyDeckName = null;
 
+    private Sprite battleIcon;
+
     public bool BelongsToMap { set => belongsToMap = value; }
+
+    public void Awake()
+    {
+        battleIcon = GetComponent<Image>().sprite;
+    }
 
     public void OnBattleSpotBtnClicked()
     {
@@ -48,11 +56,12 @@ public class SpotPrototype : OpenersSuperclass
 
         if (isTraining || deckClass == Classes.NOT_A_CLASS)
         {
-            CurrentBattleInfo.PrepareBattle(backgroundColor, isMasterBattle: false, bgmParam: spotBGM);
+            CurrentBattleInfo.PrepareBattle(battleIcon, 
+                backgroundColor, giveRewardToSameClassOfMasterDeckOnWin: false, bgmParam: spotBGM);
         }
         else
         {
-            CurrentBattleInfo.PrepareBattle(isMasterBattle, deckClass, spotBGM);
+            CurrentBattleInfo.PrepareBattle(battleIcon, isMasterBattle, deckClass, spotBGM);
         }
     }
 

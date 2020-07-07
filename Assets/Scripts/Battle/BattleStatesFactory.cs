@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class BattleStatesFactory : OpenersSuperclass
 {
@@ -41,15 +42,32 @@ public class BattleStatesFactory : OpenersSuperclass
     [SerializeField]
     private GameObject activateOnAttackState = null;
 
+    [SerializeField]
+    private Image battleIconImage = null;
+
     public BattleState CreateGameStartState()
     {
         if (isThePlayersFactory)
         {
-            return new GameStart(firstToPlayStatesFactory: this, playerStatesFactory: this, enemyStatesFactory: otherBattleStatesFactory, audioRequisitor);
+            return new GameStart
+                (
+                    firstToPlayStatesFactory: this,
+                    playerStatesFactory: this, 
+                    enemyStatesFactory: otherBattleStatesFactory, 
+                    audioRequisitor,
+                    battleIconImage
+                );
         }
         else
         {
-            return new GameStart(firstToPlayStatesFactory: this, playerStatesFactory: otherBattleStatesFactory, enemyStatesFactory: this, audioRequisitor);
+            return new GameStart
+                (
+                    firstToPlayStatesFactory: this, 
+                    playerStatesFactory: otherBattleStatesFactory, 
+                    enemyStatesFactory: this, 
+                    audioRequisitor,
+                    battleIconImage
+                );
         }
     }
     public BattleState CreateDrawCardState()

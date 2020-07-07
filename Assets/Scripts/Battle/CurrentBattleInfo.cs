@@ -2,21 +2,36 @@
 
 public class CurrentBattleInfo
 {
-    protected static Color backgroundColor;
+    protected static Color deckColor;
     protected static Classes enemyDeckClass;
     protected static AudioClip bgm;
-    protected static bool IsMasterBattle;
+    protected static bool GiveRewardToSameClassOfMasterDeckOnWin;
+    protected static Sprite BattleIcon;
 
-    public static void PrepareBattle(bool isMasterBattle = false, Classes masterClassParam = Classes.NOT_A_CLASS, AudioClip bgmParam = null)
+    public static void PrepareBattle
+        (
+            Sprite battleIcon,
+            bool giveRewardToSameClassOfMasterDeckOnWin = false,
+            Classes masterClassParam = Classes.NOT_A_CLASS,
+            AudioClip bgmParam = null
+        )
     {
-        PrepareBattle(Color.gray, isMasterBattle, masterClassParam, bgmParam);
+        PrepareBattle(battleIcon, Color.gray, giveRewardToSameClassOfMasterDeckOnWin, masterClassParam, bgmParam);
     }
 
-    public static void PrepareBattle(Color backgroundColorParam, bool isMasterBattle = false, Classes masterClassParam = Classes.NOT_A_CLASS, AudioClip bgmParam = null)
+    public static void PrepareBattle
+        (
+            Sprite battleIcon,
+            Color deckColorParam,
+            bool giveRewardToSameClassOfMasterDeckOnWin = false, 
+            Classes masterClassParam = Classes.NOT_A_CLASS, 
+            AudioClip bgmParam = null
+        )
     {
-        backgroundColor = masterClassParam == Classes.NOT_A_CLASS ? backgroundColorParam : ClassInfo.GetColorOfClass(masterClassParam);
+        deckColor = masterClassParam == Classes.NOT_A_CLASS ? deckColorParam : ClassInfo.GetColorOfClass(masterClassParam);
         enemyDeckClass = masterClassParam;
         bgm = bgmParam;
-        IsMasterBattle = isMasterBattle;
+        GiveRewardToSameClassOfMasterDeckOnWin = giveRewardToSameClassOfMasterDeckOnWin;
+        BattleIcon = battleIcon;
     }
 }
