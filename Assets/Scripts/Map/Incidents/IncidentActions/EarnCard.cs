@@ -15,6 +15,7 @@ public class EarnCard : IncidentAction
     {
         cards = new RandomDeckBuilder(2).GetDeck();
         cards = DeckPrototypeFactory.ReplaceTheRandomCards(cards);
+        cards = DeckPrototypeFactory.ReplaceMonsters(cards);
 
         customPopUpOpener.OpenDisplayingCards
             (

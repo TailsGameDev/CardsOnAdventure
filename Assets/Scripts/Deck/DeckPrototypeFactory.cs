@@ -120,9 +120,9 @@ public class DeckPrototypeFactory : MonoBehaviour
         return Instantiate(deckPrototypeFactory.theRandomCard);
     }
 
-    public static Card[] GetCopyOfAllAndEachCardPrototypePlusTheRandomCard()
+    public static Card[] GetCardsOnPlayerCollection()
     {
-        return OneOfEachAndOneRandomCardDeckBuilder.Create().GetDeck();
+        return OneOfEachAndARandomCardButNoMonstersDeckBuilder.Create().GetDeck();
     }
 
     public static Card[] GetPreparedCardsForTheEnemy()
@@ -190,7 +190,7 @@ public class DeckPrototypeFactory : MonoBehaviour
 
         return playerDeck;
     }
-    private static Card[] ReplaceMonsters(Card[] playerDeck)
+    public static Card[] ReplaceMonsters(Card[] playerDeck)
     {
         for (int i = 0; i < playerDeck.Length; i++)
         {

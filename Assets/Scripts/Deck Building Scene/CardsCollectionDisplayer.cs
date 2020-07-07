@@ -18,7 +18,7 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
     {
         // Wait for the DeckPrototypeFactory to PopulateArrayOfAllCardPrototypes.
         yield return null;
-        cards = DeckPrototypeFactory.GetCopyOfAllAndEachCardPrototypePlusTheRandomCard();
+        cards = DeckPrototypeFactory.GetCardsOnPlayerCollection();
 
         InitializeSlotsAndRectSize(amountOfSlots: cards.Length);
         PopulateAmountOfEachCard();
