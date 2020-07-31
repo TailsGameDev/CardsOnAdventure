@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/*
 public class PlayerHasCards : Condition
 {
     [SerializeField]
@@ -12,3 +13,4 @@ public class PlayerHasCards : Condition
         return true;
     }
 }
+*/

@@ -17,6 +17,9 @@ public class Map : OpenersSuperclass
 
     private static bool shouldSave = false;
 
+    [SerializeField]
+    private MapScroller mapScroller = null;
+
     #region Initialization
     private void Awake()
     {
@@ -29,6 +32,7 @@ public class Map : OpenersSuperclass
             ClassInfo.ResetBonusesToAllClasses();
             StartOfMatch = false;
             BuildSpotsFromZeroThenCacheThem();
+            mapScroller.FocusOnInitialMap();
         }
         else if ( CacheIsEmpty() )
         {

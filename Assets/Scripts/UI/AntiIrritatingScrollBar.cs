@@ -9,7 +9,7 @@ public class AntiIrritatingScrollBar : MonoBehaviour
     private Scrollbar scrollbar = null;
 
     [SerializeField]
-    private int initialValue;
+    private int initialValue = 0;
 
     private void OnEnable()
     {
