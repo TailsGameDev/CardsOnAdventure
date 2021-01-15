@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class RandomDeckBuilder : DeckPrototypeFactory.DeckBuilder
+﻿public class RandomDeckBuilder : DeckPrototypeFactory.DeckBuilder
 {
     public RandomDeckBuilder(int size) : base(size)
     {

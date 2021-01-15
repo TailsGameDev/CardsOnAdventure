@@ -4,7 +4,7 @@ using UnityEngine;
 public class DeckBuilding : OpenersSuperclass
 {
     [SerializeField]
-    private CardsCollectionDisplayer cardsCollection = null;
+    protected CardsCollectionDisplayer cardsCollection = null;
 
     [SerializeField]
     private DeckCardHolder deck = null;
@@ -48,7 +48,16 @@ public class DeckBuilding : OpenersSuperclass
             ClearAllSelections();
         }
     }
-
+    private void ClearAllSelections()
+    {
+        cardsCollection.ClearSelection();
+        deck.ClearSelection();
+    }
+    private void GiveBackCardOfDeckToTheCollection()
+    {
+        Card cardToGiveBackToTheCollection = deck.RemoveCardFromSelectedIndex();
+        cardsCollection.GiveCardBack(cardToGiveBackToTheCollection);
+    }
     private void PlaceTheCardOfCollectionInTheDeck()
     {
         Card cardToPlaceInTheDeck = cardsCollection.GetCloneOfSelectedCardAndReduceAmountInDeck();
@@ -61,17 +70,6 @@ public class DeckBuilding : OpenersSuperclass
         cardsCollection.PutCardInIndexThenTeleportToSlot(secondClone, cardsCollection.GetSelectedIndex());
     }
 
-    private void GiveBackCardOfDeckToTheCollection()
-    {
-        Card cardToGiveBackToTheCollection = deck.RemoveCardFromSelectedIndex();
-        cardsCollection.GiveCardBack(cardToGiveBackToTheCollection);
-    }
-
-    private void ClearAllSelections()
-    {
-        cardsCollection.ClearSelection();
-        deck.ClearSelection();
-    }
 
     public void OnDrinkBtnClicked()
     {
@@ -82,13 +80,11 @@ public class DeckBuilding : OpenersSuperclass
     {
         SaveAndQuit();
     }
-
     private void SaveAndQuit()
     {
         StartCoroutine(SaveAndQuitCoroutine());
     }
-
-    private IEnumerator SaveAndQuitCoroutine()
+    protected virtual IEnumerator SaveAndQuitCoroutine()
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrueAndDeactivateTips();
         yield return null;

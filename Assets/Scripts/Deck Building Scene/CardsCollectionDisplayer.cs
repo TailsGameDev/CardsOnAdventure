@@ -9,6 +9,8 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
 
     private int[] amountOfEachCard = null;
 
+    public int[] AmountOfEachCard { get => amountOfEachCard; }
+
     #region Initialization
     private void Start()
     {

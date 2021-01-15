@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using UnityEngine;
+using System.Collections;
 
 public class DeckCardHolder : DynamicSizeScrollableCardHolder
 {
@@ -11,13 +12,18 @@ public class DeckCardHolder : DynamicSizeScrollableCardHolder
     {
         // Wait for the DeckPrototypeFactory to PopulateArrayOfAllCardPrototypes.
         yield return null;
-        int amountOfSlots = DeckPrototypeFactory.DefaultDeckSize;
+        int amountOfSlots = DecideAmountOfSlotsThisCardHolderShouldHave();
         InitializeSlotsAndRectSize(amountOfSlots);
-        InitializeCards(amountOfSlots);
+        InitializeCards(slots);
     }
-    private void InitializeCards(int amountOfSlots)
+    protected virtual int DecideAmountOfSlotsThisCardHolderShouldHave()
     {
-        cards = DeckPrototypeFactory.GetPreparedCardsForThePlayerWithTheRandomCards();
+        int amountOfSlots = DeckPrototypeFactory.DefaultDeckSize;
+        return amountOfSlots;
+    }
+    private void InitializeCards(RectTransform[] slots)
+    {
+        cards = PopulateCardsArray();
 
         for (int i = 0; i < amountOfSlots; i++)
         {
@@ -25,6 +31,11 @@ public class DeckCardHolder : DynamicSizeScrollableCardHolder
 
             ChildMaker.CopySizeDelta(slots[i], cards[i].GetRectTransform());
         }
+    }
+    protected virtual Card[] PopulateCardsArray()
+    {
+        cards = DeckPrototypeFactory.GetPreparedCardsForThePlayerWithTheRandomCards();
+        return cards;
     }
     #endregion
 

@@ -11,7 +11,7 @@ public class DynamicSizeScrollableCardHolder : CardsHolder
 
     protected RectTransform[] slots = null;
 
-    private int amountOfSlots;
+    protected int amountOfSlots;
 
     #region Initialization
     protected void InitializeSlotsAndRectSize(int amountOfSlots)
@@ -21,7 +21,6 @@ public class DynamicSizeScrollableCardHolder : CardsHolder
         InstantiateSlots();
         PopulateCardPositionsArray();
     }
-
     private void SetHorizontalSizeOfRect()
     {
         float sizeXOfASlot = slotPrototype.sizeDelta.x;
@@ -31,7 +30,6 @@ public class DynamicSizeScrollableCardHolder : CardsHolder
 
         scrollableBackground.sizeDelta = new Vector2(sizeX, scrollableBackground.sizeDelta.y);
     }
-
     private void InstantiateSlots()
     {
         slotPrototype.GetComponent<CardReceptor>().CardsHolder = this;
@@ -45,7 +43,6 @@ public class DynamicSizeScrollableCardHolder : CardsHolder
             slots[i].GetComponent<CardReceptor>().Index = i;
         }
     }
-
     private void PopulateCardPositionsArray()
     {
         cardPositions = new RectTransform[amountOfSlots];
