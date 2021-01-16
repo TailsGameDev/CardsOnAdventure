@@ -41,7 +41,6 @@
         // Because DeckPrototypeFactory checks if deck is loaded. And from this moment on we can say it is.
         loadedDeckSerializable = deckSerializableParam;
     }
-
     public void PrepareCardsCollectionForSaving(DeckSerializable cardsCollectionSerializableParam)
     {
         cardsCollectionToSave = cardsCollectionSerializableParam;
@@ -91,32 +90,23 @@
     {
         return loadedDeckSerializable;
     }
-
-    public bool IsDeckLoaded()
-    {
-        return loadedDeckSerializable != null;
-    }
-
     public DeckSerializable GetLoadedCardsCollection()
     {
         return loadedCardsCollection;
     }
 
+    public bool IsDeckLoaded()
+    {
+        return loadedDeckSerializable != null;
+    }
     public bool IsCardsCollectionLoaded()
     {
         return loadedCardsCollection != null;
     }
 
-    private bool SafeToSave()
-    {
-        return  dataOfMapsToSave != null && 
-                nameOfMapsToSave != null && 
-                classesSerializableToSave != null &&
-                deckSerializableToSave != null;
-                // cardsCollectionToSave is optional
-    }
     public void SaveEverything()
     {
+        /*
         if ( SafeToSave() )
         {
             mapsPersistence.SaveAllMaps(nameOfMapsToSave, dataOfMapsToSave);
@@ -133,5 +123,14 @@
             L.ogWarning("SaveEverything was called, but at least one attribute is still null. " +
                 "This is ok at the start of the game", this);
         }
+        */
+    }
+    private bool SafeToSave()
+    {
+        return  dataOfMapsToSave != null && 
+                nameOfMapsToSave != null && 
+                classesSerializableToSave != null &&
+                deckSerializableToSave != null;
+                // cardsCollectionToSave is optional
     }
 }

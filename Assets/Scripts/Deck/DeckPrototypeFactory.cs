@@ -7,7 +7,6 @@ public class DeckPrototypeFactory : MonoBehaviour
 
     private static DeckBuilder enemyDeckBuilder;
     private static DeckBuilder playerDeckBuilder;
-    private static DeckBuilder trainingDeckForThePlayer;
 
     [SerializeField]
     private int defaultDeckSize = -1;
@@ -94,7 +93,7 @@ public class DeckPrototypeFactory : MonoBehaviour
 
         int[] cardsCollectionAmounts = GetCardsCollectionAmounts();
         // c+1 because the random card index is 0.
-        cardsCollectionAmounts[c+1] += 1;
+        cardsCollectionAmounts[c] += 1;
         saveFacade.PrepareCardsCollectionForSaving(new DeckSerializable(cardsCollectionAmounts));
     }
     public static int[] GetCardsCollectionAmounts()
@@ -106,23 +105,21 @@ public class DeckPrototypeFactory : MonoBehaviour
         }
         else
         {
-            cardAmounts = new int[deckPrototypeFactory.allCardPrototypes.Length+1];
-            cardAmounts[0] = 99;
-            for (int i = 1; i < cardAmounts.Length; i++)
+            cardAmounts = new int[deckPrototypeFactory.allCardPrototypes.Length];
+            for (int i = 0; i < cardAmounts.Length; i++)
             {
-                cardAmounts[i] = 0;
+                // For now, let's consider the collection starts with one card of each type.
+                // Maybe this change later when unlock new types of card, maybe not!
+                cardAmounts[i] = 1;
             }
         }
         return cardAmounts;
     }
-    public static Card GetCloneOfTheRandomCard()
-    {
-        return Instantiate(deckPrototypeFactory.theRandomCard);
-    }
 
     public static Card[] GetCardsOnPlayerCollection()
     {
-        return OneOfEachAndARandomCardButNoMonstersDeckBuilder.Create().GetDeck();
+        // return EditorMadeDeckBuilder.CreateEditorMadeDeckBuilder("PlayerDeck").GetDeck();
+        return OneOfEachCardDeckBuilder.Create().GetDeck();
     }
 
     public static Card[] GetPreparedCardsForTheEnemy()
@@ -158,12 +155,7 @@ public class DeckPrototypeFactory : MonoBehaviour
     {
         Card[] playerDeck;
 
-        if (trainingDeckForThePlayer != null)
-        {
-            playerDeck = trainingDeckForThePlayer.GetDeck();
-            trainingDeckForThePlayer = null;
-        }
-        else if (saveFacade.IsDeckLoaded())
+        if (saveFacade.IsDeckLoaded())
         {
             DeckSerializable deckSerializable = saveFacade.GetLoadedDeck();
             PrepareLoadedDeckForThePlayer(deckSerializable.GetCardsIndexes());
@@ -171,7 +163,7 @@ public class DeckPrototypeFactory : MonoBehaviour
         }
         else
         {
-            PrepareEditorMadeDeckForThePlayer();
+            PrepareFirstDeckIfNeededForThePlayerAndSaveItInStorage();
             playerDeck = playerDeckBuilder.GetDeck();
         }
 
@@ -234,80 +226,25 @@ public class DeckPrototypeFactory : MonoBehaviour
     #endregion
 
     #region Prepare Player's Deck
-    public static void PrepareRandomDeckForThePlayerAndSaveItInStorage(int size = NOT_A_SIZE)
-    {
-        playerDeckBuilder = new RandomDeckBuilder(size);
-
-        int adjustedSize;
-        if (size == NOT_A_SIZE)
-        {
-            adjustedSize = DefaultDeckSize;
-        }
-        else
-        {
-            adjustedSize = size;
-        }
-
-        int[] cardIndexes = GetArrayFilledWithTheRandomCardIndex(adjustedSize);
-        SaveIndexesInStorage(cardIndexes);
-    }
     public static void PrepareManuallyBuiltDeckForThePlayerAndSaveInStorage(Card[] cards)
     {
         playerDeckBuilder = ManualDeckBuider.Create(cards);
 
         int[] cardIndexes = ((ManualDeckBuider)playerDeckBuilder).GetIndexOfEachCardPrototype();
-        SaveIndexesInStorage(cardIndexes);
+        SaveDeckIndexesInStorage(cardIndexes);
     }
     public static void PrepareLoadedDeckForThePlayer(int[] cardIndexes)
     {
         playerDeckBuilder = ManualDeckBuider.Create(cardIndexes);
     }
-    public static void PrepareTrainingDeckForThePlayer()
+    public static void PrepareFirstDeckIfNeededForThePlayerAndSaveItInStorage()
     {
-        // TODO: remove duplicated code
         if (playerDeckBuilder == null)
         {
-            Card[] theCards = new Card[4];
-
-            for (int i = 0; i < theCards.Length; i++)
-            {
-                // Get some cards without skill, and others random.
-                if (i % 2 == 0)
-                {
-                    theCards[i] = ClassInfo.GetCardsOfClass(Classes.REGULAR)[0].GetClone();
-                }
-                else
-                {
-                    theCards[i] = GetCloneOfTheRandomCard();
-                }
-            }
-
-            trainingDeckForThePlayer = ManualDeckBuider.Create(theCards);
+            playerDeckBuilder = EditorMadeDeckBuilder.CreateEditorMadeDeckBuilder("PlayerDeck");
+            int[] cardIndexes = ((EditorMadeDeckBuilder)playerDeckBuilder).GetIndexOfEachCardPrototype();
+            SaveDeckIndexesInStorage(cardIndexes);
         }
-        else
-        {
-            Card[] cards = playerDeckBuilder.GetDeck();
-            Card[] theCards = new Card[4];
-
-            for (int i = 0; i < theCards.Length; i++)
-            {
-                // Get some cards without skill, and others random.
-                if (i % 2 == 0)
-                {
-                    theCards[i] = i < cards.Length ? cards[i] : ClassInfo.GetCardsOfClass(Classes.REGULAR)[0].GetClone();
-                }
-                else
-                {
-                    theCards[i] = i < cards.Length ? cards[i] : GetCloneOfTheRandomCard();
-                }
-            }
-
-            trainingDeckForThePlayer = ManualDeckBuider.Create(theCards);
-        }
-    }
-    public static void PrepareEditorMadeDeckForThePlayer()
-    {
-        playerDeckBuilder = EditorMadeDeckBuilder.CreateEditorMadeDeckBuilder("PlayerDeck");
     }
     #endregion
 
@@ -325,7 +262,7 @@ public class DeckPrototypeFactory : MonoBehaviour
         return cardIndexes;
     }
 
-    private static void SaveIndexesInStorage(int[] cardIndexes)
+    private static void SaveDeckIndexesInStorage(int[] cardIndexes)
     {
         DeckSerializable deckSerializable = new DeckSerializable(cardIndexes);
         saveFacade.PrepareDeckForSaving(deckSerializable);
@@ -337,6 +274,8 @@ public class DeckPrototypeFactory : MonoBehaviour
         protected Card[] deck;
         protected readonly Card[] allCardPrototypes;
         protected readonly List<Card> notMonsterPrototypes;
+
+        public static readonly int INDEX_OF_THE_RANDOM_CARD = -1;
 
         public DeckBuilder(int size)
         {
@@ -410,6 +349,34 @@ public class DeckPrototypeFactory : MonoBehaviour
         protected Card GetCloneOfTrainingDummyCard()
         {
             return deckPrototypeFactory.trainingDummyCard.GetClone();
+        }
+
+        protected int[] FindThePrototypeIndexForEachCard(Card[] cardsToBeOnDeck)
+        {
+            int[] indexOfEachCardPrototype = new int[size];
+            for (int i = 0; i < size; i++)
+            {
+                // Find
+                Card cardOfDeck = cardsToBeOnDeck[i];
+                int prototypeIndex = FindIndexOnPrototypesArray(cardOfDeck);
+                // Cache
+                indexOfEachCardPrototype[i] = prototypeIndex;
+            }
+            return indexOfEachCardPrototype;
+        }
+        protected int FindIndexOnPrototypesArray(Card card)
+        {
+            int prototypeIndex = INDEX_OF_THE_RANDOM_CARD;
+            for (int iterationIndex = 0; iterationIndex < allCardPrototypes.Length; iterationIndex++)
+            {
+                Card prototype = allCardPrototypes[iterationIndex];
+                if (card.IsAnotherInstanceOf(prototype))
+                {
+                    prototypeIndex = iterationIndex;
+                    break;
+                }
+            }
+            return prototypeIndex;
         }
     }
 }

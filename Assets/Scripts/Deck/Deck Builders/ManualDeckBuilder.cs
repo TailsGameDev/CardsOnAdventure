@@ -1,7 +1,6 @@
 ﻿public class ManualDeckBuider : DeckPrototypeFactory.DeckBuilder
 {
     private int[] indexOfEachCardPrototype;
-    public static readonly int INDEX_OF_THE_RANDOM_CARD = -1;
 
     #region Initialization
     private ManualDeckBuider(int size) : base(size)
@@ -13,7 +12,7 @@
     {
         ManualDeckBuider builder = new ManualDeckBuider(cardsToBeOnDeck.Length);
 
-        builder.FindAndCacheThePrototypeIndexForEachCard(cardsToBeOnDeck);
+        builder.indexOfEachCardPrototype = builder.FindThePrototypeIndexForEachCard(cardsToBeOnDeck);
 
         return builder;
     }
@@ -23,33 +22,6 @@
         ManualDeckBuider builder = new ManualDeckBuider(indexOfEachCardPrototype.Length);
         builder.indexOfEachCardPrototype = indexOfEachCardPrototype;
         return builder;
-    }
-    
-    private void FindAndCacheThePrototypeIndexForEachCard(Card[] cardsToBeOnDeck)
-    {
-        for (int i = 0; i < size; i++)
-        {
-            // Find
-            Card cardOfDeck = cardsToBeOnDeck[i];
-            int prototypeIndex = FindIndexOnPrototypesArray(cardOfDeck);
-            // Cache
-            indexOfEachCardPrototype[i] = prototypeIndex;
-        }
-    }
-
-    private int FindIndexOnPrototypesArray(Card card)
-    {
-        int prototypeIndex = INDEX_OF_THE_RANDOM_CARD;
-        for (int iterationIndex = 0; iterationIndex < allCardPrototypes.Length; iterationIndex++)
-        {
-            Card prototype = allCardPrototypes[iterationIndex];
-            if (card.IsAnotherInstanceOf(prototype))
-            {
-                prototypeIndex = iterationIndex;
-                break;
-            }
-        }
-        return prototypeIndex;
     }
     #endregion
 

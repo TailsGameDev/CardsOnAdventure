@@ -5,20 +5,19 @@ using UnityEngine;
 public class Map : OpenersSuperclass
 {    
     public static bool StartOfMatch = true;
+    public static bool ShouldLoadEverything = false;
 
     [SerializeField]
     private Spot[] finalSpotForEachMap = null;
+
+    [SerializeField]
+    private MapScroller mapScroller = null;
 
     private MapsCache mapsCache;
 
     private SaveFacade saveFacade = new SaveFacade();
 
     private static bool shouldAskForTip = true;
-
-    private static bool shouldSave = false;
-
-    [SerializeField]
-    private MapScroller mapScroller = null;
 
     #region Initialization
     private void Awake()
@@ -43,7 +42,7 @@ public class Map : OpenersSuperclass
             CopyDataFromMapsCacheToSceneSpots();
         }
 
-        HandlePersistence();
+        KeepDataReadyForSaving();
     }
 
     private void Start()
@@ -95,7 +94,10 @@ public class Map : OpenersSuperclass
         string[] mapNames = GetMapNames();
         mapsCache.PrepareMapsForLoading(mapNames);
 
-        saveFacade.LoadEverything();
+        if (ShouldLoadEverything)
+        {
+            saveFacade.LoadEverything();
+        }
 
         // Copying loaded information into the game classes.
         mapsCache.FillMapsCacheUsingLoadedFiles(mapNames);
@@ -123,19 +125,10 @@ public class Map : OpenersSuperclass
         }
     }
 
-    private void HandlePersistence()
+    private void KeepDataReadyForSaving()
     {
-        // The game shouldn't be saved at the first time on the map. It would be useless, and cause a LogWarning.
-        if (shouldSave)
-        {
-            ClassInfo.PrepareClassesBonusesForSaving();
-            mapsCache.PrepareAllMapsForSaving();
-            saveFacade.SaveEverything();
-        }
-        else
-        {
-            shouldSave = true;
-        }
+        ClassInfo.PrepareClassesBonusesForSaving();
+        mapsCache.PrepareAllMapsForSaving();
     }
     #endregion
 

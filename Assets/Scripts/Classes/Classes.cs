@@ -15,6 +15,6 @@ public enum Classes
     ROGUE,
     GUARDIAN,
     CLERIC,
-    REGULAR,
     MONSTER,
+    // REGULAR,
 }

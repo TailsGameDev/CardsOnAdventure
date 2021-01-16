@@ -30,15 +30,12 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
     {
         amountOfEachCard = new int[cards.Length];
 
-        const int THE_RANDOM_CARD_INDEX = 0;
-        amountOfEachCard[THE_RANDOM_CARD_INDEX] = 50;
-
         int[] cardAmounts = DeckPrototypeFactory.GetCardsCollectionAmounts();
 
         Card[] currentDeck = DeckPrototypeFactory.GetPreparedCardsForThePlayerWithTheRandomCards();
 
         // For each card on Deck, subtract 1 from it's amount in the collection.
-        for (int i = 1; i < cards.Length; i++)
+        for (int i = 0; i < cards.Length; i++)
         {
             int amount = cardAmounts[i];
             for (int k = 0; k < currentDeck.Length; k++)

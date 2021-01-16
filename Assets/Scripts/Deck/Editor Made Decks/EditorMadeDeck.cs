@@ -49,14 +49,6 @@ public class EditorMadeDeck : MonoBehaviour
     }
 }
 
-public class PlayerEditorMadeDeck : EditorMadeDeck
-{
-    public void AddCard(Card card)
-    {
-        cards.Add(card);
-    }
-}
-
 public class EditorMadeDeckBuilder : DeckPrototypeFactory.DeckBuilder
 {
     private Card[] cardPrototypes;
@@ -103,5 +95,10 @@ public class EditorMadeDeckBuilder : DeckPrototypeFactory.DeckBuilder
         }
 
         return cards;
+    }
+
+    public int[] GetIndexOfEachCardPrototype()
+    {
+        return FindThePrototypeIndexForEachCard(cardPrototypes);
     }
 }
