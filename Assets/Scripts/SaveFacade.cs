@@ -106,7 +106,6 @@
 
     public void SaveEverything()
     {
-        /*
         if ( SafeToSave() )
         {
             mapsPersistence.SaveAllMaps(nameOfMapsToSave, dataOfMapsToSave);
@@ -123,7 +122,6 @@
             L.ogWarning("SaveEverything was called, but at least one attribute is still null. " +
                 "This is ok at the start of the game", this);
         }
-        */
     }
     private bool SafeToSave()
     {
