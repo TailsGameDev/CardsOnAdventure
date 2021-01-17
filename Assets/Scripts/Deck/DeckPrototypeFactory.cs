@@ -32,13 +32,6 @@ public class DeckPrototypeFactory : MonoBehaviour
     {
         BecomeSingleton();
     }
-
-    private void Start()
-    {
-        PopulateArrayOfAllCardPrototypes();
-        PopulateArrayOfNotMonsterPrototypes();
-    }
-
     private void BecomeSingleton()
     {
         if (deckPrototypeFactory == null)
@@ -49,6 +42,23 @@ public class DeckPrototypeFactory : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    private void Start()
+    {
+        PopulateCardArraysIfNeeded();
+    }
+    private void PopulateCardArraysIfNeeded()
+    {
+        if ( ! CardArraysArePopulated())
+        {
+            PopulateArrayOfAllCardPrototypes();
+            PopulateArrayOfNotMonsterPrototypes();
+        }
+    }
+    private bool CardArraysArePopulated()
+    {
+        return deckPrototypeFactory.allCardPrototypes != null;
     }
 
     private void PopulateArrayOfAllCardPrototypes()
@@ -120,6 +130,12 @@ public class DeckPrototypeFactory : MonoBehaviour
     {
         // return EditorMadeDeckBuilder.CreateEditorMadeDeckBuilder("PlayerDeck").GetDeck();
         return OneOfEachCardDeckBuilder.Create().GetDeck();
+    }
+
+    public static int GetAmountOfCardPrototypes()
+    {
+        deckPrototypeFactory.PopulateCardArraysIfNeeded();
+        return deckPrototypeFactory.allCardPrototypes.Length;
     }
 
     public static Card[] GetPreparedCardsForTheEnemy()
@@ -268,6 +284,23 @@ public class DeckPrototypeFactory : MonoBehaviour
         saveFacade.PrepareDeckForSaving(deckSerializable);
     }
 
+    public static int FindIndexOnPrototypesArray(Card card)
+    {
+        // -1 can be interpreted as the Random Card
+        int prototypeIndex = -1;
+        Card[] allCardPrototypes = deckPrototypeFactory.allCardPrototypes;
+        for (int iterationIndex = 0; iterationIndex < allCardPrototypes.Length; iterationIndex++)
+        {
+            Card prototype = allCardPrototypes[iterationIndex];
+            if (card.IsAnotherInstanceOf(prototype))
+            {
+                prototypeIndex = iterationIndex;
+                break;
+            }
+        }
+        return prototypeIndex;
+    }
+
     public abstract class DeckBuilder
     {
         protected int size;
@@ -363,20 +396,6 @@ public class DeckPrototypeFactory : MonoBehaviour
                 indexOfEachCardPrototype[i] = prototypeIndex;
             }
             return indexOfEachCardPrototype;
-        }
-        protected int FindIndexOnPrototypesArray(Card card)
-        {
-            int prototypeIndex = INDEX_OF_THE_RANDOM_CARD;
-            for (int iterationIndex = 0; iterationIndex < allCardPrototypes.Length; iterationIndex++)
-            {
-                Card prototype = allCardPrototypes[iterationIndex];
-                if (card.IsAnotherInstanceOf(prototype))
-                {
-                    prototypeIndex = iterationIndex;
-                    break;
-                }
-            }
-            return prototypeIndex;
         }
     }
 }

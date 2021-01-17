@@ -71,8 +71,15 @@ public class Card : SkillsMediatorUser
     [SerializeField]
     private TipReceptor tipReceptor = null;
 
-    float increaseScaleValueInProtectionAnimation = 0.2f;
-    float increaseScaleSpeedMultiplier = 1.0f;
+    private float increaseScaleValueInProtectionAnimation = 0.2f;
+    private float increaseScaleSpeedMultiplier = 1.0f;
+
+    [SerializeField]
+    private CardsLevel cardsLevel = null;
+    [SerializeField]
+    private float attackBonusPerLevel = 0;
+    [SerializeField]
+    private float vitalityBonusPerLevel = 0;
     #endregion
 
     #region Properties
@@ -429,10 +436,15 @@ public class Card : SkillsMediatorUser
 
     public void ApplyPlayerBonuses()
     {
+        int level = cardsLevel.GetLevelOfCard(this);
+
         attackPower += classInfo.AttackPowerBonus;
+        attackPower += (int) (level * attackBonusPerLevel);
         SetTextArray(attackPowerTexts, attackPower.ToString());
 
         vitality += classInfo.VitalityBonus;
+        vitality += (int) (level * vitalityBonusPerLevel);
+
         SetInitialAndLimitVitality();
         UpdateVitalityTextAndItsColor();
     }

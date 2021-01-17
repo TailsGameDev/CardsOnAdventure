@@ -4,6 +4,7 @@
     private ClassesPersistence classesPersistence = new ClassesPersistence();
     private DeckPersistence deckPersistence = new DeckPersistence("FirstDeck");
     private DeckPersistence cardsCollectionPersistence = new DeckPersistence("CardsCollection");
+    private DeckPersistence cardsLevelPersistence = new DeckPersistence("CardsLevel");
 
     // Needed for saving.
     private static string[] nameOfMapsToSave;
@@ -11,6 +12,7 @@
     private static ClassesSerializable classesSerializableToSave;
     private static DeckSerializable deckSerializableToSave;
     private static DeckSerializable cardsCollectionToSave;
+    private static DeckSerializable cardsLevelToSave;
 
     // Needed for loading.
     private static string[] namesOfMapsToLoad;
@@ -20,6 +22,7 @@
     private static ClassesSerializable loadedClassesSerializable;
     private static DeckSerializable loadedDeckSerializable;
     private static DeckSerializable loadedCardsCollection;
+    private static DeckSerializable loadedCardsLevel;
 
     public bool DoesAnySaveExist()
     {
@@ -46,6 +49,11 @@
         cardsCollectionToSave = cardsCollectionSerializableParam;
         loadedCardsCollection = cardsCollectionSerializableParam;
     }
+    public void PrepareCardsLevelForSaving(DeckSerializable cardsLevelSerializableParam)
+    {
+        cardsLevelToSave = cardsLevelSerializableParam;
+        loadedCardsLevel = cardsLevelSerializableParam;
+    }
 
     public void PrepareMapsForLoading(string[] mapNames)
     {
@@ -60,9 +68,11 @@
             loadedClassesSerializable = classesPersistence.LoadClasses();
             loadedDeckSerializable = deckPersistence.Load();
             loadedCardsCollection = cardsCollectionPersistence.Load();
+            loadedCardsLevel = cardsLevelPersistence.Load();
 
             classesSerializableToSave = loadedClassesSerializable;
             deckSerializableToSave = loadedDeckSerializable;
+            cardsLevelToSave = loadedCardsLevel;
         }
         else
         {
@@ -94,6 +104,10 @@
     {
         return loadedCardsCollection;
     }
+    public DeckSerializable GetLoadedCardsLevel()
+    {
+        return loadedCardsLevel;
+    }
 
     public bool IsDeckLoaded()
     {
@@ -116,6 +130,7 @@
                 cardsCollectionToSave = new DeckSerializable(DeckPrototypeFactory.GetCardsCollectionAmounts());
             }
             cardsCollectionPersistence.Save(cardsCollectionToSave);
+            cardsLevelPersistence.Save(cardsLevelToSave);
         }
         else
         {
@@ -125,10 +140,12 @@
     }
     private bool SafeToSave()
     {
-        return  dataOfMapsToSave != null && 
-                nameOfMapsToSave != null && 
-                classesSerializableToSave != null &&
-                deckSerializableToSave != null;
+        return  dataOfMapsToSave != null
+                && nameOfMapsToSave != null
+                && classesSerializableToSave != null
+                && deckSerializableToSave != null
+                && cardsLevelToSave != null
                 // cardsCollectionToSave is optional
+                ;
     }
 }

@@ -1134,7 +1134,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -85}
+  m_AnchoredPosition: {x: 0, y: -85.00012}
   m_SizeDelta: {x: 0, y: -170}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &392569828
@@ -1719,7 +1719,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 839825219}
-  - component: {fileID: 839825223}
   - component: {fileID: 839825221}
   - component: {fileID: 839825220}
   - component: {fileID: 839825222}
@@ -1820,23 +1819,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &839825223
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 839825218}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5edd5526d9d91348a3690ee1e05e39f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentForDynamicUIThatMustAppear: {fileID: 2023802270}
-  skillTipText: {fileID: 1721542321}
-  tipPopUpOpener: {fileID: 156982370}
-  emergenceClearCardHolders: []
-  delayToComeBackFromOtherSpot: 0
 --- !u!1 &854520376
 GameObject:
   m_ObjectHideFlags: 0
@@ -2547,7 +2529,7 @@ PrefabInstance:
     - target: {fileID: 1193498804994366982, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -120.59961
+      value: -120.59973
       objectReference: {fileID: 0}
     - target: {fileID: 2637868663724400189, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
         type: 3}
@@ -2567,7 +2549,7 @@ PrefabInstance:
     - target: {fileID: 2792320346292305431, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -120.59961
+      value: -120.59973
       objectReference: {fileID: 0}
     - target: {fileID: 3346088126110782692, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
         type: 3}
@@ -2628,6 +2610,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8676508137343849994, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -66.00012
       objectReference: {fileID: 0}
     - target: {fileID: 9182716590525795587, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
         type: 3}
@@ -3060,7 +3047,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 409.33316, y: -25}
+  m_AnchoredPosition: {x: 426.67212, y: -25}
   m_SizeDelta: {x: 1573.333, y: -150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1169875299
@@ -4263,7 +4250,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 777.6666, y: -40}
+  m_AnchoredPosition: {x: 795.0057, y: -40}
   m_SizeDelta: {x: 2310, y: -180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1629059484

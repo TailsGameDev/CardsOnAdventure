@@ -29,6 +29,7 @@ public class Map : OpenersSuperclass
         if (StartOfMatch)
         {
             ClassInfo.ResetBonusesToAllClasses();
+            CardsLevel.Clear();
             StartOfMatch = false;
             BuildSpotsFromZeroThenCacheThem();
             mapScroller.FocusOnInitialMap();
@@ -103,6 +104,7 @@ public class Map : OpenersSuperclass
         mapsCache.FillMapsCacheUsingLoadedFiles(mapNames);
         CopyDataFromMapsCacheToSceneSpots();
         ClassInfo.CopyLoadedClassesToAttributes();
+        CardsLevel.CopyLoadedDataToAttributes();
     }
     private string[] GetMapNames()
     {
@@ -128,6 +130,7 @@ public class Map : OpenersSuperclass
     private void KeepDataReadyForSaving()
     {
         ClassInfo.PrepareClassesBonusesForSaving();
+        CardsLevel.PrepareForSaving();
         mapsCache.PrepareAllMapsForSaving();
     }
     #endregion
