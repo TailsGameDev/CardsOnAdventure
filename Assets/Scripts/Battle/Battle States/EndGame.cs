@@ -61,12 +61,12 @@ public class EndGame : BattleState
                             sceneCanvas.SetActive(false);
                             customPopUpOpener.OpenDisplayingCardsOfClass(
                                 title: "You beat a Master",
-                                warningMessage: "<color=#FFFFFF>And then you 'borrowed' some of their equipment</color>" +
-                                   Formater.Paint(" ALL YOUR " + enemyDeckClass + " CARDS WILL BE BUFFED. PLEASE CHOOSE:", deckColor),
-                                confirmBtnMessage: "+1 Vitality",
-                                cancelBtnMessage: "+1 Attack Power",
-                                onConfirm: ImproveVitalityThenSeeMap,
-                                onCancel: ImproveAttackPowerThenSeeMap,
+                                warningMessage: "<color=#FFFFFF>What about making some recruiting?</color>" +
+                                   Formater.Paint(" YOU JUST GOT ONE OF EACH " + enemyDeckClass + " CARDS TO YOUR COLLECTION. ", deckColor),
+                                confirmBtnMessage: "Awesome",
+                                cancelBtnMessage: "Nevermind",
+                                onConfirm: GiveCardsOfClassThenSeeMap,
+                                onCancel: GiveCardsOfClassThenSeeMap,
                                 victoryBGMRequest,
                                 enemyDeckClass
                             );
@@ -113,14 +113,9 @@ public class EndGame : BattleState
         stopAllSFXRequest.RequestPlaying();
         sceneOpener.OpenMapScene();
     }
-    private void ImproveAttackPowerThenSeeMap()
+    private void GiveCardsOfClassThenSeeMap()
     {
-        ClassInfo.GiveAttackPowerBonusToClass(enemyDeckClass);
-        QuitBattleAndGoToMap();
-    }
-    private void ImproveVitalityThenSeeMap()
-    {
-        ClassInfo.GiveVitalityBonusToClass(enemyDeckClass);
+        DeckPrototypeFactory.AddCardsOfClassToCollection(enemyDeckClass);
         QuitBattleAndGoToMap();
     }
     private void GoBackInTime()
@@ -143,5 +138,35 @@ public class EndGame : BattleState
         }
 
         return nextState;
+    }
+
+    private class NotUsed
+    {
+        EndGame endGame = null;
+
+        private void OpenPopUpToImproveClassStats()
+        {
+            endGame.customPopUpOpener.OpenDisplayingCardsOfClass(
+                title: "You beat a Master",
+                warningMessage: "<color=#FFFFFF>And then you 'borrowed' some of their equipment</color>" +
+                   Formater.Paint(" ALL YOUR " + enemyDeckClass + " CARDS WILL BE BUFFED. PLEASE CHOOSE:", deckColor),
+                confirmBtnMessage: "+1 Vitality",
+                cancelBtnMessage: "+1 Attack Power",
+                onConfirm: ImproveVitalityThenSeeMap,
+                onCancel: ImproveAttackPowerThenSeeMap,
+                endGame.victoryBGMRequest,
+                enemyDeckClass
+             );
+        }
+        private void ImproveAttackPowerThenSeeMap()
+        {
+            ClassInfo.GiveAttackPowerBonusToClass(enemyDeckClass);
+            endGame.QuitBattleAndGoToMap();
+        }
+        private void ImproveVitalityThenSeeMap()
+        {
+            ClassInfo.GiveVitalityBonusToClass(enemyDeckClass);
+            endGame.QuitBattleAndGoToMap();
+        }
     }
 }

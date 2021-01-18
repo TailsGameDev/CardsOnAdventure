@@ -32,9 +32,9 @@ public class CardsLevel : MonoBehaviour
     public int GetLevelOfCard(Card card)
     {
         int index = DeckPrototypeFactory.FindIndexOnPrototypesArray(card);
-        if (index < 0 || index >= cardsLevel.Length)
+        if (index < 0 || index > cardsLevel.Length)
         {
-            print("trouble "+card.name);
+            print("trouble"+index+card.name);
         }
         int cardLevel = cardsLevel[index];
         return cardLevel;

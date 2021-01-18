@@ -43,6 +43,8 @@ public class Card : SkillsMediatorUser
 
     [SerializeField]
     private Image obfuscator = null;
+    [SerializeField]
+    private GameObject lvlUpVFX = null;
 
     [SerializeField]
     private Image cardImage = null;
@@ -527,6 +529,11 @@ public class Card : SkillsMediatorUser
     {
         cardsLevel.LevelUpCard(this);
         onLevelUp?.Invoke();
+
+        GameObject vfx = Instantiate(lvlUpVFX);
+        vfx.transform.position = transform.position;
+        vfx.SetActive(gameObject.activeSelf);
+        vfx.transform.SetParent(transform);
     }
     public virtual void RefreshStats()
     {
@@ -534,7 +541,5 @@ public class Card : SkillsMediatorUser
         vitality = originalVitality;
 
         ApplyPlayerBonuses();
-
-        // TODO: lvlUp VFX and SFX
     }
 }

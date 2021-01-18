@@ -8575,7 +8575,7 @@ MonoBehaviour:
   antecessors:
   - {fileID: 833321641}
   - {fileID: 1532375348}
-  canBeRevisited: 0
+  canBeRevisited: 1
 --- !u!1 &684690336
 GameObject:
   m_ObjectHideFlags: 0
@@ -11404,7 +11404,7 @@ MonoBehaviour:
   - {fileID: 1042082691}
   antecessors:
   - {fileID: 433762011}
-  canBeRevisited: 0
+  canBeRevisited: 1
 --- !u!1 &873802953
 GameObject:
   m_ObjectHideFlags: 0

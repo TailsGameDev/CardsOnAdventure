@@ -42,7 +42,6 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
             {
                 if (cards[i].IsAnotherInstanceOf(currentDeck[k]))
                 {
-                    // commented just for a test
                     amount--;
                 }
             }

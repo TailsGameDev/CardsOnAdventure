@@ -13,9 +13,19 @@ public class EarnCard : IncidentAction
 
     public override void Execute()
     {
-        cards = new RandomDeckBuilder(2).GetDeck();
-        cards = DeckPrototypeFactory.ReplaceTheRandomCards(cards);
-        cards = DeckPrototypeFactory.ReplaceMonsters(cards);
+        do
+        {
+            if (cards != null)
+            {
+                Destroy(cards[0].gameObject);
+                Destroy(cards[1].gameObject);
+            }
+
+            cards = new RandomDeckBuilder(2).GetDeck();
+            cards = DeckPrototypeFactory.ReplaceTheRandomCards(cards);
+            cards = DeckPrototypeFactory.ReplaceMonsters(cards);
+
+        } while (cards[0].IsAnotherInstanceOf(cards[1]));
 
         customPopUpOpener.OpenDisplayingCards
             (

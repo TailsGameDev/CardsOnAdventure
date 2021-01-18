@@ -7,6 +7,9 @@ public class DestroyItselfInTime : MonoBehaviour
     [SerializeField]
     private float timeToDestruction = 5.0f;
 
+    [SerializeField]
+    private bool destroyIfDisabled = false;
+
     public void SetDestructionTime(float destructionTime)
     {
         timeToDestruction = destructionTime;
@@ -19,6 +22,14 @@ public class DestroyItselfInTime : MonoBehaviour
             timeToDestruction -= TimeFacade.DeltaTime;
         }
         else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (destroyIfDisabled)
         {
             Destroy(gameObject);
         }

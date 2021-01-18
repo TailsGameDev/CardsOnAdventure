@@ -180,8 +180,8 @@ MonoBehaviour:
   nickname: 
   classInfo: {fileID: 0}
   cardDragAndDrop: {fileID: 8189255950368695548}
-  attackPower: 3
-  vitality: 2
+  originalAttackPower: 0
+  originalVitality: 0
   vitalityTexts:
   - {fileID: 5814885173313731886}
   - {fileID: 7614859045940565510}
@@ -197,6 +197,8 @@ MonoBehaviour:
   protectionIcon: {fileID: 6491345581572652226}
   skills: {fileID: 0}
   obfuscator: {fileID: 6754206906903102355}
+  lvlUpVFX: {fileID: 4020267700810532694, guid: 5252196c6800b6843a113ab8090460be,
+    type: 3}
   cardImage: {fileID: 6958751856864284297}
   DamageTextPrototype: {fileID: 3530895837192552274, guid: 76246bb0450b1bf43806d8274cd7d569,
     type: 3}
@@ -205,6 +207,9 @@ MonoBehaviour:
   fadingDurationOnDeath: 1
   normalVitalityColor: {r: 0.61960787, g: 0.9803922, b: 0.6156863, a: 1}
   tipReceptor: {fileID: 1808189365913690268}
+  cardsLevel: {fileID: 0}
+  attackBonusPerLevel: 0
+  vitalityBonusPerLevel: 0
 --- !u!61 &9204129527013661130
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -37,11 +37,11 @@ public class Store : MonoBehaviour
     }
     private int GetPriceOfCard(Card card)
     {
-        // It's a Geometric Progression with the level.
-        int price = 1;
+        // It's a Aritmetic Progression with the level.
+        int price = 0;
         for (int level = card.GetLevel(); level >= 0; level--)
         {
-            price *= 2;
+            price++;
         }
         return price;
     }
@@ -53,6 +53,7 @@ public class Store : MonoBehaviour
             // Update card to improve
             Destroy(cardToImprove.gameObject);
             cardToImprove = cardsCollection.GetSelectedCard().GetClone();
+            cardToImprove.RefreshStats();
 
             UpdateUI(cardToImprove);
 

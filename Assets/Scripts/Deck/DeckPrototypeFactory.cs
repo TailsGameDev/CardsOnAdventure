@@ -89,6 +89,18 @@ public class DeckPrototypeFactory : MonoBehaviour
     }
     #endregion
 
+    public static void AddCardsOfClassToCollection(Classes classe)
+    {
+        for (int c = 0; c < deckPrototypeFactory.allCardPrototypes.Length; c++)
+        {
+            Card card = deckPrototypeFactory.allCardPrototypes[c];
+            if (card.Classe == classe)
+            {
+                SumInPlayerCardsCollection(card, 1);
+            }
+        }
+    }
+
     public static void SumInPlayerCardsCollection(Card card, int amountToAdd)
     {
         int c = GetIndexInAllCardPrototypesArray(card);
@@ -133,8 +145,7 @@ public class DeckPrototypeFactory : MonoBehaviour
 
     public static Card[] GetClonesOfCardsOnPlayerCollection()
     {
-        // return EditorMadeDeckBuilder.CreateEditorMadeDeckBuilder("PlayerDeck").GetDeck();
-        return OneOfEachCardDeckBuilder.Create().GetDeck();
+        return OneOfEachButNoMonstersDeckBuilder.Create().GetDeck();
     }
 
     public static int GetAmountOfCardPrototypes()
