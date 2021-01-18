@@ -16,7 +16,13 @@ public class Store : MonoBehaviour
     private Text amountOfCardText = null;
 
     private Card cardToImprove;
-
+    private void OnEnable()
+    {
+        if (cardToImprove != null)
+        {
+            UpdateUI(cardToImprove);
+        }
+    }
     private IEnumerator Start()
     {
         // Wait for the DeckPrototypeFactory to PopulateArrayOfAllCardPrototypes.
