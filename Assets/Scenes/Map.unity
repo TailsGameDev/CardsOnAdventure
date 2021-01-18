@@ -13935,12 +13935,14 @@ MonoBehaviour:
     height: 700
     color: {r: 1, g: 1, b: 1, a: 1}
   - message: "The tavern is a place for the cards to gather. They tell their histories
-      one to the other, drink some alcohol, and finally, <color=#1DEFC7>DECIDE WHAT
-      CARDS ARE GOING TO STAY IN THE ADVENTURE</color>. Maybe one of them will say:
-      \u201CGuys, I have some matters to attend to. See you next time.\u201D, or
-      \u201CI think we should take another cleric with us, to last longer in the
-      battlefield\u201D. <br> Where else did you think adventurers would take this
-      kind of decision, after all?"
+      one to the other, drink some alcohol, and finally, <color=#9EFA9D>DECIDE WHAT
+      CARDS ARE GOING TO STAY IN THE ADVENTURE</color>. Also, after tasting a little
+      bit of beer, adventurers can divide the loot, <color=#9EFA9D>IMPROVE CARDS,
+      MAKE THEM STRONGER.</color> Maybe one of them will say: \u201CGuys, I have
+      some matters to attend to. See you next time.\u201D, or \u201CI think we should
+      take another cleric with us, to last longer in the battlefield\u201D. <br>
+      Where else did you think adventurers would take this kind of decision, after
+      all?"
     background: {fileID: 0}
     height: 900
     color: {r: 0, g: 0, b: 0, a: 0}

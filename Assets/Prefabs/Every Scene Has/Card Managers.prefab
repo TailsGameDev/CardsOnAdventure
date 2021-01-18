@@ -285,14 +285,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cards:
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
   buffs: []
 --- !u!1 &2154352919460389446
 GameObject:
@@ -437,12 +437,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cards:
-  - {fileID: 4589943427510237241}
-  - {fileID: 4589943427510237241}
-  - {fileID: 4589943427510237241}
-  - {fileID: 4589943427510237241}
-  - {fileID: 4589943427510237241}
-  - {fileID: 4589943427510237241}
+  - {fileID: 4896376561397157878}
+  - {fileID: 4896376561397157878}
+  - {fileID: 4896376561397157878}
+  - {fileID: 4896376561397157878}
+  - {fileID: 4896376561397157878}
+  - {fileID: 4896376561397157878}
   buffs: []
 --- !u!1 &3626111540804779835
 GameObject:
@@ -492,10 +492,10 @@ MonoBehaviour:
   - {fileID: 5121906812685789640}
   - {fileID: 5121906811438567540}
   - {fileID: 5121906812685789640}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
   buffs:
   - classe: 3
     atkBuff: 0
@@ -695,6 +695,49 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4896376561397157878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4589943427510237243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14792b4b5d8ced847baf25b6da710e9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nickname: Train Dummy
+  classInfo: {fileID: 5920634392609658744}
+  cardDragAndDrop: {fileID: 5192207696718741339}
+  originalAttackPower: 0
+  originalVitality: 5
+  vitalityTexts:
+  - {fileID: 7573619437153953417}
+  - {fileID: 5766032992706743713}
+  attackPowerTexts:
+  - {fileID: 3058913900395815603}
+  - {fileID: 4780646185733933819}
+  skillTexts:
+  - {fileID: 4977709112538930619}
+  - {fileID: 2441790500410702634}
+  ignoreProtectionIcons:
+  - {fileID: 5874555811608666190}
+  - {fileID: 6401533152094054188}
+  protectionIcon: {fileID: 7187074200470988645}
+  skills: {fileID: 6049878548495232461}
+  obfuscator: {fileID: 7211312918845052980}
+  cardImage: {fileID: 6429462894831637806}
+  DamageTextPrototype: {fileID: 3530895837192552274, guid: 76246bb0450b1bf43806d8274cd7d569,
+    type: 3}
+  horizontalSprite: {fileID: 21300000, guid: 136f47fa40d2eb24c8375ca10acbe281, type: 3}
+  shakeable: {fileID: 8464934080207004335}
+  fadingDurationOnDeath: 1
+  normalVitalityColor: {r: 0.61960787, g: 0.98039216, b: 0.6156863, a: 1}
+  tipReceptor: {fileID: 2359748920733498171}
+  cardsLevel: {fileID: 9128588811135856450}
+  attackBonusPerLevel: 0
+  vitalityBonusPerLevel: 3
 --- !u!1 &4687705842220992021
 GameObject:
   m_ObjectHideFlags: 0
@@ -1553,8 +1596,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultDeckSize: 8
-  theRandomCard: {fileID: 6660459552713144830}
-  trainingDummyCard: {fileID: 4589943427510237241}
+  theRandomCard: {fileID: 472644992221924071}
+  trainingDummyCard: {fileID: 4896376561397157878}
 --- !u!1 &4687705843416389279
 GameObject:
   m_ObjectHideFlags: 0
@@ -2223,59 +2266,6 @@ MonoBehaviour:
   - {fileID: 5121906811948855674}
   - {fileID: 5121906811175544358}
   buffs: []
---- !u!1 &5035210616155341587
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5409670029938073119}
-  - component: {fileID: 5071646948092846147}
-  m_Layer: 0
-  m_Name: 8RandomCards
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5409670029938073119
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5035210616155341587}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 5251335223375162499}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5071646948092846147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5035210616155341587}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70b13a50d1d5abd42a23bdcd56e3eac8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cards:
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  buffs: []
 --- !u!1 &5065537184778807548
 GameObject:
   m_ObjectHideFlags: 0
@@ -2324,10 +2314,10 @@ MonoBehaviour:
   - {fileID: 5121906811303076461}
   - {fileID: 5121906812695138476}
   - {fileID: 5121906811303076461}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
   buffs:
   - classe: 1
     atkBuff: 1
@@ -2818,6 +2808,49 @@ Transform:
   m_Father: {fileID: 9101949744829781060}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &472644992221924071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6660459552713144828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14792b4b5d8ced847baf25b6da710e9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nickname: Random Card
+  classInfo: {fileID: 5920634392609658744}
+  cardDragAndDrop: {fileID: 3157613717429436060}
+  originalAttackPower: 0
+  originalVitality: 0
+  vitalityTexts:
+  - {fileID: 776469985093363534}
+  - {fileID: 3736129392498691174}
+  attackPowerTexts:
+  - {fileID: 5309467340887876468}
+  - {fileID: 2415110236010400572}
+  skillTexts:
+  - {fileID: 2794507236866235516}
+  - {fileID: 4773408871061863149}
+  ignoreProtectionIcons:
+  - {fileID: 3628468588556591497}
+  - {fileID: 4254395222777390827}
+  protectionIcon: {fileID: 27558701321856674}
+  skills: {fileID: 4990844919648401759}
+  obfuscator: {fileID: 562896568122989043}
+  cardImage: {fileID: 4244220325087057129}
+  DamageTextPrototype: {fileID: 3530895837192552274, guid: 76246bb0450b1bf43806d8274cd7d569,
+    type: 3}
+  horizontalSprite: {fileID: 21300000, guid: 645e2c1bf15e93145b10bba9a52738c8, type: 3}
+  shakeable: {fileID: 1631720491798897512}
+  fadingDurationOnDeath: 1
+  normalVitalityColor: {r: 0.61960787, g: 0.98039216, b: 0.6156863, a: 1}
+  tipReceptor: {fileID: 4855996068352916220}
+  cardsLevel: {fileID: 9128588811135856450}
+  attackBonusPerLevel: 0
+  vitalityBonusPerLevel: 0
 --- !u!1 &6985664993239048026
 GameObject:
   m_ObjectHideFlags: 0
@@ -3061,10 +3094,10 @@ MonoBehaviour:
   - {fileID: 5121906811762264397}
   - {fileID: 5121906812659129634}
   - {fileID: 5121906811762264397}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
   buffs:
   - classe: 2
     atkBuff: 0
@@ -3115,12 +3148,12 @@ MonoBehaviour:
   cards:
   - {fileID: 5121906811948855674}
   - {fileID: 5121906811948855674}
-  - {fileID: 6660459552713144830}
+  - {fileID: 472644992221924071}
   - {fileID: 5121906811948855674}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
   buffs:
   - classe: 4
     atkBuff: 0
@@ -3227,16 +3260,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cards:
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
-  - {fileID: 6660459552713144830}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
+  - {fileID: 472644992221924071}
   buffs: []
 --- !u!1 &8700038278562343035
 GameObject:
@@ -3334,7 +3367,6 @@ Transform:
   - {fileID: 4076946774778829853}
   - {fileID: 2341618249803877497}
   - {fileID: 3802825368195409059}
-  - {fileID: 5409670029938073119}
   m_Father: {fileID: 6123022909197243096}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3570,6 +3602,16 @@ PrefabInstance:
       propertyPath: cardsLevel
       value: 
       objectReference: {fileID: 9128588811135856450}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalAttackPower
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalVitality
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -3618,6 +3660,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
+--- !u!224 &856141286563304897 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 1007442156438615644}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &856141286563304898 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
@@ -3630,12 +3678,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28fa55ecfdb1ec438283222b4d04f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &856141286563304897 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
-    type: 3}
-  m_PrefabInstance: {fileID: 1007442156438615644}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1498394378052637862
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3804,6 +3846,16 @@ PrefabInstance:
       propertyPath: cardsLevel
       value: 
       objectReference: {fileID: 9128588811135856450}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalAttackPower
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalVitality
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -4021,6 +4073,16 @@ PrefabInstance:
       propertyPath: cardsLevel
       value: 
       objectReference: {fileID: 9128588811135856450}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalAttackPower
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalVitality
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -4255,6 +4317,16 @@ PrefabInstance:
       propertyPath: cardsLevel
       value: 
       objectReference: {fileID: 9128588811135856450}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalAttackPower
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalVitality
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -4489,6 +4561,16 @@ PrefabInstance:
       propertyPath: cardsLevel
       value: 
       objectReference: {fileID: 9128588811135856450}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalAttackPower
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalVitality
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -4538,12 +4620,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
---- !u!224 &3085015983047526620 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
-    type: 3}
-  m_PrefabInstance: {fileID: 3227555955135966017}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &3085015983047526623 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
@@ -4556,6 +4632,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28fa55ecfdb1ec438283222b4d04f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &3085015983047526620 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 3227555955135966017}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3948499644991072482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4724,6 +4806,16 @@ PrefabInstance:
       propertyPath: cardsLevel
       value: 
       objectReference: {fileID: 9128588811135856450}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalAttackPower
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalVitality
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -4958,6 +5050,11 @@ PrefabInstance:
       propertyPath: cardsLevel
       value: 
       objectReference: {fileID: 9128588811135856450}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalVitality
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -4994,35 +5091,190 @@ PrefabInstance:
       propertyPath: textHeight
       value: 400
       objectReference: {fileID: 0}
+    - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: cardToPullData
+      value: 
+      objectReference: {fileID: 4896376561397157878}
     - target: {fileID: 6958751856864284297, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 455ea32e27caab24eb662831a9ef5cdf,
         type: 3}
+    - target: {fileID: 8189255950368695548, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: card
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8988087068539831836, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Text
       value: PunchBag
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
---- !u!224 &4589943427510237242 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
-    type: 3}
-  m_PrefabInstance: {fileID: 4154704255409904551}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4589943427510237241 stripped
+--- !u!114 &5766032992706743713 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+  m_CorrespondingSourceObject: {fileID: 7614859045940565510, guid: 66cd007eef88fc643894ea77ebdd7a11,
     type: 3}
   m_PrefabInstance: {fileID: 4154704255409904551}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a28fa55ecfdb1ec438283222b4d04f9e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7573619437153953417 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5814885173313731886, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4154704255409904551}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4780646185733933819 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8930706099732844892, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4154704255409904551}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &4589943427510237243 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 439867028889674652, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4154704255409904551}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &4589943427510237242 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4154704255409904551}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7187074200470988645 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6491345581572652226, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4154704255409904551}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6429462894831637806 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6958751856864284297, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4154704255409904551}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5192207696718741339 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8189255950368695548, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4154704255409904551}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4589943427510237243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4907c9f6fef54e642bf5ded001335cf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8464934080207004335 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5535211136222558472, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4154704255409904551}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4589943427510237243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489ff0cdc516681408f8eb3cbed232b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2359748920733498171 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4154704255409904551}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4589943427510237243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3efbdcb5038d61e46a85cdce2937abc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3058913900395815603 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1430746642622593300, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4154704255409904551}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &6401533152094054188 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7025239376442506379, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4154704255409904551}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5874555811608666190 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7507189293398817769, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4154704255409904551}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7211312918845052980 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6754206906903102355, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4154704255409904551}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2441790500410702634 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1750354359321223309, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4154704255409904551}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4977709112538930619 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8988087068539831836, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4154704255409904551}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &4687705842610568892
@@ -5193,6 +5445,26 @@ PrefabInstance:
       propertyPath: cardsLevel
       value: 
       objectReference: {fileID: 9128588811135856450}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalAttackPower
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalVitality
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: attackBonusPerLevel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: vitalityBonusPerLevel
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -5432,6 +5704,26 @@ PrefabInstance:
       propertyPath: cardsLevel
       value: 
       objectReference: {fileID: 9128588811135856450}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalAttackPower
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalVitality
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: attackBonusPerLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: vitalityBonusPerLevel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -5491,12 +5783,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
---- !u!224 &5121906812695138479 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
-    type: 3}
-  m_PrefabInstance: {fileID: 4687705842642383666}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5121906812695138476 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
@@ -5509,6 +5795,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28fa55ecfdb1ec438283222b4d04f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &5121906812695138479 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4687705842642383666}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4687705842666572374
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5677,6 +5969,26 @@ PrefabInstance:
       propertyPath: cardsLevel
       value: 
       objectReference: {fileID: 9128588811135856450}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalAttackPower
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalVitality
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: attackBonusPerLevel
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: vitalityBonusPerLevel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Sprite
@@ -5906,6 +6218,16 @@ PrefabInstance:
       propertyPath: cardsLevel
       value: 
       objectReference: {fileID: 9128588811135856450}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalAttackPower
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalVitality
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -6123,6 +6445,26 @@ PrefabInstance:
       propertyPath: cardsLevel
       value: 
       objectReference: {fileID: 9128588811135856450}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalAttackPower
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalVitality
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: vitalityBonusPerLevel
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: attackBonusPerLevel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -6166,6 +6508,12 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
+--- !u!224 &5121906811948855673 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4687705843137598180}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5121906811948855674 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
@@ -6178,12 +6526,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28fa55ecfdb1ec438283222b4d04f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &5121906811948855673 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
-    type: 3}
-  m_PrefabInstance: {fileID: 4687705843137598180}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4687705843324316371
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6357,6 +6699,26 @@ PrefabInstance:
       propertyPath: cardsLevel
       value: 
       objectReference: {fileID: 9128588811135856450}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalAttackPower
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalVitality
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: attackBonusPerLevel
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: vitalityBonusPerLevel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -6591,6 +6953,26 @@ PrefabInstance:
       propertyPath: cardsLevel
       value: 
       objectReference: {fileID: 9128588811135856450}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalAttackPower
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalVitality
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: attackBonusPerLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: vitalityBonusPerLevel
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Sprite
@@ -6639,12 +7021,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
---- !u!224 &5121906811438567543 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
-    type: 3}
-  m_PrefabInstance: {fileID: 4687705843562656746}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5121906811438567540 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
@@ -6657,6 +7033,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a28fa55ecfdb1ec438283222b4d04f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!224 &5121906811438567543 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 4687705843562656746}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4687705843785632138
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6830,6 +7212,16 @@ PrefabInstance:
       propertyPath: cardsLevel
       value: 
       objectReference: {fileID: 9128588811135856450}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalAttackPower
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalVitality
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -7047,6 +7439,26 @@ PrefabInstance:
       propertyPath: cardsLevel
       value: 
       objectReference: {fileID: 9128588811135856450}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalAttackPower
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalVitality
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: attackBonusPerLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: vitalityBonusPerLevel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -7281,6 +7693,26 @@ PrefabInstance:
       propertyPath: cardsLevel
       value: 
       objectReference: {fileID: 9128588811135856450}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalAttackPower
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalVitality
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: attackBonusPerLevel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: vitalityBonusPerLevel
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -7521,6 +7953,16 @@ PrefabInstance:
       propertyPath: cardsLevel
       value: 
       objectReference: {fileID: 9128588811135856450}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalAttackPower
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalVitality
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r
@@ -7800,6 +8242,11 @@ PrefabInstance:
       propertyPath: textHeight
       value: 400
       objectReference: {fileID: 0}
+    - target: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: cardToPullData
+      value: 
+      objectReference: {fileID: 472644992221924071}
     - target: {fileID: 1959508595210334821, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_RootOrder
@@ -7836,31 +8283,181 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8189255950368695548, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: card
+      value: 
+      objectReference: {fileID: 472644992221924071}
     - target: {fileID: 8352112875064880563, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 66cd007eef88fc643894ea77ebdd7a11, type: 3}
---- !u!224 &6660459552713144829 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
-    type: 3}
-  m_PrefabInstance: {fileID: 6517847856944175712}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6660459552713144830 stripped
+--- !u!114 &3736129392498691174 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+  m_CorrespondingSourceObject: {fileID: 7614859045940565510, guid: 66cd007eef88fc643894ea77ebdd7a11,
     type: 3}
   m_PrefabInstance: {fileID: 6517847856944175712}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a28fa55ecfdb1ec438283222b4d04f9e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &562896568122989043 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6754206906903102355, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 6517847856944175712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &3628468588556591497 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7507189293398817769, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 6517847856944175712}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &27558701321856674 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6491345581572652226, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 6517847856944175712}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4773408871061863149 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1750354359321223309, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 6517847856944175712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &776469985093363534 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5814885173313731886, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 6517847856944175712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5309467340887876468 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1430746642622593300, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 6517847856944175712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4244220325087057129 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6958751856864284297, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 6517847856944175712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3157613717429436060 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8189255950368695548, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 6517847856944175712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6660459552713144828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4907c9f6fef54e642bf5ded001335cf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1631720491798897512 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5535211136222558472, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 6517847856944175712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6660459552713144828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 489ff0cdc516681408f8eb3cbed232b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4855996068352916220 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1808189365913690268, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 6517847856944175712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6660459552713144828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3efbdcb5038d61e46a85cdce2937abc8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!224 &6660459552713144829 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 6517847856944175712}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2794507236866235516 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8988087068539831836, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 6517847856944175712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2415110236010400572 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8930706099732844892, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 6517847856944175712}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &6660459552713144828 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 439867028889674652, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 6517847856944175712}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4254395222777390827 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7025239376442506379, guid: 66cd007eef88fc643894ea77ebdd7a11,
+    type: 3}
+  m_PrefabInstance: {fileID: 6517847856944175712}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8283995072178207262
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8029,6 +8626,16 @@ PrefabInstance:
       propertyPath: cardsLevel
       value: 
       objectReference: {fileID: 9128588811135856450}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalAttackPower
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: originalVitality
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_Color.r

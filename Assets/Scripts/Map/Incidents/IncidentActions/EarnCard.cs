@@ -32,7 +32,7 @@ public class EarnCard : IncidentAction
 
     private void AddCardClosePopUpClearSpot(int cardIndex)
     {
-        DeckPrototypeFactory.AddCardToPlayerCardsCollection(cards[cardIndex]);
+        DeckPrototypeFactory.SumInPlayerCardsCollection(cards[cardIndex], 1);
         openerOfPopUpsMadeInEditor.CloseAllPopUpsExceptLoading();
         sceneOpener.OpenMapScene();
     }

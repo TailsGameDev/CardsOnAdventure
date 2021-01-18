@@ -135,7 +135,7 @@
         else
         {
             L.ogWarning("SaveEverything was called, but at least one attribute is still null. " +
-                "This is ok at the start of the game", this);
+                "This is ok if there is nothing to save.", this);
         }
     }
     private bool SafeToSave()

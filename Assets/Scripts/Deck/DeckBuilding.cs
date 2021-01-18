@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class DeckBuilding : OpenersSuperclass
+public class DeckBuilding : MonoBehaviour
 {
     [SerializeField]
     private CardsCollectionDisplayer cardsCollection = null;
@@ -48,7 +48,11 @@ public class DeckBuilding : OpenersSuperclass
             ClearAllSelections();
         }
     }
-
+    private void GiveBackCardOfDeckToTheCollection()
+    {
+        Card cardToGiveBackToTheCollection = deck.RemoveCardFromSelectedIndex();
+        cardsCollection.GiveCardBack(cardToGiveBackToTheCollection);
+    }
     private void PlaceTheCardOfCollectionInTheDeck()
     {
         Card cardToPlaceInTheDeck = cardsCollection.GetCloneOfSelectedCardAndReduceAmountInDeck();
@@ -56,44 +60,15 @@ public class DeckBuilding : OpenersSuperclass
 
         Card selected = cardsCollection.GetSelectedCard();
         Card secondClone = selected.GetClone();
+        secondClone.RefreshStats();
 
         Destroy(selected.gameObject);
         cardsCollection.PutCardInIndexThenTeleportToSlot(secondClone, cardsCollection.GetSelectedIndex());
-    }
-
-    private void GiveBackCardOfDeckToTheCollection()
-    {
-        Card cardToGiveBackToTheCollection = deck.RemoveCardFromSelectedIndex();
-        cardsCollection.GiveCardBack(cardToGiveBackToTheCollection);
     }
 
     private void ClearAllSelections()
     {
         cardsCollection.ClearSelection();
         deck.ClearSelection();
-    }
-
-    public void OnDrinkBtnClicked()
-    {
-        preMadeAudioFactory.CreateDrinkAudioRequest(gameObject).RequestPlaying();
-    }
-
-    public void OnSaveAndQuitBtnClicked()
-    {
-        SaveAndQuit();
-    }
-
-    private void SaveAndQuit()
-    {
-        StartCoroutine(SaveAndQuitCoroutine());
-    }
-
-    private IEnumerator SaveAndQuitCoroutine()
-    {
-        openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrueAndDeactivateTips();
-        yield return null;
-        Card[] cards = deck.GetCards();
-        DeckPrototypeFactory.PrepareManuallyBuiltDeckForThePlayerAndSaveInStorage(cards);
-        sceneOpener.OpenMapScene();
     }
 }

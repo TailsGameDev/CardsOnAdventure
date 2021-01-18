@@ -28,8 +28,8 @@ public class DeckCardHolder : DynamicSizeScrollableCardHolder
     }
     #endregion
 
-    public Card[] GetCards()
+    public void SaveInPersistence()
     {
-        return cards;
+        DeckPrototypeFactory.PrepareManuallyBuiltDeckForThePlayerAndSaveInStorage(cards);
     }
 }

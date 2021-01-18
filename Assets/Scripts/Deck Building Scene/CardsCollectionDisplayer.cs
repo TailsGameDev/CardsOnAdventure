@@ -18,7 +18,7 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
     {
         // Wait for the DeckPrototypeFactory to PopulateArrayOfAllCardPrototypes.
         yield return null;
-        cards = DeckPrototypeFactory.GetCardsOnPlayerCollection();
+        cards = DeckPrototypeFactory.GetClonesOfCardsOnPlayerCollection();
 
         InitializeSlotsAndRectSize(amountOfSlots: cards.Length);
         PopulateAmountOfEachCard();
@@ -42,6 +42,7 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
             {
                 if (cards[i].IsAnotherInstanceOf(currentDeck[k]))
                 {
+                    // commented just for a test
                     amount--;
                 }
             }
@@ -123,7 +124,6 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
             {
                 amountOfEachCard[slot] ++ ;
                 UpdateCardColorAndAmountText(slot);
-                // Destroy(card.gameObject);
                 ChildMaker.AdoptAndScaleAndSmoothlyMoveToParentThenDestroyChild
                     (slots[slot], card.GetRectTransform(), repositionAnimationDurationInSeconds);
                 return;
@@ -146,6 +146,7 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
         amountOfEachCard[selectedIndex]--;
 
         Card coloredClone = cards[selectedIndex].GetClone();
+        coloredClone.RefreshStats();
         UpdateCardColorAndAmountText(selectedIndex);
 
         return coloredClone;
@@ -163,5 +164,37 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
         {
             cards[indexToUpdate].MakeColorGray();
         }
+    }
+
+    public void UpdateColorAndAmountTextOfCard(Card card)
+    {
+        int index = GetIndexOfCard(card);
+        UpdateCardColorAndAmountText(index);
+    }
+
+    public int GetAmountOfCardNotCurrentlyInDeck(Card card)
+    {
+        int index = GetIndexOfCard(card);
+        int amount = amountOfEachCard[index];
+        return amount;
+    }
+    private int GetIndexOfCard(Card card)
+    {
+        int c;
+        for (c = 0; c < cards.Length; c++)
+        {
+            if (cards[c].IsAnotherInstanceOf(card))
+            {
+                break;
+            }
+        }
+        return c;
+    }
+
+    public void RemoveAmountOfCardFromCollection(Card card, int amountToRemove)
+    {
+        int index = GetIndexOfCard(card);
+        amountOfEachCard[index] -= amountToRemove;
+        DeckPrototypeFactory.SumInPlayerCardsCollection(card, -amountToRemove);
     }
 }

@@ -15,11 +15,13 @@ public class Card : SkillsMediatorUser
     public CardDragAndDrop cardDragAndDrop = null;
 
     [SerializeField]
-    private int attackPower = 99;
+    private int originalAttackPower = 0;
+    private int attackPower;
     [SerializeField]
-    private int vitality = 99;
+    private int originalVitality = 0;
+    private int vitality;
     private int vitalityLimit;
-    private int initialVitality;
+    private int vitalityAtStartOfBattle;
 
     [SerializeField]
     private Text[] vitalityTexts = null;
@@ -80,6 +82,10 @@ public class Card : SkillsMediatorUser
     private float attackBonusPerLevel = 0;
     [SerializeField]
     private float vitalityBonusPerLevel = 0;
+
+    private delegate void OnLevelUp();
+    private static OnLevelUp onLevelUp;
+
     #endregion
 
     #region Properties
@@ -107,9 +113,12 @@ public class Card : SkillsMediatorUser
     #region Initialization
     private void Awake()
     {
+        attackPower = originalAttackPower;
+        vitality = originalVitality;
+
         classInfo.TryToRegisterCardInClass(this);
 
-        SetTextArray(attackPowerTexts, AttackPower.ToString());
+        SetTextArray(attackPowerTexts, attackPower.ToString());
 
         // Triggers update in skill text
         Skill = skills;
@@ -117,6 +126,8 @@ public class Card : SkillsMediatorUser
         SetInitialAndLimitVitality();
 
         verticalSprite = cardImage.sprite;
+
+        onLevelUp += RefreshStats;
     }
     private void Start()
     {
@@ -130,10 +141,14 @@ public class Card : SkillsMediatorUser
     }
     public void SetInitialAndLimitVitality()
     {
-        initialVitality = vitality;
+        vitalityAtStartOfBattle = vitality;
         vitalityLimit = vitality + vitality;
     }
     #endregion
+    private void OnDestroy()
+    {
+        onLevelUp -= RefreshStats;
+    }
 
     public void AttackSelectedCard(Battlefield opponentBattlefield, Battlefield attackerBattlefield)
     {
@@ -195,7 +210,7 @@ public class Card : SkillsMediatorUser
     {
         SetTextArray(vitalityTexts, vitality.ToString());
 
-        if (vitality <= initialVitality)
+        if (vitality <= vitalityAtStartOfBattle)
         {
             SetTextArrayColor(vitalityTexts, normalVitalityColor);
         }
@@ -436,7 +451,7 @@ public class Card : SkillsMediatorUser
 
     public void ApplyPlayerBonuses()
     {
-        int level = cardsLevel.GetLevelOfCard(this);
+        int level = GetLevel();
 
         attackPower += classInfo.AttackPowerBonus;
         attackPower += (int) (level * attackBonusPerLevel);
@@ -489,7 +504,7 @@ public class Card : SkillsMediatorUser
 
     private void SetTextArray(Text[] array, string message)
     {
-        for (int i =0; i < array.Length; i++)
+        for (int i = 0; i < array.Length; i++)
         {
             array[i].text = message;
         }
@@ -501,5 +516,25 @@ public class Card : SkillsMediatorUser
         {
             array[i].color = color;
         }
+    }
+
+    public int GetLevel()
+    {
+        int level = cardsLevel.GetLevelOfCard(this);
+        return level;
+    }
+    public void LevelUp()
+    {
+        cardsLevel.LevelUpCard(this);
+        onLevelUp?.Invoke();
+    }
+    public virtual void RefreshStats()
+    {
+        attackPower = originalAttackPower;
+        vitality = originalVitality;
+
+        ApplyPlayerBonuses();
+
+        // TODO: lvlUp VFX and SFX
     }
 }

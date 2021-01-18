@@ -89,9 +89,18 @@ public class DeckPrototypeFactory : MonoBehaviour
     }
     #endregion
 
-    public static void AddCardToPlayerCardsCollection(Card card)
+    public static void SumInPlayerCardsCollection(Card card, int amountToAdd)
     {
-        int c = 0;
+        int c = GetIndexInAllCardPrototypesArray(card);
+
+        int[] cardsCollectionAmounts = GetCardsCollectionAmounts();
+        // c+1 because the random card index is 0.
+        cardsCollectionAmounts[c] += amountToAdd;
+        saveFacade.PrepareCardsCollectionForSaving(new DeckSerializable(cardsCollectionAmounts));
+    }
+    private static int GetIndexInAllCardPrototypesArray(Card card)
+    {
+        int c = -1;
         for (int i = 0; i < deckPrototypeFactory.allCardPrototypes.Length; i++)
         {
             if (card.IsAnotherInstanceOf(deckPrototypeFactory.allCardPrototypes[i]))
@@ -100,11 +109,7 @@ public class DeckPrototypeFactory : MonoBehaviour
                 break;
             }
         }
-
-        int[] cardsCollectionAmounts = GetCardsCollectionAmounts();
-        // c+1 because the random card index is 0.
-        cardsCollectionAmounts[c] += 1;
-        saveFacade.PrepareCardsCollectionForSaving(new DeckSerializable(cardsCollectionAmounts));
+        return c;
     }
     public static int[] GetCardsCollectionAmounts()
     {
@@ -126,7 +131,7 @@ public class DeckPrototypeFactory : MonoBehaviour
         return cardAmounts;
     }
 
-    public static Card[] GetCardsOnPlayerCollection()
+    public static Card[] GetClonesOfCardsOnPlayerCollection()
     {
         // return EditorMadeDeckBuilder.CreateEditorMadeDeckBuilder("PlayerDeck").GetDeck();
         return OneOfEachCardDeckBuilder.Create().GetDeck();
@@ -192,7 +197,7 @@ public class DeckPrototypeFactory : MonoBehaviour
             if (playerDeck[i].IsAnotherInstanceOf(deckPrototypeFactory.theRandomCard))
             {
                 Destroy(playerDeck[i].gameObject);
-                playerDeck[i] = GetCloneOfCardFromPrototypesRandomly();
+                playerDeck[i] = GetCloneOfCardFromPrototypesRandomlyButNotTheTrainingDummy();
             }
         }
 
@@ -211,10 +216,10 @@ public class DeckPrototypeFactory : MonoBehaviour
 
         return playerDeck;
     }
-    private static Card GetCloneOfCardFromPrototypesRandomly()
+    private static Card GetCloneOfCardFromPrototypesRandomlyButNotTheTrainingDummy()
     {
         Card[] prototypes = deckPrototypeFactory.allCardPrototypes;
-        int randomIndex = UnityEngine.Random.Range(0, prototypes.Length);
+        int randomIndex = Random.Range(0, prototypes.Length);
         return prototypes[randomIndex].GetClone();
     }
     private static Card GetCloneFromNotMonsterPrototypesRandomly()
@@ -299,6 +304,14 @@ public class DeckPrototypeFactory : MonoBehaviour
             }
         }
         return prototypeIndex;
+    }
+
+    public static void UpdatePrototypesLevel()
+    {
+        for (int p = 0; p < deckPrototypeFactory.allCardPrototypes.Length; p++)
+        {
+            deckPrototypeFactory.allCardPrototypes[p].RefreshStats();
+        }
     }
 
     public abstract class DeckBuilder
