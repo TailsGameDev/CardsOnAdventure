@@ -29,6 +29,8 @@ public class Map : OpenersSuperclass
         if (StartOfMatch)
         {
             ClassInfo.ResetBonusesToAllClasses();
+            saveFacade.ClearCardsCollection();
+
             StartOfMatch = false;
             BuildSpotsFromZeroThenCacheThem();
             mapScroller.FocusOnInitialMap();

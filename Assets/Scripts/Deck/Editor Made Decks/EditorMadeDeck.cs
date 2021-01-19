@@ -74,12 +74,7 @@ public class EditorMadeDeckBuilder : DeckPrototypeFactory.DeckBuilder
 
         for (int i = 0; i < cards.Length; i++)
         {
-            if (cardPrototypes[i] == null)
-            {
-                Debug.LogError(i);
-            }
             cards[i] = cardPrototypes[i].GetClone();
-            
         }
 
         Dictionary<Classes, EditorMadeDeck.Buff> buffsDictionary = new Dictionary<Classes, EditorMadeDeck.Buff>();

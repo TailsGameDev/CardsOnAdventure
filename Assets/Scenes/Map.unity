@@ -651,7 +651,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 1566057373}
   - {fileID: 958992378}
@@ -769,7 +768,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 2050374405}
   antecessors:
@@ -1253,7 +1251,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 2050374405}
   antecessors:
@@ -1614,7 +1611,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 173994908}
   antecessors:
@@ -2571,7 +2567,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 964956666}
   antecessors:
@@ -4650,7 +4645,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 671785474}
   antecessors:
@@ -5748,7 +5742,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 86331335}
   antecessors:
@@ -5914,7 +5907,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 2050374405}
   antecessors:
@@ -6171,7 +6163,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 165678337}
   antecessors:
@@ -6915,7 +6906,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 2050374405}
   antecessors:
@@ -8569,7 +8559,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 1042082691}
   antecessors:
@@ -8608,7 +8597,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 1150730506}
   antecessors:
@@ -9194,7 +9182,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 1566057373}
   - {fileID: 958992378}
@@ -9908,7 +9895,7 @@ GameObject:
   - component: {fileID: 775238601}
   - component: {fileID: 775238600}
   m_Layer: 5
-  m_Name: Middle 5 Boss
+  m_Name: Middle 5 Simple Battle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9946,7 +9933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.9215687, g: 0.9215687, b: 0.9215687, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -9982,9 +9969,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
-  - {fileID: 964956666}
+  - {fileID: 671785474}
+  - {fileID: 822150036}
   antecessors:
   - {fileID: 1077831753}
   canBeRevisited: 0
@@ -10652,7 +10639,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 1566057373}
   - {fileID: 958992378}
@@ -10930,7 +10916,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 2050374405}
   antecessors:
@@ -11399,7 +11384,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 1042082691}
   antecessors:
@@ -12235,7 +12219,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 2119048984}
   antecessors:
@@ -13574,7 +13557,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 1042082691}
   antecessors:
@@ -13760,7 +13742,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 2119048984}
   antecessors:
@@ -14219,7 +14200,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 2050374405}
   antecessors:
@@ -14422,7 +14402,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 173994908}
   antecessors:
@@ -14515,7 +14494,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 1846012495}
   antecessors: []
@@ -16380,7 +16358,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 2119048984}
   antecessors:
@@ -16810,7 +16787,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 1566057373}
   - {fileID: 958992378}
@@ -17097,7 +17073,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 2050374405}
   antecessors:
@@ -17208,7 +17183,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 2050374405}
   antecessors:
@@ -18768,7 +18742,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 173994908}
   antecessors:
@@ -18918,7 +18891,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 2050374405}
   antecessors:
@@ -20366,7 +20338,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 1566057373}
   - {fileID: 958992378}
@@ -21942,7 +21913,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 1566057373}
   - {fileID: 958992378}
@@ -22718,7 +22688,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 964956666}
   antecessors:
@@ -23999,7 +23968,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 1150730506}
   antecessors:
@@ -24421,7 +24389,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 822150036}
   antecessors:
@@ -24992,7 +24959,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 1566057373}
   - {fileID: 958992378}
@@ -25471,7 +25437,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 2050374405}
   antecessors:
@@ -27194,7 +27159,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 2050374405}
   antecessors:
@@ -27883,7 +27847,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapName: First
-  playLvlBtn: {fileID: 0}
   possiblePlayLvlBtns:
   - {fileID: 1042082691}
   antecessors: []

@@ -158,10 +158,29 @@ public class DeckPrototypeFactory : MonoBehaviour
     {
         if (enemyDeckBuilder == null)
         {
-            enemyDeckBuilder = new RandomDeckBuilder(DefaultDeckSize);
+            enemyDeckBuilder = new RandomDeckBuilder( DefaultDeckSize );
         }
 
-        return ReplaceTheRandomCards( enemyDeckBuilder.GetDeck() );
+        Card[] cards = ReplaceTheRandomCards(enemyDeckBuilder.GetDeck());
+        if (MapScroller.GetMapLevel() != 1)
+        {
+            // Level Up 2 times
+            for (int c = 0; c < cards.Length; c++)
+            {
+                cards[c].ApplyLevelBonus(2);
+            }
+        }
+
+        return cards;
+    }
+    private static Card[] ConcatenateDecks(Card[] deck1, Card[] deck2)
+    {
+        Card[] megadeck = new Card[deck1.Length + deck2.Length];
+
+        deck1.CopyTo(megadeck, 0);
+        deck2.CopyTo(megadeck, deck1.Length);
+        
+        return megadeck;
     }
     #region Public Prepare XXXX Deck For The Enemy
     public static void PrepareEditorMadeDeckForTheEnemy(string deckName)
@@ -269,9 +288,9 @@ public class DeckPrototypeFactory : MonoBehaviour
     {
         playerDeckBuilder = ManualDeckBuider.Create(cardIndexes);
     }
-    public static void PrepareFirstDeckIfNeededForThePlayerAndSaveItInStorage()
+    public static void PrepareFirstDeckIfNeededForThePlayerAndSaveItInStorage(bool forceToPrepare = false)
     {
-        if (playerDeckBuilder == null)
+        if (playerDeckBuilder == null || forceToPrepare)
         {
             playerDeckBuilder = EditorMadeDeckBuilder.CreateEditorMadeDeckBuilder("PlayerDeck");
             int[] cardIndexes = ((EditorMadeDeckBuilder)playerDeckBuilder).GetIndexOfEachCardPrototype();

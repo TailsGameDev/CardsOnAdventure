@@ -94,7 +94,7 @@ public class UIMainMenu : UIPauseMenu
     {
         Map.StartOfMatch = true;
         CardsLevel.Clear();
-        DeckPrototypeFactory.PrepareFirstDeckIfNeededForThePlayerAndSaveItInStorage();
+        DeckPrototypeFactory.PrepareFirstDeckIfNeededForThePlayerAndSaveItInStorage(forceToPrepare: true);
         sceneOpener.OpenMapScene();
     }
 

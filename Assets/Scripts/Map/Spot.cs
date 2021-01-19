@@ -8,23 +8,22 @@ public class Spot : MonoBehaviour
     private string mapName = "";
 
     [SerializeField]
-    protected Button playLvlBtn;
-
-    [SerializeField]
     protected Button[] possiblePlayLvlBtns;
     protected int playLvlBtnIndex;
 
     [SerializeField]
     private Spot[] antecessors = new Spot[0];
 
+    [SerializeField]
+    private bool canBeRevisited = false;
+
+    protected Button playLvlBtn;
+
     private static float disabledColorAlpha = 0.5f;
 
     private bool shouldBeExpanding = false;
 
     private Vector3 originalScale;
-
-    [SerializeField]
-    private bool canBeRevisited = false;
 
     private bool cleared = false;
 

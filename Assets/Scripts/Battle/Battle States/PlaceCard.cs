@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class PlaceCard : BattleState
 {
@@ -9,7 +10,8 @@ public class PlaceCard : BattleState
     protected GameObject btnsBackground;
     protected CustomPopUp customPopUpOpener;
 
-    bool cardWasSuccessfullyPlaced = false;
+    private bool cardWasSuccessfullyPlaced = false;
+    private bool shouldDisplayPlaceCardsNowTip;
 
     public PlaceCard
         (
@@ -48,18 +50,17 @@ public class PlaceCard : BattleState
     {
         hand.MakeOnlySelectedCardBigger();
 
-        if (PlayerIsTryingToReposition())
+        if (shouldDisplayPlaceCardsNowTip)
+        {
+            shouldDisplayPlaceCardsNowTip = false;
+            TipDragAndDrop.ShowPlaceCardsNowTip();
+        }
+        else if (PlayerIsTryingToReposition())
         {
             ClearSelections();
-            TipDragAndDrop.ShowPlaceCardsNowTip();
-            /*
-            customPopUpOpener.OpenMessageIfNoCustomPopUpIsOpenned
-                (
-                    title: "Place Cards",
-                        warningMessage: "<color=#FFFFFF> You must <color=#9EFA9D>PLACE ALL CARDS YOU CAN BEFORE REPOSITIONING</color>. Drag and Drop from your hand" +
-                        " to the battlefield, please.</color>"
-                );
-            */
+            shouldDisplayPlaceCardsNowTip = true;
+            // I suspect the lag of bringing this UI to the screen was the cause of a bug in which the card couldn't be dropped.
+            // That's why the PlaceCardsTip is not being displayed immediatelly.
         }
         else if (ReceivedValidInput())
         {

@@ -117,6 +117,11 @@
     {
         return loadedCardsCollection != null;
     }
+    public void ClearCardsCollection()
+    {
+        loadedCardsCollection = null;
+        cardsCollectionToSave = null;
+    }
 
     public void SaveEverything()
     {
@@ -134,8 +139,10 @@
         }
         else
         {
+            string whatsnull = ("maps: "+dataOfMapsToSave + "mapName: "+nameOfMapsToSave + "classes: "+classesSerializableToSave 
+                + "deck: "+deckSerializableToSave + " levels: "+cardsLevelToSave);
             L.ogWarning("SaveEverything was called, but at least one attribute is still null. " +
-                "This is ok if there is nothing to save.", this);
+                "This is ok if there is nothing to save.\n"+whatsnull, this);
         }
     }
     private bool SafeToSave()

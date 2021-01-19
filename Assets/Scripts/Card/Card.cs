@@ -454,14 +454,22 @@ public class Card : SkillsMediatorUser
     public void ApplyPlayerBonuses()
     {
         int level = GetLevel();
+        ApplyLevelBonus(level);
 
         attackPower += classInfo.AttackPowerBonus;
-        attackPower += (int) (level * attackBonusPerLevel);
-        SetTextArray(attackPowerTexts, attackPower.ToString());
 
         vitality += classInfo.VitalityBonus;
-        vitality += (int) (level * vitalityBonusPerLevel);
+        SetInitialAndLimitVitality();
 
+        SetTextArray(attackPowerTexts, attackPower.ToString());
+        UpdateVitalityTextAndItsColor();
+    }
+    public void ApplyLevelBonus(int level)
+    {
+        attackPower += (int)(level * attackBonusPerLevel);
+        vitality += (int)(level * vitalityBonusPerLevel);
+
+        SetTextArray(attackPowerTexts, attackPower.ToString());
         SetInitialAndLimitVitality();
         UpdateVitalityTextAndItsColor();
     }

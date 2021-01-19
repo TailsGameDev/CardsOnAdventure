@@ -57,4 +57,18 @@ public class MapScroller : MonoBehaviour
         SetLeft(rectTransform, targetLeft);
         interpolating = false;
     }
+
+    public static int GetMapLevel()
+    {
+        int mapLevel;
+        if (Mathf.Approximately(0.0f, targetLeft))
+        {
+            mapLevel = 1;
+        }
+        else
+        {
+            mapLevel = 2;
+        }
+        return mapLevel;
+    }
 }
