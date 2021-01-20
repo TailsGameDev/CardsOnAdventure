@@ -30,6 +30,6 @@ public class DeckCardHolder : DynamicSizeScrollableCardHolder
 
     public void SaveInPersistence()
     {
-        DeckPrototypeFactory.PrepareManuallyBuiltDeckForThePlayerAndSaveInStorage(cards);
+        DeckPrototypeFactory.PrepareManuallyBuiltDeckForThePlayerAndGetReadyForSaving(cards);
     }
 }

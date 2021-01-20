@@ -396,31 +396,26 @@ public class Card : SkillsMediatorUser
     }
     public string GetColoredTitleForTip()
     {
-        // return "<color=#"+ClassColorHexCode()+ ">"+ Classe +" "+ skills.FullName +"</color>";
-        return "<color=#" + ClassColorHexCode() + ">" + nickname + "</color>";
+        return ColorHexCodes.Paint(nickname, classInfo.Color);
     }
 
     private string ClassColorHexCode()
     {
-        return classInfo == null ? "FFFFFF" : classInfo.ColorHexCode; ;
+        return ColorHexCodes.GetHexCode(classInfo.Color);
     }
 
     public string GetExplanatoryText()
     {
         return 
-                "Class: "+ "<color=#" + ClassColorHexCode() + ">" + (classInfo.name.ToUpperInvariant()) + "</color>\n"+
-                "Skill: "+(GetSkillsExplanatoryText()) + "\n" +
-                "<color=#FD7878>Attack Power: " + attackPower + "</color>\n" +
-                "<color=#9EFA9D>Vitality: " + vitality + "</color>\n"
+                "Class: "+ ColorHexCodes.Paint(classInfo.name.ToUpperInvariant(), classInfo.Color)+
+                "\nSkill: "+(GetSkillsExplanatoryText()) + "\n" +
+                ColorHexCodes.BeginLightRed+"Attack Power: " + attackPower + ColorHexCodes.End+"\n" +
+                ColorHexCodes.BeginLightGreen+"Vitality: " + vitality + ColorHexCodes.End+"\n"
                 ;
     }
     public string GetSkillsExplanatoryText()
     {
-        return 
-                "<color=#" + ClassColorHexCode() + ">" + 
-                skills.GetExplanatoryText(attackPower).ToUpper()
-                + "</color>"
-                ;
+        return ColorHexCodes.Paint(skills.GetExplanatoryText(attackPower).ToUpper(), classInfo.Color);
     }
     #endregion
 

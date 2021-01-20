@@ -12,7 +12,7 @@ public class BuffClass : IncidentAction
     {
         customPopUpOpener.OpenDisplayingCardsOfClass(
                                 title: "You Bought Equips",
-                                   Formater.Paint(" ALL YOUR " + classe + " CARDS WILL BE BUFFED. PLEASE CHOOSE:", ClassInfo.GetColorOfClass(classe)),
+                                   ColorHexCodes.Paint(" ALL YOUR " + classe + " CARDS WILL BE BUFFED. PLEASE CHOOSE:", ClassInfo.GetColorOfClass(classe)),
                                 confirmBtnMessage: "+1 Vitality",
                                 cancelBtnMessage: "+1 Attack Power",
                                 onConfirm: ImproveVitalityThenSeeMap,

@@ -61,10 +61,10 @@ public class EndGame : BattleState
                             sceneCanvas.SetActive(false);
                             customPopUpOpener.OpenDisplayingCardsOfClass(
                                 title: "You beat a Master",
-                                warningMessage: "<color=#FFFFFF>What about making some recruiting?</color>" +
-                                   Formater.Paint(" YOU JUST GOT ONE OF EACH " + enemyDeckClass + " CARDS TO YOUR COLLECTION. ", deckColor),
+                                warningMessage: ColorHexCodes.BeginWhite+"What about making some recruiting?"+ColorHexCodes.End +
+                                   ColorHexCodes.Paint(" YOU JUST GOT ONE OF EACH " + enemyDeckClass + " CARDS TO YOUR COLLECTION. ", deckColor),
                                 confirmBtnMessage: "Awesome",
-                                cancelBtnMessage: "Nevermind",
+                                cancelBtnMessage: "Cool",
                                 onConfirm: GiveCardsOfClassThenSeeMap,
                                 onCancel: GiveCardsOfClassThenSeeMap,
                                 victoryBGMRequest,
@@ -144,12 +144,13 @@ public class EndGame : BattleState
     {
         EndGame endGame = null;
 
+        // This is private class NotUsed
         private void OpenPopUpToImproveClassStats()
         {
             endGame.customPopUpOpener.OpenDisplayingCardsOfClass(
                 title: "You beat a Master",
-                warningMessage: "<color=#FFFFFF>And then you 'borrowed' some of their equipment</color>" +
-                   Formater.Paint(" ALL YOUR " + enemyDeckClass + " CARDS WILL BE BUFFED. PLEASE CHOOSE:", deckColor),
+                warningMessage: ColorHexCodes.BeginWhite+"And then you 'borrowed' some of their equipment"+ColorHexCodes.End +
+                   ColorHexCodes.Paint(" ALL YOUR " + enemyDeckClass + " CARDS WILL BE BUFFED. PLEASE CHOOSE:", deckColor),
                 confirmBtnMessage: "+1 Vitality",
                 cancelBtnMessage: "+1 Attack Power",
                 onConfirm: ImproveVitalityThenSeeMap,
@@ -158,11 +159,13 @@ public class EndGame : BattleState
                 enemyDeckClass
              );
         }
+        // This is private class NotUsed
         private void ImproveAttackPowerThenSeeMap()
         {
             ClassInfo.GiveAttackPowerBonusToClass(enemyDeckClass);
             endGame.QuitBattleAndGoToMap();
         }
+        // This is private class NotUsed
         private void ImproveVitalityThenSeeMap()
         {
             ClassInfo.GiveVitalityBonusToClass(enemyDeckClass);

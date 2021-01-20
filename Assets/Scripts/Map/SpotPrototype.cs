@@ -68,7 +68,7 @@ public class SpotPrototype : OpenersSuperclass
     public void OnTrainingSpotBtnClicked()
     {
         isTraining = true;
-        DeckPrototypeFactory.PrepareFirstDeckIfNeededForThePlayerAndSaveItInStorage();
+        DeckPrototypeFactory.PrepareFirstDeckIfNeededForThePlayerAndGetReadyForSaving();
         OnBattleSpotBtnClicked();
     }
 

@@ -89,6 +89,8 @@ public class DeckPrototypeFactory : MonoBehaviour
     }
     #endregion
 
+
+    #region Collection
     public static void AddCardsOfClassToCollection(Classes classe)
     {
         for (int c = 0; c < deckPrototypeFactory.allCardPrototypes.Length; c++)
@@ -147,6 +149,7 @@ public class DeckPrototypeFactory : MonoBehaviour
     {
         return OneOfEachButNoMonstersDeckBuilder.Create().GetDeck();
     }
+    #endregion
 
     public static int GetAmountOfCardPrototypes()
     {
@@ -182,12 +185,11 @@ public class DeckPrototypeFactory : MonoBehaviour
         
         return megadeck;
     }
-    #region Public Prepare XXXX Deck For The Enemy
+    
     public static void PrepareEditorMadeDeckForTheEnemy(string deckName)
     {
         enemyDeckBuilder = EditorMadeDeckBuilder.CreateEditorMadeDeckBuilder(deckName);
     }
-    #endregion
 
     #region Get Player's Deck
     public static Card[] GetPreparedCardsForThePlayerOrGetRandomDeck()
@@ -214,7 +216,7 @@ public class DeckPrototypeFactory : MonoBehaviour
         }
         else
         {
-            PrepareFirstDeckIfNeededForThePlayerAndSaveItInStorage();
+            PrepareFirstDeckIfNeededForThePlayerAndGetReadyForSaving();
             playerDeck = playerDeckBuilder.GetDeck();
         }
 
@@ -277,24 +279,24 @@ public class DeckPrototypeFactory : MonoBehaviour
     #endregion
 
     #region Prepare Player's Deck
-    public static void PrepareManuallyBuiltDeckForThePlayerAndSaveInStorage(Card[] cards)
+    public static void PrepareManuallyBuiltDeckForThePlayerAndGetReadyForSaving(Card[] cards)
     {
         playerDeckBuilder = ManualDeckBuider.Create(cards);
 
         int[] cardIndexes = ((ManualDeckBuider)playerDeckBuilder).GetIndexOfEachCardPrototype();
-        SaveDeckIndexesInStorage(cardIndexes);
+        PrepareDeckIndexesForSaving(cardIndexes);
     }
     public static void PrepareLoadedDeckForThePlayer(int[] cardIndexes)
     {
         playerDeckBuilder = ManualDeckBuider.Create(cardIndexes);
     }
-    public static void PrepareFirstDeckIfNeededForThePlayerAndSaveItInStorage(bool forceToPrepare = false)
+    public static void PrepareFirstDeckIfNeededForThePlayerAndGetReadyForSaving(bool forceToPrepare = false)
     {
         if (playerDeckBuilder == null || forceToPrepare)
         {
             playerDeckBuilder = EditorMadeDeckBuilder.CreateEditorMadeDeckBuilder("PlayerDeck");
             int[] cardIndexes = ((EditorMadeDeckBuilder)playerDeckBuilder).GetIndexOfEachCardPrototype();
-            SaveDeckIndexesInStorage(cardIndexes);
+            PrepareDeckIndexesForSaving(cardIndexes);
         }
     }
     #endregion
@@ -313,9 +315,9 @@ public class DeckPrototypeFactory : MonoBehaviour
         return cardIndexes;
     }
 
-    private static void SaveDeckIndexesInStorage(int[] cardIndexes)
+    private static void PrepareDeckIndexesForSaving(int[] deckIndexes)
     {
-        DeckSerializable deckSerializable = new DeckSerializable(cardIndexes);
+        DeckSerializable deckSerializable = new DeckSerializable(deckIndexes);
         saveFacade.PrepareDeckForSaving(deckSerializable);
     }
 

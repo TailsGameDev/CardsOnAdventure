@@ -25,14 +25,7 @@ public class CardTipReceptor : TipReceptor
 
         TipSectionData cardArt = new TipSectionData(background: c.GetCardSprite());
 
-        //TipSectionData section2 = new TipSectionData("<color=#9EFA9D> * SCROLL DOWN FOR MORE TEACHING</color>", 62.5f);
-
         TipSectionData explanatoryText = new TipSectionData(c.GetExplanatoryText(), textHeight + offset);
-
-        /*
-        TipSectionData explanatoryText = new TipSectionData("Note: click a card also opens this pop-up.\n"+
-            c.GetExplanatoryText(), textHeight+50);
-        */
 
         if (cardToPullData.IgnoreOpponentsBlock)
         {

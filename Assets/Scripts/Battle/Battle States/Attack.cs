@@ -94,7 +94,7 @@ public class Attack : BattleState
             popUpOpener.OpenAndMakeUncloseable
                 (
                     title: "ATTACK",
-                    warningMessage: "<color=#9EFA9D>DRAG AND DROP YOUR CARDS ABOVE ENEMY'S CARDS</color>",
+                    warningMessage: ColorHexCodes.BeginLightGreen+"DRAG AND DROP YOUR CARDS ABOVE ENEMY'S CARDS"+ColorHexCodes.End,
                     confirmBtnMessage: "Ok, I'll attack",
                     cancelBtnMessage: "I'm a pacifist...",
                     onConfirm: () => { popUpOpener.ClosePopUpOnTop(); },
@@ -211,8 +211,9 @@ public class Attack : BattleState
                 popUpOpener.Open
                     (
                         title: "Protected",
-                        warningMessage: "<color=#FFFFFF>Your <color=#FD7878>Attack Power</color> of <color=#FD7878>1</color> was not enough to deal damage because cards behind others are 'Protected'</color>" +
-                        "\n<color=#9EFA9D>DAMAGE = 1/2 = 0.5 = 0 (integer)</color>",
+                        warningMessage: ColorHexCodes.BeginWhite+"Your "+ColorHexCodes.BeginLightRed+"Attack Power"+ColorHexCodes.End+
+                        " of "+ ColorHexCodes.BeginLightRed+"1"+ColorHexCodes.End+" was not enough to deal damage because cards behind others are 'Protected'</color>" +
+                        "\n" +ColorHexCodes.BeginLightGreen+"DAMAGE = 1/2 = 0.5 = 0 (integer)"+ColorHexCodes.End,
                         confirmBtnMessage: "Facepalm",
                         cancelBtnMessage: "Offend enemy",
                         onConfirm: () => { confirmOnUselessAtackSFXRequisitor.RequestPlaying(); popUpOpener.ClosePopUpOnTop(); },
