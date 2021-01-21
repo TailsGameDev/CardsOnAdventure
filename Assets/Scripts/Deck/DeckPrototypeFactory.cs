@@ -1,23 +1,15 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class DeckPrototypeFactory : MonoBehaviour
+public class DeckPrototypeFactory : CardPrototypesAccessor
 {
     private static DeckPrototypeFactory deckPrototypeFactory;
-
-    private static DeckBuilder enemyDeckBuilder;
-    private static DeckBuilder playerDeckBuilder;
 
     [SerializeField]
     private int defaultDeckSize = -1;
 
-    protected Card[] allCardPrototypes;
-    protected List<Card> notMonsterPrototypes;
-
     [SerializeField]
     protected Card theRandomCard;
-    [SerializeField]
-    protected Card trainingDummyCard;
 
     protected const int NOT_A_SIZE = -1;
     protected const int TOUGH_SIZE = -2;
@@ -46,19 +38,20 @@ public class DeckPrototypeFactory : MonoBehaviour
 
     private void Start()
     {
-        PopulateCardArraysIfNeeded();
+        PopulateCardDataStructuresIfNeeded();
     }
-    private void PopulateCardArraysIfNeeded()
+    private void PopulateCardDataStructuresIfNeeded()
     {
         if ( ! CardArraysArePopulated())
         {
+            CardPrototypesAccessor.theRandomCardPrototype = theRandomCard;
             PopulateArrayOfAllCardPrototypes();
             PopulateArrayOfNotMonsterPrototypes();
         }
     }
     private bool CardArraysArePopulated()
     {
-        return deckPrototypeFactory.allCardPrototypes != null;
+        return allCardPrototypes != null;
     }
 
     private void PopulateArrayOfAllCardPrototypes()
@@ -89,13 +82,12 @@ public class DeckPrototypeFactory : MonoBehaviour
     }
     #endregion
 
-
     #region Collection
     public static void AddCardsOfClassToCollection(Classes classe)
     {
-        for (int c = 0; c < deckPrototypeFactory.allCardPrototypes.Length; c++)
+        for (int c = 0; c < allCardPrototypes.Length; c++)
         {
-            Card card = deckPrototypeFactory.allCardPrototypes[c];
+            Card card = allCardPrototypes[c];
             if (card.Classe == classe)
             {
                 SumInPlayerCardsCollection(card, 1);
@@ -115,9 +107,9 @@ public class DeckPrototypeFactory : MonoBehaviour
     private static int GetIndexInAllCardPrototypesArray(Card card)
     {
         int c = -1;
-        for (int i = 0; i < deckPrototypeFactory.allCardPrototypes.Length; i++)
+        for (int i = 0; i < allCardPrototypes.Length; i++)
         {
-            if (card.IsAnotherInstanceOf(deckPrototypeFactory.allCardPrototypes[i]))
+            if (card.IsAnotherInstanceOf(allCardPrototypes[i]))
             {
                 c = i;
                 break;
@@ -134,7 +126,7 @@ public class DeckPrototypeFactory : MonoBehaviour
         }
         else
         {
-            cardAmounts = new int[deckPrototypeFactory.allCardPrototypes.Length];
+            cardAmounts = new int[allCardPrototypes.Length];
             for (int i = 0; i < cardAmounts.Length; i++)
             {
                 // For now, let's consider the collection starts with one card of each type.
@@ -153,153 +145,9 @@ public class DeckPrototypeFactory : MonoBehaviour
 
     public static int GetAmountOfCardPrototypes()
     {
-        deckPrototypeFactory.PopulateCardArraysIfNeeded();
-        return deckPrototypeFactory.allCardPrototypes.Length;
-    }
-
-    public static Card[] GetPreparedCardsForTheEnemy()
-    {
-        if (enemyDeckBuilder == null)
-        {
-            enemyDeckBuilder = new RandomDeckBuilder( DefaultDeckSize );
-        }
-
-        Card[] cards = ReplaceTheRandomCards(enemyDeckBuilder.GetDeck());
-        if (MapScroller.GetMapLevel() != 1)
-        {
-            // Level Up 2 times
-            for (int c = 0; c < cards.Length; c++)
-            {
-                cards[c].ApplyLevelBonus(2);
-            }
-        }
-
-        return cards;
-    }
-    private static Card[] ConcatenateDecks(Card[] deck1, Card[] deck2)
-    {
-        Card[] megadeck = new Card[deck1.Length + deck2.Length];
-
-        deck1.CopyTo(megadeck, 0);
-        deck2.CopyTo(megadeck, deck1.Length);
-        
-        return megadeck;
-    }
-    
-    public static void PrepareEditorMadeDeckForTheEnemy(string deckName)
-    {
-        enemyDeckBuilder = EditorMadeDeckBuilder.CreateEditorMadeDeckBuilder(deckName);
-    }
-
-    #region Get Player's Deck
-    public static Card[] GetPreparedCardsForThePlayerOrGetRandomDeck()
-    {
-        Card[] playerDeck = GetPlayerPreparedDeckWithTheRandomCardsAndWithoutBonuses();
-
-        DeckBuilder.Shuffle(ref playerDeck);
-
-        playerDeck = ReplaceTheRandomCards(playerDeck);
-
-        playerDeck = ReplaceMonsters(playerDeck);
-
-        return ApplyPlayerBonuses(playerDeck);
-    }
-    private static Card[] GetPlayerPreparedDeckWithTheRandomCardsAndWithoutBonuses()
-    {
-        Card[] playerDeck;
-
-        if (saveFacade.IsDeckLoaded())
-        {
-            DeckSerializable deckSerializable = saveFacade.GetLoadedDeck();
-            PrepareLoadedDeckForThePlayer(deckSerializable.GetCardsIndexes());
-            playerDeck = playerDeckBuilder.GetDeck();
-        }
-        else
-        {
-            PrepareFirstDeckIfNeededForThePlayerAndGetReadyForSaving();
-            playerDeck = playerDeckBuilder.GetDeck();
-        }
-
-        return playerDeck;
-    }
-    public static Card[] ReplaceTheRandomCards(Card[] playerDeck)
-    {
-        for (int i = 0; i < playerDeck.Length; i++)
-        {
-            if (playerDeck[i].IsAnotherInstanceOf(deckPrototypeFactory.theRandomCard))
-            {
-                Destroy(playerDeck[i].gameObject);
-                playerDeck[i] = GetCloneOfCardFromPrototypesRandomlyButNotTheTrainingDummy();
-            }
-        }
-
-        return playerDeck;
-    }
-    public static Card[] ReplaceMonsters(Card[] playerDeck)
-    {
-        for (int i = 0; i < playerDeck.Length; i++)
-        {
-            if (playerDeck[i].Classe == Classes.MONSTER)
-            {
-                Destroy(playerDeck[i].gameObject);
-                playerDeck[i] = GetCloneFromNotMonsterPrototypesRandomly();
-            }
-        }
-
-        return playerDeck;
-    }
-    private static Card GetCloneOfCardFromPrototypesRandomlyButNotTheTrainingDummy()
-    {
-        Card[] prototypes = deckPrototypeFactory.allCardPrototypes;
-        int randomIndex = Random.Range(0, prototypes.Length);
-        return prototypes[randomIndex].GetClone();
-    }
-    private static Card GetCloneFromNotMonsterPrototypesRandomly()
-    {
-        List<Card> prototypes = deckPrototypeFactory.notMonsterPrototypes;
-        int randomIndex = UnityEngine.Random.Range(0, prototypes.Count);
-        return prototypes[randomIndex].GetClone();
-    }
-    private static Card[] ApplyPlayerBonuses(Card[] playerDeck)
-    {
-        for (int i = 0; i < playerDeck.Length; i++)
-        {
-            playerDeck[i].ApplyPlayerBonuses();
-        }
-
-        return playerDeck;
-    }
-
-    public static Card[] GetPreparedCardsForThePlayerWithTheRandomCards()
-    {
-        Card[] playerDeck = GetPlayerPreparedDeckWithTheRandomCardsAndWithoutBonuses();
-
-        return ApplyPlayerBonuses(playerDeck);
-    }
-    #endregion
-
-    #region Prepare Player's Deck
-    public static void PrepareManuallyBuiltDeckForThePlayerAndGetReadyForSaving(Card[] cards)
-    {
-        playerDeckBuilder = ManualDeckBuider.Create(cards);
-
-        int[] cardIndexes = ((ManualDeckBuider)playerDeckBuilder).GetIndexOfEachCardPrototype();
-        PrepareDeckIndexesForSaving(cardIndexes);
-    }
-    public static void PrepareLoadedDeckForThePlayer(int[] cardIndexes)
-    {
-        playerDeckBuilder = ManualDeckBuider.Create(cardIndexes);
-    }
-    public static void PrepareFirstDeckIfNeededForThePlayerAndGetReadyForSaving(bool forceToPrepare = false)
-    {
-        if (playerDeckBuilder == null || forceToPrepare)
-        {
-            playerDeckBuilder = EditorMadeDeckBuilder.CreateEditorMadeDeckBuilder("PlayerDeck");
-            int[] cardIndexes = ((EditorMadeDeckBuilder)playerDeckBuilder).GetIndexOfEachCardPrototype();
-            PrepareDeckIndexesForSaving(cardIndexes);
-        }
-    }
-    #endregion
+        deckPrototypeFactory.PopulateCardDataStructuresIfNeeded();
+        return allCardPrototypes.Length;
+    }   
 
     public static int[] GetArrayFilledWithTheRandomCardIndex()
     {
@@ -315,17 +163,11 @@ public class DeckPrototypeFactory : MonoBehaviour
         return cardIndexes;
     }
 
-    private static void PrepareDeckIndexesForSaving(int[] deckIndexes)
-    {
-        DeckSerializable deckSerializable = new DeckSerializable(deckIndexes);
-        saveFacade.PrepareDeckForSaving(deckSerializable);
-    }
-
     public static int FindIndexOnPrototypesArray(Card card)
     {
         // -1 can be interpreted as the Random Card
         int prototypeIndex = -1;
-        Card[] allCardPrototypes = deckPrototypeFactory.allCardPrototypes;
+        Card[] allCardPrototypes = CardPrototypesAccessor.allCardPrototypes;
         for (int iterationIndex = 0; iterationIndex < allCardPrototypes.Length; iterationIndex++)
         {
             Card prototype = allCardPrototypes[iterationIndex];
@@ -340,9 +182,9 @@ public class DeckPrototypeFactory : MonoBehaviour
 
     public static void UpdatePrototypesLevel()
     {
-        for (int p = 0; p < deckPrototypeFactory.allCardPrototypes.Length; p++)
+        for (int p = 0; p < allCardPrototypes.Length; p++)
         {
-            deckPrototypeFactory.allCardPrototypes[p].RefreshStats();
+            allCardPrototypes[p].RefreshStats();
         }
     }
 
@@ -358,8 +200,8 @@ public class DeckPrototypeFactory : MonoBehaviour
         public DeckBuilder(int size)
         {
             this.size = size;
-            allCardPrototypes = deckPrototypeFactory.allCardPrototypes;
-            notMonsterPrototypes = deckPrototypeFactory.notMonsterPrototypes;
+            this.allCardPrototypes = CardPrototypesAccessor.allCardPrototypes;
+            this.notMonsterPrototypes = CardPrototypesAccessor.notMonsterPrototypes;
         }
 
         public abstract Card[] GetDeck();
@@ -422,11 +264,6 @@ public class DeckPrototypeFactory : MonoBehaviour
         protected Card GetCloneOfTheRandomCard()
         {
             return deckPrototypeFactory.theRandomCard.GetClone();
-        }
-
-        protected Card GetCloneOfTrainingDummyCard()
-        {
-            return deckPrototypeFactory.trainingDummyCard.GetClone();
         }
 
         protected int[] FindThePrototypeIndexForEachCard(Card[] cardsToBeOnDeck)

@@ -23,11 +23,11 @@ public class Deck : MonoBehaviour
 
         if (enemysDeck)
         {
-            cards.AddRange(DeckPrototypeFactory.GetPreparedCardsForTheEnemy());
+            cards.AddRange(DeckGetter.GetPreparedCardsForTheEnemy());
         }
         else
         {
-            cards.AddRange(DeckPrototypeFactory.GetPreparedCardsForThePlayerOrGetRandomDeck());
+            cards.AddRange(DeckGetter.GetPreparedCardsForThePlayerOrGetRandomDeck());
         }
 
         for (int i = 0; i < cards.Count; i++)

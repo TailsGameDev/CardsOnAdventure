@@ -17,7 +17,7 @@ public class DeckCardHolder : DynamicSizeScrollableCardHolder
     }
     private void InitializeCards(int amountOfSlots)
     {
-        cards = DeckPrototypeFactory.GetPreparedCardsForThePlayerWithTheRandomCards();
+        cards = DeckGetter.GetPreparedCardsForThePlayerWithTheRandomCards();
 
         for (int i = 0; i < amountOfSlots; i++)
         {
@@ -28,8 +28,8 @@ public class DeckCardHolder : DynamicSizeScrollableCardHolder
     }
     #endregion
 
-    public void SaveInPersistence()
+    public void PrepareDeckForPlayerAndGetReadyForSaving()
     {
-        DeckPrototypeFactory.PrepareManuallyBuiltDeckForThePlayerAndGetReadyForSaving(cards);
+        DeckGetter.PrepareManuallyBuiltDeckForThePlayerAndGetReadyForSaving(cards);
     }
 }

@@ -21,9 +21,7 @@ public class EarnCard : IncidentAction
                 Destroy(cards[1].gameObject);
             }
 
-            cards = new RandomDeckBuilder(2).GetDeck();
-            cards = DeckPrototypeFactory.ReplaceTheRandomCards(cards);
-            cards = DeckPrototypeFactory.ReplaceMonsters(cards);
+            cards = DeckGetter.Get2DifferentRandomCards(deckSize: 2);
 
         } while (cards[0].IsAnotherInstanceOf(cards[1]));
 
