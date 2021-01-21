@@ -49,7 +49,7 @@ public class EditorMadeDeck : MonoBehaviour
     }
 }
 
-public class EditorMadeDeckBuilder : DeckPrototypeFactory.DeckBuilder
+public class EditorMadeDeckBuilder : DeckBuilderSuperclass
 {
     private Card[] cardPrototypes;
     private EditorMadeDeck.Buff[] buffs;

@@ -1,4 +1,4 @@
-﻿public class ManualDeckBuider : DeckPrototypeFactory.DeckBuilder
+﻿public class ManualDeckBuider : DeckBuilderSuperclass
 {
     private int[] indexOfEachCardPrototype;
 

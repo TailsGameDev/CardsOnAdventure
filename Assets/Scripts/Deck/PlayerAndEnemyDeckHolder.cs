@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class DeckGetter : CardPrototypesAccessor
+public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
 {
-    private static DeckPrototypeFactory.DeckBuilder enemyDeckBuilder;
-    private static DeckPrototypeFactory.DeckBuilder playerDeckBuilder;
-
-    private static SaveFacade saveFacade = new SaveFacade();
+    private static DeckBuilderSuperclass enemyDeckBuilder;
+    private static DeckBuilderSuperclass playerDeckBuilder;
 
     public static void PrepareEditorMadeDeckForTheEnemy(string deckName)
     {
@@ -16,7 +14,7 @@ public class DeckGetter : CardPrototypesAccessor
     {
         if (enemyDeckBuilder == null)
         {
-            enemyDeckBuilder = new RandomDeckBuilder(DeckPrototypeFactory.DefaultDeckSize);
+            enemyDeckBuilder = new RandomDeckBuilder(DeckBuilderSuperclass.DEFAULT_DECK_SIZE);
         }
 
         Card[] cards = ReplaceTheRandomCards(enemyDeckBuilder.GetDeck());
@@ -65,13 +63,27 @@ public class DeckGetter : CardPrototypesAccessor
     {
         Card[] playerDeck = GetPlayerPreparedDeckWithTheRandomCardsAndWithoutBonuses();
 
-        DeckPrototypeFactory.DeckBuilder.Shuffle(ref playerDeck);
+        Shuffle(ref playerDeck);
 
         playerDeck = ReplaceTheRandomCards(playerDeck);
 
         playerDeck = ReplaceMonsters(playerDeck);
 
         return ApplyPlayerBonuses(playerDeck);
+    }
+    private static void Shuffle<T>(ref T[] array)
+    {
+        System.Random rng = new System.Random();
+
+        int n = array.Length;
+        while (n > 1)
+        {
+            n--;
+            int k = rng.Next(n + 1);
+            T value = array[k];
+            array[k] = array[n];
+            array[n] = value;
+        }
     }
     private static Card[] GetPlayerPreparedDeckWithTheRandomCardsAndWithoutBonuses()
     {
@@ -97,7 +109,7 @@ public class DeckGetter : CardPrototypesAccessor
         {
             if (playerDeck[i].IsAnotherInstanceOf(CardPrototypesAccessor.theRandomCardPrototype))
             {
-                Destroy(playerDeck[i].gameObject);
+                Object.Destroy(playerDeck[i].gameObject);
                 playerDeck[i] = GetCloneOfCardFromPrototypesRandomlyButNotTheTrainingDummy();
             }
         }
@@ -116,7 +128,7 @@ public class DeckGetter : CardPrototypesAccessor
         {
             if (playerDeck[i].Classe == Classes.MONSTER)
             {
-                Destroy(playerDeck[i].gameObject);
+                Object.Destroy(playerDeck[i].gameObject);
                 playerDeck[i] = GetCloneFromNotMonsterPrototypesRandomly();
             }
         }

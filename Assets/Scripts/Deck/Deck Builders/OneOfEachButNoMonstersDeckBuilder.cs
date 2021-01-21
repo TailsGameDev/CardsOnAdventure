@@ -1,4 +1,4 @@
-﻿public class OneOfEachButNoMonstersDeckBuilder : DeckPrototypeFactory.DeckBuilder
+﻿public class OneOfEachButNoMonstersDeckBuilder : DeckBuilderSuperclass
 {
     private OneOfEachButNoMonstersDeckBuilder(int size) : base(size)
     {
@@ -9,7 +9,7 @@
         const int SENTINEL_NUMBER = 0;
         OneOfEachButNoMonstersDeckBuilder me = 
             new OneOfEachButNoMonstersDeckBuilder(SENTINEL_NUMBER);
-        me.size = me.notMonsterPrototypes.Count;
+        me.size = notMonsterPrototypes.Count;
         return me;
     }
 

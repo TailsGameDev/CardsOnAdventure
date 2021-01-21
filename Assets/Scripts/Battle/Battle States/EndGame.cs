@@ -115,7 +115,7 @@ public class EndGame : BattleState
     }
     private void GiveCardsOfClassThenSeeMap()
     {
-        DeckPrototypeFactory.AddCardsOfClassToCollection(enemyDeckClass);
+        CardsCollection.AddOneOfEachCardOfClassToCollection(enemyDeckClass);
         QuitBattleAndGoToMap();
     }
     private void GoBackInTime()

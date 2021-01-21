@@ -21,7 +21,7 @@ public class EarnCard : IncidentAction
                 Destroy(cards[1].gameObject);
             }
 
-            cards = DeckGetter.Get2DifferentRandomCards(deckSize: 2);
+            cards = PlayerAndEnemyDeckHolder.Get2DifferentRandomCards(deckSize: 2);
 
         } while (cards[0].IsAnotherInstanceOf(cards[1]));
 
@@ -40,7 +40,7 @@ public class EarnCard : IncidentAction
 
     private void AddCardClosePopUpClearSpot(int cardIndex)
     {
-        DeckPrototypeFactory.SumInPlayerCardsCollection(cards[cardIndex], 1);
+        CardsCollection.SumToCurrentAmount(cards[cardIndex], 1);
         openerOfPopUpsMadeInEditor.CloseAllPopUpsExceptLoading();
         sceneOpener.OpenMapScene();
     }

@@ -18,7 +18,7 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
     {
         // Wait for the DeckPrototypeFactory to PopulateArrayOfAllCardPrototypes.
         yield return null;
-        cards = DeckPrototypeFactory.GetClonesOfCardsOnPlayerCollection();
+        cards = CardsCollection.GetClonesOfCardsOnPlayerCollection();
 
         InitializeSlotsAndRectSize(amountOfSlots: cards.Length);
         PopulateAmountOfEachCard();
@@ -30,9 +30,9 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
     {
         amountOfEachCard = new int[cards.Length];
 
-        int[] cardAmounts = DeckPrototypeFactory.GetCardsCollectionAmounts();
+        int[] cardAmounts = CardsCollection.GetCardsCollectionAmounts();
 
-        Card[] currentDeck = DeckGetter.GetPreparedCardsForThePlayerWithTheRandomCards();
+        Card[] currentDeck = PlayerAndEnemyDeckHolder.GetPreparedCardsForThePlayerWithTheRandomCards();
 
         // For each card on Deck, subtract 1 from it's amount in the collection.
         for (int i = 0; i < cards.Length; i++)
@@ -194,6 +194,6 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
     {
         int index = GetIndexOfCard(card);
         amountOfEachCard[index] -= amountToRemove;
-        DeckPrototypeFactory.SumInPlayerCardsCollection(card, -amountToRemove);
+        CardsCollection.SumToCurrentAmount(card, -amountToRemove);
     }
 }

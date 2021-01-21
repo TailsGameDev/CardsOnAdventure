@@ -52,7 +52,7 @@ public class SpotPrototype : OpenersSuperclass
     }
     public void PrepareBattle()
     {
-        DeckGetter.PrepareEditorMadeDeckForTheEnemy(editorMadeEnemyDeckName);
+        PlayerAndEnemyDeckHolder.PrepareEditorMadeDeckForTheEnemy(editorMadeEnemyDeckName);
 
         if (isTraining || deckClass == Classes.NOT_A_CLASS)
         {
@@ -68,7 +68,7 @@ public class SpotPrototype : OpenersSuperclass
     public void OnTrainingSpotBtnClicked()
     {
         isTraining = true;
-        DeckGetter.PrepareFirstDeckIfNeededForThePlayerAndGetReadyForSaving();
+        PlayerAndEnemyDeckHolder.PrepareFirstDeckIfNeededForThePlayerAndGetReadyForSaving();
         OnBattleSpotBtnClicked();
     }
 

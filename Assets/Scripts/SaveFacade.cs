@@ -132,7 +132,7 @@
             deckPersistence.Save(deckSerializableToSave);
             if (cardsCollectionToSave == null)
             {
-                cardsCollectionToSave = new DeckSerializable(DeckPrototypeFactory.GetCardsCollectionAmounts());
+                cardsCollectionToSave = new DeckSerializable(CardsCollection.GetCardsCollectionAmounts());
             }
             cardsCollectionPersistence.Save(cardsCollectionToSave);
             cardsLevelPersistence.Save(cardsLevelToSave);

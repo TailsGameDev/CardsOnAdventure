@@ -11,13 +11,13 @@ public class DeckCardHolder : DynamicSizeScrollableCardHolder
     {
         // Wait for the DeckPrototypeFactory to PopulateArrayOfAllCardPrototypes.
         yield return null;
-        int amountOfSlots = DeckPrototypeFactory.DefaultDeckSize;
+        int amountOfSlots = DeckBuilderSuperclass.DEFAULT_DECK_SIZE;
         InitializeSlotsAndRectSize(amountOfSlots);
         InitializeCards(amountOfSlots);
     }
     private void InitializeCards(int amountOfSlots)
     {
-        cards = DeckGetter.GetPreparedCardsForThePlayerWithTheRandomCards();
+        cards = PlayerAndEnemyDeckHolder.GetPreparedCardsForThePlayerWithTheRandomCards();
 
         for (int i = 0; i < amountOfSlots; i++)
         {
@@ -30,6 +30,6 @@ public class DeckCardHolder : DynamicSizeScrollableCardHolder
 
     public void PrepareDeckForPlayerAndGetReadyForSaving()
     {
-        DeckGetter.PrepareManuallyBuiltDeckForThePlayerAndGetReadyForSaving(cards);
+        PlayerAndEnemyDeckHolder.PrepareManuallyBuiltDeckForThePlayerAndGetReadyForSaving(cards);
     }
 }

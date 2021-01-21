@@ -1559,7 +1559,7 @@ GameObject:
   - component: {fileID: 4687705843386997443}
   - component: {fileID: 4687705843386997442}
   m_Layer: 0
-  m_Name: Card Prototype Factory
+  m_Name: Card Prototypes Initializer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1597,9 +1597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c999ae9d5e93a44ca8173020dcfa3e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultDeckSize: 8
   theRandomCard: {fileID: 472644992221924071}
-  trainingDummyCard: {fileID: 4896376561397157878}
 --- !u!1 &4687705843416389279
 GameObject:
   m_ObjectHideFlags: 0

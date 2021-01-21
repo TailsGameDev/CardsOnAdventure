@@ -31,7 +31,7 @@ public class CardsLevel : MonoBehaviour
 
     public int GetLevelOfCard(Card card)
     {
-        int index = DeckPrototypeFactory.FindIndexOnPrototypesArray(card);
+        int index = CardPrototypesAccessor.FindIndexOnPrototypesArray(card);
         if (index < 0 || index > cardsLevel.Length)
         {
             print("trouble"+index+card.name);
@@ -42,7 +42,7 @@ public class CardsLevel : MonoBehaviour
 
     public static void Clear()
     {
-        int size = DeckPrototypeFactory.GetAmountOfCardPrototypes();
+        int size = CardPrototypesInitializer.GetAmountOfCardPrototypes();
         instance.cardsLevel = new int[size];
     }
 
@@ -59,8 +59,8 @@ public class CardsLevel : MonoBehaviour
 
     public void LevelUpCard(Card card)
     {
-        int cardIndex = DeckPrototypeFactory.FindIndexOnPrototypesArray(card);
+        int cardIndex = CardPrototypesAccessor.FindIndexOnPrototypesArray(card);
         cardsLevel[cardIndex]++;
-        DeckPrototypeFactory.UpdatePrototypesLevel();
+        CardPrototypesAccessor.UpdatePrototypesLevel();
     }
 }

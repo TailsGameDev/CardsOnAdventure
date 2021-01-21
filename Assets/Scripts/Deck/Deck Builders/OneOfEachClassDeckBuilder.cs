@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OneOfEachClassDeckBuilder : DeckPrototypeFactory.DeckBuilder
+public class OneOfEachClassDeckBuilder : DeckBuilderSuperclass
 {
     private Card[] prototypes;
     private OneOfEachClassDeckBuilder(int size) : base(size)
