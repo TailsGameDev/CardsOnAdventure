@@ -872,6 +872,43 @@ Transform:
   m_Father: {fileID: 1360789274}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &69199797
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 69199798}
+  m_Layer: 5
+  m_Name: Specific Card Battles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &69199798
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 69199797}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1712214545}
+  - {fileID: 226840525}
+  m_Father: {fileID: 1360789274}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &74611343
 GameObject:
   m_ObjectHideFlags: 0
@@ -1354,7 +1391,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 0
-  isMasterBattle: 0
+  rewardType: 0
   spotBGM: {fileID: 8300000, guid: 547083a15975fb14c9457001348fa2ad, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
@@ -1537,7 +1574,7 @@ GameObject:
   - component: {fileID: 89844239}
   - component: {fileID: 89844238}
   m_Layer: 5
-  m_Name: Right 3 Tough Battle
+  m_Name: Right 3 Area Deck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1575,7 +1612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.74509805, g: 0.27450982, b: 0.27450982, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1612,11 +1649,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapName: First
   possiblePlayLvlBtns:
-  - {fileID: 173994908}
+  - {fileID: 1712214549}
   antecessors:
   - {fileID: 870476405}
   - {fileID: 1065283248}
-  canBeRevisited: 0
+  canBeRevisited: 1
 --- !u!1 &95551240
 GameObject:
   m_ObjectHideFlags: 0
@@ -1894,7 +1931,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 3
-  isMasterBattle: 1
+  rewardType: 1
   spotBGM: {fileID: 8300000, guid: ce325b6a1052d204eb6ef0aa21d3333d, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
@@ -2365,7 +2402,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 0
-  isMasterBattle: 0
+  rewardType: 0
   spotBGM: {fileID: 8300000, guid: 547083a15975fb14c9457001348fa2ad, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
@@ -2815,7 +2852,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 0, b: 0, a: 1}
   deckClass: 0
-  isMasterBattle: 0
+  rewardType: 0
   spotBGM: {fileID: 8300000, guid: d4e1263996b6d8d4f99ca89f25c19462, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
@@ -3265,7 +3302,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 0.40784314, g: 0.4117647, b: 0.5372549, a: 1}
   deckClass: 0
-  isMasterBattle: 0
+  rewardType: 0
   spotBGM: {fileID: 8300000, guid: 88019e371c1ef494fb82795f44f95422, type: 3}
   winSound: {fileID: 0}
   celebrateSFX: {fileID: 0}
@@ -3689,6 +3726,200 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 223938864}
   m_CullTransparentMesh: 0
+--- !u!1 &226840518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 226840525}
+  - component: {fileID: 226840524}
+  - component: {fileID: 226840521}
+  - component: {fileID: 226840519}
+  - component: {fileID: 226840520}
+  - component: {fileID: 226840523}
+  - component: {fileID: 226840522}
+  m_Layer: 5
+  m_Name: Heal Battle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &226840519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226840518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.6146331, g: 1, b: 0.5613208, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.39215687}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 226840521}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 226840520}
+        m_MethodName: OnBattleSpotBtnClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &226840520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226840518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0357425162abc91458179afbe27dc3f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  belongsToMap: 1
+  uiMap: {fileID: 1112407828}
+  audioRequisitor: {fileID: 53754418}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  deckClass: 5
+  rewardType: 2
+  spotBGM: {fileID: 8300000, guid: 3485bb149c5c70643947d901273aebc5, type: 3}
+  winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
+  celebrateSFX: {fileID: 0}
+  incidentPopUps: []
+  editorMadeEnemyDeckName: HealDeck
+--- !u!114 &226840521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226840518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: ecbb309775ad5114c8fa487bcb178f99, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!58 &226840522
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226840518}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 29.13
+--- !u!114 &226840523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226840518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 0
+  title: Simple Battle
+  tipData:
+  - message: 
+    background: {fileID: 21300000, guid: e7dbc00738fc28c45a978e74514eabed, type: 3}
+    height: 648
+    color: {r: 1, g: 1, b: 1, a: 1}
+  - message: Battle against a total random enemy deck, which size is the same as
+      yours.
+    background: {fileID: 0}
+    height: 500
+    color: {r: 0, g: 0, b: 0, a: 0}
+--- !u!222 &226840524
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226840518}
+  m_CullTransparentMesh: 0
+--- !u!224 &226840525
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226840518}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 69199798}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -271.9999, y: 153}
+  m_SizeDelta: {x: 60, y: 60}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &233055072
 GameObject:
   m_ObjectHideFlags: 0
@@ -6868,7 +7099,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 4
-  isMasterBattle: 1
+  rewardType: 1
   spotBGM: {fileID: 8300000, guid: ce325b6a1052d204eb6ef0aa21d3333d, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
@@ -8312,7 +8543,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 0
-  isMasterBattle: 0
+  rewardType: 0
   spotBGM: {fileID: 8300000, guid: 3485bb149c5c70643947d901273aebc5, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
@@ -10511,7 +10742,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 0.40784314, g: 0.4117647, b: 0.5372549, a: 1}
   deckClass: 6
-  isMasterBattle: 0
+  rewardType: 0
   spotBGM: {fileID: 8300000, guid: 3485bb149c5c70643947d901273aebc5, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
@@ -12486,7 +12717,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 2
-  isMasterBattle: 1
+  rewardType: 1
   spotBGM: {fileID: 8300000, guid: ce325b6a1052d204eb6ef0aa21d3333d, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
@@ -12753,7 +12984,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 0, g: 0, b: 0, a: 1}
   deckClass: 0
-  isMasterBattle: 0
+  rewardType: 0
   spotBGM: {fileID: 8300000, guid: b021fc8b80649dc49b4c4caf546517a8, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
@@ -13723,7 +13954,7 @@ GameObject:
   - component: {fileID: 1037450159}
   - component: {fileID: 1037450158}
   m_Layer: 5
-  m_Name: Strong Monsters Northeast
+  m_Name: Heal Northeast
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13743,10 +13974,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mapName: First
   possiblePlayLvlBtns:
-  - {fileID: 2119048984}
+  - {fileID: 226840519}
   antecessors:
   - {fileID: 681631208}
-  canBeRevisited: 0
+  canBeRevisited: 1
 --- !u!114 &1037450158
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13760,7 +13991,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6313726, g: 0.03137255, b: 0.6117647, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -14034,7 +14265,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 0
-  isMasterBattle: 0
+  rewardType: 0
   spotBGM: {fileID: 8300000, guid: 547083a15975fb14c9457001348fa2ad, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
@@ -15704,7 +15935,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 0
-  isMasterBattle: 0
+  rewardType: 0
   spotBGM: {fileID: 0}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 8300000, guid: 526b5138d6fb1db48a08dcdd24943375, type: 3}
@@ -16173,7 +16404,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 0
-  isMasterBattle: 0
+  rewardType: 0
   spotBGM: {fileID: 8300000, guid: 547083a15975fb14c9457001348fa2ad, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
@@ -17037,7 +17268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8862746, g: 0.8745099, b: 0, a: 1}
+  m_Color: {r: 0.9607844, g: 0.9490197, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -18331,13 +18562,14 @@ RectTransform:
   - {fileID: 1609366073}
   - {fileID: 933378948}
   - {fileID: 223678363}
+  - {fileID: 69199798}
   m_Father: {fileID: 520027314}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -547, y: -1.0292969}
-  m_SizeDelta: {x: 617.9, y: 1282.1}
+  m_AnchoredPosition: {x: -706.1, y: -1.0292969}
+  m_SizeDelta: {x: 936.1, y: 1282.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1360789275
 MonoBehaviour:
@@ -19936,7 +20168,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 0
-  isMasterBattle: 0
+  rewardType: 0
   spotBGM: {fileID: 8300000, guid: 547083a15975fb14c9457001348fa2ad, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
@@ -20753,7 +20985,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 1
-  isMasterBattle: 1
+  rewardType: 1
   spotBGM: {fileID: 8300000, guid: ce325b6a1052d204eb6ef0aa21d3333d, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
@@ -22601,6 +22833,200 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706908754}
   m_CullTransparentMesh: 0
+--- !u!1 &1712214544
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1712214545}
+  - component: {fileID: 1712214551}
+  - component: {fileID: 1712214550}
+  - component: {fileID: 1712214549}
+  - component: {fileID: 1712214548}
+  - component: {fileID: 1712214547}
+  - component: {fileID: 1712214546}
+  m_Layer: 5
+  m_Name: Area Battle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1712214545
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712214544}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 69199798}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -271.9999, y: 240}
+  m_SizeDelta: {x: 60, y: 60}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!58 &1712214546
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712214544}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 29.13
+--- !u!114 &1712214547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712214544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 0
+  title: Simple Battle
+  tipData:
+  - message: 
+    background: {fileID: 21300000, guid: e7dbc00738fc28c45a978e74514eabed, type: 3}
+    height: 648
+    color: {r: 1, g: 1, b: 1, a: 1}
+  - message: Battle against a total random enemy deck, which size is the same as
+      yours.
+    background: {fileID: 0}
+    height: 500
+    color: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &1712214548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712214544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0357425162abc91458179afbe27dc3f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  belongsToMap: 1
+  uiMap: {fileID: 1112407828}
+  audioRequisitor: {fileID: 53754418}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  deckClass: 1
+  rewardType: 2
+  spotBGM: {fileID: 8300000, guid: 3485bb149c5c70643947d901273aebc5, type: 3}
+  winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
+  celebrateSFX: {fileID: 0}
+  incidentPopUps: []
+  editorMadeEnemyDeckName: AreaDeck
+--- !u!114 &1712214549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712214544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.6146331, g: 1, b: 0.5613208, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.39215687}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1712214550}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1712214548}
+        m_MethodName: OnBattleSpotBtnClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1712214550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712214544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 725d88bad09a40945b29d041f74139f7, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1712214551
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1712214544}
+  m_CullTransparentMesh: 0
 --- !u!1 &1714189564
 GameObject:
   m_ObjectHideFlags: 0
@@ -23234,7 +23660,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 0
-  isMasterBattle: 0
+  rewardType: 0
   spotBGM: {fileID: 8300000, guid: 547083a15975fb14c9457001348fa2ad, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
@@ -24567,7 +24993,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 0.40784314, g: 0.4117647, b: 0.5372549, a: 1}
   deckClass: 0
-  isMasterBattle: 0
+  rewardType: 0
   spotBGM: {fileID: 8300000, guid: 88019e371c1ef494fb82795f44f95422, type: 3}
   winSound: {fileID: 0}
   celebrateSFX: {fileID: 0}
@@ -26500,7 +26926,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 1, g: 1, b: 1, a: 1}
   deckClass: 0
-  isMasterBattle: 0
+  rewardType: 0
   spotBGM: {fileID: 8300000, guid: 547083a15975fb14c9457001348fa2ad, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}
@@ -27591,7 +28017,7 @@ MonoBehaviour:
   audioRequisitor: {fileID: 53754418}
   backgroundColor: {r: 0.40784314, g: 0.4117647, b: 0.5372549, a: 1}
   deckClass: 6
-  isMasterBattle: 0
+  rewardType: 0
   spotBGM: {fileID: 8300000, guid: d4e1263996b6d8d4f99ca89f25c19462, type: 3}
   winSound: {fileID: 8300000, guid: 4f5802d7deea67c49afafc5aaae10750, type: 3}
   celebrateSFX: {fileID: 0}

@@ -11,7 +11,7 @@ public class MapsCache : MapsRuntimeCache
     private Dictionary<string, SpotInfo> mapsRoots = new Dictionary<string, SpotInfo>();
     private static Dictionary<string, List<SpotInfo>> mapsSpotsInfo = new Dictionary<string, List<SpotInfo>>();
 
-    public static SpotInfo SpotToClearIfPlayerWins;
+    public static SpotInfo SpotToClearAndLevelUpIfPlayerWins;
 
     #region Get Some Info
     public SpotInfo GetRootInfo(string mapName)
@@ -50,13 +50,15 @@ public class MapsCache : MapsRuntimeCache
 
     public void SetSpotInfoToClearIfPlayerSucceed(string spotInfoGOName, string mapName)
     {
-        SpotToClearIfPlayerWins = GetInfoFromGraphOrGetNull(spotInfoGOName, mapName);
+        SpotInfo spt = GetInfoFromGraphOrGetNull(spotInfoGOName, mapName);
+        SpotToClearAndLevelUpIfPlayerWins = spt;
     }
-    public void ClearLastSpotVisitedIfAny()
+    public void ClearAndLevelUpLastSpotVisitedIfAny()
     {
-        if (SpotToClearIfPlayerWins != null)
+        if (SpotToClearAndLevelUpIfPlayerWins != null)
         {
-            SpotToClearIfPlayerWins.Cleared = true;
+            SpotToClearAndLevelUpIfPlayerWins.Cleared = true;
+            SpotToClearAndLevelUpIfPlayerWins.Level++;
         }
     }
 

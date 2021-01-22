@@ -17,6 +17,7 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
             enemyDeckBuilder = new RandomDeckBuilder(DeckBuilderSuperclass.DEFAULT_DECK_SIZE);
         }
 
+        // Apply Map bonus
         Card[] cards = ReplaceTheRandomCards(enemyDeckBuilder.GetDeck());
         if (MapScroller.GetMapLevel() != 1)
         {
@@ -24,6 +25,16 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
             for (int c = 0; c < cards.Length; c++)
             {
                 cards[c].ApplyLevelBonus(2);
+            }
+        }
+
+        // Apply Spot Bonus
+        int spotLevel = MapsCache.SpotToClearAndLevelUpIfPlayerWins.Level;
+        if (spotLevel > 0)
+        {
+            for (int c = 0; c < cards.Length; c++)
+            {
+                cards[c].ApplyLevelBonus(spotLevel);
             }
         }
 

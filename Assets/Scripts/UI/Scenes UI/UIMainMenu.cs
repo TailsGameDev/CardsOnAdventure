@@ -14,7 +14,7 @@ public class UIMainMenu : UIPauseMenu
 
     private void Awake()
     {
-        MapsCache.SpotToClearIfPlayerWins = null;
+        MapsCache.SpotToClearAndLevelUpIfPlayerWins = null;
     }
 
     public void OnPlayBtnClicked()

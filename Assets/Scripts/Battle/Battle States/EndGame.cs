@@ -56,37 +56,58 @@ public class EndGame : BattleState
 
                     if (winnerFactory == playerBattleStatesFactory)
                     {
-                        if ( CurrentBattleInfo.GiveRewardToSameClassOfMasterDeckOnWin )
+                        switch (CurrentBattleInfo.rewardType)
                         {
-                            sceneCanvas.SetActive(false);
-                            customPopUpOpener.OpenDisplayingCardsOfClass(
-                                title: "You beat a Master",
-                                warningMessage: ColorHexCodes.BeginWhite+"What about making some recruiting?"+ColorHexCodes.End +
-                                   ColorHexCodes.Paint(" YOU JUST GOT ONE OF EACH " + enemyDeckClass + " CARDS TO YOUR COLLECTION. ", deckColor),
-                                confirmBtnMessage: "Awesome",
-                                cancelBtnMessage: "Cool",
-                                onConfirm: GiveCardsOfClassThenSeeMap,
-                                onCancel: GiveCardsOfClassThenSeeMap,
-                                victoryBGMRequest,
-                                enemyDeckClass
-                            );
-                        }
-                        else
-                        {
-                            customPopUpOpener.OpenWithBGM(
-                                title: "Congratulations",
-                                warningMessage: "You beat those guys. What are you going to do now?",
-                                confirmBtnMessage: "Look the map",
-                                cancelBtnMessage: "Nothing",
-                                onConfirm: QuitBattleAndGoToMap,
-                                onCancel: () => { cricketsAudioRequest.RequestPlaying(); },
-                                victoryBGMRequest
-                            );
+                            case BattleReward.NONE:
+                                {
+                                    customPopUpOpener.OpenWithBGM(
+                                        title: "Congratulations",
+                                        warningMessage: "You beat those guys. What are you going to do now?",
+                                        confirmBtnMessage: "Look the map",
+                                        cancelBtnMessage: "Nothing",
+                                        onConfirm: QuitBattleAndGoToMap,
+                                        onCancel: () => { cricketsAudioRequest.RequestPlaying(); },
+                                        victoryBGMRequest
+                                    );
+                                }
+                                break;
+                            case BattleReward.CARDS_OF_CLASS:
+                                {
+                                    sceneCanvas.SetActive(false);
+                                    customPopUpOpener.OpenDisplayingCardsOfClass(
+                                        title: "You beat a Master",
+                                        warningMessage: ColorHexCodes.BeginWhite+"What about making some recruiting?"+ColorHexCodes.End +
+                                           ColorHexCodes.Paint(" YOU JUST GOT ONE OF EACH " + enemyDeckClass + " CARDS TO YOUR COLLECTION. ", deckColor),
+                                        confirmBtnMessage: "Awesome",
+                                        cancelBtnMessage: "Cool",
+                                        onConfirm: GiveCardsOfClassThenSeeMap,
+                                        onCancel: GiveCardsOfClassThenSeeMap,
+                                        victoryBGMRequest,
+                                        enemyDeckClass
+                                    );
+                                }
+                                break;
+                            case BattleReward.SPECIFIC_CARD:
+                                {
+                                    sceneCanvas.SetActive(false);
+                                    customPopUpOpener.OpenDisplayingCards(
+                                        title: "You win!",
+                                        warningMessage: ColorHexCodes.BeginWhite + "You beat the card challenge." + ColorHexCodes.End +
+                                           ColorHexCodes.Paint(" YOU GOT A CARD ", deckColor),
+                                        confirmBtnMessage: "Awesome",
+                                        cancelBtnMessage: "Cool",
+                                        onConfirm: GiveCardThenSeeMap,
+                                        onCancel: GiveCardThenSeeMap,
+                                        victoryBGMRequest,
+                                        new Card[] { PlayerAndEnemyDeckHolder.GetPreparedCardsForTheEnemy()[0] }
+                                    );
+                                }
+                                break;
                         }
                     }
                     else
                     {
-                        MapsCache.SpotToClearIfPlayerWins = null;
+                        MapsCache.SpotToClearAndLevelUpIfPlayerWins = null;
                         customPopUpOpener.OpenWithBGM(
                             title: "You've lost the battle",
                             warningMessage: "The enemy start to search you fallen card's pockets",
@@ -116,6 +137,11 @@ public class EndGame : BattleState
     private void GiveCardsOfClassThenSeeMap()
     {
         CardsCollection.AddOneOfEachCardOfClassToCollection(enemyDeckClass);
+        QuitBattleAndGoToMap();
+    }
+    private void GiveCardThenSeeMap()
+    {
+        CardsCollection.SumToCurrentAmount(PlayerAndEnemyDeckHolder.GetPreparedCardsForTheEnemy()[0], 1);
         QuitBattleAndGoToMap();
     }
     private void GoBackInTime()

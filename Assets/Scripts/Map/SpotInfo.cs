@@ -4,14 +4,16 @@ public class SpotInfo
 {
     public string GOName;
     public bool Cleared;
+    public int Level;
     public int PlayLvlBtnIndex;
     public List<int> AntecessorsIndexes;
     public bool Visited = false;
 
-    public SpotInfo(string goName, bool cleared, int playLvlBtnIndex, List<int> antecessorsIndexes)
+    public SpotInfo(string goName, bool cleared, int level, int playLvlBtnIndex, List<int> antecessorsIndexes)
     {
         GOName = goName;
         Cleared = cleared;
+        Level = level;
         PlayLvlBtnIndex = playLvlBtnIndex;
         AntecessorsIndexes = antecessorsIndexes;
     }
@@ -36,6 +38,6 @@ public class SpotInfo
             antecessors += a + " and ";
         }
         antecessors += "that's all.";
-        L.og("[Spot] " + GOName + "; btnIndex: " + PlayLvlBtnIndex + "; cleared: " + Cleared + antecessors, this);
+        L.og("[Spot] " + GOName + "; btnIndex: " + PlayLvlBtnIndex +"; lvl: "+Level+"; cleared: " + Cleared + antecessors, this);
     }
 }

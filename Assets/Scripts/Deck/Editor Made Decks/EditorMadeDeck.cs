@@ -88,8 +88,7 @@ public class EditorMadeDeckBuilder : DeckBuilderSuperclass
             if (buffsDictionary.ContainsKey(cards[i].Classe))
             {
                 EditorMadeDeck.Buff buff = buffsDictionary[cards[i].Classe];
-                cards[i].AttackPower += buff.atkBuff;
-                cards[i].InconditionalHealing(buff.vitBuff);
+                cards[i].ApplyInitialBuffAndUpdateUI(buff.atkBuff, buff.vitBuff, levelBuff: 0);
             }
         }
 

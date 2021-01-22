@@ -17,7 +17,7 @@ public class SpotPrototype : OpenersSuperclass
     private Classes deckClass = Classes.NOT_A_CLASS;
 
     [SerializeField]
-    private bool isMasterBattle = false;
+    private CurrentBattleInfo.BattleReward rewardType = CurrentBattleInfo.BattleReward.NONE;
 
     [SerializeField]
     private AudioClip spotBGM = null;
@@ -57,14 +57,15 @@ public class SpotPrototype : OpenersSuperclass
         if (isTraining || deckClass == Classes.NOT_A_CLASS)
         {
             CurrentBattleInfo.PrepareBattle(battleIcon, 
-                backgroundColor, giveRewardToSameClassOfMasterDeckOnWin: false, bgmParam: spotBGM);
+                backgroundColor, rewardType, bgmParam: spotBGM);
         }
         else
         {
-            CurrentBattleInfo.PrepareBattle(battleIcon, isMasterBattle, deckClass, spotBGM);
+            CurrentBattleInfo.PrepareBattle(battleIcon, rewardType, deckClass, spotBGM);
         }
     }
 
+    // Referenced in Editor
     public void OnTrainingSpotBtnClicked()
     {
         isTraining = true;
@@ -72,6 +73,7 @@ public class SpotPrototype : OpenersSuperclass
         OnBattleSpotBtnClicked();
     }
 
+    // Referenced in Editor
     public void OnIncidentSpotClicked()
     {
         MarkSpotToBeClearedIfBelongsToMap();
@@ -80,6 +82,7 @@ public class SpotPrototype : OpenersSuperclass
 
     public void MarkSpotToBeClearedIfBelongsToMap()
     {
+        // Commented out as there was a bug about it and currently all spots belong to the map
         if (belongsToMap)
         {
             Spot spot = transform.parent.GetComponent<Spot>();

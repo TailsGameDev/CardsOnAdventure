@@ -27,12 +27,13 @@ public class Spot : MonoBehaviour
 
     private bool cleared = false;
 
+    private int level = 0;
+
     private bool visited = false;
 
     float t = 1;
     bool isGrowing = true;
 
-    public bool Cleared { set => cleared = value; }
     public string MapName { get => mapName; }
 
     private void Awake()
@@ -82,6 +83,7 @@ public class Spot : MonoBehaviour
         visited = true;
 
         cleared = spotInfo.Cleared;
+        level = spotInfo.Level;
         MakePlayLvlBtnFrom(possiblePlayLvlBtns[spotInfo.PlayLvlBtnIndex]);
         
         playLvlBtnIndex = spotInfo.PlayLvlBtnIndex;
@@ -197,9 +199,9 @@ public class Spot : MonoBehaviour
         if (cleared && canBeRevisited)
         {
             Button revisitBtn = Instantiate(possiblePlayLvlBtns[playLvlBtnIndex]);
-            revisitBtn.transform.SetParent( transform.parent, true );
+            revisitBtn.transform.SetParent( transform, true );
             revisitBtn.transform.position = transform.position;
-            revisitBtn.GetComponent<SpotPrototype>().BelongsToMap = false;
+            // revisitBtn.GetComponent<SpotPrototype>().BelongsToMap = false;
         }
 
         foreach (Spot antecessor in antecessors)
@@ -246,7 +248,7 @@ public class Spot : MonoBehaviour
             }
         }
 
-        SpotInfo thisSpotInfo = new SpotInfo(gameObject.name, cleared, playLvlBtnIndex, myAntecessorsIndexes);
+        SpotInfo thisSpotInfo = new SpotInfo(gameObject.name, cleared, level, playLvlBtnIndex, myAntecessorsIndexes);
 
         return thisSpotInfo;
     }

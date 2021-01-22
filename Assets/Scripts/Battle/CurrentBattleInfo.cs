@@ -2,28 +2,35 @@
 
 public class CurrentBattleInfo
 {
+    public enum BattleReward
+    {
+        NONE,
+        CARDS_OF_CLASS,
+        SPECIFIC_CARD,
+    }
+
     protected static Color deckColor;
     protected static Classes enemyDeckClass;
     protected static AudioClip bgm;
-    protected static bool GiveRewardToSameClassOfMasterDeckOnWin;
+    protected static BattleReward rewardType;
     protected static Sprite BattleIcon;
 
     public static void PrepareBattle
         (
             Sprite battleIcon,
-            bool giveRewardToSameClassOfMasterDeckOnWin = false,
+            BattleReward rewardType,
             Classes masterClassParam = Classes.NOT_A_CLASS,
             AudioClip bgmParam = null
         )
     {
-        PrepareBattle(battleIcon, Color.gray, giveRewardToSameClassOfMasterDeckOnWin, masterClassParam, bgmParam);
+        PrepareBattle(battleIcon, Color.gray, rewardType, masterClassParam, bgmParam);
     }
 
     public static void PrepareBattle
         (
             Sprite battleIcon,
             Color deckColorParam,
-            bool giveRewardToSameClassOfMasterDeckOnWin = false, 
+            BattleReward rewardTypeParam,
             Classes masterClassParam = Classes.NOT_A_CLASS, 
             AudioClip bgmParam = null
         )
@@ -31,7 +38,8 @@ public class CurrentBattleInfo
         deckColor = masterClassParam == Classes.NOT_A_CLASS ? deckColorParam : ClassInfo.GetColorOfClass(masterClassParam);
         enemyDeckClass = masterClassParam;
         bgm = bgmParam;
-        GiveRewardToSameClassOfMasterDeckOnWin = giveRewardToSameClassOfMasterDeckOnWin;
         BattleIcon = battleIcon;
+
+        rewardType = rewardTypeParam;
     }
 }

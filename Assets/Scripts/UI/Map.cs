@@ -24,7 +24,7 @@ public class Map : OpenersSuperclass
     {
         mapsCache = new MapsCacheGetter().GetCacheInstance();
 
-        mapsCache.ClearLastSpotVisitedIfAny();
+        mapsCache.ClearAndLevelUpLastSpotVisitedIfAny();
 
         if (StartOfMatch)
         {

@@ -468,6 +468,22 @@ public class Card : SkillsMediatorUser
         SetInitialAndLimitVitality();
         UpdateVitalityTextAndItsColor();
     }
+    public void ApplyInitialBuffAndUpdateUI(int atkBuff, int vitBuff, int levelBuff)
+    {
+        // This method is currently used just by Enemy decks
+        attackPower = originalAttackPower;
+        vitality = originalVitality;
+
+        attackPower += (int)(levelBuff * attackBonusPerLevel);
+        vitality += (int)(levelBuff * vitalityBonusPerLevel);
+
+        attackPower += atkBuff;
+        vitality += vitBuff;
+
+        SetTextArray(attackPowerTexts, attackPower.ToString());
+        SetInitialAndLimitVitality();
+        UpdateVitalityTextAndItsColor();
+    }
     public void ModifyAttackPowerForThisMatch(int valueToSum)
     {
         attackPower += valueToSum;
