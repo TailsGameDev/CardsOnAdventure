@@ -3882,14 +3882,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 0
-  title: Simple Battle
+  title: Card Challenge
   tipData:
   - message: 
-    background: {fileID: 21300000, guid: e7dbc00738fc28c45a978e74514eabed, type: 3}
+    background: {fileID: 21300000, guid: ecbb309775ad5114c8fa487bcb178f99, type: 3}
     height: 648
     color: {r: 1, g: 1, b: 1, a: 1}
-  - message: Battle against a total random enemy deck, which size is the same as
-      yours.
+  - message: Fight against a deck made entirely of a single type of card. If you
+      win, you get the card as a reward, and the level of the challenge increases,
+      becoming more difficult to beat again. This battle can be fought many times.
     background: {fileID: 0}
     height: 500
     color: {r: 0, g: 0, b: 0, a: 0}
@@ -22903,14 +22904,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   priority: 0
-  title: Simple Battle
+  title: Card Challenge
   tipData:
   - message: 
-    background: {fileID: 21300000, guid: e7dbc00738fc28c45a978e74514eabed, type: 3}
+    background: {fileID: 21300000, guid: 725d88bad09a40945b29d041f74139f7, type: 3}
     height: 648
     color: {r: 1, g: 1, b: 1, a: 1}
-  - message: Battle against a total random enemy deck, which size is the same as
-      yours.
+  - message: Fight against a deck made entirely of a single type of card. If you
+      win, you get the card as a reward, and the level of the challenge increases,
+      becoming more difficult to beat again. This battle can be fought many times.
     background: {fileID: 0}
     height: 500
     color: {r: 0, g: 0, b: 0, a: 0}

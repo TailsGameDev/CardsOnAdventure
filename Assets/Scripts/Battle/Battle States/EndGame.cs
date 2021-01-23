@@ -90,6 +90,7 @@ public class EndGame : BattleState
                             case BattleReward.SPECIFIC_CARD:
                                 {
                                     sceneCanvas.SetActive(false);
+                                    Card cardToDisplay = PlayerAndEnemyDeckHolder.GetPreparedCardsForTheEnemy()[0];
                                     customPopUpOpener.OpenDisplayingCards(
                                         title: "You win!",
                                         warningMessage: ColorHexCodes.BeginWhite + "You beat the card challenge." + ColorHexCodes.End +
@@ -99,7 +100,7 @@ public class EndGame : BattleState
                                         onConfirm: GiveCardThenSeeMap,
                                         onCancel: GiveCardThenSeeMap,
                                         victoryBGMRequest,
-                                        new Card[] { PlayerAndEnemyDeckHolder.GetPreparedCardsForTheEnemy()[0] }
+                                        new Card[] { cardToDisplay }
                                     );
                                 }
                                 break;

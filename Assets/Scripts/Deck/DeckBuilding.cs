@@ -60,7 +60,7 @@ public class DeckBuilding : MonoBehaviour
 
         Card selected = cardsCollection.GetSelectedCard();
         Card secondClone = selected.GetClone();
-        secondClone.RefreshStats();
+        secondClone.RefreshStatsForThePlayer();
 
         Destroy(selected.gameObject);
         cardsCollection.PutCardInIndexThenTeleportToSlot(secondClone, cardsCollection.GetSelectedIndex());

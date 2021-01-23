@@ -32,10 +32,6 @@ public class CardsLevel : MonoBehaviour
     public int GetLevelOfCard(Card card)
     {
         int index = CardPrototypesAccessor.FindIndexOnPrototypesArray(card);
-        if (index < 0 || index > cardsLevel.Length)
-        {
-            print("trouble"+index+card.name);
-        }
         int cardLevel = cardsLevel[index];
         return cardLevel;
     }
@@ -48,6 +44,11 @@ public class CardsLevel : MonoBehaviour
 
     public static void PrepareForSaving()
     {
+        // instance.cardsLevel might be null, that was happening when I started on the map scene
+        if (instance.cardsLevel == null)
+        {
+            Clear();
+        }
         DeckSerializable cardsLevelSerializable = new DeckSerializable(instance.cardsLevel);
         instance.saveFacade.PrepareCardsLevelForSaving(cardsLevelSerializable);
     }

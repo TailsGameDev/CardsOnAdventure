@@ -59,7 +59,7 @@ public class Store : MonoBehaviour
             // Update card to improve
             Destroy(cardToImprove.gameObject);
             cardToImprove = cardsCollection.GetSelectedCard().GetClone();
-            cardToImprove.RefreshStats();
+            cardToImprove.RefreshStatsForThePlayer();
 
             UpdateUI(cardToImprove);
 

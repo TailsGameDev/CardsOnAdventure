@@ -1826,7 +1826,7 @@ MonoBehaviour:
   ignoreOpponentBlock: 1
   specialEffect: {fileID: 4687705842246528155}
   frontlineTargetDamageMultiplier: 1
-  backlineTargetDamageMultiplier: 0.5
+  backlineTargetDamageMultiplier: 1
   horizontalSpreadDamageMultiplier: 0
   verticalSpreadDamageMultiplier: 0
   damageReductionPercentage: 0

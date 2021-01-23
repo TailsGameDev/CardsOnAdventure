@@ -129,7 +129,7 @@ public class Card : SkillsMediatorUser
 
         verticalSprite = cardImage.sprite;
 
-        onLevelUp += RefreshStats;
+        onLevelUp += RefreshStatsForThePlayer;
     }
     private void Start()
     {
@@ -149,7 +149,7 @@ public class Card : SkillsMediatorUser
     #endregion
     private void OnDestroy()
     {
-        onLevelUp -= RefreshStats;
+        onLevelUp -= RefreshStatsForThePlayer;
     }
 
     public void AttackSelectedCard(Battlefield opponentBattlefield, Battlefield attackerBattlefield)
@@ -554,7 +554,7 @@ public class Card : SkillsMediatorUser
         vfx.SetActive(gameObject.activeSelf);
         vfx.transform.SetParent(transform);
     }
-    public virtual void RefreshStats()
+    public virtual void RefreshStatsForThePlayer()
     {
         attackPower = originalAttackPower;
         vitality = originalVitality;

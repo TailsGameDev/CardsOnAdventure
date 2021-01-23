@@ -145,7 +145,7 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
         amountOfEachCard[selectedIndex]--;
 
         Card coloredClone = cards[selectedIndex].GetClone();
-        coloredClone.RefreshStats();
+        coloredClone.RefreshStatsForThePlayer();
         UpdateCardColorAndAmountText(selectedIndex);
 
         return coloredClone;

@@ -40,7 +40,7 @@ public class CardPrototypesAccessor
     {
         for (int p = 0; p < allCardPrototypes.Length; p++)
         {
-            allCardPrototypes[p].RefreshStats();
+            allCardPrototypes[p].RefreshStatsForThePlayer();
         }
     }
 }
