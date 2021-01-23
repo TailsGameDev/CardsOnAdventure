@@ -24,7 +24,7 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
             // Level Up 2 times
             for (int c = 0; c < cards.Length; c++)
             {
-                cards[c].ApplyLevelBonus(2);
+                cards[c].SumLevelBonus(2);
             }
         }
 
@@ -34,7 +34,7 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
         {
             for (int c = 0; c < cards.Length; c++)
             {
-                cards[c].ApplyLevelBonus(spotLevel);
+                cards[c].SumLevelBonus(spotLevel);
             }
         }
 
@@ -80,7 +80,7 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
 
         playerDeck = ReplaceMonsters(playerDeck);
 
-        return ApplyPlayerBonuses(playerDeck);
+        return RefreshStatsForThePlayer(playerDeck);
     }
     private static void Shuffle<T>(ref T[] array)
     {
@@ -152,11 +152,11 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
         int randomIndex = UnityEngine.Random.Range(0, prototypes.Count);
         return prototypes[randomIndex].GetClone();
     }
-    private static Card[] ApplyPlayerBonuses(Card[] playerDeck)
+    private static Card[] RefreshStatsForThePlayer(Card[] playerDeck)
     {
         for (int i = 0; i < playerDeck.Length; i++)
         {
-            playerDeck[i].ApplyPlayerBonuses();
+            playerDeck[i].RefreshStatsForThePlayer();
         }
 
         return playerDeck;
@@ -166,7 +166,7 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
     {
         Card[] playerDeck = GetPlayerPreparedDeckWithTheRandomCardsAndWithoutBonuses();
 
-        return ApplyPlayerBonuses(playerDeck);
+        return RefreshStatsForThePlayer(playerDeck);
     }
     #endregion
 

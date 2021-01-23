@@ -6,14 +6,64 @@ using UnityEngine.UI;
 public class Card : SkillsMediatorUser
 {
     #region Attributes
+    // Card general attributes
     [SerializeField]
     private string nickname = null;
 
     [SerializeField]
     public ClassInfo classInfo = null;
 
-    public CardDragAndDrop cardDragAndDrop = null;
+    [SerializeField]
+    private OldSkill skills = null;
+    private bool freezing = false;
+    private GameObject freezingEffect = null;
+    private static DeathCounter deathCounter = new DeathCounter(13);
 
+    [SerializeField]
+    private TipReceptor tipReceptor = null;
+
+    public CardDragAndDrop cardDragAndDrop = null;
+    
+    private delegate void OnLevelUp();
+    private static OnLevelUp onLevelUp;
+
+    private RectTransform rectTransform;
+
+    // Visual Related Attributes
+    [SerializeField]
+    private Text[] skillTexts = null;
+    [SerializeField]
+    private GameObject[] ignoreProtectionIcons = null;
+    [SerializeField]
+    private GameObject protectionIcon = null;
+    [SerializeField]
+    private Image obfuscator = null;
+    [SerializeField]
+    private GameObject lvlUpVFX = null;
+    [SerializeField]
+    private Image cardImage = null;
+    [SerializeField]
+    private GameObject DamageTextPrototype = null;
+    [SerializeField]
+    private Sprite horizontalSprite = null;
+    private Sprite verticalSprite = null;
+    [SerializeField]
+    private Shakeable shakeable = null;
+    [SerializeField]
+    private float fadingDurationOnDeath = 0.5f;
+    [SerializeField]
+    private Color normalVitalityColor = Color.green;
+    private Color overhealedColor = Color.yellow;
+    private float increaseScaleValueInProtectionAnimation = 0.2f;
+    private float increaseScaleSpeedMultiplier = 1.0f;
+
+    // Attack and Vitality related Attributes
+    [SerializeField]
+    private Text[] vitalityTexts = null;
+    [SerializeField]
+    private Text[] attackPowerTexts = null;
+    [SerializeField]
+    private CardsLevel cardsLevel = null;
     [SerializeField]
     private int originalAttackPower = 0;
     private int attackPower;
@@ -22,72 +72,10 @@ public class Card : SkillsMediatorUser
     private int vitality;
     private int vitalityLimit;
     private int vitalityAtStartOfBattle;
-
-    [SerializeField]
-    private Text[] vitalityTexts = null;
-
-    [SerializeField]
-    private Text[] attackPowerTexts = null;
-
-    [SerializeField]
-    private Text[] skillTexts = null;
-
-    [SerializeField]
-    private GameObject[] ignoreProtectionIcons = null;
-
-    [SerializeField]
-    private GameObject protectionIcon = null;
-
-    [SerializeField]
-    private OldSkill skills = null;
-
-    [SerializeField]
-    private Image obfuscator = null;
-    [SerializeField]
-    private GameObject lvlUpVFX = null;
-
-    [SerializeField]
-    private Image cardImage = null;
-
-    [SerializeField]
-    private GameObject DamageTextPrototype = null;
-
-    private bool freezing = false;
-
-    private GameObject freezingEffect = null;
-
-    [SerializeField]
-    private Sprite horizontalSprite = null;
-    private Sprite verticalSprite = null;
-
-    [SerializeField]
-    private Shakeable shakeable = null;
-
-    [SerializeField]
-    private float fadingDurationOnDeath = 0.5f;
-
-    [SerializeField]
-    private Color normalVitalityColor = Color.green;
-    private Color overhealedColor = Color.yellow;
-
-    private static DeathCounter deathCounter = new DeathCounter(13);
-
-    [SerializeField]
-    private TipReceptor tipReceptor = null;
-
-    private float increaseScaleValueInProtectionAnimation = 0.2f;
-    private float increaseScaleSpeedMultiplier = 1.0f;
-
-    [SerializeField]
-    private CardsLevel cardsLevel = null;
     [SerializeField]
     private float attackBonusPerLevel = 0;
     [SerializeField]
     private float vitalityBonusPerLevel = 0;
-
-    private delegate void OnLevelUp();
-    private static OnLevelUp onLevelUp;
-
     #endregion
 
     #region Properties
@@ -110,41 +98,39 @@ public class Card : SkillsMediatorUser
             }
         }
     }
+    public RectTransform RectTransform { get => rectTransform; }
     #endregion
 
     #region Initialization
     private void Awake()
     {
-        attackPower = originalAttackPower;
-        vitality = originalVitality;
-
+        // General
         classInfo.TryToRegisterCardInClass(this);
-
-        SetTextArray(attackPowerTexts, attackPower.ToString());
-
+        onLevelUp += RefreshStatsForThePlayer;
         // Triggers update in skill text
         Skill = skills;
+        rectTransform = GetComponent<RectTransform>();
 
+        // Atk Vit
+        attackPower = originalAttackPower;
+        vitality = originalVitality;
         SetInitialAndLimitVitality();
+        SetTextArray(attackPowerTexts, attackPower.ToString());
 
+        // Visual
         verticalSprite = cardImage.sprite;
-
-        onLevelUp += RefreshStatsForThePlayer;
     }
     private void Start()
     {
+        // General
         if (skills == null)
         {
             skills = skillsMediator.GetBasicAttackSkill();
         }
 
+        // Atk and Vit related
         overhealedColor = ClassInfo.GetColorOfClass(Classes.CLERIC);
         SetVitalityAndUpdateTextLooks(Vitality);
-    }
-    public void SetInitialAndLimitVitality()
-    {
-        vitalityAtStartOfBattle = vitality;
-        vitalityLimit = vitality + vitality;
     }
     #endregion
     private void OnDestroy()
@@ -189,6 +175,7 @@ public class Card : SkillsMediatorUser
             }
         }
     }
+    
     private void CreateDamageAnimatedText(int damage)
     {
         RectTransform damageTextTransform = Instantiate(DamageTextPrototype).GetComponent<RectTransform>();
@@ -201,7 +188,7 @@ public class Card : SkillsMediatorUser
 
         damageTextTransform.gameObject.SetActive(true);
     }
-
+    
     private int SetVitalityAndUpdateTextLooks(int value)
     {   
         vitality = value;
@@ -219,6 +206,20 @@ public class Card : SkillsMediatorUser
         else
         {
             SetTextArrayColor(vitalityTexts, overhealedColor);
+        }
+    }
+    private void SetTextArray(Text[] array, string message)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            array[i].text = message;
+        }
+    }
+    private void SetTextArrayColor(Text[] array, Color color)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            array[i].color = color;
         }
     }
 
@@ -288,14 +289,14 @@ public class Card : SkillsMediatorUser
     }
     public void ShowDefenseVFX(float attackerYPosition)
     {
-        UnityEngine.Vector3 forwards = new UnityEngine.Vector3(0, 0, -transform.position.y);
+        UnityEngine.Vector3 forwards = new UnityEngine.Vector3(0, 0, -rectTransform.position.y);
         UnityEngine.Vector3 upwards = new UnityEngine.Vector3(0, 0, -1);
-        UnityEngine.Quaternion lookRotation = UnityEngine.Quaternion.LookRotation(forwards, upwards);
-        GameObject vfx = Instantiate(skills.DefenseVFX, transform.position, UnityEngine.Quaternion.identity);
-        vfx.GetComponent<RectTransform>().SetParent(transform, false);
+        // UnityEngine.Quaternion lookRotation = UnityEngine.Quaternion.LookRotation(forwards, upwards);
+        GameObject vfx = Instantiate(skills.DefenseVFX, rectTransform.position, UnityEngine.Quaternion.identity);
+        vfx.GetComponent<RectTransform>().SetParent(rectTransform, false);
         vfx.GetComponent<RectTransform>().localPosition = UnityEngine.Vector3.zero;
 
-        float y = attackerYPosition - transform.position.y;
+        float y = attackerYPosition - rectTransform.position.y;
 
         if (y > 0)
         {
@@ -384,24 +385,14 @@ public class Card : SkillsMediatorUser
     }
     #endregion
 
-
     #region Get Some Sprite Or Text
     public Sprite GetCardSprite()
     {
         return cardImage.sprite;
     }
-    public string GetSkillFullName()
-    {
-        return skills.FullName;
-    }
     public string GetColoredTitleForTip()
     {
         return ColorHexCodes.Paint(nickname, classInfo.Color);
-    }
-
-    private string ClassColorHexCode()
-    {
-        return ColorHexCodes.GetHexCode(classInfo.Color);
     }
 
     public string GetExplanatoryText()
@@ -416,6 +407,55 @@ public class Card : SkillsMediatorUser
     public string GetSkillsExplanatoryText()
     {
         return ColorHexCodes.Paint(skills.GetExplanatoryText(attackPower).ToUpper(), classInfo.Color);
+    }
+    #endregion
+
+    #region Configure Attack and Vitality at the beggining of the battle
+    public virtual void RefreshStatsForThePlayer()
+    {
+        attackPower = originalAttackPower;
+        vitality = originalVitality;
+
+        int level = GetLevel();
+        SumLevelBonus(level);
+
+        // AttackPowerBonus and VitalityBonus holds currently unnused buff to the cards of the class.
+        attackPower += classInfo.AttackPowerBonus;
+        vitality += classInfo.VitalityBonus;
+
+        RefreshUIAndVitalityState();
+    }
+    private void RefreshUIAndVitalityState()
+    {
+        SetTextArray(attackPowerTexts, attackPower.ToString());
+        SetInitialAndLimitVitality();
+        UpdateVitalityTextAndItsColor();
+    }
+    private void SetInitialAndLimitVitality()
+    {
+        vitalityAtStartOfBattle = vitality;
+        vitalityLimit = vitality + vitality;
+    }
+    public void SumLevelBonus(int level)
+    {
+        attackPower += (int)(level * attackBonusPerLevel);
+        vitality += (int)(level * vitalityBonusPerLevel);
+
+        RefreshUIAndVitalityState();
+    }
+    public void ApplyEditorMadeDeckBuffAndRefreshUI(int atkBuff, int vitBuff, int levelBuff)
+    {
+        // This method is currently used just by Enemy decks
+        attackPower = originalAttackPower;
+        vitality = originalVitality;
+
+        attackPower += (int)(levelBuff * attackBonusPerLevel);
+        vitality += (int)(levelBuff * vitalityBonusPerLevel);
+
+        attackPower += atkBuff;
+        vitality += vitBuff;
+
+        RefreshUIAndVitalityState();
     }
     #endregion
 
@@ -446,44 +486,6 @@ public class Card : SkillsMediatorUser
         return skills.DamageReflectionPercentage;
     }
 
-    public void ApplyPlayerBonuses()
-    {
-        int level = GetLevel();
-        ApplyLevelBonus(level);
-
-        attackPower += classInfo.AttackPowerBonus;
-
-        vitality += classInfo.VitalityBonus;
-        SetInitialAndLimitVitality();
-
-        SetTextArray(attackPowerTexts, attackPower.ToString());
-        UpdateVitalityTextAndItsColor();
-    }
-    public void ApplyLevelBonus(int level)
-    {
-        attackPower += (int)(level * attackBonusPerLevel);
-        vitality += (int)(level * vitalityBonusPerLevel);
-
-        SetTextArray(attackPowerTexts, attackPower.ToString());
-        SetInitialAndLimitVitality();
-        UpdateVitalityTextAndItsColor();
-    }
-    public void ApplyInitialBuffAndUpdateUI(int atkBuff, int vitBuff, int levelBuff)
-    {
-        // This method is currently used just by Enemy decks
-        attackPower = originalAttackPower;
-        vitality = originalVitality;
-
-        attackPower += (int)(levelBuff * attackBonusPerLevel);
-        vitality += (int)(levelBuff * vitalityBonusPerLevel);
-
-        attackPower += atkBuff;
-        vitality += vitBuff;
-
-        SetTextArray(attackPowerTexts, attackPower.ToString());
-        SetInitialAndLimitVitality();
-        UpdateVitalityTextAndItsColor();
-    }
     public void ModifyAttackPowerForThisMatch(int valueToSum)
     {
         attackPower += valueToSum;
@@ -503,7 +505,6 @@ public class Card : SkillsMediatorUser
     {
         return GetComponent<RectTransform>();
     }
-
     public CardDragAndDrop GetCardDragAndDrop()
     {
         return GetComponent<CardDragAndDrop>();
@@ -523,22 +524,6 @@ public class Card : SkillsMediatorUser
         tipReceptor.OpenTip(tipPopUpOpener);
     }
 
-    private void SetTextArray(Text[] array, string message)
-    {
-        for (int i = 0; i < array.Length; i++)
-        {
-            array[i].text = message;
-        }
-    }
-
-    private void SetTextArrayColor(Text[] array, Color color)
-    {
-        for (int i = 0; i < array.Length; i++)
-        {
-            array[i].color = color;
-        }
-    }
-
     public int GetLevel()
     {
         int level = cardsLevel.GetLevelOfCard(this);
@@ -553,12 +538,5 @@ public class Card : SkillsMediatorUser
         vfx.transform.position = transform.position;
         vfx.SetActive(gameObject.activeSelf);
         vfx.transform.SetParent(transform);
-    }
-    public virtual void RefreshStatsForThePlayer()
-    {
-        attackPower = originalAttackPower;
-        vitality = originalVitality;
-
-        ApplyPlayerBonuses();
     }
 }

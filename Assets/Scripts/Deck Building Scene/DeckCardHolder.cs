@@ -2,10 +2,13 @@
 
 public class DeckCardHolder : DynamicSizeScrollableCardHolder
 {
+    private bool initialized = false;
+
     #region Initialization
     private void Start()
     {
         StartCoroutine(DelayedStart());
+        initialized = true;
     }
     private IEnumerator DelayedStart()
     {
@@ -30,6 +33,9 @@ public class DeckCardHolder : DynamicSizeScrollableCardHolder
 
     public void PrepareDeckForPlayerAndGetReadyForSaving()
     {
-        PlayerAndEnemyDeckHolder.PrepareManuallyBuiltDeckForThePlayerAndGetReadyForSaving(cards);
+        if (initialized)
+        {
+            PlayerAndEnemyDeckHolder.PrepareManuallyBuiltDeckForThePlayerAndGetReadyForSaving(cards);
+        }
     }
 }

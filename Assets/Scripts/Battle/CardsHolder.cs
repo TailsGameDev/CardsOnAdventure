@@ -244,7 +244,7 @@ public class CardsHolder : IndexHolder
     {
         if (index != -1 && cards[index] != null)
         {
-            cards[index].transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
+            cards[index].RectTransform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
         }
     }
     public void MakeSelectedCardNormalSize()
@@ -255,7 +255,7 @@ public class CardsHolder : IndexHolder
     {
         if (index != -1 && cards[index] != null)
         {
-            cards[index].transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            cards[index].RectTransform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
         }
     }
     #endregion

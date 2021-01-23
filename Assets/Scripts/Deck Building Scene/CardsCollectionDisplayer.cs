@@ -23,7 +23,7 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
         InitializeSlotsAndRectSize(amountOfSlots: cards.Length);
         PopulateAmountOfEachCard();
         PopulateCardAmountTexts();
-        ApplyPlayerBonuses();
+        RefreshCardsStats();
         PopulateSlotsWithCards();
     }
     private void PopulateAmountOfEachCard()
@@ -59,11 +59,11 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
             UpdateCardColorAndAmountText(i);
         }
     }
-    private void ApplyPlayerBonuses()
+    private void RefreshCardsStats()
     {
         for (int i = 0; i < cards.Length; i++)
         {
-            cards[i].ApplyPlayerBonuses();
+            cards[i].RefreshStatsForThePlayer();
         }
     }
     private void PopulateSlotsWithCards()

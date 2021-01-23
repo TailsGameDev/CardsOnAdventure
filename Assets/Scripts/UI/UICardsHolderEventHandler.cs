@@ -112,8 +112,8 @@ public class UICardsHolderEventHandler : MonoBehaviour
             {
                 ChildMaker.AdoptAndScaleAndSmoothlyMoveToParent
                 (
-                    cardBeingDragged.transform.parent,
-                    cardBeingDragged.GetRectTransform(),
+                    cardBeingDragged.RectTransform.parent,
+                    cardBeingDragged.RectTransform,
                     delayToComeBackFromOtherSpot
                 );
             }

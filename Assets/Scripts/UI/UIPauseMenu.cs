@@ -16,6 +16,9 @@ public class UIPauseMenu : OpenersSuperclass
     {
         cardBackground.ChangeSprite();
         fleeFromBattleBtn.SetActive(SceneManager.GetActiveScene().name == "Battle");
+        #if !UNITY_EDITOR
+            fleeFromBattleBtn.SetActive(false);
+        #endif
     }
 
     public void OnBattleRulesBtnClicked()
