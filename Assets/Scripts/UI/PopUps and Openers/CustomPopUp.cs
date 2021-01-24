@@ -91,7 +91,7 @@ public class CustomPopUp : OpenersSuperclass
         Open(title, warningMessage, confirmBtnMessage, cancelBtnMessage, onConfirm, onCancel);
     }
 
-    public void OpenDisplayingCardsOfClass
+    public void OpenDisplayingUnblockedCardsOfClass
     (
         string title,
         string warningMessage,
@@ -104,7 +104,7 @@ public class CustomPopUp : OpenersSuperclass
     )
     {
         openingBGM.RequestPlaying();
-        cardsDisplay.ShowCardsOfClass(classeOfCardsToShow);
+        cardsDisplay.ShowUnlockedCardsOfClass(classeOfCardsToShow);
         OpenAndMakeUncloseable(title, warningMessage, confirmBtnMessage, 
             cancelBtnMessage,
             onConfirm: ()=> { cardsDisplay.ClearAttributes(); onConfirm(); },

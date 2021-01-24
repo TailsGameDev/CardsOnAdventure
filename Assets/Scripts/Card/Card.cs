@@ -20,6 +20,9 @@ public class Card : SkillsMediatorUser
     private static DeathCounter deathCounter = new DeathCounter(13);
 
     [SerializeField]
+    private int initialAmountOnCollection = 0;
+
+    [SerializeField]
     private TipReceptor tipReceptor = null;
 
     public CardDragAndDrop cardDragAndDrop = null;
@@ -99,6 +102,7 @@ public class Card : SkillsMediatorUser
         }
     }
     public RectTransform RectTransform { get => rectTransform; }
+    public int InitialAmountOnCollection { get => initialAmountOnCollection; }
     #endregion
 
     #region Initialization
@@ -492,6 +496,10 @@ public class Card : SkillsMediatorUser
         SetTextArray(attackPowerTexts, attackPower.ToString());
     }
 
+    public bool IsLocked()
+    {
+        return CardsCollection.IsCardLocked(this);
+    }
     public bool IsAnotherInstanceOf(Card card)
     {
         return card.Skill == skills;

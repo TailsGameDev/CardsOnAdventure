@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class CardsCollection : CardPrototypesAccessor
 {
-    public static void AddOneOfEachCardOfClassToCollection(Classes classe)
+    public static void AddOneOfEachUnblockedCardOfClassToCollection(Classes classe)
     {
         for (int c = 0; c < allCardPrototypes.Length; c++)
         {
             Card card = allCardPrototypes[c];
-            if (card.Classe == classe)
+            if (card.Classe == classe && !IsCardLocked(c))
             {
                 SumToCurrentAmount(card, 1);
             }
@@ -20,8 +20,16 @@ public class CardsCollection : CardPrototypesAccessor
         int c = GetIndexInAllCardPrototypesArray(card);
 
         int[] cardsCollectionAmounts = GetCardsCollectionAmounts();
-        // c+1 because the random card index is 0.
-        cardsCollectionAmounts[c] += amountToAdd;
+
+        if (IsCardLocked(c))
+        {
+            // That operation also unlocks the card.
+            cardsCollectionAmounts[c] = 1;
+        }
+        else
+        {
+            cardsCollectionAmounts[c] += amountToAdd;
+        }
         saveFacade.PrepareCardsCollectionForSaving(new DeckSerializable(cardsCollectionAmounts));
     }
     private static int GetIndexInAllCardPrototypesArray(Card card)
@@ -49,12 +57,46 @@ public class CardsCollection : CardPrototypesAccessor
             cardAmounts = new int[allCardPrototypes.Length];
             for (int i = 0; i < cardAmounts.Length; i++)
             {
-                // For now, let's consider the collection starts with one card of each type.
-                // Maybe this change later when unlock new types of card, maybe not!
-                cardAmounts[i] = 1;
+                cardAmounts[i] = allCardPrototypes[i].InitialAmountOnCollection;
             }
         }
         return cardAmounts;
+    }
+
+    public static bool IsCardLocked(Card card)
+    {
+        int index = FindIndexOnPrototypesArray(card);
+        return IsCardLocked(index);
+    }
+    public static bool IsCardLocked(int cardIndexOnAllPrototypesArray)
+    {
+        int[] cardAmounts = GetCardsCollectionAmounts();
+        bool isBlocked = cardAmounts[cardIndexOnAllPrototypesArray] < 0;
+        return isBlocked;
+    }
+
+    public static Card[] GetUnlockedCardsFrom(Card[] arrayToFilter)
+    {
+        int amountOfUnlockedCards = 0;
+        
+        for (int c = 0; c < arrayToFilter.Length; c++)
+        {
+            if ( ! arrayToFilter[c].IsLocked())
+            {
+                amountOfUnlockedCards++;
+            }
+        }
+        Card[] onlyUnlockedCards = new Card[amountOfUnlockedCards];
+        int unlockedIndex = 0;
+        for (int c = 0; c < arrayToFilter.Length; c++)
+        {
+            if (!arrayToFilter[c].IsLocked())
+            {
+                onlyUnlockedCards[unlockedIndex] = arrayToFilter[c];
+                unlockedIndex++;
+            }
+        }
+        return onlyUnlockedCards;
     }
 
     public static Card[] GetClonesOfCardsOnPlayerCollection()

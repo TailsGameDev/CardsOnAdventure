@@ -25,6 +25,7 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
         PopulateCardAmountTexts();
         RefreshCardsStats();
         PopulateSlotsWithCards();
+        DeactivateBlockedCardsAndResize();
     }
     private void PopulateAmountOfEachCard()
     {
@@ -79,7 +80,22 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
             // The actual card
             ChildMaker.AdoptTeleportAndScale(slots[i], cards[i].GetRectTransform());
             ChildMaker.CopySizeDelta(slots[i], cards[i].GetRectTransform());
+
         }
+    }
+    private void DeactivateBlockedCardsAndResize()
+    {
+        int deactivatedSlotsAmount = 0;
+        int totalAmountOfCards = amountOfEachCard.Length;
+        for (int c = 0; c < totalAmountOfCards; c++)
+        {
+            if (CardsCollection.IsCardLocked(c))
+            {
+                slots[c].gameObject.SetActive(false);
+                deactivatedSlotsAmount++;
+            }
+        }
+        SetHorizontalSizeOfRect(amountOfSlots: totalAmountOfCards - deactivatedSlotsAmount);
     }
     #endregion
 

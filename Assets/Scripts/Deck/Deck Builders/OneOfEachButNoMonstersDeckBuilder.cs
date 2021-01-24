@@ -9,7 +9,7 @@
         const int SENTINEL_NUMBER = 0;
         OneOfEachButNoMonstersDeckBuilder me = 
             new OneOfEachButNoMonstersDeckBuilder(SENTINEL_NUMBER);
-        me.size = notMonsterPrototypes.Count;
+        me.size = notMonsterPrototypes.Length;
         return me;
     }
 

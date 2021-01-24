@@ -21,7 +21,7 @@ public class EarnCard : IncidentAction
                 Destroy(cards[1].gameObject);
             }
 
-            cards = PlayerAndEnemyDeckHolder.Get2DifferentRandomCards(deckSize: 2);
+            cards = PlayerAndEnemyDeckHolder.Get2DifferentRandomUnlockedNotMonsterCards(deckSize: 2);
 
         } while (cards[0].IsAnotherInstanceOf(cards[1]));
 

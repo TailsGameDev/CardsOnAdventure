@@ -7,10 +7,10 @@ public class CustomPopUpCardsHolder : DynamicSizeScrollableCardHolder
     [SerializeField]
     private GameObject node = null;
 
-    public void ShowCardsOfClass(Classes classe)
+    public void ShowUnlockedCardsOfClass(Classes classe)
     {
         node.SetActive(true);
-        cards = OneOfEachClassDeckBuilder.Create(classe).GetDeck();
+        cards = OneOfEachUnlockedCardInClassDeckBuilder.Create(classe).GetDeck();
         base.InitializeSlotsAndRectSize(cards.Length);
 
         MoveAndBuffCards(cards);

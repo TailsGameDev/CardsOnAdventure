@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
@@ -121,36 +122,34 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
             if (playerDeck[i].IsAnotherInstanceOf(CardPrototypesAccessor.theRandomCardPrototype))
             {
                 Object.Destroy(playerDeck[i].gameObject);
-                playerDeck[i] = GetCloneOfCardFromPrototypesRandomlyButNotTheTrainingDummy();
+                playerDeck[i] = GetCloneOfCardFromAvailablePrototypesRandomly();
             }
         }
 
         return playerDeck;
     }
-    private static Card GetCloneOfCardFromPrototypesRandomlyButNotTheTrainingDummy()
+    private static Card GetCloneOfCardFromAvailablePrototypesRandomly()
     {
-        Card[] prototypes = CardPrototypesAccessor.allCardPrototypes;
-        int randomIndex = Random.Range(0, prototypes.Length);
-        return prototypes[randomIndex].GetClone();
+        Card[] allPrototypes = CardPrototypesAccessor.allCardPrototypes;
+        Card[] unlockedCards = CardsCollection.GetUnlockedCardsFrom(allPrototypes);
+        int randomIndex = Random.Range(0, unlockedCards.Length);
+        return unlockedCards[randomIndex].GetClone();
     }
     private static Card[] ReplaceMonsters(Card[] playerDeck)
     {
+        Card[] notMonstersUnlocked = CardsCollection.GetUnlockedCardsFrom(CardPrototypesAccessor.notMonsterPrototypes);
         for (int i = 0; i < playerDeck.Length; i++)
         {
             if (playerDeck[i].Classe == Classes.MONSTER)
             {
                 Object.Destroy(playerDeck[i].gameObject);
-                playerDeck[i] = GetCloneFromNotMonsterPrototypesRandomly();
+
+                int randomIndex = UnityEngine.Random.Range(0, notMonstersUnlocked.Length);
+                playerDeck[i] = notMonstersUnlocked[randomIndex].GetClone();
             }
         }
 
         return playerDeck;
-    }
-    private static Card GetCloneFromNotMonsterPrototypesRandomly()
-    {
-        List<Card> prototypes = CardPrototypesAccessor.notMonsterPrototypes;
-        int randomIndex = UnityEngine.Random.Range(0, prototypes.Count);
-        return prototypes[randomIndex].GetClone();
     }
     private static Card[] RefreshStatsForThePlayer(Card[] playerDeck)
     {
@@ -171,15 +170,16 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
     #endregion
 
     // TODO: Make DeckBuilder for this
-    public static Card[] Get2DifferentRandomCards(int deckSize)
+    public static Card[] Get2DifferentRandomUnlockedNotMonsterCards(int deckSize)
     {
+        Card[] notMonstersUnlocked = CardsCollection.GetUnlockedCardsFrom(CardPrototypesAccessor.notMonsterPrototypes);
         Card[] cards = new Card[2];
 
-        cards[0] = GetCloneFromNotMonsterPrototypesRandomly();
+        cards[0] = notMonstersUnlocked[ Random.Range(0, notMonstersUnlocked.Length) ].GetClone();
 
         do
         {
-            cards[1] = GetCloneFromNotMonsterPrototypesRandomly();
+            cards[1] = notMonstersUnlocked[Random.Range(0, notMonstersUnlocked.Length)].GetClone();
         } while ( cards[0].IsAnotherInstanceOf(cards[1]) );
 
         return cards;

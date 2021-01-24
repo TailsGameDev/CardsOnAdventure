@@ -17,12 +17,12 @@ public class DynamicSizeScrollableCardHolder : CardsHolder
     protected void InitializeSlotsAndRectSize(int amountOfSlots)
     {
         this.amountOfSlots = amountOfSlots;
-        SetHorizontalSizeOfRect();
+        SetHorizontalSizeOfRect(amountOfSlots);
         InstantiateSlots();
         PopulateCardPositionsArray();
     }
 
-    private void SetHorizontalSizeOfRect()
+    protected void SetHorizontalSizeOfRect(int amountOfSlots)
     {
         float sizeXOfASlot = slotPrototype.sizeDelta.x;
         float spaceBetweenSlots = GetComponent<HorizontalLayoutGroup>().spacing;

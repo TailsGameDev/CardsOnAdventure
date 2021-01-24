@@ -75,14 +75,15 @@ public class CardPrototypesInitializer : MonoBehaviour
         }
         private void PopulateArrayOfNotMonsterPrototypes()
         {
-            notMonsterPrototypes = new List<Card>();
+            List<Card>notMonsterPrototypesList = new List<Card>();
             for (int i = 0; i < allCardPrototypes.Length; i++)
             {
                 if (allCardPrototypes[i].Classe != Classes.MONSTER)
                 {
-                    notMonsterPrototypes.Add(allCardPrototypes[i]);
+                    notMonsterPrototypesList.Add(allCardPrototypes[i]);
                 }
             }
+            notMonsterPrototypes = notMonsterPrototypesList.ToArray();
         }
     }
 }

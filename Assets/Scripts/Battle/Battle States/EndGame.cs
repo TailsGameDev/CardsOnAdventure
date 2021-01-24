@@ -74,14 +74,14 @@ public class EndGame : BattleState
                             case BattleReward.CARDS_OF_CLASS:
                                 {
                                     sceneCanvas.SetActive(false);
-                                    customPopUpOpener.OpenDisplayingCardsOfClass(
+                                    customPopUpOpener.OpenDisplayingUnblockedCardsOfClass(
                                         title: "You beat a Master",
                                         warningMessage: ColorHexCodes.BeginWhite+"What about making some recruiting?"+ColorHexCodes.End +
                                            ColorHexCodes.Paint(" YOU JUST GOT ONE OF EACH " + enemyDeckClass + " CARDS TO YOUR COLLECTION. ", deckColor),
                                         confirmBtnMessage: "Awesome",
                                         cancelBtnMessage: "Cool",
-                                        onConfirm: GiveCardsOfClassThenSeeMap,
-                                        onCancel: GiveCardsOfClassThenSeeMap,
+                                        onConfirm: GiveUnblockedCardsOfClassThenSeeMap,
+                                        onCancel: GiveUnblockedCardsOfClassThenSeeMap,
                                         victoryBGMRequest,
                                         enemyDeckClass
                                     );
@@ -135,9 +135,9 @@ public class EndGame : BattleState
         stopAllSFXRequest.RequestPlaying();
         sceneOpener.OpenMapScene();
     }
-    private void GiveCardsOfClassThenSeeMap()
+    private void GiveUnblockedCardsOfClassThenSeeMap()
     {
-        CardsCollection.AddOneOfEachCardOfClassToCollection(enemyDeckClass);
+        CardsCollection.AddOneOfEachUnblockedCardOfClassToCollection(enemyDeckClass);
         QuitBattleAndGoToMap();
     }
     private void GiveCardThenSeeMap()
@@ -174,7 +174,8 @@ public class EndGame : BattleState
         // This is private class NotUsed
         private void OpenPopUpToImproveClassStats()
         {
-            endGame.customPopUpOpener.OpenDisplayingCardsOfClass(
+            // Technically it improves also unblocked cards, but let's not show them yet
+            endGame.customPopUpOpener.OpenDisplayingUnblockedCardsOfClass(
                 title: "You beat a Master",
                 warningMessage: ColorHexCodes.BeginWhite+"And then you 'borrowed' some of their equipment"+ColorHexCodes.End +
                    ColorHexCodes.Paint(" ALL YOUR " + enemyDeckClass + " CARDS WILL BE BUFFED. PLEASE CHOOSE:", deckColor),

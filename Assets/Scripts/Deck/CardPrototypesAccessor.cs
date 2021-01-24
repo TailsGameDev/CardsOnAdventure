@@ -7,7 +7,7 @@ public class CardPrototypesAccessor
     protected static Card[] allCardPrototypes;
 
     // Note notMonsterPrototypes are a subset of allCardPrototypes
-    protected static List<Card> notMonsterPrototypes;
+    protected static Card[] notMonsterPrototypes;
 
     // Note the random card is not on the allCardPrototypes array
     protected static Card theRandomCardPrototype;

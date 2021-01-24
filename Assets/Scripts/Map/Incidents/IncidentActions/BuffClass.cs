@@ -10,7 +10,8 @@ public class BuffClass : IncidentAction
 
     public override void Execute()
     {
-        customPopUpOpener.OpenDisplayingCardsOfClass(
+        // Technically it improves also unblocked cards, but let's not show them yet
+        customPopUpOpener.OpenDisplayingUnblockedCardsOfClass(
                                 title: "You Bought Equips",
                                    ColorHexCodes.Paint(" ALL YOUR " + classe + " CARDS WILL BE BUFFED. PLEASE CHOOSE:", ClassInfo.GetColorOfClass(classe)),
                                 confirmBtnMessage: "+1 Vitality",
