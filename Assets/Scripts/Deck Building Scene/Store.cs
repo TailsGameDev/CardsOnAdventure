@@ -31,6 +31,7 @@ public class Store : MonoBehaviour
         yield return null;
 
         cardToImprove = cardsCollection.GetReferenceToCardAt(0).GetClone();
+        cardToImprove.RefreshStatsForThePlayer();
         UpdateUI(cardToImprove);
     }
     private void UpdateUI(Card cardToImprove)

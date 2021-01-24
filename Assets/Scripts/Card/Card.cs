@@ -17,7 +17,6 @@ public class Card : SkillsMediatorUser
     private OldSkill skills = null;
     private bool freezing = false;
     private GameObject freezingEffect = null;
-    private static DeathCounter deathCounter = new DeathCounter(13);
 
     [SerializeField]
     private int initialAmountOnCollection = 0;
@@ -171,11 +170,11 @@ public class Card : SkillsMediatorUser
                 RemoveFreezing();
                 battlefieldToRemoveCardInCaseOfDeath.Remove(this);
                 StartCoroutine(DieWithAnimation());
-                deathCounter.RegisterDeath();
+                DeathCounter.RegisterDeath();
             }
             else
             {
-                deathCounter.RegisterSurvived();
+                DeathCounter.RegisterSurvived();
             }
         }
     }
@@ -516,15 +515,6 @@ public class Card : SkillsMediatorUser
     public CardDragAndDrop GetCardDragAndDrop()
     {
         return GetComponent<CardDragAndDrop>();
-    }
-
-    public static void ResetDeathCount()
-    {
-        deathCounter.ResetDeathCount();
-    }
-    public static int GetDeathCount()
-    {
-        return deathCounter.GetDeathCount();
     }
 
     public void OpenTip(TipPopUpOpener tipPopUpOpener)

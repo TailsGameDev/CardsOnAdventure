@@ -31,7 +31,7 @@
     void Proceed()
     {
         answeredThePopUp = true;
-        Card.ResetDeathCount();
+        DeathCounter.ResetDeathCountAndMakeItMoreTolerant();
         customPopUp.ClosePopUpOnTop();
     }
 

@@ -7,45 +7,45 @@
 /// skills and damage ware implemented
 public class DeathCounter
 {
-    private int[] deathCount = new int[] { 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
-    private int deathCountIndex = 0;
+    private static int[] deathCount;
+    private static int deathCountIndex = 0;
 
-    public DeathCounter(int size)
+    public static void ResetDeathCount()
     {
-        deathCount = new int[size];
-
-        // Make the system think that every last 'size' attacks killed one card each.
-        for (int i = 0; i < size; i++)
+        deathCount = new int[14];
+        Clear();
+    }
+    public static void ResetDeathCountAndMakeItMoreTolerant()
+    {
+        deathCount = new int[deathCount.Length + 1];
+        Clear();
+    }
+    private static void Clear()
+    {
+        for (int d = 0; d < deathCount.Length; d++)
         {
-            deathCount[i] = 1;
+            deathCount[d] = 1;
         }
     }
 
-    public void RegisterDeath()
+    public static void RegisterDeath()
     {
         deathCountIndex = (deathCountIndex + 1) % deathCount.Length;
         deathCount[deathCountIndex] = 1;
     }
-    public void RegisterSurvived()
+    public static void RegisterSurvived()
     {
         deathCountIndex = (deathCountIndex + 1) % deathCount.Length;
         deathCount[deathCountIndex] = 0;
     }
 
-    public int GetDeathCount()
+    public static bool AreCardsDyingToFew()
     {
         int counter = 0;
         for (int i = 0; i < deathCount.Length; i++)
         {
             counter += deathCount[i];
         }
-        return counter;
-    }
-    public void ResetDeathCount()
-    {
-        for (int i = 0; i < deathCount.Length; i++)
-        {
-            deathCount[i] = 1;
-        }
+        return counter <= 0;
     }
 }

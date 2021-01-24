@@ -21,8 +21,8 @@ public class StealEffect : SpecialEffect
 
         if (skillsMediator.IsTheSkillNamedStrong(attacker.Skill))
         {
-            attacker.ModifyAttackPowerForThisMatch(valueToSum: 2);
-            target.ModifyAttackPowerForThisMatch(valueToSum: -2);
+            attacker.ModifyAttackPowerForThisMatch(valueToSum: +2+target.GetLevel() * 2);
+            target.ModifyAttackPowerForThisMatch(valueToSum: -2-target.GetLevel() * 2);
         }
     }
 }

@@ -33,7 +33,7 @@ public class GameStart : BattleState
     public override void ExecuteAction()
     {
         Camera.main.backgroundColor = deckColor;
-        Card.ResetDeathCount();
+        DeathCounter.ResetDeathCount();
     }
 
     public override BattleState GetNextState()

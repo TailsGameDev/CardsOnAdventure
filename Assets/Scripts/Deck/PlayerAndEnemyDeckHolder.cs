@@ -25,7 +25,7 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
             // Level Up 2 times
             for (int c = 0; c < cards.Length; c++)
             {
-                cards[c].SumLevelBonus(2);
+                cards[c].SumLevelBonus(1);
             }
         }
 

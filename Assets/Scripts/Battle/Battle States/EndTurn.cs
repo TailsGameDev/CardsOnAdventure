@@ -33,7 +33,7 @@ public class EndTurn : TurnBattleState
         {
             nextState = currentBattleStatesFactory.CreateEndGameState(winnerFactory: currentBattleStatesFactory);
         }
-        else if (Card.GetDeathCount() <= 0)
+        else if (DeathCounter.AreCardsDyingToFew())
         {
             nextState = currentBattleStatesFactory.CreateIsGameTiedState();
         }
