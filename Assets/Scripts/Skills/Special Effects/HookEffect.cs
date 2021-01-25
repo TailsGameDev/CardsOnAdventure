@@ -14,6 +14,9 @@ public class HookEffect : SpecialEffect
 
             if (obf.ContainsCardInIndex(frontlineCardIndex))
             {
+                Card target = obf.GetReferenceToCardAt(targetIndex);
+                ChildMaker.AdoptAndTeleport(target.transform, Instantiate(specialVFX).GetComponent<RectTransform>());
+
                 obf.SwapCards(targetIndex, obf.GetVerticalNeighborIndex(targetIndex));
                 targetIndex = obf.GetIndexInFrontOf(targetIndex);
             }

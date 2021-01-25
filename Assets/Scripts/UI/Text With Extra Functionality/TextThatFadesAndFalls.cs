@@ -19,17 +19,11 @@ public class TextThatFadesAndFalls : MonoBehaviour
     [SerializeField]
     private Text text = null;
 
-    
     [SerializeField]
     private float bonusToInitialAlpha = 0.5f;
     
     [SerializeField]
     private float timeToFade = 0.8f;
-
-    /*
-    [SerializeField]
-    private Image[] imagesToMaybeActivate = null;
-    */
 
     private float initialA;
     private float vA;
@@ -80,16 +74,4 @@ public class TextThatFadesAndFalls : MonoBehaviour
 
         text.color = new Color(r, g, b, a);
     }
-
-    /*
-    public void ActivateAssignedImagesAndChangeColorToYellow()
-    {
-        foreach (Image image in imagesToMaybeActivate)
-        {
-            image.enabled = true;
-        }
-        text.color = Color.yellow;
-        SaveColorInRGBAttributes();
-    }
-    */
 }

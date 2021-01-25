@@ -187,7 +187,7 @@ public class Card : SkillsMediatorUser
         damageTextTransform.position = cardImage.transform.position;
         damageTextTransform.Rotate(new UnityEngine.Vector3(0, 0, 90));
 
-        damageTextTransform.GetComponent<Text>().text = damage.ToString();
+        damageTextTransform.GetComponentInChildren<Text>().text = damage.ToString();
 
         damageTextTransform.gameObject.SetActive(true);
     }

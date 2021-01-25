@@ -934,7 +934,7 @@ MonoBehaviour:
   cardImage: {fileID: 6429462894831637806}
   DamageTextPrototype: {fileID: 3530895837192552274, guid: 76246bb0450b1bf43806d8274cd7d569,
     type: 3}
-  horizontalSprite: {fileID: 21300000, guid: 136f47fa40d2eb24c8375ca10acbe281, type: 3}
+  horizontalSprite: {fileID: 21300000, guid: 670e58cb7c2e0c34b88755600f8c433b, type: 3}
   shakeable: {fileID: 8464934080207004335}
   fadingDurationOnDeath: 1
   normalVitalityColor: {r: 0.61960787, g: 0.98039216, b: 0.6156863, a: 1}
@@ -946,9 +946,9 @@ MonoBehaviour:
   - {fileID: 4780646185733933819}
   cardsLevel: {fileID: 9128588811135856450}
   originalAttackPower: 0
-  originalVitality: 5
+  originalVitality: 10
   attackBonusPerLevel: 0
-  vitalityBonusPerLevel: 3
+  vitalityBonusPerLevel: 0
 --- !u!1 &4687705842220992021
 GameObject:
   m_ObjectHideFlags: 0
@@ -1302,7 +1302,7 @@ MonoBehaviour:
     type: 3}
   spawnAboveItselfWhenAttackVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: 10e908c21da8a614b8ac143dda9e027c, type: 3}
-  defenseSFX: {fileID: 8300000, guid: ad1fa6c79b6b73a4c8515237ba876589, type: 3}
+  defenseSFX: {fileID: 8300000, guid: b2c7b9197bf04fd4abfe4376bae244dd, type: 3}
   block: 1
   ignoreOpponentBlock: 0
   specialEffect: {fileID: 0}
@@ -1672,10 +1672,10 @@ MonoBehaviour:
   fullName: Hook
   description: If you attack a PROTECTED card, swap the PROTECTED card with the one
     in front of it.
-  attackVFX: {fileID: 3264905262389925203, guid: 1523e8736678d8e43a480879f188f3e8,
-    type: 3}
+  attackVFX: {fileID: 0}
   defenseVFX: {fileID: 0}
-  specialVFX: {fileID: 0}
+  specialVFX: {fileID: 3264905262389925203, guid: 1523e8736678d8e43a480879f188f3e8,
+    type: 3}
   spawnAboveItselfWhenAttackVFX: {fileID: 0}
   attackSFX: {fileID: 8300000, guid: 9a80adc1abe209f4ca99b34f4bcb2afa, type: 3}
   defenseSFX: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
@@ -1989,10 +1989,10 @@ MonoBehaviour:
   attackSFX: {fileID: 8300000, guid: 25cda2a44b9033c40be808064835a253, type: 3}
   defenseSFX: {fileID: 8300000, guid: ce45b51ab1ee76244b4d3b3a5cfed8d0, type: 3}
   block: 0
-  ignoreOpponentBlock: 1
+  ignoreOpponentBlock: 0
   specialEffect: {fileID: 4687705842246528155}
   frontlineTargetDamageMultiplier: 1
-  backlineTargetDamageMultiplier: 1
+  backlineTargetDamageMultiplier: 0.5
   horizontalSpreadDamageMultiplier: 0
   verticalSpreadDamageMultiplier: 0
   damageReductionPercentage: 0
@@ -3926,22 +3926,22 @@ PrefabInstance:
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalAttackPower
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalVitality
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: attackBonusPerLevel
-      value: 1.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: vitalityBonusPerLevel
-      value: 2.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -4185,12 +4185,12 @@ PrefabInstance:
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalAttackPower
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalVitality
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -4200,7 +4200,12 @@ PrefabInstance:
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: vitalityBonusPerLevel
-      value: 3
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: attackBonusPerLevel
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -4656,22 +4661,22 @@ PrefabInstance:
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalAttackPower
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalVitality
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: attackBonusPerLevel
-      value: 1.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: vitalityBonusPerLevel
-      value: 2.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -5148,22 +5153,22 @@ PrefabInstance:
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalAttackPower
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalVitality
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: attackBonusPerLevel
-      value: 2.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: vitalityBonusPerLevel
-      value: 1.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -5423,7 +5428,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 455ea32e27caab24eb662831a9ef5cdf,
+      objectReference: {fileID: 21300000, guid: 331563e4e80a60d409d19a9b09d08d5c,
         type: 3}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -5449,7 +5454,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 455ea32e27caab24eb662831a9ef5cdf,
+      objectReference: {fileID: 21300000, guid: 331563e4e80a60d409d19a9b09d08d5c,
         type: 3}
     - target: {fileID: 8189255950368695548, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -5797,22 +5802,22 @@ PrefabInstance:
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalAttackPower
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalVitality
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: attackBonusPerLevel
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: vitalityBonusPerLevel
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -6061,22 +6066,22 @@ PrefabInstance:
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalAttackPower
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalVitality
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: attackBonusPerLevel
-      value: 1.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: vitalityBonusPerLevel
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -6331,22 +6336,22 @@ PrefabInstance:
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalAttackPower
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalVitality
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: attackBonusPerLevel
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: vitalityBonusPerLevel
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -6590,22 +6595,22 @@ PrefabInstance:
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalAttackPower
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
-        type: 3}
-      propertyPath: originalVitality
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
-        type: 3}
-      propertyPath: vitalityBonusPerLevel
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
+      propertyPath: originalVitality
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
+      propertyPath: vitalityBonusPerLevel
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
       propertyPath: attackBonusPerLevel
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -6849,22 +6854,22 @@ PrefabInstance:
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalAttackPower
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalVitality
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
-        type: 3}
-      propertyPath: attackBonusPerLevel
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
+      propertyPath: attackBonusPerLevel
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
+        type: 3}
       propertyPath: vitalityBonusPerLevel
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -7108,22 +7113,22 @@ PrefabInstance:
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalAttackPower
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalVitality
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: attackBonusPerLevel
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: vitalityBonusPerLevel
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -7372,12 +7377,12 @@ PrefabInstance:
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalAttackPower
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalVitality
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -7387,12 +7392,12 @@ PrefabInstance:
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: attackBonusPerLevel
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: vitalityBonusPerLevel
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -7531,12 +7536,12 @@ PrefabInstance:
     - target: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -936
+      value: -772
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 372
+      value: 393
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674653, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -7632,22 +7637,22 @@ PrefabInstance:
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalAttackPower
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalVitality
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: attackBonusPerLevel
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: vitalityBonusPerLevel
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -7891,22 +7896,22 @@ PrefabInstance:
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalAttackPower
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalVitality
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: attackBonusPerLevel
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: vitalityBonusPerLevel
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -8156,22 +8161,22 @@ PrefabInstance:
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalAttackPower
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalVitality
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: attackBonusPerLevel
-      value: 1.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: vitalityBonusPerLevel
-      value: 2.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -8460,12 +8465,12 @@ PrefabInstance:
     - target: {fileID: 1959508595210334821, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2388426719636904819, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2446027511490683668, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -8480,7 +8485,7 @@ PrefabInstance:
     - target: {fileID: 3607672992646576804, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6958751856864284297, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
@@ -8512,9 +8517,9 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6517847856944175712}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &27558701321856674 stripped
+--- !u!1 &3628468588556591497 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 6491345581572652226, guid: 66cd007eef88fc643894ea77ebdd7a11,
+  m_CorrespondingSourceObject: {fileID: 7507189293398817769, guid: 66cd007eef88fc643894ea77ebdd7a11,
     type: 3}
   m_PrefabInstance: {fileID: 6517847856944175712}
   m_PrefabAsset: {fileID: 0}
@@ -8644,9 +8649,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &3628468588556591497 stripped
+--- !u!1 &27558701321856674 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 7507189293398817769, guid: 66cd007eef88fc643894ea77ebdd7a11,
+  m_CorrespondingSourceObject: {fileID: 6491345581572652226, guid: 66cd007eef88fc643894ea77ebdd7a11,
     type: 3}
   m_PrefabInstance: {fileID: 6517847856944175712}
   m_PrefabAsset: {fileID: 0}
@@ -9061,22 +9066,22 @@ PrefabInstance:
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalAttackPower
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: originalVitality
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: attackBonusPerLevel
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674654, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}
       propertyPath: vitalityBonusPerLevel
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 439867028889674655, guid: 66cd007eef88fc643894ea77ebdd7a11,
         type: 3}

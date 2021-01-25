@@ -30,13 +30,20 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
         }
 
         // Apply Spot Bonus
-        int spotLevel = MapsCache.SpotToClearAndLevelUpIfPlayerWins.Level;
-        if (spotLevel > 0)
+        if (MapsCache.SpotToClearAndLevelUpIfPlayerWins != null)
         {
-            for (int c = 0; c < cards.Length; c++)
+            int spotLevel = MapsCache.SpotToClearAndLevelUpIfPlayerWins.Level;
+            if (spotLevel > 0)
             {
-                cards[c].SumLevelBonus(spotLevel);
+                for (int c = 0; c < cards.Length; c++)
+                {
+                    cards[c].SumLevelBonus(spotLevel);
+                }
             }
+
+        } else
+        {
+            Debug.LogError("If you started in the battle scene, that's ok. Otherwise, trouble.");
         }
 
         return cards;
