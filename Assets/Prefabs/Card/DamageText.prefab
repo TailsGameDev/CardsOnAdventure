@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8917329385229691872}
   - component: {fileID: 5493624474409407872}
-  - component: {fileID: 3905101178904292890}
   - component: {fileID: 6698121636021220752}
   m_Layer: 5
   m_Name: DamageText
@@ -47,24 +46,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3530895837192552274}
   m_CullTransparentMesh: 0
---- !u!114 &3905101178904292890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3530895837192552274}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0117150e3d119d9479ea8ea48299c64a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialYVelocity: 1000
-  gravity: -4000
-  xVelocityRange: 200
-  text: {fileID: 0}
-  bonusToInitialAlpha: 1
-  timeToFade: 0.5
 --- !u!114 &6698121636021220752
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -16,9 +16,6 @@ public class UIPauseMenu : OpenersSuperclass
     {
         cardBackground.ChangeSprite();
         fleeFromBattleBtn.SetActive(SceneManager.GetActiveScene().name == "Battle");
-        #if !UNITY_EDITOR
-            fleeFromBattleBtn.SetActive(false);
-        #endif
     }
 
     public void OnBattleRulesBtnClicked()
@@ -39,6 +36,9 @@ public class UIPauseMenu : OpenersSuperclass
 
     public void OnFleeFromBattleBtnClicked()
     {
+        #if !UNITY_EDITOR
+        MapsCache.SpotToClearAndLevelUpIfPlayerWins = null;
+        #endif
         string warningMessage = "If You flee, the enemies will make fun out of You.";
         customPopUpOpener.OpenConfirmationRequestPopUp(warningMessage, sceneOpener.OpenMapScene);
     }

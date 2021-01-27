@@ -15,7 +15,14 @@ public class HookEffect : SpecialEffect
             if (obf.ContainsCardInIndex(frontlineCardIndex))
             {
                 Card target = obf.GetReferenceToCardAt(targetIndex);
-                ChildMaker.AdoptAndTeleport(target.transform, Instantiate(specialVFX).GetComponent<RectTransform>());
+                Transform vfx = Instantiate(specialVFX).transform;
+                vfx.position = target.GetRectTransform().position;
+                vfx.SetParent(UIBattle.parentOfDynamicUIThatMustAppear);
+                // If the card is used agains the player, the VFX should display upside down.
+                if (vfx.localPosition.y < 0)
+                {
+                    vfx.eulerAngles = new Vector3(0, 0, 180);
+                }
 
                 obf.SwapCards(targetIndex, obf.GetVerticalNeighborIndex(targetIndex));
                 targetIndex = obf.GetIndexInFrontOf(targetIndex);

@@ -90,17 +90,28 @@ public class EndGame : BattleState
                             case BattleReward.SPECIFIC_CARD:
                                 {
                                     sceneCanvas.SetActive(false);
-                                    Card cardToDisplay = PlayerAndEnemyDeckHolder.GetPreparedCardsForTheEnemy()[0];
+                                    Card[] reward = BuildRewardDeck();
+
+                                    CustomPopUp.OnBtnClicked onbtn;
+                                    if (reward.Length == 1)
+                                    {
+                                        onbtn = GiveCardThenSeeMap;
+                                    }
+                                    else
+                                    {
+                                        onbtn = Give2CardsThenSeeMap;
+                                    }
+
                                     customPopUpOpener.OpenDisplayingCards(
                                         title: "You win!",
                                         warningMessage: ColorHexCodes.BeginWhite + "You beat the card challenge." + ColorHexCodes.End +
                                            ColorHexCodes.Paint(" YOU GOT A CARD ", deckColor),
                                         confirmBtnMessage: "Awesome",
                                         cancelBtnMessage: "Cool",
-                                        onConfirm: GiveCardThenSeeMap,
-                                        onCancel: GiveCardThenSeeMap,
+                                        onConfirm: onbtn,
+                                        onCancel: onbtn,
                                         victoryBGMRequest,
-                                        new Card[] { cardToDisplay }
+                                        cards: reward
                                     );
                                 }
                                 break;
@@ -144,6 +155,25 @@ public class EndGame : BattleState
     {
         CardsCollection.SumToCurrentAmount(PlayerAndEnemyDeckHolder.GetPreparedCardsForTheEnemy()[0], 1);
         QuitBattleAndGoToMap();
+    }
+    private void Give2CardsThenSeeMap()
+    {
+        CardsCollection.SumToCurrentAmount(PlayerAndEnemyDeckHolder.GetPreparedCardsForTheEnemy()[0], 2);
+        QuitBattleAndGoToMap();
+    }
+    private Card[] BuildRewardDeck()
+    {
+        Card reward = PlayerAndEnemyDeckHolder.GetPreparedCardsForTheEnemy()[0];
+        Card[] rewardDeck = new Card[MapScroller.GetMapLevel()];
+        rewardDeck[0] = reward;
+
+        for (int r = 1; r < rewardDeck.Length; r++)
+        {
+            Card bonusRewards = reward.GetClone();
+            bonusRewards.RefreshStatsForThePlayer();
+            rewardDeck[r] = bonusRewards;
+        }
+        return rewardDeck;
     }
     private void GoBackInTime()
     {

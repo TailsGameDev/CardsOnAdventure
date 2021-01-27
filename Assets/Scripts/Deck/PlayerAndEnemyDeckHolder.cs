@@ -15,7 +15,8 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
     {
         if (enemyDeckBuilder == null)
         {
-            enemyDeckBuilder = new RandomDeckBuilder(DeckBuilderSuperclass.DEFAULT_DECK_SIZE);
+            // enemyDeckBuilder = new RandomDeckBuilder(DeckBuilderSuperclass.DEFAULT_DECK_SIZE);
+            enemyDeckBuilder = EditorMadeDeckBuilder.CreateEditorMadeDeckBuilder("HealDeck");
         }
 
         // Apply Map bonus

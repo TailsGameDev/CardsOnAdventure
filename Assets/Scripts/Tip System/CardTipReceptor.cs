@@ -15,17 +15,15 @@ public class CardTipReceptor : TipReceptor
     [SerializeField]
     private int textHeight = 0;
 
-    private int offset = 50;
-
-    void Start()
+    public override void OpenTip(TipPopUpOpener tipPopUpOpener)
     {
         Card c = cardToPullData;
 
         title = c.GetColoredTitleForTip();
 
-        TipSectionData cardArt = new TipSectionData(background: c.GetCardSprite());
+        TipSectionData cardArt = new TipSectionData(background: c.GetCardVerticalSprite());
 
-        TipSectionData explanatoryText = new TipSectionData(c.GetExplanatoryText(), textHeight + offset);
+        TipSectionData explanatoryText = new TipSectionData(c.GetExplanatoryText(), textHeight);
 
         if (cardToPullData.IgnoreOpponentsBlock)
         {
@@ -36,5 +34,7 @@ public class CardTipReceptor : TipReceptor
         {
             tipData = new[] { explanatoryText, cardArt };
         }
+
+        base.OpenTip(tipPopUpOpener);
     }
 }

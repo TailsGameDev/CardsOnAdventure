@@ -389,9 +389,9 @@ public class Card : SkillsMediatorUser
     #endregion
 
     #region Get Some Sprite Or Text
-    public Sprite GetCardSprite()
+    public Sprite GetCardVerticalSprite()
     {
-        return cardImage.sprite;
+        return verticalSprite;
     }
     public string GetColoredTitleForTip()
     {
@@ -405,6 +405,7 @@ public class Card : SkillsMediatorUser
                 "\nSkill: "+(GetSkillsExplanatoryText()) + "\n" +
                 ColorHexCodes.BeginLightRed+"Attack Power: " + attackPower + ColorHexCodes.End+"\n" +
                 ColorHexCodes.BeginLightGreen+"Vitality: " + vitality + ColorHexCodes.End+"\n"
+                + ColorHexCodes.BeginWhite+"Level: "+ (CalculateLevelBasedOnCurrentAttackPower()+1) +ColorHexCodes.End
                 ;
     }
     public string GetSkillsExplanatoryText()
@@ -536,5 +537,12 @@ public class Card : SkillsMediatorUser
         vfx.transform.position = transform.position;
         vfx.SetActive(gameObject.activeSelf);
         vfx.transform.SetParent(transform);
+    }
+    public int CalculateLevelBasedOnCurrentAttackPower()
+    {
+        float aux = attackPower;
+        aux -= originalAttackPower;
+        float level = aux / attackBonusPerLevel;
+        return (int)level;
     }
 }
