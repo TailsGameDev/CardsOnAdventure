@@ -2310,7 +2310,7 @@ MonoBehaviour:
   title: Cards Counter
   tipData:
   - message: '<br>             Cards: x'
-    background: {fileID: 21300000, guid: 76aee4a4b61b4474881fac10e6418afc, type: 3}
+    background: {fileID: 21300000, guid: f5ef23ad41486c54a81d9a8fef036083, type: 3}
     height: 150
     color: {r: 0, g: 0, b: 0, a: 0}
   - message: "This is the display of <color=#9EFA9D>HOW MANY CARDS THERE ARE STILL
@@ -3896,7 +3896,7 @@ MonoBehaviour:
   title: Cards Counter
   tipData:
   - message: '<br>             Cards: x'
-    background: {fileID: 21300000, guid: 76aee4a4b61b4474881fac10e6418afc, type: 3}
+    background: {fileID: 21300000, guid: 3a991329a1bd0e94590f7b6ed758517a, type: 3}
     height: 150
     color: {r: 0, g: 0, b: 0, a: 0}
   - message: "This is the display of <color=#9EFA9D>HOW MANY CARDS THERE ARE STILL
