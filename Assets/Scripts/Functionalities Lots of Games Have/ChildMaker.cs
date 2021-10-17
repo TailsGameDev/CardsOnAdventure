@@ -6,7 +6,23 @@ public class ChildMaker : MonoBehaviour
 {
     private static List<RectTransform> movingRects = new List<RectTransform>();
 
+    private static ChildMaker instance;
+
     private static readonly float DEFAULT_TRANSITION_TIME = 0.25f;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            transform.parent = null;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public static bool IsRectTransformBeingMoved(RectTransform rt)
     {
@@ -40,10 +56,7 @@ public class ChildMaker : MonoBehaviour
 
         if (parent != null && child != null)
         {
-            GameObject childMaker = new GameObject();
-            ChildMaker maker = (ChildMaker) childMaker.AddComponent(typeof(ChildMaker));
-
-            maker.ScaleAndSmoothlyMoveChildToParentPosition(parent, child, totalTime);
+            instance.ScaleAndSmoothlyMoveChildToParentPosition(parent, child, totalTime);
         }
     }
 
@@ -96,8 +109,6 @@ public class ChildMaker : MonoBehaviour
             child.transform.position = parent.transform.position;
         
             child.SetParent(parent, true);
-
-            Destroy(gameObject);
         }
 
         movingRects.Remove(child);
