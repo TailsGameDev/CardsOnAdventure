@@ -31,13 +31,6 @@ public class ChildMaker : MonoBehaviour
         child.localScale = new Vector3(1.0f, 1.0f, 1.0f);
     }
 
-    public static void AdoptAndScaleAndSmoothlyMoveToParentThenDestroyChild(Transform parent, RectTransform child, float totalTime = -1.0f)
-    {
-        AdoptAndScaleAndSmoothlyMoveToParent(parent, child, totalTime);
-        DestroyItselfInTime suicideChild = child.gameObject.AddComponent(typeof(DestroyItselfInTime)) as DestroyItselfInTime;
-        suicideChild.SetDestructionTime(totalTime + 0.2f);
-    }
-
     public static void AdoptAndScaleAndSmoothlyMoveToParent(Transform parent, RectTransform child, float totalTime = -1.0f)
     {
         if (totalTime < 0)
