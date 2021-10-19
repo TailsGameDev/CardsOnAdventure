@@ -78,6 +78,8 @@ public class Card : SkillsMediatorUser
     private float attackBonusPerLevel = 0;
     [SerializeField]
     private float vitalityBonusPerLevel = 0;
+
+    private TransformWrapper transformWrapper;
     #endregion
 
     #region Properties
@@ -102,6 +104,8 @@ public class Card : SkillsMediatorUser
     }
     public RectTransform RectTransform { get => rectTransform; }
     public int InitialAmountOnCollection { get => initialAmountOnCollection; }
+    public TransformWrapper TransformWrapper { get => transformWrapper; }
+
     #endregion
 
     #region Initialization
@@ -122,6 +126,8 @@ public class Card : SkillsMediatorUser
 
         // Visual
         verticalSprite = cardImage.sprite;
+
+        transformWrapper = new TransformWrapper(transform);
     }
     private void Start()
     {
@@ -182,10 +188,11 @@ public class Card : SkillsMediatorUser
     private void CreateDamageAnimatedText(int damage)
     {
         RectTransform damageTextTransform = Instantiate(DamageTextPrototype).GetComponent<RectTransform>();
+        TransformWrapper damageTextTransformWrapper = new TransformWrapper(damageTextTransform);
 
-        damageTextTransform.SetParent(UIBattle.parentOfDynamicUIThatMustAppear, false);
-        damageTextTransform.position = cardImage.transform.position;
-        damageTextTransform.Rotate(new UnityEngine.Vector3(0, 0, 90));
+        damageTextTransformWrapper.SetParent(UIBattle.parentOfDynamicUIThatMustAppear, false);
+        damageTextTransformWrapper.Position = cardImage.transform.position;
+        damageTextTransformWrapper.Rotate(x: 0.0f, y: 0.0f, z: 90.0f);
 
         damageTextTransform.GetComponentInChildren<Text>().text = damage.ToString();
 
@@ -468,7 +475,8 @@ public class Card : SkillsMediatorUser
         RemoveFreezing();
         freezing = true;
         this.freezingEffect = freezingEffect;
-        ChildMaker.AdoptAndTeleport(transform, freezingEffect.GetComponent<RectTransform>());
+        // TODO: check if freezingEffect transform wrapper could be created only once
+        ChildMaker.AdoptAndTeleport(transformWrapper, new TransformWrapper(freezingEffect.transform));
         freezingEffect.transform.localScale = UnityEngine.Vector3.one;
     }
     public void RemoveFreezing()

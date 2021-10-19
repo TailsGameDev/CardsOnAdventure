@@ -9,7 +9,7 @@ public class UICardsHolderEventHandler : MonoBehaviour
 
     [SerializeField]
     private RectTransform parentForDynamicUIThatMustAppear = null;
-    public static RectTransform parentOfDynamicUIThatMustAppear;
+    public static TransformWrapper parentOfDynamicUIThatMustAppear;
 
     [SerializeField]
     private Text skillTipText = null;
@@ -35,7 +35,7 @@ public class UICardsHolderEventHandler : MonoBehaviour
 
     private void Awake()
     {
-        parentOfDynamicUIThatMustAppear = parentForDynamicUIThatMustAppear;
+        parentOfDynamicUIThatMustAppear = new TransformWrapper(parentForDynamicUIThatMustAppear);
     }
 
     public void OnCardsHolderBeginDrag(CardsHolder cardsHolder, int index)
@@ -101,7 +101,7 @@ public class UICardsHolderEventHandler : MonoBehaviour
             yield return null;
             yield return null;
 
-            while (cardBeingDragged != null && ChildMaker.IsRectTransformBeingMoved(cardBeingDragged.GetRectTransform()))
+            while (cardBeingDragged != null && ChildMaker.IsRectTransformBeingMoved(cardBeingDragged.TransformWrapper))
             {
                 yield return null;
             }
@@ -112,8 +112,8 @@ public class UICardsHolderEventHandler : MonoBehaviour
             {
                 ChildMaker.AdoptAndScaleAndSmoothlyMoveToParent
                 (
-                    cardBeingDragged.RectTransform.parent,
-                    cardBeingDragged.RectTransform,
+                    cardBeingDragged.TransformWrapper.Parent,
+                    cardBeingDragged.TransformWrapper,
                     delayToComeBackFromOtherSpot
                 );
             }

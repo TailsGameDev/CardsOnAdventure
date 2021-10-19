@@ -3,19 +3,64 @@ using UnityEngine.UI;
 
 public class DynamicSizeScrollableCardHolder : CardsHolder
 {
+    protected class CardReceptorTransformWrapper : TransformWrapper
+    {
+        private CardReceptor cardReceptor;
+
+        public CardReceptorTransformWrapper(Transform transform) : base(transform)
+        {
+            cardReceptor = transform.GetComponent<CardReceptor>();
+
+            if (cardReceptor == null)
+            {
+                Debug.LogWarning("[DynamicSizeScrollableCardHolder] card receptor is null. I thought all would have it assigned.", transform);
+            }
+        }
+
+        public CardReceptor CardReceptor { get => cardReceptor; }
+
+        public RectTransform GetRectTransform()
+        {
+            // NOTE: Take RectTransform from cardReceptor so we don't need to access the transform that belongs to the superclass.
+            return cardReceptor.GetComponent<RectTransform>();
+        }
+
+        public void DestroyGameObject()
+        {
+            // NOTE: Take gameObject from cardReceptor so we don't need to access the transform that belongs to the superclass.
+            Destroy(cardReceptor.gameObject);
+        }
+
+        public void DeactivateGameObject()
+        {
+            // NOTE: Take gameObject from cardReceptor so we don't need to access the transform that belongs to the superclass.
+            cardReceptor.gameObject.SetActive(false);
+        }
+
+        public Text GetTextInChildren()
+        {
+            // NOTE: Take gameObject from cardReceptor so we don't need to access the transform that belongs to the superclass.
+            return cardReceptor.GetComponentInChildren<Text>();
+        }
+    }
+
     [SerializeField]
     private RectTransform slotPrototype = null;
 
     [SerializeField]
     private RectTransform scrollableBackground = null;
 
-    protected RectTransform[] slots = null;
+    // protected RectTransform[] slots = null;
+    protected CardReceptorTransformWrapper[] slotWrappers;
+
+    private TransformWrapper transformWrapper;
 
     private int amountOfSlots;
 
     #region Initialization
-    protected void InitializeSlotsAndRectSize(int amountOfSlots)
+    protected void InitializeSlotsRectSizeAndTransformWrapper(int amountOfSlots)
     {
+        transformWrapper = new TransformWrapper(transform);
         this.amountOfSlots = amountOfSlots;
         SetHorizontalSizeOfRect(amountOfSlots);
         InstantiateSlots();
@@ -36,13 +81,13 @@ public class DynamicSizeScrollableCardHolder : CardsHolder
     {
         slotPrototype.GetComponent<CardReceptor>().CardsHolder = this;
 
-        slots = new RectTransform[amountOfSlots];
+        slotWrappers = new CardReceptorTransformWrapper[amountOfSlots];
 
         for (int i = 0; i < amountOfSlots; i++)
         {
-            slots[i] = Instantiate(slotPrototype);
-            slots[i].SetParent(transform, false);
-            slots[i].GetComponent<CardReceptor>().Index = i;
+            slotWrappers[i] = new CardReceptorTransformWrapper( Instantiate(slotPrototype) );
+            slotWrappers[i].SetParent(transformWrapper, false);
+            slotWrappers[i].CardReceptor.Index = i;
         }
     }
 
@@ -51,22 +96,22 @@ public class DynamicSizeScrollableCardHolder : CardsHolder
         cardPositions = new RectTransform[amountOfSlots];
         for (int i = 0; i < amountOfSlots; i++)
         {
-            cardPositions[i] = slots[i].GetComponent<RectTransform>();
+            cardPositions[i] = slotWrappers[i].GetRectTransform();
         }
     }
     #endregion
 
     protected void Clear()
     {
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < slotWrappers.Length; i++)
         {
-            if (slots[i] != null)
+            if (slotWrappers[i] != null)
             {
-                Destroy(slots[i].gameObject);
-                slots[i] = null;
+                slotWrappers[i].DestroyGameObject();
+                slotWrappers[i] = null;
             }
         }
-        slots = null;
+        slotWrappers = null;
         amountOfSlots = -1;
     }
 }

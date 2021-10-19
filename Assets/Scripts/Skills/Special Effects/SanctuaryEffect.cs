@@ -24,7 +24,7 @@ public class SanctuaryEffect : SpecialEffect
             Card toBeHealed = abf.GetReferenceToCardAt(index);
             toBeHealed.InconditionalHealing(healAmount);
 
-            InstantiateObjAsSonOf(specialVFX, toBeHealed.RectTransform.parent);
+            InstantiateObjAsSonOf(specialVFX, toBeHealed.TransformWrapper.Parent);
         }
     }
 }

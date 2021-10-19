@@ -15,7 +15,7 @@ public class DeckCardHolder : DynamicSizeScrollableCardHolder
         // Wait for the DeckPrototypeFactory to PopulateArrayOfAllCardPrototypes.
         yield return null;
         int amountOfSlots = DeckBuilderSuperclass.DEFAULT_DECK_SIZE;
-        InitializeSlotsAndRectSize(amountOfSlots);
+        InitializeSlotsRectSizeAndTransformWrapper(amountOfSlots);
         InitializeCards(amountOfSlots);
     }
     private void InitializeCards(int amountOfSlots)
@@ -26,7 +26,7 @@ public class DeckCardHolder : DynamicSizeScrollableCardHolder
         {
             PutCardInIndexWithSmoothMovement(cards[i], i);
 
-            ChildMaker.CopySizeDelta(slots[i], cards[i].GetRectTransform());
+            ChildMaker.CopySizeDelta(slotWrappers[i].GetRectTransform(), cards[i].GetRectTransform());
         }
     }
     #endregion

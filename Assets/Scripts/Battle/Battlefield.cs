@@ -11,7 +11,22 @@ public class Battlefield : CardsHolder
     [SerializeField]
     private float increaseScaleSpeedMultiplier = 1.0f;
 
-    const int CODE_TO_STOP = int.MaxValue;
+    private TransformWrapper transformWrapper;
+
+    private const int CODE_TO_STOP = int.MaxValue;
+
+    public TransformWrapper TransformWrapper 
+    {
+        get 
+        {
+            // NOTE: Doing lazy initialization because my brain is really tired. If you find a way to do it one time only great!
+            if (transformWrapper == null)
+            {
+                transformWrapper = new TransformWrapper(transform);
+            }
+            return transformWrapper;
+        }
+    }
 
     public void SwapCards(int index, int anotherIndex)
     {

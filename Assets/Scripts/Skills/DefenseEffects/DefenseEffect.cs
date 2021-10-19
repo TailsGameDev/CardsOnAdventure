@@ -14,7 +14,7 @@ public class DefenseEffect : MonoBehaviour
         toBeDamaged = obf.GetReferenceToCardAt(toBeDamagedIndex);
 
         // VFX and SFX
-        ShowAttackVFXInFrontOf(toBeDamaged.transform, attackVFX);
+        ShowAttackVFXInFrontOf(toBeDamaged.TransformWrapper, attackVFX);
         toBeDamaged.ShowDefenseVFXandSFXIfHasBlockOrReflect(abf.transform.position.y);
 
         // Damage
@@ -33,18 +33,18 @@ public class DefenseEffect : MonoBehaviour
     }
 
     // The parent of the VFX must be the slot that holds the car, because the car can be destroyed on attack.
-    private void ShowAttackVFXInFrontOf(Transform target, GameObject attackVFX)
+    private void ShowAttackVFXInFrontOf(TransformWrapper target, GameObject attackVFX)
     {
         if (attackVFX != null)
         {
-            InstantiateObjAsSonOf(attackVFX, target.transform.parent);
+            InstantiateObjAsSonOf(attackVFX, target.Parent);
         }
     }
 
-    private void InstantiateObjAsSonOf(GameObject toInstantiate, Transform parent)
+    private void InstantiateObjAsSonOf(GameObject toInstantiate, TransformWrapper parent)
     {
-        RectTransform instantiated = Instantiate(toInstantiate).GetComponent<RectTransform>();
-        ChildMaker.AdoptAndTeleport(parent, instantiated);
+        TransformWrapper transformWrapper = new (Instantiate(toInstantiate).transform);
+        ChildMaker.AdoptAndTeleport(parent, transformWrapper);
     }
 
     private int CalculateDamageWithReductionPercentage()

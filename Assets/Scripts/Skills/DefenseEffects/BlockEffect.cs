@@ -11,7 +11,7 @@ public class BlockEffect : DefenseEffect
 
         Card toBeDamaged = obf.GetReferenceToCardAt(tobeDamagedIndexConsideringBlock);
 
-        toBeDamaged.ShowDefenseVFXandSFX(abf.transform.position.y);
+        toBeDamaged.ShowDefenseVFXandSFX(abf.TransformWrapper.Position.y);
 
         base.ExecuteEffect(damageConsideringBlock, obf, abf, tobeDamagedIndexConsideringBlock, attackVFX);
     }

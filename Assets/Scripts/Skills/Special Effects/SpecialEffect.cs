@@ -6,9 +6,9 @@ public abstract class SpecialEffect : SkillsMediatorUser
 {
     public abstract void ExecuteEffect(Battlefield obf, Battlefield abf, ref int targetIndex, GameObject specialVFX);
 
-    protected void InstantiateObjAsSonOf(GameObject toInstantiate, Transform parent)
+    protected void InstantiateObjAsSonOf(GameObject toInstantiate, TransformWrapper parent)
     {
-        RectTransform instantiated = Instantiate(toInstantiate).GetComponent<RectTransform>();
-        ChildMaker.AdoptAndTeleport(parent, instantiated);
+        TransformWrapper transformWrapper = new (Instantiate(toInstantiate).transform);
+        ChildMaker.AdoptAndTeleport(parent, transformWrapper);
     }
 }

@@ -20,7 +20,7 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
         yield return null;
         cards = CardsCollection.GetClonesOfCardsOnPlayerCollection();
 
-        InitializeSlotsAndRectSize(amountOfSlots: cards.Length);
+        InitializeSlotsRectSizeAndTransformWrapper(amountOfSlots: cards.Length);
         PopulateAmountOfEachCard();
         PopulateCardAmountTexts();
         RefreshCardsStats();
@@ -52,10 +52,10 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
     }
     private void PopulateCardAmountTexts()
     {
-        textForEachCardAmount = new Text[slots.Length];
-        for (int i = 0; i < slots.Length; i++)
+        textForEachCardAmount = new Text[slotWrappers.Length];
+        for (int i = 0; i < slotWrappers.Length; i++)
         {
-            Text textCardAmountOfThisSlot = slots[i].GetComponentInChildren<Text>();
+            Text textCardAmountOfThisSlot = slotWrappers[i].GetTextInChildren();
             textForEachCardAmount[i] = textCardAmountOfThisSlot;
             UpdateCardColorAndAmountText(i);
         }
@@ -74,12 +74,12 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
             // Background
             Card slotBackground = cards[i].GetClone();
             slotBackground.MakeColorGray();
-            ChildMaker.AdoptTeleportAndScale(slots[i], slotBackground.GetRectTransform());
-            ChildMaker.CopySizeDelta(slots[i], slotBackground.GetRectTransform());
+            ChildMaker.AdoptTeleportAndScale(slotWrappers[i], slotBackground.TransformWrapper);
+            ChildMaker.CopySizeDelta(slotWrappers[i].GetRectTransform(), slotBackground.GetRectTransform());
             
             // The actual card
-            ChildMaker.AdoptTeleportAndScale(slots[i], cards[i].GetRectTransform());
-            ChildMaker.CopySizeDelta(slots[i], cards[i].GetRectTransform());
+            ChildMaker.AdoptTeleportAndScale(slotWrappers[i], cards[i].TransformWrapper);
+            ChildMaker.CopySizeDelta(slotWrappers[i].GetRectTransform(), cards[i].GetRectTransform());
 
         }
     }
@@ -91,7 +91,7 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
         {
             if (CardsCollection.IsCardLocked(c))
             {
-                slots[c].gameObject.SetActive(false);
+                slotWrappers[c].DeactivateGameObject();
                 deactivatedSlotsAmount++;
             }
         }
@@ -140,7 +140,7 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
                 amountOfEachCard[slot] ++ ;
                 UpdateCardColorAndAmountText(slot);
                 ChildMaker.AdoptAndScaleAndSmoothlyMoveToParent
-                    (slots[slot], card.GetRectTransform(), repositionAnimationDurationInSeconds);
+                    (slotWrappers[slot], card.TransformWrapper, repositionAnimationDurationInSeconds);
                 const float DELAY_FROM_ANIMATION_END_TO_DESTRUCTION = 0.2f;
                 ObjectDestroyer.DestroyObjectInTime(card.gameObject, repositionAnimationDurationInSeconds + DELAY_FROM_ANIMATION_END_TO_DESTRUCTION);
                 return;

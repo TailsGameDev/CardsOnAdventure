@@ -80,7 +80,7 @@ public class OldSkill : Skill
         if (spawnAboveItselfWhenAttackVFX != null)
         {
             GameObject vfx = Instantiate(spawnAboveItselfWhenAttackVFX);
-            ChildMaker.AdoptTeleportAndScale(attacker.RectTransform, vfx.GetComponent<RectTransform>());
+            ChildMaker.AdoptTeleportAndScale(attacker.TransformWrapper, new TransformWrapper (vfx.transform));
         }
 
         // Damage

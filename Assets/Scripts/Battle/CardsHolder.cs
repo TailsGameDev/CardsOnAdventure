@@ -4,6 +4,7 @@ public class CardsHolder : IndexHolder
 {
     [SerializeField]
     protected RectTransform[] cardPositions = null;
+    private TransformWrapper[] cardPositionWrappers;
 
     protected Card[] cards = new Card[4];
 
@@ -36,13 +37,24 @@ public class CardsHolder : IndexHolder
         cards[index] = card;
         cardRect.rotation = transform.rotation;
 
+        // Lazy initialize cardPositionWrappers
+        // NOTE: It would be an improvement to vanish this lazy initialization by doing it only once.
+        if (cardPositionWrappers == null && cardPositions != null)
+        {
+            cardPositionWrappers = new TransformWrapper[cardPositions.Length];
+            for (int c = 0; c < cardPositions.Length; c++)
+            {
+                cardPositionWrappers[c] = new TransformWrapper(cardPositions[c]);
+            }
+        }
+
         if (smooth)
         {
-            ChildMaker.AdoptAndScaleAndSmoothlyMoveToParent(cardPositions[index].transform, card.GetRectTransform(), repositionAnimationDurationInSeconds);
+            ChildMaker.AdoptAndScaleAndSmoothlyMoveToParent(cardPositionWrappers[index], card.TransformWrapper, repositionAnimationDurationInSeconds);
         }
         else
         {
-            ChildMaker.AdoptAndTeleport(cardPositions[index].transform, card.GetRectTransform());
+            ChildMaker.AdoptAndTeleport(cardPositionWrappers[index], card.TransformWrapper);
         }
 
         cardRect.localScale = new Vector3(1, 1, 1);

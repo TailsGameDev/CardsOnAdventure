@@ -11,7 +11,7 @@ public class CustomPopUpCardsHolder : DynamicSizeScrollableCardHolder
     {
         node.SetActive(true);
         cards = OneOfEachUnlockedCardInClassDeckBuilder.Create(classe).GetDeck();
-        base.InitializeSlotsAndRectSize(cards.Length);
+        base.InitializeSlotsRectSizeAndTransformWrapper(cards.Length);
 
         MoveAndBuffCards(cards);
 
@@ -32,7 +32,7 @@ public class CustomPopUpCardsHolder : DynamicSizeScrollableCardHolder
     {
         node.SetActive(true);
         this.cards = cards;
-        base.InitializeSlotsAndRectSize(cards.Length);
+        base.InitializeSlotsRectSizeAndTransformWrapper(cards.Length);
 
         MoveAndBuffCards(cards);
 

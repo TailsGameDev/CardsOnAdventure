@@ -34,6 +34,8 @@ public class Spot : MonoBehaviour
     float t = 1;
     bool isGrowing = true;
 
+    private TransformWrapper transformWrapper;
+
     public string MapName { get => mapName; }
 
     private void Awake()
@@ -131,7 +133,14 @@ public class Spot : MonoBehaviour
     private void MakePlayLvlBtnFrom(Button btn)
     {
         playLvlBtn = Instantiate(btn);
-        ChildMaker.AdoptTeleportAndScale(transform, playLvlBtn.GetComponent<RectTransform>());
+
+        // NOTE: I couldn't make the not lazy initialization on Awake, so I'm making it lazy here.
+        if (transformWrapper == null)
+        {
+            transformWrapper = new TransformWrapper(transform);
+        }
+
+        ChildMaker.AdoptTeleportAndScale(transformWrapper, new TransformWrapper( playLvlBtn.transform ));
     }
 
     public void LockIfNeededDownTheGraph()

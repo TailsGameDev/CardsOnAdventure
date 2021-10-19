@@ -6,11 +6,13 @@ public class CardDragAndDrop : DragAndDrop
     [SerializeField]
     private Card card;
 
-    private Transform originalParent;
+    private TransformWrapper originalParent;
 
     private bool isDragging;
 
     private bool forceReceptorToNullBeforeDrop = false;
+
+    private TransformWrapper transformWrapper;
 
     public bool IsDragging { get => isDragging; }
     public bool ForceReceptorToNullBeforeDrop { set => forceReceptorToNullBeforeDrop = value; }
@@ -35,9 +37,15 @@ public class CardDragAndDrop : DragAndDrop
     {
         isDragging = true;
       
-        originalParent = transform.parent;
+        originalParent = new TransformWrapper(transform.parent);
 
-        transform.SetParent(UIBattle.parentOfDynamicUIThatMustAppear);
+        // NOTE: it would be an improvement to get rid of the lazy initialization
+        if (transformWrapper == null)
+        {
+            transformWrapper = new TransformWrapper(transform);
+        }
+
+        transformWrapper.SetParent(UIBattle.parentOfDynamicUIThatMustAppear);
     }
 
     protected override void BeforeDrop()
@@ -46,8 +54,8 @@ public class CardDragAndDrop : DragAndDrop
         {
             receptor = null;
         }
-        transform.SetParent(originalParent);
-        transform.localScale = Vector3.one;
+        transformWrapper.SetParent(originalParent);
+        transformWrapper.LocalScale = Vector3.one;
     }
 
     protected override void OnDroppedSpecificBehaviour()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChildMaker : MonoBehaviour
 {
-    private static List<RectTransform> movingRects = new List<RectTransform>();
+    private static List<TransformWrapper> movingObjects = new List<TransformWrapper>();
 
     private static ChildMaker instance;
 
@@ -24,9 +24,9 @@ public class ChildMaker : MonoBehaviour
         }
     }
 
-    public static bool IsRectTransformBeingMoved(RectTransform rt)
+    public static bool IsRectTransformBeingMoved(TransformWrapper transformWrapper)
     {
-        return movingRects.Contains(rt);
+        return movingObjects.Contains(transformWrapper);
     }
 
     public static void CopySizeDelta(RectTransform fontOfDelta, RectTransform deltaToChange)
@@ -34,40 +34,35 @@ public class ChildMaker : MonoBehaviour
         deltaToChange.sizeDelta = fontOfDelta.sizeDelta;
     }
 
-    public static void AdoptAndTeleport(Transform parent, RectTransform child)
+    public static void AdoptAndTeleport(TransformWrapper parent, TransformWrapper child)
     {
-        child.position = parent.position;
+        child.Position = parent.Position;
         child.SetParent(parent, true);
     }
 
-    public static void AdoptTeleportAndScale(Transform parent, RectTransform child)
+    public static void AdoptTeleportAndScale(TransformWrapper parent, TransformWrapper child)
     {
-        child.position = parent.position;
+        child.Position = parent.Position;
         child.SetParent(parent, true);
-        child.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        child.LocalScale = new Vector3(1.0f, 1.0f, 1.0f);
     }
 
-    public static void AdoptAndScaleAndSmoothlyMoveToParent(Transform parent, RectTransform child, float totalTime = -1.0f)
+    public static void AdoptAndScaleAndSmoothlyMoveToParent(TransformWrapper parent, TransformWrapper child, float totalTime = -1.0f)
     {
-        if (totalTime < 0)
+        if (totalTime < 0.0f)
         {
             totalTime = DEFAULT_TRANSITION_TIME;
         }
 
         if (parent != null && child != null)
         {
-            instance.ScaleAndSmoothlyMoveChildToParentPosition(parent, child, totalTime);
+            instance.StartCoroutine(instance.WaitForPreviousCoroutinesToEndThenMakeSmoothMovement(parent, child, totalTime));
         }
     }
 
-    private void ScaleAndSmoothlyMoveChildToParentPosition(Transform parent, RectTransform child, float totalTime)
+    private IEnumerator WaitForPreviousCoroutinesToEndThenMakeSmoothMovement(TransformWrapper parent, TransformWrapper child, float totalTime)
     {
-        StartCoroutine(WaitForPreviousCoroutinesToEndThenMakeSmoothMovement(parent, child, totalTime));
-    }
-
-    private IEnumerator WaitForPreviousCoroutinesToEndThenMakeSmoothMovement(Transform parent, RectTransform child, float totalTime)
-    {
-        while (parent != null && child != null && movingRects.Contains(child))
+        while (parent != null && child != null && movingObjects.Contains(child))
         {
             yield return null;
         }
@@ -75,21 +70,21 @@ public class ChildMaker : MonoBehaviour
         StartCoroutine(ScaleAndSmothlyMoveToPos(parent, child, totalTime));
     }
 
-    private IEnumerator ScaleAndSmothlyMoveToPos(Transform parent, RectTransform child, float totalTime)
+    private IEnumerator ScaleAndSmothlyMoveToPos(TransformWrapper parent, TransformWrapper child, float totalTime)
     {
-        movingRects.Add(child);
+        movingObjects.Add(child);
 
         // Scale
         child.SetParent(parent, true);
         yield return null;
-        child.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        child.LocalScale = new Vector3(1.0f, 1.0f, 1.0f);
 
         // Make it float above everybody.
         child.SetParent(UIBattle.parentOfDynamicUIThatMustAppear, true);
 
-        Vector3 initialPosition = child.transform.position;
+        Vector3 initialPosition = child.Position;
 
-        Vector3 direction = parent.transform.position - child.transform.position;
+        Vector3 direction = parent.Position - child.Position;
 
         float time = 0.0f;
 
@@ -99,19 +94,19 @@ public class ChildMaker : MonoBehaviour
 
             float completePercentage = time / totalTime;
 
-            child.transform.position = initialPosition + completePercentage * direction;
+            child.Position = initialPosition + completePercentage * direction;
 
             yield return null;
         }
 
         if (child != null)
         {
-            child.transform.position = parent.transform.position;
+            child.Position = parent.Position;
         
             child.SetParent(parent, true);
         }
 
-        movingRects.Remove(child);
+        movingObjects.Remove(child);
     }
 
     /*

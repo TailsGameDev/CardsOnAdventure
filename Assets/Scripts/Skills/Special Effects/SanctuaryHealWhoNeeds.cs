@@ -33,7 +33,7 @@ public class SanctuaryHealWhoNeeds : SpecialEffect
 
             if (vitalityAfter > vitalityBefore)
             {
-                InstantiateObjAsSonOf(specialVFX, toBeHealed.RectTransform.parent);
+                InstantiateObjAsSonOf(specialVFX, toBeHealed.TransformWrapper.Parent);
             }
         }
     }

@@ -10,6 +10,15 @@ public class Deck : MonoBehaviour
     [SerializeField]
     private bool enemysDeck = false;
 
+    private TransformWrapper transformWrapper;
+
+    public TransformWrapper TransformWrapper { get => transformWrapper; }
+
+    private void Awake()
+    {
+        transformWrapper = new TransformWrapper(transform);
+    }
+
     private void Start()
     {
         StartCoroutine(PopulateDeck());

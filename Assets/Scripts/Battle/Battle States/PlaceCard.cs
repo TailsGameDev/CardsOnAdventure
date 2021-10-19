@@ -34,7 +34,7 @@ public class PlaceCard : BattleState
 
         ClearSelections();
 
-        if (currentBattleStatesFactory == enemyBattleStatesFactory)
+        if (!IsPlayerTurn())
         {
             new EnemyAI().PlaceCard(this.hand, battlefield);
         }
