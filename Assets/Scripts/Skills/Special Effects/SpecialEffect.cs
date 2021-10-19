@@ -8,7 +8,7 @@ public abstract class SpecialEffect : SkillsMediatorUser
 
     protected void InstantiateObjAsSonOf(GameObject toInstantiate, TransformWrapper parent)
     {
-        TransformWrapper transformWrapper = new (Instantiate(toInstantiate).transform);
+        TransformWrapper transformWrapper = new TransformWrapper(Instantiate(toInstantiate).transform);
         ChildMaker.AdoptAndTeleport(parent, transformWrapper);
     }
 }

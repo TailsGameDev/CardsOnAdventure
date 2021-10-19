@@ -43,7 +43,7 @@ public class DefenseEffect : MonoBehaviour
 
     private void InstantiateObjAsSonOf(GameObject toInstantiate, TransformWrapper parent)
     {
-        TransformWrapper transformWrapper = new (Instantiate(toInstantiate).transform);
+        TransformWrapper transformWrapper = new TransformWrapper(Instantiate(toInstantiate).transform);
         ChildMaker.AdoptAndTeleport(parent, transformWrapper);
     }
 
