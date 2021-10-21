@@ -25,6 +25,8 @@ public class Attack : BattleState
 
     public static bool shouldAskForTip = true;
 
+    private readonly int TOTAL_OF_ATTACKERS;
+
     public Attack(
                     Battlefield attackerBattlefield,
                     Battlefield opponentBattleField,
@@ -66,6 +68,7 @@ public class Attack : BattleState
         }
 
         attackTokens = ListCardsThatShouldAttackDuringThisState();
+        TOTAL_OF_ATTACKERS = attackTokens.Count;
 
         this.endTurnBtn = endTurnBtn;
         this.popUpOpener = popUpOpener;
@@ -260,7 +263,9 @@ public class Attack : BattleState
         {
             nextState = currentBattleStatesFactory.CreateBonusRepositionState(); 
         }
-        else if (attackerBattlefield.IsEmpty() || opponentBattleField.IsEmpty() || attackTokens.Count == 0 || clickedEndTurnBtn)
+        else if (TOTAL_OF_ATTACKERS == 0 || attackerBattlefield.IsEmpty() || opponentBattleField.IsEmpty() || clickedEndTurnBtn ||
+            // Or if someone has already attacked == attackTokens.Count < TOTAL_OF_ATTACKERS
+            (attackTokens.Count < TOTAL_OF_ATTACKERS) )
         {
             nextState = currentBattleStatesFactory.CreateEndTurnState();
         }
