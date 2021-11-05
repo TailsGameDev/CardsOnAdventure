@@ -15,6 +15,7 @@ public class UIMainMenu : UIPauseMenu
     private void Awake()
     {
         MapsCache.SpotToClearAndLevelUpIfPlayerWins = null;
+        Settings.InitializeFullScreen();
     }
 
     public void OnPlayBtnClicked()

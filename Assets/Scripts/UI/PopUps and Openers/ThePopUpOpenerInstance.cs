@@ -49,7 +49,6 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
             openerOfPopUpsMadeInEditor = this;
             transform.SetParent(null);
             DontDestroyOnLoad(gameObject);
-            // Screen.fullScreen = PlayerPrefs.GetInt("Fullscreen", defaultValue: 0) == 0;
 
             battleRules = battleRules.Replace("<br>", "\n");
         } else

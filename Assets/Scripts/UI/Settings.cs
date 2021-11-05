@@ -27,6 +27,10 @@ public class Settings : MonoBehaviour
     public static readonly int FALSE = 0;
 
     private const string SHUT_SPIRIT_MOUTH_KEY = "ShutSpiritsMouth";
+    
+    private const string FULLSCREEN_KEY = "FULLSCREEN";
+    private const int RESOLUTION_WIDTH = 360;
+    private const int RESOLUTION_HEIGHT = 640;
 
     private static bool shouldDisplayTipOnEnable = true;
 
@@ -40,7 +44,7 @@ public class Settings : MonoBehaviour
 
         shutSpiritsMouth.isOn = IsTrue(PlayerPrefs.GetInt(SHUT_SPIRIT_MOUTH_KEY, FALSE));
 
-        fullscreenToggle.isOn = IsTrue( PlayerPrefs.GetInt("Fullscreen", FALSE) ) ;
+        fullscreenToggle.isOn = IsTrue( PlayerPrefs.GetInt(FULLSCREEN_KEY, FALSE) ) ;
 
         customCursorToggle.isOn = IsTrue(PlayerPrefs.GetInt("CustomCursor", FALSE));
         if (customCursorToggle.isOn)
@@ -52,6 +56,11 @@ public class Settings : MonoBehaviour
         fullscreenToggle.gameObject.SetActive(false);
         customCursorToggle.gameObject.SetActive(false);
 #endif
+    }
+
+    public static void InitializeFullScreen()
+    {
+        Screen.SetResolution(RESOLUTION_WIDTH, RESOLUTION_HEIGHT, Settings.IsTrue(PlayerPrefs.GetInt(FULLSCREEN_KEY, Settings.FALSE)));
     }
 
     private void OnEnable()
@@ -129,10 +138,10 @@ public class Settings : MonoBehaviour
 
         if (fullscreenToggle.isOn)
         {
-            Screen.SetResolution(576, 1024, true);
+            Screen.SetResolution(RESOLUTION_WIDTH, RESOLUTION_HEIGHT, true);
         }
 
-        PlayerPrefs.SetInt("Fullscreen", ToInt( fullscreenToggle.isOn ) );
+        PlayerPrefs.SetInt(FULLSCREEN_KEY, ToInt( fullscreenToggle.isOn ) );
     }
 
     public void ToggleCustomCursor()
