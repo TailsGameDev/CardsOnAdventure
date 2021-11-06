@@ -58,5 +58,6 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+Assets/HandyUnityScripts
 Assets/HandyUnityScripts.meta
 UserSettings/EditorUserSettings.asset
