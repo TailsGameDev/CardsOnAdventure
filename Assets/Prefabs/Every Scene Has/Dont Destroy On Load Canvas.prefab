@@ -7348,7 +7348,7 @@ MonoBehaviour:
     WITH NO DEATHS, A +1 BUFF OF ATTACK POWER TO ALL BATTLEFIELD MIGHT BE APPLIED.</color>
     In such a situation, a pop-up would appear asking if you want the buff or not.
     <br> <br> "
-  battleRulesSprite: {fileID: 21300000, guid: 609eb297ae42cc341a903a845a4ff4ca, type: 3}
+  battleRulesSprite: {fileID: 21300000, guid: 6ebcb880751612047b31a2c219164fe0, type: 3}
   customPopUp: {fileID: 8097394994039783889}
   incidentPopUp: {fileID: 7209068765626908241}
   tipSystem: {fileID: 7072712756640619726}

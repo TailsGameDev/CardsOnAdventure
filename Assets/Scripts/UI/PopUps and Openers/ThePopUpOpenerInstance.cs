@@ -141,7 +141,7 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
     {
         TipSectionData[] battleRulesContent = new TipSectionData[]
         {
-            new TipSectionData(battleRulesSprite, 100.0f),
+            new TipSectionData(battleRulesSprite, 230.0f),
             new TipSectionData(battleRules, 2300.0f)
         };
 
