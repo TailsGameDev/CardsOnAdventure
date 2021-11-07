@@ -82,6 +82,14 @@ public class UICardsHolderEventHandler : MonoBehaviour
 
         while (isDragging)
         {
+            if (!Input.GetMouseButton(0))
+            {
+                // NOTE: this is an attempt to solve a bug in which the card
+                // was not ending the dragging properly, but it was hard to reproduce.
+                this.isDragging = false;
+                Debug.LogError("[UICardsHolderEventHandler] Mouse is not " +
+                    "dragging, but this script believes it is dragging.", cardBeingDragged);
+            }
             yield return null;
         }
 
