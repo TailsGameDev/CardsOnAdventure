@@ -30,6 +30,11 @@ public abstract class DragAndDrop : MonoBehaviour
             rectTransform.position = Input.mousePosition + offset;
 
             IfIsAboveASingleReceptorMakeItBecomeTheReceptor();
+
+            if (!PlayerInput.GetMouseButton0())
+            {
+                OnPointerUp();
+            }
         }
     }
     private void IfIsAboveASingleReceptorMakeItBecomeTheReceptor()

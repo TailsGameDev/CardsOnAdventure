@@ -93,8 +93,6 @@ public class UICardsHolderEventHandler : MonoBehaviour
             yield return null;
         }
 
-        cardBeingDragged.cardDragAndDrop.Drop();
-
         if (!wasDroppedInValidSpot)
         {
             // Wait one more frame for the drop event to be called.
