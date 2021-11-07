@@ -8,6 +8,7 @@ public abstract class DragAndDrop : MonoBehaviour
     private RectTransform rectTransform = null;
 
     protected DragAndDropReceptor receptor;
+    private DragAndDropReceptor maybeAReceptor;
 
     private bool snap;
 
@@ -17,8 +18,6 @@ public abstract class DragAndDrop : MonoBehaviour
     private Vector3 offset;
 
     private delegate void DoForEachValidOverlappingReceptor();
-
-    private DragAndDropReceptor maybeAReceptor;
 
     #endregion
 
