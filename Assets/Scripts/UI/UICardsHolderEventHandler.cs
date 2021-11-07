@@ -82,7 +82,7 @@ public class UICardsHolderEventHandler : MonoBehaviour
 
         while (isDragging)
         {
-            if (!Input.GetMouseButton(0))
+            if (!PlayerInput.GetMouseButton0())
             {
                 // NOTE: this is an attempt to solve a bug in which the card
                 // was not ending the dragging properly, but it was hard to reproduce.

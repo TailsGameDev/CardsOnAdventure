@@ -101,7 +101,7 @@ public class EnemyAI
 
         coroutineExecutor.ExecuteCoroutine(RepositionCoroutine());
     }
-    IEnumerator RepositionCoroutine()
+    private IEnumerator RepositionCoroutine()
     {
         bool change0With2 = ChangeCardInFrontWithCardBehind(0, 2);
         bool change1With3 = ChangeCardInFrontWithCardBehind(1, 3);
@@ -137,7 +137,14 @@ public class EnemyAI
         enemyBattlefield.ClearSelection();
         yield return null; yield return null;
 
-        endRepositionBtn.onClicked();
+        if (endRepositionBtn != null)
+        {
+            endRepositionBtn.onClicked();
+        }
+        else
+        {
+            Debug.LogError("[EnemyAI] endRepositionBtn is null.");
+        }
 
         coroutineExecutor.SelfDestroy();
     }
