@@ -26,13 +26,6 @@ public class EnemyAI
 
     public static float AIDelay { set => aiDelay = value; }
 
-
-
-    public EnemyAI()
-    {
-
-    }
-
     #region PlaceCard
     public void PlaceCard(Hand enemyHand, Battlefield enemyBattlefield)
     {
@@ -230,11 +223,11 @@ public class EnemyAI
             currentCard = cardBefore;
         }
 
-        bool curentCardWouldTakeDamege = WouldCurrentCardTakeDamage(obf, currentIndex, currentCard);
+        bool curentCardWouldTakeDamage = WouldCurrentCardTakeDamage(obf, currentIndex, currentCard);
 
         bool vitalityIsSmaller = currentCard.Vitality < cardBefore.Vitality;
 
-        return curentCardWouldTakeDamege && vitalityIsSmaller;
+        return curentCardWouldTakeDamage && vitalityIsSmaller;
     }
     private bool WouldCurrentCardTakeDamage(Battlefield obf, int currentIndex, Card currentCard)
     {
@@ -268,6 +261,8 @@ public class EnemyAI
                     (iteractionCard != null) &&
                     // Otherwise, we can change the currentAttackerOrNull if it is null...
                     (currentAttackerOrNull == null ||
+                    // Also change it if currentAttackerOrNull can't attack and next is not null
+                    (!currentAttackerOrNull.CanAttack() && iteractionCard != null) ||
                     // We can also change if the iteractionCard CanAttack() and it is more powerful than the current one (greatest attack power).
                     (iteractionCard.CanAttack() && currentAttackerOrNull.AttackPower < iteractionCard.AttackPower));
                 if (isIteractionCardABetterAttackerThanTheCurrentOne)
