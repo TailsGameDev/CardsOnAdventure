@@ -22,6 +22,7 @@ public class Settings : MonoBehaviour
     private Toggle shutSpiritsMouth = null;
 
     private const string AI_DELAY_KEY = "AI_DELAY_KEY";
+    private const string CUSTOM_CURSOR_KEY = "CUSTOM_CURSOR"; 
 
     public static readonly int TRUE = 1;
     public static readonly int FALSE = 0;
@@ -46,7 +47,7 @@ public class Settings : MonoBehaviour
 
         fullscreenToggle.isOn = IsTrue( PlayerPrefs.GetInt(FULLSCREEN_KEY, FALSE) ) ;
 
-        customCursorToggle.isOn = IsTrue(PlayerPrefs.GetInt("CustomCursor", FALSE));
+        customCursorToggle.isOn = IsTrue(PlayerPrefs.GetInt(CUSTOM_CURSOR_KEY, FALSE));
         if (customCursorToggle.isOn)
         {
             Cursor.SetCursor(customCursor, Vector2.zero, CursorMode.Auto);
@@ -154,12 +155,12 @@ public class Settings : MonoBehaviour
         {
             Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
         }
-        PlayerPrefs.SetInt("CustomCursor", ToInt(customCursorToggle.isOn));
+        PlayerPrefs.SetInt(CUSTOM_CURSOR_KEY, ToInt(customCursorToggle.isOn));
     }
 
     public void RefreshCursor()
     {
-        if (IsTrue(PlayerPrefs.GetInt("CustomCursor", FALSE)))
+        if (IsTrue(PlayerPrefs.GetInt(CUSTOM_CURSOR_KEY, FALSE)))
         {
             Cursor.SetCursor(customCursor, Vector2.zero, CursorMode.Auto);
         }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ChildMaker : MonoBehaviour
 {
@@ -72,46 +73,52 @@ public class ChildMaker : MonoBehaviour
             yield return null;
         }
 
-        StartCoroutine(ScaleAndSmothlyMoveToPos(parent, child, totalTime));
+        if (parent != null && child != null)
+        {
+            StartCoroutine(ScaleAndSmothlyMoveToPos(parent, child, totalTime));
+        }
     }
 
     private IEnumerator ScaleAndSmothlyMoveToPos(Transform parent, RectTransform child, float totalTime)
     {
-        movingRects.Add(child);
-
-        // Scale
-        child.SetParent(parent, true);
-        yield return null;
-        child.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-
-        // Make it float above everybody.
-        child.SetParent(UIBattle.parentOfDynamicUIThatMustAppear, true);
-
-        Vector3 initialPosition = child.transform.position;
-
-        Vector3 direction = parent.transform.position - child.transform.position;
-
-        float time = 0.0f;
-
-        while (child != null && time < totalTime)
-        {
-            time += TimeFacade.DeltaTime;
-
-            float completePercentage = time / totalTime;
-
-            child.transform.position = initialPosition + completePercentage * direction;
-
-            yield return null;
-        }
-
         if (child != null)
         {
-            child.transform.position = parent.transform.position;
-        
-            child.SetParent(parent, true);
-        }
+            movingRects.Add(child);
 
-        movingRects.Remove(child);
+            // Scale
+            child.SetParent(parent, true);
+            yield return null;
+            child.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+
+            // Make it float above everybody.
+            child.SetParent(UIBattle.parentOfDynamicUIThatMustAppear, true);
+
+            Vector3 initialPosition = child.transform.position;
+
+            Vector3 direction = parent.transform.position - child.transform.position;
+
+            float time = 0.0f;
+
+            while (child != null && time < totalTime)
+            {
+                time += TimeFacade.DeltaTime;
+
+                float completePercentage = time / totalTime;
+
+                child.transform.position = initialPosition + completePercentage * direction;
+
+                yield return null;
+            }
+
+            if (child != null)
+            {
+                child.transform.position = parent.transform.position;
+        
+                child.SetParent(parent, true);
+            }
+
+            movingRects.Remove(child);
+        }
     }
 
     /*

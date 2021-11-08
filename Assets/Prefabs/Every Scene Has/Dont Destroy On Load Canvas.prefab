@@ -1896,7 +1896,8 @@ MonoBehaviour:
   title: Enemy's Delay
   tipData:
   - message: 
-    background: {fileID: 21300000, guid: 4555b25e7c3136b4da9c77ed79e64129, type: 3}
+    background: {fileID: 1998619087552311399, guid: fe7b2f7e613e6424abc519966a38cb6d,
+      type: 3}
     height: 600
     color: {r: 0, g: 0, b: 0, a: 0}
   - message: "The delay between enemy\u2019s plays is the time the enemy Artificial
@@ -5776,7 +5777,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 1,5
+  m_Text: 1.5
 --- !u!1 &7866352809052833835
 GameObject:
   m_ObjectHideFlags: 0
