@@ -605,7 +605,8 @@ PrefabInstance:
       value: "\n<color=#9EFA9D>Developers</color>\nCain\xE3 C. C. (TailsGameDev)\nThayse
         Fortes (Coati)\r\nLuiz Henrique M. Rondon\r\nArthur Neves\r\n\n<color=#9EFA9D>Testers</color>\nLuis
         Felipe Bruno Azeredo\r\nVictor Armando Neis\r\nVictor Vighi\r\n\n<color=#A970FF>Twitch</color>
-        <color=#9EFA9D>Streamers</color>\nTailsGameDev\n\rStartTheReckless\n"
+        <color=#9EFA9D>Streamers</color>\nTailsGameDev\n\rStartTheReckless\n\n<color=#9EFA9D>Special
+        Thanks</color>\nbloodTIPOFALSO\n"
       objectReference: {fileID: 0}
     - target: {fileID: 6987321625034104170, guid: aa9b3f8cbac2c134b9fbdc8ff94fe762,
         type: 3}
