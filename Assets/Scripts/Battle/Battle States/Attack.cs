@@ -6,7 +6,7 @@ public class Attack : BattleState
     private Battlefield attackerBattlefield;
     private Battlefield opponentBattleField;
 
-    private List<int> attackTokens = new List<int>();
+    private List<int> attackersThatHaveNotAttacked = new List<int>();
 
     private UICustomBtn endTurnBtn;
     private bool clickedEndTurnBtn = false;
@@ -26,6 +26,7 @@ public class Attack : BattleState
     public static bool shouldAskForTip = true;
 
     private readonly int TOTAL_OF_ATTACKERS;
+    const int MAX_AMOUNT_OF_ATTACKS = 2;
 
     public Attack(
                     Battlefield attackerBattlefield,
@@ -56,7 +57,7 @@ public class Attack : BattleState
 
         if (currentBattleStatesFactory == enemyBattleStatesFactory)
         {
-            new EnemyAI().Attack(enemyBattlefield: attackerBattlefield, playerBattlefield: opponentBattleField);
+            new EnemyAI().Attack(MAX_AMOUNT_OF_ATTACKS, enemyBattlefield: attackerBattlefield, playerBattlefield: opponentBattleField);
         }
         else
         {
@@ -67,8 +68,8 @@ public class Attack : BattleState
             }
         }
 
-        attackTokens = ListCardsThatShouldAttackDuringThisState();
-        TOTAL_OF_ATTACKERS = attackTokens.Count;
+        attackersThatHaveNotAttacked = ListCardsThatShouldAttackDuringThisState();
+        TOTAL_OF_ATTACKERS = attackersThatHaveNotAttacked.Count;
 
         this.endTurnBtn = endTurnBtn;
         this.popUpOpener = popUpOpener;
@@ -92,7 +93,7 @@ public class Attack : BattleState
 
     private void OnClickedEndTurnBtn()
     {
-        if (attackTokens.Count == attackerBattlefield.GetAmountOfCardsThatCanAttack())
+        if (attackersThatHaveNotAttacked.Count == attackerBattlefield.GetAmountOfCardsThatCanAttack())
         {
             popUpOpener.OpenAndMakeUncloseable
                 (
@@ -162,7 +163,7 @@ public class Attack : BattleState
                 Card myCard = attackerBattlefield.GetSelectedCard();
                 myCard.AttackSelectedCard(opponentBattleField, attackerBattlefield);
 
-                attackTokens.Remove(attackerBattlefield.GetSelectedIndex());
+                attackersThatHaveNotAttacked.Remove(attackerBattlefield.GetSelectedIndex());
 
                 attackerBattlefield.MakeSelectedCardNormalSize();
 
@@ -197,7 +198,7 @@ public class Attack : BattleState
             receivedInputIsValid = ReceivedInputIsValid();
         }
 
-        bool cardHasAnAttackToken = attackTokens.Contains(attackerBattlefield.GetSelectedIndex());
+        bool cardHasAnAttackToken = attackersThatHaveNotAttacked.Contains(attackerBattlefield.GetSelectedIndex());
 
         return receivedInput && receivedInputIsValid && cardHasAnAttackToken;
     }
@@ -230,7 +231,7 @@ public class Attack : BattleState
     private bool ClickedInvalidCard()
     {
         int myIndex = attackerBattlefield.GetSelectedIndex();
-        bool invalidClickInMyBattlefield = (myIndex != -1) && (!attackTokens.Contains(myIndex));
+        bool invalidClickInMyBattlefield = (myIndex != -1) && (!attackersThatHaveNotAttacked.Contains(myIndex));
 
         int opponentIndex = opponentBattleField.GetSelectedIndex();
         bool invalidClickInOpponentsBattlefield = (opponentIndex != -1) && opponentBattleField.IsSlotIndexFree(opponentIndex);
@@ -263,9 +264,11 @@ public class Attack : BattleState
         {
             nextState = currentBattleStatesFactory.CreateBonusRepositionState(); 
         }
-        else if (TOTAL_OF_ATTACKERS == 0 || attackerBattlefield.IsEmpty() || opponentBattleField.IsEmpty() || clickedEndTurnBtn ||
-            // Or if someone has already attacked == attackTokens.Count < TOTAL_OF_ATTACKERS
-            (attackTokens.Count < TOTAL_OF_ATTACKERS) )
+        else if ( attackerBattlefield.IsEmpty() || opponentBattleField.IsEmpty() || clickedEndTurnBtn ||
+                  // Or if there is nobody to attack      
+                  TOTAL_OF_ATTACKERS == 0 || attackersThatHaveNotAttacked.Count == 0 ||
+                  // Or if too much cards have already attacked
+                ( (TOTAL_OF_ATTACKERS - attackersThatHaveNotAttacked.Count) >= MAX_AMOUNT_OF_ATTACKS) )
         {
             nextState = currentBattleStatesFactory.CreateEndTurnState();
         }

@@ -22,7 +22,9 @@ public class EnemyAI
 
     private int attackerPower;
 
-    public delegate bool CurrentTargetIsBetterThanTheOneBefore(int indexBefore, int currentIndex, Battlefield obf);
+    private int maxAmountOfAttacks;
+
+    public delegate bool CurrentTargetIsBetterThanPrevious(int previousIndex, int currentIndex, Battlefield obf);
 
     public static float AIDelay { set => aiDelay = value; }
 
@@ -161,8 +163,9 @@ public class EnemyAI
     #endregion
 
     #region Attack
-    public void Attack(Battlefield enemyBattlefield, Battlefield playerBattlefield)
+    public void Attack(int maxAmountOfAttacks, Battlefield enemyBattlefield, Battlefield playerBattlefield)
     {
+        this.maxAmountOfAttacks = maxAmountOfAttacks;
         this.enemyBattlefield = enemyBattlefield;
         this.playerBattlefield = playerBattlefield;
 
@@ -183,11 +186,11 @@ public class EnemyAI
         List<Card> attackerCards = new List<Card>();
         List<int> attackerIndexes = new List<int>();
 
-        iAttackersChooser attackersChooser = new OnlyTheStrongestAttackersChooser();
+        iAttackersChooser attackersChooser = new StrongestAttackersChooser();
         attackersChooser.PopulateAttackersLists(this, attackerCards, attackerIndexes);
 
         // Perform attack for each card in attackers list
-        for (int i = 0; i < attackerCards.Count; i++)
+        for (int i = 0; (i < attackerCards.Count) && playerBattlefield.HasCards(); i++)
         {
             yield return WaitForSeconds(aiDelay);
 
@@ -200,34 +203,33 @@ public class EnemyAI
             enemyBattlefield.SetSelectedIndex(attackerIndexes[i]);
 
             this.attackerPower = attacker.AttackPower;
-            playerBattlefield.LoopThrougCardsAndSelectBestTarget(currentTargetIsBetterThanTheOneBefore);
+            playerBattlefield.LoopThrougCardsAndSelectBestTarget(IsCurrentTargetBetterThanPrevious);
         }
 
         UIBattle.inputEnabled = true;
         coroutineExecutor.SelfDestroy();
     }
-    private bool currentTargetIsBetterThanTheOneBefore(int indexBefore, int currentIndex, Battlefield obf)
+    private bool IsCurrentTargetBetterThanPrevious(int previousIndex, int currentIndex, Battlefield obf)
     {
-        if (indexBefore < 0)
+        bool isCurrentTargetBetterThanPrevious;
+
+        if (obf.IsSlotIndexOccupied(currentIndex))
         {
-            L.ogError(this, "negative indexBefore in currentTargetIsBetterThanTheOneBefore");
-            return false;
+            Card cardBefore = obf.GetReferenceToCardAt(previousIndex);
+            Card currentCard = obf.GetReferenceToCardAt(currentIndex);
+
+            bool wouldCurrentCardTakeDamage = WouldCurrentCardTakeDamage(obf, currentIndex, currentCard);
+            bool isVitalitySmaller = currentCard.Vitality < cardBefore.Vitality;
+
+            isCurrentTargetBetterThanPrevious = wouldCurrentCardTakeDamage && isVitalitySmaller;
+        }
+        else
+        {
+            // Then currentIndex corresponds to an empty spot, so it's certainly not better than previousIndex
+            isCurrentTargetBetterThanPrevious = false;
         }
 
-        Card cardBefore = obf.GetReferenceToCardAt(indexBefore);
-        Card currentCard = obf.GetReferenceToCardAt(currentIndex);
-
-        if (currentCard == null)
-        {
-            L.ogError(this, "current card is null. Index: "+currentIndex);
-            currentCard = cardBefore;
-        }
-
-        bool curentCardWouldTakeDamage = WouldCurrentCardTakeDamage(obf, currentIndex, currentCard);
-
-        bool vitalityIsSmaller = currentCard.Vitality < cardBefore.Vitality;
-
-        return curentCardWouldTakeDamage && vitalityIsSmaller;
+        return isCurrentTargetBetterThanPrevious;
     }
     private bool WouldCurrentCardTakeDamage(Battlefield obf, int currentIndex, Card currentCard)
     {
@@ -240,6 +242,108 @@ public class EnemyAI
     private interface iAttackersChooser
     {
         public void PopulateAttackersLists(EnemyAI enemyAI, List<Card> attackerCards, List<int> attackerIndexes);
+    }
+    private class StrongestAttackersChooser : iAttackersChooser
+    {
+        EnemyAI enemyAI;
+
+        public void PopulateAttackersLists(EnemyAI enemyAI, List<Card> attackerCards, List<int> attackerIndexes)
+        {
+            this.enemyAI = enemyAI;
+
+            List<Card> allEnemyCards = GetAllEnemyCardsOnBattlefield();
+            
+            allEnemyCards.Sort(CompareCardsByCurrentPower);
+
+            AddMostPowerfulCardsToAttackerCardsList(cardsSortedByPower: allEnemyCards, attackerCards);
+
+            PopulateAttackerIndexesList(attackerCards, attackerIndexes);
+        }
+        private List<Card> GetAllEnemyCardsOnBattlefield()
+        {
+            Battlefield enemyBattlefield = enemyAI.enemyBattlefield;
+            List<Card> allEnemyCardsOnBattlefield = new List<Card>();
+            for (int c = 0; c < enemyBattlefield.GetSize(); c++)
+            {
+                Card card = enemyBattlefield.GetReferenceToCardAtOrGetNull(c);
+                if (card != null)
+                {
+                    allEnemyCardsOnBattlefield.Add(card);
+                }
+            }
+            return allEnemyCardsOnBattlefield;
+        }
+        /// <summary>
+        /// Compare cards considering the AttackPower and if they CanAttack()
+        /// </summary>
+        private int CompareCardsByCurrentPower(Card cardA, Card cardB)
+        {
+            int comparisonResult;
+
+            const int A_IS_GREATER = +1;
+            const int CARDS_ARE_EQUAL = 0;
+            const int B_IS_GREATER = -1;
+
+            if ( (!cardA.CanAttack()) && (!cardB.CanAttack()) )
+            {
+                comparisonResult = CARDS_ARE_EQUAL;
+            }
+            else if (!cardA.CanAttack())
+            {
+                comparisonResult = B_IS_GREATER;
+            }
+            else if (!cardB.CanAttack())
+            {
+                comparisonResult = A_IS_GREATER;
+            }
+            else if (cardA.AttackPower == cardB.AttackPower)
+            {
+                comparisonResult = CARDS_ARE_EQUAL;
+            }
+            else if (cardA.AttackPower > cardB.AttackPower)
+            {
+                comparisonResult = A_IS_GREATER;
+            }
+            else if (cardA.AttackPower < cardB.AttackPower)
+            {
+                comparisonResult = B_IS_GREATER;
+            }
+            else
+            {
+                L.ogWarning("[EnemyAI] Couldn't calculate what is the better card among " + cardA.name + " and " + cardB.name, this);
+                comparisonResult = CARDS_ARE_EQUAL;
+            }
+
+            return comparisonResult;
+        }
+        private void AddMostPowerfulCardsToAttackerCardsList(List<Card> cardsSortedByPower, List<Card> attackerCardsList)
+        {
+            int k = 0;
+            while ((k < enemyAI.maxAmountOfAttacks) && (k < cardsSortedByPower.Count))
+            {
+                Card card = cardsSortedByPower[(cardsSortedByPower.Count-1)-k];
+                if (card != null && card.CanAttack())
+                {
+                    attackerCardsList.Add(card);
+                }
+                k++;
+            }
+        }
+        private void PopulateAttackerIndexesList(List<Card> attackerCards, List<int> attackerIndexes)
+        {
+            Battlefield enemyBattlefield = this.enemyAI.enemyBattlefield;
+            for (int a = 0; a < attackerCards.Count; a++)
+            {
+                Card attackerCard = attackerCards[a];
+                for (int c = 0; c < enemyBattlefield.GetSize(); c++)
+                {
+                    if (attackerCard == enemyBattlefield.GetReferenceToCardAtOrGetNull(c))
+                    {
+                        attackerIndexes.Add(c);
+                    }
+                }
+            }
+        }
     }
     private class OnlyTheStrongestAttackersChooser : iAttackersChooser
     {

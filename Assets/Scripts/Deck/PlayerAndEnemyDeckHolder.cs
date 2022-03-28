@@ -15,8 +15,9 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
     {
         if (enemyDeckBuilder == null)
         {
+            const string DEFAULT_DECK_NAME = "SimpleBattleDeck";
             // enemyDeckBuilder = new RandomDeckBuilder(DeckBuilderSuperclass.DEFAULT_DECK_SIZE);
-            enemyDeckBuilder = EditorMadeDeckBuilder.CreateEditorMadeDeckBuilder("HealDeck");
+            enemyDeckBuilder = EditorMadeDeckBuilder.CreateEditorMadeDeckBuilder(DEFAULT_DECK_NAME);
         }
 
         // Apply Map bonus
@@ -42,9 +43,10 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
                 }
             }
 
-        } else
+        } 
+        else
         {
-            Debug.LogError("If you started in the battle scene, that's ok. Otherwise, trouble.");
+            Debug.LogWarning("If you started in the battle scene, that's ok. Otherwise, trouble.");
         }
 
         return cards;

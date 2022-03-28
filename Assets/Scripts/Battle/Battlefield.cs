@@ -22,22 +22,22 @@ public class Battlefield : CardsHolder
         PutCardInIndexWithSmoothMovement(aux, index);
     }
 
-    public void LoopThrougCardsAndSelectBestTarget(EnemyAI.CurrentTargetIsBetterThanTheOneBefore isCurrentTargetBetter)
+    public void LoopThrougCardsAndSelectBestTarget(EnemyAI.CurrentTargetIsBetterThanPrevious isCurrentTargetBetterThanPrevious)
     {
-        int iterator = GetFirstOccupiedIndex();
-        int selected = iterator;
+        int previousIndex = GetFirstOccupiedIndex();
+        int currentIndex = previousIndex;
 
         int k = 10;
-        while (iterator != CODE_TO_STOP && k > 0)
+        while (currentIndex != CODE_TO_STOP && k > 0)
         {
             k--;
-            if (isCurrentTargetBetter(indexBefore: selected, currentIndex: iterator, this))
+            if (isCurrentTargetBetterThanPrevious(previousIndex, currentIndex, this))
             {
-                selected = iterator;
+                previousIndex = currentIndex;
             }
             // NOTE: the order of the iteration acctualy does not matter, because if
             // 'isCurrentTargetBetter' is called in all cards, the best should be found
-            iterator = GetNextIndexToAttackOrGetCodeToStop(iterator);
+            currentIndex = GetNextIndexToAttackOrGetCodeToStop(currentIndex);
         }
 
         if (k < 0)
@@ -46,35 +46,11 @@ public class Battlefield : CardsHolder
             L.ogError(this, "k avoided an infinite loop. Please review the loop logic");
         }
 
-        SetSelectedIndex(selected);
+        SetSelectedIndex(previousIndex);
     }
     private int GetNextIndexToAttackOrGetCodeToStop(int current)
     {
-        int MaybeTheNext = GetNextIndexInVerticalOrderOrGetCodeToStop(current: current);
-        if (MaybeTheNext == CODE_TO_STOP || cards[MaybeTheNext] != null)
-        {
-            return MaybeTheNext;
-        }
-        else
-        {
-            return GetNextIndexInVerticalOrderOrGetCodeToStop(MaybeTheNext);
-        }
-    }
-    private int GetNextIndexInVerticalOrderOrGetCodeToStop(int current)
-    {
-        int next;
-        switch (current)
-        {
-            case 0: next = 2; break;
-            case 1: next = 3; break;
-            case 2: next = 1; break;
-            case 3: next = CODE_TO_STOP; break;
-            default:
-                L.ogError("GetNextIndexToAttack called, but current is out of bounds", this);
-                next = CODE_TO_STOP;
-                break;
-        }
-        return next;
+        return (current < 3) ? (current + 1) : CODE_TO_STOP;
     }
 
     public void BuffAllCardsAttackPowerForThisMatch()
@@ -274,27 +250,36 @@ public class Battlefield : CardsHolder
         bool attackWillBeBlocked = cardInFrontOfTarget!= null && cardInFrontOfTarget.HasBlockSkill();
         if (IsThereACardInFrontOf(selectedIndex) && !attackerIgnoresBlock && !attackWillBeBlocked)
         {
-            StartCoroutine(MakeProtectionEvident(selectedIndex));
+            TransformWrapper protectionTransformWrapper = 
+                new TransformWrapper (protectionVFXtoEachCard[selectedIndex].transform);
+            StartCoroutine(MakeEvident(protectionTransformWrapper));
             cards[selectedIndex].MakeProtectionEvident();
         }
     }
-    private IEnumerator MakeProtectionEvident(int selectedIndex)
+    public void MakeSelectedCardEvident()
     {
-        Transform protection = protectionVFXtoEachCard[selectedIndex].transform;
-        Vector3 originalScale = protection.localScale;
+        if (GetSelectedIndex() > 0)
+        {
+            Card selectedCard = GetSelectedCard();
+            StartCoroutine(MakeEvident(selectedCard.TransformWrapper));
+        }
+    }
+    private IEnumerator MakeEvident(TransformWrapper objectToDetach)
+    {
+        Vector3 originalScale = objectToDetach.LocalScale;
         Vector3 targetScale = originalScale + new Vector3(increaseScaleValueInProtectionAnimation,
-                                                        increaseScaleValueInProtectionAnimation,0.0f);
-        while (protection.localScale.x < targetScale.x)
+                                                        increaseScaleValueInProtectionAnimation, 0.0f);
+        while (objectToDetach.LocalScale.x < targetScale.x)
         {
             float t = TimeFacade.DeltaTime * increaseScaleSpeedMultiplier;
-            protection.localScale += new Vector3(t,t,t);
+            objectToDetach.LocalScale += new Vector3(t, t, t);
             yield return null;
         }
 
-        while (protection.localScale.x > originalScale.x)
+        while (objectToDetach.LocalScale.x > originalScale.x)
         {
             float t = TimeFacade.DeltaTime * increaseScaleSpeedMultiplier;
-            protection.localScale -= new Vector3(t, t, t);
+            objectToDetach.LocalScale -= new Vector3(t, t, t);
             yield return null;
         }
     }
