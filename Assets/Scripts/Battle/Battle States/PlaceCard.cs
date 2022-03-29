@@ -29,7 +29,8 @@ public class PlaceCard : BattleState
         this.placeCardSFXRequest = placeCardSFX;
         this.btnsBackground = btnsBackground;
         this.customPopUpOpener = customPopUpOpener;
-        
+
+        L.og("deactivate", this);
         btnsBackground.SetActive(false);
 
         ClearSelections();
@@ -143,6 +144,5 @@ public class PlaceCard : BattleState
     protected void OnGoToRepositionState()
     {
         TipDragAndDrop.HidePlaceCardsNowTip();
-        btnsBackground.SetActive(currentBattleStatesFactory == playerBattleStatesFactory);
     }
 }

@@ -192,7 +192,8 @@ public class EnemyAI
         // Perform attack for each card in attackers list
         for (int i = 0; (i < attackerCards.Count) && playerBattlefield.HasCards(); i++)
         {
-            yield return WaitForSeconds(aiDelay);
+            // This wait is important because the player's cards need time to go back to place before the enemy attack
+            yield return WaitForSeconds(aiDelay/2);
 
             enemyBattlefield.ClearSelection();
             playerBattlefield.ClearSelection();
@@ -204,6 +205,9 @@ public class EnemyAI
 
             this.attackerPower = attacker.AttackPower;
             playerBattlefield.LoopThrougCardsAndSelectBestTarget(IsCurrentTargetBetterThanPrevious);
+
+            // This wait is important because we must expect the cards to die before the loop checks for playerBattlefield.HasCards()
+            yield return WaitForSeconds(aiDelay/2);
         }
 
         UIBattle.inputEnabled = true;

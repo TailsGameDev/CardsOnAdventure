@@ -176,7 +176,7 @@ public abstract class DragAndDrop : MonoBehaviour
                 {
                     if (receptorCandidate == receptor)
                     {
-                        L.ogError(this, "Damn, How can this be overlapping something it exited?");
+                        L.ogWarning(this, "Damn, How can this be overlapping something it exited?");
                     }
                     receptor = receptorCandidate;
                 }

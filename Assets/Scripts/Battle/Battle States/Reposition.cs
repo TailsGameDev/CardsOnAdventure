@@ -6,7 +6,7 @@ public class Reposition : BattleState
     private Battlefield attackerBattlefield;
     private Battlefield opponentBattlefield;
     private UICustomBtn endRepositioningBtn;
-    private GameObject toActivate;
+    private GameObject youCanRepositionNowGameObject;
 
     private int oldIndex;
     private int currentIndex;
@@ -20,16 +20,17 @@ public class Reposition : BattleState
     private int obfIndex;
     private static bool alreadyAskedTip = false;
 
-    public Reposition(Battlefield attackerBattlefield, Battlefield opponentBattlefield, UICustomBtn endRepositioningBtn, GameObject toActivate)
+    public Reposition(Battlefield attackerBattlefield, Battlefield opponentBattlefield, UICustomBtn endRepositioningBtn, GameObject youCanRepositionNowText, GameObject btnsBackground)
     {
         this.attackerBattlefield = attackerBattlefield;
         this.opponentBattlefield = opponentBattlefield;
         this.endRepositioningBtn = endRepositioningBtn;
-        this.toActivate = toActivate;
+        this.youCanRepositionNowGameObject = youCanRepositionNowText;
 
         ClearSelection();
 
-        toActivate.SetActive(true);
+        youCanRepositionNowText.SetActive(true);
+        btnsBackground.SetActive(currentBattleStatesFactory == playerBattleStatesFactory);
 
         if (!alreadyAskedTip && currentBattleStatesFactory == playerBattleStatesFactory)
         {
@@ -200,6 +201,6 @@ public class Reposition : BattleState
         }
 
         endRepositioningBtn.ChangeText("To Attack ->");
-        toActivate.SetActive(false);
+        youCanRepositionNowGameObject.SetActive(false);
     }
 }

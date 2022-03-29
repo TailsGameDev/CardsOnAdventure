@@ -37,7 +37,7 @@ public class BattleStatesFactory : OpenersSuperclass
     private GameObject sceneCanvasGameObject = null;
 
     [SerializeField]
-    private GameObject activateOnRepositionState = null;
+    private GameObject youCanRepositionNowGameObject = null;
 
     [SerializeField]
     private GameObject activateOnAttackState = null;
@@ -77,7 +77,7 @@ public class BattleStatesFactory : OpenersSuperclass
     // If fully ordered by flow order, the Place Card state would be here, but it is at the end of the class.
     public BattleState CreateRepositionState()
     {
-        return new Reposition(battlefield, otherBattleStatesFactory.battlefield, endRepositioningBtn, activateOnRepositionState);
+        return new Reposition(battlefield, otherBattleStatesFactory.battlefield, endRepositioningBtn, youCanRepositionNowGameObject, btnsBackground);
     }
     public BattleState CreateAttackState()
     {

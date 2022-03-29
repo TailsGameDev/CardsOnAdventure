@@ -2470,7 +2470,7 @@ MonoBehaviour:
   preMadeAudioFactory: {fileID: 602012571}
   audioRequisitor: {fileID: 602012573}
   sceneCanvasGameObject: {fileID: 1612099938}
-  activateOnRepositionState: {fileID: 1795980430}
+  youCanRepositionNowGameObject: {fileID: 1795980430}
   activateOnAttackState: {fileID: 997322729}
   battleIconImage: {fileID: 670656010}
 --- !u!1 &928461781
@@ -4075,7 +4075,7 @@ MonoBehaviour:
   preMadeAudioFactory: {fileID: 602012571}
   audioRequisitor: {fileID: 602012573}
   sceneCanvasGameObject: {fileID: 1612099938}
-  activateOnRepositionState: {fileID: 1795980430}
+  youCanRepositionNowGameObject: {fileID: 1795980430}
   activateOnAttackState: {fileID: 997322729}
   battleIconImage: {fileID: 670656010}
 --- !u!1 &1378405285

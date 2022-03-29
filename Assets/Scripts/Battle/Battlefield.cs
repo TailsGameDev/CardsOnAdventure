@@ -35,8 +35,6 @@ public class Battlefield : CardsHolder
             {
                 previousIndex = currentIndex;
             }
-            // NOTE: the order of the iteration acctualy does not matter, because if
-            // 'isCurrentTargetBetter' is called in all cards, the best should be found
             currentIndex = GetNextIndexToAttackOrGetCodeToStop(currentIndex);
         }
 
@@ -50,7 +48,7 @@ public class Battlefield : CardsHolder
     }
     private int GetNextIndexToAttackOrGetCodeToStop(int current)
     {
-        return (current < 3) ? (current + 1) : CODE_TO_STOP;
+        return (current < (cards.Length-1)) ? (current + 1) : CODE_TO_STOP;
     }
 
     public void BuffAllCardsAttackPowerForThisMatch()
