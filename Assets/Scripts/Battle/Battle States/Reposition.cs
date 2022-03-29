@@ -95,7 +95,7 @@ public class Reposition : BattleState
 
             if (oldSelectedCard == null && currentSelectedCard != null)
             {
-                if (!currentSelectedCard.Freezing)
+                if (!currentSelectedCard.IsFreezing)
                 {
                     attackerBattlefield.MakeCardAtIndexNormalSize(oldIndex);
                     SwapCards();
@@ -103,7 +103,7 @@ public class Reposition : BattleState
             }
             else if (oldSelectedCard != null && currentSelectedCard == null)
             {
-                if (!oldSelectedCard.Freezing)
+                if (!oldSelectedCard.IsFreezing)
                 {
                     attackerBattlefield.MakeCardAtIndexNormalSize(currentIndex);
                     SwapCards();
@@ -111,7 +111,7 @@ public class Reposition : BattleState
             }
             else if (oldSelectedCard != null && currentSelectedCard != null)
             {
-                if (!oldSelectedCard.Freezing && !currentSelectedCard.Freezing)
+                if (!oldSelectedCard.IsFreezing && !currentSelectedCard.IsFreezing)
                 {
                     if (attackerBattlefield.ContainsCardInIndex(currentIndex))
                     {

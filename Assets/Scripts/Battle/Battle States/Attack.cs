@@ -68,8 +68,8 @@ public class Attack : BattleState
             }
         }
 
-        attackersThatHaveNotAttacked = ListCardsThatShouldAttackDuringThisState();
-        TOTAL_OF_ATTACKERS = attackersThatHaveNotAttacked.Count;
+        attackersThatHaveNotAttacked = ListCardsThatCanAttackDuringThisState();
+        TOTAL_OF_ATTACKERS = attackersThatHaveNotAttacked.Count + GetAmountOfCardsThatAlreadyAttacked();
 
         this.endTurnBtn = endTurnBtn;
         this.popUpOpener = popUpOpener;
@@ -84,13 +84,43 @@ public class Attack : BattleState
         }
 
     }
-
     private void ClearSelections()
     {
         attackerBattlefield.ClearSelection();
         opponentBattleField.ClearSelection();
     }
-
+    private List<int> ListCardsThatCanAttackDuringThisState()
+    {
+        List<int> cards = new List<int>();
+        for (int i = 0; i < attackerBattlefield.GetSize(); i++)
+        {
+            if (attackerBattlefield.ContainsCardInIndex(i))
+            {
+                Card possibleAttacker = attackerBattlefield.GetReferenceToCardAt(i);
+                if (possibleAttacker.CanAttack())
+                {
+                    cards.Add(i);
+                }
+            }
+        }
+        return cards;
+    }
+    private int GetAmountOfCardsThatAlreadyAttacked()
+    {
+        int amount = 0;
+        for (int i = 0; i < attackerBattlefield.GetSize(); i++)
+        {
+            if (attackerBattlefield.ContainsCardInIndex(i))
+            {
+                Card possibleAttacker = attackerBattlefield.GetReferenceToCardAt(i);
+                if (possibleAttacker.HasAlreadyAttacked())
+                {
+                    amount++;
+                }
+            }
+        }
+        return amount;
+    }
     private void OnClickedEndTurnBtn()
     {
         if (attackersThatHaveNotAttacked.Count == attackerBattlefield.GetAmountOfCardsThatCanAttack())
@@ -110,27 +140,9 @@ public class Attack : BattleState
             clickedEndTurnBtn = true;
         }
     }
-
     private void OnClickedRepositionAgainBtn()
     {
         clickedRepositionAgainBtn = true;
-    }
-
-    private List<int> ListCardsThatShouldAttackDuringThisState()
-    {
-        List<int> cards = new List<int>();
-        for (int i = 0; i < attackerBattlefield.GetSize(); i++)
-        {
-            if (attackerBattlefield.ContainsCardInIndex(i))
-            {
-                Card possibleAttacker = attackerBattlefield.GetReferenceToCardAt(i);
-                if (possibleAttacker.CanAttack())
-                {
-                    cards.Add(i);
-                }
-            }
-        }
-        return cards;
     }
 
     public void SetOpponentSelectedIndex(int index)

@@ -15,7 +15,7 @@ public class Card : SkillsMediatorUser
 
     [SerializeField]
     private OldSkill skills = null;
-    private bool freezing = false;
+    private bool isFreezing = false;
     private GameObject freezingEffect = null;
 
     [SerializeField]
@@ -83,7 +83,7 @@ public class Card : SkillsMediatorUser
     #endregion
 
     #region Properties
-    public bool Freezing { get => freezing; }
+    public bool IsFreezing { get => isFreezing; }
     public int Vitality { get => vitality; }
     public int AttackPower { get => attackPower; set => attackPower = value; }
     public Classes Classe { get => classInfo.Classe; }
@@ -277,11 +277,15 @@ public class Card : SkillsMediatorUser
     #region VFX and Methods to Change Card Visually
     public bool CanAttack()
     {
-        return !obfuscator.gameObject.activeSelf && !freezing;
+        return (!HasAlreadyAttacked()) && (!isFreezing);
     }
     public void SetObfuscate(bool obfuscate)
     {
         obfuscator.gameObject.SetActive(obfuscate);
+    }
+    public bool HasAlreadyAttacked()
+    {
+        return obfuscator.gameObject.activeSelf;
     }
     public void ShowDefenseVFXandSFXIfHasBlockOrReflect(float attackerYPosition)
     {
@@ -471,14 +475,14 @@ public class Card : SkillsMediatorUser
     public void ApplyFreezing(GameObject freezingEffect)
     {
         RemoveFreezing();
-        freezing = true;
+        isFreezing = true;
         this.freezingEffect = freezingEffect;
         ChildMaker.AdoptAndTeleport(transform, freezingEffect.GetComponent<RectTransform>());
         freezingEffect.transform.localScale = UnityEngine.Vector3.one;
     }
     public void RemoveFreezing()
     {
-        freezing = false;
+        isFreezing = false;
         if (freezingEffect != null)
         {
             Destroy(freezingEffect);

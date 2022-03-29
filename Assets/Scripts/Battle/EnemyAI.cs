@@ -396,7 +396,7 @@ public class EnemyAI
             for (int i = 0; i < enemyBattlefield.GetSize(); i++)
             {
                 Card card = enemyBattlefield.GetReferenceToCardAtOrGetNull(i);
-                if (card != null && !card.Freezing)
+                if (card != null && !card.IsFreezing)
                 {
                     attackerCards.Add(card);
                     attackerIndexes.Add(i);
