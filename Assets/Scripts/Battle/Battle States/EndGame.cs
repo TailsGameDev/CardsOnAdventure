@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class EndGame : BattleState
@@ -90,17 +91,9 @@ public class EndGame : BattleState
                             case BattleReward.SPECIFIC_CARD:
                                 {
                                     sceneCanvas.SetActive(false);
-                                    Card[] reward = BuildRewardDeck();
+                                    Card[] reward = EditorMadeDeckBuilder.CreateEditorMadeDeckBuilder(rewardDeckName).GetDeck();
 
-                                    CustomPopUp.OnBtnClicked onbtn;
-                                    if (reward.Length == 1)
-                                    {
-                                        onbtn = GiveCardThenSeeMap;
-                                    }
-                                    else
-                                    {
-                                        onbtn = Give2CardsThenSeeMap;
-                                    }
+                                    CustomPopUp.OnBtnClicked onbtn = () => { GiveRewardDeckThenSeeMap(reward); };
 
                                     customPopUpOpener.OpenDisplayingCards(
                                         title: "You win!",
@@ -156,24 +149,18 @@ public class EndGame : BattleState
         CardsCollection.SumToCurrentAmount(PlayerAndEnemyDeckHolder.GetPreparedCardsForTheEnemy()[0], 1);
         QuitBattleAndGoToMap();
     }
-    private void Give2CardsThenSeeMap()
+    private void Give3CardsThenSeeMap()
     {
-        CardsCollection.SumToCurrentAmount(PlayerAndEnemyDeckHolder.GetPreparedCardsForTheEnemy()[0], 2);
+        CardsCollection.SumToCurrentAmount(PlayerAndEnemyDeckHolder.GetPreparedCardsForTheEnemy()[0], 3);
         QuitBattleAndGoToMap();
     }
-    private Card[] BuildRewardDeck()
+    private void GiveRewardDeckThenSeeMap(Card[] rewardDeck)
     {
-        Card reward = PlayerAndEnemyDeckHolder.GetPreparedCardsForTheEnemy()[0];
-        Card[] rewardDeck = new Card[MapScroller.GetMapLevel()];
-        rewardDeck[0] = reward;
-
-        for (int r = 1; r < rewardDeck.Length; r++)
+        for (int r = 0; r < rewardDeck.Length; r++)
         {
-            Card bonusRewards = reward.GetClone();
-            bonusRewards.RefreshStatsForThePlayer();
-            rewardDeck[r] = bonusRewards;
+            CardsCollection.SumToCurrentAmount(rewardDeck[r], 1);
         }
-        return rewardDeck;
+        QuitBattleAndGoToMap();
     }
     private void GoBackInTime()
     {

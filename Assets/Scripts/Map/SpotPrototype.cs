@@ -18,6 +18,8 @@ public class SpotPrototype : OpenersSuperclass
 
     [SerializeField]
     private CurrentBattleInfo.BattleReward rewardType = CurrentBattleInfo.BattleReward.NONE;
+    [SerializeField]
+    private string rewardDeckName = null;
 
     [SerializeField]
     private AudioClip spotBGM = null;
@@ -57,11 +59,11 @@ public class SpotPrototype : OpenersSuperclass
         if (isTraining || deckClass == Classes.NOT_A_CLASS)
         {
             CurrentBattleInfo.PrepareBattle(battleIcon, 
-                backgroundColor, rewardType, bgmParam: spotBGM);
+                backgroundColor, rewardType, rewardDeckName, bgmParam: spotBGM);
         }
         else
         {
-            CurrentBattleInfo.PrepareBattle(battleIcon, rewardType, deckClass, spotBGM);
+            CurrentBattleInfo.PrepareBattle(battleIcon, rewardType, rewardDeckName, deckClass, spotBGM);
         }
     }
 

@@ -24,7 +24,7 @@ public class CardsCollection : CardPrototypesAccessor
         if (IsCardLocked(c))
         {
             // That operation also unlocks the card.
-            cardsCollectionAmounts[c] = 1;
+            cardsCollectionAmounts[c] = amountToAdd;
         }
         else
         {
