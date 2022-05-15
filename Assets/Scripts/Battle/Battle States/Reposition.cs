@@ -77,16 +77,12 @@ public class Reposition : BattleState
             return;
         }
 
-        attackerBattlefield.MakeCardAtIndexBigger(currentIndex);
-
         // Cache the index
         if (oldIndex == -1)
         {
             oldIndex = currentIndex;
             return;
         }
-
-        attackerBattlefield.MakeCardAtIndexBigger(oldIndex);
 
         if (oldIndex != currentIndex)
         {
@@ -97,7 +93,6 @@ public class Reposition : BattleState
             {
                 if (!currentSelectedCard.IsFreezing)
                 {
-                    attackerBattlefield.MakeCardAtIndexNormalSize(oldIndex);
                     SwapCards();
                 }
             }
@@ -105,7 +100,6 @@ public class Reposition : BattleState
             {
                 if (!oldSelectedCard.IsFreezing)
                 {
-                    attackerBattlefield.MakeCardAtIndexNormalSize(currentIndex);
                     SwapCards();
                 }
             }
@@ -113,16 +107,6 @@ public class Reposition : BattleState
             {
                 if (!oldSelectedCard.IsFreezing && !currentSelectedCard.IsFreezing)
                 {
-                    if (attackerBattlefield.ContainsCardInIndex(currentIndex))
-                    {
-                        attackerBattlefield.MakeCardAtIndexNormalSize(currentIndex);
-                    }
-
-                    if (attackerBattlefield.ContainsCardInIndex(oldIndex))
-                    {
-                        attackerBattlefield.MakeCardAtIndexNormalSize(oldIndex);
-                    }
-
                     SwapCards();
                 }
             }

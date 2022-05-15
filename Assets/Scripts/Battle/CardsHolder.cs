@@ -228,18 +228,6 @@ public class CardsHolder : IndexHolder
     #endregion
 
     #region Make card bigger or normal size
-    public void MakeOnlySelectedCardBigger()
-    {
-        for (int i = 0; i < cards.Length; i++)
-        {
-            MakeCardAtIndexNormalSize(i);
-        }
-        MakeSelectedCardBigger();
-    }
-    public void MakeSelectedCardBigger()
-    {
-        MakeCardAtIndexBigger(GetSelectedIndex());
-    }
     public void MakeCardAtIndexBigger(int index)
     {
         if (index != -1 && cards[index] != null)

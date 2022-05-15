@@ -30,7 +30,6 @@ public class PlaceCard : BattleState
         this.btnsBackground = btnsBackground;
         this.customPopUpOpener = customPopUpOpener;
 
-        L.og("deactivate", this);
         btnsBackground.SetActive(false);
 
         ClearSelections();
@@ -49,8 +48,6 @@ public class PlaceCard : BattleState
 
     public override void ExecuteAction()
     {
-        hand.MakeOnlySelectedCardBigger();
-
         if (shouldDisplayPlaceCardsNowTip)
         {
             shouldDisplayPlaceCardsNowTip = false;
@@ -65,8 +62,6 @@ public class PlaceCard : BattleState
         }
         else if (ReceivedValidInput())
         {
-            hand.MakeSelectedCardNormalSize();
-
             Card card = hand.RemoveCardFromSelectedIndex();
 
             bool smooth = currentBattleStatesFactory == enemyBattleStatesFactory;

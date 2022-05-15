@@ -161,8 +161,6 @@ public class Attack : BattleState
         {
             opponentBattleField.DisplayProtectionVFXOnlyofCardsInBackline();
 
-            attackerBattlefield.MakeOnlySelectedCardBigger();
-
             MakeSureAttackerCardIsClickedFirst();
 
             if (ReceivedValidInput())
@@ -177,11 +175,13 @@ public class Attack : BattleState
 
                 attackersThatHaveNotAttacked.Remove(attackerBattlefield.GetSelectedIndex());
 
-                attackerBattlefield.MakeSelectedCardNormalSize();
+                if (myCard.IsAlive())
+                {
+                    attackerBattlefield.MakeSelectedCardEvident();
+                    myCard.SetObfuscate(true);
+                }
 
                 ClearSelections();
-
-                myCard.SetObfuscate(true);
             }
 
             if (ClickedInvalidCard())

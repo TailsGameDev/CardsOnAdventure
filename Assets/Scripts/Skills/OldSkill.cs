@@ -111,22 +111,7 @@ public class OldSkill : Skill
                 defenseEffectToExecute = skillsMediator.RegularDefenseEffect;
             }
 
-            /*
-            bool isDoubleAttack = frontlineTargetDamageMultiplier > 1.9f;
-            
-            if (isDoubleAttack)
-            {
-                defenseEffectToExecute.ExecuteEffect(damage/2, obf, abf, toBeDamagedIndex, attackVFX);
-                if (obf.ContainsCardInIndex(toBeDamagedIndex) && abf.ContainsCardInIndex(abf.GetSelectedIndex()))
-                {
-                    defenseEffectToExecute.ExecuteEffect(damage/2, obf, abf, toBeDamagedIndex, attackVFX);
-                }
-            } 
-            else
-            {
-            */
             defenseEffectToExecute.ExecuteEffect(damage, obf, abf, toBeDamagedIndex, attackVFX);
-            //}
         }
     }
 

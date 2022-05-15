@@ -267,6 +267,7 @@ public class Battlefield : CardsHolder
         Vector3 originalScale = objectToDetach.LocalScale;
         Vector3 targetScale = originalScale + new Vector3(increaseScaleValueInProtectionAnimation,
                                                         increaseScaleValueInProtectionAnimation, 0.0f);
+
         while (objectToDetach.LocalScale.x < targetScale.x)
         {
             float t = TimeFacade.DeltaTime * increaseScaleSpeedMultiplier;
@@ -280,6 +281,8 @@ public class Battlefield : CardsHolder
             objectToDetach.LocalScale -= new Vector3(t, t, t);
             yield return null;
         }
+
+        objectToDetach.LocalScale = originalScale;
     }
     #endregion
 }

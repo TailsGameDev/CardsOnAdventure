@@ -257,6 +257,11 @@ public class Card : SkillsMediatorUser
     {
         SetVitalityAndUpdateTextLooks(Vitality + healAmount);
     }
+
+    public bool IsAlive()
+    {
+        return vitality > 0;
+    }
     #endregion
 
     #region Has XXXX Skill
@@ -267,10 +272,6 @@ public class Card : SkillsMediatorUser
     public bool HasHeavyArmorSkill()
     {
         return Skill.HasHeavyArmorEffect();
-    }
-    public bool HasReflectSkill()
-    {
-        return Skill.HasReflectEffect();
     }
     #endregion
 
