@@ -36,6 +36,9 @@ public class SpotPrototype : OpenersSuperclass
     [SerializeField]
     private string editorMadeEnemyDeckName = null;
 
+    [SerializeField]
+    private string story = null;
+
     private Sprite battleIcon;
 
     public bool BelongsToMap { set => belongsToMap = value; }
@@ -80,6 +83,13 @@ public class SpotPrototype : OpenersSuperclass
     {
         MarkSpotToBeClearedIfBelongsToMap();
         incidentPopUps[Random.Range(0, incidentPopUps.Length)].Open(incidentPopUpOpener);
+    }
+
+    // Referenced in Editor
+    public void OnStorySpotClicked()
+    {
+        MarkSpotToBeClearedIfBelongsToMap();
+        storyPopUpOpener.Open(story);
     }
 
     public void MarkSpotToBeClearedIfBelongsToMap()

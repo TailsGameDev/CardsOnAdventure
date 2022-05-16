@@ -568,6 +568,7 @@ RectTransform:
   - {fileID: 1399136907}
   - {fileID: 681631205}
   - {fileID: 1292008160}
+  - {fileID: 1282978791}
   - {fileID: 1077831750}
   - {fileID: 2139177325}
   m_Father: {fileID: 252865905}
@@ -922,7 +923,7 @@ RectTransform:
   - {fileID: 226840525}
   - {fileID: 2023170026}
   m_Father: {fileID: 1360789274}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1433,7 +1434,7 @@ RectTransform:
   m_Children:
   - {fileID: 1126233172}
   m_Father: {fileID: 223678363}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1504,6 +1505,7 @@ MonoBehaviour:
   incidentPopUps:
   - {fileID: 1492181534}
   editorMadeEnemyDeckName: SimpleBattleDeck
+  story: 
 --- !u!114 &86331335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1526,8 +1528,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6146331, g: 1, b: 0.5613208, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39215687}
     m_ColorMultiplier: 1
@@ -1544,7 +1546,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 86331336}
+  m_TargetGraphic: {fileID: 1126233173}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -1855,7 +1857,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1910997308}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &112996330
 GameObject:
@@ -1958,8 +1960,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6146331, g: 1, b: 0.5613208, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39215687}
     m_ColorMultiplier: 1
@@ -2056,6 +2058,7 @@ MonoBehaviour:
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
   editorMadeEnemyDeckName: RogueDeckBuff1Vit
+  story: 
 --- !u!1 &114793549
 GameObject:
   m_ObjectHideFlags: 0
@@ -2466,7 +2469,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 223678363}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2537,6 +2540,7 @@ MonoBehaviour:
   incidentPopUps:
   - {fileID: 832469729}
   editorMadeEnemyDeckName: SimpleBattleDeck
+  story: 
 --- !u!114 &165678337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2559,8 +2563,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6146331, g: 1, b: 0.5613208, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39215687}
     m_ColorMultiplier: 1
@@ -2845,8 +2849,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6146331, g: 1, b: 0.5613208, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39215687}
     m_ColorMultiplier: 1
@@ -3000,6 +3004,7 @@ MonoBehaviour:
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
   editorMadeEnemyDeckName: ToughBattleDeck
+  story: 
 --- !u!1 &174757323
 GameObject:
   m_ObjectHideFlags: 0
@@ -3461,6 +3466,7 @@ MonoBehaviour:
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
   editorMadeEnemyDeckName: 
+  story: 
 --- !u!1 &213653980
 GameObject:
   m_ObjectHideFlags: 0
@@ -3681,16 +3687,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 217169043}
-  m_LocalRotation: {x: -0, y: -0, z: -0.21365988, w: 0.97690815}
+  m_LocalRotation: {x: -0, y: -0, z: -0.41916606, w: 0.90790963}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2091255358}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -24.674002}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -49.564}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -192, y: -402}
+  m_AnchoredPosition: {x: -234, y: -345}
   m_SizeDelta: {x: 58.7, y: 282.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &217169045
@@ -3763,13 +3769,14 @@ RectTransform:
   - {fileID: 1150730507}
   - {fileID: 1042082688}
   - {fileID: 1846012491}
-  - {fileID: 1240832964}
-  - {fileID: 1756221730}
   - {fileID: 2050374401}
   - {fileID: 165678333}
   - {fileID: 86331331}
+  - {fileID: 720145627}
+  - {fileID: 1240832964}
+  - {fileID: 1756221730}
   m_Father: {fileID: 1360789274}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3933,8 +3940,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6146331, g: 1, b: 0.5613208, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.39215687}
     m_ColorMultiplier: 1
@@ -3991,6 +3998,7 @@ MonoBehaviour:
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
   editorMadeEnemyDeckName: HealDeck
+  story: 
 --- !u!114 &226840521
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5300,7 +5308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &329707381
 Transform:
   m_ObjectHideFlags: 0
@@ -5313,7 +5321,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1910997308}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &329707382
 MonoBehaviour:
@@ -6966,7 +6974,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &472032478
 Transform:
   m_ObjectHideFlags: 0
@@ -6979,7 +6987,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1910997308}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &472032479
 MonoBehaviour:
@@ -7192,8 +7200,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6146331, g: 1, b: 0.5613208, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39215687}
     m_ColorMultiplier: 1
@@ -7347,6 +7355,7 @@ MonoBehaviour:
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
   editorMadeEnemyDeckName: GuardianDeckBuff1Vit
+  story: 
 --- !u!1 &496512293
 GameObject:
   m_ObjectHideFlags: 0
@@ -8023,7 +8032,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &566709455
 Transform:
   m_ObjectHideFlags: 0
@@ -8036,7 +8045,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1910997308}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &566709456
 MonoBehaviour:
@@ -8769,8 +8778,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6146331, g: 1, b: 0.5613208, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.39215687}
     m_ColorMultiplier: 1
@@ -8867,6 +8876,7 @@ MonoBehaviour:
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
   editorMadeEnemyDeckName: SimpleBattleDeck
+  story: 
 --- !u!1 &672327209
 GameObject:
   m_ObjectHideFlags: 0
@@ -9908,6 +9918,225 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 719417624}
+  m_CullTransparentMesh: 0
+--- !u!1 &720145626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 720145627}
+  - component: {fileID: 720145633}
+  - component: {fileID: 720145632}
+  - component: {fileID: 720145631}
+  - component: {fileID: 720145630}
+  - component: {fileID: 720145629}
+  - component: {fileID: 720145628}
+  m_Layer: 5
+  m_Name: First Story
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &720145627
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720145626}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 223678363}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 48, y: -44}
+  m_SizeDelta: {x: 60, y: 60}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!58 &720145628
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720145626}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 31.6
+--- !u!114 &720145629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720145626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 276f3b1d9fea96a4c8c660b2b24e18ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 0
+  title: Story
+  tipData:
+  - message: 
+    background: {fileID: 21300000, guid: 514e72f96d549f34d8883f92cbd90ca7, type: 3}
+    height: 700
+    color: {r: 1, g: 1, b: 1, a: 1}
+  - message: Read some story written with care.
+    background: {fileID: 0}
+    height: 400
+    color: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &720145630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720145626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0357425162abc91458179afbe27dc3f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  belongsToMap: 1
+  uiMap: {fileID: 1112407828}
+  audioRequisitor: {fileID: 53754418}
+  backgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  deckClass: 0
+  rewardType: 0
+  rewardDeckName: 
+  spotBGM: {fileID: 8300000, guid: 547083a15975fb14c9457001348fa2ad, type: 3}
+  winSound: {fileID: 0}
+  celebrateSFX: {fileID: 0}
+  incidentPopUps:
+  - {fileID: 103100339}
+  editorMadeEnemyDeckName: 
+  story: "Wezz: Yeah nice training. Shadow: Sure it was\u2026 but I\u2019m afraid
+    there is something I need to tell you. Wezz: Really? What is the matter? Shadow:
+    So\u2026 I know we are in a relationship and stuff\u2026 and I really do like
+    you a lot\u2026 Wezz: Hey, are you going to break up with me? Shadow: Well, no,
+    but\u2026 do you remember our last party in the tavern right? Wezz: That was
+    a good one, that guy took a punch and broke his teeth. The other one went to
+    pee outside and fell in the river. Crazy nights\u2026 Shadow: Haha, true. So\u2026
+    things were really crazy and I ended up kissing another guy. Wezz: \u2026 Oh,
+    I see. Was it only kissing or anything else? Shadow: Yeah we ended up making
+    something else too\u2026 Wezz: Holly dagger\u2026 okay\u2026 I think I\u2019ll
+    need some time to process that. But would you tell me who was the one? Shadow:
+    Do you really want to know? Wezz: I really do. Shadow: Okay\u2026 it was Joe,
+    my ex-boyfriend. Wezz: That's hurtful. At least you told me. I think we should
+    talk more about that later, but right now I need to go after this bastard and
+    rip his head off. Shadow: I\u2019ll help you with that. He was a jerk to me later
+    and also he somehow made a lot of clones of us, our friends, and other adventurers
+    and monsters, and spread them throughout the lands. Wezz: Why the hell did he
+    do that? Shadow: What about\u2026 let\u2019s ask him while we punch his face?
+    Wezz: I think it would be nice. Shadow: I bet he is hidden somewhere behind those
+    boss fights, so there we go. "
+--- !u!114 &720145631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720145626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39215687}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 720145632}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 720145630}
+        m_TargetAssemblyTypeName: SpotPrototype, Scripts
+        m_MethodName: OnStorySpotClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &720145632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720145626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 514e72f96d549f34d8883f92cbd90ca7, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &720145633
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720145626}
   m_CullTransparentMesh: 0
 --- !u!1 &723585356
 GameObject:
@@ -11113,6 +11342,7 @@ MonoBehaviour:
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
   editorMadeEnemyDeckName: WeakMonstersDeck
+  story: 
 --- !u!114 &822150036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11135,8 +11365,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6146331, g: 1, b: 0.5613208, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39607844}
     m_ColorMultiplier: 1
@@ -11431,7 +11661,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1910997308}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &833321637
 GameObject:
@@ -11645,8 +11875,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -208, y: -286}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 163.6833, y: -304}
+  m_SizeDelta: {x: 76.6334, y: 76.633}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &839932619
 MonoBehaviour:
@@ -13037,8 +13267,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6146331, g: 1, b: 0.5613208, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39215687}
     m_ColorMultiplier: 1
@@ -13135,6 +13365,7 @@ MonoBehaviour:
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
   editorMadeEnemyDeckName: WarriorDeckBuff1Vit
+  story: 
 --- !u!1 &961802570
 GameObject:
   m_ObjectHideFlags: 0
@@ -13311,8 +13542,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6146331, g: 1, b: 0.5613208, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39607844}
     m_ColorMultiplier: 1
@@ -13409,6 +13640,7 @@ MonoBehaviour:
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
   editorMadeEnemyDeckName: BossBattleDeck
+  story: 
 --- !u!1 &966388242
 GameObject:
   m_ObjectHideFlags: 0
@@ -14621,8 +14853,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6146331, g: 1, b: 0.5613208, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39215687}
     m_ColorMultiplier: 1
@@ -14717,6 +14949,7 @@ MonoBehaviour:
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
   editorMadeEnemyDeckName: 
+  story: 
 --- !u!1 &1052487536
 GameObject:
   m_ObjectHideFlags: 0
@@ -15105,7 +15338,7 @@ GameObject:
   - component: {fileID: 1077831752}
   - component: {fileID: 1077831751}
   m_Layer: 5
-  m_Name: Middle 0 -Initial
+  m_Name: Left (-1) Initial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15123,11 +15356,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 32032387}
-  m_RootOrder: 21
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -561, y: -273}
+  m_AnchoredPosition: {x: -630, y: -314}
   m_SizeDelta: {x: 60, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1077831751
@@ -15609,7 +15842,7 @@ GameObject:
   - component: {fileID: 1126233174}
   - component: {fileID: 1126233173}
   m_Layer: 5
-  m_Name: Incident - Go to Cardland (1)
+  m_Name: Button Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15999,7 +16232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -16269,8 +16502,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6146331, g: 1, b: 0.5613208, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39215687}
     m_ColorMultiplier: 1
@@ -16424,6 +16657,7 @@ MonoBehaviour:
   celebrateSFX: {fileID: 8300000, guid: 526b5138d6fb1db48a08dcdd24943375, type: 3}
   incidentPopUps: []
   editorMadeEnemyDeckName: 
+  story: 
 --- !u!1 &1153016704
 GameObject:
   m_ObjectHideFlags: 0
@@ -16914,7 +17148,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1240832964
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16927,7 +17161,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 223678363}
-  m_RootOrder: 3
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -17000,6 +17234,7 @@ MonoBehaviour:
   - {fileID: 566709456}
   - {fileID: 472032479}
   editorMadeEnemyDeckName: 
+  story: 
 --- !u!114 &1240832968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17825,6 +18060,100 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278670061}
   m_CullTransparentMesh: 0
+--- !u!1 &1282978790
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1282978791}
+  - component: {fileID: 1282978794}
+  - component: {fileID: 1282978793}
+  - component: {fileID: 1282978792}
+  m_Layer: 5
+  m_Name: Middle 0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1282978791
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282978790}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.0406011, y: 1.0406011, z: 1.0406011}
+  m_Children: []
+  m_Father: {fileID: 32032387}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: -557, y: -259}
+  m_SizeDelta: {x: 60, y: 60}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1282978792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282978790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.12784024, g: 0.3962264, b: 0.054200795, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1282978793
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282978790}
+  m_CullTransparentMesh: 0
+--- !u!114 &1282978794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1282978790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1f82c492d4515442aa081b53c01d309, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mapName: First
+  possiblePlayLvlBtns:
+  - {fileID: 720145631}
+  antecessors:
+  - {fileID: 1077831753}
+  canBeRevisited: 1
 --- !u!1 &1283136548
 GameObject:
   m_ObjectHideFlags: 0
@@ -17917,7 +18246,7 @@ MonoBehaviour:
   possiblePlayLvlBtns:
   - {fileID: 2050374405}
   antecessors:
-  - {fileID: 1077831753}
+  - {fileID: 1282978794}
   canBeRevisited: 0
 --- !u!1 &1284930533
 GameObject:
@@ -18029,7 +18358,7 @@ MonoBehaviour:
   possiblePlayLvlBtns:
   - {fileID: 2050374405}
   antecessors:
-  - {fileID: 1077831753}
+  - {fileID: 1282978794}
   canBeRevisited: 0
 --- !u!114 &1292008158
 MonoBehaviour:
@@ -18263,17 +18592,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1298492474}
-  m_LocalRotation: {x: -0, y: -0, z: -0.31054485, w: 0.9505588}
+  m_LocalRotation: {x: -0, y: -0, z: -0.34983146, w: 0.93681264}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2091255358}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -36.184002}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -40.954}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -142, y: -283.49002}
-  m_SizeDelta: {x: 58.7, y: 138.14}
+  m_AnchoredPosition: {x: -142.16031, y: -274.47086}
+  m_SizeDelta: {x: 58.7, y: 131.1822}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1298492476
 MonoBehaviour:
@@ -18665,6 +18994,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 321140906268073322, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 321140906268073322, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 321140906268073322, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1193498804994366982, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -18688,6 +19032,71 @@ PrefabInstance:
     - target: {fileID: 3649212102178321624, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
         type: 3}
       propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4006427404435912398, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4006427404435912398, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4006427404435912398, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4006427404435912398, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4006427404435912398, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4006427404435912398, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5031995911730875129, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5031995911730875129, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5031995911730875129, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5031995911730875129, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5031995911730875129, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5031995911730875129, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6954282948979212780, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7513000122581108895, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
@@ -19197,8 +19606,8 @@ RectTransform:
   - {fileID: 53754419}
   - {fileID: 1609366073}
   - {fileID: 933378948}
-  - {fileID: 223678363}
   - {fileID: 69199798}
+  - {fileID: 223678363}
   m_Father: {fileID: 520027314}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -19774,7 +20183,7 @@ MonoBehaviour:
   possiblePlayLvlBtns:
   - {fileID: 2050374405}
   antecessors:
-  - {fileID: 1077831753}
+  - {fileID: 1282978794}
   canBeRevisited: 0
 --- !u!1 &1409114661
 GameObject:
@@ -20613,7 +21022,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1910997308}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1497351333
 GameObject:
@@ -20845,6 +21254,7 @@ MonoBehaviour:
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
   editorMadeEnemyDeckName: 
+  story: 
 --- !u!114 &1516882898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21587,8 +21997,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6146331, g: 1, b: 0.5613208, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39215687}
     m_ColorMultiplier: 1
@@ -21685,6 +22095,7 @@ MonoBehaviour:
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
   editorMadeEnemyDeckName: MageDeckBuff1Atk
+  story: 
 --- !u!1 &1567634415
 GameObject:
   m_ObjectHideFlags: 0
@@ -23681,6 +24092,7 @@ MonoBehaviour:
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
   editorMadeEnemyDeckName: AreaDeck
+  story: 
 --- !u!114 &1712214549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23703,8 +24115,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6146331, g: 1, b: 0.5613208, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.39215687}
     m_ColorMultiplier: 1
@@ -24345,7 +24757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1756221730
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24358,7 +24770,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 223678363}
-  m_RootOrder: 4
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -24430,6 +24842,7 @@ MonoBehaviour:
   incidentPopUps:
   - {fileID: 329707382}
   editorMadeEnemyDeckName: SimpleBattleDeck
+  story: 
 --- !u!114 &1756221734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25791,6 +26204,7 @@ MonoBehaviour:
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
   editorMadeEnemyDeckName: PunchBagDeck
+  story: 
 --- !u!114 &1846012495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25813,8 +26227,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6146331, g: 1, b: 0.5613208, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39215687}
     m_ColorMultiplier: 1
@@ -26579,12 +26993,12 @@ Transform:
   m_LocalPosition: {x: 443.51157, y: -183.86023, z: 326.575}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
-  - {fileID: 329707381}
-  - {fileID: 472032478}
-  - {fileID: 566709455}
   - {fileID: 103100340}
   - {fileID: 832469730}
   - {fileID: 1492181535}
+  - {fileID: 329707381}
+  - {fileID: 472032478}
+  - {fileID: 566709455}
   m_Father: {fileID: 1817604072}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -27645,6 +28059,7 @@ MonoBehaviour:
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
   editorMadeEnemyDeckName: ReflectDeck
+  story: 
 --- !u!114 &2023170030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27667,8 +28082,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6146331, g: 1, b: 0.5613208, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.39215687}
     m_ColorMultiplier: 1
@@ -27893,7 +28308,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 223678363}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -27964,6 +28379,7 @@ MonoBehaviour:
   incidentPopUps:
   - {fileID: 103100339}
   editorMadeEnemyDeckName: SimpleBattleDeck
+  story: 
 --- !u!114 &2050374405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27986,8 +28402,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6146331, g: 1, b: 0.5613208, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39215687}
     m_ColorMultiplier: 1
@@ -29080,6 +29496,7 @@ MonoBehaviour:
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
   editorMadeEnemyDeckName: StrongMonstersDeck
+  story: 
 --- !u!114 &2119048984
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29102,8 +29519,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6146331, g: 1, b: 0.5613208, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_PressedColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.39607844}
     m_ColorMultiplier: 1
@@ -29280,7 +29697,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 32032387}
-  m_RootOrder: 22
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

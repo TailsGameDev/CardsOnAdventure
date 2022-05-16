@@ -35,6 +35,9 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
     private GameObject incidentPopUp =  null;
 
     [SerializeField]
+    private GameObject storyPopUp = null;
+
+    [SerializeField]
     private GameObject tipSystem = null;
 
     private Stack<GameObject> popUpsStack = new Stack<GameObject>();
@@ -189,6 +192,17 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
         tipPopUpTitle.text = title;
         tipPopUp.GetComponent<TipPopUp>().PopulateAllSections(tipsData);
         OpenPopUp(tipPopUp);
+    }
+    public void OpenStoryPopUp()
+    {
+        if (!storyPopUp.activeSelf)
+        {
+            OpenPopUp(storyPopUp);
+        }
+        else
+        {
+            L.ogWarning(this, "Called OpenStoryPopUp but it was already opened");
+        }
     }
     #endregion
 }
