@@ -20,4 +20,10 @@ public class StoryPopUpOpener : OpenersSuperclass
         dialogText.text = story;
         openerOfPopUpsMadeInEditor.OpenStoryPopUp();
     }
+
+    public void OnCloseButtonClick()
+    {
+        openerOfPopUpsMadeInEditor.CloseAllPopUpsExceptLoading();
+        sceneOpener.OpenMapScene();
+    }
 }

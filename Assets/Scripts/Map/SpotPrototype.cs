@@ -85,13 +85,6 @@ public class SpotPrototype : OpenersSuperclass
         incidentPopUps[Random.Range(0, incidentPopUps.Length)].Open(incidentPopUpOpener);
     }
 
-    // Referenced in Editor
-    public void OnStorySpotClicked()
-    {
-        MarkSpotToBeClearedIfBelongsToMap();
-        storyPopUpOpener.Open(story);
-    }
-
     public void MarkSpotToBeClearedIfBelongsToMap()
     {
         // Commented out as there was a bug about it and currently all spots belong to the map
@@ -119,6 +112,11 @@ public class SpotPrototype : OpenersSuperclass
     {
         MarkSpotToBeClearedIfBelongsToMap();
         sceneOpener.OpenDeckBuildingScene();
+    }
+    public void OnStorySpotClicked()
+    {
+        MarkSpotToBeClearedIfBelongsToMap();
+        storyPopUpOpener.Open(story);
     }
     #endregion
 }
