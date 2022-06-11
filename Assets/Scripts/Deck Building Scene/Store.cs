@@ -44,13 +44,7 @@ public class Store : MonoBehaviour
     }
     private int GetPriceOfCard(Card card)
     {
-        // It's a Aritmetic Progression with the level.
-        int price = 0;
-        for (int level = card.GetLevel(); level >= 0; level--)
-        {
-            price++;
-        }
-        return price;
+        return card.GetLevel() + 2;
     }
 
     void Update()
@@ -75,7 +69,8 @@ public class Store : MonoBehaviour
         int price = GetPriceOfCard(cardToImprove);
         if (cardAmount >= price)
         {
-            cardsCollection.RemoveAmountOfCardFromCollection(cardToImprove, price);
+            // Subtract 1 from price to simulate we gave him a card after the upgrade
+            cardsCollection.RemoveAmountOfCardFromCollection(cardToImprove, price - 1);
             cardToImprove.LevelUp();
             UpdateUI(cardToImprove);
             cardsCollection.UpdateColorAndAmountTextOfCard(cardToImprove);

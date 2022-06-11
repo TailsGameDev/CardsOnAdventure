@@ -87,7 +87,6 @@ public class ChildMaker : MonoBehaviour
 
             // Scale
             child.SetParent(parent, true);
-            yield return null;
             child.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 
             // Make it float above everybody.
