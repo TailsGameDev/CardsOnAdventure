@@ -15,9 +15,11 @@ public class BuffClass : IncidentAction
                                 title: "You Bought Equips",
                                    ColorHexCodes.Paint(" ALL YOUR " + classe + " CARDS WILL BE BUFFED. PLEASE CHOOSE:", ClassInfo.GetColorOfClass(classe)),
                                 confirmBtnMessage: "+1 Vitality",
-                                cancelBtnMessage: "+1 Attack Power",
+                                // NOTE: cancel effect was commented out because I needed to modify 
+                                // OpenDisplayingUnblockedCardsOfClass method and this ocurrence was not being used
+                                // cancelBtnMessage: "+1 Attack Power",
                                 onConfirm: ImproveVitalityThenSeeMap,
-                                onCancel: ImproveAttackPowerThenSeeMap,
+                                // onCancel: ImproveAttackPowerThenSeeMap,
                                 preMadeAudioFactory.CreateVictoryAudioRequest(assignor: gameObject),
                                 classe
                             );

@@ -96,9 +96,7 @@ public class CustomPopUp : OpenersSuperclass
         string title,
         string warningMessage,
         string confirmBtnMessage,
-        string cancelBtnMessage,
         OnBtnClicked onConfirm,
-        OnBtnClicked onCancel,
         PreMadeAudioRequest openingBGM,
         Classes classeOfCardsToShow
     )
@@ -106,23 +104,24 @@ public class CustomPopUp : OpenersSuperclass
         openingBGM.RequestPlaying();
         cardsDisplay.ShowUnlockedCardsOfClass(classeOfCardsToShow);
         OpenAndMakeUncloseable(title, warningMessage, confirmBtnMessage, 
-            cancelBtnMessage,
+            "",
             onConfirm: ()=> { cardsDisplay.ClearAttributes(); onConfirm(); },
-            onCancel: () => { cardsDisplay.ClearAttributes(); onCancel(); }
+            onCancel: () => {}
             );
+        customCancelBtn.gameObject.SetActive(false);
     }
 
-    public void OpenDisplayingCards
-(
-    string title,
-    string warningMessage,
-    string confirmBtnMessage,
-    string cancelBtnMessage,
-    OnBtnClicked onConfirm,
-    OnBtnClicked onCancel,
-    PreMadeAudioRequest openingBGM,
-    Card[] cards
-)
+    public void OpenDisplayingCardsToChoose
+    (
+        string title,
+        string warningMessage,
+        string confirmBtnMessage,
+        string cancelBtnMessage,
+        OnBtnClicked onConfirm,
+        OnBtnClicked onCancel,
+        PreMadeAudioRequest openingBGM,
+        Card[] cards
+    )
     {
         openingBGM.RequestPlaying();
         cardsDisplay.ShowCards(cards);
@@ -131,6 +130,25 @@ public class CustomPopUp : OpenersSuperclass
             onConfirm: () => { onConfirm(); cardsDisplay.ClearAttributes(); },
             onCancel: () => { onCancel(); cardsDisplay.ClearAttributes(); }
             );
+    }
+    public void OpenDisplayingRewardCards
+    (
+        string title,
+        string warningMessage,
+        string confirmBtnMessage,
+        OnBtnClicked onConfirm,
+        PreMadeAudioRequest openingBGM,
+        Card[] cards
+    )
+    {
+        openingBGM.RequestPlaying();
+        cardsDisplay.ShowCards(cards);
+        OpenAndMakeUncloseable(title, warningMessage, confirmBtnMessage,
+            "",
+            onConfirm: () => { onConfirm(); cardsDisplay.ClearAttributes(); },
+            onCancel: () => {}
+            );
+        customCancelBtn.gameObject.SetActive(false);
     }
 
     public void OpenAndMakeUncloseable

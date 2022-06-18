@@ -25,7 +25,7 @@ public class EarnCard : IncidentAction
 
         } while (cards[0].IsAnotherInstanceOf(cards[1]));
 
-        customPopUpOpener.OpenDisplayingCards
+        customPopUpOpener.OpenDisplayingCardsToChoose
             (
                 title: "Earn a Card",
                 warningMessage: "Choose a card to add to your collection, I mean, to become your friend.",

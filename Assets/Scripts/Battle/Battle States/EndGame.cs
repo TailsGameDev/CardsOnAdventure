@@ -80,9 +80,7 @@ public class EndGame : BattleState
                                         warningMessage: ColorHexCodes.BeginWhite+"What about making some recruiting?"+ColorHexCodes.End +
                                            ColorHexCodes.Paint(" YOU JUST GOT ONE OF EACH " + enemyDeckClass + " CARDS TO YOUR COLLECTION. ", deckColor),
                                         confirmBtnMessage: "Awesome",
-                                        cancelBtnMessage: "Cool",
                                         onConfirm: GiveUnblockedCardsOfClassThenSeeMap,
-                                        onCancel: GiveUnblockedCardsOfClassThenSeeMap,
                                         victoryBGMRequest,
                                         enemyDeckClass
                                     );
@@ -95,14 +93,12 @@ public class EndGame : BattleState
 
                                     CustomPopUp.OnBtnClicked onbtn = () => { GiveRewardDeckThenSeeMap(reward); };
 
-                                    customPopUpOpener.OpenDisplayingCards(
+                                    customPopUpOpener.OpenDisplayingRewardCards(
                                         title: "You win!",
                                         warningMessage: ColorHexCodes.BeginWhite + "You beat the card challenge." + ColorHexCodes.End +
                                            ColorHexCodes.Paint(" YOU GOT A CARD ", deckColor),
                                         confirmBtnMessage: "Awesome",
-                                        cancelBtnMessage: "Cool",
                                         onConfirm: onbtn,
-                                        onCancel: onbtn,
                                         victoryBGMRequest,
                                         cards: reward
                                     );
@@ -188,22 +184,6 @@ public class EndGame : BattleState
     {
         EndGame endGame = null;
 
-        // This is private class NotUsed
-        private void OpenPopUpToImproveClassStats()
-        {
-            // Technically it improves also unblocked cards, but let's not show them yet
-            endGame.customPopUpOpener.OpenDisplayingUnblockedCardsOfClass(
-                title: "You beat a Master",
-                warningMessage: ColorHexCodes.BeginWhite+"And then you 'borrowed' some of their equipment"+ColorHexCodes.End +
-                   ColorHexCodes.Paint(" ALL YOUR " + enemyDeckClass + " CARDS WILL BE BUFFED. PLEASE CHOOSE:", deckColor),
-                confirmBtnMessage: "+1 Vitality",
-                cancelBtnMessage: "+1 Attack Power",
-                onConfirm: ImproveVitalityThenSeeMap,
-                onCancel: ImproveAttackPowerThenSeeMap,
-                endGame.victoryBGMRequest,
-                enemyDeckClass
-             );
-        }
         // This is private class NotUsed
         private void ImproveAttackPowerThenSeeMap()
         {
