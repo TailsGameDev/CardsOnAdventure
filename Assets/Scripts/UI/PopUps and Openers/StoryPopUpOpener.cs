@@ -19,7 +19,7 @@ public class StoryPopUpOpener : OpenersSuperclass
     }
 
     [SerializeField] private VerticalLayoutGroup speechesLayout = null;
-    private TransformWrapper speechesLayoutTransformWrapper;
+    private Transform speechesLayoutTransformWrapper;
 
     [SerializeField] private StorySpeech speechPrototype = null;
 
@@ -54,7 +54,7 @@ public class StoryPopUpOpener : OpenersSuperclass
                 characterSpeechDataDictionary[characterSprite.CharacterName] = characterSprite;
             }
 
-            speechesLayoutTransformWrapper = new TransformWrapper(speechesLayout.transform);
+            speechesLayoutTransformWrapper = speechesLayout.transform;
         }
     }
 

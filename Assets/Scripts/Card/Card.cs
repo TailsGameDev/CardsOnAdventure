@@ -79,7 +79,7 @@ public class Card : SkillsMediatorUser
     [SerializeField]
     private float vitalityBonusPerLevel = 0;
 
-    private TransformWrapper transformWrapper;
+    private Transform transformWrapper;
     #endregion
 
     #region Properties
@@ -104,7 +104,7 @@ public class Card : SkillsMediatorUser
     }
     public RectTransform RectTransform { get => rectTransform; }
     public int InitialAmountOnCollection { get => initialAmountOnCollection; }
-    public TransformWrapper TransformWrapper { get => transformWrapper; }
+    public Transform TransformWrapper { get => transformWrapper; }
     #endregion
 
     #region Initialization
@@ -126,7 +126,7 @@ public class Card : SkillsMediatorUser
         // Visual
         verticalSprite = cardImage.sprite;
 
-        transformWrapper = new TransformWrapper(transform);
+        transformWrapper = transform;
     }
     private void Start()
     {

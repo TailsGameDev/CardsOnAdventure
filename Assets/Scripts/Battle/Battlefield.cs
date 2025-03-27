@@ -248,8 +248,7 @@ public class Battlefield : CardsHolder
         bool attackWillBeBlocked = cardInFrontOfTarget!= null && cardInFrontOfTarget.HasBlockSkill();
         if (IsThereACardInFrontOf(selectedIndex) && !attackerIgnoresBlock && !attackWillBeBlocked)
         {
-            TransformWrapper protectionTransformWrapper = 
-                new TransformWrapper (protectionVFXtoEachCard[selectedIndex].transform);
+            Transform protectionTransformWrapper = protectionVFXtoEachCard[selectedIndex].transform;
             StartCoroutine(MakeEvident(protectionTransformWrapper));
             cards[selectedIndex].MakeProtectionEvident();
         }
@@ -262,27 +261,27 @@ public class Battlefield : CardsHolder
             StartCoroutine(MakeEvident(selectedCard.TransformWrapper));
         }
     }
-    private IEnumerator MakeEvident(TransformWrapper objectToDetach)
+    private IEnumerator MakeEvident(Transform objectToDetach)
     {
-        Vector3 originalScale = objectToDetach.LocalScale;
+        Vector3 originalScale = objectToDetach.localScale;
         Vector3 targetScale = originalScale + new Vector3(increaseScaleValueInProtectionAnimation,
                                                         increaseScaleValueInProtectionAnimation, 0.0f);
 
-        while (objectToDetach.LocalScale.x < targetScale.x)
+        while (objectToDetach.localScale.x < targetScale.x)
         {
             float t = TimeFacade.DeltaTime * increaseScaleSpeedMultiplier;
-            objectToDetach.LocalScale += new Vector3(t, t, t);
+            objectToDetach.localScale += new Vector3(t, t, t);
             yield return null;
         }
 
-        while (objectToDetach.LocalScale.x > originalScale.x)
+        while (objectToDetach.localScale.x > originalScale.x)
         {
             float t = TimeFacade.DeltaTime * increaseScaleSpeedMultiplier;
-            objectToDetach.LocalScale -= new Vector3(t, t, t);
+            objectToDetach.localScale -= new Vector3(t, t, t);
             yield return null;
         }
 
-        objectToDetach.LocalScale = originalScale;
+        objectToDetach.localScale = originalScale;
     }
     #endregion
 }
