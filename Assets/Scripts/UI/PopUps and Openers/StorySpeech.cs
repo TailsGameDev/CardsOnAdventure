@@ -7,15 +7,15 @@ public class StorySpeech : MonoBehaviour
     [SerializeField] private Text speechText = null;
     [SerializeField] private Image background = null;
 
-    private TransformWrapper transformWrapper;
+    private Transform transformWrapper;
 
-    public void Initialize(Sprite characterSprite, string speechMessage, Color backgroundColor, TransformWrapper newParent)
+    public void Initialize(Sprite characterSprite, string speechMessage, Color backgroundColor, Transform newParent)
     {
         this.characterImage.sprite = characterSprite;
         this.speechText.text = speechMessage;
         this.background.color = backgroundColor;
 
-        transformWrapper = new TransformWrapper(transform);
+        transformWrapper = transform;
 
         transformWrapper.SetParent(newParent);
 

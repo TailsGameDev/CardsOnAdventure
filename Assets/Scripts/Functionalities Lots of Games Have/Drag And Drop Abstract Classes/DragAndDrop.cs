@@ -243,7 +243,7 @@ public abstract class DragAndDrop : MonoBehaviour
         // Get all colliders that overlap this object's collider.
         Collider2D[] colliders = new Collider2D[10];
         ContactFilter2D contactFilter = new ContactFilter2D();
-        int colliderCount = GetComponent<Collider2D>().OverlapCollider(contactFilter.NoFilter(), colliders);
+        int colliderCount = GetComponent<Collider2D>().Overlap(contactFilter.NoFilter(), colliders);
 
         for (int i = 0; i < colliderCount; i++)
         {
