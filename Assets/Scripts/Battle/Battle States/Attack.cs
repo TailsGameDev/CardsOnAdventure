@@ -183,6 +183,15 @@ public class Attack : BattleState
 
                 ClearSelections();
             }
+            else if (attackerBattlefield.SomeIndexWasSelected())
+            {
+                Card selectedCard = attackerBattlefield.GetSelectedCard();
+                opponentBattleField.DetachCardsThatCanDie(selectedCard);
+            }
+            else
+            {
+                opponentBattleField.ClearDeathMarks();
+            }
 
             if (ClickedInvalidCard())
             {
@@ -253,15 +262,15 @@ public class Attack : BattleState
 
     private bool ReceivedInputInBothBattlefields()
     {
-        return attackerBattlefield.SomeIndexWasSelectedSinceLastClear() && opponentBattleField.SomeIndexWasSelectedSinceLastClear(); ;
+        return attackerBattlefield.SomeIndexWasSelectedSinceLastClear() && opponentBattleField.SomeIndexWasSelectedSinceLastClear();
     }
 
     private bool ReceivedInputIsValid()
     {
-        int myIndex = attackerBattlefield.GetSelectedIndex();
+        int attackerIndex = attackerBattlefield.GetSelectedIndex();
         int opponentIndex = opponentBattleField.GetSelectedIndex();
 
-        return attackerBattlefield.ContainsCardInIndex(myIndex) && opponentBattleField.ContainsCardInIndex(opponentIndex); ;
+        return attackerBattlefield.ContainsCardInIndex(attackerIndex) && opponentBattleField.ContainsCardInIndex(opponentIndex); ;
     }
 
     public override BattleState GetNextState()

@@ -43,6 +43,8 @@ public class Card : SkillsMediatorUser
     [SerializeField]
     private GameObject lvlUpVFX = null;
     [SerializeField]
+    private Image deathMarkVFX = null;
+    [SerializeField]
     private Image cardImage = null;
     [SerializeField]
     private GameObject DamageTextPrototype = null;
@@ -395,6 +397,10 @@ public class Card : SkillsMediatorUser
             protection.localScale -= new UnityEngine.Vector3(t, t, t);
             yield return null;
         }
+    }
+    public void ShowDeathMarkVFX(bool show)
+    {
+        deathMarkVFX.gameObject.SetActive(show);
     }
     #endregion
 
