@@ -89,7 +89,7 @@ public class Card : SkillsMediatorUser
     public int Vitality { get => vitality; }
     public int AttackPower { get => attackPower; set => attackPower = value; }
     public Classes Classe { get => classInfo.Classe; }
-    public bool IgnoreOpponentsBlock { get => skills.IgnoreProtection; }
+    public bool IgnoresProtection { get => skills.IgnoreProtection; }
     public OldSkill Skill {
         get => skills;
         set 

@@ -268,27 +268,4 @@ public class CardsHolder : IndexHolder
             }
         }
     }
-    public void DetachCardsThatCanDie(Card attackerCard)
-    {
-        for (int c = 0; c < cards.Length; c++)
-        {
-            Card card = cards[c];
-            if (card != null)
-            {
-                bool canDie = attackerCard.AttackPower >= card.Vitality;
-                card.ShowDeathMarkVFX(show: canDie);
-            }
-        }
-    }
-    public void ClearDeathMarks()
-    {
-        for (int c = 0; c < cards.Length; c++)
-        {
-            Card card = cards[c];
-            if (card != null)
-            {
-                card.ShowDeathMarkVFX(show: false);
-            }
-        }
-    }
 }

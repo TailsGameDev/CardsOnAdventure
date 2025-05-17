@@ -241,12 +241,12 @@ public class Battlefield : CardsHolder
             }
         }
     }
-    public void MakeProtectionEvidentOnSelectedIfNeeded(bool attackerIgnoresBlock)
+    public void MakeProtectionEvidentOnSelectedIfNeeded(bool attackerIgnoresProtection)
     {
         int selectedIndex = GetSelectedIndex();
         Card cardInFrontOfTarget = GetCardInFrontOf(selectedIndex);
-        bool attackWillBeBlocked = cardInFrontOfTarget!= null && cardInFrontOfTarget.HasBlockSkill();
-        if (IsThereACardInFrontOf(selectedIndex) && !attackerIgnoresBlock && !attackWillBeBlocked)
+        bool attackWillBeBlocked = (cardInFrontOfTarget != null) && cardInFrontOfTarget.HasBlockSkill();
+        if (IsThereACardInFrontOf(selectedIndex) && !attackerIgnoresProtection && !attackWillBeBlocked)
         {
             Transform protectionTransformWrapper = protectionVFXtoEachCard[selectedIndex].transform;
             StartCoroutine(MakeEvident(protectionTransformWrapper));
@@ -282,6 +282,47 @@ public class Battlefield : CardsHolder
         }
 
         objectToDetach.localScale = originalScale;
+    }
+    #endregion
+
+    #region Death Mark
+    public void DetachCardsThatWouldDie(Card attackerCard)
+    {
+        for (int defenderIndex = 0; defenderIndex < cards.Length; defenderIndex++)
+        {
+            Card defenderCard = cards[defenderIndex];
+            if (defenderCard != null)
+            {
+                bool attackerIgnoresProtection = attackerCard.IgnoresProtection;
+                Card cardInFrontOfDefender = GetCardInFrontOf(defenderIndex);
+                bool wouldAttackBeBlocked = (cardInFrontOfDefender != null) && cardInFrontOfDefender.HasBlockSkill();
+                if ( ! wouldAttackBeBlocked )
+                {
+                    bool wouldDefenderDie;
+                    if (IsThereACardInFrontOf(defenderIndex) && !attackerIgnoresProtection)
+                    {
+                        int twiceTheAttackPower = attackerCard.AttackPower + attackerCard.AttackPower;
+                        wouldDefenderDie = twiceTheAttackPower >= defenderCard.Vitality;
+                    }
+                    else
+                    {
+                        wouldDefenderDie = attackerCard.AttackPower >= defenderCard.Vitality;
+                    }
+                    defenderCard.ShowDeathMarkVFX(show: wouldDefenderDie);
+                }
+            }
+        }
+    }
+    public void ClearDeathMarks()
+    {
+        for (int c = 0; c < cards.Length; c++)
+        {
+            Card card = cards[c];
+            if (card != null)
+            {
+                card.ShowDeathMarkVFX(show: false);
+            }
+        }
     }
     #endregion
 }

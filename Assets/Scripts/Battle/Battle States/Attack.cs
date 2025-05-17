@@ -165,8 +165,8 @@ public class Attack : BattleState
 
             if (ReceivedValidInput())
             {
-                bool attackerIgnoresBlock = attackerBattlefield.GetSelectedCard().IgnoreOpponentsBlock;
-                opponentBattleField.MakeProtectionEvidentOnSelectedIfNeeded(attackerIgnoresBlock);
+                bool attackerIgnoresProtection = attackerBattlefield.GetSelectedCard().IgnoresProtection;
+                opponentBattleField.MakeProtectionEvidentOnSelectedIfNeeded(attackerIgnoresProtection);
 
                 HandleUselessAttacks();
 
@@ -178,15 +178,18 @@ public class Attack : BattleState
                 if (myCard.IsAlive())
                 {
                     attackerBattlefield.MakeSelectedCardEvident();
+                    
+                    // Obfuscate card to indicate it has already attacked
                     myCard.SetObfuscate(true);
                 }
 
                 ClearSelections();
+                opponentBattleField.ClearDeathMarks();
             }
             else if (attackerBattlefield.SomeIndexWasSelected())
             {
                 Card selectedCard = attackerBattlefield.GetSelectedCard();
-                opponentBattleField.DetachCardsThatCanDie(selectedCard);
+                opponentBattleField.DetachCardsThatWouldDie(selectedCard);
             }
             else
             {
@@ -227,7 +230,7 @@ public class Attack : BattleState
     private bool HandleUselessAttacks()
     {
         Card myCard = attackerBattlefield.GetSelectedCard();
-        bool isUseless = !myCard.IgnoreOpponentsBlock && myCard.AttackPower == 1 && opponentBattleField.IsThereACardInFrontOf(opponentBattleField.GetSelectedIndex());
+        bool isUseless = (!myCard.IgnoresProtection) && (myCard.AttackPower == 1) && opponentBattleField.IsThereACardInFrontOf(opponentBattleField.GetSelectedIndex());
 
         if (currentBattleStatesFactory == playerBattleStatesFactory)
         {

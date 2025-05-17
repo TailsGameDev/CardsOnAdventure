@@ -25,7 +25,7 @@ public class CardTipReceptor : TipReceptor
 
         TipSectionData explanatoryText = new TipSectionData(c.GetExplanatoryText(), textHeight);
 
-        if (cardToPullData.IgnoreOpponentsBlock)
+        if (cardToPullData.IgnoresProtection)
         {
             TipSectionData ignoreBlock = new TipSectionData(message: "    -> IGNORES PROTECTION.", background: ignoreIconSprite, height: 70);
             tipData = new[] { ignoreBlock, explanatoryText,  cardArt };
