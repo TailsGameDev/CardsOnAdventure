@@ -16,9 +16,8 @@ public class BlockEffect : DefenseEffect
         base.ExecuteEffect(damageConsideringBlock, obf, abf, tobeDamagedIndexConsideringBlock, attackVFX);
     }
 
-    public static bool IsThereABlockerInTheFrontOfTarget(Battlefield obf, int toBeDamagedIndex)
+    public static bool IsThereABlockerInFrontOfTarget(Battlefield obf, int toBeDamagedIndex)
     {
-        return obf.GetCardInFrontOf(toBeDamagedIndex) != null && 
-            obf.GetCardInFrontOf(toBeDamagedIndex).HasBlockSkill();
+        return obf.IsThereACardInFrontOf(toBeDamagedIndex) && obf.GetCardInFrontOf(toBeDamagedIndex).HasBlockSkill();
     }
 }
