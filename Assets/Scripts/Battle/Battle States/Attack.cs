@@ -26,7 +26,7 @@ public class Attack : BattleState
     public static bool shouldAskForTip = true;
 
     private readonly int TOTAL_OF_ATTACKERS;
-    const int MAX_AMOUNT_OF_ATTACKS = 2;
+    const int MAX_AMOUNT_OF_ATTACKS = 1;
 
     public Attack(
                     Battlefield attackerBattlefield,
