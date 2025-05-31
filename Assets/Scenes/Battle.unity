@@ -1309,6 +1309,7 @@ MonoBehaviour:
   hand: {fileID: 1718507082}
   deck: {fileID: 1214190163}
   text: {fileID: 523226921}
+  healthPoints: 0
 --- !u!114 &523226921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2542,6 +2543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   otherBattleStatesFactory: {fileID: 1332929770}
   isThePlayersFactory: 0
+  duelist: {fileID: 523226920}
   deck: {fileID: 1214190163}
   hand: {fileID: 1718507082}
   battlefield: {fileID: 1898511386}
@@ -4261,6 +4263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   otherBattleStatesFactory: {fileID: 876186946}
   isThePlayersFactory: 1
+  duelist: {fileID: 1893482749}
   deck: {fileID: 1378405288}
   hand: {fileID: 416688464}
   battlefield: {fileID: 149378011}
@@ -5303,6 +5306,7 @@ MonoBehaviour:
   hand: {fileID: 416688464}
   deck: {fileID: 1378405288}
   text: {fileID: 1893482750}
+  healthPoints: 0
 --- !u!114 &1893482750
 MonoBehaviour:
   m_ObjectHideFlags: 0
