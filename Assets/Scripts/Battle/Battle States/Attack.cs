@@ -6,6 +6,9 @@ public class Attack : BattleState
     private Battlefield attackerBattlefield;
     private Battlefield opponentBattleField;
 
+    private Duelist playerAttacker;
+    private Duelist targetPlayer;
+
     private List<int> attackersThatHaveNotAttacked = new List<int>();
 
     private UICustomBtn endTurnBtn;
@@ -29,6 +32,8 @@ public class Attack : BattleState
     const int MAX_AMOUNT_OF_ATTACKS = 2;
 
     public Attack(
+                    Duelist playerAttacker,       
+                    Duelist playerTarget,       
                     Battlefield attackerBattlefield,
                     Battlefield opponentBattleField,
                     UICustomBtn endTurnBtn,
@@ -41,6 +46,8 @@ public class Attack : BattleState
     {
         this.attackerBattlefield = attackerBattlefield;
         this.opponentBattleField = opponentBattleField;
+        this.playerAttacker = playerAttacker;
+        this.targetPlayer = playerTarget;
 
         obfWasFullAtBeggining = opponentBattleField.IsFull();
 
@@ -170,6 +177,8 @@ public class Attack : BattleState
 
                 HandleUselessAttacks();
 
+                int amountOfCardsAliveBeforeAttack = opponentBattleField.GetAmountOfOccupiedSlots();
+
                 Card myCard = attackerBattlefield.GetSelectedCard();
                 myCard.AttackSelectedCard(opponentBattleField, attackerBattlefield);
 
@@ -179,6 +188,17 @@ public class Attack : BattleState
                 {
                     attackerBattlefield.MakeSelectedCardEvident();
                     myCard.SetObfuscate(true);
+                }
+                else
+                {
+                    playerAttacker.TakeDamage(1);
+                }    
+
+                // Deal damage to the opponent equal to the amount of his cards that just died
+                int amountOfEnemyCardsThatJustDied = amountOfCardsAliveBeforeAttack - opponentBattleField.GetAmountOfOccupiedSlots();
+                if (amountOfEnemyCardsThatJustDied > 0)
+                {
+                    targetPlayer.TakeDamage(amountOfEnemyCardsThatJustDied);
                 }
 
                 ClearSelections();

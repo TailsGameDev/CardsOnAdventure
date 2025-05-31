@@ -50,13 +50,11 @@ public class CardsHolder : IndexHolder
         cardRect.sizeDelta = new Vector2(slotRect.width, slotRect.height);
     }
 
-    public void Remove(object card)
+    public void Remove(Card card)
     {
         for (int i = 0; i < cards.Length; i++)
         {
-#pragma warning disable CS0253 // Possível comparação de referência inesperada; o lado direito precisa de conversão
             if (cards[i] == card)
-#pragma warning restore CS0253 // Possível comparação de referência inesperada; o lado direito precisa de conversão
             {
                 cards[i] = null;
                 return;
