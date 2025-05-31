@@ -10,6 +10,9 @@ public class BattleStatesFactory : OpenersSuperclass
     private bool isThePlayersFactory = false;
 
     [SerializeField]
+    private Duelist duelist = null;
+
+    [SerializeField]
     private Deck deck = null;
 
     [SerializeField]
@@ -83,6 +86,8 @@ public class BattleStatesFactory : OpenersSuperclass
     {
         return new Attack
             (
+                duelist,
+                otherBattleStatesFactory.duelist,
                 battlefield,
                 otherBattleStatesFactory.battlefield,
                 endTurnBtn,

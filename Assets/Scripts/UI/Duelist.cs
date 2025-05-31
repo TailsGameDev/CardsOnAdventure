@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIStanding : MonoBehaviour
+public class Duelist : MonoBehaviour
 {
     [SerializeField]
     private Battlefield battlefield = null;
@@ -18,7 +18,11 @@ public class UIStanding : MonoBehaviour
     private Text text = null;
 
     private string initialText;
-    int standingAmount;
+
+    int standingAmount = 8;
+
+    [SerializeField]
+    int healthPoints;
 
     private void Start()
     {
@@ -33,5 +37,11 @@ public class UIStanding : MonoBehaviour
         {
             text.text = initialText + standingAmount;
         }
+    }
+
+    public void TakeDamage(int amount)
+    {
+        healthPoints -= amount;
+        if(healthPoints < 0) healthPoints = 0;
     }
 }
