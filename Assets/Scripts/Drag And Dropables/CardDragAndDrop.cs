@@ -18,12 +18,12 @@ public class CardDragAndDrop : DragAndDrop
     protected override void Update()
     {
         base.Update();
-        
+
+        // TODO: Remove from update
         if (isDragging)
         {
             transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
         }
-        
     }
 
     protected override Type GetDragAndDropType()

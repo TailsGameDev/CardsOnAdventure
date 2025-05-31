@@ -81,6 +81,8 @@ public class Battlefield : CardsHolder
                 break;
         }
 
+        Debug.LogWarning("[Battlefield] index in front of "+index+" was not found. Maybe the card is not in the back line", this);
+
         return cardIndex;
     }
     public Card GetCardBehind(int index)
@@ -241,12 +243,11 @@ public class Battlefield : CardsHolder
             }
         }
     }
-    public void MakeProtectionEvidentOnSelectedIfNeeded(bool attackerIgnoresBlock)
+    public void MakeProtectionEvidentOnSelectedIfNeeded(bool attackerIgnoresProtection)
     {
         int selectedIndex = GetSelectedIndex();
-        Card cardInFrontOfTarget = GetCardInFrontOf(selectedIndex);
-        bool attackWillBeBlocked = cardInFrontOfTarget!= null && cardInFrontOfTarget.HasBlockSkill();
-        if (IsThereACardInFrontOf(selectedIndex) && !attackerIgnoresBlock && !attackWillBeBlocked)
+        bool attackWillBeBlocked = IsThereACardInFrontOf(selectedIndex) && GetCardInFrontOf(selectedIndex).HasBlockSkill();
+        if (IsThereACardInFrontOf(selectedIndex) && !attackerIgnoresProtection && !attackWillBeBlocked)
         {
             Transform protectionTransformWrapper = protectionVFXtoEachCard[selectedIndex].transform;
             StartCoroutine(MakeEvident(protectionTransformWrapper));
@@ -282,6 +283,50 @@ public class Battlefield : CardsHolder
         }
 
         objectToDetach.localScale = originalScale;
+    }
+    #endregion
+
+    #region Death Mark
+    public void DetachCardsThatWouldDie(Card attackerCard)
+    {
+        for (int defenderIndex = 0; defenderIndex < cards.Length; defenderIndex++)
+        {
+            Card defenderCard = cards[defenderIndex];
+            if (defenderCard != null)
+            {
+                bool attackerIgnoresProtection = attackerCard.IgnoresProtection;
+                bool hasProtector = (!attackerIgnoresProtection) && IsThereACardInFrontOf(defenderIndex);
+                bool wouldAttackBeBlocked =  hasProtector && GetCardInFrontOf(defenderIndex).HasBlockSkill();
+                if (!wouldAttackBeBlocked)
+                {
+                    bool wouldDefenderDie;
+                    int valueForAttackToOvercomeConsideringHeavyArmor = defenderCard.HasHeavyArmorSkill() ?
+                                            (defenderCard.Vitality + defenderCard.Vitality) : defenderCard.Vitality;
+                    if (hasProtector)
+                    {
+                        int valueForAttackToOvercomeConsideringProtection = valueForAttackToOvercomeConsideringHeavyArmor
+                                                                        + valueForAttackToOvercomeConsideringHeavyArmor;
+                        wouldDefenderDie = attackerCard.AttackPower >= valueForAttackToOvercomeConsideringProtection;
+                    }
+                    else
+                    {
+                        wouldDefenderDie = attackerCard.AttackPower >= valueForAttackToOvercomeConsideringHeavyArmor;
+                    }
+                    defenderCard.ShowDeathMarkVFX(show: wouldDefenderDie);
+                }
+            }
+        }
+    }
+    public void ClearDeathMarks()
+    {
+        for (int c = 0; c < cards.Length; c++)
+        {
+            Card card = cards[c];
+            if (card != null)
+            {
+                card.ShowDeathMarkVFX(show: false);
+            }
+        }
     }
     #endregion
 }

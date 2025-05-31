@@ -29,7 +29,7 @@ public class Attack : BattleState
     public static bool shouldAskForTip = true;
 
     private readonly int TOTAL_OF_ATTACKERS;
-    const int MAX_AMOUNT_OF_ATTACKS = 2;
+    const int MAX_AMOUNT_OF_ATTACKS = 1;
 
     public Attack(
                     Duelist playerAttacker,       
@@ -172,8 +172,8 @@ public class Attack : BattleState
 
             if (ReceivedValidInput())
             {
-                bool attackerIgnoresBlock = attackerBattlefield.GetSelectedCard().IgnoreOpponentsBlock;
-                opponentBattleField.MakeProtectionEvidentOnSelectedIfNeeded(attackerIgnoresBlock);
+                bool attackerIgnoresProtection = attackerBattlefield.GetSelectedCard().IgnoresProtection;
+                opponentBattleField.MakeProtectionEvidentOnSelectedIfNeeded(attackerIgnoresProtection);
 
                 HandleUselessAttacks();
 
@@ -187,6 +187,8 @@ public class Attack : BattleState
                 if (myCard.IsAlive())
                 {
                     attackerBattlefield.MakeSelectedCardEvident();
+                    
+                    // Obfuscate card to indicate it has already attacked
                     myCard.SetObfuscate(true);
                 }
                 else
@@ -202,6 +204,16 @@ public class Attack : BattleState
                 }
 
                 ClearSelections();
+                opponentBattleField.ClearDeathMarks();
+            }
+            else if (attackerBattlefield.SomeIndexWasSelected())
+            {
+                Card selectedCard = attackerBattlefield.GetSelectedCard();
+                opponentBattleField.DetachCardsThatWouldDie(selectedCard);
+            }
+            else
+            {
+                opponentBattleField.ClearDeathMarks();
             }
 
             if (ClickedInvalidCard())
@@ -238,7 +250,7 @@ public class Attack : BattleState
     private bool HandleUselessAttacks()
     {
         Card myCard = attackerBattlefield.GetSelectedCard();
-        bool isUseless = !myCard.IgnoreOpponentsBlock && myCard.AttackPower == 1 && opponentBattleField.IsThereACardInFrontOf(opponentBattleField.GetSelectedIndex());
+        bool isUseless = (!myCard.IgnoresProtection) && (myCard.AttackPower == 1) && opponentBattleField.IsThereACardInFrontOf(opponentBattleField.GetSelectedIndex());
 
         if (currentBattleStatesFactory == playerBattleStatesFactory)
         {
@@ -273,15 +285,15 @@ public class Attack : BattleState
 
     private bool ReceivedInputInBothBattlefields()
     {
-        return attackerBattlefield.SomeIndexWasSelectedSinceLastClear() && opponentBattleField.SomeIndexWasSelectedSinceLastClear(); ;
+        return attackerBattlefield.SomeIndexWasSelectedSinceLastClear() && opponentBattleField.SomeIndexWasSelectedSinceLastClear();
     }
 
     private bool ReceivedInputIsValid()
     {
-        int myIndex = attackerBattlefield.GetSelectedIndex();
+        int attackerIndex = attackerBattlefield.GetSelectedIndex();
         int opponentIndex = opponentBattleField.GetSelectedIndex();
 
-        return attackerBattlefield.ContainsCardInIndex(myIndex) && opponentBattleField.ContainsCardInIndex(opponentIndex); ;
+        return attackerBattlefield.ContainsCardInIndex(attackerIndex) && opponentBattleField.ContainsCardInIndex(opponentIndex); ;
     }
 
     public override BattleState GetNextState()

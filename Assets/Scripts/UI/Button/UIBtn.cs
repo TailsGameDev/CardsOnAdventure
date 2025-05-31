@@ -44,7 +44,7 @@ public class UIBtn : MonoBehaviour
     [SerializeField]
     private Color BtnDownTextColor = Color.white;
 
-    protected Color BtnUpTextColor = Color.white;
+    protected Color btnUpTextColor = Color.white;
 
     public EventTrigger eventTrigger;
 
@@ -59,7 +59,10 @@ public class UIBtn : MonoBehaviour
         originalRectTransfmOffsetMaxDotY = rectTransformToGoDownWhileBtnPressed.offsetMax.y;
         originalRectTransformOffsetMinDotY = rectTransformToGoDownWhileBtnPressed.offsetMin.y;
 
-        BtnUpTextColor = textComponent.color;
+        if (textComponent != null)
+        {
+            btnUpTextColor = textComponent.color;
+        }
     }
 
     public void OnPointerEntered()
@@ -82,14 +85,17 @@ public class UIBtn : MonoBehaviour
 
     public virtual void OnPointerUp()
     {
-        ConfigureBtnLooks(normalSprite, originalRectTransfmOffsetMaxDotY, originalRectTransformOffsetMinDotY, BtnUpTextColor);
+        ConfigureBtnLooks(normalSprite, originalRectTransfmOffsetMaxDotY, originalRectTransformOffsetMinDotY, btnUpTextColor);
     }
 
     protected void ConfigureBtnLooks(Sprite sprite, float top, float bottom, Color color)
     {
         imageComponent.sprite = sprite;
         SetTop(top, bottom);
-        textComponent.color = color;
+        if (textComponent != null)
+        {
+            textComponent.color = color;
+        }
     }
 
     public void SetTop(float top, float bottom)

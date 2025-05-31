@@ -8,7 +8,7 @@ public class FreezingEffect : SpecialEffect
     {
         int toBeFreezedIndex;
 
-        if ( BlockEffect.IsThereABlockerInTheFrontOfTarget(obf, targetIndex) )
+        if ( BlockEffect.IsThereABlockerInFrontOfTarget(obf, targetIndex) )
         {
             toBeFreezedIndex = obf.GetIndexInFrontOf(targetIndex);
         }

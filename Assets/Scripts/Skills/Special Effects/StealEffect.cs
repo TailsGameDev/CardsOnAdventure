@@ -8,7 +8,7 @@ public class StealEffect : SpecialEffect
     {
         Card attacker = abf.GetSelectedCard();
         Card target;
-        if (BlockEffect.IsThereABlockerInTheFrontOfTarget(obf, targetIndex))
+        if (BlockEffect.IsThereABlockerInFrontOfTarget(obf, targetIndex))
         {
             target = obf.GetCardInFrontOf(targetIndex);
         } 

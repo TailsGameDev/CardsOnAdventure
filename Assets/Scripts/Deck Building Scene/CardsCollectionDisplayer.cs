@@ -142,7 +142,7 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
                 ChildMaker.AdoptAndScaleAndSmoothlyMoveToParent
                     (slots[slot], card.GetRectTransform(), repositionAnimationDurationInSeconds);
                 const float DELAY_FROM_ANIMATION_END_TO_DESTRUCTION = 0.2f;
-              //  ObjectDestroyer.DestroyObjectInTime(card.gameObject, repositionAnimationDurationInSeconds + DELAY_FROM_ANIMATION_END_TO_DESTRUCTION);
+                Destroy(card.gameObject, repositionAnimationDurationInSeconds + DELAY_FROM_ANIMATION_END_TO_DESTRUCTION);
                 return;
             }
         }

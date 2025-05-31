@@ -118,7 +118,7 @@ public class OldSkill : Skill
     private bool ShouldDoBlock(int toBeDamagedIndex)
     {
         return IsAttackingBackline(targetIndex) &&
-            BlockEffect.IsThereABlockerInTheFrontOfTarget(obf, toBeDamagedIndex)
+            BlockEffect.IsThereABlockerInFrontOfTarget(obf, toBeDamagedIndex)
             && !ignoreOpponentBlock;
     }
 

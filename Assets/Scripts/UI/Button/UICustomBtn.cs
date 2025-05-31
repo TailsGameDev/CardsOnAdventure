@@ -16,7 +16,7 @@ public class UICustomBtn : UIBtn
 
     public override void OnPointerUp()
     {
-        ConfigureBtnLooks(normalSprite, originalRectTransfmOffsetMaxDotY, originalRectTransformOffsetMinDotY, BtnUpTextColor);
+        ConfigureBtnLooks(normalSprite, originalRectTransfmOffsetMaxDotY, originalRectTransformOffsetMinDotY, btnUpTextColor);
         onClicked();
     }
 }
