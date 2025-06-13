@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-
-public class CardPrototypesAccessor
+﻿public class CardPrototypesAccessor
 {
     // Contains all cards except theRandomCard and trainingDummy
     protected static Card[] allCardPrototypes;

@@ -1264,9 +1264,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 523226919}
+  - component: {fileID: 523226920}
   - component: {fileID: 523226922}
   - component: {fileID: 523226921}
-  - component: {fileID: 523226920}
   m_Layer: 5
   m_Name: Counter Enemy
   m_TagString: Untagged
@@ -5261,9 +5261,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1893482748}
+  - component: {fileID: 1893482749}
   - component: {fileID: 1893482751}
   - component: {fileID: 1893482750}
-  - component: {fileID: 1893482749}
   m_Layer: 5
   m_Name: Counter Player
   m_TagString: Untagged

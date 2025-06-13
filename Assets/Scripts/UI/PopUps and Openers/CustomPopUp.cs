@@ -68,7 +68,7 @@ public class CustomPopUp : OpenersSuperclass
 
     public void OpenMessageIfNoCustomPopUpIsOpenned(string title, string warningMessage)
     {
-        if (openerOfPopUpsMadeInEditor.customPopUpIsClosed())
+        if (openerOfPopUpsMadeInEditor.CustomPopUpIsClosed())
         {
             btnsActive = false;
             Open(title, warningMessage, " ", " ", ()=> { }, ()=> { });

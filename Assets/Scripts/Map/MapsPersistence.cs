@@ -12,7 +12,7 @@
 
     public bool DoesMapSaveExist(string mapName)
     {
-        return DoesSaveExist(mapName);
+        return HasSave(mapName);
     }
 
     public MapSerializable[] LoadAllMaps(string[] mapNames)

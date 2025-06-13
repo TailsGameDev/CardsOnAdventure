@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ThePopUpOpenerInstance : OpenersSuperclass
 {
-
     [SerializeField]
     private GameObject pausePopUp = null;
 
@@ -117,7 +114,7 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
         }
          LogStack();
     }
-    public bool customPopUpIsClosed()
+    public bool CustomPopUpIsClosed()
     {
         return ! customPopUp.activeSelf;
     }

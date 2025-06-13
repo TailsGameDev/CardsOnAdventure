@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Duelist : MonoBehaviour
@@ -14,34 +13,30 @@ public class Duelist : MonoBehaviour
     [SerializeField]
     private Deck deck = null;
 
-    [SerializeField]
-    private Text text = null;
+    [SerializeField][FormerlySerializedAs("text")]
+    private Text hpText = null;
 
-    private string initialText;
-
-    int standingAmount = 8;
-
-    [SerializeField]
-    int healthPoints;
+    private int healthPoints;
 
     private void Start()
     {
-        initialText = text.text;
-        standingAmount = 0;
+        healthPoints = battlefield.GetAmountOfOccupiedSlots() + hand.GetAmountOfOccupiedSlots() + deck.GetSize();
+        SetHPText(healthPoints);
     }
 
-    void Update()
+    private void SetHPText(int hp)
     {
-        int standingAmount = battlefield.GetAmountOfOccupiedSlots() + hand.GetAmountOfOccupiedSlots() + deck.GetSize();
-        if (standingAmount != this.standingAmount)
-        {
-            text.text = initialText + standingAmount;
-        }
+        const string PREFIX = "HP: ";
+        hpText.text = PREFIX + hp;
     }
 
     public void TakeDamage(int amount)
     {
         healthPoints -= amount;
-        if(healthPoints < 0) healthPoints = 0;
+        if (healthPoints < 0)
+        {
+            healthPoints = 0;
+        }
+        SetHPText(healthPoints);
     }
 }

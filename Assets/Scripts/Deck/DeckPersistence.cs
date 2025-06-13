@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class DeckPersistence : Persistence
+﻿public class DeckPersistence : Persistence
 {
     
     private string fileName;
@@ -17,14 +13,14 @@ public class DeckPersistence : Persistence
         GenericSave(fileName, deckSerializable);
     }
 
-    public bool SaveExists()
+    public bool HasSave()
     {
-        return base.DoesSaveExist(fileName);
+        return base.HasSave(fileName);
     }
 
     public DeckSerializable Load()
     {
-        if (SaveExists())
+        if (HasSave())
         {
             return GenericLoad<DeckSerializable>(fileName);
         }
