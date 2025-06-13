@@ -20,6 +20,9 @@ public class EditorMadeDeck : MonoBehaviour
     [SerializeField]
     protected Buff[] buffs;
 
+    [SerializeField]
+    protected int initialHP = 0;
+
     public Buff[] Buffs { get => buffs; }
 
     protected void Start()
@@ -52,12 +55,14 @@ public class EditorMadeDeckBuilder : DeckBuilderSuperclass
 {
     private Card[] cardPrototypes;
     private EditorMadeDeck.Buff[] buffs;
+    private int initialHP;
 
     public static EditorMadeDeckBuilder CreateEditorMadeDeckBuilder(string deckName)
     {
         EditorMadeDeck madeDeck = EditorMadeDeck.GetDeckByName(deckName);
         Card[] cards = madeDeck.GetCardPrototypes().ToArray();
-        return new EditorMadeDeckBuilder(cards.Length, cards, madeDeck.Buffs);
+        EditorMadeDeckBuilder deckBuilder = new EditorMadeDeckBuilder(cards.Length, cards, madeDeck.Buffs);
+        return deckBuilder;
     }
 
     private EditorMadeDeckBuilder(int size, Card[] cards, EditorMadeDeck.Buff[] buffs) : base(size)
@@ -97,5 +102,10 @@ public class EditorMadeDeckBuilder : DeckBuilderSuperclass
     public int[] GetIndexOfEachCardPrototype()
     {
         return FindThePrototypeIndexForEachCard(cardPrototypes);
+    }
+
+    public override int GetInitialHP()
+    {
+        return initialHP;
     }
 }

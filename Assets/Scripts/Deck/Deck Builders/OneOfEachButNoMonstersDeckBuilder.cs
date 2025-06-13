@@ -24,5 +24,9 @@
 
         return deck;
     }
+    public override int GetInitialHP()
+    {
+        return size;
+    }
 }
 

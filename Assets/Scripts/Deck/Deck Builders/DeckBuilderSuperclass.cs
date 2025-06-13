@@ -4,6 +4,7 @@ public abstract class DeckBuilderSuperclass : CardPrototypesAccessor
 {
     protected int size;
     protected Card[] deck;
+    protected int healthPoints;
 
     public static readonly int DEFAULT_DECK_SIZE = 8;
 
@@ -15,6 +16,7 @@ public abstract class DeckBuilderSuperclass : CardPrototypesAccessor
     }
 
     public abstract Card[] GetDeck();
+    public abstract int GetInitialHP();
 
     protected void CreateEmptyDeckWithProperSize()
     {
