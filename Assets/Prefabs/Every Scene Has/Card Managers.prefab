@@ -92,6 +92,7 @@ MonoBehaviour:
   - {fileID: 5121906812685789640}
   - {fileID: 5121906811438567540}
   buffs: []
+  initialHP: 2
 --- !u!1 &707806637014473931
 GameObject:
   m_ObjectHideFlags: 0
@@ -297,6 +298,7 @@ MonoBehaviour:
   - {fileID: 5121906811948855674}
   - {fileID: 1406880486227770030}
   buffs: []
+  initialHP: 2
 --- !u!1 &1305267069667039242
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,6 +348,7 @@ MonoBehaviour:
   - {fileID: 5121906811552508436}
   - {fileID: 5121906811552508436}
   buffs: []
+  initialHP: 3
 --- !u!1 &1402307283822560959
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +446,7 @@ MonoBehaviour:
   - {fileID: 472644992221924071}
   - {fileID: 472644992221924071}
   buffs: []
+  initialHP: 8
 --- !u!1 &2130752726390061393
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,6 +501,7 @@ MonoBehaviour:
   - {fileID: 5121906811175544358}
   - {fileID: 5121906811175544358}
   buffs: []
+  initialHP: 8
 --- !u!1 &2154352919460389446
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,6 +556,7 @@ MonoBehaviour:
   - {fileID: 5700199675315849554}
   - {fileID: 856141286563304898}
   buffs: []
+  initialHP: 8
 --- !u!1 &2225192619297611105
 GameObject:
   m_ObjectHideFlags: 0
@@ -643,6 +649,7 @@ MonoBehaviour:
   - {fileID: 4896376561397157878}
   - {fileID: 4896376561397157878}
   buffs: []
+  initialHP: 6
 --- !u!1 &2306799615617064297
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,6 +702,7 @@ MonoBehaviour:
   - {fileID: 5121906811552508436}
   - {fileID: 5121906811552508436}
   buffs: []
+  initialHP: 6
 --- !u!1 &2352017378103110095
 GameObject:
   m_ObjectHideFlags: 0
@@ -743,6 +751,7 @@ MonoBehaviour:
   - {fileID: 5121906811948855674}
   - {fileID: 1406880486227770030}
   buffs: []
+  initialHP: 2
 --- !u!1 &3270915865065117744
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,6 +925,7 @@ MonoBehaviour:
   - classe: 3
     atkBuff: 1
     vitBuff: 1
+  initialHP: 8
 --- !u!1 &3848714599458316799
 GameObject:
   m_ObjectHideFlags: 0
@@ -1052,6 +1062,7 @@ MonoBehaviour:
   - {fileID: 5121906811948855674}
   - {fileID: 1406880486227770030}
   buffs: []
+  initialHP: 2
 --- !u!1 &4457291746091236627
 GameObject:
   m_ObjectHideFlags: 0
@@ -2749,6 +2760,7 @@ MonoBehaviour:
   - {fileID: 5121906811948855674}
   - {fileID: 1406880486227770030}
   buffs: []
+  initialHP: 8
 --- !u!1 &4912786827693704350
 GameObject:
   m_ObjectHideFlags: 0
@@ -2797,6 +2809,7 @@ MonoBehaviour:
   - {fileID: 5121906811175544358}
   - {fileID: 5121906811175544358}
   buffs: []
+  initialHP: 2
 --- !u!1 &5065537184778807548
 GameObject:
   m_ObjectHideFlags: 0
@@ -2854,6 +2867,7 @@ MonoBehaviour:
   - classe: 1
     atkBuff: 1
     vitBuff: 1
+  initialHP: 8
 --- !u!1 &5125239148199933147
 GameObject:
   m_ObjectHideFlags: 0
@@ -2977,6 +2991,7 @@ MonoBehaviour:
   - {fileID: 5121906811948855674}
   - {fileID: 1406880486227770030}
   buffs: []
+  initialHP: 2
 --- !u!1 &5253231041026913847
 GameObject:
   m_ObjectHideFlags: 0
@@ -3635,6 +3650,7 @@ MonoBehaviour:
   - classe: 2
     atkBuff: 1
     vitBuff: 1
+  initialHP: 8
 --- !u!1 &7811881885375390332
 GameObject:
   m_ObjectHideFlags: 0
@@ -3755,6 +3771,7 @@ MonoBehaviour:
   - classe: 4
     atkBuff: 1
     vitBuff: 1
+  initialHP: 8
 --- !u!1 &8327094360435403148
 GameObject:
   m_ObjectHideFlags: 0
@@ -3814,6 +3831,7 @@ MonoBehaviour:
   - classe: 6
     atkBuff: 1
     vitBuff: 1
+  initialHP: 10
 --- !u!1 &8525593208649108742
 GameObject:
   m_ObjectHideFlags: 0
@@ -3870,6 +3888,7 @@ MonoBehaviour:
   - {fileID: 472644992221924071}
   - {fileID: 472644992221924071}
   buffs: []
+  initialHP: 10
 --- !u!1 &8700038278562343035
 GameObject:
   m_ObjectHideFlags: 0
@@ -3947,6 +3966,7 @@ MonoBehaviour:
   - classe: 6
     atkBuff: 1
     vitBuff: 1
+  initialHP: 13
 --- !u!1 &8852784342293956988
 GameObject:
   m_ObjectHideFlags: 0

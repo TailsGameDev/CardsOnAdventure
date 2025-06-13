@@ -1,14 +1,15 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Duelist : MonoBehaviour
 {
-    [SerializeField]
-    private Battlefield battlefield = null;
-
-    [SerializeField]
-    private Hand hand = null;
+    // TODO: Review if to unite all duelist references here, like battlefield and hand
+    // [SerializeField]
+    // private Battlefield battlefield = null;
+    // [SerializeField]
+    // private Hand hand = null;
 
     [SerializeField]
     private Deck deck = null;
@@ -18,10 +19,13 @@ public class Duelist : MonoBehaviour
 
     private int healthPoints;
 
-    private void Start()
+    private IEnumerator Start()
     {
-        healthPoints = battlefield.GetAmountOfOccupiedSlots() + hand.GetAmountOfOccupiedSlots() + deck.GetSize();
-        SetHPText(healthPoints);
+        // Wait for deck to initialize
+        yield return null;
+        yield return null;
+
+        SetHPText(hp: deck.GetInitialHP());
     }
 
     private void SetHPText(int hp)

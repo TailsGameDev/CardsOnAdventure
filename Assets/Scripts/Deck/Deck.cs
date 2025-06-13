@@ -10,24 +10,24 @@ public class Deck : MonoBehaviour
     [SerializeField]
     private bool enemysDeck = false;
 
-    private void Start()
-    {
-        StartCoroutine(PopulateDeck());
-    }
+    private int initialHP;
 
-    private IEnumerator PopulateDeck()
+    private IEnumerator Start()
     {
         yield return null;
 
+        // Populate deck and set initial HP
         cards = new List<Card>();
 
         if (enemysDeck)
         {
             cards.AddRange(PlayerAndEnemyDeckHolder.GetPreparedCardsForTheEnemy());
+            initialHP = PlayerAndEnemyDeckHolder.GetEnemyInitialHP();
         }
         else
         {
             cards.AddRange(PlayerAndEnemyDeckHolder.GetPreparedCardsForThePlayerOrGetRandomDeck());
+            initialHP = PlayerAndEnemyDeckHolder.GetPlayerInitialHP();
         }
 
         for (int i = 0; i < cards.Count; i++)
@@ -35,7 +35,6 @@ public class Deck : MonoBehaviour
             cards[i].RectTransform.position = transform.position;
             cards[i].RectTransform.SetParent(transform, true);
         }
-
     }
 
     public bool IsEmpty()
@@ -63,5 +62,10 @@ public class Deck : MonoBehaviour
     public void PutCardInTop(Card card)
     {
         cards.Insert(0, card);
+    }
+
+    public int GetInitialHP()
+    {
+        return initialHP;
     }
 }

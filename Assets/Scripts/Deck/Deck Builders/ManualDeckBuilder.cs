@@ -1,4 +1,6 @@
-﻿public class ManualDeckBuider : DeckBuilderSuperclass
+﻿using UnityEngine;
+
+public class ManualDeckBuider : DeckBuilderSuperclass
 {
     private int[] indexOfEachCardPrototype;
 

@@ -1,4 +1,5 @@
-﻿public class RandomDeckBuilder : DeckBuilderSuperclass
+﻿using UnityEngine;
+public class RandomDeckBuilder : DeckBuilderSuperclass
 {
     public RandomDeckBuilder(int size) : base(size)
     {

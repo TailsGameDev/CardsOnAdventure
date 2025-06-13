@@ -1,4 +1,5 @@
-﻿public class OneOfEachButNoMonstersDeckBuilder : DeckBuilderSuperclass
+﻿using UnityEngine;
+public class OneOfEachButNoMonstersDeckBuilder : DeckBuilderSuperclass
 {
     private OneOfEachButNoMonstersDeckBuilder(int size) : base(size)
     {

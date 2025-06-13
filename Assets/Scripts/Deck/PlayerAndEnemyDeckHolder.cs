@@ -49,6 +49,10 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
 
         return cards;
     }
+    public static int GetEnemyInitialHP()
+    {
+        return enemyDeckBuilder.GetInitialHP();
+    }
 
     #region Prepare Player's Deck
     public static void PrepareFirstDeckIfNeededForThePlayerAndGetReadyForSaving(bool forceToPrepare = false)
@@ -175,6 +179,11 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
 
         return RefreshStatsForThePlayer(playerDeck);
     }
+    public static int GetPlayerInitialHP()
+    {
+        const int PLAYER_INITIAL_HP = 8;
+        return PLAYER_INITIAL_HP;
+    }
     #endregion
 
     // TODO: Make DeckBuilder for this
@@ -183,12 +192,12 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
         Card[] notMonstersUnlocked = CardsCollection.GetUnlockedCardsFrom(CardPrototypesAccessor.notMonsterPrototypes);
         Card[] cards = new Card[2];
 
-        cards[0] = notMonstersUnlocked[ Random.Range(0, notMonstersUnlocked.Length) ].GetClone();
+        cards[0] = notMonstersUnlocked[Random.Range(0, notMonstersUnlocked.Length)].GetClone();
 
         do
         {
             cards[1] = notMonstersUnlocked[Random.Range(0, notMonstersUnlocked.Length)].GetClone();
-        } while ( cards[0].IsAnotherInstanceOf(cards[1]) );
+        } while (cards[0].IsAnotherInstanceOf(cards[1]));
 
         return cards;
     }

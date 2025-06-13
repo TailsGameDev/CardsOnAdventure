@@ -1305,11 +1305,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 688917730007e7b4883c5d88435d93b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battlefield: {fileID: 1898511386}
-  hand: {fileID: 1718507082}
   deck: {fileID: 1214190163}
-  text: {fileID: 523226921}
-  healthPoints: 0
+  hpText: {fileID: 523226921}
 --- !u!114 &523226921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1343,7 +1340,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Cards: '
+  m_Text: 'HP: '
 --- !u!222 &523226922
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5302,11 +5299,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 688917730007e7b4883c5d88435d93b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battlefield: {fileID: 149378011}
-  hand: {fileID: 416688464}
   deck: {fileID: 1378405288}
-  text: {fileID: 1893482750}
-  healthPoints: 0
+  hpText: {fileID: 1893482750}
 --- !u!114 &1893482750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5340,7 +5334,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Cards: '
+  m_Text: 'HP: '
 --- !u!222 &1893482751
 CanvasRenderer:
   m_ObjectHideFlags: 0
