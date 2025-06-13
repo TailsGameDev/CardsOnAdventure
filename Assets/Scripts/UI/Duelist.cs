@@ -25,7 +25,8 @@ public class Duelist : MonoBehaviour
         yield return null;
         yield return null;
 
-        SetHPText(hp: deck.GetInitialHP());
+        healthPoints = deck.GetInitialHP();
+        SetHPText(hp: healthPoints);
     }
 
     private void SetHPText(int hp)

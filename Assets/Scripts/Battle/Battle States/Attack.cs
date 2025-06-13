@@ -32,7 +32,7 @@ public class Attack : BattleState
 
     private readonly int TOTAL_OF_ATTACKERS;
     const int MAX_AMOUNT_OF_ATTACKS = 1;
-    const int DAMAGE_BY_ATTACK_CARD_DEATH = 1;
+    const int DAMAGE_BY_CARD_DEATH = 1;
 
     public Attack(
                     Duelist playerAttacker,       
@@ -197,14 +197,14 @@ public class Attack : BattleState
                 }
                 else
                 {
-                    playerAttacker.TakeDamage(DAMAGE_BY_ATTACK_CARD_DEATH);
+                    playerAttacker.TakeDamage(DAMAGE_BY_CARD_DEATH);
                 }    
 
                 // Deal damage to the opponent equal to the amount of his cards that just died
                 int amountOfEnemyCardsThatJustDied = amountOfCardsAliveBeforeAttack - opponentBattleField.GetAmountOfOccupiedSlots();
                 if (amountOfEnemyCardsThatJustDied > 0)
                 {
-                    targetPlayer.TakeDamage(amountOfEnemyCardsThatJustDied);
+                    targetPlayer.TakeDamage(amountOfEnemyCardsThatJustDied * DAMAGE_BY_CARD_DEATH);
                 }
 
                 ClearSelections();
