@@ -100,7 +100,7 @@ public class BattleStatesFactory : OpenersSuperclass
     }
     public BattleState CreateEndTurnState()
     {
-        return new EndTurn(battlefield, deck, hand, btnsBackground);
+        return new EndTurn(duelist, battlefield, deck, hand, btnsBackground);
     }
     public BattleState CreateIsGameTiedState()
     {
@@ -108,7 +108,7 @@ public class BattleStatesFactory : OpenersSuperclass
     }
     public BattleState CreateBeginTurnState()
     {
-        return new BeginTurn(battlefield, deck, hand);
+        return new BeginTurn(duelist, battlefield, deck, hand);
     }
     public BattleState CreateEndGameState(BattleStatesFactory winnerFactory)
     {

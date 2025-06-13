@@ -2,11 +2,11 @@
 
 public class EndTurn : TurnBattleState
 {
-    public EndTurn(Battlefield battlefield, Deck deck, Hand hand, GameObject toDeactivate)
+    public EndTurn(Duelist duelist, Battlefield battlefield, Deck deck, Hand hand, GameObject toDeactivate)
     {
         this.battlefield = battlefield;
-        this.deck = deck;
         this.hand = hand;
+        this.duelist = duelist;
 
         toDeactivate.SetActive(false);
 
@@ -19,6 +19,7 @@ public class EndTurn : TurnBattleState
         battlefield.RemoveFreezingStateFromAllCards();
         battlefield.RemoveObfuscateFromAllCards();
 
+        // TODO: Review if needed
         hand.RemoveFreezingStateFromAllCards();
         hand.RemoveObfuscateFromAllCards();
 
@@ -29,11 +30,12 @@ public class EndTurn : TurnBattleState
     {
         BattleState nextState;
 
-        if (IveLost())
+        if (HasPlayerLost())
         {
+            // Create end game with the other player as the winner
             nextState = currentBattleStatesFactory.CreateEndGameState(winnerFactory: currentBattleStatesFactory);
         }
-        else if (DeathCounter.AreCardsDyingToFew())
+        else if (DeathCounter.AreCardsDyingTooFew())
         {
             nextState = currentBattleStatesFactory.CreateIsGameTiedState();
         }

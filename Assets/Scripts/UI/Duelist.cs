@@ -19,6 +19,10 @@ public class Duelist : MonoBehaviour
 
     private int healthPoints;
 
+
+    public int HealthPoints { get => healthPoints; }
+
+
     private IEnumerator Start()
     {
         // Wait for deck to initialize

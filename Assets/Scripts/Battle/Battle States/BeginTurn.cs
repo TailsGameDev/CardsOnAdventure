@@ -1,10 +1,10 @@
 ﻿public class BeginTurn : TurnBattleState
 {
-    public BeginTurn(Battlefield battlefield, Deck deck, Hand hand)
+    public BeginTurn(Duelist duelist, Battlefield battlefield, Deck deck, Hand hand)
     {
         this.battlefield = battlefield;
-        this.deck = deck;
         this.hand = hand;
+        this.duelist = duelist;
     }
 
     public override void ExecuteAction()
@@ -16,7 +16,7 @@
     {
         BattleState nextState;
 
-        if (IveLost())
+        if (HasPlayerLost())
         {
             nextState = currentBattleStatesFactory.CreateEndGameState(winnerFactory: GetTheOtherFactory());
         }

@@ -1,8 +1,8 @@
 ﻿public abstract class TurnBattleState : BattleState
 {
     protected Battlefield battlefield;
-    protected Deck deck;
     protected Hand hand;
+    protected Duelist duelist;
 
     protected BattleStatesFactory GetTheOtherFactory()
     {
@@ -18,8 +18,8 @@
         return otherFactory;
     }
 
-    protected bool IveLost()
+    protected bool HasPlayerLost()
     {
-        return deck.IsEmpty() && battlefield.IsEmpty() && hand.IsEmpty();
+        return duelist.HealthPoints <= 0;
     }
 }

@@ -39,7 +39,7 @@ public class DeathCounter
         deathCount[deathCountIndex] = 0;
     }
 
-    public static bool AreCardsDyingToFew()
+    public static bool AreCardsDyingTooFew()
     {
         int counter = 0;
         for (int i = 0; i < deathCount.Length; i++)
