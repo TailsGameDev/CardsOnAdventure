@@ -43,8 +43,8 @@ PlayerSettings:
   m_VirtualRealitySplashScreen: {fileID: 10300, guid: 0000000000000000f000000000000000,
     type: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
-  defaultScreenWidth: 360
-  defaultScreenHeight: 640
+  defaultScreenWidth: 720
+  defaultScreenHeight: 1280
   defaultScreenWidthWeb: 432
   defaultScreenHeightWeb: 768
   m_StereoRenderingPath: 0
@@ -165,7 +165,7 @@ PlayerSettings:
   androidMinAspectRatio: 1
   applicationIdentifier:
     Android: com.TailsGameDev.CardsOnAdventure
-    Standalone: com.TailsGameDev.CardsOnAdventure
+    Standalone: com.TailsGameDev.Cards-On-Adventure
   buildNumber:
     Standalone: 0
     VisionOS: 0
@@ -828,7 +828,7 @@ PlayerSettings:
   platformArchitecture: {}
   scriptingBackend:
     Android: 0
-    Standalone: 1
+    Standalone: 0
   il2cppCompilerConfiguration: {}
   il2cppCodeGeneration: {}
   il2cppStacktraceInformation: {}

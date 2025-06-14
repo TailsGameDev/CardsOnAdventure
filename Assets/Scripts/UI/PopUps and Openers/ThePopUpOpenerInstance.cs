@@ -170,7 +170,7 @@ public class ThePopUpOpenerInstance : OpenersSuperclass
         }
         else
         {
-            L.ogWarning(this,"Called OpenCustomPopUp but it was already opened");
+            L.ogWarning(this, "Called OpenCustomPopUp but it was already opened");
         }
     }
     public void OpenIncidentPopUp()
