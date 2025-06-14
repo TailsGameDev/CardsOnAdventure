@@ -24,10 +24,10 @@ public class Persistence
             BinaryFormatter formater = new BinaryFormatter();
             FileStream stream = new FileStream(path, FileMode.Open);
 
-            T dados = (T)formater.Deserialize(stream);
+            T data = (T)formater.Deserialize(stream);
             stream.Close();
 
-            return dados;
+            return data;
         }
         else
         {
