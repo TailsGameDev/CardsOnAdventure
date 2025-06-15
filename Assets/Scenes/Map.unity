@@ -10215,27 +10215,18 @@ MonoBehaviour:
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
   editorMadeEnemyDeckName: 
-  story: "Wezz: Yeah nice training. \xA2 Shadow: Sure it was\u2026 but I\u2019m afraid
-    there is something I need to tell you. \xA2 Wezz: Really? What is the matter?
-    \xA2 Shadow: So\u2026 I know we are in a relationship and stuff\u2026 and I really
-    do like you a lot\u2026 \xA2 Wezz: Hey, are you going to break up with me? \xA2
-    Shadow: Well, no, but\u2026 do you remember our last party in the tavern right?
-    \xA2 Wezz: That was a good one, that guy took a punch and broke his teeth. The
-    other one went to pee outside and fell in the river. Crazy nights\u2026 \xA2
-    Shadow: Haha, true. So\u2026 things were really crazy and I ended up kissing
-    another guy. \xA2 Wezz: \u2026 Oh, I see. Was it only kissing or anything else?
-    \xA2 Shadow: Yeah we ended up making something else too\u2026 \xA2 Wezz: Holly
-    dagger\u2026 okay\u2026 I think I\u2019ll need some time to process that. But
-    would you tell me who was the one? \xA2 Shadow: Do you really want to know? \xA2
-    Wezz: I really do. \xA2 Shadow: Okay\u2026 it was Joe, my ex-boyfriend. \xA2
-    Wezz: That's hurtful. At least you told me. I think we should talk more about
-    that later, but right now I need to go after this bastard and rip his head off.
-    \xA2 Shadow: I\u2019ll help you with that. He was a jerk to me later and also
-    he somehow made a lot of clones of us, our friends, and other adventurers and
-    monsters, and spread them throughout the lands. \xA2 Wezz: Why the hell did he
-    do that? \xA2 Shadow: What about\u2026 let\u2019s ask him while we punch his
-    face? \xA2 Wezz: I think it would be nice. \xA2 Shadow: I bet he is hidden somewhere
-    behind those boss fights, so there we go."
+  story: "Wezz: This is madness. My clones, your clones\u2026 our friends\u2014Joe's
+    spread them all over the land. \xA2 Shadow: He\u2019s twisting everything we
+    are. We need to put an end to this. \xA2 Joe: Ah, my dear old companions, what
+    a pleasure. Look at this glorious army\u2014do you recognize yourselves? \xA2
+    Wezz: You won\u2019t keep playing these games, Joe. \xA2 Shadow: Tell us\u2014why
+    the clones? Why manipulate the land like this? \xA2 Joe: Because I can. You see,
+    true power isn\u2019t in having strength, it\u2019s in making the world question
+    reality itself. Who is the real Wezz? The real Shadow? Do you even know anymore?
+    \xA2 Wezz: Enough talk. I\u2019m cutting down your illusions, starting now. \xA2
+    Shadow: We will face them all if we must. And then we will face you. \xA2 Joe:
+    Hah! Then come, heroes. Fight yourselves, and see if you survive long enough
+    to reach me."
 --- !u!114 &720145631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15233,23 +15224,13 @@ MonoBehaviour:
   celebrateSFX: {fileID: 0}
   incidentPopUps: []
   editorMadeEnemyDeckName: 
-  story: "Joe: That does not make sense. How could you get so strong you beat the
-    clones I made out of you? \xA2 Wezz: I\u2019ve been making 100 push-ups per day
-    in the past few years. So yeah, nobody can defeat me except by me. \xA2 Joe:
-    Your clones didn\u2019t make push-ups. How is that possible? I\u2019ve been trying
-    to achieve a better version of my clones\u2026 \xA2 Shadow: So that\u2019s why
-    you have been cloning so much lately? You do have great power, but you are so
-    irresponsible! \xA2 Joe: I just wanted to make a clone out of you, Shadow. One
-    that still loved me. \xA2 Shadow: So you shook this world, played with hundreds
-    of souls, made so much havok only because you wanted to be with me? \xA2 Joe:
-    That's it. \xA2 Wezz: Hey the way you said it made me jealous, Shadow. \xA2 Shadow:
-    Okay\u2026 there is still a part of me that really thinks this havok is sweet,
-    Joe. But I've changed too much. I can\u2019t be your chaotic princess anymore,
-    nor could any clone of me. I want to spend all my days on adventures with Wezz
-    and our friends. \xA2 Wezz: So this is how it ends. That\u2019s for you to learn
-    not to play with people's feeling\u2019s Joe. \u201CWezz steals Joes power\u201D
-    \xA2 Joe: No, my sweet power, give it back. \xA2 Wezz: I won\u2019t, and you
-    better not make evil plans again. Or I will really rip your head off."
+  story: "Wezz: It\u2019s done. The clones\u2014they\u2019re disappearing. \xA2 Shadow:
+    He\u2019s losing control. His magic is breaking apart. \xA2 Joe: No! My masterpiece!
+    You can\u2019t\u2014 \xA2 Wezz: This nightmare ends now, Joe. \xA2 Shadow: Wezz,
+    strike now! \xA2 Joe: You fools! My magic\u2014 \xA2 Wezz: Your magic ends here.
+    [Sound of steel clashing] \xA2 Shadow: It\u2019s over. \xA2 Joe: You think you\u2019ve
+    won, but darkness always finds a way back. \xA2 Wezz: Then we\u2019ll be here,
+    ready to fight it. \xA2 Shadow: Together."
 --- !u!114 &1060938586
 MonoBehaviour:
   m_ObjectHideFlags: 0
