@@ -61,7 +61,9 @@ public class Settings : MonoBehaviour
 
     public static void InitializeFullScreen()
     {
+        #if !UNITY_WEBGL
         Screen.SetResolution(RESOLUTION_WIDTH, RESOLUTION_HEIGHT, Settings.IsTrue(PlayerPrefs.GetInt(FULLSCREEN_KEY, Settings.FALSE)));
+        #endif
     }
 
     private void OnEnable()

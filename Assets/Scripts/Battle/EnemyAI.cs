@@ -1,28 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class EnemyAI
 {
-    private static float aiDelay = 0.0f;
+    private static float aiDelay;
 
-    private Hand enemyHand = null;
+    private Hand enemyHand;
 
-    private Battlefield enemyBattlefield = null;
+    private Battlefield enemyBattlefield;
 
-    private Battlefield playerBattlefield = null;
+    private Battlefield playerBattlefield;
 
     private UICustomBtn endRepositionBtn;
 
     private CoroutineExecutorPrototype coroutineExecutor;
 
-    private const float MIN_AI_DELAY = 0.5f;
-    private const float DEFAULT_AI_DELAY = 1.5f;
-
     private int attackerPower;
 
     private int maxAmountOfAttacks;
+
+    private const float MIN_AI_DELAY = 0.5f;
+    private const float DEFAULT_AI_DELAY = 1.5f;
 
     public delegate bool CurrentTargetIsBetterThanPrevious(int previousIndex, int currentIndex, Battlefield obf);
 
@@ -169,12 +168,12 @@ public class EnemyAI
         this.enemyBattlefield = enemyBattlefield;
         this.playerBattlefield = playerBattlefield;
 
-        if ( ! enemyBattlefield.IsEmpty() && ! playerBattlefield.IsEmpty() )
+        if (!enemyBattlefield.IsEmpty() && !playerBattlefield.IsEmpty())
         {
             coroutineExecutor = CoroutineExecutorPrototype.GetCopy();
 
             coroutineExecutor.ExecuteCoroutine(AttackCoroutine());
-        } 
+        }
         else
         {
             UIBattle.inputEnabled = true;
@@ -206,8 +205,24 @@ public class EnemyAI
             this.attackerPower = attacker.AttackPower;
             playerBattlefield.LoopThrougCardsAndSelectBestTarget(IsCurrentTargetBetterThanPrevious);
 
+            Transform originalAttackerParent = attacker.transform.parent;
+            attacker.transform.SetParent(UIBattle.parentOfDynamicUIThatMustAppear);
+            Card target = playerBattlefield.GetSelectedCard();
+            TweenHandler.Instance.BeginQuadPositionTweenCheckNull(attacker.transform, target.transform, aiDelay / 6,
+                onEnd: () =>
+                {
+                    TweenHandler.Instance.BeginQuadPositionTweenCheckNull(attacker.transform, originalAttackerParent, 5 * aiDelay / 6,
+                        onEnd: () =>
+                        {
+                            if (attacker != null)
+                            {
+                                attacker.transform.SetParent(originalAttackerParent);
+                            }
+                        });
+                });
+
             // This wait is important because we must expect the cards to die before the loop checks for playerBattlefield.HasCards()
-            yield return WaitForSeconds(aiDelay/2);
+            yield return WaitForSeconds(aiDelay / 2);
         }
 
         UIBattle.inputEnabled = true;
