@@ -34,6 +34,7 @@ public abstract class DeckBuilderSuperclass : CardPrototypesAccessor
         return theRandomCardPrototype.GetClone();
     }
 
+    // TODO: Review if needed
     protected int[] FindThePrototypeIndexForEachCard(Card[] cardsToBeOnDeck)
     {
         int[] indexOfEachCardPrototype = new int[size];
@@ -46,6 +47,33 @@ public abstract class DeckBuilderSuperclass : CardPrototypesAccessor
             indexOfEachCardPrototype[i] = prototypeIndex;
         }
         return indexOfEachCardPrototype;
+    }
+    protected int[] FindTheAmountForEachCard(Card[] cardsToBeOnDeck)
+    {
+        int prototypesArrayLength = allCardPrototypes.Length;
+        int[] amountOfEachCard = new int[prototypesArrayLength];
+        for (int i = 0; i < cardsToBeOnDeck.Length; i++)
+        {
+            // Find
+            Card cardOfDeck = cardsToBeOnDeck[i];
+            int prototypeIndex = FindIndexOnPrototypesArray(cardOfDeck);
+            // Cache
+            amountOfEachCard[prototypeIndex] += 1;
+        }
+        return amountOfEachCard;
+    }
+    protected int[] FindTheAmountForEachCard(int[] cardsIndexesToBeOnDeck)
+    {
+        int prototypesArrayLength = allCardPrototypes.Length;
+        int[] amountOfEachCard = new int[prototypesArrayLength];
+        for (int i = 0; i < cardsIndexesToBeOnDeck.Length; i++)
+        {
+            // Find
+            int prototypeIndex = cardsIndexesToBeOnDeck[i];
+            // Cache
+            amountOfEachCard[prototypeIndex] += 1;
+        }
+        return amountOfEachCard;
     }
 
     public static int[] GetArrayFilledWithTheRandomCardIndex()

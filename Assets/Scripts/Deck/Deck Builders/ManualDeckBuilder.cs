@@ -2,6 +2,7 @@
 
 public class ManualDeckBuider : DeckBuilderSuperclass
 {
+    // TODO: Consider using amounts instead of indexes, review if this class can be merged with EditorMadeDeck
     private int[] indexOfEachCardPrototype;
 
     #region Initialization
@@ -19,10 +20,29 @@ public class ManualDeckBuider : DeckBuilderSuperclass
         return builder;
     }
 
-    public static ManualDeckBuider Create(int[] indexOfEachCardPrototype)
+    public static ManualDeckBuider Create(int[] amountOfEachCardPrototype)
     {
-        ManualDeckBuider builder = new ManualDeckBuider(indexOfEachCardPrototype.Length);
-        builder.indexOfEachCardPrototype = indexOfEachCardPrototype;
+        // Instantiate build with proper indexes array size
+        int deckSize = 0;
+        for (int a = 0; a < amountOfEachCardPrototype.Length; a++)
+        {
+            deckSize += amountOfEachCardPrototype[a];
+        }
+        ManualDeckBuider builder = new ManualDeckBuider(deckSize);
+
+        // Populate indexes array
+        int indexesIndex = 0;
+        for (int a = 0; a < amountOfEachCardPrototype.Length; a++)
+        {
+            int amountOfCardsToAdd = amountOfEachCardPrototype[a];
+            while (amountOfCardsToAdd > 0)
+            {
+                builder.indexOfEachCardPrototype[indexesIndex] = a;
+                indexesIndex++;
+                amountOfCardsToAdd--;
+            }
+        }
+
         return builder;
     }
     #endregion
@@ -56,5 +76,10 @@ public class ManualDeckBuider : DeckBuilderSuperclass
     public override int GetInitialHP()
     {
         return size;
+    }
+
+    public int[] GetAmountForEachCardPrototype()
+    {
+        return FindTheAmountForEachCard(indexOfEachCardPrototype);
     }
 }

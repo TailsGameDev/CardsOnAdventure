@@ -50,7 +50,7 @@ public class CardsCollection : CardPrototypesAccessor
         int[] cardAmounts;
         if (saveFacade.IsCardsCollectionLoaded())
         {
-            cardAmounts = saveFacade.GetLoadedCardsCollection().cardsIndexes;
+            cardAmounts = saveFacade.GetLoadedCardsCollection().cardAmounts;
         }
         else
         {

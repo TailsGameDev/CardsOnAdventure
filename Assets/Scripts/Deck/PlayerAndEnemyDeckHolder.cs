@@ -60,25 +60,25 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
         if (playerDeckBuilder == null || forceToPrepare)
         {
             playerDeckBuilder = EditorMadeDeckBuilder.CreateEditorMadeDeckBuilder("PlayerDeck");
-            int[] cardIndexes = ((EditorMadeDeckBuilder)playerDeckBuilder).GetIndexOfEachCardPrototype();
-            PrepareDeckIndexesForSaving(cardIndexes);
+            int[] cardAmounts = ((EditorMadeDeckBuilder)playerDeckBuilder).GetAmountForEachCardPrototype();
+            PrepareDeckAmountsForSaving(cardAmounts);
         }
     }
     public static void PrepareManuallyBuiltDeckForThePlayerAndGetReadyForSaving(Card[] cards)
     {
         playerDeckBuilder = ManualDeckBuider.Create(cards);
-
-        int[] cardIndexes = ((ManualDeckBuider)playerDeckBuilder).GetIndexOfEachCardPrototype();
-        PrepareDeckIndexesForSaving(cardIndexes);
+        int[] cardAmounts = ((ManualDeckBuider)playerDeckBuilder).GetAmountForEachCardPrototype();
+        PrepareDeckAmountsForSaving(cardAmounts);
     }
-    private static void PrepareDeckIndexesForSaving(int[] deckIndexes)
+    //here
+    private static void PrepareDeckAmountsForSaving(int[] cardsAmounts)
     {
-        DeckSerializable deckSerializable = new DeckSerializable(deckIndexes);
+        DeckSerializable deckSerializable = new DeckSerializable(cardsAmounts);
         saveFacade.PrepareDeckForSaving(deckSerializable);
     }
-    public static void PrepareLoadedDeckForThePlayer(int[] cardIndexes)
+    public static void PrepareLoadedDeckForThePlayer(int[] cardAmounts)
     {
-        playerDeckBuilder = ManualDeckBuider.Create(cardIndexes);
+        playerDeckBuilder = ManualDeckBuider.Create(cardAmounts);
     }
     #endregion
 
@@ -116,7 +116,7 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
         if (saveFacade.IsDeckLoaded())
         {
             DeckSerializable deckSerializable = saveFacade.GetLoadedDeck();
-            PrepareLoadedDeckForThePlayer(deckSerializable.GetCardsIndexes());
+            PrepareLoadedDeckForThePlayer(deckSerializable.GetCardsAmounts());
             playerDeck = playerDeckBuilder.GetDeck();
         }
         else

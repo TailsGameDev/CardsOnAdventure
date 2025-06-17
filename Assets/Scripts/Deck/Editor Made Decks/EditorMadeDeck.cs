@@ -101,9 +101,9 @@ public class EditorMadeDeckBuilder : DeckBuilderSuperclass
         return cards;
     }
 
-    public int[] GetIndexOfEachCardPrototype()
+    public int[] GetAmountForEachCardPrototype()
     {
-        return FindThePrototypeIndexForEachCard(cardPrototypes);
+        return FindTheAmountForEachCard(cardPrototypes);
     }
 
     public override int GetInitialHP()

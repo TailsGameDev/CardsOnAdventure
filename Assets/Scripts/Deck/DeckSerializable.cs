@@ -1,15 +1,15 @@
 ﻿[System.Serializable]
 public class DeckSerializable
 {
-    public int[] cardsIndexes;
+    public int[] cardAmounts;
 
-    public DeckSerializable(int[] cardsIndexes)
+    public DeckSerializable(int[] cardAmounts)
     {
-        this.cardsIndexes = cardsIndexes;
+        this.cardAmounts = cardAmounts;
     }
 
-    public int[] GetCardsIndexes()
+    public int[] GetCardsAmounts()
     {
-        return cardsIndexes;
+        return cardAmounts;
     }
 }

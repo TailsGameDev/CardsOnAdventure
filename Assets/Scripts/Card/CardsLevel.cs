@@ -55,7 +55,7 @@ public class CardsLevel : MonoBehaviour
     public static void CopyLoadedDataToAttributes()
     {
         DeckSerializable cardsLevelSerializable = instance.saveFacade.GetLoadedCardsLevel();
-        instance.cardsLevel = cardsLevelSerializable.cardsIndexes;
+        instance.cardsLevel = cardsLevelSerializable.cardAmounts;
     }
 
     public void LevelUpCard(Card card)
