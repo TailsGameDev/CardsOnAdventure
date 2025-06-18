@@ -29,8 +29,8 @@ public class EarnCard : IncidentAction
             (
                 title: "Earn a Card",
                 warningMessage: "Choose a card to add to your collection, I mean, to become your friend.",
-                confirmBtnMessage: "<<< The Leftmost",
-                cancelBtnMessage: "The rightmost >>>",
+                confirmBtnMessage: "< Left One <",
+                cancelBtnMessage: "> Right One >",
                 onConfirm: () => { AddCardClosePopUpClearSpot(0); },
                 onCancel: () => { AddCardClosePopUpClearSpot(1); },
                 PreMadeAudioRequest.CreateSFX_AND_STOP_BGMAudioRequest(earnCardAudio, audioRequisitor, assignor: gameObject),
