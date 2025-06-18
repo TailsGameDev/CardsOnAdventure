@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -30,7 +29,7 @@ public class UIBtn : MonoBehaviour
     private Vector3 bigSize = Vector3.zero;
 
     [SerializeField]
-    private Text textComponent = null;
+    private TextMeshProUGUI textComponent = null;
 
     [SerializeField]
     private RectTransform rectTransformToGoDownWhileBtnPressed = null;

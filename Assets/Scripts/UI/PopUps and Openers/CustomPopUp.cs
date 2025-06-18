@@ -10,10 +10,10 @@ public class CustomPopUp : OpenersSuperclass
     private Text warningText = null;
 
     [SerializeField]
-    private Text customConfirmText = null;
+    private TMPro.TextMeshProUGUI customConfirmText = null;
 
     [SerializeField]
-    private Text customCancelText = null;
+    private TMPro.TextMeshProUGUI customCancelText = null;
 
     [SerializeField]
     private UICustomBtn customConfirmBtn = null;
