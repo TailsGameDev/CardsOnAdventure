@@ -7,9 +7,6 @@ public class DeckBuildingButtons : OpenersSuperclass
     private PreMadeAudioFactory preMadeAudioFactory = null;
 
     [SerializeField]
-    private DeckCardHolder deck = null;
-
-    [SerializeField]
     private GameObject deckSection = null;
     [SerializeField]
     private GameObject storeSection = null;

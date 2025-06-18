@@ -2,17 +2,10 @@
 
 public class DeckCardHolder : DynamicSizeScrollableCardHolder
 {
-    private bool initialized = false;
-
     #region Initialization
-    private void Start()
+    private IEnumerator Start()
     {
-        StartCoroutine(DelayedStart());
-        initialized = true;
-    }
-    private IEnumerator DelayedStart()
-    {
-        // Wait for the DeckPrototypeFactory to PopulateArrayOfAllCardPrototypes.
+        // Wait for the DeckPrototypeFactory to PopulateArrayOfAllCardPrototypes
         yield return null;
         int amountOfSlots = DeckBuilderSuperclass.DEFAULT_DECK_SIZE;
         InitializeSlotsAndRectSize(amountOfSlots);
@@ -30,5 +23,4 @@ public class DeckCardHolder : DynamicSizeScrollableCardHolder
         }
     }
     #endregion
-
 }
