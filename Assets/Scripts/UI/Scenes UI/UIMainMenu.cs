@@ -21,7 +21,10 @@ public class UIMainMenu : UIPauseMenu
     public void OnPlayBtnClicked()
     {
         OpenContinueOrNewGamePopUp();
-        cardBackground.ChangeSprite();
+        if (cardBackground != null)
+        {
+            cardBackground.ChangeSprite();
+        }
     }
 
     private void OpenContinueOrNewGamePopUp()

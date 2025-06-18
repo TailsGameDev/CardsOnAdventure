@@ -14,7 +14,10 @@ public class UIPauseMenu : OpenersSuperclass
 
     protected virtual void OnEnable()
     {
-        cardBackground.ChangeSprite();
+        if (cardBackground != null)
+        {
+            cardBackground.ChangeSprite();
+        }
         fleeFromBattleBtn.SetActive(SceneManager.GetActiveScene().name == "Battle");
     }
 
