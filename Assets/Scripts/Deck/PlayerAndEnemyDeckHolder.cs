@@ -64,12 +64,6 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
             PrepareDeckAmountsForSaving(cardAmounts);
         }
     }
-    public static void PrepareManuallyBuiltDeckForThePlayerAndGetReadyForSaving(Card[] cards)
-    {
-        playerDeckBuilder = ManualDeckBuider.Create(cards);
-        int[] cardAmounts = ((ManualDeckBuider)playerDeckBuilder).GetAmountForEachCardPrototype();
-        PrepareDeckAmountsForSaving(cardAmounts);
-    }
     //here
     private static void PrepareDeckAmountsForSaving(int[] cardsAmounts)
     {

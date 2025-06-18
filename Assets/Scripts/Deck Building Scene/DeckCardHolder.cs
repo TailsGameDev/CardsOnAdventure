@@ -31,11 +31,4 @@ public class DeckCardHolder : DynamicSizeScrollableCardHolder
     }
     #endregion
 
-    public void PrepareDeckForPlayerAndGetReadyForSaving()
-    {
-        if (initialized)
-        {
-            PlayerAndEnemyDeckHolder.PrepareManuallyBuiltDeckForThePlayerAndGetReadyForSaving(cards);
-        }
-    }
 }

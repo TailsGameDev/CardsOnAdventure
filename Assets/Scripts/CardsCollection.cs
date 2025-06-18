@@ -30,6 +30,7 @@ public class CardsCollection : CardPrototypesAccessor
         {
             cardsCollectionAmounts[c] += amountToAdd;
         }
+
         saveFacade.PrepareCardsCollectionForSaving(new DeckSerializable(cardsCollectionAmounts));
     }
     private static int GetIndexInAllCardPrototypesArray(Card card)

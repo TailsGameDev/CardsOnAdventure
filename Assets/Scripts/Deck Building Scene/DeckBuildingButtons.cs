@@ -30,7 +30,6 @@ public class DeckBuildingButtons : OpenersSuperclass
     {
         openerOfPopUpsMadeInEditor.SetLoadingPopUpActiveToTrueAndDeactivateTips();
         yield return null;
-        deck.PrepareDeckForPlayerAndGetReadyForSaving();
         CardsLevel.PrepareForSaving();
         sceneOpener.OpenMapScene();
     }
