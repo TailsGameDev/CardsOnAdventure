@@ -61,14 +61,8 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
         {
             playerDeckBuilder = EditorMadeDeckBuilder.CreateEditorMadeDeckBuilder("PlayerDeck");
             int[] cardAmounts = ((EditorMadeDeckBuilder)playerDeckBuilder).GetAmountForEachCardPrototype();
-            PrepareDeckAmountsForSaving(cardAmounts);
+            saveFacade.PrepareCardsCollectionForSaving(new DeckSerializable(cardAmounts));
         }
-    }
-    //here
-    private static void PrepareDeckAmountsForSaving(int[] cardsAmounts)
-    {
-        DeckSerializable deckSerializable = new DeckSerializable(cardsAmounts);
-        saveFacade.PrepareDeckForSaving(deckSerializable);
     }
     public static void PrepareLoadedDeckForThePlayer(int[] cardAmounts)
     {
@@ -107,9 +101,9 @@ public class PlayerAndEnemyDeckHolder : CardPrototypesAccessor
     {
         Card[] playerDeck;
 
-        if (saveFacade.IsDeckLoaded())
+        if (saveFacade.IsCardsCollectionLoaded())
         {
-            DeckSerializable deckSerializable = saveFacade.GetLoadedDeck();
+            DeckSerializable deckSerializable = saveFacade.GetLoadedCardsCollection();
             PrepareLoadedDeckForThePlayer(deckSerializable.GetCardsAmounts());
             playerDeck = playerDeckBuilder.GetDeck();
         }

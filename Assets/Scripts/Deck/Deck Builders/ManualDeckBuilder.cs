@@ -26,7 +26,12 @@ public class ManualDeckBuider : DeckBuilderSuperclass
         int deckSize = 0;
         for (int a = 0; a < amountOfEachCardPrototype.Length; a++)
         {
-            deckSize += amountOfEachCardPrototype[a];
+            // TODO: Proper verification for unlocked card
+            bool hasUnlockedCard = amountOfEachCardPrototype[a] > 0;
+            if (hasUnlockedCard)
+            {
+                deckSize += amountOfEachCardPrototype[a];
+            }
         }
         ManualDeckBuider builder = new ManualDeckBuider(deckSize);
 

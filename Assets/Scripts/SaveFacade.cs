@@ -2,7 +2,6 @@
 {
     private MapsPersistence mapsPersistence = new MapsPersistence();
     private ClassesPersistence classesPersistence = new ClassesPersistence();
-    private DeckPersistence deckPersistence = new DeckPersistence("FirstDeck");
     private DeckPersistence cardsCollectionPersistence = new DeckPersistence("CardsCollection");
     private DeckPersistence cardsLevelPersistence = new DeckPersistence("CardsLevel");
 
@@ -10,7 +9,6 @@
     private static string[] nameOfMapsToSave;
     private static MapSerializable[] dataOfMapsToSave;
     private static ClassesSerializable classesSerializableToSave;
-    private static DeckSerializable deckSerializableToSave;
     private static DeckSerializable cardsCollectionToSave;
     private static DeckSerializable cardsLevelToSave;
 
@@ -38,12 +36,6 @@
     {
         classesSerializableToSave = classesInfo;
     }
-    public void PrepareDeckForSaving(DeckSerializable deckSerializableParam)
-    {
-        deckSerializableToSave = deckSerializableParam;
-        // Because DeckPrototypeFactory checks if deck is loaded. And from this moment on we can say it is.
-        loadedDeckSerializable = deckSerializableParam;
-    }
     public void PrepareCardsCollectionForSaving(DeckSerializable cardsCollectionSerializableParam)
     {
         cardsCollectionToSave = cardsCollectionSerializableParam;
@@ -66,12 +58,10 @@
         {
             loadedMapsInfo = mapsPersistence.LoadAllMaps(namesOfMapsToLoad);
             loadedClassesSerializable = classesPersistence.LoadClasses();
-            loadedDeckSerializable = deckPersistence.Load();
             loadedCardsCollection = cardsCollectionPersistence.Load();
             loadedCardsLevel = cardsLevelPersistence.Load();
 
             classesSerializableToSave = loadedClassesSerializable;
-            deckSerializableToSave = loadedDeckSerializable;
             cardsLevelToSave = loadedCardsLevel;
         }
         else
@@ -96,10 +86,6 @@
         }
         return loadedClassesSerializable;
     }
-    public DeckSerializable GetLoadedDeck()
-    {
-        return loadedDeckSerializable;
-    }
     public DeckSerializable GetLoadedCardsCollection()
     {
         return loadedCardsCollection;
@@ -107,11 +93,6 @@
     public DeckSerializable GetLoadedCardsLevel()
     {
         return loadedCardsLevel;
-    }
-
-    public bool IsDeckLoaded()
-    {
-        return loadedDeckSerializable != null;
     }
     public bool IsCardsCollectionLoaded()
     {
@@ -129,7 +110,6 @@
         {
             mapsPersistence.SaveAllMaps(nameOfMapsToSave, dataOfMapsToSave);
             classesPersistence.SaveClasses(classesSerializableToSave);
-            deckPersistence.Save(deckSerializableToSave);
             if (cardsCollectionToSave == null)
             {
                 cardsCollectionToSave = new DeckSerializable(CardsCollection.GetCardsCollectionAmounts());
@@ -140,7 +120,7 @@
         else
         {
             string whatsnull = ("maps: "+dataOfMapsToSave + "mapName: "+nameOfMapsToSave + "classes: "+classesSerializableToSave 
-                + "deck: "+deckSerializableToSave + " levels: "+cardsLevelToSave);
+                + " levels: "+cardsLevelToSave);
             L.ogWarning("SaveEverything was called, but at least one attribute is still null. " +
                 "This is ok if there is nothing to save.\n"+whatsnull, this);
         }
@@ -150,7 +130,6 @@
         return  dataOfMapsToSave != null
                 && nameOfMapsToSave != null
                 && classesSerializableToSave != null
-                && deckSerializableToSave != null
                 && cardsLevelToSave != null
                 // cardsCollectionToSave is optional
                 ;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Deck : MonoBehaviour
 {
     [SerializeField]
-    List<Card> cards = null;
+    private List<Card> cards = null;
 
     [SerializeField]
     private bool enemysDeck = false;
