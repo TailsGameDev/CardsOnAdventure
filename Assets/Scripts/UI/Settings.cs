@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Settings : MonoBehaviour
@@ -20,6 +21,9 @@ public class Settings : MonoBehaviour
 
     [SerializeField]
     private Toggle shutSpiritsMouth = null;
+
+    [SerializeField]
+    private GameObject fleeFromBattleBtn = null;
 
     private const string AI_DELAY_KEY = "AI_DELAY_KEY";
     private const string CUSTOM_CURSOR_KEY = "CUSTOM_CURSOR"; 
@@ -75,6 +79,8 @@ public class Settings : MonoBehaviour
         }
 
         StartCoroutine(OnAFrameAfterEnabled());
+
+        fleeFromBattleBtn.SetActive(SceneManager.GetActiveScene().name == "Battle");
     }
 
     private IEnumerator OnAFrameAfterEnabled()

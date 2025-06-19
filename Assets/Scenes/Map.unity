@@ -2066,8 +2066,7 @@ MonoBehaviour:
     background: {fileID: 21300000, guid: e12808b8c51a097499ecdeaf6864f866, type: 3}
     height: 648
     color: {r: 1, g: 1, b: 1, a: 1}
-  - message: Fight with a deck composed mainly by Rogues. If you win, all your Rogues
-      get +1 bonus Vitality or Attack Power.
+  - message: Fight with a deck composed mainly by Rogues. If you win, get rogue cards
     background: {fileID: 0}
     height: 500
     color: {r: 0, g: 0, b: 0, a: 0}
@@ -7469,8 +7468,8 @@ MonoBehaviour:
     background: {fileID: 21300000, guid: da81345ccbe28e341909718261052f24, type: 3}
     height: 648
     color: {r: 1, g: 1, b: 1, a: 1}
-  - message: Fight with a deck composed mainly by Guardians. If you win, all your
-      Guardians get +1 bonus Vitality or Attack Power.
+  - message: Fight with a deck composed mainly by Guardians. If you win, get guardian
+      cards.
     background: {fileID: 0}
     height: 500
     color: {r: 0, g: 0, b: 0, a: 0}
@@ -13344,8 +13343,8 @@ MonoBehaviour:
     background: {fileID: 21300000, guid: 91dafbea7ce1d7245bfd02b1e6099d7c, type: 3}
     height: 648
     color: {r: 1, g: 1, b: 1, a: 1}
-  - message: Fight with a deck composed mainly by Warriors. If you win, all your
-      Warriors get +1 bonus Vitality or Attack Power.
+  - message: Fight with a deck composed mainly by Warriors. If you win, get warrior
+      cards.
     background: {fileID: 0}
     height: 500
     color: {r: 0, g: 0, b: 0, a: 0}
@@ -19275,6 +19274,21 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1181704499273408377, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181704499273408377, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1181704499273408377, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1193498804994366982, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -19310,10 +19324,35 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2637868663724400189, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2637868663724400189, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2637868663724400189, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2792320346292305431, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -120.59973
+      objectReference: {fileID: 0}
+    - target: {fileID: 3346088126110782692, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3346088126110782692, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3649212102178321624, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
         type: 3}
@@ -19330,6 +19369,21 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3667833260404822598, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3667833260404822598, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3667833260404822598, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4006427404435912398, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -19390,6 +19444,16 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4941304562072619662, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4941304562072619662, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5031995911730875129, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -19448,6 +19512,16 @@ PrefabInstance:
     - target: {fileID: 5729095602516876460, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5907621660202827668, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5907621660202827668, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
+        type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6133937178919200694, guid: d0c5ca02b5fd13342b2f0d5c6d35d26b,
@@ -22348,8 +22422,7 @@ MonoBehaviour:
     background: {fileID: 21300000, guid: cb85341ba3f41414d958f8509a6ec91a, type: 3}
     height: 648
     color: {r: 1, g: 1, b: 1, a: 1}
-  - message: Fight with a deck composed mainly by Mages. If you win, all your Mages
-      get +1 bonus Vitality or Attack Power.
+  - message: Fight with a deck composed mainly by Mages. If you win, get mage cards.
     background: {fileID: 0}
     height: 500
     color: {r: 0, g: 0, b: 0, a: 0}

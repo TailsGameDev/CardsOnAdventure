@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+// TODO: Rethink this architecture
 public class OpenersSuperclass : MonoBehaviour
 {
     protected static ThePopUpOpenerInstance openerOfPopUpsMadeInEditor;
