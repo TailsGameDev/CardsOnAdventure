@@ -33,6 +33,11 @@ public class OldSkill : Skill
     [SerializeField]
     private int healItselfBeforeAttack = 0;
 
+    [SerializeField]
+    private bool shouldBeDisplayed = true;
+    [SerializeField]
+    private bool stealable = true;
+
     private Battlefield obf;
     private Battlefield abf;
 
@@ -42,6 +47,8 @@ public class OldSkill : Skill
     public float DamageReductionPercentage { get => damageReductionPercentage; }
     public float DamageReflectionPercentage { get => damageReflectionPercentage; }
     public bool IgnoreProtection { get => ignoreOpponentBlock; }
+    public bool ShouldBeDisplayed { get => shouldBeDisplayed; }
+    public bool Stealable { get => stealable; }
 
     public override void ApplyEffectsConsideringSelectedTarget(
                                                                 Battlefield opponentBattlefield,

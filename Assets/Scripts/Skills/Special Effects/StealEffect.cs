@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class StealEffect : SpecialEffect
 {
@@ -16,8 +14,8 @@ public class StealEffect : SpecialEffect
         {
             target = obf.GetReferenceToCardAt(targetIndex);
         }
-        attacker.Skill = target.Skill;
-        target.Skill = skillsMediator.GetBasicAttackSkill();
+        attacker.SetSkill(target.Skill);
+        target.SetSkill(skillsMediator.GetBasicAttackSkill());
 
         if (skillsMediator.IsTheSkillNamedStrong(attacker.Skill))
         {

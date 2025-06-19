@@ -1,13 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
 
 public class DynamicSizeScrollableCardHolder : CardsHolder
 {
     [SerializeField]
     private RectTransform slotPrototype = null;
-
-    [SerializeField]
-    private RectTransform scrollableBackground = null;
 
     protected RectTransform[] slots = null;
 

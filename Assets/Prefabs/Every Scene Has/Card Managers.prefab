@@ -156,6 +156,8 @@ MonoBehaviour:
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
   healItselfBeforeAttack: 0
+  shouldBeDisplayed: 0
+  stealable: 0
 --- !u!1 &944463720869866938
 GameObject:
   m_ObjectHideFlags: 0
@@ -1125,6 +1127,8 @@ MonoBehaviour:
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
   healItselfBeforeAttack: 0
+  shouldBeDisplayed: 1
+  stealable: 1
 --- !u!1 &4532562224309189008
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,6 +1273,8 @@ MonoBehaviour:
   damageReductionPercentage: 0
   damageReflectionPercentage: 0.5
   healItselfBeforeAttack: 0
+  shouldBeDisplayed: 1
+  stealable: 1
 --- !u!1 &4687705842238985659
 GameObject:
   m_ObjectHideFlags: 0
@@ -1512,6 +1518,8 @@ MonoBehaviour:
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
   healItselfBeforeAttack: 0
+  shouldBeDisplayed: 1
+  stealable: 1
 --- !u!1 &4687705842464198637
 GameObject:
   m_ObjectHideFlags: 0
@@ -1577,6 +1585,8 @@ MonoBehaviour:
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
   healItselfBeforeAttack: 0
+  shouldBeDisplayed: 1
+  stealable: 1
 --- !u!1 &4687705842546900961
 GameObject:
   m_ObjectHideFlags: 0
@@ -1640,6 +1650,8 @@ MonoBehaviour:
   damageReductionPercentage: 0.5
   damageReflectionPercentage: 0
   healItselfBeforeAttack: 0
+  shouldBeDisplayed: 1
+  stealable: 1
 --- !u!1 &4687705842861173695
 GameObject:
   m_ObjectHideFlags: 0
@@ -1703,6 +1715,8 @@ MonoBehaviour:
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
   healItselfBeforeAttack: 0
+  shouldBeDisplayed: 1
+  stealable: 1
 --- !u!1 &4687705842965504398
 GameObject:
   m_ObjectHideFlags: 0
@@ -1960,6 +1974,8 @@ MonoBehaviour:
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
   healItselfBeforeAttack: 0
+  shouldBeDisplayed: 1
+  stealable: 1
 --- !u!1 &4687705843270994625
 GameObject:
   m_ObjectHideFlags: 0
@@ -2273,6 +2289,8 @@ MonoBehaviour:
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
   healItselfBeforeAttack: 0
+  shouldBeDisplayed: 1
+  stealable: 1
 --- !u!1 &4687705843979180535
 GameObject:
   m_ObjectHideFlags: 0
@@ -2381,6 +2399,8 @@ MonoBehaviour:
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
   healItselfBeforeAttack: 0
+  shouldBeDisplayed: 1
+  stealable: 1
 --- !u!1 &4687705844028134354
 GameObject:
   m_ObjectHideFlags: 0
@@ -2426,8 +2446,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fullName: No Skill
-  description: Deals damage equals the <full>Attack Power to the target (like everybody
-    else).
+  description: 
   attackVFX: {fileID: 0}
   defenseVFX: {fileID: 0}
   specialVFX: {fileID: 0}
@@ -2444,6 +2463,8 @@ MonoBehaviour:
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
   healItselfBeforeAttack: 0
+  shouldBeDisplayed: 0
+  stealable: 0
 --- !u!1 &4687705844120585686
 GameObject:
   m_ObjectHideFlags: 0
@@ -2552,6 +2573,8 @@ MonoBehaviour:
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
   healItselfBeforeAttack: 0
+  shouldBeDisplayed: 1
+  stealable: 1
 --- !u!1 &4687705844232480848
 GameObject:
   m_ObjectHideFlags: 0
@@ -2706,6 +2729,8 @@ MonoBehaviour:
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
   healItselfBeforeAttack: 0
+  shouldBeDisplayed: 1
+  stealable: 1
 --- !u!1 &4707712204913688362
 GameObject:
   m_ObjectHideFlags: 0
@@ -3056,6 +3081,8 @@ MonoBehaviour:
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
   healItselfBeforeAttack: 0
+  shouldBeDisplayed: 1
+  stealable: 1
 --- !u!1 &5648030533265251432
 GameObject:
   m_ObjectHideFlags: 0
@@ -3119,6 +3146,8 @@ MonoBehaviour:
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
   healItselfBeforeAttack: 0
+  shouldBeDisplayed: 1
+  stealable: 1
 --- !u!1 &5724781387234103551
 GameObject:
   m_ObjectHideFlags: 0
@@ -3549,6 +3578,8 @@ MonoBehaviour:
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
   healItselfBeforeAttack: 0
+  shouldBeDisplayed: 1
+  stealable: 1
 --- !u!1 &7691302160356069892
 GameObject:
   m_ObjectHideFlags: 0
@@ -3714,6 +3745,8 @@ MonoBehaviour:
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
   healItselfBeforeAttack: 0
+  shouldBeDisplayed: 1
+  stealable: 1
 --- !u!1 &8176539182056961543
 GameObject:
   m_ObjectHideFlags: 0
@@ -4068,6 +4101,8 @@ MonoBehaviour:
   damageReductionPercentage: 0
   damageReflectionPercentage: 0
   healItselfBeforeAttack: 1
+  shouldBeDisplayed: 1
+  stealable: 1
 --- !u!1001 &1007442156438615644
 PrefabInstance:
   m_ObjectHideFlags: 0

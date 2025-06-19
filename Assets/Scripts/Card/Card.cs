@@ -25,7 +25,7 @@ public class Card : SkillsMediatorUser
     private TipReceptor tipReceptor = null;
 
     public CardDragAndDrop cardDragAndDrop = null;
-    
+
     private delegate void OnLevelUp();
     private static OnLevelUp onLevelUp;
 
@@ -90,20 +90,7 @@ public class Card : SkillsMediatorUser
     public int AttackPower { get => attackPower; set => attackPower = value; }
     public Classes Classe { get => classInfo.Classe; }
     public bool IgnoresProtection { get => skills.IgnoreProtection; }
-    public OldSkill Skill {
-        get => skills;
-        set 
-        {
-            skills = value;
-            SetTextArray(skillTexts, skills.FullName);
-            SetTextArrayColor(skillTexts, classInfo.Color);
-            for (int i = 0; i < ignoreProtectionIcons.Length; i++)
-            {
-                bool appearInThisAlignment = skillTexts[i].transform.parent.gameObject.activeSelf;
-                ignoreProtectionIcons[i].SetActive(appearInThisAlignment && value.IgnoreProtection);
-            }
-        }
-    }
+    public OldSkill Skill { get => skills; }
     public RectTransform RectTransform { get => rectTransform; }
     public int InitialAmountOnCollection { get => initialAmountOnCollection; }
     public Transform TransformWrapper { get => transformWrapper; }
@@ -115,8 +102,8 @@ public class Card : SkillsMediatorUser
         // General
         classInfo.TryToRegisterCardInClass(this);
         onLevelUp += RefreshStatsForThePlayer;
-        // Triggers update in skill text
-        Skill = skills;
+        // NOTE: The setter triggers update in skill text
+        SetSkill(skills);
         rectTransform = GetComponent<RectTransform>();
 
         // Atk Vit
@@ -157,7 +144,7 @@ public class Card : SkillsMediatorUser
     public void TakeDamageAndManageCardState(int damage, Battlefield battlefieldToRemoveCardInCaseOfDeath)
     {
         // Actions conditioned to damage amount
-        { 
+        {
             if (damage > 0)
             {
                 CreateDamageAnimatedText(damage);
@@ -170,7 +157,7 @@ public class Card : SkillsMediatorUser
         }
 
         // Actions conditioned to the Vitality
-        { 
+        {
             int newVit = SetVitalityAndUpdateTextLooks(Vitality - damage);
             if (newVit <= 0)
             {
@@ -185,7 +172,7 @@ public class Card : SkillsMediatorUser
             }
         }
     }
-    
+
     private void CreateDamageAnimatedText(int damage)
     {
         RectTransform damageTextTransform = Instantiate(DamageTextPrototype).GetComponent<RectTransform>();
@@ -198,9 +185,9 @@ public class Card : SkillsMediatorUser
 
         damageTextTransform.gameObject.SetActive(true);
     }
-    
+
     private int SetVitalityAndUpdateTextLooks(int value)
-    {   
+    {
         vitality = value;
         UpdateVitalityTextAndItsColor();
         return vitality;
@@ -230,6 +217,13 @@ public class Card : SkillsMediatorUser
         for (int i = 0; i < array.Length; i++)
         {
             array[i].color = color;
+        }
+    }
+    private void SetTextsParentActive(Text[] array, bool activate)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            array[i].transform.parent.gameObject.SetActive(activate);
         }
     }
 
@@ -292,9 +286,9 @@ public class Card : SkillsMediatorUser
     }
     public void ShowDefenseVFXandSFXIfHasBlockOrReflect(float attackerYPosition)
     {
-        if(skills.HasReflectEffect() || skills.HasHeavyArmorEffect())
+        if (skills.HasReflectEffect() || skills.HasHeavyArmorEffect())
         {
-            ShowDefenseVFXandSFX( attackerYPosition );
+            ShowDefenseVFXandSFX(attackerYPosition);
         }
     }
     public void ShowDefenseVFXandSFX(float attackerYPosition)
@@ -331,7 +325,7 @@ public class Card : SkillsMediatorUser
         vitalityTexts[1].transform.parent.gameObject.SetActive(true);
 
         skillTexts[0].transform.parent.gameObject.SetActive(false);
-        skillTexts[1].transform.parent.gameObject.SetActive(true);
+        skillTexts[1].transform.parent.gameObject.SetActive(skills.ShouldBeDisplayed);
 
         if (skills.IgnoreProtection)
         {
@@ -350,7 +344,7 @@ public class Card : SkillsMediatorUser
         vitalityTexts[0].transform.parent.gameObject.SetActive(true);
 
         skillTexts[1].transform.parent.gameObject.SetActive(false);
-        skillTexts[0].transform.parent.gameObject.SetActive(true);
+        skillTexts[0].transform.parent.gameObject.SetActive(skills.ShouldBeDisplayed);
 
         if (skills.IgnoreProtection)
         {
@@ -416,12 +410,12 @@ public class Card : SkillsMediatorUser
 
     public string GetExplanatoryText()
     {
-        return 
-                "Class: "+ ColorHexCodes.Paint(classInfo.name.ToUpperInvariant(), classInfo.Color)+
-                "\nSkill: "+(GetSkillsExplanatoryText()) + "\n" +
-                ColorHexCodes.BeginLightRed+"Attack Power: " + attackPower + ColorHexCodes.End+"\n" +
-                ColorHexCodes.BeginLightGreen+"Vitality: " + vitality + ColorHexCodes.End+"\n"
-                + ColorHexCodes.BeginWhite+"Level: "+ (CalculateLevelBasedOnCurrentAttackPower()+1) +ColorHexCodes.End
+        return
+                "Class: " + ColorHexCodes.Paint(classInfo.name.ToUpperInvariant(), classInfo.Color) +
+                "\nSkill: " + (GetSkillsExplanatoryText()) + "\n" +
+                ColorHexCodes.BeginLightRed + "Attack Power: " + attackPower + ColorHexCodes.End + "\n" +
+                ColorHexCodes.BeginLightGreen + "Vitality: " + vitality + ColorHexCodes.End + "\n"
+                + ColorHexCodes.BeginWhite + "Level: " + (CalculateLevelBasedOnCurrentAttackPower() + 1) + ColorHexCodes.End
                 ;
     }
     public string GetSkillsExplanatoryText()
@@ -560,5 +554,28 @@ public class Card : SkillsMediatorUser
         aux -= originalAttackPower;
         float level = aux / attackBonusPerLevel;
         return (int)level;
+    }
+
+    public void SetSkill(OldSkill newSkills)
+    {
+        skills = newSkills;
+
+        // Configure skill texts
+        if (newSkills.ShouldBeDisplayed)
+        {
+            SetTextArray(skillTexts, newSkills.FullName);
+            SetTextArrayColor(skillTexts, classInfo.Color);
+        }
+        else
+        {
+            SetTextsParentActive(skillTexts, false);
+        }
+        
+        // Set ignore protetion icon
+        for (int i = 0; i < ignoreProtectionIcons.Length; i++)
+        {
+            bool appearInThisAlignment = skillTexts[i].transform.parent.gameObject.activeSelf;
+            ignoreProtectionIcons[i].SetActive(appearInThisAlignment && newSkills.IgnoreProtection);
+        }
     }
 }

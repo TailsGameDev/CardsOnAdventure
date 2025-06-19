@@ -36,7 +36,7 @@ public class Store : MonoBehaviour
     }
     private void UpdateUI(Card cardToImprove)
     {
-        storeCardHolder.PutCardInIndexWithSmoothMovement(cardToImprove, 0);
+        storeCardHolder.PutCardInIndexThenTeleportToSlot(cardToImprove, 0);
 
         priceText.text = GetPriceOfCard(cardToImprove).ToString();
 
