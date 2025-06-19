@@ -22,7 +22,7 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
         PopulateCardAmountTexts();
         RefreshCardsStats();
         PopulateSlotsWithCards();
-        DeactivateBlockedCardsAndResize();
+        DeactivateBlockedCards();
     }
 
     private void PopulateCardAmountTexts()
@@ -58,7 +58,7 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
 
         }
     }
-    private void DeactivateBlockedCardsAndResize()
+    private void DeactivateBlockedCards()
     {
         int deactivatedSlotsAmount = 0;
         int[] amountOfEachCard = CardsCollection.GetCardsCollectionAmounts();
@@ -71,7 +71,6 @@ public class CardsCollectionDisplayer : DynamicSizeScrollableCardHolder
                 deactivatedSlotsAmount++;
             }
         }
-        SetHorizontalSizeOfRect(amountOfSlots: totalAmountOfCards - deactivatedSlotsAmount);
     }
     #endregion
 
